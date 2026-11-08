@@ -262,7 +262,7 @@ def map_rescues_to_existing_ALAN_year_exposure(rescues,wcvp,years,coast):
                 "rescuable_historical_main_island_accepted_with_existing_ALAN_exposure":0,
                 "rescuable_historical_main_island_photocell_years_with_exposure":0,
                 "rescuable_historical_main_distinct_islands_with_exposure":0,
-                "all_missing_exposure_remain_unlabelled":True},pd.DataFrame()
+                "all_missing_exposure_remain_unlabelled":True},pd.DataFrame(),pd.DataFrame()
     ref=wcvp.loc[wcvp.wcvp_match_state.eq("unique_exact_name_to_accepted_id"),
         ["inat_taxon_id","wcvp_accepted_plant_name_id"]].copy()
     ref.inat_taxon_id=ref.inat_taxon_id.astype(str)
@@ -324,7 +324,136 @@ def map_rescues_to_existing_ALAN_year_exposure(rescues,wcvp,years,coast):
         "all_missing_exposure_remain_unlabelled":True,
         "observation_UUIDs_not_photo_IDs_are_counted_as_newly_classifiable":True
     }
-    return report,by_source
+    return report,by_source,q
+
+
+def admit_real_sibling_roi_to_photo_site_thresholds(rescues,canonical,wcvp,years):
+    """Exact historical-main site threshold gains from genuinely measured sibling ROI.
+
+    The source observation already existed. Only previously unclassifiable
+    canonical observation-level photo ROI labels are replaced by true sibling
+    original-photo ROI measurements. Do not increase photo/observation attempts.
+    Changes are source-supported eligibility counts, NOT refitted ALAN slopes.
+    """
+    whole=[]
+    for year,(full,_) in years.items():
+        f=full.copy()
+        f["year"]=int(year)
+        f["cell_id"]=f.target_id.astype(str).str.split("|",regex=False).str[1]
+        p=(f["population_status"] if "population_status" in f.columns
+           else f["population_source_status"])
+        density=(f["population_density_per_km2"] if "population_density_per_km2" in f.columns
+                 else f["population_density"])
+        f["eligibility_environment"]=(f.viirs_valid_months.ge(3)&
+            f.viirs_median.notna()&p.eq("OK")&density.notna()&
+            f[["bio5","bio12","elevation"]].notna().all(axis=1))
+        whole.append(f[["target_id","year","cell_id","land_id","land_class",
+                        "photo_attempts","strict9_success","accepted_species_n",
+                        "eligibility_environment"]])
+    old=pd.concat(whole,ignore_index=True)
+    panel.require(old.target_id.is_unique,"Repeated signed source cell year")
+    old["accepted_species_n"]=old.accepted_species_n.fillna(0).astype(int)
+    # All true original photo acceptance conditions must reproduce existing
+    # strict and broad source denominators before admitting any sibling photo.
+    def eligible(frame,a,s,t):
+        return (frame.eligibility_environment&
+                frame.photo_attempts.ge(a)&
+                frame.strict9_success.ge(s)&
+                frame.accepted_species_n.ge(t))
+    base={}
+    for name,a,s,t in (("strict_5photos_3accepted",5,3,3),
+                       ("broad_3photos_2accepted",3,2,2)):
+        flags=eligible(old,a,s,t)
+        baseline=old.loc[flags]
+        base[name]={"cell_years":len(baseline),
+                    "island_cell_years":int(baseline.land_class.eq("island").sum())}
+    panel.require(base["strict_5photos_3accepted"]=={
+                    "cell_years":7982,"island_cell_years":710} and
+                  base["broad_3photos_2accepted"]=={
+                    "cell_years":20543,"island_cell_years":2026},
+                  "Original strict/broad photo-cell-year eligibility drift")
+
+    accepted_lookup=wcvp.loc[
+       wcvp.wcvp_match_state.eq("unique_exact_name_to_accepted_id"),
+       ["inat_taxon_id","wcvp_accepted_plant_name_id"]].copy()
+    accepted_lookup.inat_taxon_id=accepted_lookup.inat_taxon_id.astype(str)
+    # Reconstruct already observed accepted taxa on original historical-main
+    # strict ROI photos for EXACT source cells; do not use unknown source taxa.
+    c=canonical.loc[
+        canonical.source_subarm.eq("historical_main")&
+        canonical.strict9.astype(bool)&canonical.strict9_white.notna()&
+        canonical.latitude.between(-90,90)&canonical.longitude.between(-180,180),
+        ["observation_id","inat_taxon_id","observed_on","latitude","longitude"]].copy()
+    c["year"]=pd.to_numeric(c.observed_on.astype(str).str[:4],errors="coerce")
+    c=c.loc[c.year.isin(YEARS)].copy()
+    c["cell_id"]=cell_id(c.longitude,c.latitude)
+    # Ambiguous geographic cells are excluded from assignment rather than
+    # silently reassigned to a nearby island or the continent.
+    ambiguity=old.duplicated(["year","cell_id"],keep=False)
+    unique_geo=old.loc[~ambiguity,["year","cell_id","target_id"]]
+    c=c.merge(accepted_lookup,on="inat_taxon_id",how="left",validate="many_to_one")
+    c=c.loc[c.wcvp_accepted_plant_name_id.notna()]
+    c=c.merge(unique_geo,on=["year","cell_id"],how="inner",validate="many_to_one")
+    source_pairs=c[["target_id","wcvp_accepted_plant_name_id"]].drop_duplicates()
+    pre_n=source_pairs.groupby("target_id").size()
+    baseline_old_n=old.set_index("target_id").loc[pre_n.index,"accepted_species_n"]
+    mismatched=(pre_n.astype(int).ne(baseline_old_n.astype(int)))
+    panel.require(not mismatched.any(),
+          "Original accepted-taxon exact site reconstruction does not match frozen counts")
+    # All source rescued observation IDs still existed, so original opportunity
+    # count never changes. Only authentic photo-colour successes change.
+    q=rescues.loc[rescues.source_subarm.eq("historical_main")&
+                  rescues.target_id.isin(set(old.target_id))].copy()
+    panel.require(not q.unit_id.duplicated().any(),
+                 "One original observation counted twice as an ROI rescue")
+    added=q.groupby("target_id").unit_id.nunique()
+    new_pairs=q.loc[q.wcvp_accepted_plant_name_id.notna(),
+         ["target_id","wcvp_accepted_plant_name_id"]].drop_duplicates()
+    if len(new_pairs):
+        tagged=new_pairs.merge(source_pairs.assign(_existing_species=1),
+                  on=["target_id","wcvp_accepted_plant_name_id"],how="left",
+                  validate="one_to_one")
+        incremental=tagged.loc[tagged._existing_species.isna()]
+        new_species_count=incremental.groupby("target_id").size()
+    else:
+        new_species_count=pd.Series(dtype=int)
+    post=old.copy()
+    post["new_genuine_roi9_observation_measurements"]=post.target_id.map(added).fillna(0).astype(int)
+    post["new_distinct_accepted_species"]=post.target_id.map(new_species_count).fillna(0).astype(int)
+    post["strict9_success"]=post.strict9_success+post.new_genuine_roi9_observation_measurements
+    post["accepted_species_n"]=post.accepted_species_n+post.new_distinct_accepted_species
+    result={}
+    for name,a,s,t in (("strict_5photos_3accepted",5,3,3),
+                       ("broad_3photos_2accepted",3,2,2)):
+        b=eligible(old,a,s,t)
+        e=eligible(post,a,s,t)
+        panel.require(not (b&~e).any(),
+           "Authentic sibling ROI colour rescue removed a previously eligible cell")
+        newcomer=post.loc[e&~b]
+        result[name]={
+            "previous_cell_years":int(b.sum()),
+            "source_rescued_eligible_cell_years":int(e.sum()),
+            "additional_actual_photo_colour_eligible_cell_years":len(newcomer),
+            "previous_island_cell_years":int((b&old.land_class.eq("island")).sum()),
+            "source_rescued_island_cell_years":int((e&post.land_class.eq("island")).sum()),
+            "additional_island_cell_years":int(newcomer.land_class.eq("island").sum()),
+            "different_island_landmasses_adding_eligible_cells":int(
+                 newcomer.loc[newcomer.land_class.eq("island"),"land_id"].nunique()),
+        }
+    return {
+       "schema":"ALAN_signed_real_sibling_photo_ROI_observation_rescue_eligibility_v1",
+       "new_genuine_strict9_observation_measurements_with_original_source_site":int(
+            post.new_genuine_roi9_observation_measurements.sum()),
+       "additional_accepted_species_per_photo_cell_sum":int(
+            post.new_distinct_accepted_species.sum()),
+       "no_new_distinct_observation_uuids_or_photo_site_claim":True,
+       "no_new_photo_opportunity_included_in_eligibility_denominator":True,
+       "same_original_historical_main_and_sameyear_environment_source":True,
+       "technical_unknown_first_photo_not_relabelled_itself":True,
+       "source_sibling_original_photo_strict9_is_actual_measured_colour":True,
+       "new_eligible_uses_same_success_and_species_thresholds":True,
+       "results":result
+    }
 
 def run(paths,source_file,coast,out):
     out=Path(out);panel.require(not out.exists(),"Refuse overwrite of prior ALAN intake")
@@ -339,8 +468,10 @@ def run(paths,source_file,coast,out):
     years[2025]=panel.year2025(paths,original,wcvp,return_all=True)
     supported,by_design=summarize(geocoded,years)
     rescues,rescue_counts=candidate_observation_rescues(source,original)
-    rescue_geography,rescue_by_design=map_rescues_to_existing_ALAN_year_exposure(
+    rescue_geography,rescue_by_design,rescue_photo_cells=map_rescues_to_existing_ALAN_year_exposure(
         rescues,wcvp,years,coast)
+    rescued_eligibility=admit_real_sibling_roi_to_photo_site_thresholds(
+        rescue_photo_cells,original,wcvp,years)
     report={
       "schema":"ALAN_extra_original1181146_georestored_v2_sameyear_island_intake_audit_v1",
       "extra_source_photo_asset_sha256":RESTORED_SHA,
@@ -351,6 +482,7 @@ def run(paths,source_file,coast,out):
       "ALAN_additional_true_photo_opportunities":supported,
       "original_observation_multi_photo_colour_rescue":rescue_counts,
       "rescuable_original_observation_geographic_ALAN_exposure":rescue_geography,
+      "source_rescued_original_photo_eligibility":rescued_eligibility,
       "caution":"Only real original measured pixels/accepted-taxonomy and georeferenced independent photos; new source arms had different inclusion probabilities, no main model refit or wild-native flower prevalence claim.",
       "all_source_input_SHA256":{**{k:panel.sha(v) for k,v in paths.items()},
                                  "extra_original_photo_archive":panel.sha(source_file),
@@ -363,7 +495,7 @@ def run(paths,source_file,coast,out):
     (out/"additional_measured_photo_opportunities_summary.json").write_text(
          json.dumps(report,indent=2,sort_keys=True)+"\n")
     print("ALAN_EXTRA_REAL_1181146_SOURCE_PHOTO_INTAKE",
-          json.dumps({"whole":whole,"support":supported,"rescue":rescue_counts,"rescue_environment":rescue_geography},sort_keys=True),flush=True)
+          json.dumps({"whole":whole,"support":supported,"rescue":rescue_counts,"rescue_environment":rescue_geography,"new_eligibility":rescued_eligibility},sort_keys=True),flush=True)
     return report
 
 if __name__=="__main__":
