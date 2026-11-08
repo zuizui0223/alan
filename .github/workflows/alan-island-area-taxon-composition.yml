@@ -1,0 +1,152 @@
+name: ALAN original-photo island area nightlight taxonomic source decomposition
+on:
+  push:
+    branches: [analysis/island-area-taxon-composition-20261108]
+    paths:
+      - .github/workflows/alan-island-area-taxon-composition.yml
+      - scripts/analysis/alan_island_area_taxon_photo_decomposition_20261108.py
+      - tests/test_alan_island_area_taxon_photo_decomposition_20261108.py
+      - scripts/analysis/alan_isolation_area_light_20261108.py
+      - tests/test_alan_isolation_area_light_20261108.py
+      - scripts/analysis/alan_island_area_light_20261108.py
+      - tests/test_alan_island_area_light_20261108.py
+      - scripts/analysis/mois_island_ALAN_multiyear_sameyear_source_panel_20261107.py
+      - tests/test_mois_island_ALAN_multiyear_sameyear_source_panel_20261107.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-five-year-island-ALAN-model:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify 5-year photographic analysis and year/geography source tests
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 geopandas==1.1.2 shapely==2.1.2
+          python -m unittest discover -s tests -p test_mois_island_ALAN_multiyear_sameyear_source_panel_20261107.py -v
+          python -m py_compile scripts/analysis/mois_island_ALAN_multiyear_sameyear_source_panel_20261107.py
+          python -m unittest discover -s tests -p test_alan_island_area_light_20261108.py -v
+          python -m py_compile scripts/analysis/alan_island_area_light_20261108.py
+          python -m unittest discover -s tests -p test_alan_isolation_area_light_20261108.py -v
+          python -m py_compile scripts/analysis/alan_isolation_area_light_20261108.py
+          python -m unittest discover -s tests -p test_alan_island_area_taxon_photo_decomposition_20261108.py -v
+          python -m py_compile scripts/analysis/alan_island_area_taxon_photo_decomposition_20261108.py
+      - name: Verify MOIS source artifact visibility from ALAN token
+        run: |
+          set -euo pipefail
+          gh api repos/zuizui0223/mois/actions/runs/41007444495/artifacts --jq '.artifacts[] | select(.name=="mois-nohuman-canonical-climate-joined-20261030") | .expired' | grep -qx false
+          gh api repos/zuizui0223/mois/actions/runs/42175243391/artifacts --jq '.artifacts[] | select(.name=="mois-GSHHG-2.3.7-high-L1-L2-SHA-source-no-images") | .expired' | grep -qx false
+          gh api repos/zuizui0223/mois/actions/runs/42337703150/artifacts --jq '.artifacts[] | select(.name=="mois-2025-original73463-mainland-island-full-VIIRS-and-R2024B-UC-source") | .expired' | grep -qx false
+          echo 'ALAN_CROSS_REPO_SOURCE_ARTIFACT_VISIBILITY_OK'
+      - name: Restore signed frozen original photo and accepted-taxon sources
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          mkdir -p src/photo src/wcvp src/coast
+          gh run download 41007444495 --repo zuizui0223/mois --name mois-nohuman-canonical-climate-joined-20261030 --dir src/photo
+          gh run download 39225659840 --repo zuizui0223/mois --name mois-real350399-Kew-WCVP-native-source-TDWG3-no-point-status --dir src/wcvp
+          gh run download 42175243391 --repo zuizui0223/mois --name mois-GSHHG-2.3.7-high-L1-L2-SHA-source-no-images --dir src/coast
+          echo 'f033661d76e07898a5c13199a55c5d0ce6e55353daa48b0058c456979e90644c  src/photo/canonical_observations_climate.csv.gz' | sha256sum -c -
+          echo 'dc5bb0e3686fde0cfd327e4336245d0ceae3c7657b3bd12841bb814cc94d1eb2  src/wcvp/mois350399_wcvp_source_taxon_exact_name_resolution.csv.gz' | sha256sum -c -
+      - name: Restore three same-year original 2019 2021 2023 VIIRS and population sources
+        timeout-minutes: 9
+        run: |
+          set -euo pipefail
+          mkdir -p src/2019/viirs src/2019/pop src/2021/viirs src/2021/pop src/2023/viirs src/2023/pop
+          gh run download 42337911536 --repo zuizui0223/mois --name mois-original-2019-global-mainland-island-monthly-VIIRS-source-SHA --dir src/2019/viirs
+          gh run download 42338121269 --repo zuizui0223/mois --name mois-original-2019-R2024B-UC-global-popdensity-photo-source --dir src/2019/pop
+          gh run download 42337911536 --repo zuizui0223/mois --name mois-original-2021-global-mainland-island-monthly-VIIRS-source-SHA --dir src/2021/viirs
+          gh run download 42338121269 --repo zuizui0223/mois --name mois-original-2021-R2024B-UC-global-popdensity-photo-source --dir src/2021/pop
+          gh run download 42337911536 --repo zuizui0223/mois --name mois-original-2023-global-mainland-island-monthly-VIIRS-source-SHA --dir src/2023/viirs
+          gh run download 42338121269 --repo zuizui0223/mois --name mois-original-2023-R2024B-UC-global-popdensity-photo-source --dir src/2023/pop
+          test -f src/2019/viirs/source_year/2019/mois_2019_full_photo_landmass_source.csv
+          test -f src/2021/viirs/source_year/2021/mois_2021_full_photo_landmass_source.csv
+          test -f src/2023/viirs/source_year/2023/mois_2023_full_photo_landmass_source.csv
+          test -f src/2019/pop/source_receipt.json
+          test -f src/2021/pop/source_receipt.json
+          test -f src/2023/pop/source_receipt.json
+      - name: Restore independent 2024 sameyear VIIRS plus 2024 unconstrained population
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          mkdir -p src/2024/land src/2024/CN src/2024/UC
+          gh run download 42328254130 --repo zuizui0223/mois --name mois-global2024-original4096-WPGlobal2-2024-VIIRS-raw-SHA --dir src/2024/land
+          gh run download 42328567038 --repo zuizui0223/mois --name mois-global2024-rest62360-original-VIIRS-G2-all66456-source --dir src/2024/CN
+          gh run download 42333953557 --repo zuizui0223/mois --name mois-2024-WorldPop-UC-R2024B-full-original-66456-population-source --dir src/2024/UC
+          echo 'f7f65e6bc167089b3034555c655e777f528ecdd29952ab7ee9833d8722f39267  src/2024/land/original_source_2024/mois_2024_full_photo_landmass_source.csv' | sha256sum -c -
+          echo '6e0a077d496e90848d05d043bffae57e4772519f4572a457221c5ef4da0fb813  src/2024/CN/result_rest2024/all2024_known_land_combined_values.csv' | sha256sum -c -
+          echo 'a07af611836d215fb7997c7f574729df10787f5a7cc9bfa1b67bf5a831d613dc  src/2024/UC/2024_66k_UC_R2024B_fullcohort_values.csv' | sha256sum -c -
+      - name: Restore 2025 original VIIRS and sameyear WorldPop numeric plus verified original coast
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          mkdir -p src/2025/numeric
+          gh run download 42337703150 --repo zuizui0223/mois --name mois-2025-original73463-mainland-island-full-VIIRS-and-R2024B-UC-source --dir src/2025/numeric
+          python -m scripts.analysis.mois_global2025_original_source_20261107 --canonical src/photo/canonical_observations_climate.csv.gz --shoreline src/coast --out src/2025/geo --allow-knownland-verified-geo-roundoff
+          echo '45c5152e1edad997ff8749c645818996fb2b0bc03a2ab7c0753af446afaab143  src/2025/geo/mois_2025_all73463_knownland_source.csv' | sha256sum -c -
+      - name: Estimate true observed taxon-source reference versus within-taxon photo deviations
+        timeout-minutes: 25
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_island_area_taxon_photo_decomposition_20261108 \
+            --canonical src/photo/canonical_observations_climate.csv.gz \
+            --wcvp src/wcvp/mois350399_wcvp_source_taxon_exact_name_resolution.csv.gz \
+            --geo2019 src/2019/viirs/source_year/2019/mois_2019_full_photo_landmass_source.csv \
+            --viirs2019 src/2019/viirs/VIIRS_2019/values.csv \
+            --pop2019 src/2019/pop/2024B_UC_2019_worldpop_sameyear_photo_landmass_popdensity.csv \
+            --geo2021 src/2021/viirs/source_year/2021/mois_2021_full_photo_landmass_source.csv \
+            --viirs2021 src/2021/viirs/VIIRS_2021/values.csv \
+            --pop2021 src/2021/pop/2024B_UC_2021_worldpop_sameyear_photo_landmass_popdensity.csv \
+            --geo2023 src/2023/viirs/source_year/2023/mois_2023_full_photo_landmass_source.csv \
+            --viirs2023 src/2023/viirs/VIIRS_2023/values.csv \
+            --pop2023 src/2023/pop/2024B_UC_2023_worldpop_sameyear_photo_landmass_popdensity.csv \
+            --geo2024 src/2024/land/original_source_2024/mois_2024_full_photo_landmass_source.csv \
+            --cn2024 src/2024/CN/result_rest2024/all2024_known_land_combined_values.csv \
+            --uc2024 src/2024/UC/2024_66k_UC_R2024B_fullcohort_values.csv \
+            --uc2024receipt src/2024/UC/UC_R2024B_source_receipt.json \
+            --geo2025 src/2025/geo/mois_2025_full_photo_landmass_source.csv \
+            --geo2025receipt src/2025/geo/2025_source_receipt.json \
+            --viirs2025 src/2025/numeric/numeric_2025/values.csv \
+            --coast src/coast \
+            --out alan_real_area_taxon_decomposition
+          python - <<'PY'
+          import json, numpy as np
+          from pathlib import Path
+          p=Path('alan_real_area_taxon_decomposition/ALAN_island_area_accepted_taxon_photo_decomposition_aggregate.json')
+          a=json.loads(p.read_text())
+          assert a['schema']=='ALAN_real_island_area_nightlight_photo_taxon_decomposition_v1'
+          assert a['original_strict_photo_cell_years']==7982
+          assert a['original_broad_photo_cell_years']==20543
+          assert a['no_missing_species_or_hue_imputation']
+          assert a['original_images_downloaded_or_reinferred']==0
+          for name,n,s in [('strict_5p3r3s',44,650),('measured_3p2r2s',95,1884)]:
+              k=a['results'][name]
+              assert k['real_islands']==n and k['real_photo_cell_years']==s
+              for weight in ['cell_equal','island_equal']:
+                  b=k['decomposition'][weight]
+                  assert b['both_interactions_reconstruct_exactly']
+                  for term in ('log_light:log10_area_c','log_light:log10_distance_c'):
+                      y=b['results']['observed']['terms'][term]['beta']
+                      c=b['results']['taxon_photo_reference']['terms'][term]['beta']
+                      d=b['results']['taxon_relative_photo_deviation']['terms'][term]['beta']
+                      assert np.isclose(y,c+d,atol=1.e-6,rtol=0)
+          print('ALAN_ORIGINAL_TAXON_SOURCE_DECOMPOSITION_VERIFIED')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-photo-island-area-taxon-photo-decomposition
+          path: alan_real_area_taxon_decomposition/
+          retention-days: 90
+          if-no-files-found: warn
