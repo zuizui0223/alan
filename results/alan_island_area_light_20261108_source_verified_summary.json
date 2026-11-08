@@ -1,0 +1,105 @@
+{
+  "schema": "ALAN_20261108_source_verified_island_area_nightlight_summary_v1",
+  "source_run": "https://github.com/zuizui0223/alan/actions/runs/42439789459",
+  "source_artifact_id": 13600898564,
+  "signed_original_result_json_sha256": "35b30fb94b3a770142ac98498f835c7cec9c27f2273af41a5a98057763275810",
+  "original_result_filename": "island_area_light_source_results.json",
+  "source_years": [
+    2019,
+    2021,
+    2023,
+    2024,
+    2025
+  ],
+  "endpoints": "original ROI9 floral region white fraction averaged by observed accepted species and photo-cell-year",
+  "exposure": "same-year log1p(VIIRS)",
+  "modifier": "log10(GSHHG v2.3.7 landmass area in km2), per 10-fold larger area",
+  "model": "white_pp ~ log_light + log_light:log10_area_c + log_pop + bio5 + log_rain + elevation + log_attempts + C(land_id) + C(year)",
+  "inference": "nominal original-island-clustered confidence intervals; exploratory observational not causal",
+  "strict": {
+    "original_global_photo_cell_years": 7982,
+    "source_eligible_island_cell_years": 710,
+    "source_islands": 101,
+    "spatially_supported_islands": 44,
+    "selected_within_island_cell_years": 650,
+    "independent_islands_with_site_light_span_at_least_0p05": 36,
+    "island_area_median_equal_island_km2": 1687.7099464505563,
+    "area_tertiles": [
+      {
+        "n_islands": 15,
+        "n_cell_years": 41
+      },
+      {
+        "n_islands": 14,
+        "n_cell_years": 64
+      },
+      {
+        "n_islands": 15,
+        "n_cell_years": 545
+      }
+    ],
+    "cell_equal": {
+      "beta": 2.208728309636993,
+      "CI": [
+        0.006594819860767487,
+        4.410861799413219
+      ],
+      "p": 0.0493476583686625
+    },
+    "island_equal": {
+      "beta": 5.151623122161728,
+      "CI": [
+        2.558840926889726,
+        7.7444053174337295
+      ],
+      "p": 0.00023987353857082933
+    }
+  },
+  "broad": {
+    "original_global_photo_cell_years": 20543,
+    "source_eligible_island_cell_years": 2026,
+    "source_islands": 222,
+    "spatially_supported_islands": 95,
+    "selected_within_island_cell_years": 1884,
+    "independent_islands_with_site_light_span_at_least_0p05": 84,
+    "island_area_median_equal_island_km2": 767.8070741962537,
+    "area_tertiles": [
+      {
+        "n_islands": 32,
+        "n_cell_years": 121
+      },
+      {
+        "n_islands": 31,
+        "n_cell_years": 171
+      },
+      {
+        "n_islands": 32,
+        "n_cell_years": 1592
+      }
+    ],
+    "cell_equal": {
+      "beta": 0.9983139438500657,
+      "CI": [
+        -0.3903994168689908,
+        2.387027304569122
+      ],
+      "p": 0.15679350577765744
+    },
+    "island_equal": {
+      "beta": 3.3846627689849633,
+      "CI": [
+        1.319410898486375,
+        5.449914639483552
+      ],
+      "p": 0.0015818912131489145
+    }
+  },
+  "safeguards": [
+    "no image re-download or ROI re-inference",
+    "no unknown-colour imputation",
+    "not real petal confirmation",
+    "not island isolation",
+    "not causal photic selection",
+    "strict and broad samples overlap"
+  ]
+}
