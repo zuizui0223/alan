@@ -1,0 +1,29 @@
+{
+  "schema": "ALAN_tier07_27507_original_island_UUID_1024sourcepilot_verified_20261108_v1",
+  "source_workflow_run": "https://github.com/zuizui0223/alan/actions/runs/42466279952",
+  "source_workflow_success": true,
+  "source_artifact_id": 13611751487,
+  "source_artifact_name": "alan-tier07-27507-original-island-precolour-1024photo-groups",
+  "source_tier07_photo_master_SHA256": "e38161652d3ec85928fa0f4fad91d70c123a7cb2af32f65f199f42504f76e056",
+  "source_full27507_schedule_SHA256": "7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62",
+  "source_27_group_support_SHA256": "5bb3aedd1005a8c77641078c8bf218c08bd5ba39ebd93512ee24ceb17f00b9a8",
+  "original_new_independent_observation_UUIDs": 27507,
+  "original_source_GSHHG_islands": 563,
+  "original_source_photo_cell_years": 9493,
+  "source_groups_1024_each": 26,
+  "source_last_group_883": 1,
+  "first_1024_photo_source": {
+    "new_original_observation_UUIDs": 1024,
+    "genuine_original_GSHHG_islands": 284,
+    "distinct_original_photo_cell_years": 324,
+    "source_reference_one_photo_per_island": 256,
+    "source_same_site_year_densification_photos": 768,
+    "source_densification_islands": 36,
+    "source_5attempt_3observed_accepted_taxa_potential_cells": 76
+  },
+  "original_image_executing_workflow": "https://github.com/zuizui0223/alan/actions/runs/42466504871",
+  "original_image_pilot_status": "in progress, no numeric ROI9 success asserted",
+  "no_original_images_downloaded_during_source_queue_creation": true,
+  "all_source_UUIDs_distinct_from_canonical_and_prior_tier06": true,
+  "scientific_scope": "pre-colour source targets only; no confirmed open native flowers; island/site-targeted arm cannot be pooled as unbiased global white-flower prevalence"
+}
