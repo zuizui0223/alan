@@ -28,3 +28,9 @@ The original source runs, numerical results and caveats are preserved in [the mi
 ## Migration / provenance
 
 See [MIGRATION.md](MIGRATION.md). The original signed image/data artifacts remain in the source MOIS release and Actions history; source files have not been remeasured and missing colour values have not been filled. Scientific analysis continuation belongs here, and moisture–flower-colour analysis remains in MOIS.
+
+## Native ALAN reproduction (verified)
+
+On 2026-11-08, ALAN's own [five-year source-verified GitHub Actions run](https://github.com/zuizui0223/alan/actions/runs/42438862639) succeeded using the historical MOIS original-photo and same-year VIIRS/WorldPop source artifacts. It reproduced **7,982 photo cell-years (710 island)** and the island × log(1+VIIRS) white-ROI spatial association **−2.497045 pp**, 95% CI **[−3.948547,−1.045542]**. The stricter same-year same-geographic island/mainland comparison was **not individually resolved**; no light-caused biological white-flower loss is inferred.
+
+Use `.github/workflows/alan-native-fiveyear-replay.yml` via the **Actions → Run workflow** manual control on the default branch. This workflow intentionally leaves the historical MOIS workflows inactive. See [full original-run outputs, safeguards, and archival deadlines](docs/ALAN_NATIVE_REPLAY_VERIFIED_20261108.md).
