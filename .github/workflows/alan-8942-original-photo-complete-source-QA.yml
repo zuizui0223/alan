@@ -1,0 +1,24 @@
+name: ALAN 8942-source original photo ROI9 strict site audit synthetic contracts
+on:
+  push:
+    branches: [analysis/alan-7662-original-ROI9-bulk-20261108]
+    paths:
+      - .github/workflows/alan-8942-original-photo-complete-source-QA.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-8942-photo-site-acceptance-and-unknown-QA:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Check actual source strict site acceptance means 5 attempts and 3 measured accepted taxa
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3
+          python -m unittest discover -s tests -p test_alan_collect_full8942_island_original_roi9_20261108.py -v
+          python -m py_compile scripts/analysis/alan_collect_full8942_island_original_roi9_20261108.py
+          echo 'ALAN_8942_STRICT_SITE_ROI9_REAL_SOURCE_MERGE_CONTRACTS_TESTED'
