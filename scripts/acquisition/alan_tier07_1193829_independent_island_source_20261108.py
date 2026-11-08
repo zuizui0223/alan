@@ -70,7 +70,7 @@ def read_tier(directory,receipt_file,known):
                   "Not the published 93m source-only registry")
     ids=set();counts=[];selected_map={};exclude=set(map(str,known))
     for group,expected_sha in enumerate(TAR_SHA):
-        path=Path(directory)/f"tier-06-group-{group:02d}.tar"
+        path=Path(directory)/f"tier-07-group-{group:02d}.tar"
         panel.require(path.is_file() and panel.sha(path)==expected_sha,
                       f"Frozen tier07 group {group} bytes modified")
         count=0;parts=set()
