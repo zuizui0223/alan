@@ -55,5 +55,33 @@ class SourceIntakeTests(unittest.TestCase):
         self.assertEqual(r["strict9_WCVP_new_observations_requiring_new_ALAN_exposure_or_other_env"]["island_photo_records"],1)
         self.assertTrue(r["no_supplementary_photo_retreated_as_original_historical_main"])
 
+    def test_same_observation_extra_photo_rescues_real_unknown_not_new_observation(self):
+        canonical=pd.DataFrame([
+          {"observation_id":"A","photo_id":"1","inat_taxon_id":"20",
+           "source_subarm":"historical_main","observed_on":"2024-05-20",
+           "latitude":35.0,"longitude":139.0,"strict9":False,
+           "strict9_white":float("nan")},
+          {"observation_id":"B","photo_id":"2","inat_taxon_id":"21",
+           "source_subarm":"historical_main","observed_on":"2024-05-20",
+           "latitude":36.0,"longitude":140.0,"strict9":True,
+           "strict9_white":.3},
+        ])
+        extra=pd.DataFrame([
+          {"observation_id":"A","photo_id":"3","inat_taxon_id":"20",
+           "real_strict9":True,"strict9_white":.8},
+          {"observation_id":"A","photo_id":"4","inat_taxon_id":"20",
+           "real_strict9":True,"strict9_white":.6},
+          {"observation_id":"B","photo_id":"5","inat_taxon_id":"21",
+           "real_strict9":True,"strict9_white":.4},
+        ])
+        rescue,report=m.candidate_observation_rescues(extra,canonical)
+        self.assertEqual(report["extra_genuine_strict9_sibling_photos"],3)
+        self.assertEqual(report["technical_unknown_observation_UUIDs_with_1plus_measured_sibling_photos"],1)
+        self.assertEqual(report["strict9_extra_photos_for_canonical_already_classifiable_observations"],1)
+        self.assertEqual(report["historical_main_observations_rescuable_original_roi9"],1)
+        self.assertEqual(len(rescue),1)
+        self.assertEqual(int(rescue.extra_strict9_photos_on_same_observation.iloc[0]),2)
+        self.assertAlmostEqual(float(rescue.rescued_white_fraction.iloc[0]),.7)
+
 if __name__=="__main__":
     unittest.main()
