@@ -4,6 +4,7 @@ on:
     branches: [analysis/alan-7662-original-ROI9-bulk-20261108]
     paths:
       - .github/workflows/alan-8942-original-photo-complete-source-QA.yml
+      - tests/test_alan_collect_full8942_island_original_roi9_20261108.py
   workflow_dispatch:
 permissions:
   contents: read
