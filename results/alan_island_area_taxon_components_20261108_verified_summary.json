@@ -1,0 +1,218 @@
+{
+  "schema": "ALAN_verified_20261108_island_area_taxon_photo_source_summary_v1",
+  "run_url": "https://github.com/zuizui0223/alan/actions/runs/42442841980",
+  "artifact_id": 13602726232,
+  "artifact_name": "alan-original-photo-island-area-taxon-photo-decomposition",
+  "artifact_inner_json_sha256": "5bdaa516ffa0ab4d2cd95983d2558e0985a043dcc56f1a2f6f9475414549ab92",
+  "source_accepted_species_count": 7628,
+  "source_taxon_cell_years": 66175,
+  "years": [
+    2019,
+    2021,
+    2023,
+    2024,
+    2025
+  ],
+  "outcome": "original strict ROI9 photographed floral-region white mass; NOT species white flower prevalence",
+  "definition": "photo-colour cell white = same source taxon-average photographed white + taxon-relative original photo deviation; exact regression beta identity on same photo cell-years",
+  "model": "white_pp ~ log_light + log_light:log10_area_c + log_light:log10_distance_c + log_pop + bio5 + log_rain + elevation + log_attempts + island FE + year FE",
+  "beta_unit": "pp change in nightlight slope per 10-fold island area, adjusted mainland-distance interaction",
+  "coefficients_array": "[beta, CI low, CI high, nominal exploratory p]",
+  "cohorts": {
+    "strict_5p3r3s": {
+      "full_original": {
+        "islands": 44,
+        "cell_years": 650,
+        "accepted_taxon_cell_years": 2953,
+        "same_archive_singleton_taxon_cell_years": 194,
+        "island_equal": {
+          "observed": [
+            5.383529291134088,
+            2.677832159052614,
+            8.08922642321556,
+            0.0002357540722017001
+          ],
+          "photographed_taxon_reference": [
+            4.2957939006632895,
+            1.3923134746066976,
+            7.199274326719881,
+            0.004679305141256513
+          ],
+          "taxon_relative_photo_deviation": [
+            1.0877353904707978,
+            -1.2067664564471996,
+            3.3822372373887952,
+            0.3443980984890128
+          ]
+        },
+        "cell_equal": {
+          "observed": [
+            2.216703936269394,
+            -0.00350419710600125,
+            4.436912069644789,
+            0.05034680545881255
+          ],
+          "photographed_taxon_reference": [
+            1.2068060214975982,
+            -0.597855883027818,
+            3.0114679260230144,
+            0.18452773803478698
+          ],
+          "taxon_relative_photo_deviation": [
+            1.0098979147717981,
+            -0.21189118092123826,
+            2.2316870104648343,
+            0.10279426277625561
+          ]
+        }
+      },
+      "heldout_prior2019_2021_2023_test2024_2025": {
+        "islands": 29,
+        "cell_years": 386,
+        "actual_prior_referenced_taxon_cell_years": 1644,
+        "island_equal": {
+          "observed_matched_taxa": [
+            4.0735,
+            -0.6192,
+            8.7663,
+            0.08625
+          ],
+          "earlier_year_photo_taxon_reference": [
+            2.0916,
+            -2.3304,
+            6.5136,
+            0.34089
+          ],
+          "matched_taxa_photo_deviation": [
+            1.9819,
+            -1.2113,
+            5.1751,
+            0.21405
+          ]
+        },
+        "cell_equal": {
+          "observed_matched_taxa": [
+            2.5732,
+            -1.8919,
+            7.0383,
+            0.24774
+          ],
+          "earlier_year_photo_taxon_reference": [
+            -0.2413,
+            -3.9633,
+            3.4807,
+            0.8953
+          ],
+          "matched_taxa_photo_deviation": [
+            2.8145,
+            0.5786,
+            5.0505,
+            0.01547
+          ]
+        }
+      }
+    },
+    "measured_3p2r2s": {
+      "full_original": {
+        "islands": 95,
+        "cell_years": 1884,
+        "accepted_taxon_cell_years": 5722,
+        "same_archive_singleton_taxon_cell_years": 428,
+        "island_equal": {
+          "observed": [
+            2.938700414161954,
+            0.8328203011783635,
+            5.044580527145545,
+            0.006740929500871743
+          ],
+          "photographed_taxon_reference": [
+            2.0588978809238196,
+            0.3498014313819999,
+            3.7679943304656396,
+            0.018751694424986292
+          ],
+          "taxon_relative_photo_deviation": [
+            0.8798025332381396,
+            -0.33256687162839804,
+            2.092171938104677,
+            0.15294378824899935
+          ]
+        },
+        "cell_equal": {
+          "observed": [
+            1.0160798695305384,
+            -0.38382809309300825,
+            2.415987832154085,
+            0.15287072367479396
+          ],
+          "photographed_taxon_reference": [
+            0.23081234141026252,
+            -1.1389324544040889,
+            1.600557137224614,
+            0.7386905712850922
+          ],
+          "taxon_relative_photo_deviation": [
+            0.7852675281202733,
+            0.011590428556322308,
+            1.5589446276842245,
+            0.04673226539697806
+          ]
+        }
+      },
+      "heldout_prior2019_2021_2023_test2024_2025": {
+        "islands": 50,
+        "cell_years": 950,
+        "actual_prior_referenced_taxon_cell_years": 2895,
+        "island_equal": {
+          "observed_matched_taxa": [
+            1.7952,
+            -0.8819,
+            4.4724,
+            0.18399
+          ],
+          "earlier_year_photo_taxon_reference": [
+            0.0709,
+            -2.7951,
+            2.937,
+            0.96053
+          ],
+          "matched_taxa_photo_deviation": [
+            1.7243,
+            -0.5972,
+            4.0458,
+            0.14195
+          ]
+        },
+        "cell_equal": {
+          "observed_matched_taxa": [
+            0.6305,
+            -1.8548,
+            3.1159,
+            0.61246
+          ],
+          "earlier_year_photo_taxon_reference": [
+            -0.9596,
+            -3.5144,
+            1.5953,
+            0.454
+          ],
+          "matched_taxa_photo_deviation": [
+            1.5901,
+            -0.0337,
+            3.2139,
+            0.05476
+          ]
+        }
+      }
+    }
+  },
+  "identity_gate": "both area and coastline-isolation interaction coefficients exactly equal reference + photo deviation on same original rows (before holdout and within holdout) and original island-area-coast slope coefficients match signed ALAN baseline",
+  "limitations": [
+    "same-archive taxon mean contains target photos, so descriptive non-independent reference",
+    "heldout only observed species with prior photo references: different sampling population",
+    "photo detection != plant community species absence",
+    "no causal nighttime light or actual pollination effect inferred",
+    "all p values nominal exploratory",
+    "source GitHub Actions artifact has finite retention"
+  ]
+}
