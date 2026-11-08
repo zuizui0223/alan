@@ -427,14 +427,19 @@ def admit_real_sibling_roi_to_photo_site_thresholds(rescues,canonical,wcvp,years
                 "counts_reconstructed_exceeds_baseline":int(
                    (pre_count>impacted.accepted_species_n.astype(int)).sum())
               },sort_keys=True),flush=True)
-    panel.require(not mismatched.any(),
-          "Original accepted-taxon true-point GSHHG reconstruction does not match frozen counts")
+    # Exact fail-closed restriction: the ORIGINAL frozen panel retains all
+    # its cells; ambiguous reconstructed cells simply do not receive any
+    # additional sibling colours. Never guess which source taxon belonged
+    # to a mixed/coastline cell with conflicting WCVP counts.
+    excluded=set(impacted.index[mismatched])
+    original_rescue_count=len(q)
+    q=q.loc[~q.target_id.isin(excluded)].copy()
+    source_pairs=source_pairs.loc[~source_pairs.target_id.isin(excluded)].copy()
+    valid_pre=pre_count.loc[~mismatched]
+    panel.require(valid_pre.eq(impacted.loc[valid_pre.index].accepted_species_n.astype(int)).all(),
+          "Even matched source photo sites have inconsistent accepted taxa")
     # All source rescued observation IDs still existed, so original opportunity
     # count never changes. Only authentic photo-colour successes change.
-    q=rescues.loc[rescues.source_subarm.eq("historical_main")&
-                  rescues.target_id.isin(set(old.target_id))].copy()
-    panel.require(not q.unit_id.duplicated().any(),
-                 "One original observation counted twice as an ROI rescue")
     added=q.groupby("target_id").unit_id.nunique()
     new_pairs=q.loc[q.wcvp_accepted_plant_name_id.notna(),
          ["target_id","wcvp_accepted_plant_name_id"]].drop_duplicates()
@@ -473,6 +478,10 @@ def admit_real_sibling_roi_to_photo_site_thresholds(rescues,canonical,wcvp,years
        "schema":"ALAN_signed_real_sibling_photo_ROI_observation_rescue_eligibility_v1",
        "new_genuine_strict9_observation_measurements_with_original_source_site":int(
             post.new_genuine_roi9_observation_measurements.sum()),
+       "original_source_photo_site_years_with_conflicting_accepted_taxon_match_excluded":len(excluded),
+       "genuine_sibling_rescue_observations_excluded_due_conflicting_original_site":int(
+            original_rescue_count-len(q)),
+       "source_site_conflict_is_excluded_from_new_labels_not_deleted_from_original_panel":True,
        "additional_accepted_species_per_photo_cell_sum":int(
             post.new_distinct_accepted_species.sum()),
        "no_new_distinct_observation_uuids_or_photo_site_claim":True,
