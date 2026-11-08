@@ -1,0 +1,112 @@
+{
+  "schema": "ALAN_isolation_area_light_verified_summary_v1",
+  "source_run": "https://github.com/zuizui0223/alan/actions/runs/42440394223",
+  "source_artifact_name": "alan-5year-GSHHG-island-isolation-area-nightlight",
+  "source_artifact_id": 13601153247,
+  "archive_original_json_sha256": "668e1ca74b84ab2538b5b4bd8d1b5c7144b2828f23e9af1b5bcb18617958a441",
+  "GSHHG_original_archive_sha256": "8dbbe7e071e77e9e75f2d639239099ebca8d5c16d6a07df8169729d49f15cf41",
+  "years": [
+    2019,
+    2021,
+    2023,
+    2024,
+    2025
+  ],
+  "outcome": "source measured true-photo ROI9 white mass, not botanical species-white prevalence",
+  "distance_method": "min observed geodesic over original GSHHG high-res outer-coastline vertices; antimeridian-safe 3D ECEF candidate search; upper-bound vertex approximation",
+  "modifier_units": {
+    "area": "log10(km2), per tenfold area",
+    "isolation": "log10(1+km), per tenfold (1+km)"
+  },
+  "cohorts": {
+    "strict_5p3r3s": {
+      "n_islands": 44,
+      "cell_years": 650,
+      "distance_median_km": 80.70477507980829,
+      "area_isolation_r": 0.3542147029756173,
+      "cell_equal_joint": {
+        "area": [
+          2.216703936269394,
+          -0.00350419710600125,
+          4.436912069644789,
+          0.05034680545881255
+        ],
+        "isolation": [
+          -1.2566907276473498,
+          -3.095902013335687,
+          0.5825205580409871,
+          0.17534482711272692
+        ]
+      },
+      "island_equal_joint": {
+        "area": [
+          5.383529291134088,
+          2.677832159052614,
+          8.08922642321556,
+          0.0002357540722017001
+        ],
+        "isolation": [
+          -1.3647844594338443,
+          -5.1055544166501265,
+          2.3759854977824384,
+          0.46586479994551755
+        ]
+      },
+      "island_equal_area_only": [
+        5.151623122161728,
+        2.558840926889726,
+        7.7444053174337295,
+        0.00023987353857082933
+      ]
+    },
+    "measured_3p2r2s": {
+      "n_islands": 95,
+      "cell_years": 1884,
+      "distance_median_km": 125.96314332096979,
+      "area_isolation_r": 0.2003648869769735,
+      "cell_equal_joint": {
+        "area": [
+          1.0160798695305384,
+          -0.38382809309300825,
+          2.415987832154085,
+          0.15287072367479396
+        ],
+        "isolation": [
+          -0.1481462709020268,
+          -1.349306524087678,
+          1.0530139822836246,
+          0.8070781361994792
+        ]
+      },
+      "island_equal_joint": {
+        "area": [
+          2.938700414161954,
+          0.8328203011783635,
+          5.044580527145545,
+          0.006740929500871743
+        ],
+        "isolation": [
+          1.8406806075457232,
+          -0.7817384295372862,
+          4.463099644628732,
+          0.16671186872075316
+        ]
+      },
+      "island_equal_area_only": [
+        3.3846627689849633,
+        1.319410898486375,
+        5.449914639483552,
+        0.0015818912131489145
+      ]
+    }
+  },
+  "array_elements": "[beta, 95%-CI lower, 95%-CI upper, nominal exploratory p]",
+  "not_inferred": [
+    "causal ALAN",
+    "pollinator decline",
+    "species loss",
+    "true coast-segment exact distance"
+  ],
+  "new_photos": 0,
+  "source_run_success": true
+}
