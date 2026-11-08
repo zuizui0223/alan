@@ -103,8 +103,9 @@ def valid_nine(frame):
     raw=np.column_stack([
         pd.to_numeric(frame[col],errors="coerce").to_numpy(float)
         for col in FRACTIONS])
-    good=np.isfinite(raw).all(axis=1)&(raw>=0).all(axis=1)&
-        (raw<=1+1.e-6).all(axis=1)&(np.where(np.isfinite(raw),raw,0).sum(axis=1)>0)
+    good=(np.isfinite(raw).all(axis=1)&(raw>=0).all(axis=1)&
+          (raw<=1+1.e-6).all(axis=1)&
+          (np.where(np.isfinite(raw),raw,0).sum(axis=1)>0))
     source4=frame.morph.isin(HUES).to_numpy()
     status=frame.measurement_status.eq("classified_four_state_morph").to_numpy()
     require(np.array_equal(source4,status),
