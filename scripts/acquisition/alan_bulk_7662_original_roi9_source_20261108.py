@@ -209,7 +209,7 @@ def collect(source,measured,group,out):
         complete.loc[valid,list(ROI_COLS)].sum(axis=1),1,atol=1e-6,rtol=0)
         and complete.loc[~valid,list(ROI_COLS)].isna().all().all(),
         "Actual original colour palette did not sum to one or unknowns imputed")
-    require(complete.source_batch.isin(map(str,group_batches(group))).all(),
+    require(complete.source_batch.isin(tuple(map(str,group_batches(group)))).all(),
             "New ROI photo results attached to wrong source batch")
     require(complete.observed_on.str.match(r"\d{4}-\d{2}-\d{2}").all(),
             "Original source photo observation date missing")
