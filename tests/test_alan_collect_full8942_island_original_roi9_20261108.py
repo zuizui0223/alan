@@ -33,7 +33,7 @@ class Complete8942PhotoSourceAuditTests(unittest.TestCase):
           dict(photo_id="2",observation_id="same",target_id="2024|a|I",
                land_id="I",wcvp_accepted_plant_name_id="A",real_numeric_ROI9=True),
         ])
-        with self.assertRaisesRegex(ValueError,"pseudo-replicated"):
+        with self.assertRaisesRegex(ValueError,"pseudo-replicates"):
             m.count_source_sites(q)
 
     def test_count_unknown_real_photo_fraction_does_not_create_phenotype(self):
