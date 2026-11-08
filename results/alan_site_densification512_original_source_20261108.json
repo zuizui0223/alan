@@ -1,0 +1,37 @@
+{
+  "schema": "ALAN_new_original_island_site_densification512_verified_source_summary_v1",
+  "verified_source_actions_run": "https://github.com/zuizui0223/alan/actions/runs/42454984788",
+  "verified_execution_success": true,
+  "source_artifact_name": "alan-original-observation-512-site-densification-source-no-colour",
+  "source_artifact_id": 13606624937,
+  "original_8942_photo_source_sha256": "e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd",
+  "selected_512_photo_IDs_sha256": "172680e798ba9711ee149fd75fc84601e55137c17a818c028aa36ea24c309697",
+  "batch_support_csv_sha256": "fd4c9c1da58661b508cfa6639ff13864a7137bbc1ccb6af26450e954094852c6",
+  "source_used": {
+    "original_8942_real_new_observation_uuids": 8942,
+    "prior_breadth_first5_observation_uuids_excluded": 1280,
+    "photo_observations_not_in_first5": 7662,
+    "potential_site_years_meeting_5photos_3accepted_from_8942_master": 301
+  },
+  "selected_source": {
+    "genuinely_new_observation_uuids": 512,
+    "source_original_photo_ids": 512,
+    "distinct_islands": 20,
+    "distinct_photo_cell_years": 61,
+    "photo_colour_inferred": 0,
+    "distinct_256photo_work_units": 2,
+    "per_island_photo_cap": 64,
+    "per_photo_site_year_cap": 16
+  },
+  "comparable_precolour_source_potential": {
+    "first5_original_1280_source_opportunities": 3,
+    "first7_breadth_1792_source_opportunities": 6,
+    "first5_1280_plus_site_dense_512_source_opportunities": 60
+  },
+  "scientific_boundaries": [
+    "These are opportunity denominators, not strict ROI successes or true botanical flowering species",
+    "Island-first and site-year-specific source cohort is nonrandom and cannot be pooled unweighted with historical-main",
+    "No previously photographed or queued first5 observation UUID was repeated",
+    "No new photo acquisition/ROI colour measured by this source-only work"
+  ]
+}
