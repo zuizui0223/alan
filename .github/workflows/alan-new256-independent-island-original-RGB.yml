@@ -1,0 +1,107 @@
+name: ALAN first 256 independent island observations genuine original RGB 9ROI
+on:
+  push:
+    branches: [analysis/fcp5-independent-photo-intake-20261108]
+    paths:
+      - .github/workflows/alan-new256-independent-island-original-RGB.yml
+      - scripts/acquisition/alan_measure_new256_original_photo_roi9_20261108.py
+      - tests/test_alan_measure_new256_original_photo_roi9_20261108.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-image-genuine-FCP-ROI9-new-256:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+      TORCH_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify unique observation source and synthetic ROI9 contracts
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          python -m unittest discover -s tests -p test_alan_measure_new256_original_photo_roi9_20261108.py -v
+          python -m py_compile scripts/acquisition/alan_measure_new256_original_photo_roi9_20261108.py
+          python -m py_compile scripts/acquisition/mois_warm_original_roi.py
+      - name: Restore exact SHA-frozen 256 NEW source island observation photo identities
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p frozen
+          gh run download 42446707775 --repo zuizui0223/alan \
+            --name alan-93m-tier06-256-new-island-observation-original-photo-queue --dir frozen
+          echo '7fb7bbb60c556b3a2a31e10bda60715996e6738a662896c377f5f1569ff3bc56  frozen/real_new_independent_island_photo_queue.csv.gz' | sha256sum -c -
+          python -m scripts.acquisition.alan_measure_new256_original_photo_roi9_20261108 prepare \
+            --queue frozen/real_new_independent_island_photo_queue.csv.gz \
+            --receipt frozen/ALAN_new_source_island_observation_manifest_receipt.json \
+            --out source
+          test -f source/shards/shard-000.csv
+          test -f source/shards/shard-001.csv
+      - name: Restore unchanged YOLO11 and EfficientSAM frozen FCP ROI-v4 runtime
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          git init -q "$RUNNER_TEMP/fcp"
+          git -C "$RUNNER_TEMP/fcp" remote add origin https://github.com/zuizui0223/fcp.git
+          git -C "$RUNNER_TEMP/fcp" fetch -q --no-tags --depth=1 origin 74bf69a52cd68bfc7dbe6158f4a681235caa6ca0
+          git -C "$RUNNER_TEMP/fcp" checkout -q --detach FETCH_HEAD
+          python -m pip install -q pyarrow==19.0.1 Pillow==11.1.0 ultralytics==8.4.112 onnxruntime==1.23.2 scikit-image==0.25.2
+          (cd "$RUNNER_TEMP/fcp" && bash scripts/acquisition/bootstrap_fcp_original_roi_v4.sh --full --sam-dir "$RUNNER_TEMP/sam")
+          test -f "$RUNNER_TEMP/fcp/scripts/analysis/measure_random_photo_first_blind_partition.py"
+          test -f "$RUNNER_TEMP/fcp/data/atlas/qualification/roi_v4_training/jrc_yolo11n_last_v4.pt"
+      - name: True original RGB acquisition and flower ROI-v4 inference on 256 novel island observations
+        timeout-minutes: 34
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$GITHUB_WORKSPACE:$RUNNER_TEMP/fcp"
+          python -m scripts.acquisition.mois_warm_original_roi \
+            --source source --runtime "$RUNNER_TEMP/fcp" \
+            --sam "$RUNNER_TEMP/sam" --group 0 --output measured
+          test -f measured/shard_000/photos.csv
+          test -f measured/shard_001/photos.csv
+          test -f measured/warm_roi_group_000_diagnostic.json
+          echo 'ALAN_256_NOVEL_ISLAND_REAL_ORIGINAL_PIXELS_INFERRED'
+      - name: Audit original measured 4-hue and nine-component ROI without unknown imputation
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_measure_new256_original_photo_roi9_20261108 collect \
+            --source source --measured measured --out finished
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('finished/ALAN_new256_original_photo_ROI9_source_receipt.json').read_text())
+          assert r['schema']=='ALAN_new256_original_island_unique_UUID_real_FCP_ROI9_v1'
+          assert r['original_source_photo_attempts']==256
+          assert r['independent_new_observation_UUIDs']==256
+          assert r['genuinely_distinct_original_GSHHG_islands']==256
+          assert r['original_nine_fraction_strict_colour_success']+r['original_photo_ROI_technically_unknown']==256
+          assert r['raw_original_image_bytes_persisted'] is False
+          assert r['source_original_9colour_unknown_not_cast_to_white_or_coloured'] is True
+          print('ALAN_ACTUAL_NEW_INDEPENDENT_256_SOURCE_FCP_ROI9_PASS',
+                r['original_nine_fraction_strict_colour_success'],flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-256-genuine-new-independent-island-original-image-ROI9
+          path: |
+            finished/
+            measured/shard_000/photos.csv
+            measured/shard_000/receipt.json
+            measured/shard_001/photos.csv
+            measured/shard_001/receipt.json
+            measured/warm_roi_group_000_diagnostic.json
+            source/manifest.json
+          retention-days: 90
+          if-no-files-found: warn

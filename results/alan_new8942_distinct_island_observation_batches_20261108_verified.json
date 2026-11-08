@@ -1,0 +1,43 @@
+{
+  "schema": "ALAN_verified_8942_novel_island_obs_35batch_schedule_20261108_v1",
+  "github_run": "https://github.com/zuizui0223/alan/actions/runs/42447983019",
+  "github_artifact_id": 13604800899,
+  "success": true,
+  "original_source": {
+    "global_preindexed_photos": 93209351,
+    "original_source_tier06_photo_metadata": 597070,
+    "novel_observation_UUIDs_after_canonical_dedup": 248071
+  },
+  "island_source": {
+    "new_island_observations": 17223,
+    "already_year_environment_and_WCVP_supported_new_island_observations": 8942,
+    "all_new_observation_UUIDs_are_distinct": true,
+    "distinct_islands": 369,
+    "source_original_photo_queue_sha256": "d0b7f7d9f117036d05fbc7ff8b1e62847ef05e7bbc07efc659c9f6cf895d30f9"
+  },
+  "progressive_batches": {
+    "batch_size": 256,
+    "total": 35,
+    "full_batches": 34,
+    "last_partial_batch_photos": 238,
+    "first_batch": {
+      "photos": 256,
+      "distinct_islands": 256,
+      "original_precolour_sha256": "7fb7bbb60c556b3a2a31e10bda60715996e6738a662896c377f5f1569ff3bc56"
+    },
+    "second_batch": {
+      "photos": 256,
+      "distinct_islands": 249
+    },
+    "source_schedule_sha256": "e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd",
+    "batch_support_csv_sha256": "b1c60c593690faf0f66a350e0eaa64bc375357f16724abf4ef7d8e91d83cbc42"
+  },
+  "scientific_boundaries": {
+    "precolour_source_only": true,
+    "none_of_remaining_8686_original_photos_yet_measured_under_this_schedule": true,
+    "photo_licence_bytes_persisted": false,
+    "design_island_first_conditional_not_unbiased_global": true,
+    "independent_observation_UUID_not_photos": true,
+    "mois_remains_moisture_only": true
+  }
+}

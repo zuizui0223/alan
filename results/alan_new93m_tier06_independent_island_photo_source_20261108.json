@@ -1,0 +1,46 @@
+{
+  "schema": "ALAN_93m_tier06_signed_novel_island_photo_source_inventory_20261108_v1",
+  "signed_source_run": "https://github.com/zuizui0223/alan/actions/runs/42446707775",
+  "success": true,
+  "source": {
+    "upstream_photo_candidates": 93209351,
+    "tier06_original_photo_metadata": 597070,
+    "source_group_count": 16,
+    "source_metadata_only": true,
+    "source_tier_observation_selection_probability": 0.0064
+  },
+  "dedup": {
+    "canonical_original_observation_UUIDs": 1032882,
+    "novel_observation_UUIDs_from_tier06": 248071,
+    "one_photo_per_new_observation_UUID": true
+  },
+  "supported": {
+    "novel_observations_with_valid_target_years_and_original_coordinates": 148516,
+    "genuinely_new_observations_with_known_GSHHG_landmass": 144261,
+    "distinct_landmass_islands_with_novel_photo_observations": 861,
+    "new_original_island_observation_UUIDs": 17223,
+    "new_original_island_photo_cell_years": 11560,
+    "new_island_observations_with_accepted_WCVP_taxon": 17073,
+    "new_island_accepted_WCVP_and_real_matching_year_VIIRS_WorldPop": 8942,
+    "new_island_accepted_true_photo_cell_years_with_existing_ALAN_environment": 4776,
+    "new_island_accepted_true_photo_supported_distinct_islands": 369
+  },
+  "first_photo_queue": {
+    "n": 256,
+    "independent_observation_UUIDs": 256,
+    "distinct_islands": 256,
+    "distinct_original_photo_cell_years": 256,
+    "sha256": "7fb7bbb60c556b3a2a31e10bda60715996e6738a662896c377f5f1569ff3bc56",
+    "image_inference_completed_at_inventory_stage": false,
+    "source_artifact_run": "https://github.com/zuizui0223/alan/actions/runs/42446707775"
+  },
+  "caveats": [
+    "no independently identified flower petals or native flora",
+    "no pixel colours in 93m tier06 metadata",
+    "photo source conditional island-first balanced queue is not worldwide random probability representative",
+    "do not merge 256 precolour targets with 710 strict-photo measured island cells before actual pixel ROI successes",
+    "source group sha pinned and original known observation IDs excluded"
+  ],
+  "model_run": "https://github.com/zuizui0223/alan/actions/runs/42447120685",
+  "model_conclusion": "not asserted until model results verified"
+}

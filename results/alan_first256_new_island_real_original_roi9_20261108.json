@@ -1,0 +1,43 @@
+{
+  "schema": "ALAN_verified_first256_novel_island_original_RGB_ROI9_20261108_v1",
+  "source_run": "https://github.com/zuizui0223/alan/actions/runs/42446707775",
+  "original_image_run": "https://github.com/zuizui0223/alan/actions/runs/42447120685",
+  "original_image_run_success": true,
+  "original_photo": {
+    "new_photo_ids": 256,
+    "new_original_observation_UUIDs": 256,
+    "distinct_GSHHG_islands": 256,
+    "source_years": [
+      2019,
+      2021,
+      2023,
+      2024,
+      2025
+    ],
+    "photos_downloaded": 256,
+    "image_acquisition_failures": 0,
+    "photographic_4_hue_classified": 92,
+    "original_numeric_nine_palette_valid": 92,
+    "strict9_roi_unknown": 164,
+    "technical_unknown_breakdown": {
+      "roi_or_flip_gate": 156,
+      "ambiguous_palette_composition": 8
+    }
+  },
+  "method": {
+    "original_fcp_roi_v4_model_git_blob": "b1d7091db44682559bbe4b48a9f3b8db648501a6",
+    "frozen_original_evaluator_initializations": 1,
+    "original_source_commit": "9fae6ccdf684a46026f72ba12e98de2c5c54bf2a",
+    "no_original_images_persisted": true,
+    "unknown_roi_not_labelled_colour": true,
+    "not_verified_native_flowering_petals": true
+  },
+  "verification": {
+    "original_photo_colour_output_SHA256": "7789c5aa1916e5b1ff915d217744a80b990795cb24e362cff20007dda96ee94b",
+    "source_frozen_first256_queue_SHA256": "7fb7bbb60c556b3a2a31e10bda60715996e6738a662896c377f5f1569ff3bc56",
+    "real_image_artifact_id": 13604781981,
+    "real_image_artifact_name": "alan-256-genuine-new-independent-island-original-image-ROI9",
+    "real_image_artifact_expires": "2027-02-06"
+  },
+  "caution": "92 means distinct new original observation UUIDs with measured numeric ROI9, across 92 original islands. It is NOT +92 eligible 5-photo/3-species island photo cell-years, because one photo per island is not sufficient."
+}
