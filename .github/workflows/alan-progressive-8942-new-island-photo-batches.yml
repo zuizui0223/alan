@@ -1,0 +1,71 @@
+name: ALAN frozen 8942 novel island observations progressive nonoverlapping 256-photo batches
+on:
+  push:
+    branches: [analysis/fcp5-independent-photo-intake-20261108]
+    paths:
+      - .github/workflows/alan-progressive-8942-new-island-photo-batches.yml
+      - scripts/acquisition/alan_progressive_new_8942_island_original_photo_schedule_20261108.py
+      - tests/test_alan_progressive_new_8942_island_original_photo_schedule_20261108.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  next-genuine-UUID-precolour-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Run genuine novel UUID and progressive-island queue tests
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3
+          python -m unittest discover -s tests \
+            -p test_alan_progressive_new_8942_island_original_photo_schedule_20261108.py -v
+          python -m py_compile scripts/acquisition/alan_progressive_new_8942_island_original_photo_schedule_20261108.py
+      - name: Fetch exact earlier-source first256 and latest SHA-stable 8942 island photo metadata only
+        run: |
+          set -euo pipefail
+          mkdir -p historical master
+          gh run download 42446707775 --repo zuizui0223/alan \
+            --name alan-93m-tier06-256-new-island-observation-original-photo-queue \
+            --dir historical
+          gh run download 42447476347 --repo zuizui0223/alan \
+            --name alan-93m-tier06-256-new-island-observation-original-photo-queue \
+            --dir master
+          echo '7fb7bbb60c556b3a2a31e10bda60715996e6738a662896c377f5f1569ff3bc56  historical/real_new_independent_island_photo_queue.csv.gz' | sha256sum -c -
+          echo 'd0b7f7d9f117036d05fbc7ff8b1e62847ef05e7bbc07efc659c9f6cf895d30f9  master/all8942_new_independent_island_photo_opportunities.csv.gz' | sha256sum -c -
+      - name: Freeze 8942 independent island original photo IDs to nonoverlapping 256-record jobs
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_progressive_new_8942_island_original_photo_schedule_20261108 \
+            --master master/all8942_new_independent_island_photo_opportunities.csv.gz \
+            --first historical/real_new_independent_island_photo_queue.csv.gz \
+            --out scheduled
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path('scheduled/progressive_island_original_photo_schedule_receipt.json')
+          r=json.loads(p.read_text())
+          assert r['schema']=='ALAN_8942_new_original_island_UUIDs_progressive_256photo_source_v1'
+          assert r['novel_original_observation_UUIDs']==8942
+          assert r['independent_GSHHG_islands']==369
+          assert r['first_batch_unchanged']
+          assert r['full_256_photo_batches']==34
+          assert r['final_partial_batch_photos']==238
+          assert r['second_batch_genuine_independent_observations']==256
+          assert r['no_photo_images_downloaded_or_hue_ROI_inferred']
+          print('ALAN_SOURCE_8942_NOVEL_UUID_PROGRESSIVE_BATCHES_VERIFIED')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-source-8942-novel-island-UUID-disjoint256-batches
+          path: scheduled/
+          retention-days: 90
+          if-no-files-found: error
