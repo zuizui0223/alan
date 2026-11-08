@@ -21,7 +21,7 @@ class ProgressiveIslandSourceTests(unittest.TestCase):
                 f"https://inaturalist-open-data.s3.amazonaws.com/photos/{pid}/large.jpg",
               "source_arm":s.SOURCE_MASTER_ARM,
               "selection_probability":"",
-              "existing_strict_island_cell_years":str(i%5),
+              "existing_strict_island_cell_years":str((i%369)%5),
             })
         master=pd.DataFrame(rows)
         first=master.iloc[:256].copy()
