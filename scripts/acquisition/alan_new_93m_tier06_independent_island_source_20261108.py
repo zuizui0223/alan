@@ -229,6 +229,29 @@ def run(paths,coast,source,registry,out):
        "land_id","target_id","year","existing_strict_island_cell_years"]
     queue[columns].to_csv(out/"real_new_independent_island_photo_queue.csv.gz",
        compression="gzip",index=False)
+    # Freeze every source-verified accepted/new island observation that ALREADY
+    # has real observation-year VIIRS/WorldPop, so future batches NEVER have
+    # to rescan even this 597070-photo metadata tier. No photo colour here.
+    master=ready.loc[island&accepted&valid&loadable].copy()
+    master=master.sort_values(["land_id","year","observation_uuid"],kind="stable")
+    panel.require(master.unit_id.is_unique and master.observation_uuid.is_unique and
+                  len(master)==8942,"Source-supported independent island master changed")
+    master["photo_id"]=master.unit_id.astype(str)
+    master["observation_id"]=master.observation_uuid.astype(str)
+    master["source_arm"]=ARM
+    master["photo_url_large"]=master.apply(
+        lambda r:("https://inaturalist-open-data.s3.amazonaws.com/photos/"+
+                  str(r.photo_id)+"/large."+str(r.image_extension).lower()),axis=1)
+    master["selection_probability"]=""
+    master_cols=["photo_id","observation_id","inat_taxon_id",
+                 "wcvp_accepted_plant_name_id","land_id","target_id",
+                 "year","observed_on","latitude","longitude",
+                 "photo_license","image_extension","photo_url_large",
+                 "source_arm","selection_probability",
+                 "existing_strict_island_cell_years"]
+    master[master_cols].to_csv(
+        out/"all8942_new_independent_island_photo_opportunities.csv.gz",
+        compression="gzip",index=False)
     groups=ready.groupby(["year","land_class"],observed=True).agg(
        source_observations=("unit_id","size"),
        accepted_WCVP_taxon_observations=("accepted_taxon","sum"),
@@ -245,6 +268,10 @@ def run(paths,coast,source,registry,out):
        "new_independent_island_accepted_with_original_year_VIIRS_WorldPop":counts(ready.loc[island&accepted&valid]),
        "new_independent_island_accepted_loadable_with_existing_original_year_environment":counts(ready.loc[island&accepted&valid&loadable]),
        "first_256_blind_new_original_photo_queue":counts(chosen),
+       "master_8942_independent_envmatched_island_photo_observations":counts(master),
+       "master_8942_original_photo_source_SHA256":panel.sha(
+           out/"all8942_new_independent_island_photo_opportunities.csv.gz"),
+       "master_all_future_acquisition_targets_have_original_observation_UUID_and_photo_ID":True,
        "first_256_source_queue_original_photo_SHA256":panel.sha(out/"real_new_independent_island_photo_queue.csv.gz"),
        "source_photo_per_observation_selected_before_colour":True,
        "source_image_pixels_downloaded":0,"original_photo_ROI_inferences":0,
