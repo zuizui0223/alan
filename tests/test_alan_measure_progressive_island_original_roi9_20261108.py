@@ -24,6 +24,7 @@ def fake_schedule():
               source_arm=a.SOURCE_STUDY_ARM,selection_probability="",
               photo_url_large=f"https://inaturalist-open-data.s3.amazonaws.com/photos/{pid}/large.jpg",
               photo_license="cc-by",inat_taxon_id=f"{i%20+1}",
+              latitude="35.1",longitude="139.2",
               observed_on="2024-07-08",year="2024"))
     return pd.DataFrame(rows)
 
