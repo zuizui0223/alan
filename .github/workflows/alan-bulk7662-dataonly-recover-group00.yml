@@ -1,0 +1,63 @@
+name: ALAN data-only recovery of genuinely measured bulk group00 original ROI9
+on:
+  push:
+    branches: [analysis/alan-7662-original-ROI9-bulk-20261108]
+    paths:
+      - .github/workflows/alan-bulk7662-dataonly-recover-group00.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  reuse-signed-original-terminal-photo-rows-not-RGB:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Restore genuine source SHA and the already measured group00 terminal CSVs
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          mkdir -p frozen recovered
+          gh run download 42447983019 --repo zuizui0223/alan \
+            --name alan-source-8942-novel-island-UUID-disjoint256-batches --dir frozen
+          gh run download 42456363487 --repo zuizui0223/alan \
+            --name alan-real-originalROI9-7662-group-0 --dir recovered
+          echo 'e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd  frozen/progressive_8942_new_island_source_schedule.csv.gz' | sha256sum -c -
+      - name: Reconstruct original 4 source roster shards from immutable precolour source IDs
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_bulk_7662_original_roi9_source_20261108 prepare \
+            --schedule frozen/progressive_8942_new_island_source_schedule.csv.gz \
+            --receipt frozen/progressive_island_original_photo_schedule_receipt.json \
+            --group 0 --out source
+          cmp source/manifest.json recovered/source/manifest.json
+          echo 'ALAN_ORIGINAL_GROUP00_SOURCE_ROSTER_RECONSTRUCTED_WITHOUT_IMAGE_DOWNLOAD'
+      - name: Independently validate original numeric photo ROI9, unknowns and 4 signed work-unit receipts
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_bulk_7662_original_roi9_source_20261108 collect \
+            --source source --measured recovered/measured --group 0 --out recovered_colour
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('recovered_colour/real_original_island_bulk512_group_receipt.json').read_text())
+          assert r['group']==0 and r['original_source_photo_attempts']==512
+          assert r['new_original_independent_observation_UUIDs']==512
+          assert r['original_nine_palette_ROI9_true_success']+r['original_photo_ROI9_unknown']==512
+          assert r['source_method_original_git_blob']=='b1d7091db44682559bbe4b48a9f3b8db648501a6'
+          assert not r['source_image_bytes_persisted'] and r['unknown_photo_colour_was_not_imputed']
+          print('ALAN_ORIGINAL_REAL512_SOURCE_COLOUR_RECOVERED_DATAONLY',
+                r['original_nine_palette_ROI9_true_success'],flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-verified-real-originalROI9-group00-dataonly-signed
+          path: recovered_colour/
+          retention-days: 90
+          if-no-files-found: error
