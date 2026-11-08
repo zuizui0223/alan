@@ -1,9 +1,5 @@
 name: ALAN bulk 7662 new original island photo ROI9 by 15 warm source groups
 on:
-  push:
-    branches: [analysis/alan-7662-original-ROI9-bulk-20261108]
-    paths:
-      - .github/workflows/alan-bulk7662-real-island-originalROI9.yml
   workflow_dispatch:
 permissions:
   contents: read
@@ -97,7 +93,7 @@ jobs:
             test -f "measured/shard_$part/receipt.json"
             test -f "measured/shard_$part/photos.csv"
           done
-          echo "ALAN_7662_ACTUAL_FROZEN_ORIGINAL_RGB_GROUP_$SOURCE_GROUP_COMPLETE"
+          echo "ALAN_7662_ACTUAL_FROZEN_ORIGINAL_RGB_GROUP_${SOURCE_GROUP}_COMPLETE"
       - name: Check each genuine 128-photo terminal SHA, real ROI9 and retained unknowns
         timeout-minutes: 8
         run: |
