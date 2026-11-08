@@ -84,32 +84,41 @@ def schedule(master, first):
     require(len(rest)==EXPECTED_MASTER_N-EXPECTED_FIRST_N and
             not set(rest.photo_id)&set(first.photo_id),
             "Already-selected original photos leaked into future batches")
-    # Put every island's pending observations in reproducible hue-blind order.
+    # Immutable island baseline to avoid input-order-dependent priority.
+    by_land=master.groupby("land_id").existing_strict_island_cell_years
+    require(by_land.nunique().eq(1).all(),
+            "Per-island source baseline support varies within one GSHHG landmass")
+    original_counts={str(k):int(v) for k,v in by_land.first().items()}
     groups={}
     for land,d in rest.groupby("land_id",sort=True):
         group=d.copy()
         group["_rank"]=group.observation_id.map(
              lambda obs:stable_hash("observation",obs))
         group=group.sort_values(["_rank","observation_id"],kind="stable")
-        groups[str(land)]=iter(group.drop(columns="_rank").to_dict("records"))
+        groups[str(land)]=collections.deque(
+            group.drop(columns="_rank").to_dict("records"))
     taken=collections.Counter(first.land_id.astype(str))
-    original_counts={str(k):int(v) for k,v in
-                     master.groupby("land_id").existing_strict_island_cell_years.first().items()}
-    heap=[]
-    for land in groups:
-        heapq.heappush(heap,(
-            taken[land],original_counts[land],
-            stable_hash("landmass",land),land))
+    island_rank={land:stable_hash("landmass",land) for land in groups}
     order=[]
-    while heap:
-        used,prior,rank,land=heapq.heappop(heap)
-        require(used==taken[land],"Inconsistent original per-island count")
-        item=next(groups[land],None)
-        if item is None:continue
-        order.append(item)
-        taken[land]+=1
-        heapq.heappush(heap,(
-            taken[land],original_counts[land],rank,land))
+    # Reset the round-robin island counter every 256-photo batch. An island
+    # never supplies a second photograph while another available island
+    # has not yet supplied one photograph in the same batch.
+    while groups:
+        already_this_batch=set()
+        for _ in range(BATCH):
+            if not groups:break
+            available=[land for land in groups if land not in already_this_batch]
+            if not available:
+                already_this_batch.clear()
+                available=list(groups)
+            land=min(available,key=lambda key:(
+                taken[key],original_counts[key],island_rank[key],key))
+            item=groups[land].popleft()
+            order.append(item)
+            taken[land]+=1
+            already_this_batch.add(land)
+            if not groups[land]:
+                del groups[land]
     require(len(order)==len(rest),"Lost actual novel source observations")
     initial=master.set_index("observation_id").loc[first.observation_id].reset_index()
     suffix=pd.DataFrame(order,columns=master.columns)
