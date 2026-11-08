@@ -1,0 +1,32 @@
+{
+  "schema": "ALAN_first1280_independent_original_island_ROI9_verified_20261108_v1",
+  "verified_run": "https://github.com/zuizui0223/alan/actions/runs/42456790465",
+  "raw_four_batch_run": "https://github.com/zuizui0223/alan/actions/runs/42454468186",
+  "first256_run": "https://github.com/zuizui0223/alan/actions/runs/42447120685",
+  "verified_source_artifact_id": 13607214175,
+  "original_source_schedule_SHA256": "e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd",
+  "new_distinct_photo_attempts": 1280,
+  "independent_original_observation_UUIDs": 1280,
+  "genuinely_measured_original_nine_palette_photos": 492,
+  "technically_unknown_original_ROI9": 788,
+  "distinct_GSHHG_islands": 369,
+  "original_photo_cell_years": 1060,
+  "original_source_cell_years_5photo_3accepted_opportunities": 3,
+  "original_strict_5attempt_3roi9success_3distinct_accepted_taxa_cells": 1,
+  "cells_with_one_or_more_actual_ROI9": 459,
+  "per_batch_success": {
+    "1": 92,
+    "2": 91,
+    "3": 98,
+    "4": 106,
+    "5": 105
+  },
+  "no_image_download_failures": 0,
+  "meaning": "Actual strict1 cell is additional valid site in the separately island-prioritized source, not automatically eligible to pool into historical-main five-year source regression without source-design consideration.",
+  "limits": [
+    "one original photo cannot by itself satisfy strict source 5photo3species cell",
+    "source only no confirmed native flowering",
+    "source island-first prioritization not globally representative",
+    "previous historical-main ALAN 7982/710 regression unchanged"
+  ]
+}
