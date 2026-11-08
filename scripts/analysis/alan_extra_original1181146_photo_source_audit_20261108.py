@@ -124,8 +124,16 @@ def summarize(source_photo,existing_year_frames):
     orig=pd.concat(available,ignore_index=True)
     panel.require(orig.target_id.is_unique,
                   "Duplicated original same-year VIIRS/WorldPop geocell key")
-    statuses=orig.population_status if "population_status" in orig else orig.population_source_status
-    density=orig.population_density_per_km2 if "population_density_per_km2" in orig else orig.population_density
+    # Year loaders have two official population column conventions. The
+    # concatenated panel contains BOTH names with missing values by year;
+    # coalesce at the row level, never select one global column.
+    statuses=(orig.get("population_status",pd.Series(index=orig.index,dtype=object))
+              .combine_first(orig.get("population_source_status",
+                         pd.Series(index=orig.index,dtype=object))))
+    density=(orig.get("population_density_per_km2",
+                      pd.Series(index=orig.index,dtype=float))
+             .combine_first(orig.get("population_density",
+                         pd.Series(index=orig.index,dtype=float))))
     orig["env_ok"]=orig.viirs_valid_months.ge(3)&orig.viirs_median.notna()&statuses.eq("OK")&density.notna()
     orig["climate_ok"]=orig[["bio5","bio12","elevation"]].notna().all(axis=1)
     env=orig[["target_id","year","land_class","env_ok","climate_ok",
