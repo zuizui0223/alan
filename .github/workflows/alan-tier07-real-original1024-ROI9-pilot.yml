@@ -1,0 +1,96 @@
+name: ALAN tier07 first1024 new island genuine original RGB numeric ROI9 pilot
+on:
+  push:
+    branches: [analysis/alan-tier07-27507-warm1024-pilot-20261108]
+    paths:
+      - .github/workflows/alan-tier07-real-original1024-ROI9-pilot.yml
+      - scripts/acquisition/alan_tier07_originalRGB_roi9_1024pilot_20261108.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-signed-real-1024-original-island-RGB-pixels:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      TORCH_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify original-photo source code and input SHA
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          python -m py_compile scripts/acquisition/alan_tier07_originalRGB_roi9_1024pilot_20261108.py
+          mkdir -p frozen
+          gh run download 42466279952 --repo zuizui0223/alan --name alan-tier07-27507-original-island-precolour-1024photo-groups --dir frozen
+          echo '7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62  frozen/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz' | sha256sum -c -
+          python -m scripts.acquisition.alan_tier07_originalRGB_roi9_1024pilot_20261108 prepare \
+            --schedule frozen/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz \
+            --receipt frozen/ALAN_tier07_27507_original_photo_source_schedule_receipt.json --out source
+          test "$(find source/shards -name 'shard-*.csv' | wc -l)" -eq 8
+      - name: Prepare unchanged frozen YOLO11 EfficientSAM original FCP ROI-v4 model
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          git init -q "$RUNNER_TEMP/fcp"
+          git -C "$RUNNER_TEMP/fcp" remote add origin https://github.com/zuizui0223/fcp.git
+          git -C "$RUNNER_TEMP/fcp" fetch -q --no-tags --depth=1 origin 74bf69a52cd68bfc7dbe6158f4a681235caa6ca0
+          git -C "$RUNNER_TEMP/fcp" checkout -q --detach FETCH_HEAD
+          python -m pip install -q pyarrow==19.0.1 Pillow==11.1.0 ultralytics==8.4.112 onnxruntime==1.23.2 scikit-image==0.25.2
+          (cd "$RUNNER_TEMP/fcp" && bash scripts/acquisition/bootstrap_fcp_original_roi_v4.sh --full --sam-dir "$RUNNER_TEMP/sam")
+          test -f "$RUNNER_TEMP/fcp/scripts/analysis/measure_random_photo_first_blind_partition.py"
+          test -f "$RUNNER_TEMP/fcp/data/atlas/qualification/roi_v4_training/jrc_yolo11n_last_v4.pt"
+      - name: Process 1024 original S3 photo pixels in two bounded 512-photo warm subgroups
+        timeout-minutes: 70
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$GITHUB_WORKSPACE:$RUNNER_TEMP/fcp"
+          python -m scripts.acquisition.mois_warm_original_roi --source source --runtime "$RUNNER_TEMP/fcp" --sam "$RUNNER_TEMP/sam" --group 0 --output measured
+          python -m scripts.acquisition.mois_warm_original_roi --source source --runtime "$RUNNER_TEMP/fcp" --sam "$RUNNER_TEMP/sam" --group 1 --output measured
+          for part in 000 001 002 003 004 005 006 007; do
+            test -f "measured/shard_$part/photos.csv"
+            test -f "measured/shard_$part/receipt.json"
+          done
+          echo ALAN_ORIGINAL_SOURCE_TIER07_FIRST1024_ACTUAL_FCP_PIXELS_PROCESSED
+      - name: SHA-check all eight real 128-photo terminal CSVs and measured numeric ROI9 source
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_tier07_originalRGB_roi9_1024pilot_20261108 collect --source source --measured measured --out finished
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("finished/ALAN_tier07_first1024_original_roi9_receipt.json").read_text())
+          assert r["schema"]=="ALAN_tier07_1024_real_original_FCP_ROI9_pilot_v1"
+          assert r["original_image_attempts"]==1024
+          assert r["new_independent_observation_UUIDs"]==1024
+          assert r["original_9palette_numeric_ROI_success"]+r["original_technical_ROI_unknown"]==1024
+          assert r["source_distinct_GSHHG_islands"]==284
+          assert r["source_5photo_3accepted_potential_site_years"]==76
+          assert r["per_128_photo_unit_receipts_verified"]==8
+          assert not r["source_original_image_bytes_persisted"]
+          assert r["source_photo_unknown_not_assigned_white"]
+          print("ALAN_TIER07_REAL_FIRST1024_GENUINE_ORIGINAL_ROI9_VERIFIED",r["original_9palette_numeric_ROI_success"],r["actual_strict_5photo_3true_ROI9_3accepted_species_sites"],flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-tier07-first1024-original-island-ROI9-real-SHA-receipts
+          path: |
+            finished/
+            source/manifest.json
+            measured/shard_*/receipt.json
+            measured/shard_*/photos.csv
+            measured/warm_roi_group_000_diagnostic.json
+            measured/warm_roi_group_001_diagnostic.json
+          retention-days: 90
+          if-no-files-found: warn
