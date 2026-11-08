@@ -40,3 +40,17 @@ The first 256 are, at this stage, **not yet proven flower photos** and do not co
 - Source tiers originate from [the published MOIS full 93m photo index](https://github.com/zuizui0223/mois/releases/tag/mois-complete-93209351-original-photo-target-tiers-v1); **all future acquisition and ecological interpretation remain in ALAN**. MOIS is reserved for moisture × floral colour.
 
 No biological loss, pollinator shortage, native-flora presence or ALAN causal effect is established by a metadata-only source extension.
+
+## All 8,942 now scheduled into 35 SHA-frozen disjoint 256-photo waves
+
+[ALAN source run #42447983019](https://github.com/zuizui0223/alan/actions/runs/42447983019) **SUCCESS**. The already signed 8,942 observations from all 369 source-supported islands were scheduled without any additional photo inference. The exact original first256 sequence and old source image IDs are unchanged, so running FCP inferences and future queues will not accidentally schedule these observations twice.
+
+- **34×256 + 238 = 8,942** unique original photo IDs and unique original observation UUIDs in **35** immutable prospective batches.
+- Batch 1: **256 observations in 256 islands** (identical to the first published and currently processing pixel source).
+- Batch 2: **256 new observation UUIDs over 249 islands**, favouring islands not previously selected in the first batch. As the available pool is depleted, later batches include repeated *islands* but never repeated observation UUIDs.
+- Input original 8,942 source SHA256 `d0b7f7d9f117036d05fbc7ff8b1e62847ef05e7bbc07efc659c9f6cf895d30f9`; input first256 original SHA256 `7fb7bbb60c556b3a2a31e10bda60715996e6738a662896c377f5f1569ff3bc56`.
+- Final 8,942-photo schedule SHA256 `e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd`; per-batch source support CSV SHA256 `b1c60c593690faf0f66a350e0eaa64bc375357f16724abf4ef7d8e91d83cbc42`. The workflows use gzip `mtime=0` for byte-level reproducibility.
+- The full schedule and island-batch support are available as the `alan-source-8942-novel-island-UUID-disjoint256-batches` artifact (run #42447983019, artifact ID **13604800899**, temporary Actions retention).
+- The targeted island-balanced scheduling procedure was frozen prior to pixel results; it is not a global random sample or a substitute for known design weights.
+
+The 8,942 rows are **pre-colour source-only observation targets**, *not* 8,942 true flowering plants or 8,942 measured strict9 ROIs. Keep the earlier 7,982/710 source-photo regression frozen until separately estimated on a scientifically supported expanded cohort.
