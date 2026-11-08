@@ -292,9 +292,9 @@ def map_rescues_to_existing_ALAN_year_exposure(rescues,wcvp,years,coast):
         e=full.copy()
         status=e["population_status"] if "population_status" in e.columns else e["population_source_status"]
         pop=e["population_density_per_km2"] if "population_density_per_km2" in e.columns else e["population_density"]
-        e["env_ok"]=e.viirs_valid_months.ge(3)&e.viirs_median.notna()&
+        e["env_ok"]=(e.viirs_valid_months.ge(3)&e.viirs_median.notna()&
                      status.eq("OK")&pop.notna()&
-                     e[["bio5","bio12","elevation"]].notna().all(axis=1)
+                     e[["bio5","bio12","elevation"]].notna().all(axis=1))
         e["year"]=int(year)
         source.append(e[["year","target_id","env_ok"]])
     known=pd.concat(source,ignore_index=True)
