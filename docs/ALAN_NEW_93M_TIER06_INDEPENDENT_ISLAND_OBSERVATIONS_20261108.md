@@ -54,3 +54,18 @@ No biological loss, pollinator shortage, native-flora presence or ALAN causal ef
 - The targeted island-balanced scheduling procedure was frozen prior to pixel results; it is not a global random sample or a substitute for known design weights.
 
 The 8,942 rows are **pre-colour source-only observation targets**, *not* 8,942 true flowering plants or 8,942 measured strict9 ROIs. Keep the earlier 7,982/710 source-photo regression frozen until separately estimated on a scientifically supported expanded cohort.
+
+## Additional field-support observation from the signed source (before pixel inference)
+
+The SHA-verified 8,942-row original-photo acquisition schedule and the signed first256 were also checked against the previously executed ALAN *strict five-photo/three-accepted-species* **island-level photo cell-year support count**. This is only a sample-coverage indicator (not island occupancy by plants):
+
+| Frozen source layer | Islands with **zero previous strict-qualified photo cell-years** | Islands with ≥1 previous strict-qualified cell-year | Genuine new source photo observation UUIDs |
+| --- | ---: | ---: | ---: |
+| All 8,942 environment-matched original photo opportunities | **281** | 88 | 8,942 |
+| First 256 source targets | **256** | 0 | 256 |
+
+Thus the **first 256 colour-blind original photographs target 256 distinct islands with no previously strict-qualified ALAN photographic cells**. They are especially valuable for expanding *geographic source opportunity*, but one photograph from one island does not by itself satisfy the original strict 5-photo/3-species cell acceptance rules. Neither the presence of a photograph nor a WCVP name in the source establishes a verified blooming native flower. Only successful authentic pixel ROI plus sufficient actual species/photographic opportunities would eventually add a statistically comparable cell.
+
+The first source target years are 2019: 27, 2021: 40, 2023: 58, 2024: 57, 2025: 74; first256 hemispheres are 228 Northern and 28 Southern. The master 8,942-photo opportunity pool contains 7,946 Northern and 996 Southern records, so Southern source-photo opportunities remain less abundant and no unweighted hemisphere or worldwide colour prevalence claim follows.
+
+The signed 35-batch schedule's second 256-photo source group covers 249 islands; it never repeats a photo or observation UUID from the first group. All source support counts refer to already observed original ALAN photographic source eligibility, **not** plant extinction or ecological species richness.
