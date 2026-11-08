@@ -38,6 +38,29 @@ white_pp ~ log_light + log_light:log10_area_c
 
 This is a **new exploratory area-structured spatial pattern**, not evidence that ALAN causes selection against white petals, a robust universal small-island mechanism, or the presence of a particular nocturnal-pollinator guild. Within-island fixed effects control all stable island-level differences but do not identify nighttime light causal exposure; they do not by themselves fix observer recruitment and taxon composition. VIIRS upward radiance is also not illuminance at any flower.
 
+## Source support by island and equal-island modelling (completed in the same project)
+
+A denominator audit found that equal photographic-cell weight was strongly dominated by the largest sampled islands even though geographic coverage spanned smaller islands:
+
+| Real measured support | Strict | Broad |
+| --- | ---: | ---: |
+| Smaller-area third: independent islands / photo cell-years | 15 / 41 | 32 / 121 |
+| Middle third | 14 / 64 | 31 / 171 |
+| Larger-area third | **15 / 545** | **32 / 1,592** |
+| Portion of photo cell-years from larger-area third | **83.85%** | **84.50%** |
+| Islands with source-measured median across-site loglight span ≥0.05 | 36 of 44 | 84 of 95 |
+
+To estimate a different, island-weighted target, a second model uses **1/n actual photo-cell-years within each island** as each cell weight, so the total weight of each original island equals one. This does not fabricate any new photos, and the regression formula and island-clustered errors are otherwise identical.
+
+| Area × lognightlight interaction, in percentage points per tenfold island area | Strict 44 islands / 650 cell-years | Broad 95 islands / 1,884 cell-years |
+| --- | ---: | ---: |
+| Original **cell-year-equal** fit | +2.20873 [**+0.00659,+4.41086**], p=.04935 | +0.99831 [−0.39040,+2.38703], p=.15679 |
+| New **island-equal** fit | **+5.15162 [ +2.55884,+7.74441 ]**, p=.000240 | **+3.38466 [ +1.31941,+5.44991 ]**, p=.001582 |
+
+The island-equal approach gives a positive interaction with nominal intervals above zero in both pre-existing measured-photo cohorts. It thus provides **stronger exploratory evidence that the photographed-nightlight slope varies with island area** than the photo-cell-equal broad fit. The photo-cohort and island-equal estimates are different observational estimands; they are not four independent confirmations, and the models were introduced after inspecting existing results. The small islands also have fewer photographed sites, so equal island weighting gives sparse islands greater relative influence. Island area may be correlated with human activity, shoreline geometry, geography and non-random volunteer recruitment; no independent causal selection or pollinator mechanism has been identified.
+
+The new, verified ALAN run is [#42439789459](https://github.com/zuizui0223/alan/actions/runs/42439789459) (**SUCCESS**), with original aggregate JSON SHA256 `35b30fb94b3a770142ac98498f835c7cec9c27f2273af41a5a98057763275810` and archived artifact ID `13600898564`. A durable source-verified numerical excerpt including the original JSON digest, model coefficients, island tertile denominators, and interpretive limits is committed at [results/alan_island_area_light_20261108_source_verified_summary.json](../results/alan_island_area_light_20261108_source_verified_summary.json). The original archival run #42439477013 remains a traceable precursor.
+
 ## Relation to the existing separate global result
 
 The preceding source-verified **island vs mainland** global five-year interaction remains **−2.4970446 pp**, nominal 95% CI **[−3.9485472, −1.0455420]**, over 7,982 source photo cell-years and 710 island cell-years. This new **within-island area moderator** is a distinct estimand, and its strict regression uses only 650 eligible island cell-years. Do not algebraically combine the two coefficients or imply that area explains a percentage of the original island/mainland interaction. The geographically co-supported island/mainland comparison in the original work remains statistically unresolved.
