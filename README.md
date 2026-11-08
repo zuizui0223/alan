@@ -50,3 +50,13 @@ ALAN has now [source-verified and executed a same-island, same-photo-cell-year d
 A more independent **2019/2021/2023 photographic species-colour reference evaluated in 2024/2025** has support in **29 strict / 50 broad islands**, but the island-equal earlier-year taxon-reference component has intervals overlapping zero. Thus **species assembly cannot yet be identified as the unique ecological mechanism**. Within-taxon photographic deviations remain possible but include observer/season/ROI effects, not verified flower-colour evolution.
 
 [ALAN execution #42442841980](https://github.com/zuizui0223/alan/actions/runs/42442841980) · [Compact source-signed result](results/alan_island_area_taxon_components_20261108_verified_summary.json). The earlier island-area and coast-isolation results remain unchanged.
+
+## Real additional floral ROI information from already measured sibling photos (2026-11-08)
+
+The signed MOIS 1,181,146-original-photo / 451,643-strict9 archive contains **148,264 extra photo IDs** beyond ALAN's canonical 1,032,882 original one-photo-per-observation reference. They are all **other photos of existing observation UUIDs, not new independent observations**. Of 49,940 genuine extra strict9 photographs, **18,950 existing observation UUIDs** have a strict9-successful sibling when their original representative photo was technically unknown.
+
+An ALAN-native SHA/GSHHG/WCVP/source-year audit found that admitting these genuine sibling-photo colour results **without increasing photo-opportunity or observation counts** increases **strict-eligible photo cell-years 7,982 → 8,515 globally and 710 → 793 on islands (+83, spanning 25 islands)**; the 3-photo/2-accepted-species cohort rises **20,543 → 21,680 globally and 2,026 → 2,155 on islands (+129 across 41 islands)**. Forty geographical cells with inconsistent original accepted-taxon reconciliation were excluded from additional admission, not removed from the prior results. **No new island×nightlight regression was fitted on the expanded source:** the values are genuine measured-photo opportunity gains, not a new ecological effect.
+
+[Complete real source evidence](docs/ALAN_MORE_AUTHENTIC_SIBLING_PHOTO_ROI_SOURCE_20261108.md) · [Successful ALAN data-only run](https://github.com/zuizui0223/alan/actions/runs/42445111291) · [aggregate JSON](results/alan_20261108_extra_measured_sibling_ROI9_photo_opportunities.json).
+
+**To add truly independent photo observations next**, select new observation UUIDs from the already-indexed 93.2m-photo upstream candidate frame before downloading any image pixels; keep source-reference and targeted refill selection separate. The MOIS repository remains moisture-focused.
