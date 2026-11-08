@@ -138,13 +138,16 @@ def run(schedule,receipt,first,batches,out):
     m=combined.merge(expected[["photo_id","observation_id","land_id","target_id",
              "year","wcvp_accepted_plant_name_id","source_batch"]].rename(
              columns={"land_id":"expected_land_id",
-                      "target_id":"expected_target_id","year":"expected_year"}),
+                      "target_id":"expected_target_id","year":"expected_year",
+                      "source_batch":"expected_source_batch"}),
              on=["photo_id","observation_id"],how="inner",validate="one_to_one")
     require(len(m)==1280 and
             m.land_id.astype(str).eq(m.expected_land_id).all() and
             m.target_id.astype(str).eq(m.expected_target_id).all() and
             m.year.astype(str).eq(m.expected_year).all() and
-            m.source_batch.astype(str).eq(m.batch_number.astype(str)).all(),
+            m.expected_source_batch.astype(str).eq(m.batch_number.astype(str)).all() and
+            m.loc[m.batch_number.gt(1),"source_batch"].astype(str).eq(
+                m.loc[m.batch_number.gt(1),"expected_source_batch"]).all(),
             "Real photo colour attached to a different island/year original cell")
     support=actual_colour_site_support(m)
     require(support["source_cell_years_with_5plus_attempts_3plus_real_WCVP_taxa"]==3,
