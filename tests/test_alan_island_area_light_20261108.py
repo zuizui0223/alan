@@ -66,6 +66,10 @@ class IslandAreaLightTests(unittest.TestCase):
         self.assertLess(z["beta"],0)
         self.assertAlmostEqual(z["beta"],-1.6,delta=0.8)
         self.assertNotIn("is_island",model["model"])
+        model_equal=a.fit_area_moderator(within,centre,equal_islands=True)
+        self.assertEqual(model_equal["weighting"],"equal_total_per_island")
+        self.assertTrue(np.isfinite(model_equal["terms"]["log_light:log10_area_c"]["beta"]))
+        self.assertAlmostEqual(model_equal["terms"]["log_light:log10_area_c"]["beta"],-1.6,delta=0.8)
 
 if __name__=="__main__":
     unittest.main()
