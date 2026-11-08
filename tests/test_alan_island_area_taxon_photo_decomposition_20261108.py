@@ -82,9 +82,9 @@ class DecompositionTests(unittest.TestCase):
         ])
         cells=pd.DataFrame([
           {"target_id":"2024|a|9","year":2024,"land_id":"9",
-           "accepted_species_n":2},
+           "accepted_species_n":2,"log_light":0.4},
           {"target_id":"2025|b|9","year":2025,"land_id":"9",
-           "accepted_species_n":2}])
+           "accepted_species_n":2,"log_light":0.8}])
         actual,receipt=m.earlier_year_reference_holdout(s,cells)
         self.assertEqual(receipt["test_cell_years_having_2plus_genuinely_prior_photographed_species"],2)
         self.assertEqual(receipt["test_islands_having_2plus_true_different_sites"],1)
