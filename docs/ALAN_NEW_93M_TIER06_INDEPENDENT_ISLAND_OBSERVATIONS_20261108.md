@@ -69,3 +69,21 @@ Thus the **first 256 colour-blind original photographs target 256 distinct islan
 The first source target years are 2019: 27, 2021: 40, 2023: 58, 2024: 57, 2025: 74; first256 hemispheres are 228 Northern and 28 Southern. The master 8,942-photo opportunity pool contains 7,946 Northern and 996 Southern records, so Southern source-photo opportunities remain less abundant and no unweighted hemisphere or worldwide colour prevalence claim follows.
 
 The signed 35-batch schedule's second 256-photo source group covers 249 islands; it never repeats a photo or observation UUID from the first group. All source support counts refer to already observed original ALAN photographic source eligibility, **not** plant extinction or ecological species richness.
+
+## First source-only 256 now actually measured: 92 authenticated ROI9 successes
+
+The independently executed [ALAN original-RGB/FCP frozen ROI-v4 Actions run #42447120685](https://github.com/zuizui0223/alan/actions/runs/42447120685) finished **SUCCESS**. Original 2026-09-27 photo URLs were fetched from iNaturalist's published open-data S3 exactly once for this new work unit, with the unchanged FCP YOLO11/EfficientSAM source and frozen input photo identity, and image bytes were not retained.
+
+| Genuine newly processed original photographs | Count |
+| --- | ---: |
+| Source images retrieved, original observations, and original distinct GSHHG islands | **256 / 256 / 256** |
+| Four-hue classified, with complete original nine-component floral-region ROI fractions | **92** |
+| Original ROI9 nonclassifiable due to ROI/flip gate | **156** |
+| Original ROI9 uncertain palette composition | **8** |
+| Original image retrieval/acquisition failure | **0** |
+
+The original nine-component ROI success is **92/256 = 35.94%**. Unknowns (164) remain unknown, not "nonwhite" or assumed absent flowers. Each of the 92 successful photos is a genuinely new, previously unrepresented canonical **observation UUID**; however every new island was photographed only once in this first batch, so **none of the 92 is automatically an eligible new strict 5-photo/3-accepted-species island photo-cell**. The frozen historical-main original five-year model and ecological effect sizes remain unchanged.
+
+The signed original colour data artifact in GitHub Actions is `alan-256-genuine-new-independent-island-original-image-ROI9` (artifact ID **13604781981**); its source-photo nine-palette CSV has SHA256 `7789c5aa1916e5b1ff915d217744a80b990795cb24e362cff20007dda96ee94b`. Method fingerprint: frozen FCP source Git blob `b1d7091db44682559bbe4b48a9f3b8db648501a6`, unchanged original model source commit `9fae6ccdf684a46026f72ba12e98de2c5c54bf2a`. Numerical receipts and aggregate provenance are also in [ALAN first256 signed results](../results/alan_first256_new_island_real_original_roi9_20261108.json).
+
+**Next acquisition axis:** progress through the already source-authenticated 35 disjoint 256-photo batches, retaining the first 256 image outcomes instead of downloading those images again. Each additional batch must pass true photo/observation-ID uniqueness, image-byte ephemerality, frozen model fingerprint and unknown-colour quality gates. Because the queue is prioritized by island/geographic source coverage, observational source selection differs from historical-main, and no unweighted merged worldwide biological colour rate is estimated.
