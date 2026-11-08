@@ -68,7 +68,7 @@ def join_area_and_select(d, source_area):
                   "Repeated island observation used twice")
     return x,within,groups
 
-def fit_area_moderator(within, centre_log10_area):
+def fit_area_moderator(within, centre_log10_area, equal_islands=False):
     count=int(within.land_id.nunique())
     panel.require(count>=MIN_SUPPORT_ISLANDS,
                   "Insufficient distinct islands with 2+ true sites and 2+ light levels")
@@ -80,8 +80,20 @@ def fit_area_moderator(within, centre_log10_area):
                   "Area or nightlight contrast absent")
     formula=("white_pp ~ log_light + log_light:log10_area_c + log_pop + "
              "bio5 + log_rain + elevation + log_attempts + C(land_id) + C(year)")
-    fit=smf.ols(formula,data=a).fit(
-        cov_type="cluster",cov_kwds={"groups":a.land_id},use_t=True)
+    # Two distinct pre-specified observational targets:
+    # cell-equal: every actually measured photo cell-year contributes equally;
+    # island-equal: each GSHHG island has total weight one, regardless of its
+    # volunteer/photo coverage, preventing the largest photographed islands
+    # from accounting for most model weight.
+    weights=1.0/a.groupby("land_id",observed=True).land_id.transform("size").astype(float)
+    panel.require(np.allclose(weights.groupby(a.land_id).sum().to_numpy(),1.0),
+                  "Equal-island weights do not sum to one per landmass")
+    if equal_islands:
+        fit=smf.wls(formula,data=a,weights=weights).fit(
+            cov_type="cluster",cov_kwds={"groups":a.land_id},use_t=True)
+    else:
+        fit=smf.ols(formula,data=a).fit(
+            cov_type="cluster",cov_kwds={"groups":a.land_id},use_t=True)
     terms={}
     for term in ("log_light","log_light:log10_area_c"):
         panel.require(term in fit.params and np.isfinite(fit.bse[term]),
@@ -94,6 +106,7 @@ def fit_area_moderator(within, centre_log10_area):
             "estimand":"nightlight-whiteness slope change per tenfold island AREA (km^2); within-island site/years",
             "centre_log10_area_km2":float(centre_log10_area),
             "cluster_unit":"GSHHG landmass (island)",
+            "weighting":"equal_total_per_island" if equal_islands else "equal_per_observed_cell_year",
             "distinct_islands":count,
             "cell_years":len(a),"terms":terms,
             "nominal_exploratory_CIs":True}
@@ -125,7 +138,8 @@ def run(paths,coast,out):
         island_groups["n_cells_years"]=within.groupby("land_id").size()
         totals=island_groups.groupby("area_bin",observed=True).agg(
             n_islands=("n_cells_years","size"),n_cell_years=("n_cells_years","sum"))
-        model=fit_area_moderator(within,centre)
+        model=fit_area_moderator(within,centre,equal_islands=False)
+        equal_island_model=fit_area_moderator(within,centre,equal_islands=True)
         main[name]={
            "all_island_photo_cell_years":len(all_island),
            "all_island_landmasses":int(all_island.land_id.nunique()),
@@ -141,7 +155,8 @@ def run(paths,coast,out):
                 "independent_islands":int(v.n_islands),
                 "photographic_cell_years":int(v.n_cell_years)}
                for k,v in totals.iterrows()],
-           "fit":model
+           "fit":model,
+           "equal_island_fit":equal_island_model
         }
     panel.require(main["strict_5p3r3s"]["all_island_photo_cell_years"]==710 and
                   main["strict_5p3r3s"]["all_island_landmasses"]==101 and
@@ -171,7 +186,9 @@ def run(paths,coast,out):
             "n_islands":data["eligible_spatially_repeated_islands"],
             "n_cell_years":data["selected_original_photo_cell_years"],
             "area_moderator":data["fit"]["terms"]["log_light:log10_area_c"],
-            "nightlight_at_strict_median_area":data["fit"]["terms"]["log_light"]}
+            "nightlight_at_strict_median_area":data["fit"]["terms"]["log_light"],
+            "island_equal_area_moderator":data["equal_island_fit"]["terms"]["log_light:log10_area_c"],
+            "island_equal_light_at_strict_median_area":data["equal_island_fit"]["terms"]["log_light"]}
             for name,data in main.items()},sort_keys=True),flush=True)
     return report
 
