@@ -1,0 +1,71 @@
+{
+  "schema": "ALAN_signed_sibling_photo_originalROI9_rescue_20261108_v1",
+  "execution": "https://github.com/zuizui0223/alan/actions/runs/42445111291",
+  "execution_success": true,
+  "artifact": {
+    "id": 13603161550,
+    "name": "alan-extra-original1181146-island-photo-source-audit",
+    "inner_json_sha256": "7c93e89a96b36e87f6b8bdbb17e3268fcb5166685fb8aaa315b12767e705aa23"
+  },
+  "input_original1181146_georestored_v2_sha256": "faf6951505f1002a1327f64a2ced13431b562cf13893707125fafff918160f62",
+  "original_source": {
+    "photo_attempts": 1181146,
+    "strict9": 451643,
+    "canonical_distinct_observation_ids": 1032882,
+    "extra_original_photo_ids": 148264,
+    "extra_photo_ids_reusing_existing_observation_id": 148264,
+    "new_distinct_observation_ids": 0,
+    "extra_genuine_strict9_sibling_photos": 49940
+  },
+  "rescue": {
+    "strict9_sibling_photo_records_on_canonical_unknown": 25555,
+    "canonical_previously_unknown_observations_with_genuine_sibling_ROI9": 18950,
+    "historical_main_observations_rescuable": 17889,
+    "accepted_taxon_rescue_photo_observations_with_supported_year_geography": 11104,
+    "original_historical_main_island_source_matched_population_VIIRS_observations": 1118,
+    "island_photo_cell_years_with_rescue": 1053,
+    "distinct_island_landmasses_with_rescue": 176
+  },
+  "admitted": {
+    "real_measured_sibling_ROI_observations_at_existing_historical_site": 10273,
+    "additional_distinct_observed_accepted_species_per_photo_cell_sum": 10007,
+    "source_cell_years_excluded_due_geography_or_accepted_taxon_mismatch": 40,
+    "rescued_observations_excluded_with_conflicting_original_site": 42,
+    "strict": {
+      "before_global_cells": 7982,
+      "after_global_cells": 8515,
+      "added_global_cells": 533,
+      "before_island_cells": 710,
+      "after_island_cells": 793,
+      "added_island_cells": 83,
+      "distinct_islands_with_newly_eligible_cells": 25
+    },
+    "broader": {
+      "before_global_cells": 20543,
+      "after_global_cells": 21680,
+      "added_global_cells": 1137,
+      "before_island_cells": 2026,
+      "after_island_cells": 2155,
+      "added_island_cells": 129,
+      "distinct_islands_with_newly_eligible_cells": 41
+    }
+  },
+  "scope": {
+    "years": [
+      2019,
+      2021,
+      2023,
+      2024,
+      2025
+    ],
+    "source_scope": "historical_main canonical observation-level photo, source SHA-verified alternate sibling strict9 pixels; same observed date and GSHHG geographic site; same-year VIIRS+WorldPop",
+    "data_grain": "unique observation_uuid, not photo file; sibling photos are alternate measurement",
+    "new_ecological_regression": false,
+    "new_photo_pixels_downloaded": 0,
+    "new_image_segmentation": 0,
+    "unsupported_plant_absence_imputed": false,
+    "technical_unknown_first_photo_remains_unknown": true,
+    "original_fiveyear_frozen_model_unchanged": true
+  },
+  "next": "Select genuinely new observation UUIDs from preindexed 93.2m candidate photo source with island, actual observation year, same-year VIIRS/WorldPop and white-ROI opportunity balance. Avoid raw 93m full-size inference; preserve source inclusion weights and separate source designs."
+}
