@@ -1,0 +1,126 @@
+name: ALAN bulk 7662 new original island photo ROI9 by 15 warm source groups
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify authenticated original 7662-photo source and 15 disjoint groups
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          python -m unittest discover -s tests -p test_alan_bulk_7662_original_roi9_source_20261108.py -v
+          python -m py_compile scripts/acquisition/alan_bulk_7662_original_roi9_source_20261108.py
+          mkdir -p signed
+          gh run download 42447983019 --repo zuizui0223/alan --name alan-source-8942-novel-island-UUID-disjoint256-batches --dir signed
+          echo 'e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd  signed/progressive_8942_new_island_source_schedule.csv.gz' | sha256sum -c -
+          python - <<'PY'
+          from pathlib import Path
+          from scripts.acquisition import alan_bulk_7662_original_roi9_source_20261108 as a
+          d,_=a.source_read(Path("signed/progressive_8942_new_island_source_schedule.csv.gz"),Path("signed/progressive_island_original_photo_schedule_receipt.json"))
+          uuid=set()
+          photo=set()
+          for group in range(15):
+              subset=a.select_group(d,group)
+              assert len(subset)==(494 if group==14 else 512)
+              assert uuid.isdisjoint(set(subset.observation_id))
+              assert photo.isdisjoint(set(subset.photo_id))
+              uuid.update(subset.observation_id)
+              photo.update(subset.photo_id)
+          assert len(uuid)==len(photo)==7662
+          assert uuid.isdisjoint(set(d.loc[d.source_batch.astype(int).le(5),"observation_id"]))
+          print("ALAN_7662_AUTHENTIC_SOURCE_DISJOINT_PRECHECK_PASS")
+          PY
+  genuine-original-photo-ROI9:
+    needs: source-preflight
+    strategy:
+      fail-fast: false
+      max-parallel: 15
+      matrix:
+        group: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 95
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_GROUP: ${{ matrix.group }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      TORCH_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Prepare only own SHA-signed 494–512 new original photo IDs; never reprocess first five batches
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          mkdir -p frozen
+          gh run download 42447983019 --repo zuizui0223/alan --name alan-source-8942-novel-island-UUID-disjoint256-batches --dir frozen
+          echo 'e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd  frozen/progressive_8942_new_island_source_schedule.csv.gz' | sha256sum -c -
+          python -m scripts.acquisition.alan_bulk_7662_original_roi9_source_20261108 prepare --schedule frozen/progressive_8942_new_island_source_schedule.csv.gz --receipt frozen/progressive_island_original_photo_schedule_receipt.json --group "$SOURCE_GROUP" --out source
+          test "$(find source/shards -name 'shard-*.csv' | wc -l)" -eq 4
+      - name: Restore identical frozen FCP original YOLO11 and EfficientSAM model once
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          git init -q "$RUNNER_TEMP/fcp"
+          git -C "$RUNNER_TEMP/fcp" remote add origin https://github.com/zuizui0223/fcp.git
+          git -C "$RUNNER_TEMP/fcp" fetch -q --no-tags --depth=1 origin 74bf69a52cd68bfc7dbe6158f4a681235caa6ca0
+          git -C "$RUNNER_TEMP/fcp" checkout -q --detach FETCH_HEAD
+          python -m pip install -q pyarrow==19.0.1 Pillow==11.1.0 ultralytics==8.4.112 onnxruntime==1.23.2 scikit-image==0.25.2
+          (cd "$RUNNER_TEMP/fcp" && bash scripts/acquisition/bootstrap_fcp_original_roi_v4.sh --full --sam-dir "$RUNNER_TEMP/sam")
+          test -f "$RUNNER_TEMP/fcp/scripts/analysis/measure_random_photo_first_blind_partition.py"
+          test -f "$RUNNER_TEMP/fcp/data/atlas/qualification/roi_v4_training/jrc_yolo11n_last_v4.pt"
+      - name: Acquire original photo pixels and infer original nine-component flower-region ROI
+        timeout-minutes: 70
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$GITHUB_WORKSPACE:$RUNNER_TEMP/fcp"
+          python -m scripts.acquisition.mois_warm_original_roi --source source --runtime "$RUNNER_TEMP/fcp" --sam "$RUNNER_TEMP/sam" --group 0 --output measured
+          for part in 000 001 002 003; do
+            test -f "measured/shard_$part/receipt.json"
+            test -f "measured/shard_$part/photos.csv"
+          done
+          echo "ALAN_7662_ACTUAL_FROZEN_ORIGINAL_RGB_GROUP_${SOURCE_GROUP}_COMPLETE"
+      - name: Check each genuine 128-photo terminal SHA, real ROI9 and retained unknowns
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_bulk_7662_original_roi9_source_20261108 collect --source source --measured measured --group "$SOURCE_GROUP" --out finished
+          python - <<'PY'
+          import os,json
+          from pathlib import Path
+          r=json.loads(Path("finished/real_original_island_bulk512_group_receipt.json").read_text())
+          group=int(os.environ["SOURCE_GROUP"])
+          expected=494 if group==14 else 512
+          assert r["group"]==group and r["original_source_photo_attempts"]==expected
+          assert r["new_original_independent_observation_UUIDs"]==expected
+          assert r["original_nine_palette_ROI9_true_success"]+r["original_photo_ROI9_unknown"]==expected
+          assert r["source_method_original_git_blob"]=="b1d7091db44682559bbe4b48a9f3b8db648501a6"
+          assert not r["source_image_bytes_persisted"] and r["unknown_photo_colour_was_not_imputed"]
+          print("ALAN_7662_SOURCE_REAL_ROI9_GROUP_SUCCESS",group,r["original_nine_palette_ROI9_true_success"],flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-real-originalROI9-7662-group-${{ matrix.group }}
+          path: |
+            finished/
+            source/manifest.json
+            measured/shard_*/photos.csv
+            measured/shard_*/receipt.json
+            measured/warm_roi_group_000_diagnostic.json
+          retention-days: 90
+          if-no-files-found: warn

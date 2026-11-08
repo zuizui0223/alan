@@ -1,0 +1,54 @@
+{
+  "schema": "ALAN_8942_new_original_island_RGB_ROI9_verified_20261108_v1",
+  "verified_GitHub_Actions_run": "https://github.com/zuizui0223/alan/actions/runs/42465405115",
+  "verified_success": true,
+  "original_inference_run": "https://github.com/zuizui0223/alan/actions/runs/42456363487",
+  "original_inference_run_status": "failure AFTER genuine image inference due shell log interpolation, not original data measurement failure",
+  "data_only_recovery_artifact_id": 13611338201,
+  "data_only_recovery_artifact_name": "alan-8942-real-original-island-ROI9-full-source-dataonly-recovery",
+  "authentic_GitHub_receipt_SHA256": "0043a4b2abedc613136d6a6544b3b3a70282fb707d5fcc760e0cc5a1111e06d2",
+  "source_precolour_photo_manifest_sha256": "e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd",
+  "original_photo_frozen_FCP_method_git_blob": "b1d7091db44682559bbe4b48a9f3b8db648501a6",
+  "distinct_original_photo_IDs": 8942,
+  "distinct_new_independent_original_observation_UUIDs": 8942,
+  "genuine_original_numeric_9component_flower_region_ROI9_success": 3597,
+  "technical_original_ROI9_unclassifiable": 5345,
+  "genuine_original_image_acquisition_failures": 1,
+  "original_source_GSHHG_islands": 369,
+  "original_original_photo_cell_years": 4776,
+  "source_cells_with_5original_photo_attempts_3accepted_taxa": 303,
+  "original_ROI9_measured_5attempt_3numeric_success_3accepted_taxa_cell_years": 156,
+  "original_ROI9_measured_strict_cell_year_islands": 12,
+  "strict_measured_cell_years_per_source_year": {
+    "2019": 4,
+    "2021": 15,
+    "2023": 34,
+    "2024": 44,
+    "2025": 59
+  },
+  "observed_source_cell_years_with_at_least_one_original_numeric_ROI9": 2517,
+  "comparison_same1792_new_original_photo_IDs": {
+    "prior_first1280_plus512_geographic_breadth": {
+      "new_independent_photos": 1792,
+      "original_ROI9_success": 675,
+      "source_opportunity_5attempt_3taxa": 6,
+      "measured_strict_photo_cell_years": 1
+    },
+    "prior_first1280_plus512_site_year_densification": {
+      "new_independent_photos": 1792,
+      "original_ROI9_success": 691,
+      "source_opportunity_5attempt_3taxa": 60,
+      "measured_strict_photo_cell_years": 33
+    }
+  },
+  "source_quality": {
+    "all_20_signed_worker_receipts_verified": true,
+    "one_original_photo_per_independent_UUID": true,
+    "photo_ID_and_observation_UUID_exactly_rejoin_frozen_source": true,
+    "all_15_bulk_groups_reconstructed_from_saved_terminal_CSV_without_new_image_download": true,
+    "actual_original_ROI9_nine_fraction_and_technical_unknowns_separately_checked": true,
+    "research_source_island_targeted_not_worldwide_random": true,
+    "historical_main_ALAN_nightlight_flower_colour_regression_not_reestimated": true,
+    "native_flowering_plant_not_independently_verified": true
+  }
+}

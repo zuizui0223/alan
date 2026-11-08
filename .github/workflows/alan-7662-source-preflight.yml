@@ -1,0 +1,55 @@
+name: ALAN 7662 original island photo ROI9 bulk source preflight
+on:
+  push:
+    branches: [analysis/alan-7662-original-ROI9-bulk-20261108]
+    paths:
+      - .github/workflows/alan-7662-source-preflight.yml
+      - scripts/acquisition/alan_bulk_7662_original_roi9_source_20261108.py
+      - tests/test_alan_bulk_7662_original_roi9_source_20261108.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-source-and-synthetic-QA:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test all 15 source groups and real measured-versus-unknown ROI9 handling
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          python -m unittest discover -s tests -p test_alan_bulk_7662_original_roi9_source_20261108.py -v
+          python -m py_compile scripts/acquisition/alan_bulk_7662_original_roi9_source_20261108.py
+      - name: Authenticate the actual immutable 8942 source, not new images
+        run: |
+          set -euo pipefail
+          mkdir -p signed
+          gh run download 42447983019 --repo zuizui0223/alan \
+            --name alan-source-8942-novel-island-UUID-disjoint256-batches --dir signed
+          echo 'e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd  signed/progressive_8942_new_island_source_schedule.csv.gz' | sha256sum -c -
+          python - <<'PY'
+          from pathlib import Path
+          from scripts.acquisition import alan_bulk_7662_original_roi9_source_20261108 as x
+          frame,_=x.source_read(
+              Path('signed/progressive_8942_new_island_source_schedule.csv.gz'),
+              Path('signed/progressive_island_original_photo_schedule_receipt.json'))
+          actual=[]
+          total=0
+          for group in range(15):
+              d=x.select_group(frame,group)
+              total+=len(d)
+              actual.extend(d.observation_id)
+              assert d.photo_id.is_unique and d.observation_id.is_unique
+              assert len(d)==(494 if group==14 else 512)
+          assert total==7662 and len(actual)==len(set(actual))
+          assert set(actual).isdisjoint(set(frame.loc[frame.source_batch.astype(int).le(5),'observation_id']))
+          print('ALAN_7662_REAL_SOURCE_UUIDS_VERIFIED_15_GROUPS',total,flush=True)
+          PY
