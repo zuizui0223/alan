@@ -1,0 +1,92 @@
+name: ALAN verify 8942 actual original island ROI9 from signed CSVs only
+on:
+  push:
+    branches: [analysis/alan-7662-original-ROI9-bulk-20261108]
+    paths:
+      - .github/workflows/alan-8942-originalROI9-dataonly-recovery-audit.yml
+      - scripts/analysis/alan_collect_full8942_island_original_roi9_20261108.py
+      - scripts/acquisition/alan_bulk_7662_original_roi9_source_20261108.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-reconcile-20-original-photo-batches-without-RGB:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Test new observation UUID uniqueness, actual numeric ROI9 and strict site rules
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          python -m unittest discover -s tests -p test_alan_collect_full8942_island_original_roi9_20261108.py -v
+          python -m unittest discover -s tests -p test_alan_bulk_7662_original_roi9_source_20261108.py -v
+          python -m py_compile scripts/analysis/alan_collect_full8942_island_original_roi9_20261108.py
+      - name: Recover original photo measurement artifacts and signed sources, no RGB
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          mkdir -p signed first dense512
+          gh run download 42447983019 --repo zuizui0223/alan --name alan-source-8942-novel-island-UUID-disjoint256-batches --dir signed
+          gh run download 42447120685 --repo zuizui0223/alan --name alan-256-genuine-new-independent-island-original-image-ROI9 --dir first
+          gh run download 42454984788 --repo zuizui0223/alan --name alan-original-observation-512-site-densification-source-no-colour --dir dense512
+          for n in 2 3 4 5; do
+            mkdir -p "prior$n"
+            gh run download 42454468186 --repo zuizui0223/alan --name "alan-original-novel-island-ROI9-batch-$n" --dir "prior$n"
+          done
+          for g in $(seq 0 14); do
+            mkdir -p "raw_g$g"
+            gh run download 42456363487 --repo zuizui0223/alan --name "alan-real-originalROI9-7662-group-$g" --dir "raw_g$g"
+          done
+          echo 'e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd  signed/progressive_8942_new_island_source_schedule.csv.gz' | sha256sum -c -
+          echo '7789c5aa1916e5b1ff915d217744a80b990795cb24e362cff20007dda96ee94b  first/finished/new256_independent_island_actual_original_ROI9.csv.gz' | sha256sum -c -
+          echo '172680e798ba9711ee149fd75fc84601e55137c17a818c028aa36ea24c309697  dense512/alan_site_year_densification512_original_photo_source.csv.gz' | sha256sum -c -
+          echo 'ALAN_ALL_20_ALREADY_MEASURED_ORIGINAL_PHOTO_SOURCE_ARTIFACTS_LOADED'
+      - name: Recreate and authenticate all 15 saved genuine original 512-photo terminal outputs
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          for g in $(seq 0 14); do
+            python -m scripts.acquisition.alan_bulk_7662_original_roi9_source_20261108 prepare --schedule signed/progressive_8942_new_island_source_schedule.csv.gz --receipt signed/progressive_island_original_photo_schedule_receipt.json --group "$g" --out "source_g$g"
+            cmp "source_g$g/manifest.json" "raw_g$g/source/manifest.json"
+            python -m scripts.acquisition.alan_bulk_7662_original_roi9_source_20261108 collect --source "source_g$g" --measured "raw_g$g/measured" --group "$g" --out "integrated_g$g/finished"
+          done
+          echo 'ALAN_7662_ORIGINAL_FCP_ROI9_RECOVERED_FROM_DATA_ONLY'
+      - name: Join 8942 source IDs and evaluate real strict photo-site evidence without new inference
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          args=()
+          for g in $(seq 0 14); do
+            args+=("--group$g" "integrated_g$g")
+          done
+          python -m scripts.analysis.alan_collect_full8942_island_original_roi9_20261108 --schedule signed/progressive_8942_new_island_source_schedule.csv.gz --source-receipt signed/progressive_island_original_photo_schedule_receipt.json --first first --prior2 prior2 --prior3 prior3 --prior4 prior4 --prior5 prior5 "${args[@]}" --densification512 dense512/alan_site_year_densification512_original_photo_source.csv.gz --out merged8942
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('merged8942/ALAN_real_8942_original_island_photo_ROI9_final_receipt.json').read_text())
+          allsites=r['site_year_sample_support']['all8942_completed_original_island_source']
+          assert r['new_original_photo_IDs_and_independent_UUIDs_verified']==8942
+          assert r['new_original_nine_palette_true_success']==3597
+          assert r['original_colour_unclassifiable_photos']==5345
+          assert r['number_original_SHA_signed_image_results_included']==20
+          assert allsites['source_photo_cell_years']==4776
+          assert allsites['actual_5attempt_3numericROI9_3observed_accepted_taxa_site_years']==156
+          assert r['unknown_original_ROI9_never_inferred_as_white']
+          assert r['original_photo_image_bytes_reused_without_new_download_or_inference']
+          print('ALAN_8942_REAL_NUMERIC_ROI9_SOURCE_FULL_RECONCILIATION_PASS',allsites,flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-8942-real-original-island-ROI9-full-source-dataonly-recovery
+          path: merged8942/
+          retention-days: 90
+          if-no-files-found: warn
