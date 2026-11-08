@@ -227,8 +227,10 @@ def run(paths,coast,source,registry,out):
        "photo_license","photo_url_large","image_filename","source_arm",
        "selection_probability","source_snapshot_date","shard",
        "land_id","target_id","year","existing_strict_island_cell_years"]
+    # Deterministic gzip mtime=0 keeps the same original selected photo IDs
+    # byte-SHA stable across identical runs (default pandas gzip embeds time).
     queue[columns].to_csv(out/"real_new_independent_island_photo_queue.csv.gz",
-       compression="gzip",index=False)
+       compression={"method":"gzip","mtime":0},index=False)
     # Freeze every source-verified accepted/new island observation that ALREADY
     # has real observation-year VIIRS/WorldPop, so future batches NEVER have
     # to rescan even this 597070-photo metadata tier. No photo colour here.
@@ -251,7 +253,7 @@ def run(paths,coast,source,registry,out):
                  "existing_strict_island_cell_years"]
     master[master_cols].to_csv(
         out/"all8942_new_independent_island_photo_opportunities.csv.gz",
-        compression="gzip",index=False)
+        compression={"method":"gzip","mtime":0},index=False)
     groups=ready.groupby(["year","land_class"],observed=True).agg(
        source_observations=("unit_id","size"),
        accepted_WCVP_taxon_observations=("accepted_taxon","sum"),
