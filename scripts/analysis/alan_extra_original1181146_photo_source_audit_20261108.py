@@ -327,7 +327,7 @@ def map_rescues_to_existing_ALAN_year_exposure(rescues,wcvp,years,coast):
     return report,by_source,q
 
 
-def admit_real_sibling_roi_to_photo_site_thresholds(rescues,canonical,wcvp,years):
+def admit_real_sibling_roi_to_photo_site_thresholds(rescues,canonical,wcvp,years,coast):
     """Exact historical-main site threshold gains from genuinely measured sibling ROI.
 
     The source observation already existed. Only previously unclassifiable
@@ -377,29 +377,58 @@ def admit_real_sibling_roi_to_photo_site_thresholds(rescues,canonical,wcvp,years
        wcvp.wcvp_match_state.eq("unique_exact_name_to_accepted_id"),
        ["inat_taxon_id","wcvp_accepted_plant_name_id"]].copy()
     accepted_lookup.inat_taxon_id=accepted_lookup.inat_taxon_id.astype(str)
-    # Reconstruct already observed accepted taxa on original historical-main
-    # strict ROI photos for EXACT source cells; do not use unknown source taxa.
+    # Restrict reconstruction to the cells whose original observation has
+    # an actual sibling-photo ROI rescue. A cell ID alone is NOT a trusted
+    # landmass key: each original canonical photo point is independently
+    # placed on original GSHHG polygons, exactly as the rescued points were.
+    q=rescues.loc[rescues.source_subarm.eq("historical_main")&
+                  rescues.target_id.isin(set(old.target_id))].copy()
+    panel.require(not q.unit_id.duplicated().any(),
+                 "One original observation counted twice as an ROI rescue")
+    observed_sites=q[["year","cell_id"]].drop_duplicates()
     c=canonical.loc[
         canonical.source_subarm.eq("historical_main")&
         canonical.strict9.astype(bool)&canonical.strict9_white.notna()&
         canonical.latitude.between(-90,90)&canonical.longitude.between(-180,180),
-        ["observation_id","inat_taxon_id","observed_on","latitude","longitude"]].copy()
+        ["observation_id","inat_taxon_id","observed_on",
+         "latitude","longitude"]].copy()
     c["year"]=pd.to_numeric(c.observed_on.astype(str).str[:4],errors="coerce")
     c=c.loc[c.year.isin(YEARS)].copy()
     c["cell_id"]=cell_id(c.longitude,c.latitude)
-    # Ambiguous geographic cells are excluded from assignment rather than
-    # silently reassigned to a nearby island or the continent.
-    ambiguity=old.duplicated(["year","cell_id"],keep=False)
-    unique_geo=old.loc[~ambiguity,["year","cell_id","target_id"]]
-    c=c.merge(accepted_lookup,on="inat_taxon_id",how="left",validate="many_to_one")
-    c=c.loc[c.wcvp_accepted_plant_name_id.notna()]
-    c=c.merge(unique_geo,on=["year","cell_id"],how="inner",validate="many_to_one")
+    c=c.merge(observed_sites,on=["year","cell_id"],how="inner",
+              validate="many_to_one")
+    c=c.merge(accepted_lookup,on="inat_taxon_id",how="left",
+              validate="many_to_one")
+    c=c.loc[c.wcvp_accepted_plant_name_id.notna()].copy()
+    if len(c):
+        src=Path(coast)
+        land=prepare_land(gpd.read_file(src/"GSHHS_h_L1.shp"))
+        lakes=gpd.read_file(src/"GSHHS_h_L2.shp")
+        points=c.rename(columns={"observation_id":"unit_id"})
+        placed=assign_points(points,land,lakes)
+        c=points.merge(placed[["unit_id","land_id","land_class"]],
+                       on="unit_id",validate="one_to_one")
+        c=c.loc[c.land_id.notna()&c.land_class.isin(STATES)].copy()
+        c["land_id"]=c.land_id.astype(str)
+        c["target_id"]=c.year.astype(int).astype(str)+"|"+c.cell_id+"|"+c.land_id
+        c=c.loc[c.target_id.isin(set(q.target_id))].copy()
     source_pairs=c[["target_id","wcvp_accepted_plant_name_id"]].drop_duplicates()
     pre_n=source_pairs.groupby("target_id").size()
-    baseline_old_n=old.set_index("target_id").loc[pre_n.index,"accepted_species_n"]
-    mismatched=(pre_n.astype(int).ne(baseline_old_n.astype(int)))
+    impacted=old.set_index("target_id").loc[q.target_id.unique()]
+    pre_count=pre_n.reindex(impacted.index).fillna(0).astype(int)
+    mismatched=pre_count.ne(impacted.accepted_species_n.astype(int))
+    if mismatched.any():
+        print("ALAN_SOURCE_ACCEPTED_TAXA_GSHHG_POINT_RECON_DIAGNOSTIC",
+              json.dumps({
+                "impacted_source_photo_cell_years":len(impacted),
+                "accepted_species_count_mismatched_cell_years":int(mismatched.sum()),
+                "counts_baseline_exceeds_photo_reconstruction":int(
+                   (impacted.accepted_species_n.astype(int)>pre_count).sum()),
+                "counts_reconstructed_exceeds_baseline":int(
+                   (pre_count>impacted.accepted_species_n.astype(int)).sum())
+              },sort_keys=True),flush=True)
     panel.require(not mismatched.any(),
-          "Original accepted-taxon exact site reconstruction does not match frozen counts")
+          "Original accepted-taxon true-point GSHHG reconstruction does not match frozen counts")
     # All source rescued observation IDs still existed, so original opportunity
     # count never changes. Only authentic photo-colour successes change.
     q=rescues.loc[rescues.source_subarm.eq("historical_main")&
@@ -471,7 +500,7 @@ def run(paths,source_file,coast,out):
     rescue_geography,rescue_by_design,rescue_photo_cells=map_rescues_to_existing_ALAN_year_exposure(
         rescues,wcvp,years,coast)
     rescued_eligibility=admit_real_sibling_roi_to_photo_site_thresholds(
-        rescue_photo_cells,original,wcvp,years)
+        rescue_photo_cells,original,wcvp,years,coast)
     report={
       "schema":"ALAN_extra_original1181146_georestored_v2_sameyear_island_intake_audit_v1",
       "extra_source_photo_asset_sha256":RESTORED_SHA,
