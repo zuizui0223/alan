@@ -97,8 +97,10 @@ def grouped_island_rows(x, islands, seen_uuids):
         moth_positive_observation_uuids=("moth_obs","sum"),
         moth_pollinates_photo_ids=("pollinates","sum"),
         night_pollen_photo_ids=("night_pollen","sum"),
-        butterfly_positive_photo_ids=("butterfly","sum"),
-        lon=("longitude","first"),lat=("latitude","first")).reset_index()
+        butterfly_positive_photo_ids=("butterfly","sum")).reset_index()
+    # Export 0.05-degree cell CENTERS, never exact photographer coordinates.
+    g["lon"] = g.lonbin / 20.0 - 180.0 + 0.025
+    g["lat"] = g.latbin / 20.0 - 90.0 + 0.025
     return list(g.itertuples(index=False,name=None)),len(within),ambiguous
 
 
