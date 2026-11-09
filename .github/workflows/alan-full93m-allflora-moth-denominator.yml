@@ -4,6 +4,10 @@ on:
     branches: [analysis/alan-island-pollinator-shift-gated-20261109]
     paths:
       - .github/workflows/alan-full93m-allflora-moth-denominator.yml
+  pull_request:
+    branches: [analysis/alan-full93m-moth-positive-original-photo-IDs-extraction-20261109]
+    paths:
+      - .github/workflows/alan-full93m-allflora-moth-denominator.yml
   workflow_dispatch:
 permissions:
   contents: read
