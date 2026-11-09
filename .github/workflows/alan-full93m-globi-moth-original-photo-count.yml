@@ -1,0 +1,87 @@
+name: ALAN count actual 93209351 source photo IDs of moth-associated plants from signed 42111 species counts
+on:
+  push:
+    branches: [analysis/alan-full93m-globi-moth-original-photo-census-20261109]
+    paths:
+      - .github/workflows/alan-full93m-globi-moth-original-photo-count.yml
+      - scripts/analysis/alan_full93m_globi_moth_verified_species_photo_counts_20261109.py
+      - tests/test_alan_full93m_globi_moth_verified_species_photo_counts_20261109.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-full-photo-ID-census:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Test no false moth absence, WCVP exact names and photo-ID count conservation
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3
+          python -m unittest discover -s tests -p test_alan_full93m_globi_moth_verified_species_photo_counts_20261109.py -v
+          python -m py_compile scripts/analysis/alan_full93m_globi_moth_verified_species_photo_counts_20261109.py
+      - name: Recover exactly signed FCP full 42111 species 93209351 source photograph counts, not image pixels
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          mkdir -p original
+          gh run download 38749681793 --repo zuizui0223/fcp \
+            --name fcp-42111-real-source-photo-opportunity-counts-20260927-complete-not-colours \
+            --dir original
+          test -s original/complete_42111_metadata_source/all_42111_species_photo_opportunity_counts.csv
+          echo 'ef26c16252dd785f2d08bde3b18938c7624d73a54386fa3d3974dceb09ed97a9  original/complete_42111_metadata_source/all_42111_species_photo_opportunity_counts.csv' | sha256sum -c -
+      - name: Recover immutable WCVP iNat accepted-plant taxon IDs and original 61967 GloBI moth/butterfly study relations
+        timeout-minutes: 6
+        run: |
+          set -euo pipefail
+          gh run download 39225659840 --repo zuizui0223/mois \
+            --name mois-real350399-Kew-WCVP-native-source-TDWG3-no-point-status \
+            --dir original
+          gh run download 41976552977 --repo zuizui0223/mois \
+            --name mois-ALAN-GloBI-stage2-actual-records-2019-2024-supported-source \
+            --dir original
+          echo 'dc5bb0e3686fde0cfd327e4336245d0ceae3c7657b3bd12841bb814cc94d1eb2  original/mois350399_wcvp_source_taxon_exact_name_resolution.csv.gz' | sha256sum -c -
+          echo '9cd6aa7ca29f00c64283bcc08dcb778e212b644b837e64070051339b11d8b7b3  original/mois350399_wcvp_accepted_native_distribution_TDWG3.csv.gz' | sha256sum -c -
+          echo 'a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994  original/GloBI_stage2_signed_extension.csv.gz' | sha256sum -c -
+      - name: Actually sum each moth-related WCVP accepted species original photo ID over complete 93m frame
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_full93m_globi_moth_verified_species_photo_counts_20261109 \
+            --counts original/complete_42111_metadata_source/all_42111_species_photo_opportunity_counts.csv \
+            --wcvp original/mois350399_wcvp_source_taxon_exact_name_resolution.csv.gz \
+            --accepted original/mois350399_wcvp_accepted_native_distribution_TDWG3.csv.gz \
+            --globi original/GloBI_stage2_signed_extension.csv.gz \
+            --out alan_full93m_moth_original_photo_source_counts
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('alan_full93m_moth_original_photo_source_counts/ALAN_full93m_original_photo_moth_positive_opportunity_count.json').read_text())
+          assert r['source_photo_count']==93209351
+          assert r['source_distinct_inat_taxa']==42111
+          assert r['evidence_tiers']['moth_positive']['original_distinct_photo_IDs']==34346428
+          assert r['evidence_tiers']['moth_positive']['unique_WCVP_accepted_species']==1836
+          assert r['evidence_tiers']['moth_pollinates_db']['original_distinct_photo_IDs']==13262462
+          assert r['evidence_tiers']['walton2020_night_pollen_carriage']['original_distinct_photo_IDs']==3738985
+          assert r['unknown_GloBI_record_cannot_be_called_moth_absence']
+          assert r['source_exhausts_true_photo_ID_OPPORTUNITIES_not_true_flower_ROI_pixels']
+          print('ALAN_ALL93M_SOURCE_MOTH_POSITIVE_ORIGINAL_PHOTOS_EXACT',
+            {k:{'photos':v['original_distinct_photo_IDs'],
+                 'plant_species':v['unique_WCVP_accepted_species'],
+                 'warm512_workers':v['512photo_worker_groups_needed_to_measure_all_original_RGB']}
+              for k,v in r['evidence_tiers'].items()},flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-complete93m-signed-WCVP-GloBI-moth-evidence-original-photo-counts
+          path: alan_full93m_moth_original_photo_source_counts/
+          retention-days: 90
+          if-no-files-found: error
