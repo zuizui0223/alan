@@ -105,7 +105,7 @@ def worker(source,manifest,shard,raster_dir,out):
         name=f"PCNL{yr}.tif"
         f=fetch_one(name,files[name],Path(raster_dir)/name)
         with rasterio.open(Path(raster_dir)/name) as src:
-            require(src.count==1 and src.crs is not None and src.nodata is not None,
+            require(src.count==1 and src.crs is not None,
                     "PCNL raster source not spatially valid")
             values=sample_one_raster(src,x)
         eligible=(observed>yr)
