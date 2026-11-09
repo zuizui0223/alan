@@ -1,0 +1,118 @@
+name: ALAN tier07 collect 27507 real original photo ROI9 source, data-only
+on:
+  push:
+    branches: [analysis/alan-tier07-bulk26483-realROI9-20261109]
+    paths:
+      - .github/workflows/alan-tier07-27507-dataonly-collector-after52.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify-all-53-original-photo-sources-without-redownloading-images:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 115
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify genuine original UUID and actual strict photo site contracts
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          python -m unittest discover -s tests -p test_alan_tier07_collect_full27507_actual_originalROI9.py -v
+          python -m py_compile scripts/analysis/alan_tier07_collect_full27507_actual_originalROI9.py
+      - name: Wait until all 52 original photo tasks have persisted their source-signed terminal CSV artifacts
+        timeout-minutes: 85
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 160); do
+            gh api 'repos/zuizui0223/alan/actions/runs/42553223750/artifacts?per_page=100' \
+              --jq '.artifacts[].name' > /tmp/alan_original_52_source_artifacts.txt
+            found=0
+            for task in $(seq 0 51); do
+              if grep -Fxq "alan-tier07-real-originalROI9-26483-task-$task" /tmp/alan_original_52_source_artifacts.txt; then
+                found=$((found + 1))
+              fi
+            done
+            echo "ALAN_AUTHENTIC_ORIGINAL_IMAGE_TASKS_WITH_PERSISTED_CSV=$found/52"
+            if [ "$found" -eq 52 ]; then
+              echo 'ALAN_ALL_52_PRIOR_SOURCE_ORIGINAL_IMAGE_ARTIFACTS_AVAILABLE'
+              exit 0
+            fi
+            sleep 30
+          done
+          echo 'ALAN_ORIGINAL_SOURCE_INCOMPLETE_AWAIT_MISSING_TASKS' >&2
+          exit 1
+      - name: Download only the already signed source and authentic previous original-photo terminal CSVs
+        timeout-minutes: 18
+        run: |
+          set -euo pipefail
+          mkdir -p signed pilot
+          gh run download 42466279952 --repo zuizui0223/alan \
+            --name alan-tier07-27507-original-island-precolour-1024photo-groups --dir signed
+          gh run download 42552642250 --repo zuizui0223/alan \
+            --name alan-tier07-original1024-measured-only-last-shard-recovered-ROI9 --dir pilot
+          echo '7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62  signed/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz' | sha256sum -c -
+          echo '2988a8631cfb25bea57690a2a91db1e0a7f00074b8ca3ce7557aba8c09fda113  pilot/finished/ALAN_tier07_first1024_original_floral_roi9.csv.gz' | sha256sum -c -
+          for t in $(seq 0 51); do
+            mkdir -p "raw_task$t"
+            gh run download 42553223750 --repo zuizui0223/alan \
+              --name "alan-tier07-real-originalROI9-26483-task-$t" --dir "raw_task$t"
+          done
+          echo 'ALAN_52_PREVIOUSLY_MEASURED_ORIGINAL_PHOTO_TASKS_AVAILABLE_FOR_DATAONLY_VERIFY'
+      - name: Reconstruct each authentic source manifest and SHA-check true previous photo ROI9 terminal results
+        timeout-minutes: 14
+        run: |
+          set -euo pipefail
+          for t in $(seq 0 51); do
+            python -m scripts.acquisition.alan_tier07_remaining26483_original_rgb_roi9 prepare \
+              --schedule signed/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz \
+              --receipt signed/ALAN_tier07_27507_original_photo_source_schedule_receipt.json \
+              --task "$t" --out "source_task$t"
+            cmp "source_task$t/manifest.json" "raw_task$t/source/manifest.json"
+            python -m scripts.acquisition.alan_tier07_remaining26483_original_rgb_roi9 collect \
+              --source "source_task$t" --measured "raw_task$t/measured" \
+              --task "$t" --out "validated_task$t/finished"
+          done
+          echo 'ALAN_26483_GENUINE_ORIGINAL_NINE_PALETTE_ROI_RECOVERED_FROM_SIGNED_CSV_ONLY'
+      - name: Count all 27507 independent new island photo ROI9s and genuinely strict sites
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          args=()
+          for t in $(seq 0 51); do
+            args+=("--task$t" "validated_task$t")
+          done
+          python -m scripts.analysis.alan_tier07_collect_full27507_actual_originalROI9 \
+            --schedule signed/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz \
+            --source-receipt signed/ALAN_tier07_27507_original_photo_source_schedule_receipt.json \
+            --pilot pilot "${args[@]}" --out finished27507
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('finished27507/ALAN_original_tier07_27507_real_photoROI9_receipt.json').read_text())
+          assert r['schema']=='ALAN_verified_27507_independent_tier07_original_RGB_ROI9_v1'
+          assert r['source_original_observation_UUIDs_and_photo_IDs_verified']==27507
+          assert r['original_source_distinct_GSHHG_islands']==563
+          assert r['original_source_photo_site_years']==9493
+          assert r['first_pilot_and_52_signed_warm_photo_workers_verified']==53
+          assert r['pilot_first1024_9colour_successes']==403
+          assert r['no_source_original_photo_pixels_downloaded_or_reinferred_during_audit']
+          assert r['unclassified_original_image_ROI_never_imputed']
+          print('ALAN_TIER07_27507_REAL_SOURCE_FINAL_9COLOUR_ROI9_VERIFIED',
+                r['original_numeric_9colour_FCP_flowerROI9_successes'],
+                r['actual_strict_5photo_3numericROI9_3measured_accepted_taxon_site_years'],
+                flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-tier07-original27507-island-ROI9-verified-source-aggregate
+          path: finished27507/
+          retention-days: 90
+          if-no-files-found: warn

@@ -1,0 +1,55 @@
+name: ALAN tier07 26483 original island photo UUID high-throughput 52-group source preflight
+on:
+  push:
+    branches: [analysis/alan-tier07-bulk26483-realROI9-20261109]
+    paths:
+      - .github/workflows/alan-tier07-26483-source-preflight.yml
+      - scripts/acquisition/alan_tier07_remaining26483_original_rgb_roi9.py
+      - tests/test_alan_tier07_remaining26483_original_rgb_roi9.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-independent-source-photo-QA:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify 52 distinct 512-photo worker groups on synthetic UUIDs
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          python -m unittest discover -s tests -p test_alan_tier07_remaining26483_original_rgb_roi9.py -v
+          python -m py_compile scripts/acquisition/alan_tier07_remaining26483_original_rgb_roi9.py
+      - name: Authenticate original 27507 new observation photo schedule and source-disjoint full26483
+        run: |
+          set -euo pipefail
+          mkdir -p source
+          gh run download 42466279952 --repo zuizui0223/alan \
+            --name alan-tier07-27507-original-island-precolour-1024photo-groups --dir source
+          echo '7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62  source/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz' | sha256sum -c -
+          python - <<'PY'
+          from pathlib import Path
+          from scripts.acquisition import alan_tier07_remaining26483_original_rgb_roi9 as a
+          d,_=a.load_signed_original_source(
+              Path("source/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz"),
+              Path("source/ALAN_tier07_27507_original_photo_source_schedule_receipt.json"))
+          seen=set()
+          photos=set()
+          for task in range(a.TASK_COUNT):
+              q=a.select_task(d,task)
+              assert len(q)==(371 if task==51 else 512)
+              assert seen.isdisjoint(set(q.observation_id))
+              assert photos.isdisjoint(set(q.photo_id))
+              seen.update(q.observation_id)
+              photos.update(q.photo_id)
+          assert len(seen)==len(photos)==26483
+          assert seen.isdisjoint(set(d.loc[d.work_group.eq("0"),"observation_id"]))
+          print('ALAN_TIER07_26483_AUTHENTIC_SOURCE_SHA_UNIQUE_UUIDS_READY',len(seen),flush=True)
+          PY

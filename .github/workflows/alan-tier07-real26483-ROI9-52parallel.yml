@@ -1,0 +1,142 @@
+name: ALAN tier07 26483 real new island original RGB ROI9 via 52 warm bounded workers
+on:
+  push:
+    branches: [analysis/alan-tier07-bulk26483-realROI9-20261109]
+    paths:
+      - .github/workflows/alan-tier07-real26483-ROI9-52parallel.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 11
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify original source-only 26483 UUIDs and 52 independent photo tasks
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          python -m unittest discover -s tests -p test_alan_tier07_remaining26483_original_rgb_roi9.py -v
+          mkdir -p signed
+          gh run download 42466279952 --repo zuizui0223/alan \
+            --name alan-tier07-27507-original-island-precolour-1024photo-groups --dir signed
+          echo '7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62  signed/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz' | sha256sum -c -
+          python - <<'PY'
+          from pathlib import Path
+          from scripts.acquisition import alan_tier07_remaining26483_original_rgb_roi9 as a
+          s,_=a.load_signed_original_source(
+              Path('signed/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz'),
+              Path('signed/ALAN_tier07_27507_original_photo_source_schedule_receipt.json'))
+          seen=set()
+          for task in range(a.TASK_COUNT):
+              part=a.select_task(s,task)
+              assert seen.isdisjoint(set(part.observation_id))
+              seen.update(part.observation_id)
+          assert len(seen)==26483
+          assert seen.isdisjoint(set(s.loc[s.work_group.eq('0'),'observation_id']))
+          print('ALAN_TIER07_26483_PRECOLOUR_SOURCE_QA_SUCCESS',len(seen),flush=True)
+          PY
+  independent-original-RGB-ROI9:
+    needs: source-preflight
+    strategy:
+      fail-fast: false
+      max-parallel: 16
+      matrix:
+        task: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 84
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_TASK: ${{ matrix.task }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      TORCH_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Freeze only the signed independent new original 371-512-photo source for this worker
+        timeout-minutes: 9
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          mkdir -p signed
+          gh run download 42466279952 --repo zuizui0223/alan \
+            --name alan-tier07-27507-original-island-precolour-1024photo-groups --dir signed
+          echo '7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62  signed/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz' | sha256sum -c -
+          python -m scripts.acquisition.alan_tier07_remaining26483_original_rgb_roi9 prepare \
+            --schedule signed/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz \
+            --receipt signed/ALAN_tier07_27507_original_photo_source_schedule_receipt.json \
+            --task "$SOURCE_TASK" --out source
+          test -s source/manifest.json
+      - name: Load pinned original FCP YOLO11/EfficientSAM once per approximately 512 new images
+        timeout-minutes: 14
+        run: |
+          set -euo pipefail
+          git init -q "$RUNNER_TEMP/fcp"
+          git -C "$RUNNER_TEMP/fcp" remote add origin https://github.com/zuizui0223/fcp.git
+          git -C "$RUNNER_TEMP/fcp" fetch -q --no-tags --depth=1 origin 74bf69a52cd68bfc7dbe6158f4a681235caa6ca0
+          git -C "$RUNNER_TEMP/fcp" checkout -q --detach FETCH_HEAD
+          python -m pip install -q pyarrow==19.0.1 Pillow==11.1.0 ultralytics==8.4.112 onnxruntime==1.23.2 scikit-image==0.25.2
+          (cd "$RUNNER_TEMP/fcp" && bash scripts/acquisition/bootstrap_fcp_original_roi_v4.sh --full --sam-dir "$RUNNER_TEMP/sam")
+          test -f "$RUNNER_TEMP/fcp/scripts/analysis/measure_random_photo_first_blind_partition.py"
+          test -f "$RUNNER_TEMP/fcp/data/atlas/qualification/roi_v4_training/jrc_yolo11n_last_v4.pt"
+      - name: Acquire original iNaturalist S3 pixels and infer actual numerical nine-fraction flower ROI9
+        timeout-minutes: 57
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$GITHUB_WORKSPACE:$RUNNER_TEMP/fcp"
+          python -m scripts.acquisition.mois_warm_original_roi \
+            --source source --runtime "$RUNNER_TEMP/fcp" --sam "$RUNNER_TEMP/sam" \
+            --group 0 --output measured
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('source/manifest.json').read_text())
+          for i in r['worker_ids']:
+              folder=Path('measured')/f'shard_{i:03d}'
+              assert (folder/'photos.csv').is_file()
+              assert (folder/'receipt.json').is_file()
+          print('ALAN_TIER07_REAL_SOURCE_RGB_ROI9_128PHOTO_UNITS_FINISHED',
+                r['original_photo_task_number'],r['new_photo_attempts_planned'],flush=True)
+          PY
+      - name: Check actual SHA-signed original photo/UUID and numeric ROI9 source with unclassified left unknown
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_tier07_remaining26483_original_rgb_roi9 collect \
+            --source source --measured measured --task "$SOURCE_TASK" --out finished
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          r=json.loads(Path('finished/ALAN_tier07_genuine_new_photo_ROI9_task_receipt.json').read_text())
+          n=371 if int(os.environ['SOURCE_TASK'])==51 else 512
+          assert r['original_photo_image_attempts']==n
+          assert r['independent_new_photo_observation_UUIDs']==n
+          assert r['actual_numerical_9palette_flowerROI_success']+r['original_photo_technical_unknown']==n
+          assert r['original_FCP_model_sha_blob']=='b1d7091db44682559bbe4b48a9f3b8db648501a6'
+          assert r['technical_unknown_not_assigned_an_unnatural_colour']
+          assert r['original_RGB_image_bytes_not_persisted']
+          print('ALAN_TIER07_REAL_RGB_ORIGINAL_ROI9_TASK_SOURCE_AUTHENTICATED',r['task_number'],r['actual_numerical_9palette_flowerROI_success'],flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-tier07-real-originalROI9-26483-task-${{ matrix.task }}
+          path: |
+            finished/
+            source/manifest.json
+            measured/shard_*/photos.csv
+            measured/shard_*/receipt.json
+            measured/warm_roi_group_000_diagnostic.json
+          retention-days: 90
+          if-no-files-found: warn
