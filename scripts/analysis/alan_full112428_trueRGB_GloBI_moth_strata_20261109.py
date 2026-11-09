@@ -18,6 +18,7 @@ from scripts.analysis import alan_tier08_24576_original_photo_stability_20261109
 from scripts.analysis import alan_real_oldnew_moth_GloBI_restricted_20261109 as moth
 from scripts.analysis import alan_new36449_photoROI9_island_light_replication_20261109 as fresh
 from scripts.analysis import alan_isolation_area_light_20261108 as isolation
+from scripts.analysis import alan_island_area_light_20261108 as area
 from scripts.analysis import mois_island_ALAN_multiyear_sameyear_source_panel_20261107 as panel
 
 SCHEMA="ALAN_true112428_original_photo_RGB_GloBI_moth_guild_stratified_v1"
@@ -128,10 +129,11 @@ def run(paths, coast, source06,source07,prior06,bulk06,pilot07,bulk07,
     require(common_sites["estimable"] and
             common_sites["n_spatial_multisite_islands"]==97,
             "Original 97 within-island ALAN geography cannot be reproduced")
-    base_islands=set(common_sites.get("multisite_island_ids",[]))
-    # Independently reconstruct fixed-original multisite geography from actual sites.
-    ccounts=original97.groupby("land_id").target_id.nunique()
-    base_islands=set(ccounts.loc[ccounts>=2].index)
+    # Use the SAME within-island viable 97 islands as the frozen all-flora model;
+    # merely having multiple photo sites does not prove light contrast.
+    _,spatial_original=area.join_area_and_select(original97,land)
+    base_islands=set(spatial_original.land_id)
+    require(len(base_islands)==97, "Fixed-geography 97 island support drift")
     cohorts={
         "historical_main":allphotos.loc[allphotos.photo_source.eq("historical_main")],
         "tier06_07_deduplicated":allphotos.loc[allphotos.photo_source.eq("new_tier06_tier07")],
