@@ -85,7 +85,7 @@ def source_viirs(year, filename, receipt=None):
     v["year"], v["cell_id"], v["land_id"] = parts[0], parts[1], parts[2]
     v["viirs_median"] = pd.to_numeric(v.viirs_median, errors="coerce")
     v["viirs_valid_months"] = pd.to_numeric(v.viirs_valid_months, errors="coerce")
-    require(v.viirs_valid_months.between(0, 12).fillna(False).all(),
+    require((v.viirs_valid_months.isna() | v.viirs_valid_months.between(0, 12)).all(),
             "Original valid-month counts malformed")
     # The 0.05-degree cell may contain more than one landmass.
     # Never use a mean light value or arbitrarily choose one of those landmasses.
@@ -99,7 +99,7 @@ def source_viirs(year, filename, receipt=None):
     }
 
 def score_support(photos, viirs):
-    require(photos.target_id.is_unique is False or len(photos) > 0,
+    require(len(photos) > 0,
             "Empty original-photo source")
     require(viirs.target_id.is_unique, "VIIRS source duplicated")
     merged = photos.merge(viirs[["target_id", "viirs_median", "viirs_valid_months"]],
