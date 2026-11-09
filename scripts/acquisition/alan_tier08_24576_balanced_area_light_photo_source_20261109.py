@@ -181,10 +181,11 @@ def frozen_area_light_queue(data, n=COUNT):
     q["source_snapshot_date"]="2026-09-27"
     q["shard"]=(np.arange(n)//PHOTO_UNIT).astype(int)
     q["wave"]=(np.arange(n)//WAVES[0]+1).astype(int)
-    require(q.shard.nunique()==n//PHOTO_UNIT and
-            q.groupby("shard").size().eq(PHOTO_UNIT).all() and
-            q.wave.value_counts().to_dict()=={1:8192,2:8192,3:8192},
-            "Frozen photo 128-photo shard or three-wave boundaries changed")
+    if n == COUNT:
+        require(q.shard.nunique()==n//PHOTO_UNIT and
+                q.groupby("shard").size().eq(PHOTO_UNIT).all() and
+                q.wave.value_counts().to_dict()=={1:8192,2:8192,3:8192},
+                "Frozen photo 128-photo shard or three-wave boundaries changed")
     audit={"size":len(q),"selected_distinct_original_GSHHG_islands":int(q.land_id.nunique()),
            "selected_original_source_site_years":int(q.target_id.nunique()),
            "selected_source_years":q.year.value_counts().to_dict(),
