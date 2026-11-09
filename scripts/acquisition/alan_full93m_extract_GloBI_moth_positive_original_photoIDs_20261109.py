@@ -26,6 +26,7 @@ import io
 import json
 from pathlib import Path
 import tarfile
+import pandas as pd
 
 from scripts.analysis import alan_full93m_globi_moth_original_photo_census_20261109 as global_source
 
