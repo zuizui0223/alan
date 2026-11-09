@@ -330,14 +330,39 @@ def run_exposure(args):
             "Same site/year repeated; collect sources before joining")
     out = annual_exposure(x, args.pcnl_dir)
     out.to_csv(args.output, index=False)
-    summary = out.groupby(["island", "year"], observed=True).agg(
-        n_site_years=("year", "size"),
-        observed_moth_positive_species_site_sum=("moth_positive_species", "sum"),
-        original_photo_ids=("photo_ids", "sum"),
-        observation_uuids=("observation_uuids", "sum"),
-        complete_exposure_sites=("historic_ntl_complete", "sum"),
-        median_pcnl_prior_mean_log1p=("pcnl_1992_to_previous_year_mean_log1p", "median")
-    ).reset_index()
+    # Primary 93m FULL-SOURCE cohort has a taxon-verified denominator.
+    # The moth-positive-only roster has NO true all-flora denominator.
+    is_full = {"all_accepted_recorded_species",
+               "moth_visitor_positive_recorded_species",
+               "all_accepted_observation_uuids",
+               "all_accepted_photo_ids"}.issubset(out.columns)
+    if is_full:
+        # These are sums of site-specific species, NOT unique flora richness
+        # across the whole island; retain original island-year output for that.
+        summary = out.groupby(["island", "year"], observed=True).agg(
+            n_site_years=("year", "size"),
+            all_accepted_species_site_sum=("all_accepted_recorded_species", "sum"),
+            moth_positive_species_site_sum=("moth_visitor_positive_recorded_species", "sum"),
+            original_photo_ids=("all_accepted_photo_ids", "sum"),
+            observation_uuids=("all_accepted_observation_uuids", "sum"),
+            complete_exposure_sites=("historic_ntl_complete", "sum"),
+            median_pcnl_prior_mean_log1p=("pcnl_1992_to_previous_year_mean_log1p", "median")
+        ).reset_index()
+        summary["moth_source_documented_species_site_fraction"] = (
+            summary.moth_positive_species_site_sum /
+            summary.all_accepted_species_site_sum.clip(lower=1))
+    else:
+        require({"moth_positive_species", "photo_ids",
+                 "observation_uuids"}.issubset(out.columns),
+                "PCNL input lacks a verified island photo-species source schema")
+        summary = out.groupby(["island", "year"], observed=True).agg(
+            n_site_years=("year", "size"),
+            observed_moth_positive_species_site_sum=("moth_positive_species", "sum"),
+            original_photo_ids=("photo_ids", "sum"),
+            observation_uuids=("observation_uuids", "sum"),
+            complete_exposure_sites=("historic_ntl_complete", "sum"),
+            median_pcnl_prior_mean_log1p=("pcnl_1992_to_previous_year_mean_log1p", "median")
+        ).reset_index()
     summary.to_csv(args.output.with_name("moth_island_year_with_longterm_ntl.csv"), index=False)
     args.output.with_suffix(".json").write_text(json.dumps({
         "schema": "ALAN_PCNL_preobservation_historical_light_site_year_v1",
@@ -348,6 +373,8 @@ def run_exposure(args):
         "not_illuminance_at_flower": True,
         "site_summed_species_counts_NOT_independent_unique_island_species": True,
         "moth_visitor_not_moth_dependency": True,
+        "allflora_source_matched_denominator_available": bool(is_full),
+        "photo_recorded_GloBI_positive_fraction_is_NOT_true_moth_dependence": True,
         "no_local_species_declines_or_plant_absences_inferred": True
     }, indent=2) + "\n")
 
