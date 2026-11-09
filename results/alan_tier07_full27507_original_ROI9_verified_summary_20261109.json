@@ -78,11 +78,13 @@
   "source_dataonly_original_output_artifact_name": "alan-tier07-original27507-island-ROI9-verified-source-aggregate",
   "artifact_id": 13650766775,
   "real_original_photo_receipt_SHA256": "c4f2e70ef667fb7ec04a489b5a03360c61e02f40f9878c837ca6bbc56fd5f4c6",
-  "original_photo_group_counts_csv_SHA256": "b1e88cc9e8d3750d79f638da336547906cd6bf9c0714acbcbb5853716a97b2a",
+  "original_photo_group_counts_csv_SHA256": "6d06fd0b8bb69a43f0a2d9024db052bf2856600d2e5268098d78ed5d74d62689",
   "caveat": "Measure of observed flower-region pixel white and other 9-channel fractions, not species-native status or causal nightlight; source was island/site-targeted and cannot be pooled with historical-main unweighted. Existing tier06 strict156 and tier07 strict769 may overlap in site-year, so 925 is not a verified unique-site union.",
   "verified_53_original_photo_sources": true,
   "no_photo_pixels_reacquired_in_final_sha_reconciliation": true,
   "all_photo_and_observation_UUIDs_unique": true,
   "not_imputed_colour_for_unknown": true,
-  "historical_main_ALAN_regression_unchanged": true
+  "historical_main_ALAN_regression_unchanged": true,
+  "original_photo_year_counts_csv_SHA256": "f779a75f4ce559e04fb1533de1bc5e67600d25ec92cf4fae14a121726b8d4965",
+  "original_photo_site_counts_csv_SHA256": "7e008f5cb7543185ec772ac051ea9ef53a551e40220fc1e1fda5fcb3a3b76a4e"
 }
