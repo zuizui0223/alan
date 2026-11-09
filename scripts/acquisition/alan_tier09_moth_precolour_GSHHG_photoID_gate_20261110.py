@@ -64,9 +64,6 @@ def prior_ids(paths, out):
         if name == "prior24576_manifest":
             continue
         p = Path(p)
-        check(sha(p) == (tier08.MASTER_SHA if False else
-                         "38d089278cfafd51d88ef9936e4882b9d115b2f8d0eefd0a9f4e4da33c")
-              if False else True, "Unexpected check")
         expected = KNOWN_INPUTS[name][0]
         if name == "prior24576":
             # The source queue has its own signed manifest. Its compressed
