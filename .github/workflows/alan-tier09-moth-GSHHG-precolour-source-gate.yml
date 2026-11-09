@@ -12,7 +12,7 @@ jobs:
   frozen-prior:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
-    env: {GH_TOKEN: ${{ github.token }}}
+    env: {GH_TOKEN: "${{ github.token }}"}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -47,7 +47,7 @@ jobs:
       max-parallel: 4
       matrix:
         group: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-    env: {GH_TOKEN: ${{ github.token }}, GROUP: ${{ matrix.group }}, OMP_NUM_THREADS: '1', OPENBLAS_NUM_THREADS: '1'}
+    env: {GH_TOKEN: "${{ github.token }}", GROUP: "${{ matrix.group }}", OMP_NUM_THREADS: '1', OPENBLAS_NUM_THREADS: '1'}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -74,7 +74,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: success()
         with:
-          name: alan-tier09-GSHHG-source-group-${{ matrix.group }}
+          name: "alan-tier09-GSHHG-source-group-${{ matrix.group }}"
           path: result/
           retention-days: 90
           if-no-files-found: error
@@ -82,7 +82,7 @@ jobs:
     needs: [frozen-prior, source-group]
     runs-on: ubuntu-24.04
     timeout-minutes: 30
-    env: {GH_TOKEN: ${{ github.token }}}
+    env: {GH_TOKEN: "${{ github.token }}"}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
