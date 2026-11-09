@@ -1,0 +1,81 @@
+name: ALAN tier08 24576 additional SHA-frozen original-photo source queue, balanced islands and light, no RGB
+on:
+  push:
+    branches: [analysis/alan-tier08-full-remaining-true-RGB-convergence-20261109]
+    paths:
+      - .github/workflows/alan-tier08-24576-original-photo-source-preflight.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  freeze-original-24576-photo-ID-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 24
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify deterministic island-light priority and immutable source ID ledger synthetic tests
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5
+          python -m unittest discover -s tests -p test_alan_tier08_24576_balanced_area_light_photo_source_20261109.py -v
+          python -m py_compile scripts/acquisition/alan_tier08_24576_balanced_area_light_photo_source_20261109.py
+      - name: Restore exact 56440 signed original tier08 photo opportunities and 910 prior photo IDs
+        timeout-minutes: 6
+        run: |
+          set -euo pipefail
+          mkdir -p src08
+          gh run download 42584655750 --repo zuizui0223/alan --name alan-full93m-tier08-balanced-light-pair-independent-original-photo-source --dir src08
+          echo 'b34a8a564dc9ba3f02934e1e04077b4655cf8a9333ecefcb6bc93c5d9dc757fd  src08/tier08_all_new_envmatched_island_observations.csv.gz' | sha256sum -c -
+          echo '9d2e60b9c9bdb2fb56c1c17dd69fca5b6c606d1e64d707020d070dd82e49a552  src08/tier08_precolour_reference_and_area_light_paired_queue.csv.gz' | sha256sum -c -
+      - name: Fetch source-authenticated old canonical and 8942+27507 previous photo IDs to prevent exact-photo duplication
+        timeout-minutes: 9
+        run: |
+          set -euo pipefail
+          mkdir -p old source06 source07
+          gh run download 41007444495 --repo zuizui0223/mois --name mois-nohuman-canonical-climate-joined-20261030 --dir old
+          gh run download 42447983019 --repo zuizui0223/alan --name alan-source-8942-novel-island-UUID-disjoint256-batches --dir source06
+          gh run download 42466279952 --repo zuizui0223/alan --name alan-tier07-27507-original-island-precolour-1024photo-groups --dir source07
+          echo 'f033661d76e07898a5c13199a55c5d0ce6e55353daa48b0058c456979e90644c  old/canonical_observations_climate.csv.gz' | sha256sum -c -
+          echo 'e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd  source06/progressive_8942_new_island_source_schedule.csv.gz' | sha256sum -c -
+          echo '7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62  source07/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz' | sha256sum -c -
+      - name: Freeze after excluding expected previous 910 tier08 UUIDs; lock 3 waves and 192 source shards
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_tier08_24576_balanced_area_light_photo_source_20261109 \
+            --master src08/tier08_all_new_envmatched_island_observations.csv.gz \
+            --previous910 src08/tier08_precolour_reference_and_area_light_paired_queue.csv.gz \
+            --canonical old/canonical_observations_climate.csv.gz \
+            --source06 source06/progressive_8942_new_island_source_schedule.csv.gz \
+            --source07 source07/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz \
+            --out source24576
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path("source24576/manifest.json").read_text())
+          assert m["source_group"]=="alan_tier08_additional24576_balanced_island_area_light"
+          assert m["new_photo_attempts_planned"]==24576
+          assert m["work_units"]==192 and m["warm_groups"]==48
+          assert m["waves"]==[8192,16384,24576]
+          assert m["source_overlap_audit"]["tier08_eligible_exact_original_photo_ids_after_source_dedup"]>=24576
+          assert m["selection_audit"]["selected_distinct_original_GSHHG_islands"]>=80
+          assert m["selection_audit"]["selected_original_source_site_years"]>=1000
+          print("ALAN_TIER08_24576_PRECOLOUR_SHA_LOADED",m["source_overlap_audit"],
+                m["selection_audit"],flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-tier08-24576-genuine-original-source-192shard-precolour-3waves
+          path: source24576/
+          retention-days: 90
+          if-no-files-found: warn
