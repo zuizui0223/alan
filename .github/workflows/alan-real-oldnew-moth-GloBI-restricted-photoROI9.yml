@@ -1,4 +1,4 @@
-name: ALAN: actually fit moth-positive GloBI taxa from signed 87852 historical and novel original flower ROIs
+name: "ALAN actually fit moth-positive GloBI taxa from signed 87852 historical and new original flower ROIs"
 on:
   push:
     branches: [analysis/alan-tier08-moth-evidence-guild-stratification-20261109]
