@@ -30,6 +30,7 @@ import pandas as pd
 
 from scripts.analysis import alan_union_36449_original_island_photoROI9_20261109 as union
 from scripts.analysis import alan_island_area_light_20261108 as area
+from scripts.analysis import mois_island_ALAN_measured_photo_opportunity_tiers_20261107 as historic_tier
 from scripts.analysis import alan_isolation_area_light_20261108 as isolation
 from scripts.analysis import mois_island_ALAN_multiyear_sameyear_source_panel_20261107 as panel
 
@@ -266,6 +267,36 @@ def run(paths,coast,source06,source07,prior06,bulk06,pilot07,bulk07,out):
     # VERTEX distances for every island in the comparison (not centroids).
     distances=isolation.isolated_mainland_distance_km(original_land,ids)
     landmeta=original_land[["land_id","land_class","area_km2"]]
+    # Measure true target-population overlap instead of asserting that new
+    # original-photo IDs imply independent GSHHG island environments.
+    older=historic_tier.by_year_tier(
+        historic_tier.build_frozen_five_years(paths))["strict_5p3r3s"]
+    older=older.loc[older.is_island.eq(1)].copy()
+    require(len(older)==710 and older.target_id.is_unique and
+            int(older.land_id.nunique())==101,
+            "Original historical-main 710-cell 101-island photo support altered")
+    fresh=groups["union"][1]
+    old_sites=set(older.target_id)
+    new_sites=set(fresh.target_id)
+    old_lands=set(older.land_id.astype(str))
+    new_lands=set(fresh.land_id.astype(str))
+    shared_lands=old_lands&new_lands
+    old_multi=area.join_area_and_select(older,landmeta)[1]
+    overlap={
+       "old_historical_main_strict_island_cells":710,
+       "old_historical_main_island_landmasses":101,
+       "old_historical_main_true_multisite_islands":int(old_multi.land_id.nunique()),
+       "new_acquisition_source_strict_island_cells":len(fresh),
+       "new_acquisition_source_strict_islands":len(new_lands),
+       "strict_cell_years_present_in_both_acquisition_and_historical_main":len(old_sites&new_sites),
+       "strict_distinct_GSHHG_islands_present_in_both_source_cohorts":len(shared_lands),
+       "old_original_strict_cell_years_on_shared_islands":int(
+            older.land_id.astype(str).isin(shared_lands).sum()),
+       "new_original_strict_cell_years_on_shared_islands":int(
+            fresh.land_id.astype(str).isin(shared_lands).sum()),
+       "old_and_new_source_original_photo_observation_UUIDs_are_disjoint":True,
+       "overlapping_sites_are_not_independent_environmental_replicates":True,
+    }
     stats={}
     for key,(allcells,strict) in groups.items():
         stats[key]={
@@ -295,6 +326,7 @@ def run(paths,coast,source06,source07,prior06,bulk06,pilot07,bulk07,out):
       "source_last_verified_73_SHA_signed_original_image_results":proof,
       "source_sameyear_environment_cells":len(environment),
       "source_model_results":stats,
+      "original_historical_strict_photo_source_geographic_overlap":overlap,
       "source_photo_white_ROI_not_verified_native_plant_population_white_fraction":True,
       "island_and_site_selected_acquisition_not_unbiased_worldwide_flora_sampling":True,
       "independent_original_photo_IDs_not_independent_island_environment_realizations":True,
