@@ -209,7 +209,8 @@ jobs:
                     "siteyears":v["multisite_site_years"],
                     "area_ALAN":v.get("island_equal_area_ALAN")}
                  for k,v in s.items()},flush=True)
-          PY      - uses: actions/upload-artifact@v4
+          PY
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: alan-112428-real-original-RGB-moth-GloBI-guild-stratified-ALAN
