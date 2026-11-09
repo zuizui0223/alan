@@ -1,4 +1,5 @@
 name: ALAN tier09 moth-positive GSHHG source-only photo ID gate
+# Source manifest SHA typo fixed in dc0a3ba; retry only this source-only audit.
 on:
   push:
     branches: [analysis/alan-tier08-remainder-tier09-geographic-support-audit-20261109]
