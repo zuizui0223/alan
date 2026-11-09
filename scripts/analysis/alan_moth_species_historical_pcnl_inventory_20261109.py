@@ -153,6 +153,15 @@ def run_inventory(args):
     require(len({int(p.name.split("-tier-")[1][:2]) for p in files}) == 14,
             "Duplicate or missing original tier in group")
     require(not args.db.exists(), "Refusing to overwrite source group database")
+    source_receipt = json.loads(args.extract_receipt.read_text())
+    require(source_receipt.get("schema") ==
+            "ALAN_93m_original_GloBI_moth_positive_complete_source_photo_IDs_v1"
+            and source_receipt.get("source_group") == args.group
+            and len(source_receipt.get("source_tier_rows", [])) == 14,
+            "Wrong original signed group extraction receipt")
+    tier_receipts = {int(v["tier"]): v for v in source_receipt["source_tier_rows"]}
+    require(set(tier_receipts) == set(range(14)),
+            "Missing original tier receipts")
     lookup = accepted_taxa(args.wcvp, args.accepted)
     islands = load_islands(args.coast)
     db = sqlite3.connect(args.db)
@@ -161,9 +170,16 @@ def run_inventory(args):
     stats = Counter()
     input_hashes = {}
     for path in files:
-        input_hashes[path.name] = sha256(path)
+        tier = int(path.name.split("-tier-")[1][:2])
+        verified = tier_receipts[tier]
+        file_sha = sha256(path)
+        require(file_sha == verified["moth_original_photo_file_SHA256"],
+                "Source file SHA differs from original signed extraction: " + path.name)
+        input_hashes[path.name] = file_sha
+        tier_photo_count = 0
         for raw in pd.read_csv(path, compression="gzip", dtype=str, keep_default_na=False,
                                chunksize=args.chunksize):
+            tier_photo_count += len(raw)
             stats["all_original_moth_positive_roster_photo_ids"] += len(raw)
             work = normalized_frame(raw, lookup)
             stats["fiveyear_geopoint_WCVP_source_photos"] += len(work)
@@ -173,11 +189,17 @@ def run_inventory(args):
             stats["photos_contained_in_exact_single_GSHHG_island"] += n_assigned
             stats["ambiguous_landmass_photo_ids"] += n_ambiguous
             db.executemany(UPSERT, rows)
+        require(tier_photo_count == verified["moth_positive_original_photo_IDs"],
+                "Original source tier photo-ID count mismatch")
         db.commit()
     stats["genuine_unique_observation_uuids_included"] = len(seen_uuids)
+    require(stats["all_original_moth_positive_roster_photo_ids"] ==
+            source_receipt["GloBI_moth_positive_original_photo_IDs_extracted"],
+            "Signed original group photo-ID total not conserved")
     db.close()
     receipt = {"schema": "ALAN_GloBI_moth_positive_island_original_photo_metadata_inventory_v1",
                "group": args.group, "counts": dict(stats), "input_sha256": input_hashes,
+               "signed_extraction_receipt_sha256": sha256(args.extract_receipt),
                "original_RGB_downloads": 0, "photo_ROI_colour_inferred": 0,
                "moth_positive_is_NOT_local_moth_dependency": True,
                "missing_GloBI_records_are_NOT_moth_negative": True,
@@ -227,8 +249,13 @@ def run_collect(args):
     export_csv(merged, """SELECT island,latbin,lonbin,year,
         SUM(n_photos) AS photo_ids,SUM(n_observations) AS observation_uuids,
         COUNT(DISTINCT species) AS moth_positive_species,
-        MIN(representative_lon) AS lon,MIN(representative_lat) AS lat
-        FROM taxa GROUP BY island,latbin,lonbin,year
+        (SELECT s.representative_lon FROM taxa AS s
+         WHERE s.island=t.island AND s.latbin=t.latbin AND s.lonbin=t.lonbin
+         AND s.year=t.year ORDER BY s.species LIMIT 1) AS lon,
+        (SELECT s.representative_lat FROM taxa AS s
+         WHERE s.island=t.island AND s.latbin=t.latbin AND s.lonbin=t.lonbin
+         AND s.year=t.year ORDER BY s.species LIMIT 1) AS lat
+        FROM taxa AS t GROUP BY island,latbin,lonbin,year
         ORDER BY island,latbin,lonbin,year""",
         args.out_dir / "moth_island_site_year.csv")
     export_csv(merged, """SELECT island,year,COUNT(DISTINCT species) AS moth_positive_species,
@@ -236,6 +263,11 @@ def run_collect(args):
         COUNT(DISTINCT printf('%d:%d',latbin,lonbin)) AS source_sites
         FROM taxa GROUP BY island,year ORDER BY island,year""",
         args.out_dir / "moth_island_year.csv")
+    export_csv(merged, """SELECT island,COUNT(DISTINCT species) AS
+        moth_positive_species_over_all_photo_years, SUM(n_photos) AS photo_ids,
+        SUM(n_observations) AS observation_uuids
+        FROM taxa GROUP BY island ORDER BY island""",
+        args.out_dir / "moth_island_all_years.csv")
     merged.close()
     (args.out_dir / "source_receipt.json").write_text(json.dumps({
         "schema": "ALAN_GloBI_moth_positive_16group_geography_conserved_v1",
@@ -329,6 +361,7 @@ def main():
     a.add_argument("--wcvp", type=Path, required=True)
     a.add_argument("--accepted", type=Path, required=True)
     a.add_argument("--coast", type=Path, required=True)
+    a.add_argument("--extract-receipt", type=Path, required=True)
     a.add_argument("--db", type=Path, required=True)
     a.add_argument("--chunksize", type=int, default=50000)
     b = sub.add_parser("collect")
