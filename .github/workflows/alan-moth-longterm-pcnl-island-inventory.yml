@@ -4,13 +4,17 @@ on:
     branches: [analysis/alan-island-pollinator-shift-gated-20261109]
     paths:
       - scripts/analysis/alan_moth_species_historical_pcnl_inventory_20261109.py
+      - scripts/analysis/alan_full93m_allflora_moth_island_denominator_20261109.py
       - tests/test_alan_moth_species_historical_pcnl_inventory_20261109.py
+      - tests/test_alan_full93m_allflora_moth_island_denominator_20261109.py
       - .github/workflows/alan-moth-longterm-pcnl-island-inventory.yml
   pull_request:
     branches: [analysis/alan-full93m-moth-positive-original-photo-IDs-extraction-20261109]
     paths:
       - scripts/analysis/alan_moth_species_historical_pcnl_inventory_20261109.py
+      - scripts/analysis/alan_full93m_allflora_moth_island_denominator_20261109.py
       - tests/test_alan_moth_species_historical_pcnl_inventory_20261109.py
+      - tests/test_alan_full93m_allflora_moth_island_denominator_20261109.py
       - .github/workflows/alan-moth-longterm-pcnl-island-inventory.yml
   workflow_dispatch:
     inputs:
@@ -34,8 +38,9 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 geopandas==1.1.2 shapely==2.1.2 statsmodels==0.14.5 rasterio==1.4.3 pyproj
-          python -m py_compile scripts/analysis/alan_moth_species_historical_pcnl_inventory_20261109.py
+          python -m py_compile scripts/analysis/alan_moth_species_historical_pcnl_inventory_20261109.py scripts/analysis/alan_full93m_allflora_moth_island_denominator_20261109.py
           python -m unittest discover -s tests -p test_alan_moth_species_historical_pcnl_inventory_20261109.py -v
+          python -m unittest discover -s tests -p test_alan_full93m_allflora_moth_island_denominator_20261109.py -v
   original-source-inventory:
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_full_inventory }}
     needs: synthetic-source-tests
