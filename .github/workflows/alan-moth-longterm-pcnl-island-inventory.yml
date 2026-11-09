@@ -6,6 +6,12 @@ on:
       - scripts/analysis/alan_moth_species_historical_pcnl_inventory_20261109.py
       - tests/test_alan_moth_species_historical_pcnl_inventory_20261109.py
       - .github/workflows/alan-moth-longterm-pcnl-island-inventory.yml
+  pull_request:
+    branches: [analysis/alan-full93m-moth-positive-original-photo-IDs-extraction-20261109]
+    paths:
+      - scripts/analysis/alan_moth_species_historical_pcnl_inventory_20261109.py
+      - tests/test_alan_moth_species_historical_pcnl_inventory_20261109.py
+      - .github/workflows/alan-moth-longterm-pcnl-island-inventory.yml
   workflow_dispatch:
     inputs:
       run_full_inventory:
