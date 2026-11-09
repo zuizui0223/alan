@@ -4,6 +4,7 @@ on:
     branches: [analysis/alan-tier08-remainder-tier09-geographic-support-audit-20261109]
     paths:
       - .github/workflows/alan-full112428-trueRGB-moth-guild-refit.yml
+      - scripts/analysis/alan_full112428_trueRGB_GloBI_moth_strata_20261109.py
   workflow_dispatch:
 permissions:
   contents: read
