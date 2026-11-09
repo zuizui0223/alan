@@ -1,0 +1,121 @@
+name: ALAN recover tier07 original ROI9 pilot from 896 saved RGB outcomes, measure only missing 128
+on:
+  push:
+    branches: [analysis/alan-tier07-27507-warm1024-pilot-20261108]
+    paths:
+      - .github/workflows/alan-tier07-first1024-recover-only-missing-shard007.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  recover-seven-complete-original-shards-and-measure-only-eighth:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 49
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      TORCH_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Restore authentic 27507-photo precolour original source and the seven finished original ROI9 shards
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          mkdir -p frozen previous
+          gh run download 42466279952 --repo zuizui0223/alan \
+            --name alan-tier07-27507-original-island-precolour-1024photo-groups --dir frozen
+          gh run download 42466504871 --repo zuizui0223/alan \
+            --name alan-tier07-first1024-original-island-ROI9-real-SHA-receipts --dir previous
+          echo '7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62  frozen/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz' | sha256sum -c -
+          python -m scripts.acquisition.alan_tier07_originalRGB_roi9_1024pilot_20261108 prepare \
+            --schedule frozen/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz \
+            --receipt frozen/ALAN_tier07_27507_original_photo_source_schedule_receipt.json \
+            --out source
+          cmp source/manifest.json previous/source/manifest.json
+          cp -a previous/measured measured
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from scripts.acquisition import mois_full_index_real_original_photo_measure as w
+          root=Path('measured')
+          assert all((root/f'shard_{i:03d}'/'receipt.json').exists() for i in range(7))
+          assert not (root/'shard_007'/'receipt.json').exists()
+          verified=0
+          for i in range(7):
+              rows,src=w.input_rows('source',i)
+              folder=root/f'shard_{i:03d}'
+              r=json.loads((folder/'receipt.json').read_text())
+              assert r['shard']==i and r['attempted']==128
+              assert r['source_sha256']==src['photo_shard_sha256'][str(i)]
+              assert r['photos_sha256']==w.sha(folder/'photos.csv')
+              assert r['method']['measurement_git_blob']=='b1d7091db44682559bbe4b48a9f3b8db648501a6'
+              verified+=len(rows)
+          assert verified==896
+          print('ALAN_FIRST_SEVEN_REAL_ORIGINAL_PHOTO_SHARDS_AUTHENTICATED_NO_REDOWNLOAD',verified,flush=True)
+          PY
+      - name: Restore identical frozen FCP YOLO11 and EfficientSAM model only for missing original shard
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          git init -q "$RUNNER_TEMP/fcp"
+          git -C "$RUNNER_TEMP/fcp" remote add origin https://github.com/zuizui0223/fcp.git
+          git -C "$RUNNER_TEMP/fcp" fetch -q --no-tags --depth=1 origin 74bf69a52cd68bfc7dbe6158f4a681235caa6ca0
+          git -C "$RUNNER_TEMP/fcp" checkout -q --detach FETCH_HEAD
+          python -m pip install -q pyarrow==19.0.1 Pillow==11.1.0 ultralytics==8.4.112 onnxruntime==1.23.2 scikit-image==0.25.2
+          (cd "$RUNNER_TEMP/fcp" && bash scripts/acquisition/bootstrap_fcp_original_roi_v4.sh --full --sam-dir "$RUNNER_TEMP/sam")
+          test -f "$RUNNER_TEMP/fcp/scripts/analysis/measure_random_photo_first_blind_partition.py"
+          test -f "$RUNNER_TEMP/fcp/data/atlas/qualification/roi_v4_training/jrc_yolo11n_last_v4.pt"
+      - name: Reuse seven signed 128-photo results; fetch and infer only original shard 007
+        timeout-minutes: 24
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$GITHUB_WORKSPACE:$RUNNER_TEMP/fcp"
+          python -m scripts.acquisition.mois_warm_original_roi \
+            --source source --runtime "$RUNNER_TEMP/fcp" --sam "$RUNNER_TEMP/sam" \
+            --group 1 --output measured
+          for i in 000 001 002 003 004 005 006 007; do
+            test -s "measured/shard_$i/photos.csv"
+            test -s "measured/shard_$i/receipt.json"
+          done
+          echo ALAN_TIER07_FIRST1024_ONLY_ORIGINAL_SHARD007_ACQUIRED_AND_INFERRED
+      - name: Verify all 1024 authentic photo UUIDs and numeric nine-palette outcomes with original FCP method
+        timeout-minutes: 6
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_tier07_originalRGB_roi9_1024pilot_20261108 collect \
+            --source source --measured measured --out finished
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('finished/ALAN_tier07_first1024_original_roi9_receipt.json').read_text())
+          assert r['schema']=='ALAN_tier07_1024_real_original_FCP_ROI9_pilot_v1'
+          assert r['original_image_attempts']==1024 and r['new_independent_observation_UUIDs']==1024
+          assert r['original_9palette_numeric_ROI_success']+r['original_technical_ROI_unknown']==1024
+          assert r['source_5photo_3accepted_potential_site_years']==76
+          assert r['per_128_photo_unit_receipts_verified']==8
+          assert not r['source_original_image_bytes_persisted'] and r['source_photo_unknown_not_assigned_white']
+          print('ALAN_TIER07_1024_NEW_OBSERVATION_REAL_RGB_COMPLETE',
+                r['original_9palette_numeric_ROI_success'],
+                r['actual_strict_5photo_3true_ROI9_3accepted_species_sites'],flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-tier07-original1024-measured-only-last-shard-recovered-ROI9
+          path: |
+            finished/
+            source/manifest.json
+            measured/shard_*/photos.csv
+            measured/shard_*/receipt.json
+            measured/warm_roi_group_000_diagnostic.json
+            measured/warm_roi_group_001_diagnostic.json
+          retention-days: 90
+          if-no-files-found: warn
