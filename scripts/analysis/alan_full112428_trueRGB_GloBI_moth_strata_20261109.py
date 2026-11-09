@@ -131,7 +131,7 @@ def run(paths, coast, source06,source07,prior06,bulk06,pilot07,bulk07,
             "Original 97 within-island ALAN geography cannot be reproduced")
     # Use the SAME within-island viable 97 islands as the frozen all-flora model;
     # merely having multiple photo sites does not prove light contrast.
-    _,spatial_original=area.join_area_and_select(original97,land)
+    _,spatial_original,_=area.join_area_and_select(original97,land)
     base_islands=set(spatial_original.land_id)
     require(len(base_islands)==97, "Fixed-geography 97 island support drift")
     cohorts={
