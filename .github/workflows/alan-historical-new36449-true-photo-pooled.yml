@@ -172,19 +172,21 @@ jobs:
           assert j["schema"]=="ALAN_actual_historical_new36449_original_photo_pooled_island_ROI9_v1"
           c=j["counts"]
           assert c["historical_main_strict_island_photo_cells"]==710
-          assert c["new_36449_strict_island_photo_cells"]==1137
-          assert c["strict_island_photo_sites_in_both_source_arms"]==301
-          assert c["strict_GSHHG_islands_in_both_source_arms"]==44
-          assert c["strict_unique_sites_in_source_union_before_photo_recombination"]==1546
-          assert c["actual_strict_unique_source_pooled_photo_site_years"]>=1546
-          assert c["actual_pooled_old_and_new_independent_original_island_photo_UUIDs"]==c["historical_main_original_island_photo_attempts_in_unambiguous_GSHHG_cells"]+36449
+          assert c["new_36449_pre_photo_dedup_strict_island_photo_cells"]==1137
+          assert c["strict_island_photo_sites_in_both_original_source_arms_pre_photo_dedup"]==301
+          assert c["strict_GSHHG_islands_in_both_original_source_arms_pre_photo_dedup"]==44
+          assert c["strict_unique_sites_in_uncorrected_source_cohort_union"]==1546
+          assert c["actual_strict_unique_photo_id_deduplicated_pooled_site_years"]>=c["strict_unique_sites_in_photoid_deduplicated_source_cohort_union"]
+          assert c["source_OLD_NEW_exact_repeated_photo_IDs"]==329
+          assert c["actual_pooled_unique_original_photo_IDs"]==c["historical_main_original_island_photo_attempts_in_unambiguous_GSHHG_cells"]+36449-329
           assert j["old_island_area_moderator_reproduced_from_original_photo_records"]
           assert j["new_island_area_moderator_reproduced_from_original_photo_records"]
           assert j["no_technical_colour_unknown_imputed"]
           print("ALAN_GENUINE_HISTORICAL_NEW36449_SITEYEAR_UNION_TRUE_PHOTO_POOLED_VERIFIED",
                 c,flush=True)
-          for label in ("historical_main_only","new_36449_only",
-                        "pooled_all_true_photo_records","pooled_equal_source_within_cell"):
+          for label in ("historical_main_only","new_36449_as_previously_reported",
+                        "new_after_exact_photo_id_dedup",
+                        "pooled_photo_id_unique_originals","pooled_equal_source_within_cell"):
               model=j["models"][label]
               if model.get("estimable"):
                   print("ALAN_GENUINE_POOLED_AREA_LIGHT_MODEL",label,
