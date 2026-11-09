@@ -1,0 +1,117 @@
+name: ALAN exhaustive 93m moth-positive source original photo ID extraction (16 groups no RGB)
+on:
+  push:
+    branches: [analysis/alan-full93m-moth-positive-original-photo-IDs-extraction-20261109]
+    paths:
+      - .github/workflows/alan-full93m-moth-positive-original-photoID-extraction.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3
+          python -m unittest discover -s tests -p test_alan_full93m_extract_GloBI_moth_positive_original_photoIDs_20261109.py -v
+          python -m py_compile scripts/acquisition/alan_full93m_extract_GloBI_moth_positive_original_photoIDs_20261109.py
+  extract-moth-original-IDs:
+    needs: source-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 175
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        group: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GROUP: ${{ matrix.group }}
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Download and SHA verify 14 authentic original 93m photo tiers for source group
+        timeout-minutes: 35
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3
+          g=$(printf '%02d' "$GROUP")
+          mkdir -p original
+          gh release download mois-complete-93209351-original-photo-target-tiers-v1 --repo zuizui0223/mois --dir original --pattern "tier-??-group-$g.tar" --pattern "group-$g-receipt.json" --pattern mois_all_original_photo_target_tiers_receipt.json
+          test "$(find original -maxdepth 1 -type f -name "tier-??-group-$g.tar" | wc -l)" -eq 14
+          echo '4ed5139e510ba8442d4cdb03f2b769d94fac942832b1d544d7a7925bc431255b  original/mois_all_original_photo_target_tiers_receipt.json' | sha256sum -c -
+          test -s "original/group-$g-receipt.json"
+      - name: Load original WCVP accepted source and public GloBI positive moth visit evidence
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          mkdir -p original/evidence
+          gh run download 39225659840 --repo zuizui0223/mois --name mois-real350399-Kew-WCVP-native-source-TDWG3-no-point-status --dir original/evidence
+          gh run download 41976552977 --repo zuizui0223/mois --name mois-ALAN-GloBI-stage2-actual-records-2019-2024-supported-source --dir original/evidence
+          echo 'dc5bb0e3686fde0cfd327e4336245d0ceae3c7657b3bd12841bb814cc94d1eb2  original/evidence/mois350399_wcvp_source_taxon_exact_name_resolution.csv.gz' | sha256sum -c -
+          echo '9cd6aa7ca29f00c64283bcc08dcb778e212b644b837e64070051339b11d8b7b3  original/evidence/mois350399_wcvp_accepted_native_distribution_TDWG3.csv.gz' | sha256sum -c -
+          echo 'a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994  original/evidence/GloBI_stage2_signed_extension.csv.gz' | sha256sum -c -
+      - name: Materialize all exact moth-linked original photo IDs and observational dates from 14 SHA-signed archives
+        timeout-minutes: 122
+        run: |
+          set -euo pipefail
+          g=$(printf '%02d' "$GROUP")
+          python -m scripts.acquisition.alan_full93m_extract_GloBI_moth_positive_original_photoIDs_20261109 group --archives original --registry original/mois_all_original_photo_target_tiers_receipt.json --receipt "original/group-$g-receipt.json" --wcvp original/evidence/mois350399_wcvp_source_taxon_exact_name_resolution.csv.gz --names original/evidence/mois350399_wcvp_accepted_native_distribution_TDWG3.csv.gz --globi original/evidence/GloBI_stage2_signed_extension.csv.gz --group "$GROUP" --out finished
+          test "$(find finished/moth_original_photo_IDs -name '*.csv.gz' | wc -l)" -eq 14
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: alan-moth-full93m-extracted-photoids-group-${{ matrix.group }}
+          path: finished/moth_original_photo_IDs/
+          retention-days: 90
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-moth-full93m-extracted-receipt-group-${{ matrix.group }}
+          path: finished/original_moth_photoID_group*_verified_receipt.json
+          retention-days: 90
+          if-no-files-found: warn
+  collect-verified-moth-source:
+    needs: [source-tests, extract-moth-original-IDs]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 28
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3
+          mkdir -p receipts
+          gh run download "$GITHUB_RUN_ID" --repo zuizui0223/alan --pattern "alan-moth-full93m-extracted-receipt-group-*" --dir receipts
+          test "$(find receipts -name 'original_moth_photoID_group??_verified_receipt.json' | wc -l)" -eq 16
+          python -m scripts.acquisition.alan_full93m_extract_GloBI_moth_positive_original_photoIDs_20261109 collect --receipts $(find receipts -name 'original_moth_photoID_group??_verified_receipt.json' | sort) --out verified
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('verified/ALAN_full93m_moth_positive_all_original_photo_IDs_recovered_manifest.json').read_text())
+          assert x['original_all_photo_IDs_exactly_inspected']==93209351
+          assert x['moth_positive_all_original_photo_IDs_verified_and_materialized']==34346428
+          assert x['source_photo_tiers_verified']==224
+          assert x['original_colour_ROI9_measured']==0
+          print('ALAN_FULL93M_MOTH_ALL34346428_ORIGINAL_PHOTO_ID_SOURCE_PROVEN',x,flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-moth-full93m-original-photoid-extraction-final-source-manifest
+          path: verified/
+          retention-days: 90
+          if-no-files-found: error
