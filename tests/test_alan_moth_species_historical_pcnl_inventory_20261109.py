@@ -113,6 +113,38 @@ class TestMothIslandPCNL(unittest.TestCase):
                 "pcnl_1992_to_previous_year_sum_log1p"]))
             self.assertEqual(result.iloc[2].pcnl_years_observed, 32)
 
+    def test_full_flora_source_denominator_is_supported_in_exposure_export(self):
+        import rasterio
+        import argparse
+        from rasterio.transform import from_origin
+        with tempfile.TemporaryDirectory() as t:
+            root = Path(t)
+            pcnl = root / "pcnl"
+            pcnl.mkdir()
+            for year in range(1992, 2025):
+                with rasterio.open(pcnl / f"PCNL{year}.tif", "w",
+                    driver="GTiff", width=2, height=2, count=1,
+                    dtype="float32", crs="EPSG:4326",
+                    transform=from_origin(0, 2, 1, 1)) as dst:
+                    dst.write(np.ones((2, 2), dtype="float32"), 1)
+            source = root / "allflora.csv"
+            pd.DataFrame([{
+                "island":"Test-Island", "latbin":2, "lonbin":2,
+                "year":2025, "lat":1.5, "lon":1.5,
+                "all_accepted_recorded_species":3,
+                "moth_visitor_positive_recorded_species":1,
+                "all_accepted_photo_ids":7,
+                "all_accepted_observation_uuids":5
+            }]).to_csv(source, index=False)
+            output = root / "historical.csv"
+            mod.run_exposure(argparse.Namespace(
+                site_year=source, pcnl_dir=pcnl, output=output))
+            summary = pd.read_csv(root / "moth_island_year_with_longterm_ntl.csv")
+            self.assertEqual(int(summary.iloc[0].all_accepted_species_site_sum), 3)
+            self.assertEqual(int(summary.iloc[0].moth_positive_species_site_sum), 1)
+            self.assertAlmostEqual(float(summary.iloc[0].moth_source_documented_species_site_fraction), 1/3)
+            self.assertEqual(int(summary.iloc[0].complete_exposure_sites), 1)
+
     def test_pc_nightlight_is_required_not_substituted_by_unmatched_dmsp_viirs(self):
         with tempfile.TemporaryDirectory() as t:
             with self.assertRaisesRegex(ValueError, "Missing annual PCNL"):
