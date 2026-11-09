@@ -1,0 +1,56 @@
+{
+  "schema": "ALAN_tier07_first1024_real_original_FCP_ROI9_verified_20261109_v1",
+  "original_precolour_source": "https://github.com/zuizui0223/alan/actions/runs/42466279952",
+  "source_full27507_schedule_SHA256": "7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62",
+  "original_pilot_timeout_run": "https://github.com/zuizui0223/alan/actions/runs/42466504871",
+  "data_preserving_recovery_run": "https://github.com/zuizui0223/alan/actions/runs/42552642250",
+  "recovery_execution_success": true,
+  "completed_output_artifact_id": 13645374703,
+  "completed_output_artifact_name": "alan-tier07-original1024-measured-only-last-shard-recovered-ROI9",
+  "measured_original_photo_output_SHA256": "2988a8631cfb25bea57690a2a91db1e0a7f00074b8ca3ce7557aba8c09fda113",
+  "frozen_FCP_original_evaluator_git_blob": "b1d7091db44682559bbe4b48a9f3b8db648501a6",
+  "genuine_new_original_photo_IDs": 1024,
+  "independent_new_original_observation_UUIDs": 1024,
+  "distinct_original_GSHHG_islands": 284,
+  "distinct_original_photo_site_years": 324,
+  "original_numeric_nine_component_ROI_success": 403,
+  "original_ROI_technically_unknown": 621,
+  "original_image_acquisition_failures": 0,
+  "original_numeric_ROI_success_rate": 0.3935546875,
+  "source_opportunity_sites_5photos_3accepted_taxa": 76,
+  "actual_strict_sites_5photo_3numericROI_3accepted_species": 57,
+  "distinct_islands_with_actual_strict_sites": 29,
+  "actual_strict_sites_by_source_year": {
+    "2019": 3,
+    "2021": 5,
+    "2023": 13,
+    "2024": 13,
+    "2025": 23
+  },
+  "sampling_source_priority": {
+    "coverage_reference": {
+      "original_photo_attempts": 256,
+      "actual_numeric_ROI9": 112,
+      "distinct_islands": 256
+    },
+    "same_siteyear_densification": {
+      "original_photo_attempts": 768,
+      "actual_numeric_ROI9": 291,
+      "distinct_islands": 36
+    }
+  },
+  "original_pilot_timeout_but_saved_shards": {
+    "previously_authenticated_128photo_shards": 7,
+    "original_photo_results_reused_without_new_download": 896,
+    "missing_128photo_shards_processed": 1,
+    "original_photos_downloaded_during_recovery": 128,
+    "authentic_8_source_shard_SHA_receipts_verified": true
+  },
+  "source_and_science_limits": {
+    "photo_source_island_site_targeted_not_unbiased_global_whiteflower_frequency": true,
+    "native_verified_blooming_not_confirmed": true,
+    "unknown_pixels_never_imputed_as_colour": true,
+    "original_historical_ALAN_fiveyear_coefficients_unmodified": true,
+    "remaining_original_tier07_photo_UUIDs_unmodified": 26483
+  }
+}
