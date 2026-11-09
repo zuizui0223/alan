@@ -56,7 +56,8 @@ def strict_sites(frame):
         return {"strict_cell_years":0,
                 "strict_pair_island_years":0}
     g=frame.groupby("target_id",observed=True).agg(
-        attempts=("observation_id","nunique"))
+        attempts=("observation_id","nunique"),
+        area_arm=("acquisition_arm","first"))
     numeric=frame.loc[frame.strict9.astype(str).str.lower().eq("true")]
     success=numeric.groupby("target_id",observed=True).agg(
         roi9=("observation_id","size"),
@@ -64,11 +65,14 @@ def strict_sites(frame):
     g=g.join(success,how="left").fillna(0)
     qualified=(g.attempts.ge(5)&g.roi9.ge(3)&
                g.measured_accepted_species.ge(3))
-    pair=frame.loc[frame.acquisition_arm.eq(
-        "area_stratified_sameyear_two_site_light_pair")]
-    matched=set(pair.target_id)&set(g.index[qualified])
-    good_pair=pair.loc[pair.target_id.isin(matched)].copy()
-    qualifying_pair_cell_years=int(len(matched))
+    # Match the actual source collector's *cell-level* arm definition:
+    # first original photo fixes the site acquisition arm. Reference and
+    # targeted frames may have different UUIDs in the SAME source site×year,
+    # but a site is never counted in both arm-specific strict outcomes.
+    valid_targets=set(g.index[qualified & g.area_arm.eq(
+        "area_stratified_sameyear_two_site_light_pair")])
+    good_pair=frame.loc[frame.target_id.isin(valid_targets)].copy()
+    qualifying_pair_cell_years=int(len(valid_targets))
     # Exact island/year key: location landmass from original same site×year.
     good_pair["land_id"]=good_pair.target_id.str.rsplit("|",n=1).str[-1]
     good_pair["year"]=good_pair.target_id.str.split("|",regex=False).str[0]
