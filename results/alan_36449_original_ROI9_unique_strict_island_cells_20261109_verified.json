@@ -1,0 +1,83 @@
+{
+  "schema": "ALAN_cross_tier_36449_new_island_original_photoROI9_verified_summary_20261109_v1",
+  "source_verified_actions": "https://github.com/zuizui0223/alan/actions/runs/42571444245",
+  "source_verified_status": "success",
+  "source_artifact_id": 13653825728,
+  "source_artifact_name": "alan-36449-genuine-original-photo-ROI9-unique-island-source-union",
+  "original_real_source_aggregate_receipt_sha256": "013b30d128c29f7db23bc1984ba7be9e953be794bf13e9d22b8dc9c68f8791e6",
+  "source_year_counts_csv_sha256": "005dc965a34cc519c8e6d24c33aeee6165b6cf6095bfd512cf191b338405f6fd",
+  "source_original_photo_schedule_sha256_tier06": "e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd",
+  "source_original_photo_schedule_sha256_tier07": "7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62",
+  "original_fixed_FCP_yolo11_efficientsam_evaluator_blob": "b1d7091db44682559bbe4b48a9f3b8db648501a6",
+  "signed_original_photo_source_receipts_verifed": 73,
+  "cohort_06": {
+    "new_independent_original_observation_UUIDs": 8942,
+    "actual_original_9ROI_numeric_photo_success": 3597,
+    "source_photo_cell_years": 4776,
+    "source_GSHHG_islands": 369,
+    "strict_original_5attempt_3success_3accepted_taxa_cell_years": 156,
+    "distinct_strict_islands": 12
+  },
+  "cohort_07": {
+    "new_independent_original_observation_UUIDs": 27507,
+    "actual_original_9ROI_numeric_photo_success": 10245,
+    "source_photo_cell_years": 9493,
+    "source_GSHHG_islands": 563,
+    "strict_original_5attempt_3success_3accepted_taxa_cell_years": 769,
+    "distinct_strict_islands": 51
+  },
+  "union": {
+    "unique_original_photo_IDs_and_observation_UUIDs": 36449,
+    "numeric_original_nine_fraction_ROI9_success": 13842,
+    "technical_unknown_original_photos": 22607,
+    "unique_source_GSHHG_islands": 613,
+    "source_photo_cell_years": 10724,
+    "source_photo_cell_years_sampled_in_both_tiers": 3545,
+    "source_opportunity_5attempt_3observed_accepted_taxa_cells": 1947,
+    "strict_actual_5attempt_3numericROI_3successfully_accepted_taxa_unique_cell_years": 1137,
+    "strict_actual_measured_photo_cell_years_GSHHG_islands": 75,
+    "strict_sites_qualified_in_both_tiers_alone": 132,
+    "strict_sites_qualified_in_either_tier_before_source_union": 793,
+    "new_strict_sites_from_complementary_original_photos_across_tiers": 344,
+    "by_year": [
+      {
+        "year": 2019,
+        "sourceCellYears": 951,
+        "opportunitySites": 121,
+        "actualStrictCells": 54
+      },
+      {
+        "year": 2021,
+        "sourceCellYears": 1517,
+        "opportunitySites": 248,
+        "actualStrictCells": 133
+      },
+      {
+        "year": 2023,
+        "sourceCellYears": 2401,
+        "opportunitySites": 438,
+        "actualStrictCells": 264
+      },
+      {
+        "year": 2024,
+        "sourceCellYears": 2703,
+        "opportunitySites": 510,
+        "actualStrictCells": 298
+      },
+      {
+        "year": 2025,
+        "sourceCellYears": 3152,
+        "opportunitySites": 630,
+        "actualStrictCells": 388
+      }
+    ]
+  },
+  "limits": [
+    "the additional 344 sites are genuine source ROI qualification from pooling two observed source tiers at the SAME geographic site/year; not new independent islands, and not a causal effect",
+    "the new photo cohorts were island/site-targeted; photo colours and species are not representative global native-flower prevalence without a design-aware model",
+    "strict source target IDs may overlap with older historical-main ALAN sites, whose earlier regression remains unchanged",
+    "photographs not independently verified native in bloom or effective pollinator visits"
+  ],
+  "no_original_photo_pixels_downloaded_or_reinferred_during_unions": true,
+  "no_white_hue_imputed_for_technical_unknowns": true
+}

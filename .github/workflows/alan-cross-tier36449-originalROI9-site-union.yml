@@ -1,0 +1,111 @@
+name: ALAN genuine 36449 original island photo ROI9 source-tier union
+on:
+  push:
+    branches: [analysis/alan-tier06-tier07-source-roi-union-20261109]
+    paths:
+      - .github/workflows/alan-cross-tier36449-originalROI9-site-union.yml
+      - scripts/analysis/alan_union_36449_original_island_photoROI9_20261109.py
+      - tests/test_alan_union_36449_original_island_photoROI9_20261109.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  signed-original-ROI9-cross-tier-photo-UUID-and-GSHHG-site-union:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 42
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Test source-unique independent observation identities and real strict-site union criteria
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3
+          python -m unittest discover -s tests -p test_alan_union_36449_original_island_photoROI9_20261109.py -v
+          python -m py_compile scripts/analysis/alan_union_36449_original_island_photoROI9_20261109.py
+      - name: Fetch only original precolour SHA-locked source photo IDs, not original image pixels
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          mkdir -p source06 source07
+          gh run download 42447983019 --repo zuizui0223/alan --name alan-source-8942-novel-island-UUID-disjoint256-batches --dir source06
+          gh run download 42466279952 --repo zuizui0223/alan --name alan-tier07-27507-original-island-precolour-1024photo-groups --dir source07
+          echo 'e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd  source06/progressive_8942_new_island_source_schedule.csv.gz' | sha256sum -c -
+          echo '7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62  source07/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz' | sha256sum -c -
+      - name: Recover completed tier06 first five original photo ROIs from source-signed workers
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          mkdir -p prior06/first prior06
+          gh run download 42447120685 --repo zuizui0223/alan --name alan-256-genuine-new-independent-island-original-image-ROI9 --dir prior06/first
+          gh run download 42454468186 --repo zuizui0223/alan --dir prior06
+          for n in 2 3 4 5; do
+            test -s "prior06/alan-original-novel-island-ROI9-batch-$n/finished/ALAN_original_novel_island_photo_ROI9_batch_$(printf '%02d' "$n").csv.gz"
+          done
+          echo '7789c5aa1916e5b1ff915d217744a80b990795cb24e362cff20007dda96ee94b  prior06/first/finished/new256_independent_island_actual_original_ROI9.csv.gz' | sha256sum -c -
+      - name: Download previously verified genuine 15 warm tier06 source photo CSV groups
+        timeout-minutes: 9
+        run: |
+          set -euo pipefail
+          mkdir -p raw06
+          gh run download 42456363487 --repo zuizui0223/alan --dir raw06
+          for g in $(seq 0 14); do
+            for s in 000 001 002 003; do
+              test -s "raw06/alan-real-originalROI9-7662-group-$g/measured/shard_$s/photos.csv"
+              test -s "raw06/alan-real-originalROI9-7662-group-$g/measured/shard_$s/receipt.json"
+            done
+          done
+          echo 'ALAN_ORIGINAL_TIER06_8942_REAL_PHOTO_SOURCES_AVAILABLE'
+      - name: Download previously verified genuine tier07 pilot and 52 original photo ROI9 source tasks
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          mkdir -p pilot07 raw07
+          gh run download 42552642250 --repo zuizui0223/alan --name alan-tier07-original1024-measured-only-last-shard-recovered-ROI9 --dir pilot07
+          echo '2988a8631cfb25bea57690a2a91db1e0a7f00074b8ca3ce7557aba8c09fda113  pilot07/finished/ALAN_tier07_first1024_original_floral_roi9.csv.gz' | sha256sum -c -
+          gh run download 42553223750 --repo zuizui0223/alan --dir raw07
+          for task in $(seq 0 51); do
+            test -s "raw07/alan-tier07-real-originalROI9-26483-task-$task/finished/ALAN_tier07_genuine_new_photo_ROI9_task_receipt.json"
+          done
+          echo 'ALAN_ORIGINAL_TIER07_27507_REAL_PHOTO_SOURCES_AVAILABLE'
+      - name: Verify original ROI9 source signatures and count unique full36k island site-year observations
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_union_36449_original_island_photoROI9_20261109 \
+            --source06 source06/progressive_8942_new_island_source_schedule.csv.gz \
+            --source07 source07/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz \
+            --prior06 prior06 --bulk06 raw06 --pilot07 pilot07 --bulk07 raw07 \
+            --out joint36449
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('joint36449/ALAN_36449_tier06_tier07_original_ROI9_union_receipt.json')
+          r=json.loads(p.read_text())
+          assert r['schema']=='ALAN_cross_tier06_tier07_36449_source_real_original_ROI9_union_v1'
+          assert r['combined_same_site_year_original_source']['independent_original_observations']==36449
+          assert r['combined_same_site_year_original_source']['original_9palette_numeric_ROI9']==13842
+          assert r['tier06_source_measured']['actual_strict_measured_cells']==156
+          assert r['tier07_source_measured']['actual_strict_measured_cells']==769
+          assert r['all_photo_source_receipts_joined']==73
+          assert r['tier06_and_tier07_original_observation_UUID_and_photo_ID_sets_disjoint']
+          assert r['photo_ROI_technical_unknowns_never_assigned_a_hue']
+          assert r['original_RBG_pixels_not_downloaded_or_reinferred_in_union']
+          print('ALAN_GENUINE_36449_NEW_ISLAND_ORIGINAL_ROI9_UNIQUE_STRICT_SITES_VERIFIED',
+                r['unique_strict_sites_in_original_new_observation_source_after_union'],
+                r['combined_same_site_year_original_source']['source_islands_with_actual_strict_cells'],
+                flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-36449-genuine-original-photo-ROI9-unique-island-source-union
+          path: joint36449/
+          retention-days: 90
+          if-no-files-found: warn
