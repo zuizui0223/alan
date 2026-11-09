@@ -33,6 +33,7 @@ from scripts.analysis import alan_island_area_light_20261108 as area
 from scripts.analysis import mois_island_ALAN_measured_photo_opportunity_tiers_20261107 as historic_tier
 from scripts.analysis import alan_isolation_area_light_20261108 as isolation
 from scripts.analysis import mois_island_ALAN_multiyear_sameyear_source_panel_20261107 as panel
+from scripts.analysis.mois_2024_sameyear_global_island_photo_white_20261107 import cell_id
 
 SCHEMA="ALAN_36449_new_source_real_white_ROI_island_area_isolation_ALAN_replication_v1"
 SOURCE_EXPECTED={"tier06":(8942,3597,156),"tier07":(27507,10245,769),
@@ -235,6 +236,102 @@ def model_supported(cohort,environment,land,distances):
             "models":fit,
             "post_selection_observational_exploratory_not_causal":True}
 
+def same_site_taxon_photo_repeatability(canonical,wcvp,old_strict,new_strict,new_photos):
+    """Actual old/new photographic source agreement at the SAME site and year.
+
+    Different original photo/UUID samples can represent different photographed
+    accepted taxa even at the same geographic site and year. No assumption
+    that absence from volunteer photos means a plant is absent in the flora.
+    """
+    old=old_strict.copy()
+    new=new_strict.copy()
+    overlap=old[["target_id","land_id","white_pp","accepted_species_n"]].merge(
+        new[["target_id","white_pp","accepted_species_n"]],
+        on="target_id",how="inner",validate="one_to_one",
+        suffixes=("_old","_new"))
+    require(len(overlap)==301 and overlap.land_id.nunique()==44,
+            "Original historical/new source exact site-year overlaps drifted")
+    id_parts=overlap.target_id.str.split("|",regex=False,expand=True)
+    require(id_parts.shape[1]==3,"Original source cell year target malformed")
+    targets=pd.DataFrame({
+       "target_id":overlap.target_id,
+       "year":id_parts[0].astype(int),
+       "cell_id":id_parts[1],
+    })
+    require(not targets.duplicated(["year","cell_id"]).any(),
+            "Old geographic site/year lands are mixed and cannot be assigned")
+    p=canonical.loc[
+       canonical.source_subarm.eq("historical_main")&
+       canonical.strict9.astype(bool)&canonical.strict9_white.notna()&
+       canonical.latitude.between(-90,90)&
+       canonical.longitude.between(-180,180),
+       ["photo_id","observation_id","inat_taxon_id","observed_on",
+        "latitude","longitude","strict9_white"]].copy()
+    p["year"]=pd.to_numeric(p.observed_on.astype(str).str[:4],errors="coerce")
+    p=p.loc[p.year.isin(YEARS)].copy()
+    p["cell_id"]=cell_id(p.longitude,p.latitude)
+    p=p.merge(targets,on=["year","cell_id"],how="inner",validate="many_to_one")
+    lookup=wcvp.loc[wcvp.wcvp_match_state.eq("unique_exact_name_to_accepted_id"),
+                     ["inat_taxon_id","wcvp_accepted_plant_name_id"]]
+    require(lookup.inat_taxon_id.is_unique,"Old original WCVP accepted taxon source changed")
+    p=p.merge(lookup,on="inat_taxon_id",how="inner",validate="many_to_one")
+    old_species=p.groupby(["target_id","wcvp_accepted_plant_name_id"],
+          observed=True).strict9_white.mean().reset_index(name="old_photo_fraction")
+    require(old_species.old_photo_fraction.between(0,1).all(),
+            "Old photographed strict source white fraction invalid")
+    expected=overlap.set_index("target_id").accepted_species_n_old
+    observed=old_species.groupby("target_id").size().reindex(expected.index,fill_value=0)
+    require(np.array_equal(observed.to_numpy(int),expected.to_numpy(int)),
+            "Old strict site accepted taxa not reconstructed exactly from photographs")
+    n=new_photos.loc[new_photos.real_numeric_ROI9 &
+                      new_photos.target_id.isin(set(overlap.target_id))].copy()
+    new_species=n.groupby(["target_id","wcvp_accepted_plant_name_id"],
+          observed=True).source_photo_white_fraction.mean().reset_index(
+             name="new_photo_fraction")
+    observed_new=new_species.groupby("target_id").size().reindex(expected.index,fill_value=0)
+    require(np.array_equal(observed_new.to_numpy(int),
+                           overlap.set_index("target_id").accepted_species_n_new.to_numpy(int)),
+            "New source successfully measured WCVP taxa do not match strict site")
+    matched=old_species.merge(new_species,
+         on=["target_id","wcvp_accepted_plant_name_id"],how="inner",
+         validate="one_to_one")
+    taxon_old={k:set(g.wcvp_accepted_plant_name_id) for k,g in old_species.groupby("target_id")}
+    taxon_new={k:set(g.wcvp_accepted_plant_name_id) for k,g in new_species.groupby("target_id")}
+    jj=[len(taxon_old[k]&taxon_new[k])/len(taxon_old[k]|taxon_new[k])
+        for k in overlap.target_id]
+    delta=overlap.white_pp_new-overlap.white_pp_old
+    result={
+      "shared_exact_original_site_and_observation_year_cells":len(overlap),
+      "shared_original_GSHHG_islands":int(overlap.land_id.nunique()),
+      "old_strict_original_photo_wcvp_taxon_site_pairs":len(old_species),
+      "new_strict_original_photo_wcvp_taxon_site_pairs":len(new_species),
+      "same_original_site_year_taxon_pairs_photographed_in_both_sources":len(matched),
+      "same_site_years_with_at_least_one_accepted_taxon_photographed_in_both_sources":int(
+           matched.target_id.nunique()),
+      "same_source_same_site_taxon_jaccard_median":float(np.median(jj)),
+      "same_source_same_site_taxon_jaccard_mean":float(np.mean(jj)),
+      "same_site_years_with_zero_overlap_in_actually_photographed_taxa":int(
+           sum(v==0 for v in jj)),
+      "photographic_site_whiteness_old_new_pearson_r":float(
+           overlap.white_pp_old.corr(overlap.white_pp_new)),
+      "mean_site_new_minus_old_white_ROI_pp":float(delta.mean()),
+      "median_abs_site_old_new_white_ROI_difference_pp":float(delta.abs().median()),
+      "p90_abs_site_old_new_white_ROI_difference_pp":float(delta.abs().quantile(.9)),
+      "matched_same_taxon_photo_fraction_median_abs_difference_pp":(
+          float((100*(matched.new_photo_fraction-matched.old_photo_fraction)).abs().median())
+          if len(matched) else None),
+      "actual_new_and_old_observation_UUIDs_disjoint_but_same_island_environment":True,
+      "photos_different_species_presence_not_a_field_absence_census":True,
+      "matched_taxon_same_year_photo_does_not_prove_same_genotype_or_pigment_adaptation":True,
+      "same_cell_photo_source_comparison_is_descriptive_not_randomized":True
+    }
+    require(np.isfinite([
+       result["same_source_same_site_taxon_jaccard_mean"],
+       result["photographic_site_whiteness_old_new_pearson_r"],
+       result["median_abs_site_old_new_white_ROI_difference_pp"]]).all(),
+       "Independent exact site-year source photographic comparison is unstable")
+    return result
+
 def run(paths,coast,source06,source07,prior06,bulk06,pilot07,bulk07,out):
     out=Path(out)
     require(not out.exists(),"Refuse overwrite of new source ALAN ecological result")
@@ -278,6 +375,9 @@ def run(paths,coast,source06,source07,prior06,bulk06,pilot07,bulk07,out):
     fresh=groups["union"][1]
     old_sites=set(older.target_id)
     new_sites=set(fresh.target_id)
+    canonical,wcvp=panel.load_frozen_photos(paths)
+    paired_photography=same_site_taxon_photo_repeatability(
+        canonical,wcvp,older,fresh,allphotos)
     old_lands=set(older.land_id.astype(str))
     new_lands=set(fresh.land_id.astype(str))
     shared_lands=old_lands&new_lands
@@ -327,6 +427,7 @@ def run(paths,coast,source06,source07,prior06,bulk06,pilot07,bulk07,out):
       "source_sameyear_environment_cells":len(environment),
       "source_model_results":stats,
       "original_historical_strict_photo_source_geographic_overlap":overlap,
+      "shared_same_island_site_year_old_new_source_taxon_and_white_ROI_repeatability":paired_photography,
       "source_photo_white_ROI_not_verified_native_plant_population_white_fraction":True,
       "island_and_site_selected_acquisition_not_unbiased_worldwide_flora_sampling":True,
       "independent_original_photo_IDs_not_independent_island_environment_realizations":True,
