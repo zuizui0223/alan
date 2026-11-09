@@ -264,10 +264,40 @@ def run(paths,coast,source06,source07,prior06,bulk06,pilot07,bulk07,out):
                   __import__("hashlib").sha256(x.encode()).hexdigest()[:12]
                   for x in sorted(overlap_observation)[:4]]},sort_keys=True),
           flush=True)
-    require(not overlap_photo and not overlap_observation,
-            "Source-independence provenance violated: cannot silently pool " +
-            str(len(overlap_photo))+" old/new photo IDs and "+
-            str(len(overlap_observation))+" old/new UUIDs")
+    require(not overlap_observation,
+            "Exact textual observation IDs collide; source may be repeatedly sampled")
+    collision_pairs=old.loc[old.photo_id.isin(overlap_photo)].merge(
+         new.loc[new.photo_id.isin(overlap_photo)],on="photo_id",
+         validate="one_to_one",suffixes=("_old","_new"))
+    require(len(collision_pairs)==len(overlap_photo),
+            "Could not reconcile exact shared original photographic IDs")
+    pair_audit={
+      "exact_original_photo_IDs_in_both_historical_and_new_source_arms":len(overlap_photo),
+      "same_photo_id_same_original_site_year":int(
+          collision_pairs.target_id_old.eq(collision_pairs.target_id_new).sum()),
+      "same_photo_id_discordant_original_site_year":int(
+          collision_pairs.target_id_old.ne(collision_pairs.target_id_new).sum()),
+      "same_photo_id_same_accepted_WCVP_taxon":int(
+          collision_pairs.wcvp_accepted_plant_name_id_old.fillna("").eq(
+          collision_pairs.wcvp_accepted_plant_name_id_new.fillna("")).sum()),
+      "same_photo_id_both_original_ROI9_numeric":int(
+          (collision_pairs.real_numeric_ROI9_old &
+           collision_pairs.real_numeric_ROI9_new).sum()),
+      "source_old_observation_ID_text_vs_new_UUID_strict_equality":len(overlap_observation),
+      "exact_source_photo_overlap_cannot_be_counted_as_new_independent_original_photos":True,
+      "different_source_observation_ID_formats_need_photo_to_UUID_crosswalk":True,
+    }
+    # Conservatively retain original historical-main source in exact-photo
+    # collisions, and drop the redundant later source photo. The new source
+    # observations for other photo IDs can still be the same biological
+    # observations by a different photo/ID format: DO NOT claim verified
+    # observation-UUID independence without a historical photo-to-UUID bridge.
+    new_unique=new.loc[~new.photo_id.isin(overlap_photo)].copy()
+    require(len(new_unique)==PHOTO_N_NEW-len(overlap_photo) and
+            not set(old.photo_id).intersection(set(new_unique.photo_id)),
+            "Original photo ID de-duplication did not preserve unique photo grain")
+    print("ALAN_TRUE_PHOTO_ID_DEDUP_CONSERVATIVE_INDEPENDENCE_AUDIT",
+          json.dumps(pair_audit,sort_keys=True),flush=True)
     # Independently validate exact old and new strict sampled site/year cells.
     old_allsites,old_sites=photo_cell_stats(old)
     new_allsites,new_sites=photo_cell_stats(new)
@@ -294,68 +324,82 @@ def run(paths,coast,source06,source07,prior06,bulk06,pilot07,bulk07,out):
     require(len(shared_sites)==SITES_SHARED and
             len(shared_islands)==ISLANDS_SHARED,
             "Exact historical/new overlap must be measured without double-counting")
-    pooled_photos=pd.concat([old,new],ignore_index=True)
+    new_unique_all,new_unique_strict=photo_cell_stats(new_unique)
+    new_unique_env,new_unique_invalid=environment_qualified(
+        new_unique_strict,environment)
+    pooled_photos=pd.concat([old,new_unique],ignore_index=True)
     all_pooled,eligible_pooled=photo_cell_stats(pooled_photos)
     pooled_env,pooled_invalid=environment_qualified(eligible_pooled,environment)
-    expected_union=set(old_env.target_id)|set(new_env.target_id)
+    expected_raw_union=set(old_env.target_id)|set(new_env.target_id)
+    expected_corrected_union=set(old_env.target_id)|set(new_unique_env.target_id)
     actual_union=set(pooled_env.target_id)
-    require(expected_union.issubset(actual_union) and
-            pooled_env.target_id.is_unique,
-            "Combined original photographs lost previously strict old/new sites")
-    added=actual_union-expected_union
-    require(len(expected_union)==STRICT_OLD+STRICT_NEW-SITES_SHARED,
-            "Combined old/new strict sites must de-duplicate exact island cell/year")
+    require(expected_corrected_union.issubset(actual_union) and
+            pooled_env.target_id.is_unique and pooled_photos.photo_id.is_unique,
+            "Combined original photographs lost clean source eligible sites or repeated photo IDs")
+    added=actual_union-expected_corrected_union
+    require(len(expected_raw_union)==STRICT_OLD+STRICT_NEW-SITES_SHARED,
+            "Previously claimed old/new pre-photo-ID-dedup site support changed")
     require(pooled_env.land_id.nunique()>=len(shared_islands),
             "Pooled original photo site island count fell below common islands")
-    balanced,balance_audit=per_source_balanced_white(old,new,pooled_env)
+    balanced,balance_audit=per_source_balanced_white(old,new_unique,pooled_env)
     land=isolation.load_signed_land(coast)
     landmeta=land[["land_id","land_class","area_km2"]].copy()
     all_island_ids=set(pooled_env.land_id)
     distances=isolation.isolated_mainland_distance_km(land,all_island_ids)
     models={}
     for name,d in (("historical_main_only",old_env),
-                   ("new_36449_only",new_env),
-                   ("pooled_all_true_photo_records",pooled_env),
+                   ("new_36449_as_previously_reported",new_env),
+                   ("new_after_exact_photo_id_dedup",new_unique_env),
+                   ("pooled_photo_id_unique_originals",pooled_env),
                    ("pooled_equal_source_within_cell",balanced)):
         models[name]=fit_photo_arm(d,landmeta,distances,name)
     old_beta=models["historical_main_only"]["models"]["joint_island_equal"][
         "terms"][AREA_TERM]["beta"]
-    new_beta=models["new_36449_only"]["models"]["joint_island_equal"][
+    new_beta=models["new_36449_as_previously_reported"]["models"]["joint_island_equal"][
         "terms"][AREA_TERM]["beta"]
     require(abs(old_beta-5.383529291)<0.0001 and
             abs(new_beta-(-1.090476086034753))<0.0001,
             "Historical or new independent model no longer numerically reproducible")
     # Common island support (not all shared islands qualify for within-island
     # site contrasts separately): never force a statistically identified fit.
-    common_islands=set(old_env.land_id)&set(new_env.land_id)
+    common_islands=set(old_env.land_id)&set(new_unique_env.land_id)
     matched={}
     for label,frame in (("historical_on_common_islands",old_env),
-                        ("new_on_common_islands",new_env),
+                        ("new_photoid_clean_on_common_islands",new_unique_env),
                         ("pooled_on_common_islands",pooled_env)):
         eligible=frame.loc[frame.land_id.isin(common_islands)]
         matched[label]=fit_photo_arm(eligible,landmeta,distances,label)
     counts={
-      "historical_canonical_all_source_subarms_observation_UUIDs":len(canonical),
+      "historical_canonical_all_source_subarms_observation_ID_rows":len(canonical),
       "historical_main_original_island_photo_attempts_in_unambiguous_GSHHG_cells":len(old),
       "historical_main_original_numeric_strict9_island_photos":int(old.real_numeric_ROI9.sum()),
-      "new_tier06_tier07_separate_observation_and_photo_UUIDs":len(new),
-      "new_tier06_tier07_original_numeric_ROI9_photos":int(new.real_numeric_ROI9.sum()),
-      "actual_pooled_old_and_new_independent_original_island_photo_UUIDs":len(pooled_photos),
-      "actual_pooled_old_and_new_original_numeric_ROI9_photos":int(
+      "original_tier06_tier07_photo_rows_before_photo_ID_dedup":len(new),
+      "original_tier06_tier07_numeric_ROI9_before_photo_ID_dedup":int(new.real_numeric_ROI9.sum()),
+      "source_OLD_NEW_exact_repeated_photo_IDs":len(overlap_photo),
+      "source_OLD_NEW_exact_observation_ID_string_matches":len(overlap_observation),
+      "new_photo_IDs_not_in_historical_main_after_dedup":len(new_unique),
+      "new_actual_nine_palette_numeric_ROI9_after_photo_ID_dedup":int(
+          new_unique.real_numeric_ROI9.sum()),
+      "actual_pooled_unique_original_photo_IDs":len(pooled_photos),
+      "actual_pooled_original_numeric_ROI9_photos":int(
           pooled_photos.real_numeric_ROI9.sum()),
       "historical_main_strict_island_photo_cells":len(old_env),
-      "new_36449_strict_island_photo_cells":len(new_env),
-      "strict_island_photo_sites_in_both_source_arms":len(shared_sites),
-      "strict_GSHHG_islands_in_both_source_arms":len(shared_islands),
-      "strict_unique_sites_in_source_union_before_photo_recombination":len(expected_union),
-      "actual_strict_unique_source_pooled_photo_site_years":len(pooled_env),
-      "extra_strict_sites_only_after_genuine_old_new_photo_pooling":len(added),
-      "strict_unique_GSHHG_islands_from_photo_pool":int(pooled_env.land_id.nunique()),
+      "new_36449_pre_photo_dedup_strict_island_photo_cells":len(new_env),
+      "new_photoid_clean_strict_island_photo_cells":len(new_unique_env),
+      "strict_island_photo_sites_in_both_original_source_arms_pre_photo_dedup":len(shared_sites),
+      "strict_GSHHG_islands_in_both_original_source_arms_pre_photo_dedup":len(shared_islands),
+      "strict_unique_sites_in_uncorrected_source_cohort_union":len(expected_raw_union),
+      "strict_unique_sites_in_photoid_deduplicated_source_cohort_union":len(expected_corrected_union),
+      "actual_strict_unique_photo_id_deduplicated_pooled_site_years":len(pooled_env),
+      "extra_strict_sites_only_after_true_old_new_photo_recombination":len(added),
+      "strict_unique_GSHHG_islands_from_photo_id_deduplicated_pool":int(pooled_env.land_id.nunique()),
       "all_photo_attempt_source_island_site_years":len(all_pooled),
       "old_only_source_photo_attempt_island_site_years":len(old_allsites),
-      "new_only_source_photo_attempt_island_site_years":len(new_allsites),
-      "old_new_photo_UUID_sets_disjoint":True,
-      "same_photo_site_and_year_never_double_counted_in_regression":True,
+      "new_raw_source_photo_attempt_island_site_years":len(new_allsites),
+      "new_photoid_clean_source_photo_attempt_island_site_years":len(new_unique_all),
+      "old_new_photo_ids_disjoint_after_exact_photoid_dedup":True,
+      "same_original_site_year_never_double_counted_in_regression":True,
+      "observation_id_crossformat_independence_NOT_established":True,
     }
     response={
       "schema":SCHEMA,
@@ -366,15 +410,19 @@ def run(paths,coast,source06,source07,prior06,bulk06,pilot07,bulk07,out):
       "new_original_environment_quality":new_invalid,
       "pooled_original_environment_quality":pooled_invalid,
       "per_site_equal_source_white_sensitivity_support":balance_audit,
+      "exact_shared_original_photo_id_reconciliation":pair_audit,
+      "new_photoid_dedup_environment_quality":new_unique_invalid,
       "models":models,
       "common_island_support_models":matched,
       "old_island_area_moderator_reproduced_from_original_photo_records":True,
       "new_island_area_moderator_reproduced_from_original_photo_records":True,
       "all_original_photos_inferred_again":False,
       "no_technical_colour_unknown_imputed":True,
-      "original_photo_unique_UUID_no_double_count":True,
+      "original_photo_ID_unique_after_dedup":True,
+      "old_numeric_observation_id_vs_new_UUID_independence_unverified":True,
       "pooled_photo_estimate_conditions_on_island_site_targeted_sample":True,
       "source_design_not_random_global_native_flora":True,
+      "new_original_36449_independent_of_historical_claim_revised":True,
       "source_photo_white_is_not_botanical_white_flower_prevalence":True,
       "no_ALAN_causality_or_night_pollinator_effect_claim":True,
       "source_hashes":{"source06":union.SHA06,
