@@ -1,0 +1,121 @@
+{
+  "schema": "ALAN_historical_new36449_photoID_deduplicated_verified_summary_20261109_v1",
+  "analysis_github_actions_run": "https://github.com/zuizui0223/alan/actions/runs/42588931811",
+  "workflow_status": "success",
+  "artifact_id": 13660646650,
+  "full_aggregate_json_sha256": "4d88b6de6e73ff82e032dc2bb5ef9e257e6b9e52cda7afa4c64faa38a3f294c0",
+  "source_reproduction": {
+    "historical_original_island_cells": 710,
+    "new_original_island_cells_before_crosssource_photoID_dedup": 1137,
+    "old_new_shared_strict_site_years": 301,
+    "raw_strict_site_union": 1546
+  },
+  "exact_original_photo_collision_audit": {
+    "historical_main_island_photo_records": 50829,
+    "new_tier06_tier07_photo_records": 36449,
+    "shared_original_photo_ids": 329,
+    "old_new_observation_ID_strings_shared": 0,
+    "shared_photos_same_location_year_and_WCVP_taxon": 329,
+    "shared_photos_with_both_ROI9_numeric": 133,
+    "historical_numeric_ID_vs_new_UUID_crosswalk_unresolved": true
+  },
+  "conservative_photo_id_deduplicated_pool": {
+    "old_mainland_excluded_island_photo_records": 50829,
+    "new_photo_ids_not_seen_in_historical_main": 36120,
+    "unique_photo_ids": 86949,
+    "actual_numeric_flower_ROI9": 31784,
+    "strict_unique_island_site_years": 2503,
+    "strict_GSHHG_islands": 193,
+    "additional_strict_sites_only_qualified_by_crosssource_genuine_photo_pool": 961,
+    "within_island_estimable_islands": 97,
+    "within_island_cell_years": 2392
+  },
+  "model_unit": "pp change in photographic white ROI ALAN loglight slope per tenfold GSHHG island area, jointly adjusted for mainland coast-vertex distance, island/year fixed effects, same-year population/climate, elevation, photo attempts; island cluster nominal 95% confidence intervals",
+  "results": [
+    {
+      "cohort": "historical_main_only",
+      "n_islands": 44,
+      "n_cell_years": 650,
+      "island_equal": {
+        "beta": 5.383529291,
+        "ci_low": 2.677832159,
+        "ci_high": 8.089226423,
+        "p": 0.0002357541
+      }
+    },
+    {
+      "cohort": "new_before_exact_historical_photoID_dedup",
+      "n_islands": 35,
+      "n_cell_years": 1089,
+      "island_equal": {
+        "beta": -1.090476086,
+        "ci_low": -4.333250721,
+        "ci_high": 2.152298549,
+        "p": 0.498984804
+      }
+    },
+    {
+      "cohort": "new_photoID_deduplicated",
+      "n_islands": 35,
+      "n_cell_years": 1085,
+      "island_equal": {
+        "beta": -0.987289684,
+        "ci_low": -4.20432534,
+        "ci_high": 2.229745973,
+        "p": 0.536997193
+      }
+    },
+    {
+      "cohort": "pooled_all_true_photo_ROI9_deduped",
+      "n_islands": 97,
+      "n_cell_years": 2392,
+      "island_equal": {
+        "beta": 0.577798774,
+        "ci_low": -1.41156005,
+        "ci_high": 2.567157599,
+        "p": 0.565607546
+      },
+      "cell_equal": {
+        "beta": 0.98473267,
+        "ci_low": -0.2897608568,
+        "ci_high": 2.259226198,
+        "p": 0.128394869
+      },
+      "leave_largest_island_out": {
+        "beta": 0.512190799,
+        "ci_low": -1.55475612,
+        "ci_high": 2.579137718,
+        "p": 0.623892018
+      }
+    },
+    {
+      "cohort": "pooled_equal_original_source_contribution_per_photo_cell",
+      "n_islands": 97,
+      "n_cell_years": 2392,
+      "island_equal": {
+        "beta": 0.185609171,
+        "ci_low": -1.978996552,
+        "ci_high": 2.350214895,
+        "p": 0.865205448
+      }
+    },
+    {
+      "cohort": "pooled_common_islands_only",
+      "n_islands": 41,
+      "n_cell_years": 2163,
+      "island_equal": {
+        "beta": 1.556434263,
+        "ci_low": -0.819945958,
+        "ci_high": 3.932814483,
+        "p": 0.193110571
+      }
+    }
+  ],
+  "statistical_caveats": [
+    "Photo IDs are deduplicated with historical original photo prioritized; 329 raw new records are exact repeats of original historical photos.",
+    "Legacy observation IDs and new observation UUIDs have differing formats; independent biological observation-level union cannot be claimed until an authenticated historical photo-to-UUID crosswalk.",
+    "Historical-main and island/site-targeted new acquisition arms do not constitute an unbiased probability sample of global plant communities.",
+    "The measured response is a photographic flower-region nine-palette white ROI fraction, not biological white-flowered species prevalence, petal illuminance, pollination, or causal flower-colour evolution.",
+    "Nominal confidence intervals are exploratory and do not multiplicity-correct multiple source/moderation choices."
+  ]
+}
