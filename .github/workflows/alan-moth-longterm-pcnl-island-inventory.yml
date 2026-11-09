@@ -1,0 +1,135 @@
+name: ALAN moth-positive island inventory and historical-light input gates
+on:
+  push:
+    branches: [analysis/alan-island-pollinator-shift-gated-20261109]
+    paths:
+      - scripts/analysis/alan_moth_species_historical_pcnl_inventory_20261109.py
+      - scripts/analysis/alan_full93m_allflora_moth_island_denominator_20261109.py
+      - tests/test_alan_moth_species_historical_pcnl_inventory_20261109.py
+      - tests/test_alan_full93m_allflora_moth_island_denominator_20261109.py
+      - .github/workflows/alan-moth-longterm-pcnl-island-inventory.yml
+  pull_request:
+    branches: [analysis/alan-full93m-moth-positive-original-photo-IDs-extraction-20261109]
+    paths:
+      - scripts/analysis/alan_moth_species_historical_pcnl_inventory_20261109.py
+      - scripts/analysis/alan_full93m_allflora_moth_island_denominator_20261109.py
+      - tests/test_alan_moth_species_historical_pcnl_inventory_20261109.py
+      - tests/test_alan_full93m_allflora_moth_island_denominator_20261109.py
+      - .github/workflows/alan-moth-longterm-pcnl-island-inventory.yml
+  workflow_dispatch:
+    inputs:
+      run_full_inventory:
+        description: "Restore 34.35m signed original photo IDs; geocode islands in 16 jobs (metadata only)"
+        required: true
+        type: boolean
+        default: false
+permissions:
+  contents: read
+  actions: read
+jobs:
+  synthetic-source-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify original-photo counts, geographic membership and leak-free PCNL exposure
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 geopandas==1.1.2 shapely==2.1.2 statsmodels==0.14.5 rasterio==1.4.3 pyproj
+          python -m py_compile scripts/analysis/alan_moth_species_historical_pcnl_inventory_20261109.py scripts/analysis/alan_full93m_allflora_moth_island_denominator_20261109.py
+          python -m unittest discover -s tests -p test_alan_moth_species_historical_pcnl_inventory_20261109.py -v
+          python -m unittest discover -s tests -p test_alan_full93m_allflora_moth_island_denominator_20261109.py -v
+  original-source-inventory:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_full_inventory }}
+    needs: synthetic-source-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 170
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        group: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GROUP: ${{ matrix.group }}
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 geopandas==1.1.2 shapely==2.1.2 statsmodels==0.14.5 rasterio==1.4.3 pyproj
+      - name: Restore signed original moth-positive photo-ID source and taxonomy
+        timeout-minutes: 24
+        run: |
+          set -euo pipefail
+          g=$(printf '%02d' "$GROUP")
+          mkdir -p src/rosters src/receipts src/wcvp src/coast out
+          gh run download 42608966731 --repo zuizui0223/alan --name "alan-moth-full93m-extracted-photoids-group-$GROUP" --dir src/rosters
+          gh run download 42608966731 --repo zuizui0223/alan --name "alan-moth-full93m-extracted-receipt-group-$GROUP" --dir src/receipts
+          gh run download 39225659840 --repo zuizui0223/mois --name mois-real350399-Kew-WCVP-native-source-TDWG3-no-point-status --dir src/wcvp
+          gh run download 42175243391 --repo zuizui0223/mois --name mois-GSHHG-2.3.7-high-L1-L2-SHA-source-no-images --dir src/coast
+          test "$(find src/rosters -name 'moth-positive-original-tier-*-group-*.csv.gz' | wc -l)" -eq 14
+          test -s "src/receipts/original_moth_photoID_group${g}_verified_receipt.json"
+          echo 'dc5bb0e3686fde0cfd327e4336245d0ceae3c7657b3bd12841bb814cc94d1eb2  src/wcvp/mois350399_wcvp_source_taxon_exact_name_resolution.csv.gz' | sha256sum -c -
+          echo '9cd6aa7ca29f00c64283bcc08dcb778e212b644b837e64070051339b11d8b7b3  src/wcvp/mois350399_wcvp_accepted_native_distribution_TDWG3.csv.gz' | sha256sum -c -
+      - name: Verify all 14 original-tier source digests and count photo/UUID/accepted-species by GSHHG island
+        timeout-minutes: 135
+        run: |
+          set -euo pipefail
+          g=$(printf '%02d' "$GROUP")
+          python -m scripts.analysis.alan_moth_species_historical_pcnl_inventory_20261109 inventory \
+            --group "$GROUP" --rosters src/rosters \
+            --extract-receipt "src/receipts/original_moth_photoID_group${g}_verified_receipt.json" \
+            --wcvp src/wcvp/mois350399_wcvp_source_taxon_exact_name_resolution.csv.gz \
+            --accepted src/wcvp/mois350399_wcvp_accepted_native_distribution_TDWG3.csv.gz \
+            --coast src/coast --db "out/moth-island-group-${g}.sqlite"
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: alan-moth-island-source-group-${{ matrix.group }}
+          path: out/
+          retention-days: 90
+          if-no-files-found: error
+  collect-source-islands:
+    needs: [synthetic-source-tests, original-source-inventory]
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_full_inventory }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 80
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 geopandas==1.1.2 shapely==2.1.2 rasterio==1.4.3 scipy==1.15.2 statsmodels==0.14.5
+          mkdir -p group-dbs downloaded
+          gh run download "$GITHUB_RUN_ID" --repo zuizui0223/alan --pattern 'alan-moth-island-source-group-*' --dir downloaded
+          test "$(find downloaded -name 'moth-island-group-??.sqlite' | wc -l)" -eq 16
+          find downloaded -name 'moth-island-group-??.sqlite' -exec cp {} group-dbs/ \;
+          find downloaded -name 'moth-island-group-??.json' -exec cp {} group-dbs/ \;
+          python -m scripts.analysis.alan_moth_species_historical_pcnl_inventory_20261109 collect --db-dir group-dbs --out-dir result-islands
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('result-islands/source_receipt.json').read_text())
+          assert x['all_moth_positive_original_source_IDs']==34346428
+          assert x['group_count']==16 and x['not_a_plant_flora_fraction']
+          print('ALAN_REAL_MOTH_SOURCE_ISLAND_COUNTS_AND_SITES_COMPLETE',x)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: alan-moth-full93m-island-species-photoUUID-siteyear-census
+          path: |
+            result-islands/*.csv
+            result-islands/source_receipt.json
+          retention-days: 90
+          if-no-files-found: error

@@ -1,0 +1,126 @@
+name: ALAN source-denominator island flowering-plant records x prior 1992-2024 PCNL
+on:
+  pull_request:
+    branches: [analysis/alan-full93m-moth-positive-original-photo-IDs-extraction-20261109]
+    paths:
+      - .github/workflows/alan-pcnl-v3-fullflora-real-island-join.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  real-33-year-pcnl-historic-exposure:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 125
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_RUN: '42616279235'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      GDAL_CACHEMAX: '512'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install raster and analysis dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2 rasterio==1.4.3
+          python -m py_compile scripts/acquisition/alan_pcnl_1992_2024_verified_zenodo_download_20261109.py scripts/analysis/alan_moth_species_historical_pcnl_inventory_20261109.py
+      - name: Restore completed SHA-signed full93m numerator and denominator island-year source
+        timeout-minutes: 18
+        run: |
+          set -euo pipefail
+          for t in $(seq 1 30); do
+            conclusion=$(gh api "repos/zuizui0223/alan/actions/runs/$SOURCE_RUN" --jq '.conclusion // "pending"')
+            if [ "$conclusion" = success ]; then break; fi
+            if [ "$conclusion" != pending ]; then
+              echo "Source cohort failed: $conclusion"; exit 1
+            fi
+            sleep 20
+          done
+          test "$(gh api "repos/zuizui0223/alan/actions/runs/$SOURCE_RUN" --jq '.conclusion')" = success
+          mkdir -p source
+          gh run download "$SOURCE_RUN" --repo zuizui0223/alan --name alan-full93m-island-flora-moth-positive-source-denominator --dir source
+          test -s source/allflora_moth_island_site_year.csv
+          test -s source/allflora_moth_island_year.csv
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('source/source_receipt.json').read_text())
+          assert x['source_totals']['all_93209351_source_photos_examined']==93209351
+          assert x['source_totals']['all_source_photos_with_GloBI_moth_visitor_positive']==34346428
+          assert x['same_source_moth_positive_species_fraction_IS_NOT_obligate_nocturnal_dependence']
+          print('ALAN_FULL93M_REAL_NUMERATOR_DENOMINATOR_VERIFIED')
+          PY
+      - name: Select original site-year observation opportunity with no photo colour / ROI filtering
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import pandas as pd
+          out=Path('data')
+          out.mkdir(exist_ok=True)
+          source=pd.read_csv('source/allflora_moth_island_site_year.csv')
+          n=len(source)
+          assert source[['island','latbin','lonbin','year']].duplicated().sum()==0
+          assert source.all_accepted_photo_ids.ge(source.all_accepted_observation_uuids).all()
+          assert source.all_accepted_recorded_species.ge(source.moth_visitor_positive_recorded_species).all()
+          eligible=source.loc[source.all_accepted_observation_uuids.ge(5) &
+                              source.all_accepted_recorded_species.ge(3)].copy()
+          assert len(eligible)>0
+          eligible.to_csv(out/'valid_original_photo_site_years.csv',index=False)
+          data={'schema':'ALAN_PCNL_source_denominator_eligibility_v1',
+             'source_site_years':int(n),
+             'eligible_original_photo_site_years':len(eligible),
+             'original_islands_with_any_eligible_site':int(eligible.island.nunique()),
+             'n_genuine_allflora_accepted_recorded_species_site_sum':int(eligible.all_accepted_recorded_species.sum()),
+             'n_genuine_moth_positive_recorded_species_site_sum':int(eligible.moth_visitor_positive_recorded_species.sum()),
+             'selection_not_using_original_flower_colour_or_light_values':True,
+             'no_GloBI_is_NOT_moth_absence':True}
+          (out/'site_year_support.json').write_text(json.dumps(data,sort_keys=True,indent=2)+'\n')
+          print('ALAN_REAL_SOURCE_SITE_YEAR_SUPPORT',json.dumps(data,sort_keys=True))
+          PY
+      - name: Download and MD5 verify official 33 annual PCNL Zenodo v3 rasters (1992–2024)
+        timeout-minutes: 58
+        run: |
+          set -euo pipefail
+          mkdir -p input_pcnl
+          python -m scripts.acquisition.alan_pcnl_1992_2024_verified_zenodo_download_20261109 \
+            --manifest config/alan_pcnl_1992_2024_zenodo_v3_md5.json \
+            --directory input_pcnl --receipt data/pcnl_original_33year_md5_receipt.json
+      - name: Measure genuine prior-year harmonized light for each photo-documented island site
+        timeout-minutes: 35
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_moth_species_historical_pcnl_inventory_20261109 exposure \
+            --site-year data/valid_original_photo_site_years.csv \
+            --pcnl-dir input_pcnl \
+            --output data/allflora_moth_island_source_prior1992_2024_pcnl.csv
+          python - <<'PY'
+          import pandas as pd,json
+          from pathlib import Path
+          d=pd.read_csv('data/allflora_moth_island_source_prior1992_2024_pcnl.csv')
+          assert len(d)>0
+          assert (d.pcnl_years_expected == d.year-1992).all()
+          assert (d.pcnl_years_observed <= d.pcnl_years_expected).all()
+          valid=d.loc[d.historic_ntl_complete & d.pcnl_1992_to_previous_year_mean_log1p.notna()]
+          z={'schema':'ALAN_real_source_allflora_moth_island_PCNLPrior1992_2024_exposure_v1',
+             'n_photo_site_years':len(d),'n_full_prior_year_light':len(valid),
+             'n_islands_valid_full_prior_light':int(valid.island.nunique()),
+             'prior_light_2024_excludes_2024_for_2024_photos':True,
+             'analysis_source': 'full93m original photo-metadata signed index, NOT flower ROIs',
+             'guild_is_source_documented_moth_visitors_not_verified_pollinator_dependence':True,
+             'no_causal_ALAN_plant_loss_claim':True}
+          Path('data/real_pcnl_source_join_result.json').write_text(json.dumps(z,sort_keys=True,indent=2)+'\n')
+          print('ALAN_REAL_FULL93M_FLORA_HISTORIC_PCNL_SITE_JOIN',json.dumps(z,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-full93m-moth-fullflora-33year-PCNL-prior-light
+          path: data/
+          retention-days: 90
+          if-no-files-found: warn
