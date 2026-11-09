@@ -80,6 +80,10 @@ def prepare(frame, obs_min=5, species_min=3, light_range_min=0.02):
                 (s.light_max-s.light_min).ge(light_range_min)]
     keep=set(mixed.reset_index().island)
     x=x.loc[x.island.isin(keep)].copy()
+    if x.empty:
+        # Zero supported same-year within-island light contrasts is
+        # an honest NON-ESTIMABLE result, not a failed pandas groupby.
+        return x
     n_geo=x.groupby("island",observed=True).apply(
         lambda d:d[["latbin","lonbin"]].drop_duplicates().shape[0],
         include_groups=False)
