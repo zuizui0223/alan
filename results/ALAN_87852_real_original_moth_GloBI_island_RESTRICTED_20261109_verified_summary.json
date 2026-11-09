@@ -1,0 +1,168 @@
+{
+  "schema": "ALAN_verified_real_historical_and_new_floral_original_ROI9_moth_restricted_20261109",
+  "run_id": 42606223917,
+  "artifact_id": 13668461667,
+  "source_genuine_original_photo_IDs": 87852,
+  "source_real_numeric_original_flower_ROI9": 32111,
+  "original_old_main_broad_not_GloBI_moth_restricted": true,
+  "source": "WCVP accepted plant name exact join to GloBI source study-positive relation, original 2019,2021,2023,2024,2025 source photo/year VIIRS and WorldPop, island/year fixed effects, same covariates, mainland distance moderator, nominal island-cluster CI",
+  "groups": {
+    "all_accepted_floral_originals": {
+      "total_photo_attempts": 87852,
+      "numeric_ROI9": 32111,
+      "photo_species": 11896,
+      "strict_sites": 2530,
+      "strict_islands": 193,
+      "multisite_islands": 97,
+      "multisite_cells": 2419,
+      "beta": 1.105919745,
+      "CI": [
+        -0.845945632,
+        3.057785122
+      ],
+      "p": 0.263526846
+    },
+    "moth_record_positive": {
+      "total_photo_attempts": 26420,
+      "numeric_ROI9": 11801,
+      "photo_species": 1163,
+      "strict_sites": 684,
+      "strict_islands": 58,
+      "multisite_islands": 30,
+      "multisite_cells": 652,
+      "beta": 0.661793683,
+      "CI": [
+        -2.354041441,
+        3.677628806
+      ],
+      "p": 0.656908626
+    },
+    "moth_database_pollinates": {
+      "total_photo_attempts": 12007,
+      "numeric_ROI9": 5590,
+      "photo_species": 348,
+      "strict_sites": 272,
+      "strict_islands": 15,
+      "multisite_islands": 9,
+      "multisite_cells": 266,
+      "estimable": false,
+      "reason": "fewer than 10 multisite islands"
+    },
+    "walton_direct_nocturnal_pollen_carriage": {
+      "total_photo_attempts": 4140,
+      "numeric_ROI9": 1856,
+      "photo_species": 41,
+      "strict_sites": 62,
+      "strict_islands": 5,
+      "multisite_islands": 0,
+      "multisite_cells": 0,
+      "estimable": false
+    },
+    "moth_record_without_recorded_butterfly": {
+      "total_photo_attempts": 1738,
+      "numeric_ROI9": 562,
+      "photo_species": 149,
+      "strict_sites": 1,
+      "strict_islands": 1,
+      "multisite_islands": 0,
+      "multisite_cells": 0,
+      "estimable": false,
+      "warning": "no butterfly record does NOT prove exclusive moth pollination"
+    },
+    "butterfly_record_positive": {
+      "total_photo_attempts": 44876,
+      "numeric_ROI9": 19413,
+      "photo_species": 2450,
+      "strict_sites": 1357,
+      "strict_islands": 110,
+      "multisite_islands": 49,
+      "multisite_cells": 1282,
+      "beta": 2.226627644,
+      "CI": [
+        -0.263024364,
+        4.716279652
+      ],
+      "p": 0.078433052
+    }
+  },
+  "old_only": {
+    "original_all_flora": {
+      "original_photos": 50829,
+      "numeric_ROI9": 18108,
+      "strict_sites": 710,
+      "strict_islands": 101,
+      "multisite_islands": 44,
+      "multisite_cells": 650,
+      "beta": 5.383529291,
+      "CI": [
+        2.677832159,
+        8.089226423
+      ],
+      "p": 0.000235754
+    },
+    "moth_record_positive": {
+      "original_photos": 12297,
+      "numeric_ROI9": 5504,
+      "strict_sites": 76,
+      "strict_islands": 21,
+      "multisite_islands": 0,
+      "multisite_cells": 0,
+      "estimable": false
+    },
+    "moth_database_pollinates": {
+      "original_photos": 5170,
+      "numeric_ROI9": 2378,
+      "strict_sites": 17,
+      "strict_islands": 2,
+      "multisite_islands": 0,
+      "estimable": false
+    },
+    "walton_direct_nocturnal_pollen_carriage": {
+      "original_photos": 1481,
+      "numeric_ROI9": 660,
+      "strict_sites": 1,
+      "strict_islands": 1,
+      "multisite_islands": 0,
+      "estimable": false
+    },
+    "butterfly_record_positive": {
+      "original_photos": 22466,
+      "numeric_ROI9": 9818,
+      "strict_sites": 251,
+      "strict_islands": 39,
+      "multisite_islands": 15,
+      "multisite_cells": 226,
+      "beta": 4.5678,
+      "CI": [
+        0.437,
+        8.698
+      ],
+      "p": 0.032585927
+    }
+  },
+  "new_tier06_07_photoid_clean_moth": {
+    "photos": 13805,
+    "numeric_ROI9": 6162,
+    "strict_sites": 409,
+    "strict_islands": 32,
+    "multisite_islands": 15,
+    "multisite_cells": 389,
+    "beta": -2.4508,
+    "CI": [
+      -9.593,
+      4.691
+    ],
+    "p": 0.473872829
+  },
+  "caveats": [
+    "Historical significant old +5.384 was NEVER a moth-exclusive estimate.",
+    "Actual old source moth-positive has zero multi-site islands despite 21 eligible islands, so cannot estimate old moth area x ALAN.",
+    "GloBI recorded moth flower visitation is not locally verified nocturnal effective pollination.",
+    "GloBI pollinates asserts a database relationship; differs from directly measured stigma deposition and breeding success.",
+    "Walton night-collected moth pollen carriage is direct positive time-of-day evidence but not effective pollination nor moth dependence.",
+    "Moth and butterfly positive plant sets overlap; lack of a GloBI record is not verified biological absence.",
+    "Source acquisition nonprobability targeted island/site/photo; no causal ALAN selection or global white-flora prevalence claim.",
+    "Historic numeric observation IDs and recent UUIDs have unverified biological observation-level concordance; exact photo IDs are deduped.",
+    "Confidence intervals are nominal island clustered and exploratory, without multiplicity control."
+  ]
+}
