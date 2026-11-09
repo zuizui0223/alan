@@ -1,0 +1,88 @@
+{
+  "schema": "ALAN_tier07_complete27507_original_island_RGB_ROI9_verified_20261109_v1",
+  "source_novel_original_photo_and_observation_UUIDs": 27507,
+  "source_distinct_GSHHG_islands": 563,
+  "source_photo_cell_years": 9493,
+  "actual_numeric_original_nine_fraction_flower_region_ROI9_success": 10245,
+  "original_photo_technical_unknown": 17262,
+  "numerical_success_rate": 0.372450648925728,
+  "source_5photo_3accepted_taxa_opportunity_cells": 1409,
+  "actual_5photo_3successful_original_ROI9_3successful_accepted_taxa_cells": 769,
+  "source_years": [
+    2019,
+    2021,
+    2023,
+    2024,
+    2025
+  ],
+  "by_year": [
+    {
+      "year": 2019,
+      "photos": 1912,
+      "numericROI9": 672,
+      "photoCellYears": 822,
+      "sourceOpportunityCells": 80,
+      "actualStrictCells": 33
+    },
+    {
+      "year": 2021,
+      "photos": 3387,
+      "numericROI9": 1285,
+      "photoCellYears": 1345,
+      "sourceOpportunityCells": 173,
+      "actualStrictCells": 85
+    },
+    {
+      "year": 2023,
+      "photos": 6059,
+      "numericROI9": 2284,
+      "photoCellYears": 2119,
+      "sourceOpportunityCells": 320,
+      "actualStrictCells": 175
+    },
+    {
+      "year": 2024,
+      "photos": 7246,
+      "numericROI9": 2613,
+      "photoCellYears": 2407,
+      "sourceOpportunityCells": 369,
+      "actualStrictCells": 205
+    },
+    {
+      "year": 2025,
+      "photos": 8903,
+      "numericROI9": 3391,
+      "photoCellYears": 2800,
+      "sourceOpportunityCells": 467,
+      "actualStrictCells": 271
+    }
+  ],
+  "pilot_first_1024": {
+    "independentNewObservations": 1024,
+    "numericROI9": 403,
+    "strictCells": 57,
+    "distinctSourceIslands": 284
+  },
+  "subsequent_52_tasks": {
+    "newIndependentObservations": 26483,
+    "numericROI9": 9842,
+    "sourceTasksComplete": 52,
+    "run": "https://github.com/zuizui0223/alan/actions/runs/42553223750",
+    "conclusion": "success"
+  },
+  "source_signed_full27507_precolour_schedule_SHA256": "7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62",
+  "original_FCP_evaluator_source_git_blob": "b1d7091db44682559bbe4b48a9f3b8db648501a6",
+  "source_original_image_full_job": "https://github.com/zuizui0223/alan/actions/runs/42553223750",
+  "source_dataonly_reconciliation": "https://github.com/zuizui0223/alan/actions/runs/42561170513",
+  "dataonly_reconciliation_status": "success",
+  "source_dataonly_original_output_artifact_name": "alan-tier07-original27507-island-ROI9-verified-source-aggregate",
+  "artifact_id": 13650766775,
+  "real_original_photo_receipt_SHA256": "c4f2e70ef667fb7ec04a489b5a03360c61e02f40f9878c837ca6bbc56fd5f4c6",
+  "original_photo_group_counts_csv_SHA256": "b1e88cc9e8d3750d79f638da336547906cd6bf9c0714acbcbb5853716a97b2a",
+  "caveat": "Measure of observed flower-region pixel white and other 9-channel fractions, not species-native status or causal nightlight; source was island/site-targeted and cannot be pooled with historical-main unweighted. Existing tier06 strict156 and tier07 strict769 may overlap in site-year, so 925 is not a verified unique-site union.",
+  "verified_53_original_photo_sources": true,
+  "no_photo_pixels_reacquired_in_final_sha_reconciliation": true,
+  "all_photo_and_observation_UUIDs_unique": true,
+  "not_imputed_colour_for_unknown": true,
+  "historical_main_ALAN_regression_unchanged": true
+}
