@@ -1,0 +1,65 @@
+{
+  "schema": "ALAN_historical_main_tier06_tier07_tier08_910_all_original_photo_pooled_verified_summary_v1",
+  "actual_execution": "https://github.com/zuizui0223/alan/actions/runs/42590536415",
+  "status": "success",
+  "artifact_id": 13661475848,
+  "authentic_source_status": {
+    "historical_main_original_island_photo_ids": 50829,
+    "new_tier06_tier07_source_photo_ids": 36449,
+    "previously_repeated_photo_ids_between_historical_and_new06_07": 329,
+    "prior_true_photoID_unique_pool": 86949,
+    "tier08_actual_original_RGB_processed": 910,
+    "tier08_source_roi9_numeric": 330,
+    "tier08_photo_id_repeated_against_prior": 7,
+    "tier08_new_photo_ids_unique_to_old_and_new06_07": 903,
+    "tier08_new_numeric_roi9_after_dedup": 327,
+    "total_unique_original_photo_ids": 87852,
+    "total_numeric_nine_palette_flower_roi": 32111,
+    "total_strict_photo_cell_years": 2530,
+    "total_distinct_islands_with_strict_sites": 193,
+    "newly_strict_site_years_due_to_tier08": 27,
+    "within_island_multisite_islands": 97,
+    "within_island_multisite_photo_cell_years": 2419
+  },
+  "analysis": {
+    "model": "white_pp ~ log_light + log_light:log10_area_c + log_light:log10_distance_c + log_pop + bio5 + log_rain + elevation + log_attempts + C(land_id) + C(year)",
+    "clustering": "island",
+    "units": "photographic ROI white mass percentage-points change of the log(1+VIIRS) slope per tenfold GSHHG island area",
+    "true_photo_pool_before_tier08": {
+      "beta": 0.5777987743303025,
+      "ci_low": -1.4115600500473309,
+      "ci_high": 2.5671575987079356,
+      "p": 0.5656075462942869
+    },
+    "true_photo_pool_including_tier08": {
+      "beta": 1.1059197451811407,
+      "ci_low": -0.8459456320034999,
+      "ci_high": 3.0577851223657815,
+      "p": 0.26352684590209174
+    },
+    "cell_equal_after_tier08": {
+      "beta": 1.0416859804597824,
+      "ci_low": -0.16328690966445625,
+      "ci_high": 2.246658870584021,
+      "p": 0.08938802590969822
+    },
+    "three_source_equal_per_cell": {
+      "beta": 0.8629960055795385,
+      "ci_low": -1.200749916186333,
+      "ci_high": 2.92674192734541,
+      "p": 0.4085641357537678
+    },
+    "tier06_07_08_photos_only_after_historic_exact_photo_dedup": {
+      "beta": -0.5976694375283418,
+      "ci_low": -3.48642470960023,
+      "ci_high": 2.2910858345435465,
+      "p": 0.6782493091201593
+    }
+  },
+  "source_uncertainties": [
+    "Photo ID exact de-duplication verified; observation-level independence from historical_main not fully reconciled across historical numeric IDs and original source UUIDs.",
+    "Source acquisition geography/taxonomic composition is purposively sampled and not random native flora prevalence.",
+    "The phenotypic endpoint is photo-region white ROI, not causal evolution or flower-illuminance or nocturnal pollination.",
+    "Exploratory nominal 95% confidence intervals, not multiplicity-corrected."
+  ]
+}
