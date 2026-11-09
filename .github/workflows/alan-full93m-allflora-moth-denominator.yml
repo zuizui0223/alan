@@ -61,7 +61,7 @@ jobs:
           gh run download 39225659840 --repo zuizui0223/mois --name mois-real350399-Kew-WCVP-native-source-TDWG3-no-point-status --dir src/evidence
           gh run download 41976552977 --repo zuizui0223/mois --name mois-ALAN-GloBI-stage2-actual-records-2019-2024-supported-source --dir src/evidence
           gh run download 42175243391 --repo zuizui0223/mois --name mois-GSHHG-2.3.7-high-L1-L2-SHA-source-no-images --dir src/coast
-          echo 'dc5bb0e3686fde0cfd327e4336245d0ce6e55353daa48b0058c456979e90644c  src/evidence/mois350399_wcvp_source_taxon_exact_name_resolution.csv.gz' | sha256sum -c -
+          echo 'dc5bb0e3686fde0cfd327e4336245d0ceae3c7657b3bd12841bb814cc94d1eb2  src/evidence/mois350399_wcvp_source_taxon_exact_name_resolution.csv.gz' | sha256sum -c -
           echo '9cd6aa7ca29f00c64283bcc08dcb778e212b644b837e64070051339b11d8b7b3  src/evidence/mois350399_wcvp_accepted_native_distribution_TDWG3.csv.gz' | sha256sum -c -
           echo 'a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994  src/evidence/GloBI_stage2_signed_extension.csv.gz' | sha256sum -c -
       - name: Single pass through 5.8m source photos; full denominator and moth evidence on exact GSHHG islands
