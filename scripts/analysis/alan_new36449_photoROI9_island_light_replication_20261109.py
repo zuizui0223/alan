@@ -194,6 +194,7 @@ def model_supported(cohort,environment,land,distances):
             "Genuine strict source islands lack ORIGINAL-year VIIRS/WorldPop/climate exposure")
     require(d[["white_pp","log_light","log_pop","bio5","log_rain","elevation"]].notna().all().all(),
             "Original adjusted regression contains nonfinite source covariates")
+    d["is_island"]=d.land_class.eq("island").astype(int)
     d["log_attempts"]=np.log1p(d.photo_attempts.astype(float))
     islands,selected,g=area.join_area_and_select(d,land)
     support={"strict_photo_cell_years":len(d),
