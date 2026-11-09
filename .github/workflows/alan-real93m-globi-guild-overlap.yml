@@ -1,0 +1,52 @@
+name: ALAN real 93m source: co-recorded moth and butterfly evidence across islands
+on:
+  pull_request:
+    branches: [analysis/alan-island-pollinator-shift-gated-20261109]
+    paths:
+      - .github/workflows/alan-real93m-globi-guild-overlap.yml
+      - scripts/analysis/alan_real_93m_globi_guild_overlap_20261109.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  same-source-guild-overlap:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3
+          mkdir -p source downloaded allgroups
+          gh run download 42617624954 --repo zuizui0223/alan --name alan-full93m-moth-fullflora-33year-PCNL-prior-light --dir source
+          echo 'e7800476ae6d35acb9ef71525f32521596f884733e2e8ee9f87fda7acb8e9eab  source/valid_original_photo_site_years.csv' | sha256sum -c -
+          gh run download 42616279235 --repo zuizui0223/alan --pattern 'alan-93m-fullflora-moth-island-group-*' --dir downloaded
+          test "$(find downloaded -name 'allflora-island-group-??.sqlite' | wc -l)" -eq 16
+          find downloaded -name 'allflora-island-group-??.sqlite' -exec cp {} allgroups/ \;
+          python -m scripts.analysis.alan_real_93m_globi_guild_overlap_20261109 --groups allgroups --source source/valid_original_photo_site_years.csv --out out
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('out/source_guild_overlap_result.json').read_text())
+          assert x['n_real_site_years']==85318
+          assert x['n_real_islands']==2751
+          assert x['source_species_site_units']==2134498
+          assert x['evidence_categories']['moth']['species_site_units']==809649
+          assert x['evidence_categories']['both']['species_site_units']==772516
+          assert 0.95 < x['moth_positive_also_butterfly_positive_fraction'] < 0.96
+          print('ALAN_ORIGINAL_MOTH_BUTTERFLY_OVERLAP_SOURCE_REPRODUCED',json.dumps(x,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: alan-85318-source-moth-butterfly-visitor-overlap-verified
+          path: |
+            out/source_guild_overlap_result.json
+            out/source_guild_overlap_site_year.csv.gz
+          retention-days: 90
+          if-no-files-found: error
