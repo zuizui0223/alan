@@ -60,6 +60,8 @@ def prior_ids(paths, out):
     check(not out.exists(), "Refuse overwrite of prior exact-photo source")
     known = set()
     input_sha = {}
+    source_counts = {}
+    addition_counts = {}
     for name, p in paths.items():
         if name == "prior24576_manifest":
             continue
@@ -76,15 +78,36 @@ def prior_ids(paths, out):
                           dtype=str, keep_default_na=False).photo_id
         check(ids.str.fullmatch(r"\d+").all(), "Non-numeric photo IDs: " + name)
         input_sha[name] = sha(p)
+        expected_rows = {"canonical": 1032882, "source06": 8942, "source07": 27507,
+                         "previous910": 910, "prior24576": 24576}[name]
+        check(len(ids) == expected_rows and ids.is_unique,
+              "Frozen prior cohort row counts or photo ID uniqueness changed: " + name)
+        source_counts[name] = len(ids)
+        prior_count = len(known)
         known.update(ids)
-    check(len(known) == EXPECTED_PRIOR_PHOTOS,
-          "Actual photo-ID union must reconcile to 112428 original images")
+        addition_counts[name] = len(known) - prior_count
+    # Historical canonical has 1,032,882 photo IDs, whereas the published
+    # 112,428-photo measured panel selected only 50,829 of its original IDs
+    # and then added disjoint verified measured source cohorts. Excluding
+    # the FULL canonical source is a conservative superset exclusion. It is
+    # NOT itself 1,032,882 attempted RGB images, nor exact measured overlap.
+    print("ALAN_TIER09_CONSERVATIVE_PRIOR_SOURCE_EXCLUSION_BREAKDOWN",
+          json.dumps({"source_rows": source_counts, "new_unique_per_arm": addition_counts,
+                      "conservative_distinct_photo_IDs": len(known),
+                      "observed_measured_RGB_attempts": EXPECTED_PRIOR_PHOTOS},
+                     sort_keys=True), flush=True)
+    check(len(known) >= 1032882 and source_counts["canonical"] == 1032882,
+          "Full canonical source exclusion is incomplete")
     out.mkdir(parents=True)
     dest = out / "already_attempted_exact_photo_ids.csv.gz"
     write_gz(pd.DataFrame({"photo_id": sorted(known, key=int)}), dest)
     receipt = {
         "schema": SCHEMA, "purpose": "prior_attempted_photo_IDs_only",
         "known_exact_photo_ids": len(known),
+        "source_exclusion_is_conservative_superset_NOT_only_measured_RGB": True,
+        "actual_previous_RGB_attempts_source_derived": EXPECTED_PRIOR_PHOTOS,
+        "source_rows": source_counts,
+        "new_unique_per_arm": addition_counts,
         "known_photo_csv_sha256": sha(dest),
         "input_sha256": input_sha,
         "old_numeric_observation_ID_to_new_UUID_crosswalk_not_claimed": True,
@@ -155,7 +178,8 @@ def run_group(group, source_csv, source_receipt, known_csv, known_receipt,
           "Extracted original tier09 photo roster SHA drift")
     prior = json.loads(Path(known_receipt).read_text())
     check(prior["schema"] == SCHEMA and
-          prior["known_exact_photo_ids"] == EXPECTED_PRIOR_PHOTOS and
+          prior["known_exact_photo_ids"] >= 1032882 and
+          prior["source_exclusion_is_conservative_superset_NOT_only_measured_RGB"] and
           sha(known_csv) == prior["known_photo_csv_sha256"],
           "Prior attempted photo roster not source verified")
     raw = pd.read_csv(source_csv, dtype=str, compression="gzip",
@@ -179,7 +203,7 @@ def run_group(group, source_csv, source_receipt, known_csv, known_receipt,
         "source_tier": TIER,
         "source_total_moth_photos": len(raw),
         "source_fiveyear_moth_photos": count_fiveyear,
-        "exact_prior_photo_ID_overlap": int(raw.photo_id.isin(known).sum()),
+        "exact_photo_ID_overlap_with_conservative_prior_source": int(raw.photo_id.isin(known).sum()),
         "one_photo_per_UUID_island_candidates": len(result),
         "GSHHG_island_count": int(result.land_id.nunique()) if len(result) else 0,
         "candidate_csv_sha256": sha(roster),
@@ -245,9 +269,11 @@ def collect(folder, out):
         "schema": SCHEMA, "source_only": True,
         "all_source_tier09_moth_positive": EXPECTED_SOURCE_TIER09_MOTH,
         "five_target_year_tier09_moth_positive": EXPECTED_SOURCE_TIER09_FIVEYEAR,
-        "already_attempted_exact_photo_ids_union": EXPECTED_PRIOR_PHOTOS,
-        "tier09_photo_ids_overlapping_prior":
-            sum(r["exact_prior_photo_ID_overlap"] for r in receipts),
+        "already_measured_RGB_photo_attempts": EXPECTED_PRIOR_PHOTOS,
+        "conservative_prior_source_roster_sha256": receipts[0]["prior_exact_photo_ids_SHA256"],
+        "source_exclusion_superset_not_measured_overlap": True,
+        "tier09_photo_ids_overlapping_conservative_previous_source":
+            sum(r["exact_photo_ID_overlap_with_conservative_prior_source"] for r in receipts),
         "unique_original_UUID_island_candidates_after_photo_dedup": len(d),
         "source_islands": int(d.land_id.nunique()) if len(d) else 0,
         "source_site_years": int(d[["land_id", "year", "latbin", "lonbin"]].drop_duplicates().shape[0]) if len(d) else 0,
