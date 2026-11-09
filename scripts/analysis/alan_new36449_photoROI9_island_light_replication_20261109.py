@@ -186,7 +186,9 @@ def original_sameyear_environment(paths):
 
 def model_supported(cohort,environment,land,distances):
     """Fit joint area/isolation on genuinely repeated *different* sites."""
-    d=cohort.merge(environment,on=["target_id","land_id","year"],
+    dsource=cohort.copy()
+    dsource["year"]=pd.to_numeric(dsource.year,errors="raise").astype(int)
+    d= dsource.merge(environment,on=["target_id","land_id","year"],
                    how="left",validate="one_to_one",suffixes=("","_env"))
     missing=int(d.environment_complete.isna().sum())
     invalid=int(d.environment_complete.fillna(False).eq(False).sum())
