@@ -32,7 +32,7 @@ KNOWN_INPUTS = {
     "source06": ("e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd", "tier06"),
     "source07": ("7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62", "tier07"),
     "previous910": (tier08.PREVIOUS910_SHA, "tier08_910"),
-    "prior24576": (tier08.PRECOLOUR_MANIFEST_SHA if hasattr(tier08, "PRECOLOUR_MANIFEST_SHA") else "38d089278cfafd51d88ef9936e4882b9d115b2f8d0eefd0a9f4e4da33c", "tier08_24576"),
+    "prior24576": (tier08.PRECOLOUR_MANIFEST_SHA if hasattr(tier08, "PRECOLOUR_MANIFEST_SHA") else "38d089278cfafd51d88ef9936e4882b9d115b2f8d0eefd0a9f4e4f2d0e4da33c", "tier08_24576"),
 }
 SCHEMA = "ALAN_tier09_moth_original_photoIDs_GSHHG_precolour_gate_v1"
 
