@@ -68,9 +68,12 @@ def load_verified(master,previous910,canonical,source06,source07):
     known_observations=set(prev.observation_id)|set(s6.observation_id)|set(s7.observation_id)
     photo_collision=m.photo_id.isin(known_photos)
     known_uuid=m.observation_id.isin(known_observations)
-    require(not known_uuid.any(),"Signed tier08 master repeated newer source observation UUID")
-    novel=m.loc[~photo_collision].copy()
-    require(novel.photo_id.is_unique and novel.observation_id.is_unique and len(novel)>=COUNT,
+    # The initial 910 were intentionally selected FROM this same master.
+    # They MUST be skipped here, never treated as a source registry error.
+    # Tier06/07 UUID collisions are also excluded rather than remeasured.
+    novel=m.loc[~photo_collision & ~known_uuid].copy()
+    require(not novel.observation_id.isin(known_observations).any() and
+            novel.photo_id.is_unique and novel.observation_id.is_unique and len(novel)>=COUNT,
             "Insufficient exact ORIGINAL photo IDs after historical and tier06/07/910 removals")
     audit={
        "source_original_tier08_envmatched_island_photo_UUIDs":len(m),
@@ -80,7 +83,8 @@ def load_verified(master,previous910,canonical,source06,source07):
        "signed_tier06_photo_ids":len(s6),
        "signed_tier07_photo_ids":len(s7),
        "source_previous_tier08_910_photo_ids":len(prev),
-       "prior_source_observation_UUID_repeats":int(known_uuid.sum()),
+       "prior_source_observation_UUIDs_excluded":int(known_uuid.sum()),
+       "previous_910_records_expected_in_master":int(m.observation_id.isin(set(prev.observation_id)).sum()),
        "historical_observation_ID_formats_not_interchangeable_with_new_UUIDs":True,
     }
     return novel,audit
