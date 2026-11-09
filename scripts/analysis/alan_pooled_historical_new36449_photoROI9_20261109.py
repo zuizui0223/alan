@@ -251,9 +251,23 @@ def run(paths,coast,source06,source07,prior06,bulk06,pilot07,bulk07,out):
     old,byyear=old_original_photos(canonical,wcvp,paths)
     new,signed=new_original_photos(
        source06,source07,prior06,bulk06,pilot07,bulk07)
-    require(not set(old.photo_id).intersection(set(new.photo_id)) and
-            not set(old.observation_id).intersection(set(new.observation_id)),
-            "historical_main and both new photo source arms share photo/observation IDs")
+    overlap_photo=set(old.photo_id).intersection(set(new.photo_id))
+    overlap_observation=set(old.observation_id).intersection(set(new.observation_id))
+    print("ALAN_TRUE_OLD_NEW_SOURCE_ID_INTERSECTION_DIAGNOSTIC",
+          json.dumps({"old_photo_attempts":len(old),"new_photo_attempts":len(new),
+              "common_original_photo_ID_count":len(overlap_photo),
+              "common_original_observation_UUID_count":len(overlap_observation),
+              "overlap_source_photo_id_SHA_prefixes":[
+                  __import__("hashlib").sha256(x.encode()).hexdigest()[:12]
+                  for x in sorted(overlap_photo)[:4]],
+              "overlap_source_observation_id_SHA_prefixes":[
+                  __import__("hashlib").sha256(x.encode()).hexdigest()[:12]
+                  for x in sorted(overlap_observation)[:4]]},sort_keys=True),
+          flush=True)
+    require(not overlap_photo and not overlap_observation,
+            "Source-independence provenance violated: cannot silently pool " +
+            str(len(overlap_photo))+" old/new photo IDs and "+
+            str(len(overlap_observation))+" old/new UUIDs")
     # Independently validate exact old and new strict sampled site/year cells.
     old_allsites,old_sites=photo_cell_stats(old)
     new_allsites,new_sites=photo_cell_stats(new)
