@@ -47,7 +47,7 @@ jobs:
           echo 'f033661d76e07898a5c13199a55c5d0ce6e55353daa48b0058c456979e90644c  old/canonical_observations_climate.csv.gz' | sha256sum -c -
           echo 'e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd  source06/progressive_8942_new_island_source_schedule.csv.gz' | sha256sum -c -
           echo '7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62  source07/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz' | sha256sum -c -
-      - name: Freeze three 8192-photo colour-blind waves and 192 source SHA-locked bounded 128-photo shards
+      - name: Freeze after excluding expected previous 910 tier08 UUIDs; lock 3 waves and 192 source shards
         timeout-minutes: 8
         run: |
           set -euo pipefail
