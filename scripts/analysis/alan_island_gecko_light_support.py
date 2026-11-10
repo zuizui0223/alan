@@ -64,7 +64,7 @@ def load_geckos(path):
     return out
 
 
-def load_light(path, *, first_year=2019, last_year=2025,
+def load_light(path, *, first_year=2019, last_year=2024,
                min_months=6, min_coverage=0.7):
     light = defaultdict(list)
     seen = set()
@@ -177,7 +177,7 @@ def summarize(rows, flora, geckos, light, *, min_naturalized=10, min_light_years
 
 
 def run(profiles, traits, floras, geckos, light, islands, output,
-        *, min_naturalized=10, min_light_years=2, first_year=2019, last_year=2025):
+        *, min_naturalized=10, min_light_years=2, first_year=2019, last_year=2024):
     paths = [Path(p) for p in (profiles, traits, floras, geckos, light, islands)]
     output = Path(output)
     require(not output.exists(), 'Output directory already exists: refusing overwrite')
@@ -215,7 +215,7 @@ def main():
     p.add_argument('--min-naturalized', type=int, default=10)
     p.add_argument('--min-light-years', type=int, default=2)
     p.add_argument('--first-year', type=int, default=2019)
-    p.add_argument('--last-year', type=int, default=2025)
+    p.add_argument('--last-year', type=int, default=2024)
     a = p.parse_args()
     require(2012 <= a.first_year <= a.last_year <= 2026, 'Invalid VIIRS year window')
     require(a.min_naturalized >= 1 and a.min_light_years >= 1, 'Invalid support thresholds')
