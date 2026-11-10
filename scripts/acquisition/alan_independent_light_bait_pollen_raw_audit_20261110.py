@@ -5,7 +5,7 @@ DO NOT model observations without verifying original units/replicate keys.
 Source files are transient; only source checksums and schema counts public.
 """
 from __future__ import annotations
-import argparse, hashlib, io, json, zipfile
+import argparse, hashlib, io, json, re, zipfile
 from pathlib import Path
 import pandas as pd
 import requests
@@ -67,8 +67,12 @@ def run(outdir):
                     d["status"]="published_original_MD5_mismatch"
                     result["source_results"][name]=d
                     continue
-            if len(b)<150 or b[:100].lstrip().startswith(b"<!DOCTYPE"):
-                d["status"]="unexpected_html_or_empty"
+            if len(b)<150 or b[:300].lstrip().lower().startswith((b"<!doctype",b"<html")):
+                d["status"]="html_landing_or_access_page_not_original_data"
+                d["html_link_hrefs"]=re.findall(r'href=["\']([^"\']+)["\']',b.decode("utf-8","replace"))[:25]
+            elif expected_md5 and b[:2]==b"PK":
+                d["direct_workbook"]=audit_table(b,name+".xlsx")
+                d["status"]="verified_original_workbook_and_schema"
             elif zipfile.is_zipfile(io.BytesIO(b)):
                 d["archive_members"]=[]
                 with zipfile.ZipFile(io.BytesIO(b)) as z:
