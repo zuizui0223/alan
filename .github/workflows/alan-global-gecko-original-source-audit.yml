@@ -29,7 +29,7 @@ jobs:
           mkdir -p source
           gh auth status >/dev/null 2>&1 || true
         env:
-          GH_${{ github.token }}: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
       - name: Run live original gecko family and 2013-2025 georeferenced human-observer source audit
         run: |
           set -euo pipefail
@@ -50,7 +50,7 @@ jobs:
           print('ALAN_TRUE_GBIF_GECKO_SOURCE_COUNT_AUDITED',flush=True)
           PY
         env:
-          GH_${{ github.token }}: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
