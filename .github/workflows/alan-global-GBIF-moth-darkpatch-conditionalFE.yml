@@ -1,0 +1,96 @@
+name: ALAN actual worldwide 13year prior PCNL dark patches versus moth record share
+on:
+  push:
+    branches: [analysis/alan-global-moth-priorlight-20261110]
+    paths:
+      - scripts/analysis/alan_global_moth_priorPCNL_darkpatch_conditionalFE_20261110.py
+      - tests/test_alan_global_moth_darkpatch_conditionalFE_20261110.py
+      - .github/workflows/alan-global-GBIF-moth-darkpatch-conditionalFE.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  actual-globally-source-verified-dark-patch-photo-FE:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify joint-darkness FE test invariants, no fake biological observations
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5
+          python -m py_compile scripts/analysis/alan_global_moth_priorPCNL_darkpatch_conditionalFE_20261110.py
+          python -m unittest discover -s tests -p test_alan_global_moth_darkpatch_conditionalFE_20261110.py -v
+      - name: Rehydrate only exact SHA audited 2013-25 GBIF photo source + year-prior PCNL
+        run: |
+          set -euo pipefail
+          mkdir -p true-source true-darkpatch
+          gh run download 42786502922 --repo zuizui0223/alan \
+            --name alan-global-228361-islandcells-actual-13year-prior-PCNL-joined --dir true-source
+          echo '64b269dd796b9095853c371909a0dd760921df2e396636a83fc59a2d659e4852  true-source/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz' | sha256sum -c -
+      - name: Obtain real original 13-year dark patch output only after its source collector succeeds
+        timeout-minutes: 60
+        run: |
+          set -euo pipefail
+          ok=0
+          for i in $(seq 1 70); do
+            if gh run download 42788295115 --repo zuizui0223/alan \
+                 --name alan-real-worldwide-196island-62688-moth-PCNL-darkpatch-13year \
+                 --dir true-darkpatch 2>/dev/null; then
+              ok=1
+              break
+            fi
+            echo "Prior full genuine annual-PCNL source artifact unavailable at attempt $i; no synthetic source substitution"
+            sleep 35
+          done
+          test "$ok" = 1
+          test -s true-darkpatch/alan_real_global_62688_GBIF_moth_source_annual_prior_PCNl_5km_darkpatch.csv.gz
+          test -s true-darkpatch/alan_actual_global_GBIF_moth_darkpatch_all13years_receipt.json
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          rec=json.loads(Path('true-darkpatch/alan_actual_global_GBIF_moth_darkpatch_all13years_receipt.json').read_text())
+          assert rec['source_actual_global_GBIF_photo_cells']==62688
+          assert rec['year_matched_corrected_PCNL_original_rasters_2012_2024']
+          assert rec['sea_pixels_and_inland_water_masked']
+          data=Path('true-darkpatch/alan_real_global_62688_GBIF_moth_source_annual_prior_PCNl_5km_darkpatch.csv.gz')
+          assert hashlib.file_digest(open(data,'rb'),'sha256').hexdigest()==rec['source_2threshold_global_patch_CSV_SHA256']
+          print('ALAN_ACTUAL_GLOBAL_DARK_PATCH_AND_SHA_SAME_PHOTOSOURCE_VERIFIED',flush=True)
+          PY
+      - name: Estimate real within-island-year recorded moth composition and independent dark-patch topology
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_global_moth_priorPCNL_darkpatch_conditionalFE_20261110 \
+            --source true-source/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz \
+            --source-receipt true-source/ALAN_2026_11_global_fourfamily_prior_PCNL_real_source_receipt.json \
+            --patch true-darkpatch/alan_real_global_62688_GBIF_moth_source_annual_prior_PCNl_5km_darkpatch.csv.gz \
+            --patch-receipt true-darkpatch/alan_actual_global_GBIF_moth_darkpatch_all13years_receipt.json \
+            --out real-dark-model/ALAN_2026_11_true_global_dark_patch_conditional_moth_photo_source.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('real-dark-model/ALAN_2026_11_true_global_dark_patch_conditional_moth_photo_source.json').read_text())
+          assert d['all_true_original_62688_source_photo_cells']==62688
+          assert d['source_geo_island_pixels_5km_masked_sea_and_lake']
+          assert d['no_lux_at_flower_no_effective_moth_pollen_deposition']
+          assert set(d['actual_source_and_dark_buffer_threshold_outputs'])=={'0.0','3.0'}
+          print('ALAN_GENUINE_13YEAR_GLOBAL_DARK_PATCH_NOT_POLLINATION',flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-real-global-196island-priorPCNL-5km-darkpatch-independent-moth-photo-source-FE
+          path: real-dark-model/ALAN_2026_11_true_global_dark_patch_conditional_moth_photo_source.json
+          retention-days: 90
+          if-no-files-found: warn

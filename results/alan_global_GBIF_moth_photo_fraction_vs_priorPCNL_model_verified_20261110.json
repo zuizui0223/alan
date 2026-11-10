@@ -1,0 +1,224 @@
+{
+  "area_modifier": {
+    "NOT_causal_moth_abundance_or_effective_night_pollination": true,
+    "actual_GSHHG_island_cluster_covariance": true,
+    "adjusting_actual_recorded_four_family_source_opportunity": true,
+    "independent_recording_effort_and_horticulture_unmeasured": true,
+    "interaction_with_source_island_log10_area": true,
+    "island_year_FEs": 1083,
+    "main_exposure": "log1p(annual PCNL source satellite pixel year-before recorded insects)",
+    "observed_islands": 196,
+    "original_source_sample_size": 62688,
+    "predictor_coefficients": {
+      "centre_lat_c": {
+        "beta": -0.7355165085650391,
+        "cluster_island_SE": 1.0169029870953066,
+        "nominal_95CI": [
+          -2.741056699458729,
+          1.270023682328651
+        ],
+        "nominal_two_sided_unadjusted_p": 0.47036797929109164
+      },
+      "light_by_log10_area_c": {
+        "beta": -0.3051531620433442,
+        "cluster_island_SE": 0.46998063821423786,
+        "nominal_95CI": [
+          -1.2320508807459656,
+          0.6217445566592773
+        ],
+        "nominal_two_sided_unadjusted_p": 0.516915752964189
+      },
+      "log_all_fourfamily_observations": {
+        "beta": 6.720830394131986,
+        "cluster_island_SE": 0.8857455631225394,
+        "nominal_95CI": [
+          4.9739594061509775,
+          8.467701382112994
+        ],
+        "nominal_two_sided_unadjusted_p": 1.3053353135224163e-12
+      },
+      "prior_log1p_PCNL": {
+        "beta": -0.7399863996511548,
+        "cluster_island_SE": 0.6907263972408977,
+        "nominal_95CI": [
+          -2.102239798605906,
+          0.6222669993035964
+        ],
+        "nominal_two_sided_unadjusted_p": 0.2853514106273389
+      }
+    },
+    "response": "recorded_moth_family_share_pp",
+    "sampling_supported_by_both_moth_and_butterfly_record_categories": true,
+    "source_support": {
+      "no_missing_moth_source_claim_treated_as_biological_absence": true,
+      "observed_true_island_year_fixed_effects": 1083,
+      "observed_true_source_islands_in_fit": 196,
+      "same_island_actual_year_groups_with_2plus_geo_sites": 1083,
+      "source_cell_year_before_light_positivity": 201990,
+      "source_conditional_on_both_recorded_families": true,
+      "source_min_guild_observation_records": 5,
+      "supported_independent_islands": 196,
+      "supported_original_site_years": 62688,
+      "true_siteyear_rows_after_source_controls": 62688,
+      "year_range": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    },
+    "status": "estimated_exploratory_observation_composition_only",
+    "true_island_year_fixed_intercepts": true,
+    "weights": "island_equal",
+    "within_island_year_weighted_R2": 0.07223396663302495
+  },
+  "negative_control": {
+    "NOT_causal_moth_abundance_or_effective_night_pollination": true,
+    "actual_GSHHG_island_cluster_covariance": true,
+    "adjusting_actual_recorded_four_family_source_opportunity": false,
+    "independent_recording_effort_and_horticulture_unmeasured": true,
+    "interaction_with_source_island_log10_area": false,
+    "island_year_FEs": 1083,
+    "main_exposure": "log1p(annual PCNL source satellite pixel year-before recorded insects)",
+    "observed_islands": 196,
+    "original_source_sample_size": 62688,
+    "predictor_coefficients": {
+      "centre_lat_c": {
+        "beta": 0.015302784136656353,
+        "cluster_island_SE": 0.039153126350683,
+        "nominal_95CI": [
+          -0.06191517027188369,
+          0.0925207385451964
+        ],
+        "nominal_two_sided_unadjusted_p": 0.6963388565726475
+      },
+      "prior_log1p_PCNL": {
+        "beta": 0.01677856164309895,
+        "cluster_island_SE": 0.021966091724142277,
+        "nominal_95CI": [
+          -0.026543053445731327,
+          0.06010017673192923
+        ],
+        "nominal_two_sided_unadjusted_p": 0.44588629956047354
+      }
+    },
+    "response": "log_all_fourfamily_observations",
+    "sampling_supported_by_both_moth_and_butterfly_record_categories": true,
+    "source_support": {
+      "no_missing_moth_source_claim_treated_as_biological_absence": true,
+      "observed_true_island_year_fixed_effects": 1083,
+      "observed_true_source_islands_in_fit": 196,
+      "same_island_actual_year_groups_with_2plus_geo_sites": 1083,
+      "source_cell_year_before_light_positivity": 201990,
+      "source_conditional_on_both_recorded_families": true,
+      "source_min_guild_observation_records": 5,
+      "supported_independent_islands": 196,
+      "supported_original_site_years": 62688,
+      "true_siteyear_rows_after_source_controls": 62688,
+      "year_range": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    },
+    "status": "estimated_exploratory_observation_composition_only",
+    "true_island_year_fixed_intercepts": true,
+    "weights": "island_equal",
+    "within_island_year_weighted_R2": 0.0006795396571973589
+  },
+  "primary": {
+    "NOT_causal_moth_abundance_or_effective_night_pollination": true,
+    "actual_GSHHG_island_cluster_covariance": true,
+    "adjusting_actual_recorded_four_family_source_opportunity": true,
+    "independent_recording_effort_and_horticulture_unmeasured": true,
+    "interaction_with_source_island_log10_area": false,
+    "island_year_FEs": 1083,
+    "main_exposure": "log1p(annual PCNL source satellite pixel year-before recorded insects)",
+    "observed_islands": 196,
+    "original_source_sample_size": 62688,
+    "predictor_coefficients": {
+      "centre_lat_c": {
+        "beta": -0.7030205479397593,
+        "cluster_island_SE": 1.0209613565366802,
+        "nominal_95CI": [
+          -2.71656467148726,
+          1.3105235756077414
+        ],
+        "nominal_two_sided_unadjusted_p": 0.49190171193597854
+      },
+      "log_all_fourfamily_observations": {
+        "beta": 6.719686567624911,
+        "cluster_island_SE": 0.8836005662190838,
+        "nominal_95CI": [
+          4.977045951226851,
+          8.462327184022971
+        ],
+        "nominal_two_sided_unadjusted_p": 1.1786951742628468e-12
+      },
+      "prior_log1p_PCNL": {
+        "beta": -0.8650919160682399,
+        "cluster_island_SE": 0.5621126947251037,
+        "nominal_95CI": [
+          -1.9736928498730437,
+          0.24350901773656386
+        ],
+        "nominal_two_sided_unadjusted_p": 0.1254251897110097
+      }
+    },
+    "response": "recorded_moth_family_share_pp",
+    "sampling_supported_by_both_moth_and_butterfly_record_categories": true,
+    "source_support": {
+      "no_missing_moth_source_claim_treated_as_biological_absence": true,
+      "observed_true_island_year_fixed_effects": 1083,
+      "observed_true_source_islands_in_fit": 196,
+      "same_island_actual_year_groups_with_2plus_geo_sites": 1083,
+      "source_cell_year_before_light_positivity": 201990,
+      "source_conditional_on_both_recorded_families": true,
+      "source_min_guild_observation_records": 5,
+      "supported_independent_islands": 196,
+      "supported_original_site_years": 62688,
+      "true_siteyear_rows_after_source_controls": 62688,
+      "year_range": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    },
+    "status": "estimated_exploratory_observation_composition_only",
+    "true_island_year_fixed_intercepts": true,
+    "weights": "island_equal",
+    "within_island_year_weighted_R2": 0.07183082514339867
+  },
+  "github_actions": "https://github.com/zuizui0223/alan/actions/runs/42787302661",
+  "source_artifact": "https://github.com/zuizui0223/alan/actions/runs/42787302661/artifacts/13748959042",
+  "caution": "GBIF photographic source composition only; not actual moth abundance, night-pollination or plant reproductive success"
+}

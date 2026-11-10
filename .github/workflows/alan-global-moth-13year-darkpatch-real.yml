@@ -1,0 +1,124 @@
+name: ALAN global moth and butterfly 196-island true 13year PCNL dark refuge
+on:
+  push:
+    branches: [analysis/alan-global-moth-priorlight-20261110]
+    paths:
+      - scripts/analysis/alan_global_trueGBIF_PCNl_13year_darkpatch_20261110.py
+      - .github/workflows/alan-global-moth-13year-darkpatch-real.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-global-13year-darkmosaic-shard:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        shard: [0, 1, 2, 3]
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      GDAL_CACHEMAX: '128'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Restore previously signed global GBIF, year-preceding PCNL and coast source
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5
+          python -m py_compile scripts/analysis/alan_global_trueGBIF_PCNl_13year_darkpatch_20261110.py
+          mkdir -p original/GBIF original/coast
+          gh run download 42786502922 --repo zuizui0223/alan \
+            --name alan-global-228361-islandcells-actual-13year-prior-PCNL-joined --dir original/GBIF
+          gh run download 42175243391 --repo zuizui0223/mois \
+            --name mois-GSHHG-2.3.7-high-L1-L2-SHA-source-no-images --dir original/coast
+          echo '64b269dd796b9095853c371909a0dd760921df2e396636a83fc59a2d659e4852  original/GBIF/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz' | sha256sum -c -
+      - name: Genuine previous-year 5km coastline-masked dark land patch connectivity
+        timeout-minutes: 110
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_global_trueGBIF_PCNl_13year_darkpatch_20261110 worker \
+            --source original/GBIF/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz \
+            --receipt original/GBIF/ALAN_2026_11_global_fourfamily_prior_PCNL_real_source_receipt.json \
+            --coast original/coast --shard ${{ matrix.shard }} --out source-darkpatch
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=next(Path('source-darkpatch').glob('alan_true_worldwide_GBIF_PCNl_darkpatch_yearshard_*.json'))
+          d=json.loads(p.read_text())
+          assert d['no_500m_2024_future_light_backprojection']
+          assert d['source_5km_landpatch_metric_success']>0
+          assert len(d['source_year_MD5_receipts']) in (3,4)
+          print('ALAN_ACTUAL_GLOBAL_PREYEAR_DARK_PATCH_SOURCE_SHARD_SUCCESS',
+                json.dumps({'shard':d['shard'],
+                  'true_source_photo_sites':d['source_site_years_processed'],
+                  'source_valid_geodesic_darkpatches':d['source_5km_landpatch_metric_success']},
+                  sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-global-GBIF-13year-PCNL-darkmosaic-part-${{ matrix.shard }}
+          path: |
+            source-darkpatch/*.csv.gz
+            source-darkpatch/*.json
+          retention-days: 90
+          if-no-files-found: warn
+  real-global-darkpatch-collector:
+    needs: original-global-13year-darkmosaic-shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5
+          mkdir -p original trueparts
+          gh run download 42786502922 --repo zuizui0223/alan \
+            --name alan-global-228361-islandcells-actual-13year-prior-PCNL-joined --dir original
+          gh run download "$GITHUB_RUN_ID" --repo zuizui0223/alan \
+            --pattern 'alan-global-GBIF-13year-PCNL-darkmosaic-part-*' --dir pieces
+          test "$(find pieces -name 'alan_true_worldwide_GBIF_PCNl_darkpatch_yearshard_?.json' | wc -l)" -eq 4
+          test "$(find pieces -name 'alan_true_worldwide_GBIF_PCNl_darkpatch_yearshard_?.csv.gz' | wc -l)" -eq 4
+          find pieces -name 'alan_true_worldwide_GBIF_PCNl_darkpatch_yearshard_?.json' -exec cp {} trueparts/ \;
+          find pieces -name 'alan_true_worldwide_GBIF_PCNl_darkpatch_yearshard_?.csv.gz' -exec cp {} trueparts/ \;
+          python -m scripts.analysis.alan_global_trueGBIF_PCNl_13year_darkpatch_20261110 collect \
+            --source original/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz \
+            --receipt original/ALAN_2026_11_global_fourfamily_prior_PCNL_real_source_receipt.json \
+            --parts trueparts --out true-global-darkpatch
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('true-global-darkpatch/alan_actual_global_GBIF_moth_darkpatch_all13years_receipt.json')
+          d=json.loads(p.read_text())
+          assert d['source_actual_global_GBIF_photo_cells']==62688
+          assert d['source_original_islands']==196
+          assert d['year_matched_corrected_PCNL_original_rasters_2012_2024']
+          assert d['sea_pixels_and_inland_water_masked']
+          print('ALAN_ALL13YEAR_REAL_WORLDWIDE_MOTH_DARKPATCH',
+                json.dumps(d,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-real-worldwide-196island-62688-moth-PCNL-darkpatch-13year
+          path: true-global-darkpatch/
+          retention-days: 90
+          if-no-files-found: warn

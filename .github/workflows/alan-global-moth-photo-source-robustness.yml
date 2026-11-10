@@ -1,0 +1,65 @@
+name: ALAN true global moth vs ALAN effort, island-size, year and observation-source stress tests
+on:
+  push:
+    branches: [analysis/alan-global-moth-priorlight-20261110]
+    paths:
+      - scripts/analysis/alan_global_GBIF_priorPCNL_photo_robustness_20261110.py
+      - .github/workflows/alan-global-moth-photo-source-robustness.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  true-global-196island-source-bias-stress:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 42
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reconcile published main source before any robustness
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5
+          python -m py_compile scripts/analysis/alan_global_GBIF_priorPCNL_photo_robustness_20261110.py
+          mkdir -p true-source true-model
+          gh run download 42786502922 --repo zuizui0223/alan \
+            --name alan-global-228361-islandcells-actual-13year-prior-PCNL-joined --dir true-source
+          gh run download 42787302661 --repo zuizui0223/alan \
+            --name alan-real-worldwide-island-moth-butterfly-record-share-13year-PCNL-model --dir true-model
+          test -s true-model/world_GBIF_four_family_true_photorecord_share_vs_priorPCNL_20261110.json
+          echo '64b269dd796b9095853c371909a0dd760921df2e396636a83fc59a2d659e4852  true-source/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz' | sha256sum -c -
+      - name: Compare true same-year island photo-record contrast across source-bias alternatives
+        timeout-minutes: 33
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_global_GBIF_priorPCNL_photo_robustness_20261110 \
+            --source true-source/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz \
+            --receipt true-source/ALAN_2026_11_global_fourfamily_prior_PCNL_real_source_receipt.json \
+            --main-model true-model/world_GBIF_four_family_true_photorecord_share_vs_priorPCNL_20261110.json \
+            --out diagnostic/alan_worldwide_moth_photo_share_PCNL_weighting_era_popularity_tests.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('diagnostic/alan_worldwide_moth_photo_share_PCNL_weighting_era_popularity_tests.json').read_text())
+          assert a['full_source_has_228361_original_GSHHG_islandyearcells']
+          assert len(a['restricted_observation_years'])==3
+          assert len(a['most_source_popular_island_omissions'])==5
+          assert a['all_analyses_are_postexploratory_sensitivity_not_confirmatory']
+          print('ALAN_GBIF_TRUE_GLOBAL_SOURCE_ROBUSTNESS_VERIFIED',flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-global-island-original-moth-photosource-prior-PCNL-robustness
+          path: diagnostic/alan_worldwide_moth_photo_share_PCNL_weighting_era_popularity_tests.json
+          retention-days: 90
+          if-no-files-found: warn
