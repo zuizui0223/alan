@@ -82,6 +82,7 @@ jobs:
           c=a['exact_common_species_contributions']
           assert abs(c['original']['beta_pp']-c['top1']['beta_pp']-c['rest']['beta_pp'])<1.e-8
           assert abs(c['top1']['beta_pp']-0.6318209378927077)<0.0001
+          assert abs(c['top1_minus_rest']['beta_pp']-0.8064135969726045)<0.0001
           print('ALAN_REAL_93M_GENUS_POPULARITY_BIAS_PROVENANCE_PASS',
              json.dumps({'source_sites':a['matched_site_years'],'islands':a['matched_source_islands'],
                'genus_adjusted':m['moth_genus_FE'],
