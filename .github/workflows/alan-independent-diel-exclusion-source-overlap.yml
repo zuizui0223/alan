@@ -1,0 +1,95 @@
+name: ALAN independent experimental diel pollination study overlap with signed 93m WCVP island flora
+on:
+  push:
+    branches: [analysis/alan-experimental-diel-pollination-evidence-audit-20261110]
+    paths:
+      - scripts/analysis/alan_diel_exclusion_experimental_source_overlap_20261110.py
+      - tests/test_alan_diel_exclusion_experimental_source_overlap_20261110.py
+      - .github/workflows/alan-independent-diel-exclusion-source-overlap.yml
+  pull_request:
+    branches: [analysis/alan-real-wcvp-tdwg3-regional-origin-20261110]
+    paths:
+      - scripts/analysis/alan_diel_exclusion_experimental_source_overlap_20261110.py
+      - tests/test_alan_diel_exclusion_experimental_source_overlap_20261110.py
+      - .github/workflows/alan-independent-diel-exclusion-source-overlap.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-contracts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3
+          python -m py_compile scripts/analysis/alan_diel_exclusion_experimental_source_overlap_20261110.py
+          python -m unittest discover -s tests -p test_alan_diel_exclusion_experimental_source_overlap_20261110.py -v
+  real-original-diel-experiment-flora-overlap:
+    needs: source-contracts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Fetch original independently published day/night exclusion studies from source Git object identities
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3
+          git clone -q --depth 1 https://github.com/liamkendall/bumble-bat.git original_diel
+          test "$(git -C original_diel hash-object data/DvN_LiteratureDataClean_2024-09-13.csv)" = 39a82d966afcdde670603add1c881ace8791ffe9
+          test "$(git -C original_diel hash-object data/SppTraitData_clean.csv)" = 18381e550a7e405fe4f198909f0bb381bbecf1e0
+          test "$(wc -l < original_diel/data/DvN_LiteratureDataClean_2024-09-13.csv)" -gt 1600
+      - name: Restore 14,330 accepted plant source species, original 33-year light and 16 signed photo-group taxon matrices
+        timeout-minutes: 20
+        run: |
+          set -euo pipefail
+          mkdir -p input/accepted input/pcnl batches groups
+          gh run download 42736476655 --repo zuizui0223/alan --name alan-real93m-genus-and-ubiquitous-species-bias-audit --dir input/accepted
+          echo '198057897839bfa0657a3c3c3d9ce2ed4904041c350e05d5c61ced0dd5f5cd3d  input/accepted/accepted_species_source_ubiquity.csv' | sha256sum -c -
+          gh run download 42624285048 --repo zuizui0223/alan --name alan-full93m-actual-PCNL1992-2024-moth-positive-macro --dir input/pcnl
+          echo '440a8313d71168e0a4dfd2f41a7bef45623abb068b07e3282026f1c35dccbd2c  input/pcnl/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz' | sha256sum -c -
+          gh run download 42616279235 --repo zuizui0223/alan --pattern 'alan-93m-fullflora-moth-island-group-*' --dir batches
+          test "$(find batches -name 'allflora-island-group-??.sqlite' | wc -l)" -eq 16
+          find batches -name 'allflora-island-group-??.sqlite' -exec cp {} groups/ \;
+      - name: Count exact author-experimental species support in original 562 island×ALAN source cohort
+        timeout-minutes: 35
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_diel_exclusion_experimental_source_overlap_20261110 \
+            --study original_diel/data/DvN_LiteratureDataClean_2024-09-13.csv \
+            --traits original_diel/data/SppTraitData_clean.csv \
+            --accepted input/accepted/accepted_species_source_ubiquity.csv \
+            --sites input/pcnl/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --groups groups --out overlap
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('overlap/diel_exclusion_experiment_ALAN_source_overlap.json').read_text())
+          assert r['schema']=='ALAN_diel_exclusion_experiment_plant_function_source_overlap_v1'
+          assert r['experiment_source']['original_clean_study_rows']==1652
+          assert r['experiment_source']['original_clean_trait_rows']==142
+          assert r['experiment_source']['raw_study_species_benefit_metric_day_night_pairs']==262
+          assert r['ALAN_reference_islands']==562
+          assert r['night_pollination_exclusion_cannot_assign_moth_identity']
+          assert r['exact_WCVP_name_matches_only_synonyms_not_auto_reconciled']
+          print('ALAN_REAL_EXPERIMENTAL_NIGHT_POLLINATION_FLORA_OVERLAP',
+                json.dumps(r,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-real93m-daynight-exclusion-independent-experiment-species-support
+          path: overlap/
+          retention-days: 90
+          if-no-files-found: warn
