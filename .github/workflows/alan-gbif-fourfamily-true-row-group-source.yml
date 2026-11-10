@@ -1,0 +1,48 @@
+name: ALAN global GBIF actual moth butterfly Parquet rowgroup technical validation
+on:
+  push:
+    branches: [analysis/alan-global-moth-source-census-20261110]
+    paths:
+      - scripts/acquisition/alan_gbif_202608_fourfamily_rowgroup_gate.py
+      - .github/workflows/alan-gbif-fourfamily-true-row-group-source.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  real-original-fourfamily-parquet-rows:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q pyarrow==21.0.0 pandas==2.2.3
+          python -m py_compile scripts/acquisition/alan_gbif_202608_fourfamily_rowgroup_gate.py
+          mkdir -p source
+          gh run download 42780706666 --repo zuizui0223/alan \
+            --name alan-authentic-worldwide-lepidoptera-202608-Parquet-rowgroup-schemas \
+            --dir source
+          python -m scripts.acquisition.alan_gbif_202608_fourfamily_rowgroup_gate \
+            --manifest source/gbif_2026_08_worldwide_moth_source_parquet_footer.json \
+            --out audit/GBIF_202608_real_moth_butterfly_fourfamily_schema.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('audit/GBIF_202608_real_moth_butterfly_fourfamily_schema.json').read_text())
+          assert len(a['actual_family_source_technical_gates'])==4
+          assert a['GBIF_source_DOI']=='10.15468/dl.8yrbe7'
+          print('ALAN_ACTUAL_GLOBAL_GBIF_ROW_SOURCE_TECHNICAL_READ_SUCCEEDED',flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-real-global-fourfamily-moth-butterfly-Parquet-rowgroup-schema
+          path: audit/GBIF_202608_real_moth_butterfly_fourfamily_schema.json
+          retention-days: 90
+          if-no-files-found: warn
