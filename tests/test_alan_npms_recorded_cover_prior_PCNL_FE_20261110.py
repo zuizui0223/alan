@@ -21,7 +21,7 @@ class NPMSTruePlantCoverFETests(unittest.TestCase):
                     light=float(light_base+.05*(year-2018)+.015*(plot%3)*(year-2018))
                     site_baseline=18+(plot%7)+(ord(species[0])-65)*2
                     year_effect=(year-2018)*(ord(species[0])-65)*0.22
-                    doy=float(120+plot%10+year%5)
+                    doy=float(120+plot%10+year%5+((plot*year)%7))
                     cov=float(site_baseline+1.8*light+year_effect+
                               .06*(doy-120)+rng.normal(0,.025))
                     rows.append(dict(location_id=str(plot),
