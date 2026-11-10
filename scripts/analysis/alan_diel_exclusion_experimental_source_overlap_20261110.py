@@ -49,8 +49,7 @@ def git_blob_sha(path):
 
 
 def normalize_name(series):
-    return (series.fillna("").astype(str).str.strip().str.replace(
-        r"\s+"," ",regex=True))
+    return series.fillna("").astype(str).str.split().str.join(" ")
 
 
 def experimental_records(trait_file,study_file):
@@ -77,9 +76,10 @@ def experimental_records(trait_file,study_file):
     # treatment arms; it is an evidence opportunity, NOT an effect direction.
     group_cols=["study_ID","species","treatment_effectiveness_metric"]
     groups=raw.groupby(group_cols,observed=True).treatment_condition.agg(
-        lambda v:set(v))
+        lambda v:tuple(sorted(set(v))))
     both=groups.map(lambda z:{"day pollination","night pollination"}<=z)
-    require(bool(both.all()),"Original day/night study treatment arms incomplete")
+    require(bool(both.all()) and len(groups)==262,
+            "Original 262 paired day/night study×plant×metric groups incomplete")
     study_count=raw.groupby("species",observed=True).study_ID.nunique().rename(
         "n_experimental_studies")
     names=pd.DataFrame({"species":sorted(set(raw.species)|set(trait.species))})
@@ -164,16 +164,15 @@ def source_match(accepted_csv,sites_csv,groups,experiment):
         n_source_site_years=("year","size"),
         n_GloBI_moth_positive=("gloBI_moth_positive","sum"),
         n_GloBI_butterfly_positive=("gloBI_butterfly_positive","sum")).reset_index()
-    return joined.merge(support,on="species",how="left",validate="one_to_one")
+    return joined.merge(support,on="species",how="left",validate="one_to_one"),int(found.island.nunique())
 
 
 def run(study,traits,accepted,sites,groups,out):
     candidates,meta=experimental_records(traits,study)
-    joined=source_match(accepted,sites,groups,candidates)
+    joined,n_distinct_islands=source_match(accepted,sites,groups,candidates)
     mask=joined.source_matched_WCVP_accepted & joined.has_day_night_exclusion_study
     matched=joined.loc[mask]
     matched=matched.loc[matched.n_source_site_years.notna()]
-    required=True
     result={
         "schema":SCHEMA,"experiment_source":meta,
         "ALAN_photo_original_source_IDs":93209351,
@@ -182,8 +181,8 @@ def run(study,traits,accepted,sites,groups,out):
         "experimental_raw_names_total":len(joined),
         "experimental_raw_study_names_exact_in_WCVP_accepted":int(mask.sum()),
         "experimental_raw_study_names_with_genuine_ALAN_island_photo_sites":len(matched),
-        "experimental_raw_study_matched_distinct_islands":int(
-            len(set().union(*[set()])) if matched.empty else
+        "experimental_raw_study_matched_distinct_islands":int(n_distinct_islands),
+        "experimental_raw_study_matched_species_island_incidence_sum":int(
             pd.to_numeric(matched.n_islands,errors="coerce").sum()),
         "experimental_source_photo_site_species_units":int(
             matched.n_source_site_years.fillna(0).sum()),
