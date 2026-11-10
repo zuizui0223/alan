@@ -16,8 +16,8 @@ class GeckoScinkPhotoLightNicheSafety(unittest.TestCase):
             for site in range(6):
                 illum=.1+.16*site+rng.normal(0,.012)
                 pct=30.+(2.+rng.normal(0,.01))*illum+rng.normal(0,.06)
-                n=15
-                # User-supplied variables here are purely fictional unit-test values.
+                n=int(rng.integers(12,30))
+                # All numeric fixture values are synthetic test-only data.
                 gecko=int(np.clip(round(n*pct/100),1,n-1))
                 out.append({"island":str(island),"year":2022,
                             "latbin":100+island,"lonbin":50+site,
@@ -36,7 +36,7 @@ class GeckoScinkPhotoLightNicheSafety(unittest.TestCase):
     def test_genuine_both_photo_categories_required_same_island_year(self):
         x=self.example()
         x.loc[x.island.eq("0"),"gecko_source_photo_count"]=0
-        x.loc[x.island.eq("0"),"scink_source_photo_count"]=15
+        x.loc[x.island.eq("0"),"scink_source_photo_count"]=x.loc[x.island.eq("0"),"original_total_reptile_photo_source_events"]
         z,s=support_coobserved(x)
         self.assertEqual(s["source_retained_independent_islands"],54)
         self.assertFalse(z.island.eq("0").any())
