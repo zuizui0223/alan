@@ -11,7 +11,7 @@ import pandas as pd
 import requests
 
 RESOURCES=(
- ("macgregor_2016_eidc","https://data-package.ceh.ac.uk/data/31cc5cec-d33b-4dd6-a932-061ff947e708",None),
+ ("macgregor_2016_eidc","https://data-package.ceh.ac.uk/data/31cc5cec-d33b-4dd6-a932-061ff947e708.zip",None),
  ("grenis_2023_zenodo","https://zenodo.org/records/8349596/files/Grenis_Moth%20Species%20Compiled.xlsx?download=1","896366aabd01efa61fbea68bd20e1bbb"),
 )
 SOURCE_DOCS={
