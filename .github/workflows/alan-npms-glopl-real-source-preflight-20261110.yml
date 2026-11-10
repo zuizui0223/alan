@@ -111,7 +111,14 @@ jobs:
           curl -L --fail --show-error --retry 3 --max-time 850 \
             https://data-package.ceh.ac.uk/data/64caeed0-160f-48f1-b182-cd24a1d7dca8.zip \
             -o source/NPMS_2015_2025.zip
-          echo '7f6e5f7fb6ae12eaf0b4e411ff5c781dff2850adb28b7855c8473a378e3af15d  source/NPMS_2015_2025.zip' | sha256sum -c -
+          python - <<'PY'
+          import zipfile
+          f='source/NPMS_2015_2025.zip'
+          assert zipfile.is_zipfile(f)
+          with zipfile.ZipFile(f) as z:
+              assert z.testzip() is None
+          print('EIDC_NPMS_ZIP_WRAPPER_DYNAMIC_SOURCE_MEMBER_CHECKS_FOLLOW')
+          PY
           curl -L --fail --show-error --retry 3 --max-time 300 \
             https://raw.githubusercontent.com/idiv-biodiversity/pollen-limitation-data-descriptor/abbe193770981b2c61713e75a0f01e004bdded8e/Output/GloPL.csv \
             -o source/GloPL_original.csv
