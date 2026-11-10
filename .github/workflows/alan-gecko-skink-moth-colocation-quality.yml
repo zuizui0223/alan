@@ -44,8 +44,10 @@ jobs:
           x=json.loads(Path('support/ALAN_gecko_skink_moth_true_samecell_and_islandyear_overlap.json').read_text())
           assert x['total_authenticated_global_moth_source_cell_years']==62688
           assert x['total_source_independent_original_islands']==196
-          assert x['same_year_gecko_photographed_moth_source_cell_years']==2758
-          assert x['same_year_skink_photographed_moth_source_cell_years']==2609
+          assert x['same_year_gecko_photographed_moth_source_cell_years']==2787
+          assert x['same_year_skink_photographed_moth_source_cell_years']==2659
+          assert x['same_cell_year_Gecko_and_Scincidae_photographed_together']==1260
+          assert x['source_eligible_independent_islands_with_both_lizard_guilds_and_light_gradient']==50
           assert x['no_gecko_photograph_not_biological_absence']
           assert x['no_observed_direct_gecko_predation_moth_diet_or_effective_pollination']
           print('ALAN_SOURCE_REAL_GECKO_SKINK_SAMEYEAR_POSITIVITY_GATE',json.dumps(x,sort_keys=True),flush=True)
