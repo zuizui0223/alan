@@ -1,0 +1,125 @@
+name: ALAN real 93m PCNL negative controls for documented moth vs butterfly guilds
+on:
+  pull_request:
+    branches: [analysis/alan-full93m-pcnl-within-island-macro-model-20261109]
+    paths:
+      - scripts/analysis/alan_globi_negative_controls_real_20261110.py
+      - scripts/analysis/alan_globi_inaturalist_source_independence_20261110.py
+      - tests/test_alan_globi_negative_controls_real_20261110.py
+      - tests/test_alan_globi_inaturalist_source_independence_20261110.py
+      - .github/workflows/alan-globi-real-negative-controls-20261110.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  synthetic-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2
+          python -m py_compile scripts/analysis/alan_globi_negative_controls_real_20261110.py scripts/analysis/alan_globi_inaturalist_source_independence_20261110.py
+          python -m unittest discover -s tests -p test_alan_globi_negative_controls_real_20261110.py -v
+          python -m unittest discover -s tests -p test_alan_globi_inaturalist_source_independence_20261110.py -v
+  real-original-guild-tests:
+    needs: synthetic-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 95
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Recover original immutable data and source-denominator photo-site population
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2
+          mkdir -p src/current src/eligible groupfiles/source orig_group
+          gh run download 42624285048 --repo zuizui0223/alan --name alan-full93m-actual-PCNL1992-2024-moth-positive-macro --dir src/current
+          test -s src/current/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz
+          echo '440a8313d71168e0a4dfd2f41a7bef45623abb068b07e3282026f1c35dccbd2c  src/current/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz' | sha256sum -c -
+          gh run download 42617624954 --repo zuizui0223/alan --name alan-full93m-moth-fullflora-33year-PCNL-prior-light --dir src/eligible
+          echo 'e7800476ae6d35acb9ef71525f32521596f884733e2e8ee9f87fda7acb8e9eab  src/eligible/valid_original_photo_site_years.csv' | sha256sum -c -
+          gh run download 42616279235 --repo zuizui0223/alan --pattern 'alan-93m-fullflora-moth-island-group-*' --dir groupfiles/source
+          test "$(find groupfiles/source -name 'allflora-island-group-??.sqlite' | wc -l)" -eq 16
+          find groupfiles/source -name 'allflora-island-group-??.sqlite' -exec cp {} orig_group/ \;
+      - name: Reconstruct independent positive-source moth/butterfly documentation overlap and execute paired negative controls
+        timeout-minutes: 44
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_real_93m_globi_guild_overlap_20261109 \
+            --groups orig_group \
+            --source src/eligible/valid_original_photo_site_years.csv \
+            --out true_guild_evidence
+          python -m scripts.analysis.alan_globi_negative_controls_real_20261110 \
+            --pcnl src/current/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --guild true_guild_evidence/source_guild_overlap_site_year.csv.gz \
+            --out negative_control_results
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          j=json.loads(Path('negative_control_results/ALAN_real_full93m_GloBI_negative_controls_20261110.json').read_text())
+          x=j['results']
+          b=lambda k:x[k]['models']['island_equal']['beta_pp']
+          assert j['original_within_island_sites']==77647
+          assert j['original_within_island_islands']==562
+          assert abs(b('moth_positive')-.44933020729608203)<1e-6
+          assert abs(b('any_moth_or_butterfly')-b('moth_positive')-
+                     b('any_minus_moth'))<1e-9
+          assert abs(b('butterfly_positive')-b('moth_positive')-
+                     b('butterfly_minus_moth'))<1e-9
+          print('ALAN_REAL_NEGATIVE_CONTROLS_SOURCE_AUDITED',json.dumps(
+              {'islands':562,'site_years':77647,
+               'moth':x['moth_positive']['models']['island_equal'],
+               'butterfly':x['butterfly_positive']['models']['island_equal'],
+               'any_moth_butterfly':x['any_moth_or_butterfly']['models']['island_equal'],
+               'any_minus_moth_paired':x['any_minus_moth']['models']['island_equal']},
+              sort_keys=True),flush=True)
+          PY
+      - name: Remove GloBI claims sourced exclusively from iNaturalist and independently refit original moth association
+        timeout-minutes: 35
+        run: |
+          set -euo pipefail
+          mkdir -p src/globi
+          gh run download 41976552977 --repo zuizui0223/mois --name mois-ALAN-GloBI-stage2-actual-records-2019-2024-supported-source --dir src/globi
+          echo 'a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994  src/globi/GloBI_stage2_signed_extension.csv.gz' | sha256sum -c -
+          python -m scripts.analysis.alan_globi_inaturalist_source_independence_20261110 \
+            --pcnl src/current/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --globi src/globi/GloBI_stage2_signed_extension.csv.gz \
+            --groups orig_group --out non_inat_source_results
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('non_inat_source_results/ALAN_original_GloBI_iNaturalist_source_removed_20261110.json').read_text())
+          p=x['estimates']
+          b=lambda label:p[label]['models']['island_equal']['beta_pp']
+          assert x['original_within_island_islands']==562
+          assert x['original_within_island_site_years']==77647
+          assert x['source_GloBI']['GloBI_iNaturalist_title_claims']==26558
+          assert abs(b('moth_global')-0.44933020729608203)<1e-6
+          assert abs(b('moth_external')-0.4506432265544589)<1e-6
+          assert abs(b('moth_global')-b('moth_external')-b('moth_inat_only'))<1e-8
+          print('ALAN_NON_INAT_SOURCE_PCNL_REAL_RESULT',
+            json.dumps({'global_moth':p['moth_global']['models']['island_equal'],
+                        'external_moth':p['moth_external']['models']['island_equal'],
+                        'iNaturalist_only_moth':p['moth_inat_only']['models']['island_equal'],
+                        'source_record_count':x['source_GloBI']},sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-full93m-GloBI-moth-butterfly-negative-controls
+          path: |
+            negative_control_results/
+            true_guild_evidence/source_guild_overlap_result.json
+            non_inat_source_results/
+          retention-days: 90
+          if-no-files-found: warn
