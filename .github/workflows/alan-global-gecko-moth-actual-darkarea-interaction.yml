@@ -1,0 +1,70 @@
+name: ALAN global real-gecko documentation x 13yr prior-light and dark-island area
+on:
+  push:
+    branches: [analysis/alan-global-gecko-moth-light-20261110]
+    paths:
+      - scripts/analysis/alan_global_gecko_moth_prior_darkarea_interaction_20261110.py
+      - .github/workflows/alan-global-gecko-moth-actual-darkarea-interaction.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  authenticated-gecko-moth-preyear-darkarea-moderation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Validate source scripts and authentic SHA-locked photo and dark-raster cells
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5 pyarrow==21.0.0
+          python -m py_compile scripts/analysis/alan_global_gecko_moth_prior_darkarea_interaction_20261110.py
+          mkdir -p source/gecko source/dark
+          gh run download 42791789835 --repo zuizui0223/alan \
+            --name alan-authentic-196island-gecko-moth-prior-survey-documentation-overlap \
+            --dir source/gecko
+          gh run download 42788295115 --repo zuizui0223/alan \
+            --name alan-real-worldwide-196island-62688-moth-PCNL-darkpatch-13year \
+            --dir source/dark
+          test -s source/gecko/ALAN_real_original_62688_moth_source_gecko_prior_photo_documentation.csv.gz
+          test -s source/gecko/ALAN_2026_11_original_global_gecko_moth_photo_source_join_receipt.json
+          test -s source/dark/alan_real_global_62688_GBIF_moth_source_annual_prior_PCNl_5km_darkpatch.csv.gz
+          test -s source/dark/alan_actual_global_GBIF_moth_darkpatch_all13years_receipt.json
+      - name: Audit true original 5km-buffer dark area × historically prior gecko photo documentation
+        timeout-minutes: 36
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_global_gecko_moth_prior_darkarea_interaction_20261110 \
+            --gecko source/gecko/ALAN_real_original_62688_moth_source_gecko_prior_photo_documentation.csv.gz \
+            --gecko-receipt source/gecko/ALAN_2026_11_original_global_gecko_moth_photo_source_join_receipt.json \
+            --dark source/dark/alan_real_global_62688_GBIF_moth_source_annual_prior_PCNl_5km_darkpatch.csv.gz \
+            --dark-receipt source/dark/alan_actual_global_GBIF_moth_darkpatch_all13years_receipt.json \
+            --out actual-gecko-dark/ALAN_gecko_prior_photo_x_true_13year_darkland_moth_share.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('actual-gecko-dark/ALAN_gecko_prior_photo_x_true_13year_darkland_moth_share.json').read_text())
+          assert a['actual_original_photo_site_year_source']==62688
+          assert a['never_gecko_absence_from_no_GBIF_photo']
+          assert a['no_effective_night_pollen_transfer_or_plant_seed_set']
+          assert set(a['actual_source_contrasts'])=={'0.0','3.0'}
+          print('ALAN_ACTUAL_GECKO_DARKNESS_INTERACTION_SOURCE_AUDITED',flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-global-97island-gecko-prior-photo-13year-darkarea-moth-observations-interaction
+          path: actual-gecko-dark/ALAN_gecko_prior_photo_x_true_13year_darkland_moth_share.json
+          retention-days: 90
+          if-no-files-found: warn
