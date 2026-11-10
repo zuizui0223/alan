@@ -45,8 +45,10 @@ class TrueIslandFunctionalGuildSourceGates(unittest.TestCase):
         self.assertEqual(a["photo_sites_with_gecko_record_same_cell_year"],0)
 
     def test_evidence_not_bloom_or_gbif_visits(self):
-        self.assertEqual(len(CONFIRMED),5)
+        self.assertEqual(len(CONFIRMED),8)
         self.assertEqual(sum("effective_native_day_gecko"==v["guild"] for v in CONFIRMED.values()),2)
+        self.assertEqual(sum("effective_native_Gallotia_lizard_NOT_gecko"==v["guild"] for v in CONFIRMED.values()),1)
+        self.assertEqual(sum("effective_native_Phelsuma_day_gecko"==v["guild"] for v in CONFIRMED.values()),1)
         self.assertTrue(all(v["evolutionary_ancestral_shift_proven"] is False for v in CONFIRMED.values()))
 
 if __name__=="__main__":unittest.main()
