@@ -50,7 +50,7 @@ def sha256(path):
 
 def source_files(manifest):
     x=json.loads(Path(manifest).read_text())
-    require(x.get("schema")=="ALAN_original_GBIF_2026_08_Gekkota_reptile_Parquet_partition_S3_audit_v1" and
+    require(x.get("schema")=="ALAN_original_GBIF_202608_Gekkota_reptile_Parquet_partition_S3_audit_v1" and
             x.get("original_GBIF_snapshot_DOI")==DOI,
             "Not original frozen 2026-08 public reptile Parquet manifest")
     d=x["matching_reptile_gecko_partition_folders"][PARTITION]
