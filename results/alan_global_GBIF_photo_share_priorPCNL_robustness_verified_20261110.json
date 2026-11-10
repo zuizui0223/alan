@@ -1,0 +1,289 @@
+{
+  "area_strata": {
+    "higher_same_site_source_event_opportunity_20plus": {
+      "actual_islands": 115,
+      "actual_site_years": 43742,
+      "beta_moth_photo_fraction_pp": -1.5104468736811378,
+      "island_year_groups": 613,
+      "nominal_95CI_pp": [
+        -3.0206937734176016,
+        -0.0001999739446738591
+      ],
+      "nominal_two_sided_p": 0.04997017927708668,
+      "status": "estimated_exploratory_observation_composition_only"
+    },
+    "large_GSHHG_islands_500km2_or_more": {
+      "actual_islands": 91,
+      "actual_site_years": 61054,
+      "beta_moth_photo_fraction_pp": -0.6097725215249433,
+      "island_year_groups": 667,
+      "nominal_95CI_pp": [
+        -1.5481120258711565,
+        0.3285669828212697
+      ],
+      "nominal_two_sided_p": 0.20000142493554518,
+      "status": "estimated_exploratory_observation_composition_only"
+    },
+    "lower_source_event_opportunity_5to19": {
+      "actual_islands": 169,
+      "actual_site_years": 18213,
+      "beta_moth_photo_fraction_pp": -0.6444174896077498,
+      "island_year_groups": 749,
+      "nominal_95CI_pp": [
+        -1.7871898754389717,
+        0.49835489622347195
+      ],
+      "nominal_two_sided_p": 0.2671883361389189,
+      "status": "estimated_exploratory_observation_composition_only"
+    },
+    "smaller_GSHHG_islands_20_to_500km2": {
+      "actual_islands": 105,
+      "actual_site_years": 1634,
+      "beta_moth_photo_fraction_pp": -1.165005521139567,
+      "island_year_groups": 416,
+      "nominal_95CI_pp": [
+        -3.637946754545707,
+        1.3079357122665733
+      ],
+      "nominal_two_sided_p": 0.3523589113177479,
+      "status": "estimated_exploratory_observation_composition_only"
+    }
+  },
+  "island_year_equal": {
+    "actual_islands": 196,
+    "actual_site_years": 62688,
+    "beta_moth_photo_fraction_pp": -0.6817165021763462,
+    "island_year_groups": 1083,
+    "nominal_95CI_pp": [
+      -1.6179944593862152,
+      0.254561455033523
+    ],
+    "nominal_two_sided_p": 0.15260796106857466,
+    "status": "estimated_exploratory_observation_composition_only"
+  },
+  "no_effort_adjustment": {
+    "actual_islands": 196,
+    "actual_site_years": 62688,
+    "beta_moth_photo_fraction_pp": -0.7523452407710414,
+    "island_year_groups": 1083,
+    "nominal_95CI_pp": [
+      -1.8839596223228463,
+      0.37926914078076357
+    ],
+    "nominal_two_sided_p": 0.19133042875509004,
+    "status": "estimated_exploratory_observation_composition_only"
+  },
+  "popular_island_deletions": [
+    {
+      "after_exclusion": {
+        "actual_islands": 195,
+        "actual_site_years": 17632,
+        "beta_moth_photo_fraction_pp": -0.8592645306436285,
+        "island_year_groups": 1070,
+        "nominal_95CI_pp": [
+          -2.0019161926034448,
+          0.28338713131618787
+        ],
+        "nominal_two_sided_p": 0.1396629246763681,
+        "status": "estimated_exploratory_observation_composition_only"
+      },
+      "excluded_popular_GSHHG_island_ID": "15",
+      "original_popular_island_recorded_cell_years": 45056
+    },
+    {
+      "after_exclusion": {
+        "actual_islands": 195,
+        "actual_site_years": 59383,
+        "beta_moth_photo_fraction_pp": -0.8409922542437402,
+        "island_year_groups": 1070,
+        "nominal_95CI_pp": [
+          -1.957429203716654,
+          0.2754446952291736
+        ],
+        "nominal_two_sided_p": 0.1389884920734505,
+        "status": "estimated_exploratory_observation_composition_only"
+      },
+      "excluded_popular_GSHHG_island_ID": "44",
+      "original_popular_island_recorded_cell_years": 3305
+    },
+    {
+      "after_exclusion": {
+        "actual_islands": 195,
+        "actual_site_years": 60667,
+        "beta_moth_photo_fraction_pp": -0.8682354003857036,
+        "island_year_groups": 1070,
+        "nominal_95CI_pp": [
+          -1.9867492868476597,
+          0.2502784860762526
+        ],
+        "nominal_two_sided_p": 0.12740994159696534,
+        "status": "estimated_exploratory_observation_composition_only"
+      },
+      "excluded_popular_GSHHG_island_ID": "98",
+      "original_popular_island_recorded_cell_years": 2021
+    },
+    {
+      "after_exclusion": {
+        "actual_islands": 195,
+        "actual_site_years": 60816,
+        "beta_moth_photo_fraction_pp": -0.8634525369970367,
+        "island_year_groups": 1070,
+        "nominal_95CI_pp": [
+          -1.981874217906975,
+          0.2549691439129016
+        ],
+        "nominal_two_sided_p": 0.12947584557490063,
+        "status": "estimated_exploratory_observation_composition_only"
+      },
+      "excluded_popular_GSHHG_island_ID": "26",
+      "original_popular_island_recorded_cell_years": 1872
+    },
+    {
+      "after_exclusion": {
+        "actual_islands": 195,
+        "actual_site_years": 61885,
+        "beta_moth_photo_fraction_pp": -0.8776347030711271,
+        "island_year_groups": 1070,
+        "nominal_95CI_pp": [
+          -1.991238300356626,
+          0.23596889421437184
+        ],
+        "nominal_two_sided_p": 0.12173063515489553,
+        "status": "estimated_exploratory_observation_composition_only"
+      },
+      "excluded_popular_GSHHG_island_ID": "262",
+      "original_popular_island_recorded_cell_years": 803
+    }
+  ],
+  "primary": {
+    "actual_islands": 196,
+    "actual_site_years": 62688,
+    "beta_moth_photo_fraction_pp": -0.8650919160682399,
+    "island_year_groups": 1083,
+    "nominal_95CI_pp": [
+      -1.9736928498730437,
+      0.24350901773656386
+    ],
+    "nominal_two_sided_p": 0.1254251897110097,
+    "status": "estimated_exploratory_observation_composition_only"
+  },
+  "site_equal": {
+    "actual_islands": 196,
+    "actual_site_years": 62688,
+    "beta_moth_photo_fraction_pp": -1.4753538563257282,
+    "island_year_groups": 1083,
+    "nominal_95CI_pp": [
+      -1.9655531659943042,
+      -0.9851545466571523
+    ],
+    "nominal_two_sided_p": 1.3168718139096984e-8,
+    "status": "estimated_exploratory_observation_composition_only"
+  },
+  "source_zeros_retained": {
+    "actual_islands": 259,
+    "actual_site_years": 108016,
+    "beta_moth_photo_fraction_pp": -0.27129561194683827,
+    "island_year_groups": 1551,
+    "nominal_95CI_pp": [
+      -1.1494887176383641,
+      0.6068974937446875
+    ],
+    "nominal_two_sided_p": 0.5435004179259351,
+    "status": "estimated_exploratory_observation_composition_only"
+  },
+  "strict_20records": {
+    "actual_islands": 115,
+    "actual_site_years": 43742,
+    "beta_moth_photo_fraction_pp": -1.510446873681152,
+    "island_year_groups": 613,
+    "nominal_95CI_pp": [
+      -3.0206937734176336,
+      -0.00019997394467030638
+    ],
+    "nominal_two_sided_p": 0.04997017927708724,
+    "status": "estimated_exploratory_observation_composition_only"
+  },
+  "years": {
+    "2017": {
+      "island_equal_source_total_adjusted": {
+        "actual_islands": 191,
+        "actual_site_years": 43484,
+        "beta_moth_photo_fraction_pp": -0.4867946700268133,
+        "island_year_groups": 898,
+        "nominal_95CI_pp": [
+          -1.5503209793603092,
+          0.5767316393066826
+        ],
+        "nominal_two_sided_p": 0.36774297967211933,
+        "status": "estimated_exploratory_observation_composition_only"
+      },
+      "same_site_observer_volume_negative_control": {
+        "actual_islands": 191,
+        "actual_site_years": 43484,
+        "beta_moth_photo_fraction_pp": 0.019294770631655474,
+        "island_year_groups": 898,
+        "nominal_95CI_pp": [
+          -0.023657396661007524,
+          0.06224693792431847
+        ],
+        "nominal_two_sided_p": 0.37668923501969365,
+        "status": "estimated_exploratory_observation_composition_only"
+      }
+    },
+    "2020": {
+      "island_equal_source_total_adjusted": {
+        "actual_islands": 188,
+        "actual_site_years": 26767,
+        "beta_moth_photo_fraction_pp": -0.38714533326646466,
+        "island_year_groups": 682,
+        "nominal_95CI_pp": [
+          -1.4731518670332857,
+          0.6988612005003563
+        ],
+        "nominal_two_sided_p": 0.48277487357050464,
+        "status": "estimated_exploratory_observation_composition_only"
+      },
+      "same_site_observer_volume_negative_control": {
+        "actual_islands": 188,
+        "actual_site_years": 26767,
+        "beta_moth_photo_fraction_pp": 0.019944369598563324,
+        "island_year_groups": 682,
+        "nominal_95CI_pp": [
+          -0.027217769731042302,
+          0.06710650892816895
+        ],
+        "nominal_two_sided_p": 0.4052061968712579,
+        "status": "estimated_exploratory_observation_composition_only"
+      }
+    },
+    "2023": {
+      "island_equal_source_total_adjusted": {
+        "actual_islands": 177,
+        "actual_site_years": 16272,
+        "beta_moth_photo_fraction_pp": -0.46211498687103053,
+        "island_year_groups": 402,
+        "nominal_95CI_pp": [
+          -1.7073406394366564,
+          0.7831106656945952
+        ],
+        "nominal_two_sided_p": 0.4649003657824642,
+        "status": "estimated_exploratory_observation_composition_only"
+      },
+      "same_site_observer_volume_negative_control": {
+        "actual_islands": 177,
+        "actual_site_years": 16272,
+        "beta_moth_photo_fraction_pp": 0.029703748912265175,
+        "island_year_groups": 402,
+        "nominal_95CI_pp": [
+          -0.02332161576612133,
+          0.08272911359065169
+        ],
+        "nominal_two_sided_p": 0.27043699660454357,
+        "status": "estimated_exploratory_observation_composition_only"
+      }
+    }
+  },
+  "github_actions": "https://github.com/zuizui0223/alan/actions/runs/42787771672",
+  "source_artifact": "https://github.com/zuizui0223/alan/actions/runs/42787771672/artifacts/13749089625",
+  "caution": "High variance in results by island vs site weighting; source detection and urban confounding remain"
+}
