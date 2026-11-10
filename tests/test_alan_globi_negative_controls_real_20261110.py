@@ -47,7 +47,7 @@ class TestNegativeControlSemantics(unittest.TestCase):
             y["frac_pp"]=100*y[col]/y.all_accepted_recorded_species
             z=base.fit(y,"island_equal")
             self.assertEqual(z["status"],"estimated_exploratory_observational")
-            return z["terms"][base.LIGHT]["beta"]
+            return z["terms"][base.LIGHT]["beta_pp"]
         self.assertAlmostEqual(effect("moth"),
             effect("both")+effect("moth_record_no_butterfly"),places=8)
         self.assertAlmostEqual(effect("any_moth_or_butterfly")-effect("moth"),
