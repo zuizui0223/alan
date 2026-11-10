@@ -1,0 +1,285 @@
+{
+  "CI_nominal_unadjusted_postexploratory": true,
+  "PCNL_reference": "2024 ~1km product previously gave 544 matched pairs/235 islands; ≥10km site separation 216 pairs/116 islands; separate products, not direct resolution causal comparison",
+  "actual_500m_source_islands": 957,
+  "actual_original_2025_photo_sites_2024_500m_valid": 3513,
+  "conditions": "within same GSHHG island and photo year 2025; dark fraction Δ<=.10, log1p(mean VIIRS radiance) Δ<=.20, conditional 4-neighbor largest dark fraction Δ>=.10; optionally two site centers ≥10km apart",
+  "new_VIIRS500m_dark_connectivity_positivity_and_photo_source_proxy": {
+    "0.0": {
+      "all_matched": {
+        "GloBI_documented_moth_visitor_plant_photo_percent": {
+          "independent_original_islands": 212,
+          "mean_island_equal_higher_connected_minus_lower": 1.881418559753634,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -0.6288124515013525,
+            4.39164957100862
+          ],
+          "nominal_unadjusted_p": 0.14104136742039283,
+          "source_matched_photo_site_pairs": 479,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "photo_observation_attempts_negative_control": {
+          "independent_original_islands": 212,
+          "mean_island_equal_higher_connected_minus_lower": -0.07415224462025366,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -0.2023218892973465,
+            0.05401740005683919
+          ],
+          "nominal_unadjusted_p": 0.2553817474997052,
+          "source_matched_photo_site_pairs": 479,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "recorded_plant_species_richness_negative_control": {
+          "independent_original_islands": 212,
+          "mean_island_equal_higher_connected_minus_lower": -0.05277624924763861,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -0.16164804298216137,
+            0.05609554448688415
+          ],
+          "nominal_unadjusted_p": 0.3403753847159623,
+          "source_matched_photo_site_pairs": 479,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "source_real_matched_site_pairs": 479,
+        "source_unique_independent_islands": 212
+      },
+      "nonoverlap_ge_10km": {
+        "GloBI_documented_moth_visitor_plant_photo_percent": {
+          "independent_original_islands": 100,
+          "mean_island_equal_higher_connected_minus_lower": 1.027019120376768,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -3.2571874174483293,
+            5.311225658201866
+          ],
+          "nominal_unadjusted_p": 0.635364016983633,
+          "source_matched_photo_site_pairs": 188,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "photo_observation_attempts_negative_control": {
+          "independent_original_islands": 100,
+          "mean_island_equal_higher_connected_minus_lower": 0.08841740354852495,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -0.11306828993791776,
+            0.28990309703496764
+          ],
+          "nominal_unadjusted_p": 0.3860089800980998,
+          "source_matched_photo_site_pairs": 188,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "recorded_plant_species_richness_negative_control": {
+          "independent_original_islands": 100,
+          "mean_island_equal_higher_connected_minus_lower": 0.07786576773339886,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -0.09719327442686944,
+            0.25292480989366717
+          ],
+          "nominal_unadjusted_p": 0.3796044371942141,
+          "source_matched_photo_site_pairs": 188,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "source_real_matched_site_pairs": 188,
+        "source_unique_independent_islands": 100
+      }
+    },
+    "1.0": {
+      "all_matched": {
+        "GloBI_documented_moth_visitor_plant_photo_percent": {
+          "independent_original_islands": 120,
+          "mean_island_equal_higher_connected_minus_lower": -0.0935790589971298,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -3.25058039533293,
+            3.0634222773386703
+          ],
+          "nominal_unadjusted_p": 0.9532945774796683,
+          "source_matched_photo_site_pairs": 298,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "photo_observation_attempts_negative_control": {
+          "independent_original_islands": 120,
+          "mean_island_equal_higher_connected_minus_lower": 0.05595506180049559,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -0.1215884823810732,
+            0.23349860598206437
+          ],
+          "nominal_unadjusted_p": 0.5337871712985138,
+          "source_matched_photo_site_pairs": 298,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "recorded_plant_species_richness_negative_control": {
+          "independent_original_islands": 120,
+          "mean_island_equal_higher_connected_minus_lower": 0.08442722855377618,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -0.05996421040342159,
+            0.22881866751097396
+          ],
+          "nominal_unadjusted_p": 0.24926998518216573,
+          "source_matched_photo_site_pairs": 298,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "source_real_matched_site_pairs": 298,
+        "source_unique_independent_islands": 120
+      },
+      "nonoverlap_ge_10km": {
+        "GloBI_documented_moth_visitor_plant_photo_percent": {
+          "independent_original_islands": 64,
+          "mean_island_equal_higher_connected_minus_lower": -5.0738273150351585,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -10.42020798853401,
+            0.27255335846369366
+          ],
+          "nominal_unadjusted_p": 0.0624855521402749,
+          "source_matched_photo_site_pairs": 126,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "photo_observation_attempts_negative_control": {
+          "independent_original_islands": 64,
+          "mean_island_equal_higher_connected_minus_lower": 0.21271629610355752,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -0.0433504075618249,
+            0.46878299976893995
+          ],
+          "nominal_unadjusted_p": 0.10187750684025589,
+          "source_matched_photo_site_pairs": 126,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "recorded_plant_species_richness_negative_control": {
+          "independent_original_islands": 64,
+          "mean_island_equal_higher_connected_minus_lower": 0.17238155822556453,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -0.02653157594630956,
+            0.3712946923974386
+          ],
+          "nominal_unadjusted_p": 0.08820401311756865,
+          "source_matched_photo_site_pairs": 126,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "source_real_matched_site_pairs": 126,
+        "source_unique_independent_islands": 64
+      }
+    },
+    "3.0": {
+      "all_matched": {
+        "GloBI_documented_moth_visitor_plant_photo_percent": {
+          "independent_original_islands": 94,
+          "mean_island_equal_higher_connected_minus_lower": 0.01232657719370868,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -3.5490643457420226,
+            3.57371750012944
+          ],
+          "nominal_unadjusted_p": 0.9945307481169852,
+          "source_matched_photo_site_pairs": 250,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "photo_observation_attempts_negative_control": {
+          "independent_original_islands": 94,
+          "mean_island_equal_higher_connected_minus_lower": 0.14718424529806048,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -0.05571366071488085,
+            0.35008215131100184
+          ],
+          "nominal_unadjusted_p": 0.1530782064187458,
+          "source_matched_photo_site_pairs": 250,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "recorded_plant_species_richness_negative_control": {
+          "independent_original_islands": 94,
+          "mean_island_equal_higher_connected_minus_lower": 0.1560927369007103,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -0.003022194786505228,
+            0.3152076685879258
+          ],
+          "nominal_unadjusted_p": 0.05442009548744966,
+          "source_matched_photo_site_pairs": 250,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "source_real_matched_site_pairs": 250,
+        "source_unique_independent_islands": 94
+      },
+      "nonoverlap_ge_10km": {
+        "GloBI_documented_moth_visitor_plant_photo_percent": {
+          "independent_original_islands": 55,
+          "mean_island_equal_higher_connected_minus_lower": -4.116190921206398,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -9.847298158203028,
+            1.6149163157902313
+          ],
+          "nominal_unadjusted_p": 0.15565620341608316,
+          "source_matched_photo_site_pairs": 118,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "photo_observation_attempts_negative_control": {
+          "independent_original_islands": 55,
+          "mean_island_equal_higher_connected_minus_lower": 0.10331065715232157,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -0.18012154218393556,
+            0.3867428564885787
+          ],
+          "nominal_unadjusted_p": 0.46807509970161043,
+          "source_matched_photo_site_pairs": 118,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "recorded_plant_species_richness_negative_control": {
+          "independent_original_islands": 55,
+          "mean_island_equal_higher_connected_minus_lower": 0.0927045563807381,
+          "never_moth_abundance_or_real_pollination": true,
+          "nominal_95CI": [
+            -0.1305293381166814,
+            0.31593845087815764
+          ],
+          "nominal_unadjusted_p": 0.40874538756632506,
+          "source_matched_photo_site_pairs": 118,
+          "status": "observed_source_diagnostic_only",
+          "unit": "island means, not photo site pairs or repeat thresholds"
+        },
+        "source_real_matched_site_pairs": 118,
+        "source_unique_independent_islands": 55
+      }
+    }
+  },
+  "no_effect_of_light_on_wild_flora_estimated": true,
+  "not_biological_pollination_or_effective_pollen_deposition": true,
+  "observed_source_sites_not_random_native_flora": true,
+  "original_10m_or_40m_scene_not_measured": true,
+  "schema": "alan_real_VIIRS500m2024_island2025_darkpatch_photo_GloBI_proxy_common_support_v1",
+  "source_2024_VIIRS_processed_background_mask_used": true,
+  "source_VIIRS2024_original_500m_MD5": "0b976892d40c2d0d99177c727289eaf2",
+  "source_moth_GloBI_positive_plant_record_is_NOT_measured_insects": true,
+  "source_original_2025_site_exposure_CSV_SHA256": "68ed09378a8bfbcb36572ff0b0578334e4f1795efe22209f437960dbb01d5896",
+  "run": "https://github.com/zuizui0223/alan/actions/runs/42770395083",
+  "data_artifact": "https://github.com/zuizui0223/alan/actions/runs/42770395083/artifacts/13741546816",
+  "caution": "GloBI positive source represents documented plant relationships only, not moth abundance, effective pollination, or seed production; threshold and product differences not independent replications"
+}
