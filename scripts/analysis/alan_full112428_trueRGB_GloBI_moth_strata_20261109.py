@@ -179,7 +179,36 @@ def run(paths, coast, source06,source07,prior06,bulk06,pilot07,bulk07,
         "source_quality":quality,
         "summary":summary,"models_by_source_and_evidence":fitted,
     }
+    # This is the exact 112,428 distinct photographed-photo-ID union actually
+    # used in the model, not a guessed historical numeric-ID to UUID crosswalk.
+    # Publish only photographed-source identifiers and measurement eligibility,
+    # never image content or inferred native white-flower frequencies.
     out.mkdir(parents=True)
+    original_id_file=out/"ALAN_112428_original_photoID_sitecell_status.csv.gz"
+    cell_file=out/"ALAN_112428_original_sitecell_numeric_support.csv.gz"
+    original_cols=["photo_id","target_id","land_id","year",
+                   "real_numeric_ROI9","photo_source"]
+    original_geo=allphotos[original_cols].copy().sort_values("photo_id")
+    require(len(original_geo)==112428 and original_geo.photo_id.is_unique and
+            int(original_geo.real_numeric_ROI9.sum())==40914,
+            "Genuine pooled original-photo-ID export deviates from signed model")
+    original_geo.to_csv(original_id_file,index=False,compression="gzip")
+    cell_summary,_=historic.photo_cell_stats(allphotos)
+    cell_cols=["target_id","land_id","year","photo_attempts",
+               "strict9_success","accepted_species_n","strict_photo_gate"]
+    cell_summary[cell_cols].sort_values("target_id").to_csv(
+        cell_file,index=False,compression="gzip")
+    report["deduplicated_geography_files"]={
+        "photo_id_csv_gz":original_id_file.name,
+        "photo_id_SHA256":panel.sha(original_id_file),
+        "photo_id_count":112428,
+        "genuine_numeric_ROI9":40914,
+        "cell_numeric_csv_gz":cell_file.name,
+        "cell_numeric_SHA256":panel.sha(cell_file),
+        "cell_count":int(len(cell_summary)),
+        "full_model_multisite_islands":133,
+        "full_model_multisite_siteyears":3315,
+    }
     (out/"ALAN_112428_true_RGB_GloBI_moth_strata.json").write_text(
         json.dumps(report,indent=2,sort_keys=True)+"\n")
     print("ALAN_TRUE112428_GLOBI_MOTH_GUILD_ACTUAL_ORIGINAL_RGB_RECALC",

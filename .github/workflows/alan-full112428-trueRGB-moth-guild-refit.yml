@@ -5,6 +5,8 @@ on:
     paths:
       - .github/workflows/alan-full112428-trueRGB-moth-guild-refit.yml
       - scripts/analysis/alan_full112428_trueRGB_GloBI_moth_strata_20261109.py
+      - scripts/acquisition/alan_tier09_vs_full112428_measured_geography_20261110.py
+      - tests/test_alan_tier09_vs_full112428_measured_geography_20261110.py
   workflow_dispatch:
 permissions:
   contents: read
@@ -210,6 +212,33 @@ jobs:
                     "siteyears":v["multisite_site_years"],
                     "area_ALAN":v.get("island_equal_area_ALAN")}
                  for k,v in s.items()},flush=True)
+          PY
+      - name: Audit tier09 candidate cells against the entire original RGB 112428 source, not merely 24576
+        timeout-minutes: 9
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_tier09_vs_full112428_measured_geography_20261110.py -v
+          mkdir -p tier09
+          gh run download 42720324711 -R zuizui0223/alan \
+            -n alan-tier09-signed-moth-sameyear-VIIRS-existingcell-source-support -D tier09
+          python -m scripts.acquisition.alan_tier09_vs_full112428_measured_geography_20261110 \
+            --photos alan_full112428_GloBI_moth_guild_realROI9/ALAN_112428_original_photoID_sitecell_status.csv.gz \
+            --cells alan_full112428_GloBI_moth_guild_realROI9/ALAN_112428_original_sitecell_numeric_support.csv.gz \
+            --fullreport alan_full112428_GloBI_moth_guild_realROI9/ALAN_112428_true_RGB_GloBI_moth_strata.json \
+            --tier09 tier09/tier09_moth_original_photo_existingVIIRS_cell_status.csv.gz \
+            --tier09report tier09/tier09_moth_VIIRS_existingcell_gate.json \
+            --pairs tier09/tier09_moth_supporting_island_years.csv \
+            --out alan_full112428_GloBI_moth_guild_realROI9/full112428_tier09_geography
+          python - <<'PY'
+          import json
+          j=json.load(open("alan_full112428_GloBI_moth_guild_realROI9/full112428_tier09_geography/tier09_vs_entire_full112428_source_geography.json"))
+          r=j["result"]
+          assert j["schema"]=="ALAN_tier09_vs_entire_measured112428_RGB_source_geography_v1"
+          assert r["actual_overlapping_tier09_photo_IDs"]==0
+          assert r["tier09_qualified_existingVIIRS_cells"]==2328
+          assert r["tier09_qualified_cells_without_existing_true_numeric_ROI9"]<=1321
+          assert r["previously_genuine_numeric_original_RGB_ROI9"]==40914
+          print("ALAN_TIER09_FULL112428_SOURCE_GATE_SUCCESS",r,flush=True)
           PY
       - uses: actions/upload-artifact@v4
         if: always()
