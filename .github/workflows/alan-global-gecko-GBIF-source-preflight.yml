@@ -1,0 +1,45 @@
+name: ALAN verified global gecko moth ALAN predation source preflight
+on:
+  push:
+    branches: [analysis/alan-gecko-moth-predation-global-20261110]
+    paths:
+      - scripts/acquisition/alan_global_gecko_moth_ALAN_source_preflight_20261110.py
+      - .github/workflows/alan-global-gecko-GBIF-source-preflight.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-worldwide-gecko-GBIF-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify global Gekkonidae taxon, source records and preview Parquet partition
+        run: |
+          set -euo pipefail
+          python -m pip install -q boto3==1.40.74
+          python -m py_compile scripts/acquisition/alan_global_gecko_moth_ALAN_source_preflight_20261110.py
+          python -m scripts.acquisition.alan_global_gecko_moth_ALAN_source_preflight_20261110 \
+            --out source-audit/ALAN_global_gecko_moth_predation_true_source_counts.json
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          x=json.loads(Path('source-audit/ALAN_global_gecko_moth_predation_true_source_counts.json').read_text())
+          assert x['original_taxon_source_provenance']['Gekkonidae'].get('taxonKey')
+          assert x['global_taxa_2013to2025_georeferenced_human_record_counts']['Gekkonidae']['GBIF_original_georeferenced_human_records']>0
+          assert len(x['countries_are_NOT_true_GSHHG_island_records'])==17
+          assert x['no_causal_predation_or_night_pollination_inferred']
+          print('ALAN_GLOBAL_TRUE_GECKO_SOURCE_VERIFIED',flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-global-real-Gekkonidae-GBIF-snapshot-nightlight-source-census
+          path: source-audit/ALAN_global_gecko_moth_predation_true_source_counts.json
+          retention-days: 90
+          if-no-files-found: warn
