@@ -1,0 +1,41 @@
+name: ALAN actual GBIF 2026 Gekkonidae ecological record filtering error audit
+on:
+  push:
+    branches: [analysis/alan-gecko-moth-predation-global-20261110]
+    paths:
+      - scripts/acquisition/alan_GBIF_gecko_filter_intersection_diagnostic_20261110.py
+      - .github/workflows/alan-GBIF-gecko-filter-count-diagnostic.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  genuine-gecko-record-status-and-date:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          set -euo pipefail
+          python -m py_compile scripts/acquisition/alan_GBIF_gecko_filter_intersection_diagnostic_20261110.py
+          python -m scripts.acquisition.alan_GBIF_gecko_filter_intersection_diagnostic_20261110 \
+            --out audit/gecko_family_true_GBIF_2026_filter_intersections.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('audit/gecko_family_true_GBIF_2026_filter_intersections.json').read_text())
+          assert r['true_original_Gekkonidae_source_filter_counts']['unrestricted']['actual_GBIF_record_count']>500000
+          assert r['no_gecko_absence_inference_from_gbif_filtered_zeros']
+          print('ALAN_GEK_TRUE_FILTER_GATES_PASSED',flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-gecko-Gekkonidae-original-GBIF-filter-count-audit
+          path: audit/gecko_family_true_GBIF_2026_filter_intersections.json
+          retention-days: 90
+          if-no-files-found: warn
