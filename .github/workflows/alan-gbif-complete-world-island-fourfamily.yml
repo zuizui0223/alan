@@ -1,0 +1,110 @@
+name: ALAN truly global 115m original GBIF moth butterfly GSHHG islands
+on:
+  push:
+    branches: [analysis/alan-global-moth-source-census-20261110]
+    paths:
+      - scripts/analysis/alan_global_fourfamily_island_source_collect_20261110.py
+      - .github/workflows/alan-gbif-complete-world-island-fourfamily.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-GBIF-family-world-island:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        family: [Noctuidae, Geometridae, Nymphalidae, Pieridae]
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Prepare original global Parquet and GSHHG source tools
+        run: |
+          set -euo pipefail
+          python -m pip install -q pyarrow==21.0.0 pandas==2.2.3 numpy==2.1.3 scipy==1.15.2 \
+            geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 statsmodels==0.14.5
+          python -m py_compile scripts/analysis/alan_gbif_fourfamily_original_global_island_cell_stream_20261110.py
+          mkdir -p original/schema original/coast
+          gh run download 42780706666 --repo zuizui0223/alan \
+            --name alan-authentic-worldwide-lepidoptera-202608-Parquet-rowgroup-schemas --dir original/schema
+          gh run download 42175243391 --repo zuizui0223/mois \
+            --name mois-GSHHG-2.3.7-high-L1-L2-SHA-source-no-images --dir original/coast
+      - name: Stream EVERY genuine source GBIF Parquet row group for this family to exact islands
+        timeout-minutes: 110
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_gbif_fourfamily_original_global_island_cell_stream_20261110 \
+            --family ${{ matrix.family }} \
+            --manifest original/schema/gbif_2026_08_worldwide_moth_source_parquet_footer.json \
+            --coast original/coast --out source-island
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=next(Path('source-island').glob('*_GBIF_202608_real_island_source_audit.json'))
+          r=json.loads(p.read_text())
+          assert r['source_scan_complete_all_files_all_row_groups']
+          assert r['source_actual_scan']['source_original_records_read']==r['source_expected_family_original_all_year_all_basis_records']
+          assert r['GBIF_source_2026_08_DOI']=='10.15468/dl.8yrbe7'
+          assert r['actual_source_island_cell_year_family_rows']>0
+          print('ALAN_FULL_GLOBAL_ISLAND_FAMILY_REAL_SOURCE_SUCCESS',json.dumps({
+            'family':r['source_original_family'],
+            'original_rows':r['source_actual_scan']['source_original_records_read'],
+            'true_island_records':r['source_island_level_photo_observation_record_total'],
+            'actual_islands':r['actual_observed_source_islands']},sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-real-global-island-fourfamily-${{ matrix.family }}
+          path: source-island/
+          retention-days: 90
+          if-no-files-found: warn
+  original-complete-global-source-collector:
+    needs: [original-GBIF-family-world-island]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3
+          mkdir -p sources
+          gh run download "$GITHUB_RUN_ID" --repo zuizui0223/alan \
+            --pattern 'alan-real-global-island-fourfamily-*' --dir sources
+          test "$(find sources -name '*_GBIF_202608_real_island_source_audit.json' | wc -l)" -eq 4
+          test "$(find sources -name '*_GBIF_202608_original_island_photo_cell_year.csv.gz' | wc -l)" -eq 4
+          python -m scripts.analysis.alan_global_fourfamily_island_source_collect_20261110 \
+            --root sources --out worldwide-island
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('worldwide-island/ALAN_2026_08_real_global_fourfamily_island_counts_receipt.json').read_text())
+          assert d['explicit_family_source_count']==4
+          assert d['GBIF_2026_08_DWCA_is_preview_and_doi_provenance_preserved']
+          assert d['no_satellite_ALAN_ecological_effect_fitted']
+          print('ALAN_TRUE_GLOBAL_FOURFAMILY_ISLAND_SOURCE_COMPLETE',
+                json.dumps(d,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-global-real-island-115m-fourfamily-cell-year-source-union
+          path: worldwide-island/
+          retention-days: 90
+          if-no-files-found: warn
