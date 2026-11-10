@@ -1,0 +1,74 @@
+name: ALAN signed tier09 light islands vs 24576 genuinely measured original ROI geography
+on:
+  push:
+    branches: [analysis/alan-tier08-remainder-tier09-geographic-support-audit-20261109]
+    paths:
+      - .github/workflows/alan-tier09-vs-24576-measured-geography.yml
+      - scripts/acquisition/alan_tier09_vs_measured24576_geography_20261110.py
+      - tests/test_alan_tier09_vs_measured24576_geography_20261110.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: alan-tier09-vs-24576-measured-source-only
+  cancel-in-progress: false
+jobs:
+  verify-source-only-island-cell-overlap:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test SHA-gated overlapping original photo ID and numeric ROI support
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3
+          python -m unittest discover -s tests -p test_alan_tier09_vs_measured24576_geography_20261110.py -v
+          python -m py_compile scripts/acquisition/alan_tier09_vs_measured24576_geography_20261110.py
+      - name: Restore existing signed genuine RGB results and same-year VIIRS candidate geometry
+        run: |
+          set -euo pipefail
+          mkdir -p old new
+          gh run download 42601821195 -R zuizui0223/alan \
+            -n alan-tier08-24576-three-real-original-RGB-ROI9-waves-signed -D old
+          gh run download 42720324711 -R zuizui0223/alan \
+            -n alan-tier09-signed-moth-sameyear-VIIRS-existingcell-source-support -D new
+          for w in 1 2 3; do test -s old/finished/tier08_additional_8192_real_original_photo_ROI9_wave${w}.csv.gz; done
+          test -s new/tier09_moth_original_photo_existingVIIRS_cell_status.csv.gz
+          test -s new/tier09_moth_supporting_island_years.csv
+      - name: Compute genuinely incremental source cells without inferring RGB outcome
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_tier09_vs_measured24576_geography_20261110 \
+            --wave1 old/finished/tier08_additional_8192_real_original_photo_ROI9_wave1.csv.gz \
+            --wave2 old/finished/tier08_additional_8192_real_original_photo_ROI9_wave2.csv.gz \
+            --wave3 old/finished/tier08_additional_8192_real_original_photo_ROI9_wave3.csv.gz \
+            --wave-receipt old/finished/ALAN_tier08_additional24576_actual_original_RGB_ROI9_signed_receipt.json \
+            --tier09 new/tier09_moth_original_photo_existingVIIRS_cell_status.csv.gz \
+            --tier09-receipt new/tier09_moth_VIIRS_existingcell_gate.json \
+            --pairs new/tier09_moth_supporting_island_years.csv \
+            --out result
+          python - <<'PY'
+          import json
+          j=json.load(open('result/tier09_vs_true24576_original_measurements.json'))
+          r=j['result']
+          assert r['tier09_light_supported_islands']==56
+          assert r['tier09_supported_islands_with_prior_numeric_ROI9']==56
+          assert r['tier09_supported_islands_without_prior_numeric_ROI9']==0
+          assert r['tier09_qualified_existingVIIRS_cells_in_56_islands']==2328
+          assert r['tier09_qualified_cells_without_prior_numeric_ROI9']==1321
+          assert j['additional_RGB_attempts']==j['additional_numeric_ROI9']==0
+          print('ALAN_TIER09_INDEPENDENT_ISLAND_GAIN_ZERO_ON_24576_CHECKED',r,flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-tier09-vs-24576-genuine-measured-island-cell-source-only
+          path: result/
+          retention-days: 90
+          if-no-files-found: warn
