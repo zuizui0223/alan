@@ -65,7 +65,7 @@ jobs:
           from pathlib import Path
           j=json.loads(Path('negative_control_results/ALAN_real_full93m_GloBI_negative_controls_20261110.json').read_text())
           x=j['results']
-          b=lambda k:x[k]['models']['island_equal']['beta']
+          b=lambda k:x[k]['models']['island_equal']['beta_pp']
           assert j['original_within_island_sites']==77647
           assert j['original_within_island_islands']==562
           assert abs(b('moth_positive')-.44933020729608203)<1e-6
