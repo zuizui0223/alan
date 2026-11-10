@@ -106,7 +106,13 @@ def glopl_inventory(csv):
     require(valid.all(), "Source GloPL coordinates unexpectedly incomplete")
     species = x.Species_accepted_names.astype(str).str.split().str.join(" ")
     require(species.ne("").all(), "Source GloPL accepted plant names missing")
-    # GloPL Year may be PUBLICATION YEAR; do not use as experimental date.
+    # Original GloPL includes a dedicated year_of_study field.
+    # Its Year field is bibliography metadata and is never a substitute.
+    require("year_of_study" in x.columns,
+            "Source no longer has independent experimental observation year")
+    year = pd.to_numeric(x.year_of_study, errors="coerce")
+    valid_experiment_year = (year.between(1992,2015) &
+                             year.eq(np.floor(year)))
     pl = pd.to_numeric(x.PL_Effect_Size, errors="coerce")
     return {
         "GloPL_DOI": GLOPL_DOI,
@@ -115,6 +121,11 @@ def glopl_inventory(csv):
         "n_species_accepted_names":int(species.nunique()),
         "n_distinct_geographic_points":int(coordinates.drop_duplicates().shape[0]),
         "n_finite_pollen_limitation_log_response_ratio":int(np.isfinite(pl).sum()),
+        "n_original_experiments_with_unambiguous_year_1992_2015":int(valid_experiment_year.sum()),
+        "n_unique_study_year_GloPL_sites_after_1992":int(pd.DataFrame({
+            "year":year.loc[valid_experiment_year],
+            "lat":coordinates.lat.loc[valid_experiment_year],
+            "lon":coordinates.lon.loc[valid_experiment_year]}).drop_duplicates().shape[0]),
         "columns":list(x.columns),
         "Year_field_NOT_assumed_experiment_year":True,
         "source_is_not_local_moth_pollination_identity":True
