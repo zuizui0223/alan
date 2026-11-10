@@ -94,7 +94,12 @@ def run(package,glopl,out):
     matched=joined._merge.eq("both")
     require(matched.mean()>.95,
             "NPMS occurrence-to-survey sample foreign-key linkage incomplete")
-    x=joined.loc[matched & joined.year.between(2015,2025)].copy()
+    # The original sample table includes visits whose location_id is blank.
+    # These are NOT a reproducibly revisitable plot. Keep them in source audit,
+    # but exclude them from plot×year×taxon coverage and temporal responses.
+    no_location=sample.site_id.astype(str).str.strip().eq("")
+    x=joined.loc[matched & joined.year.between(2015,2025) &
+                 joined.site_id.astype(str).str.strip().ne("")].copy()
     x["accepted_name_candidate"]=names(x.preferred_taxon)
     binomial=exact_binomial(x.accepted_name_candidate)
     x=x.loc[binomial].copy()
@@ -136,7 +141,7 @@ def run(package,glopl,out):
     matched_names=set(taxon.loc[taxon.has_GloPL_experimental_supplementation_record,
                                  "accepted_name_candidate"])
     eligible=site_species.loc[site_species.accepted_name_candidate.isin(matched_names)]
-    geo_sample=sample.loc[valid_geo & valid_year].copy()
+    geo_sample=sample.loc[valid_geo & valid_year & ~no_location].copy()
     repeat=geo_sample.groupby("site_id",observed=True).year.nunique()
     location_types=loc.location_type.value_counts(dropna=False).to_dict()
     report={
@@ -148,7 +153,8 @@ def run(package,glopl,out):
       "NPMS_original_location_rows":len(loc),
       "NPMS_source_sample_attributes":len(attrs),
       "NPMS_occurrences_with_matched_sample_keys":int(matched.sum()),
-      "NPMS_source_sample_visits_with_valid_coordinate_and_year":len(geo_sample),
+      "NPMS_source_sample_visits_with_valid_coordinate_and_year_and_site_id":len(geo_sample),
+      "NPMS_sample_visits_with_missing_location_id":int(no_location.sum()),
       "NPMS_distinct_geocoded_sites":int(geo_sample.site_id.nunique()),
       "NPMS_sites_with_at_least_two_sample_years":int((repeat>=2).sum()),
       "NPMS_sites_with_at_least_three_sample_years":int((repeat>=3).sum()),
