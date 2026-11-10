@@ -34,6 +34,8 @@ SEEDS={
  "Ipomoea carnea":dict(archipelago="widespread",evidence="both_time_bloom_author_trait; not_effective_day_only; shrub_vs_habeliana_vine",source="Kendall Nicholson 2025 DOI:10.1111/ele.70036",night_moth_effective=False,evolutionary_day_to_night_shift_proven=False,endemic_range="not_archipelago_endemic"),
  "Echium wildpretii":dict(archipelago="Tenerife",evidence="bird_and_insect_visitors; not_strict_day_only",source="doi:10.1016/S1146-609X(02)01167-0",night_moth_effective=False,evolutionary_day_to_night_shift_proven=False,endemic_range="confirmed_Canary_archipelago"),
  "Ceropegia fusca":dict(archipelago="Canary_Islands",evidence="genus_has_fly_pollination; focal_species_direct_effectiveness_not_verified",source="PMCID:PMC2701756",night_moth_effective=False,evolutionary_day_to_night_shift_proven=False,endemic_range="requires_species_level_review"),
+ "Roussea simplex":dict(archipelago="Mauritius",evidence="field_experiment_2009_effective_endemic_day_gecko_Phelsuma_cepediana; later_bird_effect_reported; not_an_exclusive_permanent_pollinator_assumption",source="doi:10.1086/593050; Kew POWO Roussea simplex",night_moth_effective=False,gecko_effective=True,evolutionary_day_to_night_shift_proven=False,endemic_range="confirmed_Mauritius_only"),
+ "Ruizia blackburniana":dict(archipelago="Mauritius",evidence="effective_gecko_Phelsuma_cepediana_pollination_and_Pandanus_spatial_context; original_study_name_Trochetia_blackburniana_is_WCVP_synonym",source="PMID:17262697; Kew POWO Ruizia blackburniana accepted",night_moth_effective=False,gecko_effective=True,evolutionary_day_to_night_shift_proven=False,endemic_range="confirmed_Mauritius_only"),
 }
 def require(ok,reason):
     if not ok:raise ValueError("ALAN_ISLAND_NIGHTPAIR: "+str(reason))
