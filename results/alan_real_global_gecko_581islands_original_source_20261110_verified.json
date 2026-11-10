@@ -1,0 +1,79 @@
+{
+  "excluded_from_main_gecko_family_proxy": [
+    "Pygopodidae"
+  ],
+  "full_original_Squamata_all_year_and_basis_rows": 11634053,
+  "genus_source_record_summary": {
+    "Cyrtodactylus": 1633,
+    "Gehyra": 1749,
+    "Gekko": 10116,
+    "Hemidactylus": 19269,
+    "Lepidodactylus": 2896,
+    "Phelsuma": 13238,
+    "Tarentola": 7401
+  },
+  "no_effective_nocturnal_pollination_or_insect_population_measured": true,
+  "no_observer_ID_or_original_precise_coordinates_redistributed": true,
+  "not_direct_ALAN_gecko_moth_interaction_traction": true,
+  "original_Squamata_row_group_source_audit": {
+    "actual_GBIF_gecko_skink_original_georeferenced_photo_rows": 807828,
+    "actual_gecko_or_skink_original_island_observation_rows": 101399,
+    "all_original_reptile_rows_read": 11634053,
+    "ambiguous_island_overlap_original_source_rows": 0,
+    "coarse_near_GSHHG_source_islands": 197855,
+    "real_source_row_groups_read": 127,
+    "valid_speciesfamily_human_observation_year_rows": 810750
+  },
+  "original_gecko_families": [
+    "Gekkonidae",
+    "Phyllodactylidae",
+    "Sphaerodactylidae",
+    "Eublepharidae",
+    "Diplodactylidae",
+    "Carphodactylidae"
+  ],
+  "original_gecko_named_genera": [
+    "Hemidactylus",
+    "Gehyra",
+    "Gekko",
+    "Phelsuma",
+    "Tarentola",
+    "Cyrtodactylus",
+    "Lepidodactylus"
+  ],
+  "original_source_reptile_Parquet_files": [
+    {
+      "original_bytes": 2818898304,
+      "original_row_groups": 101,
+      "original_source_rows": 9921925,
+      "source_original_key": "development/2026-08-01-DWCA/p_taxon/taxonpartition=Animalia_Chordata_Reptilia_Squamata/data_0.parquet"
+    },
+    {
+      "original_bytes": 431835421,
+      "original_row_groups": 22,
+      "original_source_rows": 1441792,
+      "source_original_key": "development/2026-08-01-DWCA/p_taxon/taxonpartition=Animalia_Chordata_Reptilia_Squamata/data_1.parquet"
+    },
+    {
+      "original_bytes": 79386346,
+      "original_row_groups": 4,
+      "original_source_rows": 270336,
+      "source_original_key": "development/2026-08-01-DWCA/p_taxon/taxonpartition=Animalia_Chordata_Reptilia_Squamata/data_2.parquet"
+    }
+  ],
+  "schema": "ALAN_true_GBIF_202608_Squamata_gecko_skink_GSHHG_island_source_v1",
+  "source_GBIF_frozen_snapshot_DOI": "10.15468/dl.8yrbe7",
+  "source_Gekkonidae_family_islands": 532,
+  "source_Scincidae_negative_control_islands": 448,
+  "source_Scincidae_photo_observation_records": 35361,
+  "source_any_named_gecko_families_island_cell_years": 23024,
+  "source_any_named_gecko_families_islands": 581,
+  "source_documented_gecko_photos_not_occupancy_or_diet": true,
+  "source_frozen_snapshot_not_same_as_LIVE_2026_GBIF_API": true,
+  "source_gecko_family_cell_year_CSV_SHA256": "c2e0c823ee9fcf61182b920724e488d9130b1d1ca9d53266511c2da8873983c9",
+  "source_gecko_genus_cell_year_CSV_SHA256": "91d09507f84e062632feed8aef18f09c1fbf7797c812ed3ab147b5e32851b9e2",
+  "source_gecko_photo_observation_records": 66038,
+  "source_other_reptile_or_gecko_zero_is_not_confirmed_real_absence": true,
+  "source_true_GSHHG_20plus_km2_islands": 3696,
+  "source_verified_run": "https://github.com/zuizui0223/alan/actions/runs/42791325209"
+}

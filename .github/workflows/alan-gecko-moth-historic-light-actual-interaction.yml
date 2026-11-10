@@ -1,0 +1,71 @@
+name: ALAN real 97island documented-gecko × prior ALAN and observed moth photo source
+on:
+  push:
+    branches: [analysis/alan-global-gecko-moth-light-20261110]
+    paths:
+      - scripts/analysis/alan_global_gecko_prior_photo_x_moth_priorPCNL_FE_20261110.py
+      - tests/test_alan_global_gecko_prior_x_ALAN_source_FE_20261110.py
+      - .github/workflows/alan-gecko-moth-historic-light-actual-interaction.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-source-global-gecko-prior-photo-ALAN-modifier:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify original causal-sequencing and island-FE unit tests
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5 pyarrow==21.0.0
+          python -m py_compile scripts/analysis/alan_global_gecko_prior_photo_x_moth_priorPCNL_FE_20261110.py
+          python -m unittest discover -s tests -p test_alan_global_gecko_prior_x_ALAN_source_FE_20261110.py -v
+      - name: Restore signed original gecko × moth 2013-2025 geographically aligned source
+        run: |
+          set -euo pipefail
+          mkdir -p original
+          gh run download 42791789835 --repo zuizui0223/alan \
+            --name alan-authentic-196island-gecko-moth-prior-survey-documentation-overlap \
+            --dir original
+          test -s original/ALAN_real_original_62688_moth_source_gecko_prior_photo_documentation.csv.gz
+          test -s original/ALAN_2026_11_original_global_gecko_moth_photo_source_join_receipt.json
+      - name: Compare true same-year light gradients conditional on earlier photographed geckos
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_global_gecko_prior_photo_x_moth_priorPCNL_FE_20261110 \
+            --joined original/ALAN_real_original_62688_moth_source_gecko_prior_photo_documentation.csv.gz \
+            --receipt original/ALAN_2026_11_original_global_gecko_moth_photo_source_join_receipt.json \
+            --out true-global-gecko/ALAN_global_2015to25_gecko_documented_moth_record_share_priorPCNL_FE.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('true-global-gecko/ALAN_global_2015to25_gecko_documented_moth_record_share_priorPCNL_FE.json').read_text())
+          assert d['source_genuine_62688_GBIF_record_fraction_photo_cells']==62688
+          assert d['original_gecko_source_absence_not_observed_not_biological_absence']
+          assert d['no_true_moth_density_or_effective_pollen_flow_measured']
+          assert d['analyzed_recorded_photo_source_composition_not_ecological_predation']
+          print('ALAN_ACTUAL_GECKO_PHOTO_INTERACTION_NOT_MOTH_PREY_MEASUREMENT',json.dumps({
+             'main':d['analyses']['gecko_prior_documented_main'],
+             'skink':d['analyses']['scink_prior_documented_observer_negative_control'],
+             'true_background':d['analyses']['gecko_prior_only_islands_with_any_prior_skink_or_gecko_photo']},
+             sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-real-gecko-prior-documentation-by-ALAN-moth-Gbif-source-interaction
+          path: true-global-gecko/ALAN_global_2015to25_gecko_documented_moth_record_share_priorPCNL_FE.json
+          if-no-files-found: warn
+          retention-days: 90

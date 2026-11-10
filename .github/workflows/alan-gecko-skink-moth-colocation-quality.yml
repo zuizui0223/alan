@@ -1,0 +1,61 @@
+name: ALAN genuine global gecko skink moth same-cell/year overlap quality audit
+on:
+  push:
+    branches: [analysis/alan-global-gecko-moth-light-20261110]
+    paths:
+      - scripts/analysis/alan_gecko_skink_moth_samecell_genuine_source_support_20261110.py
+      - .github/workflows/alan-gecko-skink-moth-colocation-quality.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  true-gecko-skink-source-coobserved:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Restore original frozen actual 196-island gecko moth prior-light source
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3
+          python -m py_compile scripts/analysis/alan_gecko_skink_moth_samecell_genuine_source_support_20261110.py
+          mkdir -p source
+          gh run download 42791789835 --repo zuizui0223/alan \
+            --name alan-authentic-196island-gecko-moth-prior-survey-documentation-overlap \
+            --dir source
+          test -s source/ALAN_real_original_62688_moth_source_gecko_prior_photo_documentation.csv.gz
+          test -s source/ALAN_2026_11_original_global_gecko_moth_photo_source_join_receipt.json
+      - name: Audit gecko+skink both documented source cells and independent islands with light contrast
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_gecko_skink_moth_samecell_genuine_source_support_20261110 \
+            --source source/ALAN_real_original_62688_moth_source_gecko_prior_photo_documentation.csv.gz \
+            --receipt source/ALAN_2026_11_original_global_gecko_moth_photo_source_join_receipt.json \
+            --out support/ALAN_gecko_skink_moth_true_samecell_and_islandyear_overlap.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('support/ALAN_gecko_skink_moth_true_samecell_and_islandyear_overlap.json').read_text())
+          assert x['total_authenticated_global_moth_source_cell_years']==62688
+          assert x['total_source_independent_original_islands']==196
+          assert x['same_year_gecko_photographed_moth_source_cell_years']==2787
+          assert x['same_year_skink_photographed_moth_source_cell_years']==2659
+          assert x['same_cell_year_Gecko_and_Scincidae_photographed_together']==1260
+          assert x['source_eligible_independent_islands_with_both_lizard_guilds_and_light_gradient']==50
+          assert x['no_gecko_photograph_not_biological_absence']
+          assert x['no_observed_direct_gecko_predation_moth_diet_or_effective_pollination']
+          print('ALAN_SOURCE_REAL_GECKO_SKINK_SAMEYEAR_POSITIVITY_GATE',json.dumps(x,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-gecko-and-skink-actual-moth-cell-year-photo-cosupport-gate
+          path: support/ALAN_gecko_skink_moth_true_samecell_and_islandyear_overlap.json
+          if-no-files-found: warn
+          retention-days: 90

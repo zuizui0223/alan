@@ -1,0 +1,336 @@
+{
+  "schema": "ALAN_true_global_gecko_darkarea_13year_source_model_verified_20261110",
+  "source_actual_original_GBIF_DOI": "10.15468/dl.8yrbe7",
+  "source_PCNL_annual_year_minus_one_DOI": "10.5281/zenodo.17013414",
+  "original_true_gecko_source_execution": "https://github.com/zuizui0223/alan/actions/runs/42791325209",
+  "original_62688_photo_sites_geographic_darkpatch_execution": "https://github.com/zuizui0223/alan/actions/runs/42788295115",
+  "source_model_execution": "https://github.com/zuizui0223/alan/actions/runs/42793170640",
+  "real_observed_dark_threshold_model_results": {
+    "0": {
+      "support": {
+        "eligible_island_year_fixed_effect_groups": 793,
+        "no_original_nighttime_behaviour_or_pollen_transfer": true,
+        "recorded_gecko_source_not_confirmed_biological_occupancy": true,
+        "recorded_prior_gecko_positive_source_islands": 83,
+        "recorded_prior_gecko_undocumented_source_islands": 81,
+        "source_min_actual_same_cell_insect_records": 5,
+        "source_min_dark_connectedness_span_per_islandyear": 0.05,
+        "source_min_dark_land_fraction_span_per_islandyear": 0.05,
+        "source_observation_year_window": [
+          2015,
+          2025
+        ],
+        "source_threshold_PCNL_native": 0,
+        "true_eligible_geographic_photo_cells": 45938,
+        "true_eligible_independent_GSHHG_islands": 161
+      },
+      "source_joint_gecko_prior_x_true_dark_fraction_and_light": {
+        "status": "estimated_exploratory_photo_source_composition_not_pollen_service",
+        "original_gecko_photo_source_islands": 83,
+        "originally_undocumented_comparison_islands": 81,
+        "true_original_photo_cell_years": 45938,
+        "coefficients": {
+          "centre_lat_c": {
+            "beta": -0.27947899248818175,
+            "island_cluster_SE": 0.8162789282932857,
+            "nominal_95CI": [
+              -1.891549521364636,
+              1.3325915363882725
+            ],
+            "nominal_unadjusted_two_sided_p": 0.7325129817231171
+          },
+          "dark_land_fraction": {
+            "beta": 9.025801033436554,
+            "island_cluster_SE": 6.406459698328282,
+            "nominal_95CI": [
+              -3.626326218829199,
+              21.677928285702308
+            ],
+            "nominal_unadjusted_two_sided_p": 0.16081716121130843
+          },
+          "largest_dark_component_fraction_of_dark": {
+            "beta": -3.6262953892167147,
+            "island_cluster_SE": 4.069095722874575,
+            "nominal_95CI": [
+              -11.662358880085698,
+              4.4097681016522685
+            ],
+            "nominal_unadjusted_two_sided_p": 0.3741709649146425
+          },
+          "log_all_fourfamily_observations": {
+            "beta": 6.686857759928507,
+            "island_cluster_SE": 0.899424954373802,
+            "nominal_95CI": [
+              4.910582014438358,
+              8.463133505418655
+            ],
+            "nominal_unadjusted_two_sided_p": 5.989657304025567e-12
+          },
+          "moderator_x_dark_land": {
+            "beta": 10.05389252271647,
+            "island_cluster_SE": 8.013397019753226,
+            "nominal_95CI": [
+              -5.771777752443617,
+              25.87956279787656
+            ],
+            "nominal_unadjusted_two_sided_p": 0.21144073815967493
+          },
+          "moderator_x_prior_light": {
+            "beta": 2.1143423887490567,
+            "island_cluster_SE": 1.4625156222953928,
+            "nominal_95CI": [
+              -0.7739819952373765,
+              5.002666772735489
+            ],
+            "nominal_unadjusted_two_sided_p": 0.1502204028828414
+          },
+          "prior_log1p_PCNL": {
+            "beta": -0.551047854030624,
+            "island_cluster_SE": 0.9567076894167147,
+            "nominal_95CI": [
+              -2.440451362317731,
+              1.3383556542564827
+            ],
+            "nominal_unadjusted_two_sided_p": 0.5654356109826688
+          }
+        }
+      },
+      "source_scink_photo_control": {
+        "status": "estimated_exploratory_photo_source_composition_not_pollen_service",
+        "original_skink_source_islands": 63,
+        "original_scink_undocumented_islands": 99,
+        "coefficients": {
+          "centre_lat_c": {
+            "beta": -0.30724753168530494,
+            "island_cluster_SE": 0.8246256963102421,
+            "nominal_95CI": [
+              -1.9358021057393524,
+              1.3213070423687425
+            ],
+            "nominal_unadjusted_two_sided_p": 0.7099464808293936
+          },
+          "dark_land_fraction": {
+            "beta": 11.478790360954477,
+            "island_cluster_SE": 5.5220943949407815,
+            "nominal_95CI": [
+              0.5731975259530646,
+              22.38438319595589
+            ],
+            "nominal_unadjusted_two_sided_p": 0.03924080237513809
+          },
+          "largest_dark_component_fraction_of_dark": {
+            "beta": -3.5714840438086064,
+            "island_cluster_SE": 4.131731915055552,
+            "nominal_95CI": [
+              -11.73124784832787,
+              4.588279760710657
+            ],
+            "nominal_unadjusted_two_sided_p": 0.38866027041784046
+          },
+          "log_all_fourfamily_observations": {
+            "beta": 6.605342071396345,
+            "island_cluster_SE": 0.9063296527656524,
+            "nominal_95CI": [
+              4.815430226280845,
+              8.395253916511844
+            ],
+            "nominal_unadjusted_two_sided_p": 1.3602554017457648e-11
+          },
+          "moderator_x_dark_land": {
+            "beta": 5.119539345608118,
+            "island_cluster_SE": 8.608794590526434,
+            "nominal_95CI": [
+              -11.881982520888482,
+              22.121061212104717
+            ],
+            "nominal_unadjusted_two_sided_p": 0.5528926637052788
+          },
+          "moderator_x_prior_light": {
+            "beta": 0.5992194552819663,
+            "island_cluster_SE": 1.7269406052522827,
+            "nominal_95CI": [
+              -2.8113182400473553,
+              4.0097571506112875
+            ],
+            "nominal_unadjusted_two_sided_p": 0.7290598599996526
+          },
+          "prior_log1p_PCNL": {
+            "beta": 0.206152032446614,
+            "island_cluster_SE": 0.8147436938802973,
+            "nominal_95CI": [
+              -1.4028865595926734,
+              1.8151906244859013
+            ],
+            "nominal_unadjusted_two_sided_p": 0.8005722634281265
+          }
+        }
+      }
+    },
+    "3": {
+      "support": {
+        "eligible_island_year_fixed_effect_groups": 818,
+        "no_original_nighttime_behaviour_or_pollen_transfer": true,
+        "recorded_gecko_source_not_confirmed_biological_occupancy": true,
+        "recorded_prior_gecko_positive_source_islands": 86,
+        "recorded_prior_gecko_undocumented_source_islands": 83,
+        "source_min_actual_same_cell_insect_records": 5,
+        "source_min_dark_connectedness_span_per_islandyear": 0.05,
+        "source_min_dark_land_fraction_span_per_islandyear": 0.05,
+        "source_observation_year_window": [
+          2015,
+          2025
+        ],
+        "source_threshold_PCNL_native": 3,
+        "true_eligible_geographic_photo_cells": 47781,
+        "true_eligible_independent_GSHHG_islands": 166
+      },
+      "source_joint_gecko_prior_x_true_dark_fraction_and_light": {
+        "status": "estimated_exploratory_photo_source_composition_not_pollen_service",
+        "original_gecko_photo_source_islands": 86,
+        "originally_undocumented_comparison_islands": 83,
+        "true_original_photo_cell_years": 47781,
+        "coefficients": {
+          "centre_lat_c": {
+            "beta": -0.011684272554130792,
+            "island_cluster_SE": 0.7998362459586587,
+            "nominal_95CI": [
+              -1.5909174531718826,
+              1.567548908063621
+            ],
+            "nominal_unadjusted_two_sided_p": 0.9883623015038234
+          },
+          "dark_land_fraction": {
+            "beta": 11.26624704880587,
+            "island_cluster_SE": 6.336870923297094,
+            "nominal_95CI": [
+              -1.2455600541193874,
+              23.778054151731126
+            ],
+            "nominal_unadjusted_two_sided_p": 0.07726409648645678
+          },
+          "largest_dark_component_fraction_of_dark": {
+            "beta": -2.588056123736776,
+            "island_cluster_SE": 4.52258475254314,
+            "nominal_95CI": [
+              -11.517653825090775,
+              6.341541577617225
+            ],
+            "nominal_unadjusted_two_sided_p": 0.5679304314273821
+          },
+          "log_all_fourfamily_observations": {
+            "beta": 7.19445653589116,
+            "island_cluster_SE": 0.9380959824132549,
+            "nominal_95CI": [
+              5.342237022813739,
+              9.04667604896858
+            ],
+            "nominal_unadjusted_two_sided_p": 1.4190529492589425e-12
+          },
+          "moderator_x_dark_land": {
+            "beta": 7.804768539726126,
+            "island_cluster_SE": 7.8942161563006925,
+            "nominal_95CI": [
+              -7.78193205303891,
+              23.39146913249116
+            ],
+            "nominal_unadjusted_two_sided_p": 0.32427260443819417
+          },
+          "moderator_x_prior_light": {
+            "beta": 2.2720249606488183,
+            "island_cluster_SE": 1.4687836787648392,
+            "nominal_95CI": [
+              -0.6280085554305845,
+              5.172058476728221
+            ],
+            "nominal_unadjusted_two_sided_p": 0.12380921303229682
+          },
+          "prior_log1p_PCNL": {
+            "beta": -0.41458141857237396,
+            "island_cluster_SE": 0.9738747727077569,
+            "nominal_95CI": [
+              -2.3374442077965503,
+              1.5082813706518026
+            ],
+            "nominal_unadjusted_two_sided_p": 0.6708790220085008
+          }
+        }
+      },
+      "source_scink_photo_control": {
+        "status": "estimated_exploratory_photo_source_composition_not_pollen_service",
+        "original_skink_source_islands": 67,
+        "original_scink_undocumented_islands": 100,
+        "coefficients": {
+          "centre_lat_c": {
+            "beta": -0.03006590764308939,
+            "island_cluster_SE": 0.8025415581174309,
+            "nominal_95CI": [
+              -1.6146405800307484,
+              1.5545087647445697
+            ],
+            "nominal_unadjusted_two_sided_p": 0.9701608369865897
+          },
+          "dark_land_fraction": {
+            "beta": 13.222564727240744,
+            "island_cluster_SE": 5.902625028015155,
+            "nominal_95CI": [
+              1.56815253463785,
+              24.87697691984364
+            ],
+            "nominal_unadjusted_two_sided_p": 0.02641868956235341
+          },
+          "largest_dark_component_fraction_of_dark": {
+            "beta": -2.450318992342215,
+            "island_cluster_SE": 4.561133494829622,
+            "nominal_95CI": [
+              -11.456029089449084,
+              6.555391104764654
+            ],
+            "nominal_unadjusted_two_sided_p": 0.5918413703106312
+          },
+          "log_all_fourfamily_observations": {
+            "beta": 7.113581405722379,
+            "island_cluster_SE": 0.946143446207044,
+            "nominal_95CI": [
+              5.245472612924033,
+              8.981690198520726
+            ],
+            "nominal_unadjusted_two_sided_p": 3.360615459765319e-12
+          },
+          "moderator_x_dark_land": {
+            "beta": 3.319793065370611,
+            "island_cluster_SE": 8.30573099862714,
+            "nominal_95CI": [
+              -13.079421209541557,
+              19.71900734028278
+            ],
+            "nominal_unadjusted_two_sided_p": 0.6898950936707366
+          },
+          "moderator_x_prior_light": {
+            "beta": 0.7287153715544691,
+            "island_cluster_SE": 1.6725164074341794,
+            "nominal_95CI": [
+              -2.5735773403516826,
+              4.031008083460621
+            ],
+            "nominal_unadjusted_two_sided_p": 0.6636238739800577
+          },
+          "prior_log1p_PCNL": {
+            "beta": 0.3708830102175492,
+            "island_cluster_SE": 0.8536126102816509,
+            "nominal_95CI": [
+              -1.3145286779396663,
+              2.056294698374765
+            ],
+            "nominal_unadjusted_two_sided_p": 0.6645029858377933
+          }
+        }
+      }
+    }
+  },
+  "conditional_gecko_x_dark_area_not_resolved_at_either_threshold": true,
+  "conditional_gecko_x_ALAN_not_resolved_at_either_threshold": true,
+  "same_image_thresholds_overlap_not_independent": true,
+  "no_gecko_activity_diet_or_insect_pollen_transfer_observed": true,
+  "no_gecko_photograph_not_true_gecko_absence": true,
+  "all_models_exploratory_with_unadjusted_nominal_CI": true
+}

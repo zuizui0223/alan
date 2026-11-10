@@ -1,0 +1,51 @@
+name: ALAN genuine global Squamata-gecko original GBIF 2026 source schema
+on:
+  push:
+    branches: [analysis/alan-global-gecko-moth-light-20261110]
+    paths:
+      - scripts/acquisition/alan_gbif_202608_Squamata_original_source_schema_20261110.py
+      - .github/workflows/alan-gecko-original-Squamata-Parquet-schema.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  authentic-global-reptile-parquet-source-schema:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q pyarrow==21.0.0 pandas==2.2.3 numpy==2.1.3
+          python -m py_compile scripts/acquisition/alan_gbif_202608_Squamata_original_source_schema_20261110.py
+          mkdir -p source
+          gh run download 42790214757 --repo zuizui0223/alan \
+            --name alan-original-202608-gecko-reptile-Parquet-partition-manifest \
+            --dir source
+          test -s source/gbif_202608_reptile_gecko_partition_manifest.json
+          python -m scripts.acquisition.alan_gbif_202608_Squamata_original_source_schema_20261110 \
+            --manifest source/gbif_202608_reptile_gecko_partition_manifest.json \
+            --out audited-gecko/GBIF_202608_actual_Squamata_Parquet_schema.json
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          r=json.loads(Path('audited-gecko/GBIF_202608_actual_Squamata_Parquet_schema.json').read_text())
+          assert r['original_total_reptile_source_rows_all_years_all_basis']>100000
+          assert len(r['original_parquet_file_receipts'])==3
+          assert r['no_individual_records_exported_or_original_source_species_presence_inferred']
+          print('ALAN_GENUINE_GECKO_PARQUET_ROW_SCHEMA_AUDITED',flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-real-202608-gecko-Squamata-reptile-native-Parquet-rows-and-schema
+          path: audited-gecko/GBIF_202608_actual_Squamata_Parquet_schema.json
+          if-no-files-found: warn
+          retention-days: 90

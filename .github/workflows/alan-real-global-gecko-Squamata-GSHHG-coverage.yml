@@ -1,0 +1,71 @@
+name: ALAN authentic global 11m Squamata geckos versus moth-butterfly islands
+on:
+  push:
+    branches: [analysis/alan-global-gecko-moth-light-20261110]
+    paths:
+      - scripts/analysis/alan_global_GBIF_gecko_island_original_stream_20261110.py
+      - .github/workflows/alan-real-global-gecko-Squamata-GSHHG-coverage.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  genuine-202608-reptile-gecko-world-island-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 115
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Restore original audited 3.1 GiB Squamata partition and source coast
+        run: |
+          set -euo pipefail
+          python -m pip install -q pyarrow==21.0.0 numpy==2.1.3 pandas==2.2.3 \
+            scipy==1.15.2 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5
+          python -m py_compile scripts/analysis/alan_global_GBIF_gecko_island_original_stream_20261110.py
+          mkdir -p original/reptiles original/coast
+          gh run download 42790214757 --repo zuizui0223/alan \
+            --name alan-original-202608-gecko-reptile-Parquet-partition-manifest \
+            --dir original/reptiles
+          gh run download 42175243391 --repo zuizui0223/mois \
+            --name mois-GSHHG-2.3.7-high-L1-L2-SHA-source-no-images \
+            --dir original/coast
+          test -s original/reptiles/gbif_202608_reptile_gecko_partition_manifest.json
+          test -s original/coast/source_receipt.json
+      - name: Full real 11,634,053-source-row Squamata taxon geolocation to island
+        timeout-minutes: 105
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_global_GBIF_gecko_island_original_stream_20261110 \
+            --source-manifest original/reptiles/gbif_202608_reptile_gecko_partition_manifest.json \
+            --coast original/coast \
+            --out real-global-gecko
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('real-global-gecko/ALAN_2026_11_true_global_gecko_family_source_receipt.json')
+          d=json.loads(p.read_text())
+          assert d['full_original_Squamata_all_year_and_basis_rows']==11634053
+          assert d['original_Squamata_row_group_source_audit']['all_original_reptile_rows_read']==11634053
+          assert d['source_true_GSHHG_20plus_km2_islands']==3696
+          assert d['source_Gekkonidae_family_islands']>0
+          assert d['source_gecko_photo_observation_records']>0
+          assert d['source_documented_gecko_photos_not_occupancy_or_diet']
+          print('ALAN_REAL_WORLD_GECKO_REPTILE_SOURCE_COMPLETE',
+                json.dumps(d,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-global-202608-true-gecko-scincidae-GSHHG-island-year-source
+          path: real-global-gecko/
+          if-no-files-found: warn
+          retention-days: 90

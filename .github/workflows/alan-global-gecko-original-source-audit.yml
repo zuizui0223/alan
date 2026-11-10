@@ -1,0 +1,93 @@
+name: ALAN original global gecko predator taxon and 2026-08 Parquet source support
+on:
+  push:
+    branches: [analysis/alan-global-gecko-moth-light-20261110]
+    paths:
+      - scripts/acquisition/alan_global_gecko_gbif_source_feasibility_20261110.py
+      - scripts/acquisition/alan_gbif_202608_gecko_taxon_S3_partition_audit.py
+      - .github/workflows/alan-global-gecko-original-source-audit.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  true-gecko-original-GBIF-index-census:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 24
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Restore genuine 2026-08 GBIF partition snapshot manifest
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/acquisition/alan_global_gecko_gbif_source_feasibility_20261110.py
+          mkdir -p source
+          gh auth status >/dev/null 2>&1 || true
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Run live original gecko family and 2013-2025 georeferenced human-observer source audit
+        run: |
+          set -euo pipefail
+          gh run download 42780317399 --repo zuizui0223/alan \
+            --name alan-gbif-202608-actual-global-lepidoptera-public-partition-source-manifest \
+            --dir source
+          test -s source/gbif_2026_08_taxonpartition_moths_sources.json
+          python -m scripts.acquisition.alan_global_gecko_gbif_source_feasibility_20261110 \
+            --manifest source/gbif_2026_08_taxonpartition_moths_sources.json \
+            --out original-gecko-source/gecko_taxonomy_and_source_scale.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('original-gecko-source/gecko_taxonomy_and_source_scale.json').read_text())
+          assert r['GBIF_LIVE_taxon_counts_not_the_2026_08_frozen_snapshot']
+          assert r['no_gecko_eating_moth_observation_or_pollen_transfer_observed']
+          assert r['actual_GBIF_reptile_and_gecko_taxa']['Gekkonidae']['actual_GBIF_HUMAN_OBSERVATION_2013_2025']['source_record_count']>0
+          print('ALAN_TRUE_GBIF_GECKO_SOURCE_COUNT_AUDITED',flush=True)
+          PY
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-real-gecko-worldwide-GBIF-taxonomy-2013to2025-source-count
+          path: original-gecko-source/gecko_taxonomy_and_source_scale.json
+          if-no-files-found: warn
+          retention-days: 90
+
+  frozen-reptile-original-parquet-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify actual public reptile taxonomy partition sources
+        run: |
+          set -euo pipefail
+          python -m pip install -q boto3==1.40.74
+          python -m py_compile scripts/acquisition/alan_gbif_202608_gecko_taxon_S3_partition_audit.py
+          python -m scripts.acquisition.alan_gbif_202608_gecko_taxon_S3_partition_audit \
+            --out original-gecko-source/gbif_202608_reptile_gecko_partition_manifest.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('original-gecko-source/gbif_202608_reptile_gecko_partition_manifest.json').read_text())
+          assert r['original_GBIF_snapshot_DOI']=='10.15468/dl.8yrbe7'
+          assert r['original_taxon_folders_total']>100
+          assert r['no_2026_08_occurrence_rows_downloaded']
+          print('ALAN_TRUE_ORIGINAL_GECKO_REPTILE_PARQUET_SOURCE_AUDITED',flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-202608-gecko-reptile-Parquet-partition-manifest
+          path: original-gecko-source/gbif_202608_reptile_gecko_partition_manifest.json
+          if-no-files-found: warn
+          retention-days: 90
