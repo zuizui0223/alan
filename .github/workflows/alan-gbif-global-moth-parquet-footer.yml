@@ -1,0 +1,56 @@
+name: ALAN 2026-08 global moth Parquet real source rows and schema footers
+on:
+  push:
+    branches: [analysis/alan-global-moth-source-census-20261110]
+    paths:
+      - scripts/acquisition/alan_gbif_202608_lepidoptera_parquet_footer_20261110.py
+      - .github/workflows/alan-gbif-global-moth-parquet-footer.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-worldwide-lepidoptera-parquet-rowgroup-schema:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q pyarrow==21.0.0
+          python -m py_compile scripts/acquisition/alan_gbif_202608_lepidoptera_parquet_footer_20261110.py
+      - name: Restore exact S3 listing from its verified true source
+        run: |
+          set -euo pipefail
+          mkdir -p manifest
+          gh run download 42780317399 --repo zuizui0223/alan \
+            --name alan-gbif-202608-actual-global-lepidoptera-public-partition-source-manifest \
+            --dir manifest
+          test -s manifest/gbif_2026_08_taxonpartition_moths_sources.json
+      - name: Inspect actual 2026-08 worldwide Lepidoptera original Parquet metadata
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_gbif_202608_lepidoptera_parquet_footer_20261110 \
+            --manifest manifest/gbif_2026_08_taxonpartition_moths_sources.json \
+            --out source-audit/gbif_2026_08_worldwide_moth_source_parquet_footer.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('source-audit/gbif_2026_08_worldwide_moth_source_parquet_footer.json').read_text())
+          assert d['source_true_taxonomic_partitions']==6
+          assert d['source_Parquet_original_row_total']>1000000
+          assert d['did_not_read_any_observed_occurrence_rows']
+          print('ALAN_TRUE_WORLDWIDE_MOTH_PARQUET_FOOTERS_VERIFIED',flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-authentic-worldwide-lepidoptera-202608-Parquet-rowgroup-schemas
+          path: source-audit/gbif_2026_08_worldwide_moth_source_parquet_footer.json
+          retention-days: 90
+          if-no-files-found: warn
