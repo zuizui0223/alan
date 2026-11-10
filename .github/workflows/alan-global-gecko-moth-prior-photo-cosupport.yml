@@ -1,0 +1,70 @@
+name: ALAN real 581-island gecko source versus global 196-island moth ALAN overlap
+on:
+  push:
+    branches: [analysis/alan-global-gecko-moth-light-20261110]
+    paths:
+      - scripts/analysis/alan_global_gecko_moth_historical_source_cosupport_20261110.py
+      - .github/workflows/alan-global-gecko-moth-prior-photo-cosupport.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  authenticated-original-gecko-moth-ALAN-source-overlap:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify independent GSHHG/GBIF gecko source and prior-year moth photo original
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5 pyarrow==21.0.0
+          python -m py_compile scripts/analysis/alan_global_gecko_moth_historical_source_cosupport_20261110.py
+          mkdir -p source/gecko source/moth
+          gh run download 42791325209 --repo zuizui0223/alan \
+            --name alan-global-202608-true-gecko-scincidae-GSHHG-island-year-source \
+            --dir source/gecko
+          gh run download 42786502922 --repo zuizui0223/alan \
+            --name alan-global-228361-islandcells-actual-13year-prior-PCNL-joined \
+            --dir source/moth
+          echo '64b269dd796b9095853c371909a0dd760921df2e396636a83fc59a2d659e4852  source/moth/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz' | sha256sum -c -
+          test -s source/gecko/ALAN_2026_11_true_global_gecko_family_source_receipt.json
+          test -s source/gecko/GBIF_202608_actual_gecko_skink_island_geo_cells2013_2025.csv.gz
+          test -s source/gecko/GBIF_202608_actual_gecko_genera_island_geo_cells2013_2025.csv.gz
+      - name: Measure original prior-gecko documentation overlap without inventing gecko absence
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_global_gecko_moth_historical_source_cosupport_20261110 \
+            --source source/moth/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz \
+            --source-receipt source/moth/ALAN_2026_11_global_fourfamily_prior_PCNL_real_source_receipt.json \
+            --gecko source/gecko/GBIF_202608_actual_gecko_skink_island_geo_cells2013_2025.csv.gz \
+            --genus source/gecko/GBIF_202608_actual_gecko_genera_island_geo_cells2013_2025.csv.gz \
+            --gecko-receipt source/gecko/ALAN_2026_11_true_global_gecko_family_source_receipt.json \
+            --out real-gecko-moth
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('real-gecko-moth/ALAN_2026_11_original_global_gecko_moth_photo_source_join_receipt.json').read_text())
+          assert r['original_surveyed_moth_insect_geogrid_year_rows']==62688
+          assert r['genuine_islands_in_source']==196
+          assert r['source_classification_gecko_documented_not_population_occupancy']
+          assert r['no_moth_pollen_or_gecko_predation_interaction_fitted']
+          print('ALAN_TRUE_GLOBAL_GECKO_MOTH_SOURCE_COSUPPORT_VALID',json.dumps(
+              r['real_source_gecko_and_scink_coverage'],sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-authentic-196island-gecko-moth-prior-survey-documentation-overlap
+          path: real-gecko-moth/
+          retention-days: 90
+          if-no-files-found: warn
