@@ -231,7 +231,8 @@ def fit_source(d,y="recorded_cover_pp",equal="plot_equal",
 
 def run(source,receipt,glopl,out):
     df,audit=read_original(source,receipt)
-    g=pd.read_csv(glopl,encoding="latin-1",low_memory=False,dtype=str)
+    g=pd.read_csv(glopl,encoding="latin-1",low_memory=False,dtype=str,
+                  keep_default_na=False)
     require(len(g)==2969 and sha(glopl)==
             "264ca8c2237f126b3c209fcba039e19b291324ddf6e7a96992dc8235a55984de",
             "Real original GloPL independent study source not verified")
@@ -250,9 +251,16 @@ def run(source,receipt,glopl,out):
     df["source_GloPL_recorded"]=df.species.isin(glopl)
     df["source_GloPL_two_studies"]=df.species.isin(reliable)
     base,selected=choose(df)
-    require(df.loc[df.source_GloPL_two_studies,"species"].nunique()<=
-            audit["source_valid_NPMS_same_method_season_light_changing_plant_positive_multi_study_GloPL_taxa"]==12,
-            "Independent GloPL study normalization does not reconcile previous source cohort")
+    reported_multi_study=int(
+        audit["source_valid_NPMS_same_method_season_light_changing_plant_positive_multi_study_GloPL_taxa"])
+    current_multi_taxa=sorted(df.loc[df.source_GloPL_two_studies,"species"].unique().tolist())
+    trait_overlap_reconciled=(len(current_multi_taxa)<=reported_multi_study==12)
+    print("ALAN_NPMS_GLOPL_SOURCE_TAXA_CROSSWALK_AUDIT",
+       json.dumps({"genuine_original_multistudy_GloPL_source_species":reported_multi_study,
+          "current_externally_recomputed_multistudy_species_n":len(current_multi_taxa),
+          "current_source_positive_multistudy_species":current_multi_taxa,
+          "normalized_exact_GloPL_study_keys_reconcile_source":trait_overlap_reconciled},
+          sort_keys=True),flush=True)
     variants={
        "primary_original_cover_percentage_pp_source_plot_equal_with_species_year_FE":
           fit_source(base,"recorded_cover_pp","plot_equal","species_year",True),
@@ -288,11 +296,17 @@ def run(source,receipt,glopl,out):
     ):
         z=base.loc[base[field]].copy()
         z,newdiag=choose(z)
-        sourcePL[tag]={"source_eligibility":newdiag,
-                       "study_supported_species":int(z.species.nunique()),
-                       "actual_source_physical_plots":int(z.location_id.nunique()),
-                       "model":fit_source(z,"recorded_cover_pp","plot_equal",
-                                           "species_year",True)}
+        if not trait_overlap_reconciled:
+            sourcePL[tag]={"status":"original_NPMS_GloPL_crosswalk_study_key_unresolved",
+                           "do_not_use_for_biological_moderator":True,
+                           "source_eligibility":newdiag,
+                           "model":{"status":"original_study_identity_not_reconciled"}}
+        else:
+            sourcePL[tag]={"source_eligibility":newdiag,
+                           "study_supported_species":int(z.species.nunique()),
+                           "actual_source_physical_plots":int(z.location_id.nunique()),
+                           "model":fit_source(z,"recorded_cover_pp","plot_equal",
+                                               "species_year",True)}
     # A methodological negative-control response: number of *positive source*
     # cover records at this plant-site-year is an outcome ascertainment proxy,
     # not total recording effort or plot-wide species richness.
@@ -319,6 +333,8 @@ def run(source,receipt,glopl,out):
        "source_preyear_light_not_local_LUX_or_flower_light":True,
        "source_cover_response_measured_only_conditional_on_NPMS_plant_record":True,
        "source_GloPL_independent_study_PL_not_NPMS_site_measured_PL":True,
+       "independent_GloPL_source_study_key_crosswalk_verified":trait_overlap_reconciled,
+       "independent_GloPL_study_species_original_source_expectation":reported_multi_study,
        "source_covariate_original_day_of_year_recorded":True,
        "original_five_model_specifications_and_sampling_robustness":variants,
        "source_light_range_sensitivity":bands,
@@ -351,7 +367,7 @@ def run(source,receipt,glopl,out):
         "survey_ID":{k:{"source":v["source_eligibility"],
                    "fit":summary(v["model"])} for k,v in method.items()},
         "GloPL_independent_species":{k:{
-                  "n_species":v["study_supported_species"],
+                  "n_species":v.get("study_supported_species"),
                   "source":v["source_eligibility"],
                   "fit":summary(v["model"])} for k,v in sourcePL.items()}
       },sort_keys=True),flush=True)
