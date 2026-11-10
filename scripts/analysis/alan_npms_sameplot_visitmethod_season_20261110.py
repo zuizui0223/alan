@@ -136,6 +136,18 @@ def source_vegetation_design(package,glopl):
         lambda a: float(a.max()-a.min()) if a.notna().all() else np.nan)
     obsyears=visits.groupby(["location_id","observer_token"],sort=False).year.nunique()
     surveyyears=visits.groupby(["location_id","survey_token"],sort=False).year.nunique()
+    true_same_survey_and_season_years=visits.groupby(
+        ["location_id","survey_token","season"],sort=False).year.nunique()
+    strict_same_source_plots=set(
+        true_same_survey_and_season_years.loc[
+           true_same_survey_and_season_years.ge(2)].reset_index().location_id)
+    positive_same_survey_season=matched_sp.drop_duplicates(
+        ["location_id","survey_token","season","year","species"])
+    repeated_positive_same_survey_season=positive_same_survey_season.groupby(
+        ["location_id","survey_token","season","species"],sort=False).year.nunique()
+    repeated_multi_study_same_survey_season=positive_same_survey_season.loc[
+        positive_same_survey_season.species.isin(replicated_study_taxa)].groupby(
+        ["location_id","survey_token","season","species"],sort=False).year.nunique()
 
     # Is survey_id stable within plot across years? This is an *audit*, not
     # an unsupported guess that survey_id equals survey METHOD.
@@ -156,6 +168,10 @@ def source_vegetation_design(package,glopl):
       "source_plot_observer_tokens_revisited_2plus_years":int(obsyears.ge(2).sum()),
       "source_plots_with_any_repeat_survey_token_2plus_years":int(
           surveyyears.loc[surveyyears.ge(2)].reset_index().location_id.nunique()),
+      "source_plots_with_same_survey_ID_AND_same_season_repeated_2plus_years":
+          int(len(strict_same_source_plots)),
+      "source_plot_survey_ID_season_groups_repeated_2plus_years":
+          int(true_same_survey_and_season_years.ge(2).sum()),
       "original_survey_id_distinct_values":int(visits.survey_token.nunique()),
       "source_sample_survey_id_blank_visits":int(visits.survey_token.eq("").sum()),
       "source_unique_visitor_observer_ids":int(visits.observer_token.replace("",np.nan).nunique()),
@@ -185,6 +201,10 @@ def source_vegetation_design(package,glopl):
           int(multi_study_pos.species.nunique()),
       "original_multi_study_GloPL_positive_plot_year_species":len(multi_study_pos),
       "source_multi_study_species_plot_pairs_with_2plus_positive_years":int(multirep.ge(2).sum()),
+      "source_same_survey_ID_AND_season_GloPL_positive_plot_species_repeat_groups":
+           int(repeated_positive_same_survey_season.ge(2).sum()),
+      "source_same_survey_ID_AND_season_independent_multi_study_GloPL_positive_repeat_groups":
+           int(repeated_multi_study_same_survey_season.ge(2).sum()),
       "original_GloPL_species_PL_not_measured_at_NPMS_site":True,
       "source_photo_species_positive_repeat_does_not_establish_nonrecord_absence":True,
       "not_a_night_pollinator_or_moth_observation_dataset":True,
