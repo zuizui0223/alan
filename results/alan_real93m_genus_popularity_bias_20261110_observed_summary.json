@@ -110,7 +110,15 @@
         0.20957819438110153
       ]
     },
-    "closure_verified": true
+    "closure_verified": true,
+    "top144_minus_remaining_direct_paired": {
+      "beta": 0.8064135969726045,
+      "CI": [
+        0.18125644164324406,
+        1.431570752301965
+      ],
+      "p": 0.011557694138958673
+    }
   },
   "source_taxon_recording_bias": {
     "single_cell_year_species": 1583,
@@ -130,6 +138,7 @@
     "native_and_cultivated_plant_status_unverified": true,
     "within_island_observational_associations_not_causal": true,
     "posthoc_threshold_sensitivities_and_model_selection_not_confirmatory": true,
-    "island_equal_and_site_equal_inferences_differ": true
+    "island_equal_and_site_equal_inferences_differ": true,
+    "top_frequency_rank_and_paired_test_exploratory_posthoc": true
   }
 }
