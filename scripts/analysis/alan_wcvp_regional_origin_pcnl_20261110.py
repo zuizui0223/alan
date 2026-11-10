@@ -161,7 +161,7 @@ def source_species(groups, sites):
     return x
 
 
-def summarise_status(species, places, regional, sites):
+def summarise_status(species, places, regional, sites, *, return_species=False):
     x = species.merge(places[KEY+["tdwg_level3_code","tdwg_region_state"]],
                       on=KEY,how="left",validate="many_to_one")
     d=regional[["species","tdwg_level3_code","native_introduced_state"]]
@@ -199,7 +199,7 @@ def summarise_status(species, places, regional, sites):
     require(r[[f"recorded_moth__{j}" for j in cats]].sum(axis=1).eq(
             r.moth_visitor_positive_recorded_species).all(),
             "GloBI moth records not conserved in WCVP native/introduced/unknown states")
-    return r
+    return (r,x) if return_species else r
 
 
 def model_group(panel, status, *, min_species=3, min_islands=30):
@@ -251,6 +251,83 @@ def model_group(panel, status, *, min_species=3, min_islands=30):
     }
 
 
+def native_genus_bias(source_species_status, original_sites):
+    """Same WCVP-region-native source subset, species-level genus/ubiquity guards.
+
+    The top 1% species are ranked only by observed source geographic frequency,
+    never by ALAN coefficient or flower colour. A regional-native class is
+    not proof that an iNaturalist photographed individual is wild.
+    """
+    from scripts.analysis import alan_real_genus_prevalence_bias_20261110 as genus
+    d=source_species_status.copy()
+    require(len(d)==2012925, "WCVP original source accepted species-site population changed")
+    d["genus"]=d.species.astype(str).str.extract(
+        r"^([A-Z][a-zA-Z-]+)\\b",expand=False).fillna("UNKNOWN_GENUS")
+    d["moth_minus_butterfly"]=d.moth.astype(int)-d.butterfly.astype(int)
+    prevalence=d.groupby("species",observed=True).size().sort_values(ascending=False)
+    require(len(prevalence)==14330, "Original 14,330 accepted WCVP source species changed")
+    topn=int(np.ceil(len(prevalence)*.01))
+    require(topn==144, "Prespecified 1% WCVP species source size changed")
+    top_species=set(prevalence.head(topn).index)
+    # No unsupported geographical absence: all species are actually photographed.
+    regional=d.loc[d.range_class.eq("native_at_TDWG3")].copy()
+
+    def supported(table):
+        count=table.groupby(KEY,observed=True).size().reset_index(name="n_recorded")
+        src=original_sites.merge(count,on=KEY,how="inner",validate="one_to_one")
+        src=src.loc[src.n_recorded.ge(3)].copy()
+        if src.empty:return src
+        bounds=src.groupby(["island","year"],observed=True)[LIGHT].agg(
+            ["size","min","max"])
+        ok=set(bounds.loc[bounds["size"].ge(2)&
+                (bounds["max"]-bounds["min"]).ge(.02)].reset_index().island)
+        return src.loc[src.island.isin(ok)].copy()
+
+    def fitted(table,support,response,genus_fe):
+        if len(support)<100 or support.island.nunique()<30:
+            return {"status":"not_estimable","n_sites":len(support),
+                    "n_islands":int(support.island.nunique())}
+        return genus.species_model(table,support,response=response,
+                                   genus_fe=genus_fe,weight="island_equal")
+
+    support=supported(regional)
+    baseline=fitted(regional,support,"moth",False)
+    require(abs(baseline["beta_pp"]-0.9155117901610345)<1e-6,
+            "WCVP-regional native source model must recover original island×year FE")
+    models={
+       "native_moth_without_genus_FE":baseline,
+       "native_moth_with_genus_FE":fitted(regional,support,"moth",True),
+       "native_butterfly_with_genus_FE":fitted(regional,support,"butterfly",True),
+       "native_moth_minus_butterfly_genus_FE_direct":fitted(
+           regional,support,"moth_minus_butterfly",True)
+    }
+    if (models["native_moth_with_genus_FE"].get("beta_pp") is not None
+        and models["native_butterfly_with_genus_FE"].get("beta_pp") is not None):
+        require(abs(models["native_moth_with_genus_FE"]["beta_pp"]-
+                    models["native_butterfly_with_genus_FE"]["beta_pp"]-
+                    models["native_moth_minus_butterfly_genus_FE_direct"]["beta_pp"])<1e-7,
+                "Genus adjusted same source guild difference did not close")
+    subset=regional.loc[~regional.species.isin(top_species)].copy()
+    s2=supported(subset)
+    models["native_genus_FE_excluding_144_most_observed_global_source_species"]=(
+        fitted(subset,s2,"moth",True))
+    models["native_butterfly_genus_FE_excluding_144_most_observed_global_species"]=(
+        fitted(subset,s2,"butterfly",True))
+    return {
+      "original_source_species":int(len(prevalence)),
+      "global_top_one_percent_source_species":topn,
+      "global_top_one_percent_region_native_species_site_fraction":float(
+          regional.species.isin(top_species).mean()),
+      "region_native_source_species_site_rows":len(regional),
+      "region_native_sites_with_min3_species_and_spatial_light":len(support),
+      "region_native_islands_with_spatial_light":int(support.island.nunique()),
+      "models":models,
+      "source_common_species_selected_before_ALAN_outcome":True,
+      "native_WCVP_region_NOT_wild_island_native":True,
+      "all_models_exploratory_after_bias_discovery":True
+    }
+
+
 def run(sites, groups, wcvp, geojson, out):
     s=prior.load_sites(sites)
     assert len(s)==77647
@@ -258,7 +335,8 @@ def run(sites, groups, wcvp, geojson, out):
     border=polygons(geojson)
     sites_geo=overlay_sites(s,border)
     species=source_species(groups,s)
-    joined=summarise_status(species,sites_geo,native,s)
+    joined,species_status=summarise_status(species,sites_geo,native,s,return_species=True)
+    native_genus_audit=native_genus_bias(species_status,s)
     cats=list(STATUS)+["unknown"]
     counts={k:{
        "recorded_species_site_years":int(joined[f"recorded_species__{k}"].sum()),
@@ -313,6 +391,7 @@ def run(sites, groups, wcvp, geojson, out):
       "unique_TDWG3_assigned_sites":int(sites_geo.tdwg_region_state.eq("unique_pinned_TDWG3").sum()),
       "WCVP_status_summary":counts,
       "models":versions,
+      "native_WCVP_genus_ubiquitous_taxa_source_audit":native_genus_audit,
       "WCVP_status_is_botanical_country_not_island_native":True,
       "photographed_individual_wild_or_garden_status_unknown":True,
       "missing_distribution_unknown_not_introduced":True,
