@@ -78,6 +78,7 @@ jobs:
           assert abs(m['moth_no_genus_FE']['beta_pp']-0.45722827881259)<0.0001
           assert abs(m['moth_genus_FE']['beta_pp']-0.1558876036668253)<0.0001
           assert abs(m['moth_genus_FE_drop_top1pct_species']['beta_pp']-0.006713157396490693)<0.0001
+          assert abs(m['moth_minus_butterfly_paired_genus_FE']['beta_pp']+0.06150264387862145)<0.0001
           c=a['exact_common_species_contributions']
           assert abs(c['original']['beta_pp']-c['top1']['beta_pp']-c['rest']['beta_pp'])<1.e-8
           assert abs(c['top1']['beta_pp']-0.6318209378927077)<0.0001
