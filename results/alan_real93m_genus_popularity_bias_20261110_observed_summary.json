@@ -1,0 +1,126 @@
+{
+  "schema": "ALAN_source93m_genus_and_photo_prevalence_20261110_verified_local_v1",
+  "source_run_id": 42616279235,
+  "pcnl_run_id": 42624285048,
+  "source_photo_ids": 93209351,
+  "source_site_years": 77647,
+  "source_islands": 562,
+  "accepted_species_site_years": 2012925,
+  "accepted_species": 14330,
+  "genera": 3908,
+  "mixed_label_genera_strict": 180,
+  "top_1pct_n_species": 144,
+  "top_1pct_source_species_site_fraction": 0.2741150316082318,
+  "top_5pct_source_species_site_fraction": 0.5753194977458177,
+  "units": "percentage points per unit of mean prior-year log1p(PCNL)",
+  "model": "GloBI moth flower-interaction positive documented taxa; island × observation-year FE, log1p(original observation UUIDs), original source accepted-species-equal site weights; island-cluster SE",
+  "models": {
+    "original_no_genus_FE": {
+      "beta": 0.45722827881259026,
+      "CI": [
+        0.040507398110580656,
+        0.8739491595145998
+      ],
+      "p": 0.031576282388247494
+    },
+    "original_genus_FE_island_equal": {
+      "beta": 0.1558876036668253,
+      "CI": [
+        -0.056142495467405754,
+        0.3679177028010564
+      ],
+      "p": 0.14926640098555302
+    },
+    "non_iNat_GloBI_genus_FE_island_equal": {
+      "beta": 0.12519761754826006,
+      "CI": [
+        -0.06038568223460164,
+        0.31078091733112173
+      ],
+      "p": 0.18568290188702558
+    },
+    "mixed_180_genus_FE_island_equal": {
+      "beta": 0.08626733143512604,
+      "CI": [
+        -0.40730464528993693,
+        0.5798393081601889
+      ],
+      "p": 0.7314950235728095,
+      "accepted_species_site_rows": 814000,
+      "site_years": 73170,
+      "islands": 560
+    },
+    "genus_FE_without_144_ubiquitous_taxa": {
+      "beta": 0.006713157396490693,
+      "CI": [
+        -0.22297523579141368,
+        0.2364015505843951
+      ],
+      "p": 0.9542404814276265,
+      "accepted_species_site_rows": 1461152,
+      "site_years": 76948
+    },
+    "genus_FE_without_top5pct": {
+      "beta": -0.01380680489568117,
+      "CI": [
+        -0.30375491194226456,
+        0.27614130215090227
+      ],
+      "p": 0.9255145356430847,
+      "accepted_species_site_rows": 854850,
+      "site_years": 70390
+    },
+    "genus_FE_site_equal": {
+      "beta": 0.5128147169675799,
+      "CI": [
+        0.25381162464185103,
+        0.7718178092933086
+      ],
+      "p": 0.00011270260724605354
+    }
+  },
+  "exact_same_denominator_island_year_FE_decomposition": {
+    "all_moth": {
+      "beta": 0.45722827881266614,
+      "CI": [
+        0.034541863228020386,
+        0.879914694397312
+      ]
+    },
+    "top_144_species": {
+      "beta": 0.6318209378927077,
+      "CI": [
+        0.2614759733790071,
+        1.0021659024064082
+      ]
+    },
+    "remaining_14186_species": {
+      "beta": -0.17459265908004118,
+      "CI": [
+        -0.5587635125411838,
+        0.20957819438110153
+      ]
+    },
+    "closure_verified": true
+  },
+  "source_taxon_recording_bias": {
+    "single_cell_year_species": 1583,
+    "single_cell_year_moth_positive": 43,
+    "single_cell_year_positive_pct": 2.716361,
+    "more_than_499_cell_year_species": 882,
+    "more_than_499_cell_year_moth_positive": 342,
+    "more_than_499_positive_pct": 38.77551,
+    "top_144_accepted_species_moth_positive": 96,
+    "remaining_14186_accepted_species_moth_positive": 1325,
+    "taxa_top_144_site_years": 551773,
+    "taxa_top_144_positive_site_years": 395968
+  },
+  "guardrails": {
+    "GloBI_positive_is_not_obligate_or_effective_nocturnal_pollination": true,
+    "absence_of_GloBI_claim_is_not_no_moth_visit": true,
+    "native_and_cultivated_plant_status_unverified": true,
+    "within_island_observational_associations_not_causal": true,
+    "posthoc_threshold_sensitivities_and_model_selection_not_confirmatory": true,
+    "island_equal_and_site_equal_inferences_differ": true
+  }
+}
