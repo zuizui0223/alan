@@ -44,7 +44,7 @@ def sha(path):
     return h.hexdigest()
 def blob(path):
     p=Path(path).read_bytes()
-    return hashlib.sha1(f"blob {len(p)}\\0".encode()+p).hexdigest()
+    return hashlib.sha1(f"blob {len(p)}\0".encode()+p).hexdigest()
 def sources(study,traits,pcnl,group_dir):
     from scripts.analysis.alan_diel_exclusion_experimental_source_overlap_20261110 import (
         TRAIT_BLOB,normalize_name,
