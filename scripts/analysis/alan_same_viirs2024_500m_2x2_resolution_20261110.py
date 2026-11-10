@@ -60,10 +60,16 @@ def subset_and_coarsen(src,polygon,lon,lat,radius_km=5.):
     dy=radius_km/110.57
     dx=radius_km/(111.32*np.cos(np.deg2rad(lat)))
     w=from_bounds(lon-dx,lat-dy,lon+dx,lat+dy,src.transform)
-    left=2*(int(np.floor(w.col_off))-2)//2
-    top=2*(int(np.floor(w.row_off))-2)//2
-    right=2*(int(np.ceil(w.col_off+w.width))+2)//2+2
-    bottom=2*(int(np.ceil(w.row_off+w.height))+2)//2+2
+    # Align the source raster window to the GLOBAL even-row/even-column
+    # origin, so all geographically aligned quartets are reproducible.
+    c0=int(np.floor(w.col_off))-2
+    r0=int(np.floor(w.row_off))-2
+    c1=int(np.ceil(w.col_off+w.width))+2
+    r1=int(np.ceil(w.row_off+w.height))+2
+    left=2*(c0//2)
+    top=2*(r0//2)
+    right=2*((c1+1)//2)
+    bottom=2*((r1+1)//2)
     win=Window(left,top,right-left,bottom-top)
     require(win.width>0 and win.height>0 and int(win.width)%2==0 and
             int(win.height)%2==0 and win.width*win.height<100000,
