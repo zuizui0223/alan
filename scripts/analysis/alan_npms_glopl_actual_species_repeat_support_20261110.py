@@ -18,7 +18,18 @@ import zipfile
 import numpy as np
 import pandas as pd
 
-NPMS_SHA="7f6e5f7fb6ae12eaf0b4e411ff5c781dff2850adb28b7855c8473a378e3af15d"
+# EIDC dynamically generates ZIP wrappers: ZIP SHA may differ on re-request.
+# Pin exact uncompressed CSV source member byte size and ZIP CRC from first audited
+# 2015-2025 package; ZIP wrapper SHA is reported, never used as immutability proof.
+NPMS_MEMBERS={
+    "data/occurrences_2015to2025.csv":(18724281,"616d29d2"),
+    "data/npmshabitatlookup_fine2broad.csv":(1411,"60a53016"),
+    "data/sampleattributes_2015to2025.csv":(12159752,"9c9465a3"),
+    "data/npmshabitatlookup_surv2broad.csv":(1848,"4b2a1f88"),
+    "data/dominscores.csv":(433,"64c7fb11"),
+    "data/locations_2015to2025.csv":(200780,"d5d18b79"),
+    "data/sampleinfowithlatlong_2015to2025.csv":(4095902,"5e52f384"),
+}
 GLOPL_SHA="264ca8c2237f126b3c209fcba039e19b291324ddf6e7a96992dc8235a55984de"
 KEYS={
     "occurrences":"data/occurrences_2015to2025.csv",
@@ -39,11 +50,16 @@ def names(s):
 def exact_binomial(s):
     return names(s).str.fullmatch(r"[A-Z][a-zA-Z-]+ [a-z][a-zA-Z-]+")
 def data_read(package,glopl):
-    require(sha(package)==NPMS_SHA,"NPMS true EIDC 2026 ZIP source byte drift")
     require(sha(glopl)==GLOPL_SHA,"GloPL verified original Dryad source byte drift")
     out={}
     with zipfile.ZipFile(package) as z:
         require(z.testzip() is None,"Original NPMS EIDC ZIP failed CRC")
+        entries={a.filename:a for a in z.infolist()}
+        for name,(expected_bytes,crc) in NPMS_MEMBERS.items():
+            require(name in entries and
+                    entries[name].file_size==expected_bytes and
+                    format(entries[name].CRC,"08x")==crc,
+                    "NPMS original 2015-2025 uncompressed source member changed: "+name)
         require(set(KEYS.values()).issubset(z.namelist()),
                 "Expected 2015–2025 original NPMS four source tables absent")
         for key,path in KEYS.items():
@@ -117,7 +133,8 @@ def run(package,glopl,out):
     location_types=loc.location_type.value_counts(dropna=False).to_dict()
     report={
       "schema":SCHEMA,
-      "NPMS_source_SHA256":NPMS_SHA, "GloPL_source_SHA256":GLOPL_SHA,
+      "NPMS_source_zip_wrapper_SHA256_not_pinned":sha(package),
+      "NPMS_pinned_original_CSV_members_byte_CRC":NPMS_MEMBERS, "GloPL_source_SHA256":GLOPL_SHA,
       "NPMS_2015_2025_source_plant_occurrence_rows":len(o),
       "NPMS_original_sample_visits":len(sample),
       "NPMS_original_location_rows":len(loc),
