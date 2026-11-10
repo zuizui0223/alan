@@ -1,0 +1,45 @@
+name: ALAN 2026 GBIF native gecko old taxonomy vs COL XR gecko source
+on:
+  push:
+    branches: [analysis/alan-gecko-moth-predation-global-20261110]
+    paths:
+      - scripts/acquisition/alan_GBIF_gecko_taxonomic_backbone_source_diagnostic_20261110.py
+      - .github/workflows/alan-gecko-COLXR-legacy-taxonomy-check.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  gecko-dual-taxonomy-data-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          set -euo pipefail
+          python -m py_compile scripts/acquisition/alan_GBIF_gecko_taxonomic_backbone_source_diagnostic_20261110.py
+          python -m scripts.acquisition.alan_GBIF_gecko_taxonomic_backbone_source_diagnostic_20261110 \
+            --out gecko-taxonomy/alan_GBIF_2026_gecko_true_legacy_vs_COLXR_source.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('gecko-taxonomy/alan_GBIF_2026_gecko_true_legacy_vs_COLXR_source.json').read_text())
+          assert a['gecko_no_records_not_true_absence']
+          assert a['legacy_taxon_key_zero_not_real_gecko_zero']
+          assert len(a['Gekkonidae_source_count_query_variants'])==5
+          print('ALAN_GEK_XR_GECKO_2026_TAXON_KEY_AUDIT',json.dumps(
+              {k:v.get('2013_2025_human_georef_PRESENT',{}).get('actual_GBIF_record_count')
+               for k,v in a['Gekkonidae_source_count_query_variants'].items()},
+              sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-2026-Gekkonidae-true-legacy-COLXR-source-counts
+          path: gecko-taxonomy/alan_GBIF_2026_gecko_true_legacy_vs_COLXR_source.json
+          retention-days: 90
+          if-no-files-found: warn
