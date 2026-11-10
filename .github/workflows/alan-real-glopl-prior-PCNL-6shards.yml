@@ -5,6 +5,8 @@ on:
     paths:
       - .github/workflows/alan-real-glopl-prior-PCNL-6shards.yml
       - scripts/analysis/alan_glopl_prior_PCNL_6year_shard_20261110.py
+      - scripts/analysis/alan_glopl_real_PL_priorPCNL_exploratory_20261110.py
+      - tests/test_alan_glopl_real_PL_priorPCNL_exploratory_20261110.py
       - tests/test_alan_glopl_prior_PCNL_6year_shard_20261110.py
   pull_request:
     branches: [analysis/alan-island-nightshift-species-pair-feasibility-20261110]
@@ -26,9 +28,10 @@ jobs:
         with: {python-version: '3.12'}
       - run: |
           set -euo pipefail
-          python -m pip install -q pandas==2.2.3 numpy==2.1.3 rasterio==1.4.3 scipy==1.15.2
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3 rasterio==1.4.3 scipy==1.15.2 statsmodels==0.14.5
           python -m py_compile scripts/analysis/alan_glopl_prior_PCNL_6year_shard_20261110.py
           python -m unittest discover -s tests -p test_alan_glopl_prior_PCNL_6year_shard_20261110.py -v
+          python -m unittest discover -s tests -p test_alan_glopl_real_PL_priorPCNL_exploratory_20261110.py -v
   actual-pcnl-annual-groups:
     needs: source-tests
     runs-on: ubuntu-24.04
@@ -84,7 +87,7 @@ jobs:
         with: {python-version: '3.12'}
       - run: |
           set -euo pipefail
-          python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2 statsmodels==0.14.5
           mkdir -p source/downloads source/annualparts
           gh run download 42753594112 --repo zuizui0223/alan \
             --name alan-GloPL-actual-experiment-year-georeferenced-prior1992-PCNL-support \
@@ -109,10 +112,32 @@ jobs:
           assert d['historical_light_never_future_experiment']
           print('ALAN_REAL_GLOPL_1993_2015_PL_VS_PRIOR_SATELLITE_LIGHT_SUPPORT',json.dumps(d,sort_keys=True),flush=True)
           PY
+      - name: Fit predeclared exploratory measured pollen limitation versus genuine prior ALAN on the original experiment cohort
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_glopl_real_PL_priorPCNL_exploratory_20261110 \
+            --joined joined/GloPL_experimental_PL1993_2015_priorPCNL1992_2014.csv.gz \
+            --receipt joined/original_GloPL_PCNLPrior_join_receipt.json \
+            --out exploratory_PL_association
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('exploratory_PL_association/real_GloPL_experimental_PL_vs_priorPCNL_exploratory_result.json').read_text())
+          assert x['source_support']['rows_original']==1419
+          assert x['analysis_is_observational_and_exploratory']
+          assert x['outcome_is_supplementation_advantage_not_actual_nocturnal_moth_dependence']
+          assert x['NPMS_plant_cover_not_directly_linked_to_GloPL_experiment']
+          assert x['spatial_temporal_landuse_and_study_selection_confounding_unresolved']
+          print('ALAN_GLOPL_TRUE_EXPERIMENTAL_POLLEN_LIMITATION_VS_HISTORIC_ALAN',
+                json.dumps(x,sort_keys=True),flush=True)
+          PY
       - uses: actions/upload-artifact@v4
         if: success()
         with:
           name: alan-realGloPL-1419-experiments-1992-2014-true-priorPCNL-exposure
-          path: joined/
+          path: |
+            joined/
+            exploratory_PL_association/
           retention-days: 90
           if-no-files-found: error
