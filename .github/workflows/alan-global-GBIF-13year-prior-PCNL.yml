@@ -1,0 +1,139 @@
+name: ALAN exact global moth butterfly 228361 island yearcell prior PCNL source
+on:
+  push:
+    branches: [analysis/alan-global-moth-priorlight-20261110]
+    paths:
+      - scripts/analysis/alan_global_GBIF_true4family_priorPCNL_20261110.py
+      - tests/test_alan_global_GBIF_true4family_priorPCNL_20261110.py
+      - .github/workflows/alan-global-GBIF-13year-prior-PCNL.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  genuine-source-and-geographic-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5
+          python -m py_compile scripts/analysis/alan_global_GBIF_true4family_priorPCNL_20261110.py
+          python -m unittest discover -s tests -p test_alan_global_GBIF_true4family_priorPCNL_20261110.py -v
+
+  actual-worldwide-prior-PCNL-year-shard:
+    needs: genuine-source-and-geographic-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        shard: [0, 1, 2, 3]
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      GDAL_CACHEMAX: '128'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5
+          mkdir -p original/global original/coast
+          gh run download 42782146115 --repo zuizui0223/alan \
+            --name alan-global-real-island-115m-fourfamily-cell-year-source-union --dir original/global
+          gh run download 42175243391 --repo zuizui0223/mois \
+            --name mois-GSHHG-2.3.7-high-L1-L2-SHA-source-no-images --dir original/coast
+          echo 'a993c0908600211e3e0ff66b88920ad0d47124e122f373bbce0e78ba9902ee6d  original/global/GBIF_202608_actual_global_island_0p05deg_year_4family_occurrence_counts.csv.gz' | sha256sum -c -
+      - name: Source-check and sample real annual PCNL year-before original global insect photographs
+        timeout-minutes: 90
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_global_GBIF_true4family_priorPCNL_20261110 worker \
+            --source original/global/GBIF_202608_actual_global_island_0p05deg_year_4family_occurrence_counts.csv.gz \
+            --source-receipt original/global/ALAN_2026_08_real_global_fourfamily_island_counts_receipt.json \
+            --coast original/coast \
+            --shard ${{ matrix.shard }} --out source-partial
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=next(Path("source-partial").glob("global_GBIF_island_fourfamily_prior_PCNL_shard_*.json"))
+          d=json.loads(p.read_text())
+          assert d["NO_future_light_for_old_survey_year"]
+          assert d["source_valid_prior_PCNL_cell_years"]>0
+          assert len(d["original_yearly_raster_coverage"]) in (3,4)
+          print("ALAN_TRUE_GBIF_YEARSHARD_SOURCE",json.dumps(
+              {"worker_shard":d["worker_shard"],
+              "real_source_cell_year_rows":d["real_source_cell_year_rows"],
+              "source_valid_prior_PCNL_cell_years":d["source_valid_prior_PCNL_cell_years"]},
+              sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-worldwide-fourfamily-real-prior-PCNL-part-${{ matrix.shard }}
+          path: |
+            source-partial/*.csv.gz
+            source-partial/*.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  original-global-13year-PCNL-collector:
+    needs: [genuine-source-and-geographic-tests,actual-worldwide-prior-PCNL-year-shard]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5
+          mkdir -p old-source sources/rasterparts
+          gh run download 42782146115 --repo zuizui0223/alan \
+            --name alan-global-real-island-115m-fourfamily-cell-year-source-union --dir old-source
+          gh run download "$GITHUB_RUN_ID" --repo zuizui0223/alan \
+            --pattern 'alan-worldwide-fourfamily-real-prior-PCNL-part-*' --dir downloads
+          test "$(find downloads -name 'global_GBIF_island_fourfamily_prior_PCNL_shard_?.json' | wc -l)" -eq 4
+          test "$(find downloads -name 'global_GBIF_island_fourfamily_prior_PCNL_shard_?.csv.gz' | wc -l)" -eq 4
+          find downloads -name 'global_GBIF_island_fourfamily_prior_PCNL_shard_?.json' -exec cp {} sources/rasterparts/ \;
+          find downloads -name 'global_GBIF_island_fourfamily_prior_PCNL_shard_?.csv.gz' -exec cp {} sources/rasterparts/ \;
+          python -m scripts.analysis.alan_global_GBIF_true4family_priorPCNL_20261110 collect \
+            --source old-source/GBIF_202608_actual_global_island_0p05deg_year_4family_occurrence_counts.csv.gz \
+            --source-receipt old-source/ALAN_2026_08_real_global_fourfamily_island_counts_receipt.json \
+            --parts sources/rasterparts --out global-actual-prior-PCNL
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("global-actual-prior-PCNL/ALAN_2026_11_global_fourfamily_prior_PCNL_real_source_receipt.json")
+          r=json.loads(p.read_text())
+          assert r["true_global_original_source_cells"]==228361
+          assert r["true_global_fourfamily_original_human_observation_records"]==22713063
+          assert r["only_pre_observation_PCNL_images_not_sameyear_or_future"]
+          print("ALAN_GENUINE_1217_ISLAND_13YEAR_PCNL_ALL_ORIGINAL_RECORDS_VERIFIED",
+                json.dumps(r,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-global-228361-islandcells-actual-13year-prior-PCNL-joined
+          path: global-actual-prior-PCNL/
+          retention-days: 90
+          if-no-files-found: warn
