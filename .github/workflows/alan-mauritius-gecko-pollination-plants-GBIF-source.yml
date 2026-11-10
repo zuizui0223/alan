@@ -1,0 +1,46 @@
+name: ALAN original Mauritius gecko pollination plants alternative GBIF source coverage
+on:
+  push:
+    branches: [analysis/alan-island-nightshift-species-pair-feasibility-20261110]
+    paths:
+      - scripts/acquisition/alan_mauritius_gecko_pollinated_plant_GBIF_rescue_preflight.py
+      - .github/workflows/alan-mauritius-gecko-pollination-plants-GBIF-source.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-public-threatened-island-plant-aggregates-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Check accepted taxon and native Mauritius record coverage WITHOUT releasing sensitive field coordinates
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/acquisition/alan_mauritius_gecko_pollinated_plant_GBIF_rescue_preflight.py
+          python -m scripts.acquisition.alan_mauritius_gecko_pollinated_plant_GBIF_rescue_preflight \
+            --out source-audit/ALAN_native_Mauritius_gecko_effective_plants_original_GBIF_source_counts.json
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          r=json.loads(Path('source-audit/ALAN_native_Mauritius_gecko_effective_plants_original_GBIF_source_counts.json').read_text())
+          assert len(r['genuine_Mauritius_census'])==3
+          assert r['no_rare_plant_locations_released']
+          assert r['original_ALAN_93m_WCVP_accepted_photo_sites_for_both']==0
+          print("ALAN_MAURITIUS_GECKO_PLANTS_ALTERNATIVE_GBIF_SOURCE_COUNT_AUDITED",
+                json.dumps({name:{k:v['n_real_indexed_records']
+                          for k,v in data.get('source_record_counts',{}).items()}
+                          for name,data in r['genuine_Mauritius_census'].items()},
+                          sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-Mauritius-gecko-pollinated-endemic-plants-public-GBIF-aggregate-source-only
+          path: source-audit/ALAN_native_Mauritius_gecko_effective_plants_original_GBIF_source_counts.json
+          if-no-files-found: warn
+          retention-days: 90
