@@ -1,0 +1,22 @@
+{
+  "all_original_gecko_and_scink_photo_record_events": 101399,
+  "historically_prior_PCNL_original_DOI": "10.5281/zenodo.17013414",
+  "no_gecko_moth_feeding_or_population_impact_measured": true,
+  "original_GBIF_snap_DOI": "10.15468/dl.8yrbe7",
+  "original_Gekkonidae_plus_other5photo_event_count": 66038,
+  "original_Scincidae_photo_event_count": 35361,
+  "original_record_bearing_GSHHG_islands": 686,
+  "original_reptile_photo_cell_CSV_SHA256": "03aa855c9e7691855bfee4baa099f0d3a31db8d53066ec36a95afda48c3ba339",
+  "real_source_0p05_reptile_photo_cell_years": 34056,
+  "real_source_valid_prior_year_PCNL_islands": 583,
+  "real_source_valid_prior_year_PCNL_site_years": 28814,
+  "same_island_year_source_dual_gecko_scink_min1_independent_islands": 153,
+  "same_island_year_source_dual_gecko_scink_min1_light_groups": 808,
+  "same_island_year_source_dual_gecko_scink_min5_independent_islands": 80,
+  "same_island_year_source_dual_gecko_scink_min5_light_groups": 396,
+  "schema": "ALAN_true_202608_gecko_v_scink_photo_cellyear_priorPCNL_year12to24_v1",
+  "source_prior_year_lighting_not_physical_lux_at_gecko": true,
+  "source_zeros_mean_no_photo_NOT_biological_absence": true,
+  "source_original_actions_run": "https://github.com/zuizui0223/alan/actions/runs/42796502910",
+  "original_source_artifact": "https://github.com/zuizui0223/alan/actions/runs/42796502910/artifacts/13755146511"
+}
