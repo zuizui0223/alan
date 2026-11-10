@@ -235,16 +235,24 @@ def run(source,receipt,glopl,out):
     require(len(g)==2969 and sha(glopl)==
             "264ca8c2237f126b3c209fcba039e19b291324ddf6e7a96992dc8235a55984de",
             "Real original GloPL independent study source not verified")
-    name=g.Species_accepted_names.fillna("").str.replace("_"," ",regex=False).str.strip()
-    g["species"]=name
+    # Match the original source-overlap script exactly: a DOI with stray
+    # whitespace is still ONE independent GloPL study, not two.
+    from scripts.analysis.alan_npms_glopl_actual_species_repeat_support_20261110 import (
+        names,exact_binomial)
+    g["species"]=names(g.Species_accepted_names.fillna("").str.replace("_"," ",regex=False))
+    g=g.loc[exact_binomial(g.species)].copy()
     g["study_key"]=np.where(g.DOI.fillna("").str.strip().ne(""),
-              g.DOI.fillna("").str.casefold(),g.Author.fillna("")+"|"+g.Year.fillna(""))
+              names(g.DOI.fillna("")).str.casefold(),
+              names(g.Author.fillna(""))+"|"+names(g.Year.fillna("")))
     studies=g.groupby("species").study_key.nunique()
     glopl=set(studies.index)
     reliable=set(studies.index[studies>=2])
     df["source_GloPL_recorded"]=df.species.isin(glopl)
     df["source_GloPL_two_studies"]=df.species.isin(reliable)
     base,selected=choose(df)
+    require(df.loc[df.source_GloPL_two_studies,"species"].nunique()<=
+            audit["source_valid_NPMS_same_method_season_light_changing_plant_positive_multi_study_GloPL_taxa"]==12,
+            "Independent GloPL study normalization does not reconcile previous source cohort")
     variants={
        "primary_original_cover_percentage_pp_source_plot_equal_with_species_year_FE":
           fit_source(base,"recorded_cover_pp","plot_equal","species_year",True),
@@ -291,7 +299,7 @@ def run(source,receipt,glopl,out):
     variants["positive_plant_recording_opportunity_negative_control"]=fit_source(
           base,"log_recorded_visits","plot_equal","species_year",True)
     variants["same_visit_DOY_plusminus30days"]=fit_source(
-          z if False else choose(df,max_date_deviation=30)[0],
+          choose(df,max_date_deviation=30)[0],
           "recorded_cover_pp","plot_equal","species_year",True)
     variants["same_source_record_status_across_years"]=fit_source(
           yearstatus,"recorded_cover_pp","plot_equal","species_year",True)
@@ -325,15 +333,28 @@ def run(source,receipt,glopl,out):
     require(not out.exists(),"No overwrite original model")
     out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(json.dumps(output,sort_keys=True,indent=2)+"\n")
-    keep=variants[
-      "primary_original_cover_percentage_pp_source_plot_equal_with_species_year_FE"]
-    print("ALAN_TRUE_NPMS_SOURCE_PLOT_POSITIVE_COVER_VS_PREALAN",
-          json.dumps({"primary_source_eligibility":selected,
-                      "primary":keep,
-                      "year_only":variants["year_FE_no_species_specific_year_control"],
-                      "GloPL_two_studies":sourcePL[
-                         "two_or_more_independently_studied_GloPL_species"]},
-                     sort_keys=True),flush=True)
+    # Print every prespecified variant, never just the lowest p-value.
+    summary=lambda r:{
+      "status":r.get("status"),
+      "plots":r.get("actual_independent_source_plots"),
+      "rows":r.get("actual_original_recorded_cover_rows"),
+      "species":r.get("source_distinct_taxa"),
+      "beta":r.get("terms",{}).get("site_light",{}).get("beta"),
+      "CI":r.get("terms",{}).get("site_light",{}).get("nominal_95CI"),
+      "p":r.get("terms",{}).get("site_light",{}).get("nominal_unadjusted_p")}
+    print("ALAN_NPMS_TRUE_ANNUAL_PLANT_COVER_ALL_MODEL_SENSITIVITIES",
+      json.dumps({
+        "source":selected,
+        "models":{k:summary(v) for k,v in variants.items()},
+        "prior_light_range":{k:{"source":v["source_eligibility"],
+                   "fit":summary(v["model"])} for k,v in bands.items()},
+        "survey_ID":{k:{"source":v["source_eligibility"],
+                   "fit":summary(v["model"])} for k,v in method.items()},
+        "GloPL_independent_species":{k:{
+                  "n_species":v["study_supported_species"],
+                  "source":v["source_eligibility"],
+                  "fit":summary(v["model"])} for k,v in sourcePL.items()}
+      },sort_keys=True),flush=True)
     return output
 
 if __name__=="__main__":
