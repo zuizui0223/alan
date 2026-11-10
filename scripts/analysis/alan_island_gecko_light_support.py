@@ -18,7 +18,7 @@ from pathlib import Path
 from alan_moth_syndrome_validate import read_csv, read_traits, reference_profiles, require, sha256
 
 
-STATUS = frozenset({'naturalized', 'native', 'cultivated', 'transient', 'unknown'})
+STATUS = frozenset({'naturalized', 'native', 'introduced', 'cultivated', 'transient', 'unknown'})
 GECKO = frozenset({'present', 'confirmed_absent', 'unknown'})
 
 
