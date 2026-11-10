@@ -33,7 +33,7 @@ class TestDielSource(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             a=Path(d)/"fake.csv"
             a.write_text("plant_species\nSalix caprea\n")
-            with self.assertRaisesRegex(ValueError,"source"):
+            with self.assertRaisesRegex(ValueError,"Git blob changed"):
                 audit.experimental_records(a,a)
 
 
