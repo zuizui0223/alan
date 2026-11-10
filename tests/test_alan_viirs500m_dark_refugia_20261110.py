@@ -39,5 +39,20 @@ class TrueFineVIIRSTests(unittest.TestCase):
         self.assertIsNone(d[2]["largest_dark_component_fraction_of_dark"])
         self.assertTrue(d[2]["distance_to_dark_censored_at_radius"])
 
+    def test_original_viirs_int16_nodata_is_not_dark(self):
+        raw=np.zeros((41,41),dtype=np.int16)
+        raw[20,20]=-32768
+        with MemoryFile() as mem:
+            with mem.open(driver="GTiff",width=41,height=41,count=1,dtype="int16",
+                          crs="EPSG:4326",transform=from_origin(-.1025,.1025,.005,.005),
+                          nodata=-32768) as dst:
+                dst.write(raw,1)
+                d=dark_refuge_metrics(dst,box(-.25,-.25,.25,.25),0.,0.,
+                                      radius_km=5.,thresholds=(0.,10.,30.),
+                                      min_valid_land_pixels=64,min_coverage=.80)
+        self.assertEqual(d[0]["status"],"observed_satellite_geometry_only")
+        self.assertEqual(d[0]["n_dark_raster_pixels"],d[0]["n_valid_original_PCNL_pixels"])
+        self.assertGreater(d[0]["n_original_island_land_pixels"],d[0]["n_valid_original_PCNL_pixels"])
+
 if __name__=="__main__":
     unittest.main()
