@@ -1,0 +1,17 @@
+# ALAN | 500m VIIRS versus 1km PCNL: source-fixed resolution audit
+
+**Source protocol frozen 2026-11-10 before interpreting fine-raster numbers.** This is a real satellite geometry test, not a moth/pollination effect.
+
+**Same original 2025 sample:** 4,728 original photographed island 0.05-degree site-years across 1,758 GSHHG island polygons from ALAN Actions #42764291562. Exact original-source CSV SHA256: 32327abb37ee85f3d1d9e7446d9d742fb5adf1457dab60fae1aae791c29f7837. The original larger cohort had 4,729 selection slots; one antimeridian site failed closed before the archived site metrics. Only 3,543 / 970 islands passed the original ~1km pixel gate. All original metadata and geography are retained, independent of plant outcomes.
+
+**Actual finer source:** OpenGeoHub Zenodo record 17294744, 2024 genuine VIIRS Annual VNL V2.2-derived 500-m COG, filename nightlights.average_viirs.v21_m_500m_s_20240101_20241231_go_epsg4326_v20250904.tif, publisher MD5 0b976892d40c2d0d99177c727289eaf2. The publisher stores radiance multiplied by 10; a 0.1 scale conversion is applied only when raster band metadata contains no other scale. Source published file metadata describes 500 m source, not 10 m downsampled illumination. Only original genuine 2024 satellite year precedes actual 2025 photographic observations. The source and old PCNL are different products/preprocessing pipelines; differences CANNOT be attributed to resolution alone without a same-product coarsening control.
+
+**Geography and comparability:** keep exact same 5 km geodesic buffer for each actual photographic site, original SHA-checked GSHHG 2.3.7 L1 island polygons minus L2 lake polygons, sea excluded. Require 64 actual valid 500m land pixels (versus old 16 coarser pixels), at least 80 percent source land-raster coverage. No-data is never automatically dark; zero-dark-pixel sites have undefined conditional connectivity, not zero. Source antimeridian remains fail-closed.
+
+**Thresholds:** new within-VIIRS sensitivity at 0, 1, 3 nW/cm2/sr, mapped to 0, 10, 30 in the published x10 storage units. This is NOT ground lux or effective illumination at a flower. Old PCNL thresholds 0 and 3 are compared only as alternative product-specific proxy choices. Do not imply PCNL vs VIIRS threshold 3 share physical units. Retain distinct island, original source site and threshold keys.
+
+**Explicit actual outputs:** source valid sites/islands at each 500m threshold; medians and quantiles of dark-land fraction and biggest connected dark patch; original source-site overlap with old PCNL; site-level dark fraction concordance and change, count of coarse connectivity >=0.95 but fine connectivity below 0.90; test whether VIIRS 0 vs 1 masks are redundant as PCNL 0 vs 1 had been.
+
+**Later within-island contrast (only if real pixels are verified):** dark fraction difference <=0.10 and within-VIIRS mean log1p-light difference <=0.20 with dark-connectivity difference >=0.10 at the same 2025 observation year, require site separation >=10 km for non-overlapping 5 km footprints. The older PCNL 235 islands/544 pairs and 116 islands/216 nonoverlap pairs are historical reference, not independent biological replication.
+
+No moth counts, plant population change, seed set, pollen deposition, local flower lux, or causal effect will be claimed from this source-only audit. The current GloBI species-claim photo ratio remains a biased record-composition proxy, not measured nocturnal pollination.
