@@ -1,0 +1,68 @@
+name: ALAN full GloBI v0.11 lepidopteran flower interaction source (manual, SHA pinned)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-globi-v011-snapshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    env:
+      PYTHONUNBUFFERED: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - name: Checkout exact ALAN branch
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check source-processing contract and test parser
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3
+          python -m unittest discover -s tests -p test_alan_globi_full_v011_extract.py -v
+          python -m py_compile scripts/analysis/alan_globi_full_v011_extract.py
+          df -h .
+      - name: Download GloBI COMPLETE interpreted stable release v0.11
+        run: |
+          set -euo pipefail
+          mkdir -p full_globi_input
+          curl -fL --retry 5 --retry-delay 10 --connect-timeout 30 \
+            --output full_globi_input/interactions.csv.gz \
+            'https://zenodo.org/records/22691479/files/interactions.csv.gz?download=1'
+          echo '670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3  full_globi_input/interactions.csv.gz' | sha256sum -c -
+          ls -lh full_globi_input/interactions.csv.gz
+      - name: Stream the ENTIRE GloBI interaction source, not API pages
+        run: |
+          set -euo pipefail
+          python scripts/analysis/alan_globi_full_v011_extract.py \
+            --source full_globi_input/interactions.csv.gz \
+            --out full_globi_2026_v011
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('full_globi_2026_v011/source_receipt.json').read_text())
+          assert r['status']=='FULL_GLOBI_V011_SOURCE_COMPLETE'
+          assert r['sha256']=='670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3'
+          assert r['all_interaction_rows']>61967
+          assert r['moth_qualified_rows']>0
+          assert r['plant_names_with_any_positive_claim']>0
+          assert r['missing_GloBI_not_pollinator_absence']
+          print('GLOBI_V011_FULL_SOURCE_CONFIRMED',json.dumps({
+              k:r[k] for k in ('all_interaction_rows','qualified_flower_interaction_rows',
+                'moth_qualified_rows','butterfly_qualified_rows',
+                'plant_names_with_any_positive_claim','taxon_by_evidence')},
+              sort_keys=True))
+          PY
+      - name: Upload only GloBI positive taxon flags and aggregate receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-GloBI-v011-full-source-moth-plant-positive-flags
+          path: full_globi_2026_v011/
+          if-no-files-found: warn
+          retention-days: 60
