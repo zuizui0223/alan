@@ -1,0 +1,161 @@
+{
+  "schema": "alan_GloBI_island_mainland_sameyear_light_multiguard_20261111",
+  "status": "ACTUAL exploratory original-photo source fit, NO reliable moth-specific island ALAN effect",
+  "source": {
+    "GloBI_source": "bounded 61,967 claim cache, NOT full v0.11 release",
+    "GloBI_SHA256": "a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994",
+    "original_photo_SHA256": "f033661d76e07898a5c13199a55c5d0ce6e55353daa48b0058c456979e90644c",
+    "years": [
+      2019,
+      2021,
+      2023,
+      2024,
+      2025
+    ],
+    "light": "same-year FOUR-MONTH VIIRS sample, not annual nightlight",
+    "outcome": "share of originally photographed WCVP accepted species with ANY positive GloBI moth/butterfly record elsewhere"
+  },
+  "model": "Within original same year x 5-degree geographic block, year-block-balanced island/mainland photo-sites; adjusted logVIIRS x island, photo attempts, accepted taxon count, population, bio5, rainfall, elevation; geography-block clustered t interval.",
+  "criteria": {
+    "broad": "at least three original photo attempts and two accepted photographed plant species",
+    "strict": "at least five attempts and three photographed plant species"
+  },
+  "cohort_support": {
+    "broad": {
+      "n_island": 933,
+      "n_mainland": 9765,
+      "blocks": 78,
+      "complete_case_rows": 10713,
+      "year_region_groups": 195
+    },
+    "strict": {
+      "n_island": 265,
+      "n_mainland": 2658,
+      "blocks": 35,
+      "complete_case_rows": 2923,
+      "year_region_groups": 81
+    },
+    "common_radiance_broad": {
+      "n_island": 619,
+      "n_mainland": 3468,
+      "blocks": 37
+    },
+    "common_radiance_strict": {
+      "n_island": 177,
+      "n_mainland": 825,
+      "blocks": 17
+    }
+  },
+  "result_pp_per_log1p_light": {
+    "broad_all_moth": {
+      "beta": -1.901720622055596,
+      "CI95": [
+        -3.7058390326110446,
+        -0.09760221150014758
+      ],
+      "nominal_p": 0.039096062160031655
+    },
+    "broad_non_iNaturalist_moth": {
+      "beta": -0.4983733808403473,
+      "CI95": [
+        -1.837012639481169,
+        0.8402658778004745
+      ],
+      "nominal_p": 0.4607417545299613
+    },
+    "broad_non_iNaturalist_non_trophiCH_moth": {
+      "beta": -0.9545008492622821,
+      "CI95": [
+        -2.2449840414298214,
+        0.3359823429052574
+      ],
+      "nominal_p": 0.14487470018254622
+    },
+    "broad_all_butterfly": {
+      "beta": -1.1240078585015636,
+      "CI95": [
+        -3.2729724655880306,
+        1.0249567485849032
+      ],
+      "nominal_p": 0.3008943241942718
+    },
+    "broad_all_moth_minus_butterfly": {
+      "beta": -0.7777127635540373,
+      "CI95": [
+        -2.7010689282389118,
+        1.1456434011308372
+      ],
+      "nominal_p": 0.4232023361238483
+    },
+    "broad_non_iNaturalist_moth_minus_butterfly": {
+      "beta": 0.40718028593436334,
+      "CI95": [
+        -0.6989529385019952,
+        1.513313510370722
+      ],
+      "nominal_p": 0.4657819824113379
+    },
+    "broad_radiance_common_all_moth_minus_butterfly": {
+      "beta": -0.5321405962531417,
+      "CI95": [
+        -2.894676758536837,
+        1.8303955660305538
+      ],
+      "nominal_p": 0.6505518255080127
+    },
+    "broad_radiance_common_non_iNaturalist_moth_minus_butterfly": {
+      "beta": 0.9593237734066786,
+      "CI95": [
+        -0.07083363752636895,
+        1.9894811843397262
+      ],
+      "nominal_p": 0.06701779479882455
+    },
+    "strict_all_moth": {
+      "beta": -0.9299365571208302,
+      "CI95": [
+        -3.1605476029351465,
+        1.3006744886934858
+      ],
+      "nominal_p": 0.40278709399305035
+    },
+    "strict_non_iNaturalist_moth": {
+      "beta": -0.35160611275150644,
+      "CI95": [
+        -2.1048918902589335,
+        1.4016796647559204
+      ],
+      "nominal_p": 0.6861597624917171
+    }
+  },
+  "multiple_testing": {
+    "family": "two source coverage thresholds x four source evidence versions x moth/butterfly response",
+    "n_tests": 16,
+    "min_nominal_p": 0.039096062160031655,
+    "min_BH_q": 0.6255369945605065
+  },
+  "spatial_leave_one_out": {
+    "cohort": "broad",
+    "all_moth": {
+      "n_regions": 78,
+      "min_beta": -2.206,
+      "max_beta": -1.326,
+      "positive_regions_omitted": 0
+    },
+    "non_iNaturalist_moth": {
+      "n_regions": 78,
+      "min_beta": -0.942,
+      "max_beta": -0.191,
+      "positive_regions_omitted": 0
+    }
+  },
+  "caveats": [
+    "GloBI interaction elsewhere != local moth visitor nor effective nocturnal pollination",
+    "Moth/butterfly evidence overlap is not duplicate independent species; the difference response cancels shared positives",
+    "Species unrecorded in GloBI are not proven absent of moth visitation",
+    "Photographed species fractions are not biological species richness or abundances",
+    "Four-month original VIIRS is not annual ALAN",
+    "Source and geographic overlap sensitivity do not establish a robust mechanism",
+    "Source-only time classification is a proxy: no actual nocturnal event time, gecko data or confirmed naturalized flora used"
+  ]
+}
