@@ -1,156 +1,155 @@
 #!/usr/bin/env python3
-"""Public global moth-versus-butterfly record opportunity census (NOT moth abundance).
+"""Bounded worldwide moth vs butterfly record opportunities, not moth abundance.
 
-Use only real GBIF API record counts, actual GBIF taxon keys, source statuses,
-2013-2025 geo-referenced HUMAN_OBSERVATION, source-year breakdown/countries.
-A moth is NOT a monophyletic GBIF taxon; a count for Lepidoptera minus
-Papilionoidea is a documented *taxonomic remainder proxy*, not an actual moth
-night-activity or ecological population estimate. GBIF human observations
-are effort/detection-biased; at this stage we deliberately do NOT fit light.
-No GBIF login or bulk occurrence download; bounded public count only.
+2013-2025 original georeferenced GBIF HUMAN_OBSERVATION. Explicit butterfly
+families = six disjoint taxonomic sources; other Lepidoptera = remainder
+NOT an exhaustive strictly nocturnal moth census or local pollination.
 """
 from __future__ import annotations
-import argparse, hashlib, json, time, urllib.parse, urllib.request
+import argparse,hashlib,json,time,urllib.parse,urllib.request
+from datetime import datetime,timezone
 from pathlib import Path
-from datetime import datetime, timezone
 
 BASE="https://api.gbif.org/v1"
-RANK={"Lepidoptera":"ORDER","Papilionoidea":"SUPERFAMILY","Insecta":"CLASS",
-      "Noctuidae":"FAMILY","Erebidae":"FAMILY","Geometridae":"FAMILY",
-      "Sphingidae":"FAMILY","Crambidae":"FAMILY","Pyralidae":"FAMILY",
-      "Tortricidae":"FAMILY","Saturniidae":"FAMILY","Notodontidae":"FAMILY",
-      "Lasiocampidae":"FAMILY"}
+BUTTERFLY=("Papilionidae","Pieridae","Nymphalidae",
+           "Lycaenidae","Riodinidae","Hesperiidae")
+MOTH=("Noctuidae","Erebidae","Geometridae","Sphingidae",
+      "Crambidae","Pyralidae","Tortricidae","Saturniidae",
+      "Notodontidae","Lasiocampidae")
+NAMES={"Lepidoptera":"ORDER","Insecta":"CLASS"}
+NAMES.update({x:"FAMILY" for x in BUTTERFLY+MOTH})
 YEARS=tuple(range(2013,2026))
 COUNTRIES=("JP","TW","PH","ID","AU","NZ","PG","MG","MU","SC",
            "ES","PT","GR","IT","US","CU","DO","BS","FJ","NC")
-SCHEMA="ALAN_GBIF_Lepidoptera_butterfly_moth_source_opportunity_global_v1"
+SCHEMA="ALAN_GBIF_Lepidoptera_six_butterfly_families_worldwide_source_v2"
 
-def require(ok, why):
-    if not ok:raise ValueError("ALAN_GBIF_MOTH_MACRO: "+str(why))
+def require(x,m):
+    if not x:raise ValueError("ALAN_GLOBAL_GBIF: "+str(m))
 
-def get_json(path,query):
-    url=BASE+path+"?"+urllib.parse.urlencode(query,doseq=True)
+def fetch(endpoint,params):
+    url=BASE+endpoint+"?"+urllib.parse.urlencode(params,doseq=True)
     req=urllib.request.Request(url,headers={
-        "User-Agent":"ALAN-Global-Moth-Macro-Source-Audit/1.0 (academic ecological research)",
+        "User-Agent":"ALAN-Global-Macroecology-Source-Audit/1.0",
         "Accept":"application/json"})
-    for i in range(4):
+    for j in range(4):
         try:
-            with urllib.request.urlopen(req,timeout=60) as r:
-                require(r.status==200,"Unexpected public GBIF status")
-                raw=r.read()
-                return json.loads(raw),hashlib.sha256(raw).hexdigest(),url
+            with urllib.request.urlopen(req,timeout=60) as response:
+                require(response.status==200,"HTTP source status non200")
+                raw=response.read()
+            return json.loads(raw),hashlib.sha256(raw).hexdigest(),url
         except Exception:
-            if i==3:raise
-            time.sleep(1+2*i)
-    raise AssertionError("Unexpected GBIF API empty")
+            if j==3:raise
+            time.sleep(j+1)
+    raise AssertionError("Missing GBIF source")
 
-def resolve():
-    out={}
-    for name,rank in RANK.items():
-        data,sha,url=get_json("/species/match",{"name":name,"strict":"true"})
-        require(data.get("rank","").upper()==rank and
-                data.get("matchType") not in ("NONE",None) and
-                data.get("usageKey") is not None,
-                f"GBIF taxon key not verified for {name}: {str(data)[:220]}")
-        out[name]={"key":int(data["usageKey"]),"rank":rank,
-                   "source_accepted_name":data.get("scientificName"),
-                   "source_api_url":url,"api_json_SHA256":sha}
-    return out
+def resolve(name,rank):
+    d,digest,url=fetch("/species/match",{"name":name,"strict":"true"})
+    if d.get("usageKey") and d.get("rank","").upper()==rank and d.get("matchType")!="NONE":
+        return {"key":int(d["usageKey"]),"rank":rank,"source_url":url,
+                "source_sha256":digest,"resolution":"strict_exact_name"}
+    d,digest,url=fetch("/species/search",{"q":name,"rank":rank,
+                                          "status":"ACCEPTED","limit":30})
+    good=[i for i in d.get("results",[])
+          if str(i.get("canonicalName","")).casefold()==name.casefold() and
+          str(i.get("rank","")).upper()==rank and
+          str(i.get("taxonomicStatus","")).upper() in ("ACCEPTED","DOUBTFUL")]
+    keys={int(i["key"]) for i in good if i.get("key")}
+    require(len(keys)==1,f"{name} has ambiguous GBIF accepted taxonomy keys {keys}")
+    return {"key":next(iter(keys)),"rank":rank,"source_url":url,
+            "source_sha256":digest,"resolution":"exact_rank_search"}
 
-def occ_count(taxon_key,facet=None,country=None,year_start=2013,year_end=2025,
-              basis="HUMAN_OBSERVATION"):
-    q=[("taxonKey",str(taxon_key)),("hasCoordinate","true"),
-       ("year",f"{year_start},{year_end}"),("occurrenceStatus","PRESENT")]
-    if basis:q.append(("basisOfRecord",basis))
-    if country:q.append(("country",country))
-    if facet:q.extend([("facet",facet),("facetLimit","300"),("limit","0")])
-    result,checksum,url=get_json("/occurrence/search",q)
-    require(isinstance(result.get("count"),int) and result["count"]>=0,
-            "Not an actual GBIF occurrence count")
-    src={"n_actual_GBIF_occurrence_records":int(result["count"]),
-         "source_request":url,"source_response_SHA256":checksum}
+def count(key,facet=False,country=None):
+    p=[("taxonKey",str(key)),("hasCoordinate","true"),
+       ("year","2013,2025"),("occurrenceStatus","PRESENT"),
+       ("basisOfRecord","HUMAN_OBSERVATION"),("limit","0")]
+    if country:p.append(("country",country))
+    if facet:p.extend([("facet","year"),("facetLimit","100")])
+    d,digest,url=fetch("/occurrence/search",p)
+    require(isinstance(d.get("count"),int) and d["count"]>=0,
+            "Source GBIF occurrence count missing or malformed")
+    result={"n_actual_records":int(d["count"]),"source":url,"sha256":digest}
     if facet:
-        values=result.get("facets",[])
-        source=next((v for v in values if v.get("field")==facet),None)
-        require(source is not None,"Requested GBIF facet was not returned")
-        src["facet"]=facet
-        src["facet_values"]={str(x.get("name")):int(x.get("count",0))
-                             for x in source.get("counts",[])}
-    return src
+        f=next((x for x in d.get("facets",[])
+                if x.get("field","").lower()=="year"),None)
+        require(f is not None,"GBIF source facet year missing")
+        result["by_year"]={str(x["name"]):int(x["count"])
+                           for x in f.get("counts",[])}
+        require(sum(result["by_year"].values())==result["n_actual_records"],
+                "GBIF year facet cannot reconcile source total")
+    return result
 
-def check_subtraction(big,small,why):
-    require(big>=small,f"Taxonomic source counting inconsistent ({why})")
-    return big-small
+def group(keys,names,facet=False,country=None):
+    n=0;each={};yr={str(y):0 for y in YEARS}
+    for x in names:
+        r=count(keys[x]["key"],facet=facet,country=country)
+        each[x]=r
+        n+=r["n_actual_records"]
+        if facet:
+            for y in YEARS: yr[str(y)]+=int(r["by_year"].get(str(y),0))
+    z={"n_actual_records":n,"source_taxon_counts":each}
+    if facet:z["by_year"]=yr
+    return z
 
-def run(dest):
-    dest=Path(dest)
-    require(not dest.exists(),"Never overwrite source count receipt")
-    taxonomy=resolve()
-    keys={k:v["key"] for k,v in taxonomy.items()}
-    samples={}
-    for field,name in (("lepidoptera_all","Lepidoptera"),
-                       ("butterfly_papilionoidea","Papilionoidea"),
-                       ("insects_all","Insecta")):
-        samples[field]=occ_count(keys[name],facet="year")
-    samples["lepidoptera_non_papilionoidea_record_remainder"]={
-       "n_difference_not_independently_taxon_resolved":
-          check_subtraction(samples["lepidoptera_all"]["n_actual_GBIF_occurrence_records"],
-            samples["butterfly_papilionoidea"]["n_actual_GBIF_occurrence_records"],
-            "Lepidoptera-Papilionoidea"),
-       "interpretation":"taxonomic remainder proxy, contains nonmoth and unknown lower-rank records"}
-    for name in list(RANK)[3:]:
-        samples["family_"+name]=occ_count(keys[name])
+def run(out):
+    out=Path(out);require(not out.exists(),"No output overwrite")
+    keys={}
+    for name,rank in NAMES.items():
+        keys[name]=resolve(name,rank)
+        print("ALAN_GBIF_TRUE_SOURCE_TAXON",json.dumps({name:keys[name]},sort_keys=True),flush=True)
+    a=group(keys,("Lepidoptera",),True)
+    b=group(keys,BUTTERFLY,True)
+    c=group(keys,("Insecta",),True)
+    m=group(keys,MOTH,True)
+    require(0<=b["n_actual_records"]<=a["n_actual_records"]<=c["n_actual_records"],
+            "GBIF taxon subset counts cannot exceed order/class")
     countries={}
     for country in COUNTRIES:
-        a=occ_count(keys["Lepidoptera"],country=country)
-        b=occ_count(keys["Papilionoidea"],country=country)
-        countries[country]={
-           "lepidoptera_georef_human_records":a["n_actual_GBIF_occurrence_records"],
-           "butterfly_georef_human_records":b["n_actual_GBIF_occurrence_records"],
-           "other_lepidoptera_remainder_records":check_subtraction(
-               a["n_actual_GBIF_occurrence_records"],
-               b["n_actual_GBIF_occurrence_records"],country),
-           "source_requests":[a["source_request"],b["source_request"]]}
-        print("ALAN_GBIF_TRUE_COUNTRY_LEPIDOPTERA_SOURCE",
-              json.dumps({country:countries[country]},sort_keys=True),flush=True)
-    byyear={}
-    ly=samples["lepidoptera_all"]["facet_values"]
-    by=samples["butterfly_papilionoidea"]["facet_values"]
+        l=group(keys,("Lepidoptera",),country=country)
+        f=group(keys,BUTTERFLY,country=country)
+        require(f["n_actual_records"]<=l["n_actual_records"],
+                "GBIF country butterfly count exceeds Lepidoptera")
+        countries[country]={"lepidoptera_records":l["n_actual_records"],
+             "six_butterfly_family_records":f["n_actual_records"],
+             "other_lepidoptera_remainder":l["n_actual_records"]-f["n_actual_records"],
+             "source_lepidoptera":l["source_taxon_counts"],
+             "source_butterfly":f["source_taxon_counts"]}
+        print("ALAN_GBIF_TRUE_COUNTRY_COUNTS",json.dumps({country:{
+            k:v for k,v in countries[country].items() if not k.startswith("source_")
+            }},sort_keys=True),flush=True)
+    years={}
     for y in YEARS:
-        a=int(ly.get(str(y),0));b=int(by.get(str(y),0))
-        byyear[str(y)]={"lepidoptera_records":a,"butterfly_records":b,
-            "other_lepidoptera_remainder_records":check_subtraction(a,b,str(y))}
-    rep={
-        "schema":SCHEMA,"source":"GBIF LIVE public occurrence indexed API, not version-frozen snapshot",
-        "query_time_UTC":datetime.now(timezone.utc).isoformat(),
-        "taxon_provenance":taxonomy,"time_window":[YEARS[0],YEARS[-1]],
-        "source_human_observations_only":True,"source_hasCoordinates":True,
-        "source_occurrenceStatus_present":True,
-        "global_source_counts":samples,"yearly_source_counts":byyear,
-        "preselected_country_source_counts":countries,
-        "not_exact_island_coverage":"country includes continental areas; no polygon assignment yet",
-        "moth_paraphyletic_not_distinguishable_by_taxon_remainder":True,
-        "known_moth_family_counts_are_overlapping_with_Lepidoptera_total_not_new_additive_observations":True,
-        "repeated_photographs_not_independent_population_individuals":True,
-        "no_moth_biomass_abundance_pollination_or_plant_fitness_assessed":True,
-        "no_insect_count_denominator_adjusted_for_observer_effort":True,
-        "no_causal_ALAN_effect_fitted":True,
-        "gbif_large_scale_collection_requires_version_pinned_bulk_snapshot_or_authenticated_download":
-            True
-    }
-    dest.parent.mkdir(parents=True,exist_ok=True)
-    dest.write_text(json.dumps(rep,indent=2,sort_keys=True)+"\n")
-    print("ALAN_GBIF_TRUE_WORLDWIDE_MOTH_SOURCE_COUNT",json.dumps({
-        "global_lepidoptera":samples["lepidoptera_all"]["n_actual_GBIF_occurrence_records"],
-        "global_butterfly":samples["butterfly_papilionoidea"]["n_actual_GBIF_occurrence_records"],
-        "global_other_lepidoptera":samples["lepidoptera_non_papilionoidea_record_remainder"]
-            ["n_difference_not_independently_taxon_resolved"],
-        "source_years":len(YEARS),"source_countries":len(countries)},
-        sort_keys=True),flush=True)
-    return rep
+        k=str(y);big=a["by_year"][k];small=b["by_year"][k]
+        require(big>=small,f"Global year {y} GBIF source families exceed order")
+        years[k]={"lepidoptera":big,"six_butterfly_families":small,
+                  "other_lepidoptera_remainder":big-small}
+    out.parent.mkdir(parents=True,exist_ok=True)
+    report={"schema":SCHEMA,
+       "source_GBIF_live_index_not_version_frozen":True,
+       "source_time_UTC":datetime.now(timezone.utc).isoformat(),
+       "source_taxonomy_exact_rank":keys,
+       "source_2013_to_2025_human_observation_only":True,
+       "source_has_true_coordinates":True,
+       "global_lepidoptera_records":a["n_actual_records"],
+       "global_six_butterfly_family_records":b["n_actual_records"],
+       "global_other_lepidoptera_remainder_records":a["n_actual_records"]-b["n_actual_records"],
+       "global_partial_ten_moth_family_records":m["n_actual_records"],
+       "global_insect_human_observation_records":c["n_actual_records"],
+       "original_GBIF_global_taxon_sources":{"lepidoptera":a,"butterfly":b,
+             "moth10_families":m,"insect":c},
+       "global_13_actual_years":years,
+       "20_country_counts_NOT_exact_islands":countries,
+       "no_exact_island_assignment_yet":True,
+       "other_lepidoptera_remainder_not_verified_moth_or_nocturnal":True,
+       "global_records_not_capture_counts_or_observation_effort_corrected":True,
+       "no_species_absence_or_effective_pollination_inferred":True,
+       "no_global_light_biology_effect_estimated":True,
+       "bulk_analysis_should_use_versioned_S3_parquet_or_authenticated_GBIF_download":True}
+    out.write_text(json.dumps(report,indent=2,sort_keys=True)+"\n")
+    print("ALAN_GBIF_TRUE_WORLDWIDE_LEPIDOPTERA_SOURCE",
+        json.dumps({k:v for k,v in report.items() if k.startswith("global_") and
+                    isinstance(v,int)},sort_keys=True),flush=True)
+    return report
 
 if __name__=="__main__":
-    p=argparse.ArgumentParser()
-    p.add_argument("--out",type=Path,required=True)
-    args=p.parse_args()
-    run(args.out)
+    p=argparse.ArgumentParser();p.add_argument("--out",type=Path,required=True)
+    args=p.parse_args();run(args.out)
