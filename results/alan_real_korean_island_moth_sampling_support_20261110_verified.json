@@ -1,0 +1,160 @@
+{
+  "schema": "alan_actual_korea_moth_30island_original_survey_support_20261110_v1",
+  "genuinely_observed_2025": {
+    "individuals": 5429,
+    "islands": 2,
+    "nonzero_sites": 23,
+    "site_years": 23
+  },
+  "has_complete_trap_nights_or_days_effort_column": false,
+  "has_sampling_month_or_actual_visit_date": false,
+  "light_traps_catchability_is_light_attraction_sensitive": true,
+  "location_coordinate_schema": {
+    "Latitude": "WGS84 degrees",
+    "Longitude": "WGS84 degrees"
+  },
+  "no_ecological_ALAN_effect_estimated": true,
+  "original_independent_site_IDs": 332,
+  "original_source_islands": 30,
+  "original_source_rows": 377,
+  "original_source_site_coordinates": 332,
+  "original_taxonomy_species_count": 1179,
+  "site_rows_missing_author_location": 0,
+  "source_islands_with_3_or_more_years": 12,
+  "source_islands_with_multiple_years": 19,
+  "source_sites_with_repeated_observation_years": 44,
+  "source_year_counts": [
+    {
+      "islands": 1,
+      "moth_captures": 560,
+      "recorded_species_site_sum": 230,
+      "site_years": 1,
+      "year": 2007
+    },
+    {
+      "islands": 1,
+      "moth_captures": 914,
+      "recorded_species_site_sum": 348,
+      "site_years": 5,
+      "year": 2008
+    },
+    {
+      "islands": 1,
+      "moth_captures": 517,
+      "recorded_species_site_sum": 169,
+      "site_years": 16,
+      "year": 2009
+    },
+    {
+      "islands": 4,
+      "moth_captures": 595,
+      "recorded_species_site_sum": 284,
+      "site_years": 16,
+      "year": 2010
+    },
+    {
+      "islands": 4,
+      "moth_captures": 1439,
+      "recorded_species_site_sum": 485,
+      "site_years": 16,
+      "year": 2011
+    },
+    {
+      "islands": 1,
+      "moth_captures": 1787,
+      "recorded_species_site_sum": 310,
+      "site_years": 14,
+      "year": 2012
+    },
+    {
+      "islands": 3,
+      "moth_captures": 2579,
+      "recorded_species_site_sum": 957,
+      "site_years": 19,
+      "year": 2014
+    },
+    {
+      "islands": 2,
+      "moth_captures": 1996,
+      "recorded_species_site_sum": 504,
+      "site_years": 10,
+      "year": 2015
+    },
+    {
+      "islands": 1,
+      "moth_captures": 98,
+      "recorded_species_site_sum": 36,
+      "site_years": 2,
+      "year": 2016
+    },
+    {
+      "islands": 10,
+      "moth_captures": 2951,
+      "recorded_species_site_sum": 1524,
+      "site_years": 65,
+      "year": 2017
+    },
+    {
+      "islands": 10,
+      "moth_captures": 2982,
+      "recorded_species_site_sum": 1123,
+      "site_years": 53,
+      "year": 2018
+    },
+    {
+      "islands": 7,
+      "moth_captures": 3438,
+      "recorded_species_site_sum": 1470,
+      "site_years": 34,
+      "year": 2020
+    },
+    {
+      "islands": 8,
+      "moth_captures": 1927,
+      "recorded_species_site_sum": 952,
+      "site_years": 32,
+      "year": 2021
+    },
+    {
+      "islands": 8,
+      "moth_captures": 2117,
+      "recorded_species_site_sum": 1006,
+      "site_years": 45,
+      "year": 2022
+    },
+    {
+      "islands": 1,
+      "moth_captures": 652,
+      "recorded_species_site_sum": 251,
+      "site_years": 8,
+      "year": 2023
+    },
+    {
+      "islands": 4,
+      "moth_captures": 461,
+      "recorded_species_site_sum": 267,
+      "site_years": 18,
+      "year": 2024
+    },
+    {
+      "islands": 2,
+      "moth_captures": 5429,
+      "recorded_species_site_sum": 1810,
+      "site_years": 23,
+      "year": 2025
+    }
+  ],
+  "species_seen_at_least_once": 1179,
+  "total_individual_moth_counts": 30442,
+  "years_2012_or_later": {
+    "islands": 30,
+    "site_years": 323
+  },
+  "zero_individual_source_site_years": 0,
+  "verified_source_DOI": "10.5281/zenodo.21438943",
+  "actual_original_source_run": "https://github.com/zuizui0223/alan/actions/runs/42772784877",
+  "actual_original_source_artifact": "https://github.com/zuizui0223/alan/actions/runs/42772784877/artifacts/13742004556",
+  "original_ancillary_species_metadata_encoding": "CP949",
+  "sampling_night_effort_unavailable": "cannot call original site count per year a density or within-day visit rate",
+  "interpretation": "Each site-year is captured moth assemblage; site-year abundance is trap catch, and site-year species presence is not independent insect density or effective pollination."
+}
