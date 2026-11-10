@@ -77,7 +77,7 @@ def experimental_records(trait_file,study_file):
     group_cols=["study_ID","species","treatment_effectiveness_metric"]
     groups=raw.groupby(group_cols,observed=True).treatment_condition.agg(
         lambda v:tuple(sorted(set(v))))
-    both=groups.map(lambda z:{"day pollination","night pollination"}<=z)
+    both=groups.map(lambda z:{"day pollination","night pollination"}.issubset(z))
     require(bool(both.all()) and len(groups)==262,
             "Original 262 paired day/night study×plant×metric groups incomplete")
     study_count=raw.groupby("species",observed=True).study_ID.nunique().rename(
