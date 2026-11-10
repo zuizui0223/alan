@@ -50,6 +50,15 @@ CONFIRMED={
     "Ruizia blackburniana":{"guild":"effective_native_day_gecko",
        "archipelago":"Mauritius","evidence":"PMID:17262697; accepted synonym of Trochetia blackburniana",
        "evolutionary_ancestral_shift_proven":False},
+    "Lotus maculatus":{"guild":"effective_native_Gallotia_lizard_NOT_gecko",
+       "archipelago":"Canary","evidence":"doi:10.26786/1920-7603(2024)777; accepted Kew POWO",
+       "evolutionary_ancestral_shift_proven":False},
+    "Polyscias crassa":{"guild":"effective_native_Phelsuma_day_gecko",
+       "archipelago":"Seychelles","evidence":"doi:10.1002/ajb2.1499; accepted Kew POWO, synonym Gastonia crassa",
+       "evolutionary_ancestral_shift_proven":False},
+    "Syzygium wrightii":{"guild":"effective_native_sunbird",
+       "archipelago":"Seychelles","evidence":"doi:10.1002/ajb2.1499; accepted Kew POWO",
+       "evolutionary_ancestral_shift_proven":False},
 }
 # Only source taxonomic location filters (coarse, roomy): reject exotic island
 # photographs outside the independently documented native archipelago; even
@@ -58,6 +67,7 @@ REGION_BOX={
     "Galapagos":{"lat_min":-2.5,"lat_max":1.8,"lon_min":-92.5,"lon_max":-89},
     "Canary":{"lat_min":27.0,"lat_max":30.5,"lon_min":-19.2,"lon_max":-12.4},
     "Mauritius":{"lat_min":-21.0,"lat_max":-19.6,"lon_min":57.0,"lon_max":58.7},
+    "Seychelles":{"lat_min":-5.7,"lat_max":-3.3,"lon_min":54.2,"lon_max":56.6},
 }
 
 def require(ok,reason):
@@ -223,6 +233,32 @@ def census(study,traits,pcnl,groups,native,gecko,genus):
                 "native_archipelago_GSHHG_island_units_with_any_supported_photo":
                   len(v["source_native_archipelago_island_units"])}
              for k,v in counts_by_guild.items()}
+    # Independent DAY/NIGHT EXCLUSION EXPERIMENT, NOT an independent
+    # determination of the night-active pollinator animal group. Count its
+    # original source geographies separately, without inferring moths.
+    experimental=d.loc[d.species.isin(studied)].copy()
+    source_diel_supported=experimental.merge(
+        valid[KEY+[LIGHT]],on=KEY,how="left",validate="many_to_one")
+    real_diel=source_diel_supported.loc[
+        source_diel_supported[LIGHT].notna()].copy()
+    real_diel_macro=real_diel.merge(macro[KEY],on=KEY,how="inner",
+        validate="many_to_one")
+    exptier={
+        "independent_author_daynight_exclusion_exact_WCVP_names":len(studied),
+        "original_accepted_plant_siteyear_photo_rows":len(experimental),
+        "original_accepted_plant_photo_ids":int(experimental.photo_ids.sum()),
+        "source_plant_taxa_with_any_original_photo":int(experimental.species.nunique()),
+        "source_true_GSHHG_island_polygon_units":int(experimental.island.nunique()),
+        "source_true_photo_siteyears_with_genuine_prior_light":len(real_diel),
+        "source_taxa_with_source_photo_and_prior_light":int(real_diel.species.nunique()),
+        "source_true_islands_with_prior_light":int(real_diel.island.nunique()),
+        "source_562_lightcontrast_island_source_photo_siteyears":len(real_diel_macro),
+        "source_562_lightcontrast_taxa":int(real_diel_macro.species.nunique()),
+        "source_experiment_exclusion_is_pollination_function_study":True,
+        "study_did_not_collect_identity_of_nocturnal_pollinator_taxa":True,
+        "not_a_verified_moth_dependence_or_ancestral_shift":True
+    }
+
     report={
       "schema":SCHEMA,
       "original_93m_iNaturalist_photo_registry_count":93209351,
@@ -234,6 +270,8 @@ def census(study,traits,pcnl,groups,native,gecko,genus):
       "original_signed_study_effective_moth_plant_only_Ipomoea":True,
       "independent_evolutionary_ancestral_pollinator_shifts_verified":0,
       "literature_verified_functional_pollination_species_n":len(CONFIRMED),
+      "source_independent_diel_exclosure_study_evidence_tier":exptier,
+      "source_documented_effective_guilds_do_not_imply_evolutionary_transition":True,
       "original_original_photo_site_year_population":85318,
       "original_within_island_fullflora_exposure_cohort":77647,
       "original_within_island_fullflora_GSHHG_islands":562,
@@ -256,6 +294,7 @@ def run(study,traits,pcnl,groups,native,gecko,genus,out):
     print("ALAN_TRUE_ISLAND_SPECIALIZED_POLLLINATION_LIGHT_GECKO_EXPOSURE",
        json.dumps({"cohorts":d["source_verifiable_photo_coverage_by_pollinator_evidence"],
           "candidate_species":d["source_candidate_species_exposure"],
+          "daynight_exclosure_not_moth_pollinator":d["source_independent_diel_exclosure_study_evidence_tier"],
           "ancestral_shifts_verified":d["independent_evolutionary_ancestral_pollinator_shifts_verified"]},
        sort_keys=True),flush=True)
     return d
