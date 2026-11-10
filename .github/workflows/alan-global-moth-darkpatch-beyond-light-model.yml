@@ -1,0 +1,72 @@
+name: ALAN worldwide 196-island real 13year PCNL dark continuity beyond average night light
+on:
+  push:
+    branches: [analysis/alan-global-moth-priorlight-20261110]
+    paths:
+      - scripts/analysis/alan_global_moth_priorPCNL_darkpatch_conditionalFE_20261110.py
+      - .github/workflows/alan-global-moth-darkpatch-beyond-light-model.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  real-source-196island-dark-configuration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 38
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Source-locked continuous darkness geometry model unit tests
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5
+          python -m py_compile scripts/analysis/alan_global_moth_priorPCNL_darkpatch_conditionalFE_20261110.py
+          python -m unittest discover -s tests -p test_alan_global_moth_priorPCNL_darkpatch_FE_20261110.py -v
+      - name: Restore true 62688 global moth photo cells and source-verified past darkpatch
+        run: |
+          set -euo pipefail
+          mkdir -p source pastdark
+          gh run download 42786502922 --repo zuizui0223/alan \
+            --name alan-global-228361-islandcells-actual-13year-prior-PCNL-joined --dir source
+          gh run download 42788295115 --repo zuizui0223/alan \
+            --name alan-real-worldwide-196island-62688-moth-PCNL-darkpatch-13year --dir pastdark
+          test -s source/ALAN_2026_11_global_fourfamily_prior_PCNL_real_source_receipt.json
+          test -s pastdark/alan_actual_global_GBIF_moth_darkpatch_all13years_receipt.json
+          echo '64b269dd796b9095853c371909a0dd760921df2e396636a83fc59a2d659e4852  source/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz' | sha256sum -c -
+          echo '906c7e54642c354665b59ad5efd3ebe8ff072bcb95aed501878e348abf8228e4  pastdark/alan_real_global_62688_GBIF_moth_source_annual_prior_PCNl_5km_darkpatch.csv.gz' | sha256sum -c -
+      - name: Fit true 196-island source guild proportion against preyear dark continuity conditional on light
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_global_moth_priorPCNL_darkpatch_conditionalFE_20261110 \
+            --source source/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz \
+            --source-receipt source/ALAN_2026_11_global_fourfamily_prior_PCNL_real_source_receipt.json \
+            --patch pastdark/alan_real_global_62688_GBIF_moth_source_annual_prior_PCNl_5km_darkpatch.csv.gz \
+            --patch-receipt pastdark/alan_actual_global_GBIF_moth_darkpatch_all13years_receipt.json \
+            --out true-global-mosaic/alan_real_global_moth_record_share_vs_prior_dark_topology_conditional.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('true-global-mosaic/alan_real_global_moth_record_share_vs_prior_dark_topology_conditional.json')
+          d=json.loads(p.read_text())
+          assert d['all_true_original_62688_source_photo_cells']==62688
+          assert d['real_photo_source_islands_before_dark_pixel_support']==196
+          assert d['raster_dark_fraction_correlated_with_pixel_light_and_contiguity']
+          assert d['source_photo_records_not_actual_moth_density']
+          print('ALAN_ACTUAL_GLOBAL_DARK_CONTINUITY_BIOLOGICAL_SOURCE_GATE',
+                json.dumps(d,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-real-global-moth-record-share-vs-historic-dark-contiguity-FE
+          path: true-global-mosaic/alan_real_global_moth_record_share_vs_prior_dark_topology_conditional.json
+          retention-days: 90
+          if-no-files-found: warn
