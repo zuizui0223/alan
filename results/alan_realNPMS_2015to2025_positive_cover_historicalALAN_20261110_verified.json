@@ -1,0 +1,470 @@
+{
+  "schema": "ALAN_true_original_NPMS_2015_2025_positive_cover_prior_PCNL_original_results_v1",
+  "source_original_EIDC_NPMS_DOI": "10.5285/64caeed0-160f-48f1-b182-cd24a1d7dca8",
+  "source_true_prior_2014to2024_PCNL_DOI": "10.5281/zenodo.17013414",
+  "source_external_GloPL_supplementation_DOI": "10.5061/dryad.dt437",
+  "source_original_CRC_S2_verified_2015to2025_sample_survey": true,
+  "source_2015to2025_11years_survey_siteyear_original_PCNL_run": "https://github.com/zuizui0223/alan/actions/runs/42811341050",
+  "source_original_Domin_method_overlap_run": "https://github.com/zuizui0223/alan/actions/runs/42815428180",
+  "actual_original_model_synthetic_mathematical_tests_and_inferential_run": "https://github.com/zuizui0223/alan/actions/runs/42816942629",
+  "actual_original_sensitivity_and_full_model_artifact": "https://github.com/zuizui0223/alan/actions/runs/42816942629/artifacts/13764274287",
+  "actual_source_model_result_all_prespecified_sensitivities": {
+    "GloPL_independent_species": {
+      "exact_GloPL_original_supplementation_species": {
+        "fit": {
+          "CI": [
+            -1.444347944041788,
+            0.043616142958035176
+          ],
+          "beta": -0.7003659005418764,
+          "p": 0.06498836817190437,
+          "plots": 727,
+          "rows": 7791,
+          "species": 49,
+          "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+        },
+        "n_species": 49,
+        "source": {
+          "distinct_positive_recorded_plant_species": 49,
+          "distinct_source_years": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "max_source_visit_DOY_difference_from_plot_plant_season_median": null,
+          "min_two_positive_recording_years_not_plant_occurrence_absence": true,
+          "original_observer_method_category_counts": {
+            "87": 1193,
+            "154": 4387,
+            "155": 2211
+          },
+          "require_original_domin_encoding_same_across_all_years": true,
+          "require_original_record_status_same_across_years": false,
+          "source_light_range_cutoff_log1p": 0.02,
+          "source_positive_cover_rowyears": 7791,
+          "source_true_independent_NPMS_plots": 727,
+          "source_true_source_panel_plot_species_method_season_groups": 2181,
+          "status": "source_supported_for_same_plot_source_positive_cover"
+        }
+      },
+      "two_or_more_independently_studied_GloPL_species": {
+        "fit": {
+          "CI": [
+            -1.0917131133008202,
+            0.657000727572655
+          ],
+          "beta": -0.21735619286408261,
+          "p": 0.6247451164936217,
+          "plots": 232,
+          "rows": 1275,
+          "species": 12,
+          "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+        },
+        "n_species": 12,
+        "source": {
+          "distinct_positive_recorded_plant_species": 12,
+          "distinct_source_years": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "max_source_visit_DOY_difference_from_plot_plant_season_median": null,
+          "min_two_positive_recording_years_not_plant_occurrence_absence": true,
+          "original_observer_method_category_counts": {
+            "87": 167,
+            "154": 755,
+            "155": 353
+          },
+          "require_original_domin_encoding_same_across_all_years": true,
+          "require_original_record_status_same_across_years": false,
+          "source_light_range_cutoff_log1p": 0.02,
+          "source_positive_cover_rowyears": 1275,
+          "source_true_independent_NPMS_plots": 232,
+          "source_true_source_panel_plot_species_method_season_groups": 371,
+          "status": "source_supported_for_same_plot_source_positive_cover"
+        }
+      }
+    },
+    "models": {
+      "original_cover_log1p_percentage": {
+        "CI": [
+          -0.027640834116543153,
+          0.03101454191348718
+        ],
+        "beta": 0.0016868538984720152,
+        "p": 0.910167600989197,
+        "plots": 1138,
+        "rows": 61555,
+        "species": 686,
+        "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+      },
+      "positive_plant_recording_opportunity_negative_control": {
+        "CI": [
+          -0.000811778066642903,
+          0.012019133081527671
+        ],
+        "beta": 0.005603677507442384,
+        "p": 0.08684082432308543,
+        "plots": 1138,
+        "rows": 61555,
+        "species": 686,
+        "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+      },
+      "primary_original_cover_percentage_pp_source_plot_equal_with_species_year_FE": {
+        "CI": [
+          -0.09515715977875572,
+          0.8354720312204078
+        ],
+        "beta": 0.37015743572082604,
+        "p": 0.1188465174889777,
+        "plots": 1138,
+        "rows": 61555,
+        "species": 686,
+        "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+      },
+      "same_source_record_status_across_years": {
+        "CI": [
+          0.04656748240073538,
+          0.9375418758892399
+        ],
+        "beta": 0.49205467914498763,
+        "p": 0.0304310382115127,
+        "plots": 1121,
+        "rows": 50590,
+        "species": 650,
+        "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+      },
+      "same_visit_DOY_plusminus30days": {
+        "CI": [
+          -0.06051641411489089,
+          0.8835530517510901
+        ],
+        "beta": 0.41151831881809964,
+        "p": 0.08744353389808716,
+        "plots": 1126,
+        "rows": 58812,
+        "species": 686,
+        "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+      },
+      "source_actual_DOY_not_adjusted": {
+        "CI": [
+          -0.09918327273847521,
+          0.8309542279831705
+        ],
+        "beta": 0.36588547762234763,
+        "p": 0.12296017642671585,
+        "plots": 1138,
+        "rows": 61555,
+        "species": 686,
+        "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+      },
+      "source_equal_plot_species_panel": {
+        "CI": [
+          -0.26105293838007443,
+          0.25477965787616036
+        ],
+        "beta": -0.0031366402519570485,
+        "p": 0.9809673222724148,
+        "plots": 1138,
+        "rows": 61555,
+        "species": 686,
+        "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+      },
+      "source_record_year_equal": {
+        "CI": [
+          -0.2746982721370768,
+          0.2327623455842692
+        ],
+        "beta": -0.0209679632764038,
+        "p": 0.8712231297134883,
+        "plots": 1138,
+        "rows": 61555,
+        "species": 686,
+        "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+      },
+      "year_FE_no_species_specific_year_control": {
+        "CI": [
+          -0.5306033635824272,
+          1.2731662824410637
+        ],
+        "beta": 0.3712814594293183,
+        "p": 0.4194185999460388,
+        "plots": 1138,
+        "rows": 61555,
+        "species": 686,
+        "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+      }
+    },
+    "prior_light_range": {
+      "0.1": {
+        "fit": {
+          "CI": [
+            -0.20149632309939838,
+            0.6790996656250462
+          ],
+          "beta": 0.2388016712628239,
+          "p": 0.28731287102543557,
+          "plots": 707,
+          "rows": 41682,
+          "species": 586,
+          "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+        },
+        "source": {
+          "distinct_positive_recorded_plant_species": 586,
+          "distinct_source_years": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "max_source_visit_DOY_difference_from_plot_plant_season_median": null,
+          "min_two_positive_recording_years_not_plant_occurrence_absence": true,
+          "original_observer_method_category_counts": {
+            "87": 3657,
+            "154": 27540,
+            "155": 10485
+          },
+          "require_original_domin_encoding_same_across_all_years": true,
+          "require_original_record_status_same_across_years": false,
+          "source_light_range_cutoff_log1p": 0.1,
+          "source_positive_cover_rowyears": 41682,
+          "source_true_independent_NPMS_plots": 707,
+          "source_true_source_panel_plot_species_method_season_groups": 10244,
+          "status": "source_supported_for_same_plot_source_positive_cover"
+        }
+      },
+      "0.3": {
+        "fit": {
+          "CI": [
+            -0.34064991349057994,
+            0.5654552792530699
+          ],
+          "beta": 0.11240268288124503,
+          "p": 0.6255139720286109,
+          "plots": 248,
+          "rows": 15615,
+          "species": 395,
+          "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+        },
+        "source": {
+          "distinct_positive_recorded_plant_species": 395,
+          "distinct_source_years": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "max_source_visit_DOY_difference_from_plot_plant_season_median": null,
+          "min_two_positive_recording_years_not_plant_occurrence_absence": true,
+          "original_observer_method_category_counts": {
+            "87": 822,
+            "154": 10355,
+            "155": 4438
+          },
+          "require_original_domin_encoding_same_across_all_years": true,
+          "require_original_record_status_same_across_years": false,
+          "source_light_range_cutoff_log1p": 0.3,
+          "source_positive_cover_rowyears": 15615,
+          "source_true_independent_NPMS_plots": 248,
+          "source_true_source_panel_plot_species_method_season_groups": 3616,
+          "status": "source_supported_for_same_plot_source_positive_cover"
+        }
+      }
+    },
+    "source": {
+      "distinct_positive_recorded_plant_species": 686,
+      "distinct_source_years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "max_source_visit_DOY_difference_from_plot_plant_season_median": null,
+      "min_two_positive_recording_years_not_plant_occurrence_absence": true,
+      "original_observer_method_category_counts": {
+        "87": 6480,
+        "154": 39893,
+        "155": 15182
+      },
+      "require_original_domin_encoding_same_across_all_years": true,
+      "require_original_record_status_same_across_years": false,
+      "source_light_range_cutoff_log1p": 0.02,
+      "source_positive_cover_rowyears": 61555,
+      "source_true_independent_NPMS_plots": 1138,
+      "source_true_source_panel_plot_species_method_season_groups": 17450,
+      "status": "source_supported_for_same_plot_source_positive_cover"
+    },
+    "survey_ID": {
+      "87": {
+        "fit": {
+          "CI": [
+            -1.035406791259875,
+            3.690031544893699
+          ],
+          "beta": 1.327312376816912,
+          "p": 0.2696463263063476,
+          "plots": 258,
+          "rows": 6480,
+          "species": 137,
+          "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+        },
+        "source": {
+          "distinct_positive_recorded_plant_species": 137,
+          "distinct_source_years": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "max_source_visit_DOY_difference_from_plot_plant_season_median": null,
+          "min_two_positive_recording_years_not_plant_occurrence_absence": true,
+          "original_observer_method_category_counts": {
+            "87": 6480
+          },
+          "require_original_domin_encoding_same_across_all_years": true,
+          "require_original_record_status_same_across_years": false,
+          "source_light_range_cutoff_log1p": 0.02,
+          "source_positive_cover_rowyears": 6480,
+          "source_true_independent_NPMS_plots": 258,
+          "source_true_source_panel_plot_species_method_season_groups": 1880,
+          "status": "source_supported_for_same_plot_source_positive_cover"
+        }
+      },
+      "154": {
+        "fit": {
+          "CI": [
+            -0.3876619494868671,
+            0.2938983364729713
+          ],
+          "beta": -0.04688180650694791,
+          "p": 0.7870612590914665,
+          "plots": 518,
+          "rows": 39893,
+          "species": 633,
+          "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+        },
+        "source": {
+          "distinct_positive_recorded_plant_species": 633,
+          "distinct_source_years": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "max_source_visit_DOY_difference_from_plot_plant_season_median": null,
+          "min_two_positive_recording_years_not_plant_occurrence_absence": true,
+          "original_observer_method_category_counts": {
+            "154": 39893
+          },
+          "require_original_domin_encoding_same_across_all_years": true,
+          "require_original_record_status_same_across_years": false,
+          "source_light_range_cutoff_log1p": 0.02,
+          "source_positive_cover_rowyears": 39893,
+          "source_true_independent_NPMS_plots": 518,
+          "source_true_source_panel_plot_species_method_season_groups": 11296,
+          "status": "source_supported_for_same_plot_source_positive_cover"
+        }
+      },
+      "155": {
+        "fit": {
+          "CI": [
+            -0.43289148840369585,
+            1.5504496300929864
+          ],
+          "beta": 0.5587790708446453,
+          "p": 0.2687357696987599,
+          "plots": 456,
+          "rows": 15182,
+          "species": 270,
+          "status": "estimated_exploratory_within_positive_recorded_plant_cover"
+        },
+        "source": {
+          "distinct_positive_recorded_plant_species": 270,
+          "distinct_source_years": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "max_source_visit_DOY_difference_from_plot_plant_season_median": null,
+          "min_two_positive_recording_years_not_plant_occurrence_absence": true,
+          "original_observer_method_category_counts": {
+            "155": 15182
+          },
+          "require_original_domin_encoding_same_across_all_years": true,
+          "require_original_record_status_same_across_years": false,
+          "source_light_range_cutoff_log1p": 0.02,
+          "source_positive_cover_rowyears": 15182,
+          "source_true_independent_NPMS_plots": 456,
+          "source_true_source_panel_plot_species_method_season_groups": 4274,
+          "status": "source_supported_for_same_plot_source_positive_cover"
+        }
+      }
+    }
+  },
+  "primary_positive_recorded_cover_light_association_not_nominally_significant": true,
+  "source_record_equal_and_equal_panel_weights_near_zero": true,
+  "original_external_GloPL_reliable_species_conservative": 12,
+  "no_unrecorded_species_auto_absence_or_decline": true,
+  "original_response_is_recorded_DOMIN_midpoint_cover_fraction_times100": true,
+  "no_moth_visitation_pollen_deposition_or_field_PL_measured": true,
+  "no_randomization_or_causal_ALAN_established": true
+}
