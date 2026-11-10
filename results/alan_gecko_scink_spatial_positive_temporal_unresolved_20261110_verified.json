@@ -1,0 +1,325 @@
+{
+  "schema": "ALAN_genuine_gecko_vs_skink_spatial_vs_temporal_source_reanalysis_20261110_v1",
+  "source_original_13_year_GBIF_DOI": "10.15468/dl.8yrbe7",
+  "source_original_13_PCNL_calendar_year_before_DOI": "10.5281/zenodo.17013414",
+  "source_reptile_GSHHG_original_SHA256": "03aa855c9e7691855bfee4baa099f0d3a31db8d53066ec36a95afda48c3ba339",
+  "source_first_observation_preyear_success_run": "https://github.com/zuizui0223/alan/actions/runs/42796502910",
+  "source_spatial_gecko_record_fraction_model_run": "https://github.com/zuizui0223/alan/actions/runs/42797211231",
+  "source_repeated_same_0p05_site_and_year_fixed_effects_run": "https://github.com/zuizui0223/alan/actions/runs/42798154950",
+  "spatial_observation_source_model_full_variants": [
+    {
+      "analysis": "independently_10km_spaced_source_photo_cells/reptilegeo0",
+      "eligible_source_islands": 121,
+      "light": {
+        "beta": 3.5736998999452814,
+        "island_cluster_SE": 1.7219561565284964,
+        "nominal_95CI": [
+          0.16434654946669314,
+          6.98305325042387
+        ],
+        "nominal_unadjusted_two_sided_p": 0.04008864577866528
+      },
+      "photo_event_source_cells": 12017,
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service"
+    },
+    {
+      "analysis": "independently_10km_spaced_source_photo_cells/reptilegeo1",
+      "eligible_source_islands": 122,
+      "light": {
+        "beta": 3.848112488939594,
+        "island_cluster_SE": 1.6715456759577298,
+        "nominal_95CI": [
+          0.5388469323534752,
+          7.1573780455257126
+        ],
+        "nominal_unadjusted_two_sided_p": 0.023037203001151682
+      },
+      "photo_event_source_cells": 11988,
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service"
+    },
+    {
+      "analysis": "islandyear_equal_source_weighting",
+      "eligible_source_islands": 153,
+      "light": {
+        "beta": 3.0289510532033384,
+        "island_cluster_SE": 0.7056282002687262,
+        "nominal_95CI": [
+          1.6348457026436083,
+          4.423056403763068
+        ],
+        "nominal_unadjusted_two_sided_p": 0.000031329093728064106
+      },
+      "photo_event_source_cells": 21841,
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service"
+    },
+    {
+      "analysis": "negative_control_total_gecko_plus_skink_photo_event_volume",
+      "eligible_source_islands": 153,
+      "light": {
+        "beta": 0.04669985558762643,
+        "island_cluster_SE": 0.013841066435289378,
+        "nominal_95CI": [
+          0.019354144677063187,
+          0.07404556649818968
+        ],
+        "nominal_unadjusted_two_sided_p": 0.0009401113802664679
+      },
+      "photo_event_source_cells": 21841,
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service"
+    },
+    {
+      "analysis": "primary_both_reptile_photo_families_same_islandyear",
+      "eligible_source_islands": 153,
+      "light": {
+        "beta": 3.266934799987821,
+        "island_cluster_SE": 1.192202767880324,
+        "nominal_95CI": [
+          0.9115070307729365,
+          5.622362569202705
+        ],
+        "nominal_unadjusted_two_sided_p": 0.006874704201972291
+      },
+      "photo_event_source_cells": 21841,
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service"
+    },
+    {
+      "analysis": "same_source_BOTH_families_5plus_photo_events_each_islandyear",
+      "eligible_source_islands": 80,
+      "light": {
+        "beta": 3.4673979243476314,
+        "island_cluster_SE": 0.925466683047781,
+        "nominal_95CI": [
+          1.6253025705141961,
+          5.309493278181066
+        ],
+        "nominal_unadjusted_two_sided_p": 0.0003392301925154535
+      },
+      "photo_event_source_cells": 19308,
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service"
+    },
+    {
+      "analysis": "siteyear_equal_source_weighting",
+      "eligible_source_islands": 153,
+      "light": {
+        "beta": 1.9100909120041427,
+        "island_cluster_SE": 1.286202447688666,
+        "nominal_95CI": [
+          -0.631051453823809,
+          4.451233277832094
+        ],
+        "nominal_unadjusted_two_sided_p": 0.1395982542227073
+      },
+      "photo_event_source_cells": 21841,
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service"
+    },
+    {
+      "analysis": "source_2017_plus",
+      "eligible_source_islands": 153,
+      "light": {
+        "beta": 3.6121590712098186,
+        "island_cluster_SE": 1.1754446014506283,
+        "nominal_95CI": [
+          1.2898403096512494,
+          5.934477832768388
+        ],
+        "nominal_unadjusted_two_sided_p": 0.002512116692920441
+      },
+      "photo_event_source_cells": 19657,
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service"
+    },
+    {
+      "analysis": "source_2020_plus",
+      "eligible_source_islands": 145,
+      "light": {
+        "beta": 3.036473050973168,
+        "island_cluster_SE": 1.2016642973400906,
+        "nominal_95CI": [
+          0.6612933633663931,
+          5.411652738579942
+        ],
+        "nominal_unadjusted_two_sided_p": 0.012588206172958845
+      },
+      "photo_event_source_cells": 15905,
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service"
+    },
+    {
+      "analysis": "source_cell_at_least_3_reptile_photo_records",
+      "eligible_source_islands": 88,
+      "light": {
+        "beta": 1.1852697323791483,
+        "island_cluster_SE": 1.2836750754911657,
+        "nominal_95CI": [
+          -1.3661734785365676,
+          3.7367129432948643
+        ],
+        "nominal_unadjusted_two_sided_p": 0.3583833342102305
+      },
+      "photo_event_source_cells": 5121,
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service"
+    },
+    {
+      "analysis": "source_island_area_x_light_sensitivity",
+      "eligible_source_islands": 153,
+      "light": {
+        "beta": 2.7183129905360666,
+        "island_cluster_SE": 1.5555250930841864,
+        "nominal_95CI": [
+          -0.35492849042051366,
+          5.791554471492647
+        ],
+        "nominal_unadjusted_two_sided_p": 0.08256644718000775
+      },
+      "photo_event_source_cells": 21841,
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service"
+    },
+    {
+      "analysis": "source_largest_reptile_photo_island_omitted",
+      "eligible_source_islands": 153,
+      "light": {
+        "beta": 3.2596361322802707,
+        "island_cluster_SE": 1.2044884228999764,
+        "nominal_95CI": [
+          0.8798092025746396,
+          5.639463061985902
+        ],
+        "nominal_unadjusted_two_sided_p": 0.007588391169943573
+      },
+      "photo_event_source_cells": 21841,
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service"
+    },
+    {
+      "analysis": "without_log_total_reptile_photo_count",
+      "eligible_source_islands": 153,
+      "light": {
+        "beta": 3.368892103558595,
+        "island_cluster_SE": 1.1883646359162547,
+        "nominal_95CI": [
+          1.0210473083592406,
+          5.716736898757949
+        ],
+        "nominal_unadjusted_two_sided_p": 0.005207934881453305
+      },
+      "photo_event_source_cells": 21841,
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service"
+    }
+  ],
+  "within_same_source_grid_temporal_observation_model": {
+    "island_equal_temporal_site_and_year_FE": {
+      "fit_2way_FE_projection_iterations": 22,
+      "source_estimates": {
+        "source_photo_event_count": {
+          "beta": 0.492082804125299,
+          "nominal_exploratory_two_sided_p": 0.8577527530245301,
+          "original_independent_island_cluster_SE": 2.7375922206197845,
+          "original_island_cluster_nominal_95CI": [
+            -4.9466219634087185,
+            5.930787571659316
+          ]
+        },
+        "source_prior_light": {
+          "beta": -1.0530599261927152,
+          "nominal_exploratory_two_sided_p": 0.8461015765694223,
+          "original_independent_island_cluster_SE": 5.409871610380062,
+          "original_island_cluster_nominal_95CI": [
+            -11.800714123010875,
+            9.694594270625446
+          ]
+        }
+      },
+      "source_independent_islands": 91,
+      "source_island_equal_weight": true,
+      "source_photo_not_population_recruitment_or_moth_predation": true,
+      "source_repeated_grid_sites": 1385,
+      "source_site_fixed_effects": 1385,
+      "source_site_year_photos": 6608,
+      "status": "estimated_observed_source_photo_composition_only",
+      "year_fixed_effects": 13,
+      "year_minus_one_satellite_not_local_ground_lux": true
+    },
+    "no_actual_gecko_consumed_moth_or_pollen_effect": true,
+    "not_a_causal_longitudinal_gecko_light_treatment": true,
+    "schema": "ALAN_gecko_vs_scink_original_repeated_source_gridcells_temporal_PCNl_FE_v1",
+    "siteyear_equal_temporal_site_and_year_FE": {
+      "fit_2way_FE_projection_iterations": 19,
+      "source_estimates": {
+        "source_photo_event_count": {
+          "beta": 2.902097677611151,
+          "nominal_exploratory_two_sided_p": 0.04208384508435692,
+          "original_independent_island_cluster_SE": 1.4073681103565368,
+          "original_island_cluster_nominal_95CI": [
+            0.10611528336744902,
+            5.698080071854854
+          ]
+        },
+        "source_prior_light": {
+          "beta": 0.20417382045172822,
+          "nominal_exploratory_two_sided_p": 0.9576162417690572,
+          "original_independent_island_cluster_SE": 3.831126412233031,
+          "original_island_cluster_nominal_95CI": [
+            -7.407027484949402,
+            7.815375125852857
+          ]
+        }
+      },
+      "source_independent_islands": 91,
+      "source_island_equal_weight": false,
+      "source_photo_not_population_recruitment_or_moth_predation": true,
+      "source_repeated_grid_sites": 1385,
+      "source_site_fixed_effects": 1385,
+      "source_site_year_photos": 6608,
+      "status": "estimated_observed_source_photo_composition_only",
+      "year_fixed_effects": 13,
+      "year_minus_one_satellite_not_local_ground_lux": true
+    },
+    "source_original_13year_GBIF_2013_2025": "10.15468/dl.8yrbe7",
+    "source_original_PCNl_2012_2024": "10.5281/zenodo.17013414",
+    "source_photo_record_share_not_reptile_true_occupancy": true,
+    "true_source_repeated_site_year_support": {
+      "observed_years_per_site_quantiles": {
+        "0.1": 2,
+        "0.5": 4,
+        "0.9": 9
+      },
+      "original_full_gecko_skink_source": {
+        "actual_within_islandyear_BOTH_photo_categories_observed": true,
+        "min_actual_photo_record_per_family_in_year": 1,
+        "min_actual_photo_source_events_per_cell": 1,
+        "no_photo_record_in_cell_means_NOT_DOCUMENTED_not_biological_absence": true,
+        "original_source_0p05_reptile_cellyears_before_filter": 34056,
+        "original_yearminus1_light_min_span": 0.02,
+        "source_photos_earliest_observed_year": 2013,
+        "source_retained_gecko_photo_events": 44227,
+        "source_retained_grid_cell_years": 21841,
+        "source_retained_independent_islands": 153,
+        "source_retained_observed_island_year_groups": 808,
+        "source_retained_skink_photo_events": 24768,
+        "source_true_PCNL_numeric_reptile_cellyears": 28814
+      },
+      "original_photo_grid_not_actual_identically_surveyed_road_or_streetlamp": true,
+      "original_repeated_same_grid_sites_2plus_years_with_within_site_PCNL_span": 1385,
+      "real_repeated_siteyear_source_rows": 6608,
+      "real_repeated_temporal_islands": 91,
+      "real_years_observed": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "repeated_sites_have_at_least_one_photo_of_each_reptile_category_over_all_observed_years": true,
+      "year_minus_one_pixel_differed_by_at_least": 0.02
+    }
+  },
+  "true_gecko_photo_fraction_not_reptile_population_density": true,
+  "timevarying_change_not_confirmed": true,
+  "original_GBIF_recording_effort_biased": true,
+  "no_gecko_consumed_moth_or_pollen_measured": true
+}
