@@ -1,0 +1,90 @@
+name: ALAN real genus and common-species bias test on 93m-source plant records
+on:
+  push:
+    branches: [analysis/alan-real-genus-popularity-source-bias-20261110]
+    paths:
+      - scripts/analysis/alan_real_genus_prevalence_bias_20261110.py
+      - tests/test_alan_real_genus_prevalence_bias_20261110.py
+      - .github/workflows/alan-real-genus-prevalence-source-bias.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  unit-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          python -m py_compile scripts/analysis/alan_real_genus_prevalence_bias_20261110.py
+          python -m unittest discover -s tests -p test_alan_real_genus_prevalence_bias_20261110.py -v
+  actual-source-macro:
+    needs: unit-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 95
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Restore 85,318 original 33-year PCNL eligible island sites, exact immutable GloBI
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          mkdir -p source/pcnl source/globi original_batches raw groups
+          gh run download 42624285048 --repo zuizui0223/alan --name alan-full93m-actual-PCNL1992-2024-moth-positive-macro --dir source/pcnl
+          echo '440a8313d71168e0a4dfd2f41a7bef45623abb068b07e3282026f1c35dccbd2c  source/pcnl/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz' | sha256sum -c -
+          gh run download 41976552977 --repo zuizui0223/mois --name mois-ALAN-GloBI-stage2-actual-records-2019-2024-supported-source --dir source/globi
+          echo 'a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994  source/globi/GloBI_stage2_signed_extension.csv.gz' | sha256sum -c -
+          gh run download 42616279235 --repo zuizui0223/alan --pattern 'alan-93m-fullflora-moth-island-group-*' --dir original_batches
+          test "$(find original_batches -name 'allflora-island-group-??.sqlite' | wc -l)" -eq 16
+          test "$(find original_batches -name 'allflora-island-group-??.json' | wc -l)" -eq 16
+          find original_batches -name 'allflora-island-group-??.sqlite' -exec cp {} groups/ \;
+          find original_batches -name 'allflora-island-group-??.json' -exec cp {} groups/ \;
+      - name: Refit sparse same-island×year genus fixed-effects and exact ubiquitous-species coefficient decomposition
+        timeout-minutes: 65
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_real_genus_prevalence_bias_20261110 \
+            --sites source/pcnl/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --globi source/globi/GloBI_stage2_signed_extension.csv.gz \
+            --groups groups --out verified_bias
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          a=json.loads(Path('verified_bias/real_93m_genus_and_prevalence_bias_result.json').read_text())
+          m=a['models']
+          assert a['matched_site_years']==77647 and a['matched_source_islands']==562
+          assert a['accepted_species_site_years']==2012925
+          assert a['unique_accepted_species']==14330
+          assert a['recorded_genera']==3908
+          assert a['mixed_genera']==180
+          assert a['top_one_percent_species']==144
+          assert abs(m['moth_no_genus_FE']['beta_pp']-0.45722827881259)<0.0001
+          assert abs(m['moth_genus_FE']['beta_pp']-0.1558876036668253)<0.0001
+          assert abs(m['moth_genus_FE_drop_top1pct_species']['beta_pp']-0.006713157396490693)<0.0001
+          c=a['exact_common_species_contributions']
+          assert abs(c['original']['beta_pp']-c['top1']['beta_pp']-c['rest']['beta_pp'])<1.e-8
+          assert abs(c['top1']['beta_pp']-0.6318209378927077)<0.0001
+          print('ALAN_REAL_93M_GENUS_POPULARITY_BIAS_PROVENANCE_PASS',
+             json.dumps({'source_sites':a['matched_site_years'],'islands':a['matched_source_islands'],
+               'genus_adjusted':m['moth_genus_FE'],
+               'without_top1pct':m['moth_genus_FE_drop_top1pct_species'],
+               'source_top1_contributions':c},sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-real93m-genus-and-ubiquitous-species-bias-audit
+          path: verified_bias/
+          retention-days: 90
+          if-no-files-found: warn
