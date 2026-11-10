@@ -261,8 +261,9 @@ def native_genus_bias(source_species_status, original_sites):
     from scripts.analysis import alan_real_genus_prevalence_bias_20261110 as genus
     d=source_species_status.copy()
     require(len(d)==2012925, "WCVP original source accepted species-site population changed")
-    d["genus"]=d.species.astype(str).str.extract(
-        r"^([A-Z][a-zA-Z-]+)\\b",expand=False).fillna("UNKNOWN_GENUS")
+    d["genus"]=d.species.astype(str).str.strip().str.split().str[0]
+    require(d.genus.notna().all() and d.genus.str.match(r"^[A-Z][a-zA-Z-]+$").all(),
+            "WCVP accepted botanical binomials failed original genus mapping")
     d["moth_minus_butterfly"]=d.moth.astype(int)-d.butterfly.astype(int)
     prevalence=d.groupby("species",observed=True).size().sort_values(ascending=False)
     require(len(prevalence)==14330, "Original 14,330 accepted WCVP source species changed")
