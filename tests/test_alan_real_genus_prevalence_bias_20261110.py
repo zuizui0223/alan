@@ -27,7 +27,7 @@ class GenusAuditTests(unittest.TestCase):
         self.assertEqual(result["n_islands"], 36)
 
     def test_source_missingness_and_frequency_types_are_not_moth_dependence(self):
-        self.assertIn("GLOBI", audit.GLOBI_SHA)
+        self.assertEqual(len(audit.GLOBI_SHA), 64)
         self.assertEqual(audit.KEY, ["island", "latbin", "lonbin", "year"])
         self.assertIn("real93m_genus", audit.SCHEMA.lower())
 
