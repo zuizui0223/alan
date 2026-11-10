@@ -27,7 +27,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2 \
-            statsmodels==0.14.5 openpyxl==3.1.5
+            statsmodels==0.14.5 openpyxl==3.1.5 rasterio==1.4.3
           python -m py_compile scripts/analysis/alan_korean_moth_count_rarefied_priorpcnl_20261110.py
           python -m unittest discover -s tests -p test_alan_korean_moth_count_rarefied_priorpcnl_20261110.py -v
       - name: Restore actual 377 source observations and corresponding true prior-year PCNL
