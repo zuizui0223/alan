@@ -72,7 +72,7 @@ jobs:
           set -euo pipefail
           git clone -q --depth 1 https://github.com/liamkendall/bumble-bat.git original/published_author
           test "$(git -C original/published_author hash-object data/SppTraitData_clean.csv)" = '18381e550a7e405fe4f198909f0bb381bbecf1e0'
-      - name: Measure genuine 5 independently verified focal plants across 3 archipelagos and historical PCNL/gecko source
+      - name: Measure genuine 8 independently screened focal plants across 3 archipelagos and historical PCNL/gecko source
         timeout-minutes: 65
         run: |
           set -euo pipefail
@@ -90,12 +90,14 @@ jobs:
           from pathlib import Path
           f=Path("source-audit/ALAN_global_literature_functional_native_archipelagos_PCNl_gecko_exposure.json")
           d=json.loads(f.read_text())
-          assert d['literature_verified_functional_pollination_species_n']==5
+          assert d['literature_verified_functional_pollination_species_n']==8
           assert d['independent_evolutionary_ancestral_pollinator_shifts_verified']==0
           assert d['original_original_photo_site_year_population']==85318
           assert d['original_within_island_fullflora_GSHHG_islands']==562
           assert d['no_critically_endangered_species_precise_coordinates_released']
-          assert len(d['source_candidate_species_exposure'])==5
+          assert d['source_independent_diel_exclosure_study_evidence_tier']['independent_author_daynight_exclusion_exact_WCVP_names']==54
+          assert d['source_independent_diel_exclosure_study_evidence_tier']['study_did_not_collect_identity_of_nocturnal_pollinator_taxa']
+          assert len(d['source_candidate_species_exposure'])==8
           print("ALAN_REAL_ISLAND_INDEPENDENT_EFFECTIVE_POLLINATOR_EXPOSURE_VERIFIED",flush=True)
           PY
       - uses: actions/upload-artifact@v4
