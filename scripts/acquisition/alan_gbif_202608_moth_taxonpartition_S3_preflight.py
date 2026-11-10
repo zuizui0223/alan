@@ -41,10 +41,15 @@ def run(out):
     groups=collections.defaultdict(lambda:{"source_files":0,"source_bytes":0,
                                            "object_keys":[]})
     for x in items:
-        key=x["s3_key"];bits=key.split("/")
-        part=next((v.split("=",1)[1] for v in bits
-                   if v.startswith("taxonPartition=")),None)
-        require(part is not None,"GBIF listing lacks partition key")
+        key=x["s3_key"]
+        relative=key[len(ROOT):].split("/")
+        require(len(relative)>=2 and bool(relative[0]),
+                "GBIF source object cannot be assigned to a taxon partition")
+        # Official preview sometimes stores the partition as its plain name
+        # rather than a Hive-style `taxonPartition=` directory.
+        part=(relative[0].split("=",1)[1] if
+              relative[0].startswith("taxonPartition=") else relative[0])
+        require(bool(part),"GBIF listed taxon folder is empty")
         d=groups[part]
         d["source_files"]+=1
         d["source_bytes"]+=x["size_bytes"]
