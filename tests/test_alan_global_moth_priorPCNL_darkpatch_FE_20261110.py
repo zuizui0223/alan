@@ -9,7 +9,7 @@ from scripts.analysis.alan_global_moth_priorPCNL_darkpatch_conditionalFE_2026111
 class OriginalGlobalSourceDarkPatchTests(unittest.TestCase):
     def test_darkness_no_pixel_is_censored_not_zero_contiguity(self):
         src=pd.DataFrame([
-           {"island":"a","year":2024,"island_year":"a|2024",
+           {"island":"a","year":2024,"island_year":"a|2024","lonbin":10,
             "threshold_PCNL_native":0.,"status":"observed_satellite_geometry_only",
             "n_dark_raster_pixels":10,"largest_dark_component_fraction_of_dark":.8,
             "dark_land_fraction":.4,"prior_log1p_PCNL":.2,"centre_lat":34.,
