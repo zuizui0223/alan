@@ -104,7 +104,15 @@ def run(package,glopl,out):
         n_source_sample_visits=("sample_id","nunique")).reset_index()
     require(not site_species.duplicated(["site_id","year","accepted_name_candidate"]).any(),
             "NPMS source accepted species counted more than once per plot-year")
-    gl["accepted_name_candidate"]=names(gl.Species_accepted_names)
+    original_GloPL_names=names(gl.Species_accepted_names)
+    original_GloPL_name_format={
+      "n_unique_original":int(original_GloPL_names.nunique()),
+      "n_with_underscore":int(original_GloPL_names.str.contains("_",regex=False).sum()),
+      "examples":original_GloPL_names.drop_duplicates().head(10).tolist()}
+    # GloPL's original phylogenetic taxa names may be joined with a literal
+    # underscore; replace it only at token separator, not by fuzzy synonym.
+    gl["accepted_name_candidate"]=names(
+        gl.Species_accepted_names.str.replace("_"," ",regex=False))
     gl=gl.loc[exact_binomial(gl.accepted_name_candidate)].copy()
     gl["PL_log_response_ratio"]=pd.to_numeric(gl.PL_Effect_Size,errors="coerce")
     gl["study_key"]=np.where(gl.DOI.astype(str).str.strip().ne(""),
@@ -151,6 +159,7 @@ def run(package,glopl,out):
       "NPMS_source_location_types":location_types,
       "NPMS_source_country_sample_counts":sample.country.value_counts(dropna=False).to_dict(),
       "GloPL_original_unique_unambiguous_binomial_species":len(pl),
+      "GloPL_original_name_format":original_GloPL_name_format,
       "NPMS_GloPL_exact_binomial_species_overlap":len(matched_names),
       "NPMS_site_year_species_units_with_any_GloPL_supplementation":len(eligible),
       "NPMS_unique_sites_with_GloPL_matched_species":int(eligible.site_id.nunique()),
