@@ -1,0 +1,81 @@
+name: ALAN regional-native vs introduced moth butterfly nocturnal source controls
+on:
+  pull_request:
+    branches: [analysis/alan-real-genus-popularity-source-bias-20261110]
+    paths:
+      - scripts/analysis/alan_wcvp_regional_guild_controls_20261110.py
+      - tests/test_alan_wcvp_regional_guild_controls_20261110.py
+      - .github/workflows/alan-real-wcvp-regional-guild-controls.yml
+  push:
+    branches: [analysis/alan-real-wcvp-tdwg3-regional-origin-20261110]
+    paths:
+      - scripts/analysis/alan_wcvp_regional_guild_controls_20261110.py
+      - tests/test_alan_wcvp_regional_guild_controls_20261110.py
+      - .github/workflows/alan-real-wcvp-regional-guild-controls.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  unit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          python -m py_compile scripts/analysis/alan_wcvp_regional_guild_controls_20261110.py
+          python -m unittest discover -s tests -p test_alan_wcvp_regional_guild_controls_20261110.py -v
+  signed-true-data:
+    needs: unit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Rehydrate the exact actual 562-island WCVP regional status/source PCNL cohort
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          mkdir -p original
+          gh run download 42741492213 --repo zuizui0223/alan --name alan-93m-WCVP-regional-native-introduced-PCNL-island-origin --dir original
+          echo '2f30984f627425c7dff96d7502c30bb1d28d8291835961fc059e8956204bc457  original/ALAN_real_PCNL_WCVP_TDWG3_regional_status_island_site_year.csv.gz' | sha256sum -c -
+      - name: Directly compare matched source GloBI moth, butterfly, nocturnal pollen evidence and WCVP country-native population
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_wcvp_regional_guild_controls_20261110 \
+            --sites original/ALAN_real_PCNL_WCVP_TDWG3_regional_status_island_site_year.csv.gz \
+            --out controls
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('controls/ALAN_regional_native_GloBI_guild_controls_20261110.json').read_text())
+          z=r['regional_guilds']['native_at_TDWG3']
+          b=z['models']
+          assert z['n_source_sites']==57487 and z['n_source_islands']==327
+          assert abs(b['moth']['beta_pp']-0.7721703383470593)<1e-6
+          assert abs(b['butterfly']['beta_pp']-1.359988660258948)<1e-5
+          assert abs(b['night_pollen']['beta_pp']-(-0.06400334438286171))<1e-5
+          assert abs(b['moth_minus_butterfly_direct']['beta_pp']-(b['moth']['beta_pp']-b['butterfly']['beta_pp']))<1e-8
+          assert r['WCVP_regional_native_not_local_island_native']
+          assert r['cultivated_or_wild_individual_unknown']
+          print('ALAN_REAL_WCVP_NATIVE_ONLY_GLOBI_SOURCE_GUILD_CONTROLS',
+              json.dumps({'native':z,'introduction':r['regional_guilds']['introduced_at_TDWG3'],
+                'common_site_native_minus_introduced':r['native_minus_introduced_identical_sources'],
+                'regional_share':r['regional_composition_share_vs_PCNL']},sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: alan-WCVP-region-native-moth-butterfly-nocturnal-guild-controls-real
+          path: controls/
+          retention-days: 90
+          if-no-files-found: error
