@@ -1,0 +1,102 @@
+name: ALAN real WCVP regional origin vs PCNL on 93m photo-observed island flora
+on:
+  push:
+    branches: [analysis/alan-real-wcvp-tdwg3-regional-origin-20261110]
+    paths:
+      - .github/workflows/alan-real-wcvp-tdwg3-origin-pcnl.yml
+      - scripts/analysis/alan_wcvp_regional_origin_pcnl_20261110.py
+      - tests/test_alan_wcvp_regional_origin_pcnl_20261110.py
+  pull_request:
+    branches: [analysis/alan-real-genus-popularity-source-bias-20261110]
+    paths:
+      - .github/workflows/alan-real-wcvp-tdwg3-origin-pcnl.yml
+      - scripts/analysis/alan_wcvp_regional_origin_pcnl_20261110.py
+      - tests/test_alan_wcvp_regional_origin_pcnl_20261110.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  regional-source-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Validate WCVP three-valued status, synthetic geography, insufficient island contrasts
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 geopandas==1.1.2 shapely==2.1.2 pyogrio==0.11.1
+          python -m py_compile scripts/analysis/alan_wcvp_regional_origin_pcnl_20261110.py
+          python -m unittest discover -s tests -p test_alan_wcvp_regional_origin_pcnl_20261110.py -v
+  actual-geo-WCVP-PCNL:
+    needs: regional-source-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 135
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Download only source metadata and geopoint region geospatial tools
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 geopandas==1.1.2 shapely==2.1.2 pyogrio==0.11.1
+          mkdir -p original/pcnl original/wcvp original/tdwg orig_batches groups
+          gh run download 42624285048 --repo zuizui0223/alan --name alan-full93m-actual-PCNL1992-2024-moth-positive-macro --dir original/pcnl
+          echo '440a8313d71168e0a4dfd2f41a7bef45623abb068b07e3282026f1c35dccbd2c  original/pcnl/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz' | sha256sum -c -
+          gh run download 39225659840 --repo zuizui0223/mois --name mois-real350399-Kew-WCVP-native-source-TDWG3-no-point-status --dir original/wcvp
+          echo '9cd6aa7ca29f00c64283bcc08dcb778e212b644b837e64070051339b11d8b7b3  original/wcvp/mois350399_wcvp_accepted_native_distribution_TDWG3.csv.gz' | sha256sum -c -
+          echo 'dc5bb0e3686fde0cfd327e4336245d0ceae3c7657b3bd12841bb814cc94d1eb2  original/wcvp/mois350399_wcvp_source_taxon_exact_name_resolution.csv.gz' | sha256sum -c -
+          gh run download 42616279235 --repo zuizui0223/alan --pattern 'alan-93m-fullflora-moth-island-group-*' --dir orig_batches
+          test "$(find orig_batches -name 'allflora-island-group-??.sqlite' | wc -l)" -eq 16
+          test "$(find orig_batches -name 'allflora-island-group-??.json' | wc -l)" -eq 16
+          find orig_batches -name 'allflora-island-group-??.sqlite' -exec cp {} groups/ \;
+          find orig_batches -name 'allflora-island-group-??.json' -exec cp {} groups/ \;
+      - name: Verify original TDWG World Geographical Scheme Level 3 boundaries
+        timeout-minutes: 14
+        run: |
+          set -euo pipefail
+          curl --fail --location --silent --show-error --retry 3 --max-time 300 \
+            https://raw.githubusercontent.com/tdwg/wgsrpd/52da7828aba9d461dd133c27b3bd7a4407161f54/geojson/level3.geojson \
+            -o original/tdwg/level3.geojson
+          test "$(stat -c %s original/tdwg/level3.geojson)" -gt 1000000
+          test "$(git hash-object original/tdwg/level3.geojson)" = "91104e5159e31f88154833a51d3b0d1c9271083f"
+          sha256sum original/tdwg/level3.geojson
+      - name: Overlay 77,647 real island photo sites with original WCVP botanical-country native/introduced ranges
+        timeout-minutes: 100
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_wcvp_regional_origin_pcnl_20261110 \
+            --sites original/pcnl/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --groups groups \
+            --wcvp original/wcvp/mois350399_wcvp_accepted_native_distribution_TDWG3.csv.gz \
+            --geojson original/tdwg/level3.geojson \
+            --out verified_regional_origin
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          f=Path('verified_regional_origin/ALAN_real_PCNL_WCVP_TDWG3_origin_sensitivity_20261110.json')
+          x=json.loads(f.read_text())
+          assert x['schema']=='ALAN_genuine93m_WCVP_TDWG3_REGIONAL_status_PCNL_source_v1'
+          assert x['source_2019_2025_PCNL_site_years']==77647
+          assert x['source_islands']==562
+          assert x['WCVP_status_is_botanical_country_not_island_native']
+          assert x['photographed_individual_wild_or_garden_status_unknown']
+          assert x['missing_distribution_unknown_not_introduced']
+          assert x['observed_source_GloBI_moth_record_not_effective_moth_pollination']
+          print('ALAN_WCVP_REGION_NATIVE_NOT_TRUE_ISLAND_NATIVE',
+                json.dumps(x,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-93m-WCVP-regional-native-introduced-PCNL-island-origin
+          path: verified_regional_origin/
+          retention-days: 90
+          if-no-files-found: warn
