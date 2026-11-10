@@ -1,0 +1,32 @@
+name: ALAN authentic Korea 30-island long-term moth-trap source preflight
+on:
+  push:
+    branches: [analysis/alan-korean-island-real-moth-nightlight-20261110]
+    paths:
+      - scripts/acquisition/alan_korean_island_moth_real_source_preflight_20261110.py
+      - .github/workflows/alan-korean-island-moths-true-source-preflight.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-island-moth-sources:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Read real source schema after exact original Zenodo MD5 verification
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3 openpyxl==3.1.5
+          python -m py_compile scripts/acquisition/alan_korean_island_moth_real_source_preflight_20261110.py
+          python -m scripts.acquisition.alan_korean_island_moth_real_source_preflight_20261110 \
+            --out source-audit/korean_island_moth_original_source_schema_20261110.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-real-korean-30island-moth-original-data-source-schema
+          path: source-audit/korean_island_moth_original_source_schema_20261110.json
+          if-no-files-found: warn
+          retention-days: 90
