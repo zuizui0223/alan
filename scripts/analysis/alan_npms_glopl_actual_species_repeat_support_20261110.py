@@ -97,9 +97,13 @@ def run(package,glopl,out):
     # The original sample table includes visits whose location_id is blank.
     # These are NOT a reproducibly revisitable plot. Keep them in source audit,
     # but exclude them from plot×year×taxon coverage and temporal responses.
-    no_location=sample.site_id.astype(str).str.strip().eq("")
+    valid_location_ids=set(loc.location_id.astype(str))
+    # The NPMS extract uses the literal string 'NA' for an unassigned
+    # location_id. A coordinate attached to a sample does not make 'NA'
+    # a stable, independently revisitable plot. Require location foreign key.
+    no_location=~sample.site_id.astype(str).isin(valid_location_ids)
     x=joined.loc[matched & joined.year.between(2015,2025) &
-                 joined.site_id.astype(str).str.strip().ne("")].copy()
+                 joined.site_id.astype(str).isin(valid_location_ids)].copy()
     x["accepted_name_candidate"]=names(x.preferred_taxon)
     binomial=exact_binomial(x.accepted_name_candidate)
     x=x.loc[binomial].copy()
