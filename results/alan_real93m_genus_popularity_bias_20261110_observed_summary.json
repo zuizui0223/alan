@@ -77,6 +77,15 @@
         0.7718178092933086
       ],
       "p": 0.00011270260724605354
+    },
+    "moth_minus_butterfly_same_species_genus_FE_paired": {
+      "beta": -0.06150264387862145,
+      "CI": [
+        -0.2862208499645751,
+        0.16321556220733222
+      ],
+      "p": 0.5910815062738183,
+      "same_species_site_years": 2012925
     }
   },
   "exact_same_denominator_island_year_FE_decomposition": {
