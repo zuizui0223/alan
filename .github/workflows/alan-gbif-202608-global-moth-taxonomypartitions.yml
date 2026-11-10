@@ -1,0 +1,42 @@
+name: ALAN inspect actual GBIF 2026-08 global moth Parquet taxon source partitions
+on:
+  push:
+    branches: [analysis/alan-global-moth-source-census-20261110]
+    paths:
+      - scripts/acquisition/alan_gbif_202608_moth_taxonpartition_S3_preflight.py
+      - .github/workflows/alan-gbif-202608-global-moth-taxonomypartitions.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  global-Gbif-2026-08-original-parquet-taxa-source-manifest:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Confirm original public taxon-partitioned object keys and real bytes
+        run: |
+          set -euo pipefail
+          python -m pip install -q boto3==1.40.74
+          python -m py_compile scripts/acquisition/alan_gbif_202608_moth_taxonpartition_S3_preflight.py
+          python -m scripts.acquisition.alan_gbif_202608_moth_taxonpartition_S3_preflight \
+            --out public-manifests/gbif_2026_08_taxonpartition_moths_sources.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("public-manifests/gbif_2026_08_taxonpartition_moths_sources.json")
+          x=json.loads(p.read_text())
+          assert x["lepidoptera_original_source_partitions"]>0
+          assert x["GBIF_source_DOI"]=="10.15468/dl.8yrbe7"
+          assert x["no_original_occurrence_records_downloaded_or_analyzed"]
+          print("ALAN_TRUE_GBIF_MOTH_TAXONPARTITION_SOURCE_READY",flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-gbif-202608-actual-global-lepidoptera-public-partition-source-manifest
+          path: public-manifests/gbif_2026_08_taxonpartition_moths_sources.json
+          retention-days: 90
+          if-no-files-found: warn
