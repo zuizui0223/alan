@@ -43,6 +43,13 @@ class RegionalGuildTests(unittest.TestCase):
         c=source.fit_recorded_fraction(n,"moth_minus_butterfly",
                                      "recorded_species__native_at_TDWG3")
         self.assertAlmostEqual(a["beta_pp"]-b["beta_pp"],c["beta_pp"],places=8)
+        aa=source.fit_recorded_fraction(n,"recorded_moth__native_at_TDWG3",
+                                       "recorded_species__native_at_TDWG3",island_year=True)
+        bb=source.fit_recorded_fraction(n,"recorded_butterfly__native_at_TDWG3",
+                                       "recorded_species__native_at_TDWG3",island_year=True)
+        cc=source.fit_recorded_fraction(n,"moth_minus_butterfly",
+                                       "recorded_species__native_at_TDWG3",island_year=True)
+        self.assertAlmostEqual(aa["beta_pp"]-bb["beta_pp"],cc["beta_pp"],places=8)
         self.assertEqual(a["n_islands"],40)
 
     def test_sparse_support_returns_not_estimable(self):
