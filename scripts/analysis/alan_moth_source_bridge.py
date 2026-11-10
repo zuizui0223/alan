@@ -107,6 +107,8 @@ def report_scope(frame, visitors, status, photo_ids):
 
     broad_names = traits.index[broad]
     strict_names = traits.index[strict]
+    moth_positive_names = [name for name in broad_names
+                           if visitors.get(name) in ('moth_recorded_only', 'both')]
     return {
         'names_with_one_or_more_relevant_traits': int(len(traits)),
         'names_with_colour_and_form': int(pair.sum()),
@@ -117,6 +119,8 @@ def report_scope(frame, visitors, status, photo_ids):
         'white_single_form_depth_deep': int(strict.sum()),
         'white_form_guild_positive_evidence': guild_breakdown(broad_names),
         'strict_deep_guild_positive_evidence': guild_breakdown(strict_names),
+        'white_form_positive_moth_visitor_names': len(moth_positive_names),
+        'white_form_moth_recorded_flora': flora_breakdown(moth_positive_names),
         'white_form_flora': flora_breakdown(broad_names),
         'strict_deep_flora': flora_breakdown(strict_names),
     }
