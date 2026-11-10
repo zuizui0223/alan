@@ -1,0 +1,99 @@
+{
+  "coarse_dark_rules": ">=3 of 4 true fine dark pixels (strict majority) and alternative mean raw radiance <= same threshold",
+  "different_pixel_aggregation_binary_rule_changes_estimand": true,
+  "failure_examples": [],
+  "land_quartet_rule": "all 4 original 500m pixel centers on same island land AND inside 5km AND valid; exclude coastal/missing/radius partial quartets",
+  "n_geometry_or_window_failures": 0,
+  "no_new_true_moth_insect_records_or_effective_pollination": true,
+  "same_sensor_year_and_product_resolution_comparison": true,
+  "sample_selection": "only genuine 2025 photo sites with valid 500m original source; same cells for both resolutions",
+  "schema": "ALAN_2024_true_same_VIIRS_product_500m_vs_2x2_1km_dark_mosaic_v1",
+  "source_CSV_SHA256": "63dc36be27e8bd3f9b4e5d5cc98433e5fbab81ea86e97a05ae15a9b70e2b51ac",
+  "source_actual_fine_and_2x2_comparison": {
+    "0.0": {
+      "coarse_majority_conditional_connectivity_median": 1,
+      "coarse_majority_dark_fraction_median": 0.7380846467050426,
+      "coarse_mean_conditional_connectivity_median": 1,
+      "coarse_mean_radiance_dark_fraction_median": 0.6785780125215564,
+      "fine_conditional_connectivity_median": 0.9977500467357736,
+      "fine_dark_fraction_median": 0.7678571666686992,
+      "n_both_grids_have_dark_connected_regions": 2612,
+      "n_coarse_majority_0p95_plus_but_fine_below_0p90": 72,
+      "paired_fine_minus_coarse_majority_conditional_connectivity_quantiles": {
+        "0.05": -0.09095182877777325,
+        "0.25": -0.011048677550528449,
+        "0.5": 0,
+        "0.75": 0,
+        "0.95": 0.12527774316130835
+      },
+      "paired_fine_minus_coarse_majority_dark_fraction_quantiles": {
+        "0.05": -8.688101757470257e-7,
+        "0.25": 2.220446049250313e-16,
+        "0.5": 0.017856389587550037,
+        "0.75": 0.03571985451829737,
+        "0.95": 0.07142857142857136
+      },
+      "same_source_support_islands": 810,
+      "same_source_support_sites": 2756
+    },
+    "1.0": {
+      "coarse_majority_conditional_connectivity_median": 1,
+      "coarse_majority_dark_fraction_median": 0.9642808746947251,
+      "coarse_mean_conditional_connectivity_median": 1,
+      "coarse_mean_radiance_dark_fraction_median": 0.9428580472075272,
+      "fine_conditional_connectivity_median": 1,
+      "fine_dark_fraction_median": 0.9687473311396271,
+      "n_both_grids_have_dark_connected_regions": 2669,
+      "n_coarse_majority_0p95_plus_but_fine_below_0p90": 28,
+      "paired_fine_minus_coarse_majority_conditional_connectivity_quantiles": {
+        "0.05": -0.03459522201402863,
+        "0.25": 0,
+        "0.5": 0,
+        "0.75": 0,
+        "0.95": 0.017213062291778852
+      },
+      "paired_fine_minus_coarse_majority_dark_fraction_quantiles": {
+        "0.05": -0.004625066688619561,
+        "0.25": 0,
+        "0.5": 4.384323459838413e-11,
+        "0.75": 0.02040597882445125,
+        "0.95": 0.049104820403784014
+      },
+      "same_source_support_islands": 810,
+      "same_source_support_sites": 2756
+    },
+    "3.0": {
+      "coarse_majority_conditional_connectivity_median": 1,
+      "coarse_majority_dark_fraction_median": 0.9999999999999998,
+      "coarse_mean_conditional_connectivity_median": 1,
+      "coarse_mean_radiance_dark_fraction_median": 0.9999999999999998,
+      "fine_conditional_connectivity_median": 1,
+      "fine_dark_fraction_median": 0.9999999999999998,
+      "n_both_grids_have_dark_connected_regions": 2718,
+      "n_coarse_majority_0p95_plus_but_fine_below_0p90": 2,
+      "paired_fine_minus_coarse_majority_conditional_connectivity_quantiles": {
+        "0.05": -0.022074826806874167,
+        "0.25": 0,
+        "0.5": 0,
+        "0.75": 0,
+        "0.95": 0.004743108976785851
+      },
+      "paired_fine_minus_coarse_majority_dark_fraction_quantiles": {
+        "0.05": -0.0031278183088328526,
+        "0.25": 0,
+        "0.5": 0,
+        "0.75": 0.010203783797462684,
+        "0.95": 0.046871157160431165
+      },
+      "same_source_support_islands": 810,
+      "same_source_support_sites": 2756
+    }
+  },
+  "source_original_2025_photographed_site_exposure_SHA256": "68ed09378a8bfbcb36572ff0b0578334e4f1795efe22209f437960dbb01d5896",
+  "source_original_500m_COG_MD5": "0b976892d40c2d0d99177c727289eaf2",
+  "source_original_500m_valid_islands": 957,
+  "source_original_500m_valid_photo_sites": 3513,
+  "success_run": "https://github.com/zuizui0223/alan/actions/runs/42770794334",
+  "source_data_artifact": "https://github.com/zuizui0223/alan/actions/runs/42770794334/artifacts/13741871816",
+  "claim": "same VNL V2.2 image resolution-only binary topology sensitivity; not a biological change; subject to all-land quartet selection, source-native thresholds and aggregation rule"
+}
