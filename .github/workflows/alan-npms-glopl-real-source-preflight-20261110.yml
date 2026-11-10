@@ -5,6 +5,8 @@ on:
     paths:
       - scripts/acquisition/alan_npms_glopl_source_overlap_preflight_20261110.py
       - scripts/analysis/alan_npms_glopl_actual_species_repeat_support_20261110.py
+      - scripts/analysis/alan_glopl_true_experiment_year_ALAN_preflight_20261110.py
+      - tests/test_alan_glopl_true_experiment_year_ALAN_preflight_20261110.py
       - tests/test_alan_npms_glopl_source_overlap_preflight_20261110.py
       - .github/workflows/alan-npms-glopl-real-source-preflight-20261110.yml
   workflow_dispatch:
@@ -24,6 +26,7 @@ jobs:
           python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2
           python -m py_compile scripts/acquisition/alan_npms_glopl_source_overlap_preflight_20261110.py scripts/analysis/alan_npms_glopl_actual_species_repeat_support_20261110.py
           python -m unittest discover -s tests -p test_alan_npms_glopl_source_overlap_preflight_20261110.py -v
+          python -m unittest discover -s tests -p test_alan_glopl_true_experiment_year_ALAN_preflight_20261110.py -v
   original-source-schema-audit:
     needs: source-unit-tests
     runs-on: ubuntu-24.04
@@ -151,5 +154,48 @@ jobs:
         with:
           name: alan-real-NPMS-GloPL-pollen-limit-repeated-plot-species-overlap
           path: observed/
+          retention-days: 90
+          if-no-files-found: error
+
+  original-GloPL-experimental-year-preALAN:
+    needs: source-unit-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 21
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2
+      - name: Restore the original exact Dryad-identical 2018 GloPL experimental evidence
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          curl -L --fail --show-error --retry 3 --max-time 300 \
+            https://raw.githubusercontent.com/idiv-biodiversity/pollen-limitation-data-descriptor/abbe193770981b2c61713e75a0f01e004bdded8e/Output/GloPL.csv \
+            -o original_GloPL.csv
+          echo '264ca8c2237f126b3c209fcba039e19b291324ddf6e7a96992dc8235a55984de  original_GloPL.csv' | sha256sum -c -
+      - name: Select only geographically valid, actual 1993-2015 experiment-year pollen-limitation cases BEFORE nightlight
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_glopl_true_experiment_year_ALAN_preflight_20261110 \
+            --source original_GloPL.csv --out observed_GloPL_year_support
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('observed_GloPL_year_support/glopl_true_experiment_year_prior_light_source_receipt.json').read_text())
+          assert x['original_GloPL_rows']==2969
+          assert x['selected_original_year_rows']>500
+          assert x['selected_unique_published_studies']>100
+          assert x['effect_size_not_inspected_for_source_eligibility']
+          assert x['historical_PCNLLight_exposure_not_yet_measured']
+          print('ALAN_GLOPL_ACTUAL_PRELIGHT_STUDY_YEAR_CASE_SUPPORT',
+                json.dumps(x,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: alan-GloPL-actual-experiment-year-georeferenced-prior1992-PCNL-support
+          path: observed_GloPL_year_support/
           retention-days: 90
           if-no-files-found: error
