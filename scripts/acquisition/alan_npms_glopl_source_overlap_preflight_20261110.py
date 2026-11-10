@@ -44,11 +44,19 @@ def read_csv_member(z, member, *, nrows=None, chunksize=None):
     errors = []
     for enc in ("utf-8-sig", "latin-1"):
         try:
+            if chunksize is not None:
+                # TextFileReader is lazy: keep the ZIP member open until all
+                # streamed original data chunks have actually been consumed.
+                def iterate():
+                    with z.open(member) as src:
+                        yield from pd.read_csv(
+                            src, encoding=enc, dtype=str, chunksize=chunksize,
+                            low_memory=False)
+                return (iterate(), enc)
             with z.open(member) as src:
                 # Explicit storage schema: do not guess biological meanings.
                 return (pd.read_csv(src, encoding=enc, dtype=str,
-                                    nrows=nrows, chunksize=chunksize,
-                                    low_memory=False), enc)
+                                    nrows=nrows, low_memory=False), enc)
         except (UnicodeError, pd.errors.ParserError, ValueError) as exc:
             errors.append(f"{enc}:{type(exc).__name__}")
     raise ValueError("Unable to parse original NPMS CSV: "+member+" "+",".join(errors))
