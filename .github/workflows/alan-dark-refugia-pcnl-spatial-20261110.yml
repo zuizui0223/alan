@@ -1,0 +1,112 @@
+name: ALAN original PCNL dark refugia spatial source pilot 2025
+
+on:
+  push:
+    branches: [analysis/alan-dark-refugia-spatial-metrics-20261110]
+    paths:
+      - scripts/analysis/alan_dark_refugia_local_pcnl_20261110.py
+      - tests/test_alan_dark_refugia_local_pcnl_20261110.py
+      - docs/ALAN_DARK_REFUGIA_SPATIAL_HYPOTHESIS_20261110.md
+      - .github/workflows/alan-dark-refugia-pcnl-spatial-20261110.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  original-pixel-geometry-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 statsmodels==0.14.5
+          python -m py_compile scripts/analysis/alan_dark_refugia_local_pcnl_20261110.py
+          python -m unittest discover -s tests -p test_alan_dark_refugia_local_pcnl_20261110.py -v
+
+  original-2025-photo-site-PCNL-2024:
+    needs: original-pixel-geometry-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare real annual-raster geospatial dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 statsmodels==0.14.5
+      - name: Restore exact original 93m island photo source and original GSHHG polygons
+        run: |
+          set -euo pipefail
+          mkdir -p source coast annual
+          gh run download 42624285048 --repo zuizui0223/alan \
+            --name alan-full93m-actual-PCNL1992-2024-moth-positive-macro --dir source
+          gh run download 42175243391 --repo zuizui0223/mois \
+            --name mois-GSHHG-2.3.7-high-L1-L2-SHA-source-no-images --dir coast
+          test -s source/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz
+          test -s source/joined/real_pcnl_join_receipt.json
+          test -s coast/source_receipt.json
+          test -s coast/GSHHS_h_L1.shp
+          test -s coast/GSHHS_h_L2.shp
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from scripts.analysis.alan_dark_refugia_local_pcnl_20261110 import sha256
+          root=Path("source/joined")
+          r=json.loads((root/"real_pcnl_join_receipt.json").read_text())
+          s=root/"ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz"
+          assert r["raster_years_verified"]==33
+          assert r["source_site_year_rows"]==85318
+          assert r["output_sha256"]==sha256(s)
+          print("ALAN_DARK_REFUGIA_ORIGINAL_33YEAR_JOIN_SOURCE_SHA_OK",sha256(s))
+          PY
+      - name: Download only the original previously-specified 2024 PCNL (one prior year)
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          from scripts.acquisition.alan_pcnl_1992_2024_verified_zenodo_download_20261109 import manifest_read,fetch_one
+          files=manifest_read(Path("config/alan_pcnl_1992_2024_zenodo_v3_md5.json"))["files"]
+          print("ALAN_2024_PCNL_REAL_RASTER_MD5",fetch_one(
+              "PCNL2024.tif", files["PCNL2024.tif"],Path("annual/PCNL2024.tif")),flush=True)
+          PY
+      - name: Measure real five-kilometer island land dark-refuge geometry
+        timeout-minutes: 55
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_dark_refugia_local_pcnl_20261110 \
+            --joined source/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --joined-receipt source/joined/real_pcnl_join_receipt.json \
+            --coast coast \
+            --raster annual/PCNL2024.tif \
+            --radius 5 --max-per-island 8 --out real_dark_refugia
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("real_dark_refugia/dark_refugia_original_real_source_receipt.json").read_text())
+          assert d["satellite_year_strictly_before_photo"]
+          assert d["no_ocean_or_inland_lake_dark_pixels_admitted"]
+          assert d["no_insect_or_pollination_or_plant_population_effect_estimated"]
+          assert d["source_islands_selected"]>0 and d["source_original_observed_2025_photo_sites_selected"]>0
+          print("ALAN_DARK_REFUGIA_VALIDATED_REAL_PIXEL_SOURCE",json.dumps(d,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-2025-true-island-2024PCNL-dark-refugia-landmasked-pilot
+          path: real_dark_refugia/
+          retention-days: 90
+          if-no-files-found: warn
