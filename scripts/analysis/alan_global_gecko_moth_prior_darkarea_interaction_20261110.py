@@ -69,8 +69,8 @@ def joined_source(insect,igr,patch,dgr):
             "dark_land_fraction","largest_dark_component_fraction_of_dark",
             "local_mean_PCNL_native","n_valid_original_PCNL_pixels",
             "valid_land_fraction"]
-    out=d[k+extras].merge(orig,on=k,how="left",validate="many_to_one",indicator=True)
-    require(out._merge.eq("both").all(),
+    out=d[k+extras].merge(orig,on=k,how="left",validate="many_to_one",indicator="_dark_geo_match")
+    require(out._dark_geo_match.eq("both").all(),
             "Gecko photo sites not identical to actual year-prior dark mosaic sites")
     for name in TREATMENTS:
         out[name]=out[name].astype(str).str.lower().eq("true")
