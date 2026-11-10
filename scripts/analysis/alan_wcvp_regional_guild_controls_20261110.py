@@ -110,6 +110,8 @@ def run(path,out):
         for guild in GUILDS:
             number="recorded_"+guild+"__"+status
             record["models"][guild]=fit_recorded_fraction(subset,number,den)
+            record.setdefault("island_x_year_FE_models",{})[guild]=fit_recorded_fraction(
+                subset,number,den,island_year=True)
         # A paired moth-minus-butterfly source-label contrast has exactly the
         # same denominator, same islands, same years and same error structure.
         subset["direct_moth_minus_butterfly"]=(
@@ -117,15 +119,27 @@ def run(path,out):
             subset["recorded_butterfly__"+status])
         record["models"]["moth_minus_butterfly_direct"]=fit_recorded_fraction(
             subset,"direct_moth_minus_butterfly",den)
+        record["island_x_year_FE_models"]["moth_minus_butterfly_direct"]=(
+            fit_recorded_fraction(subset,"direct_moth_minus_butterfly",
+                                  den,island_year=True))
         moth=record["models"]["moth"]; butterfly=record["models"]["butterfly"]
         contrast=record["models"]["moth_minus_butterfly_direct"]
         if moth["status"]=="estimated_exploratory_observational":
             require(abs(moth["beta_pp"]-butterfly["beta_pp"]-
                        contrast["beta_pp"])<1e-8,
                     "Direct same-source GloBI guild coefficient difference failed")
+        strict=record["island_x_year_FE_models"]
+        if strict["moth"]["status"]=="estimated_exploratory_observational":
+            require(abs(strict["moth"]["beta_pp"]-
+                        strict["butterfly"]["beta_pp"]-
+                        strict["moth_minus_butterfly_direct"]["beta_pp"])<1e-8,
+                    "Strict island×year FE guild documentation difference does not close")
         results[status]=record
     native=results["native_at_TDWG3"]["models"]["moth"]
     introduced=results["introduced_at_TDWG3"]["models"]["moth"]
+    require(abs(results["native_at_TDWG3"]["island_x_year_FE_models"]["moth"]["beta_pp"]-
+                0.9155117901610345)<1e-6,
+            "Original WCVP native strict within-island-year slope changed")
     require(abs(native["beta_pp"]-0.7721703383470593)<1e-6 and
             abs(introduced["beta_pp"]-(-0.32651954703074604))<1e-6,
             "Parent PR28 WCVP regional source estimates not numerically reproduced")
@@ -160,6 +174,9 @@ def run(path,out):
         both["one"]=1
         paired["models"][guild]=fit_recorded_fraction(
             both,"response_fraction_native_minus_introduced","one")
+        paired.setdefault("island_x_year_FE_models",{})[guild]=fit_recorded_fraction(
+            both,"response_fraction_native_minus_introduced","one",
+            island_year=True)
     result={"schema":SCHEMA,"source_SHA256":SOURCE_SHA,
             "source_original_photo_IDs":93209351,
             "source_site_years":len(data),
