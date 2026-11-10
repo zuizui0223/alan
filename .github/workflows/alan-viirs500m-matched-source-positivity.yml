@@ -1,0 +1,68 @@
+name: ALAN actual 500m VIIRS dark patch island matching and photo ascertainment controls
+on:
+  push:
+    branches: [analysis/alan-viirs500m-darkrefugia-resolution-20261110]
+    paths:
+      - scripts/analysis/alan_viirs500m_matched_photo_proxy_20261110.py
+      - .github/workflows/alan-viirs500m-matched-source-positivity.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-2024-500m-matched-photo-site-control:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 pyproj==3.7.2
+          python -m py_compile scripts/analysis/alan_viirs500m_matched_photo_proxy_20261110.py
+          python -m unittest discover -s tests -p test_alan_dark_refugia_photosource_paircheck_20261110.py -v
+      - name: Restore SHA-signed actual fine raster cell metrics and exact original photographed plant source
+        run: |
+          set -euo pipefail
+          mkdir -p source/fine source/flora
+          gh run download 42769904996 --repo zuizui0223/alan \
+            --name alan-genuine-2024-viirs500m-vs-1km-PCNL-island-dark-refugia-sites \
+            --dir source/fine
+          gh run download 42624285048 --repo zuizui0223/alan \
+            --name alan-full93m-actual-PCNL1992-2024-moth-positive-macro \
+            --dir source/flora
+          test -s source/fine/original_2025_photo_site_VIIRS2024_500m_landmasked_dark_refugia.csv.gz
+          test -s source/fine/viirs500m_vs_pcnl1km_actual_source_receipt.json
+          test -s source/flora/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz
+          test -s source/flora/joined/real_pcnl_join_receipt.json
+          echo '68ed09378a8bfbcb36572ff0b0578334e4f1795efe22209f437960dbb01d5896  source/fine/original_2025_photo_site_VIIRS2024_500m_landmasked_dark_refugia.csv.gz' | sha256sum -c -
+      - name: Measure true 2025 same-island 500m dark-patch contrasts and independent photo records
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_viirs500m_matched_photo_proxy_20261110 \
+            --fine source/fine/original_2025_photo_site_VIIRS2024_500m_landmasked_dark_refugia.csv.gz \
+            --fine-receipt source/fine/viirs500m_vs_pcnl1km_actual_source_receipt.json \
+            --flora source/flora/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --flora-receipt source/flora/joined/real_pcnl_join_receipt.json \
+            --out original_viirs500m_matched/alan_actual500m_darkpatch_matched_photo_source.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('original_viirs500m_matched/alan_actual500m_darkpatch_matched_photo_source.json').read_text())
+          assert r['actual_original_2025_photo_sites_2024_500m_valid']==3513
+          assert r['actual_500m_source_islands']==957
+          assert r['source_moth_GloBI_positive_plant_record_is_NOT_measured_insects']
+          print('ALAN_ACTUAL_500M_ISLAND_PHOTO_SOURCE_MATCHED_VERIFIED',json.dumps(r,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-real500m-VIIRS-2024-darkpatch-GloBI-photo-ascertainment
+          path: original_viirs500m_matched/
+          retention-days: 90
+          if-no-files-found: warn

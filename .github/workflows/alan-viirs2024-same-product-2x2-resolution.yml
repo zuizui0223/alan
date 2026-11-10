@@ -1,0 +1,81 @@
+name: ALAN isolate true satellite resolution within 2024 VIIRS 500m to 1km 2x2 quartets
+on:
+  push:
+    branches: [analysis/alan-viirs500m-darkrefugia-resolution-20261110]
+    paths:
+      - scripts/analysis/alan_same_viirs2024_500m_2x2_resolution_20261110.py
+      - tests/test_alan_same_viirs2024_500m_2x2_resolution_20261110.py
+      - .github/workflows/alan-viirs2024-same-product-2x2-resolution.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  genuine-viirs-500m-vs-2x2-1km-same-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Validate 2x2 original pixel topology and satellite-source integer masks
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 rasterio==1.4.3 \
+            geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 statsmodels==0.14.5
+          python -m py_compile scripts/analysis/alan_same_viirs2024_500m_2x2_resolution_20261110.py
+          python -m unittest discover -s tests -p test_alan_same_viirs2024_500m_2x2_resolution_20261110.py -v
+      - name: Restore fixed genuinely photographed source sites and original signed GSHHG land
+        run: |
+          set -euo pipefail
+          mkdir -p source/fine source/coast source/viirs
+          gh run download 42769904996 --repo zuizui0223/alan \
+            --name alan-genuine-2024-viirs500m-vs-1km-PCNL-island-dark-refugia-sites \
+            --dir source/fine
+          gh run download 42175243391 --repo zuizui0223/mois \
+            --name mois-GSHHG-2.3.7-high-L1-L2-SHA-source-no-images --dir source/coast
+          test -s source/fine/original_2025_photo_site_VIIRS2024_500m_landmasked_dark_refugia.csv.gz
+          test -s source/fine/viirs500m_vs_pcnl1km_actual_source_receipt.json
+          echo '68ed09378a8bfbcb36572ff0b0578334e4f1795efe22209f437960dbb01d5896  source/fine/original_2025_photo_site_VIIRS2024_500m_landmasked_dark_refugia.csv.gz' | sha256sum -c -
+      - name: Verify identical published real 2024 500m nightlight source raster
+        timeout-minutes: 20
+        run: |
+          set -euo pipefail
+          FILE='nightlights.average_viirs.v21_m_500m_s_20240101_20241231_go_epsg4326_v20250904.tif'
+          curl --fail --location --retry 4 --retry-all-errors --connect-timeout 35 --max-time 650 \
+            'https://zenodo.org/records/17294744/files/nightlights.average_viirs.v21_m_500m_s_20240101_20241231_go_epsg4326_v20250904.tif?download=1' \
+            --output source/viirs/nightlights.average_viirs.v21_m_500m_s_20240101_20241231_go_epsg4326_v20250904.tif
+          echo '0b976892d40c2d0d99177c727289eaf2  source/viirs/nightlights.average_viirs.v21_m_500m_s_20240101_20241231_go_epsg4326_v20250904.tif' | md5sum -c -
+      - name: Compare genuine same original VIIRS 2024 binary-grid connectivity at 500m and 1km
+        timeout-minutes: 55
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_same_viirs2024_500m_2x2_resolution_20261110 \
+            --fine source/fine/original_2025_photo_site_VIIRS2024_500m_landmasked_dark_refugia.csv.gz \
+            --fine-receipt source/fine/viirs500m_vs_pcnl1km_actual_source_receipt.json \
+            --coast source/coast \
+            --raster source/viirs/nightlights.average_viirs.v21_m_500m_s_20240101_20241231_go_epsg4326_v20250904.tif \
+            --out true_source_within_VIIRS_500m_1km
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('true_source_within_VIIRS_500m_1km/same_VIIRS_true_original_quartet_resolution_receipt.json')
+          x=json.loads(p.read_text())
+          assert x["source_original_500m_valid_photo_sites"]==3513
+          assert x["source_original_500m_valid_islands"]==957
+          assert x["same_sensor_year_and_product_resolution_comparison"]
+          assert x["no_new_true_moth_insect_records_or_effective_pollination"]
+          print("ALAN_TRUE_SAME_VIIRS_SOURCE_QUARTET_RESOLUTION",json.dumps(x,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-genuine-same-viirs-2024-500m-vs-1km-land-only-2x2-quartets
+          path: true_source_within_VIIRS_500m_1km/
+          retention-days: 90
+          if-no-files-found: warn

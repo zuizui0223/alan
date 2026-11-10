@@ -116,7 +116,9 @@ def dark_refuge_metrics(src, island_polygon, lon, lat, radius_km=5.,
                  int(np.ceil(win.width)) + 3, int(np.ceil(win.height)) + 3)
     require(win.width * win.height <= 100000, "Polar or raster-scale window too large")
     values = src.read(1, window=win, boundless=True, masked=True)
-    raw = values.filled(np.nan).astype(float)
+    # Convert integer (e.g. original VIIRS Int16) masked values to float
+    # BEFORE filling with NaN. Otherwise NumPy cannot fill NaN into Int16.
+    raw = values.astype(float).filled(np.nan)
     transform = src.window_transform(win)
     rr, cc = np.indices(raw.shape)
     xx = transform.c + (cc + .5) * transform.a + (rr + .5) * transform.b
