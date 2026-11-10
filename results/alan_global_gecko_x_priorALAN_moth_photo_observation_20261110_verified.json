@@ -1,0 +1,435 @@
+{
+  "schema": "ALAN_2026_11_global_gecko_photo_prior_ALAN_effect_modifier_original_result_audit_v1",
+  "input_GBIF_original_snapshot": "10.15468/dl.8yrbe7",
+  "source_original_moth_year_minus_one_corrected_PCNL": "10.5281/zenodo.17013414",
+  "original_authenticated_196island_gecko_moth_join_run": "https://github.com/zuizui0223/alan/actions/runs/42791789835",
+  "source_real_model_execution": "https://github.com/zuizui0223/alan/actions/runs/42792547085",
+  "source_52_995_photo_cellyears_194_islands_and_993_comparison_groups": true,
+  "all_variants": {
+    "Hemidactylus_prior_documented_specific_source": {
+      "exposure": {
+        "beta": -1.5519317161449577,
+        "island_cluster_SE": 0.7342025844174708,
+        "nominal_95CI": [
+          -3.00002272984062,
+          -0.10384070244929555
+        ],
+        "nominal_unadjusted_two_sided_p": 0.03581980360758626
+      },
+      "gecko_interaction": {
+        "beta": 1.6921689190103848,
+        "island_cluster_SE": 1.0923198392730387,
+        "nominal_95CI": [
+          -0.46224810008494854,
+          3.846585938105718
+        ],
+        "nominal_unadjusted_two_sided_p": 0.12298351220698055
+      },
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service",
+      "support": {
+        "actual_island_year_light_gradient_groups": 993,
+        "moderator_documented": "prior_Hemidactylus_documented",
+        "moderator_positive_source_islands": 86,
+        "moderator_undocumented_source_islands": 119,
+        "no_reptile_GBIF_photo_is_not_predator_absence": true,
+        "observed_original_insect_photo_cells_selected": 52995,
+        "original_islands_with_source_insect_sameyear_gradient": 194,
+        "original_reptile_prior_documentation_restricted": false,
+        "prior_gecko_documented_true_islands": 97,
+        "prior_gecko_undocumented_true_islands": 102,
+        "prior_scink_photo_positive_groups": 354,
+        "source_atleast_2_earlier_GBIF_calendar_years": true,
+        "source_gecko_undocumented_groups": 533,
+        "source_positive_groups": 388,
+        "source_prior_Hemidactylus_photo_positive_groups": 388,
+        "source_prior_Phelsuma_photo_positive_groups": 28,
+        "source_prior_gecko_positive_groups": 460,
+        "source_undocumented_groups": 605
+      }
+    },
+    "Phelsuma_prior_documented_day_gecko_source": {
+      "exposure": null,
+      "gecko_interaction": null,
+      "status": "prior_documentation_interaction_unidentifiable_too_few_islands",
+      "support": {
+        "actual_island_year_light_gradient_groups": 993,
+        "moderator_documented": "prior_Phelsuma_documented",
+        "moderator_positive_source_islands": 9,
+        "moderator_undocumented_source_islands": 185,
+        "no_reptile_GBIF_photo_is_not_predator_absence": true,
+        "observed_original_insect_photo_cells_selected": 52995,
+        "original_islands_with_source_insect_sameyear_gradient": 194,
+        "original_reptile_prior_documentation_restricted": false,
+        "prior_gecko_documented_true_islands": 97,
+        "prior_gecko_undocumented_true_islands": 102,
+        "prior_scink_photo_positive_groups": 354,
+        "source_atleast_2_earlier_GBIF_calendar_years": true,
+        "source_gecko_undocumented_groups": 533,
+        "source_positive_groups": 28,
+        "source_prior_Hemidactylus_photo_positive_groups": 388,
+        "source_prior_Phelsuma_photo_positive_groups": 28,
+        "source_prior_gecko_positive_groups": 460,
+        "source_undocumented_groups": 965
+      }
+    },
+    "gecko_prior_2020plus": {
+      "exposure": {
+        "beta": -0.7691199747188695,
+        "island_cluster_SE": 0.7899262657590411,
+        "nominal_95CI": [
+          -2.3274320332840004,
+          0.7891920838462616
+        ],
+        "nominal_unadjusted_two_sided_p": 0.33148294468107553
+      },
+      "gecko_interaction": {
+        "beta": 0.7189030319018455,
+        "island_cluster_SE": 1.0852614669997112,
+        "nominal_95CI": [
+          -1.42202594340787,
+          2.859832007211561
+        ],
+        "nominal_unadjusted_two_sided_p": 0.5085152309668982
+      },
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service",
+      "support": {
+        "actual_island_year_light_gradient_groups": 682,
+        "moderator_documented": "prior_gecko_documented",
+        "moderator_positive_source_islands": 97,
+        "moderator_undocumented_source_islands": 91,
+        "no_reptile_GBIF_photo_is_not_predator_absence": true,
+        "observed_original_insect_photo_cells_selected": 26767,
+        "original_islands_with_source_insect_sameyear_gradient": 188,
+        "original_reptile_prior_documentation_restricted": false,
+        "prior_gecko_documented_true_islands": 97,
+        "prior_gecko_undocumented_true_islands": 91,
+        "prior_scink_photo_positive_groups": 257,
+        "source_atleast_2_earlier_GBIF_calendar_years": true,
+        "source_gecko_undocumented_groups": 346,
+        "source_positive_groups": 336,
+        "source_prior_Hemidactylus_photo_positive_groups": 299,
+        "source_prior_Phelsuma_photo_positive_groups": 23,
+        "source_prior_gecko_positive_groups": 336,
+        "source_undocumented_groups": 346
+      }
+    },
+    "gecko_prior_20plus_insect_source_records": {
+      "exposure": {
+        "beta": -1.5078578230346729,
+        "island_cluster_SE": 1.0892869300263466,
+        "nominal_95CI": [
+          -3.6661402444563675,
+          0.6504245983870218
+        ],
+        "nominal_unadjusted_two_sided_p": 0.16903042028899196
+      },
+      "gecko_interaction": {
+        "beta": 0.38298180614946764,
+        "island_cluster_SE": 1.4986122156605008,
+        "nominal_95CI": [
+          -2.5863261993267805,
+          3.352289811625716
+        ],
+        "nominal_unadjusted_two_sided_p": 0.7987611666794663
+      },
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service",
+      "support": {
+        "actual_island_year_light_gradient_groups": 563,
+        "moderator_documented": "prior_gecko_documented",
+        "moderator_positive_source_islands": 54,
+        "moderator_undocumented_source_islands": 62,
+        "no_reptile_GBIF_photo_is_not_predator_absence": true,
+        "observed_original_insect_photo_cells_selected": 35716,
+        "original_islands_with_source_insect_sameyear_gradient": 113,
+        "original_reptile_prior_documentation_restricted": false,
+        "prior_gecko_documented_true_islands": 54,
+        "prior_gecko_undocumented_true_islands": 62,
+        "prior_scink_photo_positive_groups": 192,
+        "source_atleast_2_earlier_GBIF_calendar_years": true,
+        "source_gecko_undocumented_groups": 316,
+        "source_positive_groups": 247,
+        "source_prior_Hemidactylus_photo_positive_groups": 207,
+        "source_prior_Phelsuma_photo_positive_groups": 8,
+        "source_prior_gecko_positive_groups": 247,
+        "source_undocumented_groups": 316
+      }
+    },
+    "gecko_prior_cell_year_equal_weight": {
+      "exposure": {
+        "beta": -1.1047317660162146,
+        "island_cluster_SE": 0.37887670933396045,
+        "nominal_95CI": [
+          -1.8520023010558024,
+          -0.35746123097662674
+        ],
+        "nominal_unadjusted_two_sided_p": 0.00396767411137231
+      },
+      "gecko_interaction": {
+        "beta": -0.4567736639432076,
+        "island_cluster_SE": 0.8521130677764156,
+        "nominal_95CI": [
+          -2.1374232588757804,
+          1.223875930989365
+        ],
+        "nominal_unadjusted_two_sided_p": 0.5925425029566908
+      },
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service",
+      "support": {
+        "actual_island_year_light_gradient_groups": 993,
+        "moderator_documented": "prior_gecko_documented",
+        "moderator_positive_source_islands": 97,
+        "moderator_undocumented_source_islands": 102,
+        "no_reptile_GBIF_photo_is_not_predator_absence": true,
+        "observed_original_insect_photo_cells_selected": 52995,
+        "original_islands_with_source_insect_sameyear_gradient": 194,
+        "original_reptile_prior_documentation_restricted": false,
+        "prior_gecko_documented_true_islands": 97,
+        "prior_gecko_undocumented_true_islands": 102,
+        "prior_scink_photo_positive_groups": 354,
+        "source_atleast_2_earlier_GBIF_calendar_years": true,
+        "source_gecko_undocumented_groups": 533,
+        "source_positive_groups": 460,
+        "source_prior_Hemidactylus_photo_positive_groups": 388,
+        "source_prior_Phelsuma_photo_positive_groups": 28,
+        "source_prior_gecko_positive_groups": 460,
+        "source_undocumented_groups": 533
+      }
+    },
+    "gecko_prior_documented_both_geographic_light_slope": {
+      "exposure": {
+        "beta": -2.3780344637030826,
+        "island_cluster_SE": 1.327511843033243,
+        "nominal_95CI": [
+          -4.996328121707894,
+          0.24025919430172893
+        ],
+        "nominal_unadjusted_two_sided_p": 0.07480448733968446
+      },
+      "gecko_interaction": {
+        "beta": 3.2333001689853464,
+        "island_cluster_SE": 1.2735479916988117,
+        "nominal_95CI": [
+          0.7214411243152186,
+          5.745159213655475
+        ],
+        "nominal_unadjusted_two_sided_p": 0.011912005357341925
+      },
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service",
+      "support": {
+        "actual_island_year_light_gradient_groups": 993,
+        "moderator_documented": "prior_gecko_documented",
+        "moderator_positive_source_islands": 97,
+        "moderator_undocumented_source_islands": 102,
+        "no_reptile_GBIF_photo_is_not_predator_absence": true,
+        "observed_original_insect_photo_cells_selected": 52995,
+        "original_islands_with_source_insect_sameyear_gradient": 194,
+        "original_reptile_prior_documentation_restricted": false,
+        "prior_gecko_documented_true_islands": 97,
+        "prior_gecko_undocumented_true_islands": 102,
+        "prior_scink_photo_positive_groups": 354,
+        "source_atleast_2_earlier_GBIF_calendar_years": true,
+        "source_gecko_undocumented_groups": 533,
+        "source_positive_groups": 460,
+        "source_prior_Hemidactylus_photo_positive_groups": 388,
+        "source_prior_Phelsuma_photo_positive_groups": 28,
+        "source_prior_gecko_positive_groups": 460,
+        "source_undocumented_groups": 533
+      }
+    },
+    "gecko_prior_documented_main": {
+      "exposure": {
+        "beta": -1.6560548429980342,
+        "island_cluster_SE": 0.7937581373146197,
+        "nominal_95CI": [
+          -3.221609160142109,
+          -0.09050052585395951
+        ],
+        "nominal_unadjusted_two_sided_p": 0.038261327403974525
+      },
+      "gecko_interaction": {
+        "beta": 1.6921980243211814,
+        "island_cluster_SE": 1.0880763141236156,
+        "nominal_95CI": [
+          -0.453849355704921,
+          3.838245404347284
+        ],
+        "nominal_unadjusted_two_sided_p": 0.12153195461238442
+      },
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service",
+      "support": {
+        "actual_island_year_light_gradient_groups": 993,
+        "moderator_documented": "prior_gecko_documented",
+        "moderator_positive_source_islands": 97,
+        "moderator_undocumented_source_islands": 102,
+        "no_reptile_GBIF_photo_is_not_predator_absence": true,
+        "observed_original_insect_photo_cells_selected": 52995,
+        "original_islands_with_source_insect_sameyear_gradient": 194,
+        "original_reptile_prior_documentation_restricted": false,
+        "prior_gecko_documented_true_islands": 97,
+        "prior_gecko_undocumented_true_islands": 102,
+        "prior_scink_photo_positive_groups": 354,
+        "source_atleast_2_earlier_GBIF_calendar_years": true,
+        "source_gecko_undocumented_groups": 533,
+        "source_positive_groups": 460,
+        "source_prior_Hemidactylus_photo_positive_groups": 388,
+        "source_prior_Phelsuma_photo_positive_groups": 28,
+        "source_prior_gecko_positive_groups": 460,
+        "source_undocumented_groups": 533
+      }
+    },
+    "gecko_prior_documented_with_island_area_light_slope": {
+      "exposure": {
+        "beta": -3.309683410429891,
+        "island_cluster_SE": 1.2300104003088386,
+        "nominal_95CI": [
+          -5.735671884513842,
+          -0.8836949363459401
+        ],
+        "nominal_unadjusted_two_sided_p": 0.007753936694323529
+      },
+      "gecko_interaction": {
+        "beta": 2.120881105483133,
+        "island_cluster_SE": 1.12208553962183,
+        "nominal_95CI": [
+          -0.09224374726228435,
+          4.33400595822855
+        ],
+        "nominal_unadjusted_two_sided_p": 0.060240098619985735
+      },
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service",
+      "support": {
+        "actual_island_year_light_gradient_groups": 993,
+        "moderator_documented": "prior_gecko_documented",
+        "moderator_positive_source_islands": 97,
+        "moderator_undocumented_source_islands": 102,
+        "no_reptile_GBIF_photo_is_not_predator_absence": true,
+        "observed_original_insect_photo_cells_selected": 52995,
+        "original_islands_with_source_insect_sameyear_gradient": 194,
+        "original_reptile_prior_documentation_restricted": false,
+        "prior_gecko_documented_true_islands": 97,
+        "prior_gecko_undocumented_true_islands": 102,
+        "prior_scink_photo_positive_groups": 354,
+        "source_atleast_2_earlier_GBIF_calendar_years": true,
+        "source_gecko_undocumented_groups": 533,
+        "source_positive_groups": 460,
+        "source_prior_Hemidactylus_photo_positive_groups": 388,
+        "source_prior_Phelsuma_photo_positive_groups": 28,
+        "source_prior_gecko_positive_groups": 460,
+        "source_undocumented_groups": 533
+      }
+    },
+    "gecko_prior_documented_with_latitude_light_slope": {
+      "exposure": {
+        "beta": -1.6063729699185036,
+        "island_cluster_SE": 0.7899859435409073,
+        "nominal_95CI": [
+          -3.1644872697954565,
+          -0.048258670041551044
+        ],
+        "nominal_unadjusted_two_sided_p": 0.04337926954767014
+      },
+      "gecko_interaction": {
+        "beta": 3.212711630786438,
+        "island_cluster_SE": 1.2715876284342131,
+        "nominal_95CI": [
+          0.7047190726791386,
+          5.7207041888937376
+        ],
+        "nominal_unadjusted_two_sided_p": 0.012322360301232438
+      },
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service",
+      "support": {
+        "actual_island_year_light_gradient_groups": 993,
+        "moderator_documented": "prior_gecko_documented",
+        "moderator_positive_source_islands": 97,
+        "moderator_undocumented_source_islands": 102,
+        "no_reptile_GBIF_photo_is_not_predator_absence": true,
+        "observed_original_insect_photo_cells_selected": 52995,
+        "original_islands_with_source_insect_sameyear_gradient": 194,
+        "original_reptile_prior_documentation_restricted": false,
+        "prior_gecko_documented_true_islands": 97,
+        "prior_gecko_undocumented_true_islands": 102,
+        "prior_scink_photo_positive_groups": 354,
+        "source_atleast_2_earlier_GBIF_calendar_years": true,
+        "source_gecko_undocumented_groups": 533,
+        "source_positive_groups": 460,
+        "source_prior_Hemidactylus_photo_positive_groups": 388,
+        "source_prior_Phelsuma_photo_positive_groups": 28,
+        "source_prior_gecko_positive_groups": 460,
+        "source_undocumented_groups": 533
+      }
+    },
+    "gecko_prior_only_islands_with_any_prior_skink_or_gecko_photo": {
+      "exposure": null,
+      "gecko_interaction": null,
+      "status": "prior_documentation_interaction_unidentifiable_too_few_islands",
+      "support": {
+        "actual_island_year_light_gradient_groups": 479,
+        "moderator_documented": "prior_gecko_documented",
+        "moderator_positive_source_islands": 97,
+        "moderator_undocumented_source_islands": 7,
+        "no_reptile_GBIF_photo_is_not_predator_absence": true,
+        "observed_original_insect_photo_cells_selected": 36803,
+        "original_islands_with_source_insect_sameyear_gradient": 103,
+        "original_reptile_prior_documentation_restricted": true,
+        "prior_gecko_documented_true_islands": 97,
+        "prior_gecko_undocumented_true_islands": 7,
+        "prior_scink_photo_positive_groups": 354,
+        "source_atleast_2_earlier_GBIF_calendar_years": true,
+        "source_gecko_undocumented_groups": 19,
+        "source_positive_groups": 460,
+        "source_prior_Hemidactylus_photo_positive_groups": 388,
+        "source_prior_Phelsuma_photo_positive_groups": 28,
+        "source_prior_gecko_positive_groups": 460,
+        "source_undocumented_groups": 19
+      }
+    },
+    "scink_prior_documented_observer_negative_control": {
+      "exposure": {
+        "beta": -0.9914666806322704,
+        "island_cluster_SE": 0.6877386526977656,
+        "nominal_95CI": [
+          -2.347915410015275,
+          0.36498204875073414
+        ],
+        "nominal_unadjusted_two_sided_p": 0.15102657483822454
+      },
+      "gecko_interaction": {
+        "beta": 0.5215137748157846,
+        "island_cluster_SE": 1.1480618741665942,
+        "nominal_95CI": [
+          -1.7428450253732675,
+          2.7858725750048365
+        ],
+        "nominal_unadjusted_two_sided_p": 0.6501551674092605
+      },
+      "status": "estimated_exploratory_photo_source_composition_not_pollen_service",
+      "support": {
+        "actual_island_year_light_gradient_groups": 993,
+        "moderator_documented": "prior_scink_documented",
+        "moderator_positive_source_islands": 74,
+        "moderator_undocumented_source_islands": 122,
+        "no_reptile_GBIF_photo_is_not_predator_absence": true,
+        "observed_original_insect_photo_cells_selected": 52995,
+        "original_islands_with_source_insect_sameyear_gradient": 194,
+        "original_reptile_prior_documentation_restricted": false,
+        "prior_gecko_documented_true_islands": 97,
+        "prior_gecko_undocumented_true_islands": 102,
+        "prior_scink_photo_positive_groups": 354,
+        "source_atleast_2_earlier_GBIF_calendar_years": true,
+        "source_gecko_undocumented_groups": 533,
+        "source_positive_groups": 354,
+        "source_prior_Hemidactylus_photo_positive_groups": 388,
+        "source_prior_Phelsuma_photo_positive_groups": 28,
+        "source_prior_gecko_positive_groups": 460,
+        "source_undocumented_groups": 639
+      }
+    }
+  },
+  "main_interaction_nominally_not_significant": true,
+  "more_geographic_controls_change_nominal_inference": true,
+  "comparator_when_restricting_to_prior_reptile_photographs_has_only_seven_islands": true,
+  "zero_gecko_photo_not_true_gecko_absence": true,
+  "source_photo_record_moth_guild_not_moth_density_or_pollen_deposition": true,
+  "not_causal_gecko_predation_moth_suppression": true
+}
