@@ -12,8 +12,8 @@ class PriorGeckoWorldSourceGates(unittest.TestCase):
     def data():
         rng=np.random.default_rng(1207)
         rec=[]
-        for island in range(44):
-            g=island<22
+        for island in range(84):
+            g=island<42
             for site in range(6):
                 light=float(.1+site*.18+rng.normal(0,.025))
                 lat=float(8+island*.21+site*.037+rng.normal(0,.02))
@@ -35,9 +35,9 @@ class PriorGeckoWorldSourceGates(unittest.TestCase):
 
     def test_true_island_year_prior_documentation_constancy(self):
         z,s=support_group(self.data())
-        self.assertEqual(s["source_prior_gecko_positive_groups"],22)
-        self.assertEqual(s["source_gecko_undocumented_groups"],22)
-        self.assertEqual(s["original_islands_with_source_insect_sameyear_gradient"],44)
+        self.assertEqual(s["source_prior_gecko_positive_groups"],42)
+        self.assertEqual(s["source_gecko_undocumented_groups"],42)
+        self.assertEqual(s["original_islands_with_source_insect_sameyear_gradient"],84)
 
     def test_fitted_moderation_recoverable_in_synthetic_only(self):
         result=fit(self.data(),"prior_gecko_documented")
