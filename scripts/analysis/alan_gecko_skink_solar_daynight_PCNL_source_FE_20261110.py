@@ -59,8 +59,8 @@ def prepare(true_time,time_receipt,true_light,light_receipt):
             "Old 2026-08 source gecko site-year recording frame altered")
     joined=d.merge(source[keys+["log1p_prior_PCNL","latitude_center",
                          "area_km2","original_total_reptile_photo_source_events"]],
-                   on=keys,how="left",validate="many_to_one",indicator=True)
-    require(joined._merge.eq("both").all() and
+                   on=keys,how="left",validate="many_to_one",indicator="_solar_gbif_join"
+    require(joined._solar_gbif_join.eq("both").all() and
             joined.source_gecko_photo.sum()>0 and
             joined.source_scink_photo.sum()>0,
             "Actual timestamped GBIF source is not a subset of original geolocated reptile photos")
