@@ -1,0 +1,61 @@
+{
+  "schema": "ALAN_20261110_global_GBIF_moth_butterfly_actual_source_census_v1",
+  "GBIF_LIVE_index_source": "https://github.com/zuizui0223/alan/actions/runs/42780755320",
+  "GBIF_LIVE_2013_2025": {
+    "lepidoptera": 83309815,
+    "verified_butterfly_families_6": 41838694,
+    "lepidoptera_nonbutterfly_remainder_proxy": 41471121,
+    "explicit_resolved_moth_family_records_partial": 36436081,
+    "insect_all": 138688351,
+    "year_range": [
+      2013,
+      2025
+    ],
+    "basis": "HUMAN_OBSERVATION",
+    "georeferenced": true
+  },
+  "GBIF_SNAPSHOT_2026_08": {
+    "doi": "10.15468/dl.8yrbe7",
+    "source": "https://github.com/zuizui0223/alan/actions/runs/42780706666",
+    "original_Lepidoptera_rows_all_dates_and_basis": 170319717,
+    "original_Parquet_GiB": 39.33039294183254,
+    "taxonpartitions": 6,
+    "fourfamily_raw_source_rows": 115233537,
+    "fourfamily_raw_rows": {
+      "Noctuidae": 33646170,
+      "Geometridae": 24782143,
+      "Nymphalidae": 40565469,
+      "Pieridae": 16239755
+    }
+  },
+  "source_original_GSHHG_islands_ge20km2": 3696,
+  "original_technical_point_island_pilot": {
+    "source": "https://github.com/zuizui0223/alan/actions/runs/42781692909",
+    "selected_rowgroups_not_random_sample": 2,
+    "original_source_rows_read_per_family": 200704,
+    "Noctuidae": {
+      "actual_human_obs_2013to2025_in_islands": 60037,
+      "source_islands": 58,
+      "source_island_0p05_year_cells": 11247
+    },
+    "Nymphalidae": {
+      "actual_human_obs_2013to2025_in_islands": 35841,
+      "source_islands": 84,
+      "source_island_0p05_year_cells": 17403
+    }
+  },
+  "full_four_family_processing": {
+    "source": "https://github.com/zuizui0223/alan/actions/runs/42782146115",
+    "verified_complete_at_archive_time": false,
+    "results_not_claimed_until_all_4_workers_and_collector_succeed": true
+  },
+  "scope_limits": {
+    "country_counts_not_island_counts": true,
+    "GBIF_obs_not_insect_abundance_or_true_pollination": true,
+    "other_Lepidoptera_not_verified_night_moths": true,
+    "moth_phototaxis_and_observation_effort_unmeasured": true,
+    "original_GBIF_2026_08_preview_not_ordinary_2026_10_AWS_snapshot": true,
+    "GBIF_snapshot_2026_10_incomplete_parquet_issue": "https://github.com/gbif/occurrence/issues/609",
+    "no_original_moth_vs_ALAN_causal_estimate_yet": true
+  }
+}
