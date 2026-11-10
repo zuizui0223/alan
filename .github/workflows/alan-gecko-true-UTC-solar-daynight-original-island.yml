@@ -1,0 +1,67 @@
+name: ALAN original island gecko daytime versus nighttime photo-source solar geometry
+on:
+  push:
+    branches: [analysis/alan-gecko-reptile-detection-controlled-20261110]
+    paths:
+      - scripts/analysis/alan_true_GECKO_GBIF_solar_daynight_source_20261110.py
+      - tests/test_alan_true_gecko_solar_GBIF_photo_clock_20261110.py
+      - .github/workflows/alan-gecko-true-UTC-solar-daynight-original-island.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  actual-source-time-GSHHG-island-solar-matching:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 105
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Validate genuine solar elevation, UTC offset handling and signed original source
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5 pyarrow==21.0.0
+          python -m py_compile scripts/analysis/alan_true_GECKO_GBIF_solar_daynight_source_20261110.py
+          python -m unittest discover -s tests -p test_alan_true_gecko_solar_GBIF_photo_clock_20261110.py -v
+          mkdir -p source/reptile source/coast
+          gh run download 42790214757 --repo zuizui0223/alan \
+            --name alan-original-202608-gecko-reptile-Parquet-partition-manifest \
+            --dir source/reptile
+          gh run download 42175243391 --repo zuizui0223/mois \
+            --name mois-GSHHG-2.3.7-high-L1-L2-SHA-source-no-images \
+            --dir source/coast
+      - name: Read exact original 11,634,053 Squamata records, verify time offsets and source island solar position
+        timeout-minutes: 90
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_true_GECKO_GBIF_solar_daynight_source_20261110 \
+            --manifest source/reptile/gbif_202608_reptile_gecko_partition_manifest.json \
+            --coast source/coast \
+            --out actual-island-solar-clock
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('actual-island-solar-clock/ALAN_true_original_gecko_Squamata_island_solar_record_receipt.json')
+          a=json.loads(p.read_text())
+          assert a['original_full_Squamata_source_rows']==11634053
+          assert a['real_source_record_quality_gates']['original_all_family_all_year_reptile_rows_read']==11634053
+          assert a['no_direct_gecko_moth_predation_or_nocturnal_pollination']
+          assert a['solar_day_altitude_gt_plus6_and_civil_night_lt_minus6']
+          print('ALAN_AUTHENTIC_SOLAR_CLOCK_GECKO_PHOTOGRAPHIC_ISLAND_SOURCE',
+                json.dumps(a,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-gecko-skink-202608-GSHHG-island-solar-daynight-photo-cells
+          path: actual-island-solar-clock/
+          retention-days: 90
+          if-no-files-found: warn
