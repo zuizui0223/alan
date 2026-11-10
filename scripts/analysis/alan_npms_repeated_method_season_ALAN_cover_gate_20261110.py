@@ -237,8 +237,9 @@ def run(npms,glopl,light,receipt,out):
     out.mkdir(parents=True)
     # Export only eligible source-positive plot×taxon×method×season×year
     # numeric covers, no observer or precise plot coordinates.
-    agg.to_csv(out/"NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz",
-               index=False,compression="gzip")
+    original_positive_csv=out/"NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz"
+    agg.to_csv(original_positive_csv,index=False,compression="gzip")
+    summary["source_original_positive_cover_table_SHA256"]=checksum(original_positive_csv)
     (out/"NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json").write_text(
         json.dumps(summary,sort_keys=True,indent=2,default=str)+"\n")
     print("ALAN_TRUE_NPMS_SAME_METHOD_SEASON_ALAN_COVER_SUPPORT",
