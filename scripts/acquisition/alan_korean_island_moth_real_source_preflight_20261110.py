@@ -156,7 +156,7 @@ def run(out):
             "source_islands_with_multiple_years":int(il_years.ge(2).sum()),
             "source_islands_with_3_or_more_years":int(il_years.ge(3).sum()),
             "source_year_counts":[{"year":int(y),**{str(k):int(v)
-              for k,v in rec.items()}} for y,rec in nsite_years.to_dict("index").items()],
+              for k,v in rec.items()}} for y,rec in nsite_year.to_dict("index").items()],
             "years_2012_or_later":{"site_years":int(len(eligible)),
                 "islands":int(eligible.island.nunique())},
             "genuinely_observed_2025":{"site_years":int(len(x2025)),
