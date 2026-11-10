@@ -93,13 +93,25 @@ def group(keys,names,facet=False,country=None):
 def run(out):
     out=Path(out);require(not out.exists(),"No output overwrite")
     keys={}
+    optional_moth_taxonomic_uncertainties={}
     for name,rank in NAMES.items():
-        keys[name]=resolve(name,rank)
-        print("ALAN_GBIF_TRUE_SOURCE_TAXON",json.dumps({name:keys[name]},sort_keys=True),flush=True)
+        try:
+            keys[name]=resolve(name,rank)
+            print("ALAN_GBIF_TRUE_SOURCE_TAXON",json.dumps(
+                {name:keys[name]},sort_keys=True),flush=True)
+        except ValueError as err:
+            if name not in MOTH:
+                raise
+            optional_moth_taxonomic_uncertainties[name]=str(err)
+            print("ALAN_GBIF_OPTIONAL_MOTH_TAXON_AMBIGUOUS",
+                  json.dumps({name:str(err)[:250]},sort_keys=True),flush=True)
     a=group(keys,("Lepidoptera",),True)
     b=group(keys,BUTTERFLY,True)
     c=group(keys,("Insecta",),True)
-    m=group(keys,MOTH,True)
+    actually_resolved_moth_families=tuple(x for x in MOTH if x in keys)
+    require(len(actually_resolved_moth_families)>=5,
+            "Too few independently verified true moth family names")
+    m=group(keys,actually_resolved_moth_families,True)
     require(0<=b["n_actual_records"]<=a["n_actual_records"]<=c["n_actual_records"],
             "GBIF taxon subset counts cannot exceed order/class")
     countries={}
@@ -132,7 +144,9 @@ def run(out):
        "global_lepidoptera_records":a["n_actual_records"],
        "global_six_butterfly_family_records":b["n_actual_records"],
        "global_other_lepidoptera_remainder_records":a["n_actual_records"]-b["n_actual_records"],
-       "global_partial_ten_moth_family_records":m["n_actual_records"],
+       "global_partial_verified_moth_family_records":m["n_actual_records"],
+       "actual_resolved_moth_families":list(actually_resolved_moth_families),
+       "optional_moth_taxonomic_uncertainties":optional_moth_taxonomic_uncertainties,
        "global_insect_human_observation_records":c["n_actual_records"],
        "original_GBIF_global_taxon_sources":{"lepidoptera":a,"butterfly":b,
              "moth10_families":m,"insect":c},
