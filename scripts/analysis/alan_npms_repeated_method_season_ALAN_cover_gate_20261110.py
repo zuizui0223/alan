@@ -107,7 +107,7 @@ def source_frame(npms,glopl,light,receipt):
         lookup_rows=("domin","size")).reset_index()
     valid_mappings=original_mappings.loc[
         original_mappings.n_distinct_midpoints.eq(1)&
-        original_mappings.midpoint.between(0,100)].copy()
+        original_mappings.midpoint.between(0,1)].copy()
     require(not valid_mappings.domin.duplicated().any(),
             "Original DOMIN coding lookup not unique")
     o=o.merge(valid_mappings[["domin","midpoint"]],left_on="source_original_domin",
@@ -158,6 +158,7 @@ def run(npms,glopl,light,receipt,out):
         source_positive.cover_midpoint_from_original_source.notna()].copy()
     agg=measured.groupby(specieskey+["year"],sort=False).agg(
         median_cover=("cover_midpoint_from_original_source","median"),
+        median_source_day_of_year=("doy","median"),
         n_visits_with_cover=("sample_id","nunique"),
         source_domin_encodings=("domin_encoding",lambda x:";".join(sorted(set(x)))),
         source_record_status=("original_record_status",lambda x:";".join(sorted(set(x)))),
@@ -202,6 +203,8 @@ def run(npms,glopl,light,receipt,out):
                 "domin_examples":{str(k):int(v) for k,v in
                    x.source_original_domin.value_counts().head(16).items()}}
         for s,x in o.groupby("survey_method_id")},
+      "source_CRC_pinned_DOMIN_midPoint_unit":"fraction of cover [0,1], not percent [0,100]",
+      "source_records_have_actual_doy_for_within_season_phenology_adjustment":True,
       "source_original_DOMIN_score_table":cover[["domin","dominIndex","midPoint"]].to_dict("records"),
       "source_original_DOMIN_unique_code_midpoints":
           mapping[["domin","midpoint","n_distinct_midpoints","lookup_rows"]].to_dict("records"),
