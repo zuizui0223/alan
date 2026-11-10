@@ -1,0 +1,150 @@
+{
+  "2024_VIIRS500m_threshold_results": {
+    "0.0": {
+      "VIIRS_minus_PCNL_dark_fraction_quantiles": {
+        "0.05": -0.25961093096768595,
+        "0.25": -0.09005949178539896,
+        "0.5": -0.0108722583644646,
+        "0.75": 0.005923886299290526,
+        "0.95": 0.10686646624844585
+      },
+      "both_have_dark_regions": 3139,
+      "co_supported_islands": 951,
+      "co_supported_source_photo_sites": 3497,
+      "conditional_connectivity_quantiles": {
+        "0.05": 0.4735982269285827,
+        "0.25": 0.8224319109210523,
+        "0.5": 0.989615776717512,
+        "0.75": 0.9999999999999998,
+        "0.95": 1.0000000000000018
+      },
+      "dark_land_fraction_quantiles": {
+        "0.05": 0,
+        "0.25": 0.2276478795195422,
+        "0.5": 0.6590323324123839,
+        "0.75": 0.9336990589047436,
+        "0.95": 1
+      },
+      "median_dark_land_fraction": 0.6590323324123839,
+      "median_fraction_of_dark_in_largest_connected_component": 0.989615776717512,
+      "n_attempted_original_sites": 4728,
+      "n_coarse_largest_dark_0p95_plus_but_fine_below_0p90": 141,
+      "n_new_valid_sites_where_original_PCNL1km_failed": 16,
+      "n_sites_no_detected_dark_pixels": 329,
+      "n_valid_islands": 957,
+      "n_valid_original_500m_sites": 3513,
+      "same_sites_spearman_dark_fraction": 0.9521125109042522
+    },
+    "1.0": {
+      "conditional_connectivity_quantiles": {
+        "0.05": 0.5870666727511847,
+        "0.25": 0.9772381356897899,
+        "0.5": 0.9999999999999986,
+        "0.75": 1.0000000000000002,
+        "0.95": 1.0000000000000024
+      },
+      "dark_land_fraction_quantiles": {
+        "0.05": 0,
+        "0.25": 0.6853762766942515,
+        "0.5": 0.946442498395252,
+        "0.75": 1,
+        "0.95": 1
+      },
+      "median_dark_land_fraction": 0.946442498395252,
+      "median_fraction_of_dark_in_largest_connected_component": 0.9999999999999986,
+      "n_attempted_original_sites": 4728,
+      "n_new_valid_sites_where_original_PCNL1km_failed": 16,
+      "n_sites_no_detected_dark_pixels": 181,
+      "n_valid_islands": 957,
+      "n_valid_original_500m_sites": 3513
+    },
+    "3.0": {
+      "VIIRS_minus_PCNL_dark_fraction_quantiles": {
+        "0.05": 0,
+        "0.25": 0,
+        "0.5": 0.12911735337171715,
+        "0.75": 0.3486924853185195,
+        "0.95": 0.6347999284502986
+      },
+      "both_have_dark_regions": 3341,
+      "co_supported_islands": 951,
+      "co_supported_source_photo_sites": 3497,
+      "conditional_connectivity_quantiles": {
+        "0.05": 0.6665826960659627,
+        "0.25": 0.9908681241582917,
+        "0.5": 0.9999999999999991,
+        "0.75": 1.0000000000000004,
+        "0.95": 1.0000000000000029
+      },
+      "dark_land_fraction_quantiles": {
+        "0.05": 0.1586894923879035,
+        "0.25": 0.8866527864381951,
+        "0.5": 0.9966135554516315,
+        "0.75": 1,
+        "0.95": 1
+      },
+      "median_dark_land_fraction": 0.9966135554516315,
+      "median_fraction_of_dark_in_largest_connected_component": 0.9999999999999991,
+      "n_attempted_original_sites": 4728,
+      "n_coarse_largest_dark_0p95_plus_but_fine_below_0p90": 46,
+      "n_new_valid_sites_where_original_PCNL1km_failed": 16,
+      "n_sites_no_detected_dark_pixels": 86,
+      "n_valid_islands": 957,
+      "n_valid_original_500m_sites": 3513,
+      "same_sites_spearman_dark_fraction": 0.8275800844754629
+    }
+  },
+  "500m_pixels_are_not_40m_nor_single_streetlights": true,
+  "GDAL_band_scale_10_cancels_publisher_x10_when_reading_raw_pixels": true,
+  "coarse_and_fine_different_satellite_products_not_resolution_only": true,
+  "fine500m_fraction_threshold0_equal_threshold1": 0.22174779390834046,
+  "frozen_2025_photo_site_cohort_not_randomized_global_flora_sample": true,
+  "geometry_failure_examples": [],
+  "min_real_land_raster_coverage_fraction": 0.8,
+  "minimum_land_pixel_rule": "64 finer pixels versus 16 coarse pixels",
+  "n_failures_geometry_or_antimeridian": 0,
+  "n_orig_valid_sites_with_both_500m_threshold_0_and_1": 3513,
+  "no_genuine_moth_abundance_pollen_delivery_plant_seed_set_effect_tested": true,
+  "observed_VIIRS2024_not_historical_extrapolation": true,
+  "output_CSV_SHA256": "68ed09378a8bfbcb36572ff0b0578334e4f1795efe22209f437960dbb01d5896",
+  "previous_PCNl_original_source_CSV_SHA256": "32327abb37ee85f3d1d9e7446d9d742fb5adf1457dab60fae1aae791c29f7837",
+  "raster_details": {
+    "band_tags": {},
+    "crs": "EPSG:4326",
+    "file_MD5_verified": "0b976892d40c2d0d99177c727289eaf2",
+    "file_tags": {
+      "AREA_OR_POINT": "Area",
+      "TIFFTAG_DATETIME": "2025:04:03 14:16:11",
+      "TIFFTAG_DOCUMENTNAME": "./VNL_npp_2024_global_vcmslcfg_v2_c202502261200.average_masked.dat.tif",
+      "TIFFTAG_IMAGEDESCRIPTION": "IDL TIFF file",
+      "TIFFTAG_RESOLUTIONUNIT": "2 (pixels/inch)",
+      "TIFFTAG_SOFTWARE": "IDL 8.7.2, Harris Geospatial Solutions, Inc.",
+      "TIFFTAG_XRESOLUTION": "100",
+      "TIFFTAG_YRESOLUTION": "100"
+    },
+    "height": 35849,
+    "native_res_degrees": [
+      0.00416666666666667,
+      0.00416666666666667
+    ],
+    "nodata": -32768,
+    "raster_offset": 0,
+    "raster_scale": 10,
+    "raw_pixel_to_radiance_factor": 1,
+    "value_conversion_to_nW_cm2_sr": "rasterio raw pixel multiplied by GDAL band scale 10 then divided by published x10; equals raw pixel",
+    "width": 86400
+  },
+  "raster_name": "nightlights.average_viirs.v21_m_500m_s_20240101_20241231_go_epsg4326_v20250904.tif",
+  "raster_value_scale_converted_10_to_1": true,
+  "schema": "ALAN_original_2025_photo_sites_VIIRS2024_500m_vs_PCNL2024_1km_dark_refugia_v1",
+  "source_GSHHG_2p3p7_original_land_minus_original_inland_lakes": true,
+  "source_islands_attempted": 1757,
+  "source_original_2024_PCNL_valid_islands": 970,
+  "source_original_2024_PCNL_valid_sites": 3543,
+  "source_original_photo_sites_attempted": 4728,
+  "source_raster_MD5": "0b976892d40c2d0d99177c727289eaf2",
+  "source_raster_Zenodo_record": "https://zenodo.org/records/17294744",
+  "source_success_run": "https://github.com/zuizui0223/alan/actions/runs/42769904996",
+  "source_data_artifact": "https://github.com/zuizui0223/alan/actions/runs/42769904996/artifacts/13740914785",
+  "archived_provenance": "original 2024 OpenGeoHub VNL V2.2 500m raster file published MD5 and original source GSHHG/photo-IDs SHA-verified; no biological effects estimated"
+}
