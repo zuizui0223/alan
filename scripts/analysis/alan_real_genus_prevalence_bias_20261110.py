@@ -235,6 +235,7 @@ def run(sites_path, globi, groups, out):
         n_butterfly=("butterfly", "sum")).reset_index()
     mixed = set(genus.loc[genus.n_species.ge(5) &
                 genus.n_moth.ge(2) & (genus.n_species-genus.n_moth).ge(2), "genus"])
+    data["moth_minus_butterfly"] = data.moth.astype(int)-data.butterfly.astype(int)
     ms = data.loc[data.genus.isin(mixed)]
     models = {}
     specs = [
@@ -242,6 +243,7 @@ def run(sites_path, globi, groups, out):
        ("moth_genus_FE", data, "moth", True, "island_equal"),
        ("moth_non_iNat_genus_FE", data, "moth_external", True, "island_equal"),
        ("butterfly_genus_FE", data, "butterfly", True, "island_equal"),
+       ("moth_minus_butterfly_paired_genus_FE", data, "moth_minus_butterfly", True, "island_equal"),
        ("mixed_180_genera_moth_genus_FE", ms, "moth", True, "island_equal"),
        ("mixed_180_genera_moth_non_iNat_genus_FE", ms, "moth_external", True, "island_equal"),
        ("moth_genus_FE_drop_top1pct_species", data.loc[~data.species.isin(top1)],
@@ -254,6 +256,10 @@ def run(sites_path, globi, groups, out):
         print("ALAN_GENUS_MODEL_RUNNING", name, len(frame), flush=True)
         models[name] = species_model(frame, sites, response=col,
                                       genus_fe=genus_fe, weight=weight)
+    require(abs(models["moth_minus_butterfly_paired_genus_FE"]["beta_pp"] -
+                (models["moth_genus_FE"]["beta_pp"]-
+                 models["butterfly_genus_FE"]["beta_pp"])) < 1.e-7,
+            "Moth versus butterfly must use identical source species site rows")
     require(abs(models["moth_no_genus_FE"]["beta_pp"] - .45722827881259) < .00002,
             "Source y and island×year FE did not reproduce verified base model")
     # Exact coefficient decomposition: same 562 islands / 77,647 cells and
