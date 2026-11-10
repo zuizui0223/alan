@@ -1,0 +1,83 @@
+name: ALAN original island gecko daylight vs night photographed source preyear PCNL contrast
+on:
+  push:
+    branches: [analysis/alan-gecko-reptile-detection-controlled-20261110]
+    paths:
+      - scripts/analysis/alan_gecko_skink_solar_daynight_PCNL_source_FE_20261110.py
+      - .github/workflows/alan-gecko-solar-nightday-prior-PCNL-FE.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  genuine-reptile-photo-solar-class-light-niche:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 48
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Restore original signed 13year PCNL gecko/skink photo grid and actual sunshine timestamp records
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5 pyarrow==21.0.0
+          python -m py_compile scripts/analysis/alan_gecko_skink_solar_daynight_PCNL_source_FE_20261110.py
+          mkdir -p original/prior original/solar
+          gh run download 42796502910 --repo zuizui0223/alan \
+            --name alan-original-101399-gecko-scink-photo-13year-historical-PCNL-all-islands \
+            --dir original/prior
+          test -s original/prior/gecko_scink_true_2013_2025_original_island_photo_cells_priorPCNL.csv.gz
+          echo '03aa855c9e7691855bfee4baa099f0d3a31db8d53066ec36a95afda48c3ba339  original/prior/gecko_scink_true_2013_2025_original_island_photo_cells_priorPCNL.csv.gz' | sha256sum -c -
+      - name: Restore independent genuine original timezone-qualified solar photo observations
+        timeout-minutes: 22
+        run: |
+          set -euo pipefail
+          ok=0
+          for i in $(seq 1 45); do
+            if gh run download 42799736404 --repo zuizui0223/alan \
+                --name alan-original-gecko-skink-202608-GSHHG-island-solar-daynight-photo-cells \
+                --dir original/solar 2>/dev/null; then
+              ok=1
+              break
+            fi
+            sleep 15
+          done
+          test "$ok" -eq 1
+          test -s original/solar/gecko_skink_real_202608_original_island_solar_daynight_photo_cells.csv.gz
+          test -s original/solar/ALAN_true_original_gecko_Squamata_island_solar_record_receipt.json
+      - name: Estimate source-only local-solar-night and solar-day gecko vs skink photo composition by historical light
+        timeout-minutes: 14
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_gecko_skink_solar_daynight_PCNL_source_FE_20261110 \
+            --timed original/solar/gecko_skink_real_202608_original_island_solar_daynight_photo_cells.csv.gz \
+            --time-receipt original/solar/ALAN_true_original_gecko_Squamata_island_solar_record_receipt.json \
+            --light original/prior/gecko_scink_true_2013_2025_original_island_photo_cells_priorPCNL.csv.gz \
+            --light-receipt original/prior/gecko_scink_original_13prior_PCNL_source_receipt.json \
+            --out original-daynight-model/ALAN_solar_nightday_gecko_skink_photo_share_pcNl_source.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('original-daynight-model/ALAN_solar_nightday_gecko_skink_photo_share_pcNl_source.json').read_text())
+          assert d['no_true_gecko_moth_predation_or_moth_pollen_transfer']
+          assert set(d['true_solar_class_source_photo_comparisons'])=={'solar_night','solar_day'}
+          print('ALAN_TRUE_GECKO_NIGHT_DAY_PHOTO_SOURCE_WITH_LIGHT',json.dumps({
+              k:{'support':v['original_source_eligibility'],
+                 'fit':v['island_equal_documented_reptile_families']}
+              for k,v in d['true_solar_class_source_photo_comparisons'].items()},
+              sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-gecko-skink-solar-night-day-source-priorPCNL-contrast
+          path: original-daynight-model/ALAN_solar_nightday_gecko_skink_photo_share_pcNl_source.json
+          if-no-files-found: warn
+          retention-days: 90
