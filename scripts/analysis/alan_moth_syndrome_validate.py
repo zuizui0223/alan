@@ -78,13 +78,26 @@ def phenotype(color, form, depth, reference):
             else 'noncandidate')
 
 
-def read_traits(path, reference):
+def broad_phenotype(color, form, reference):
+    """White + single tubular-related form, keeping depth as unmeasured."""
+    c, f = states(color), states(form)
+    if not c or not f or len(c) != 1 or len(f) != 1:
+        return 'unknown'
+    if (c, f) not in set(reference.values()):
+        return 'unknown'
+    return 'candidate' if c == {'white'} and f <= MOTH_FORMS else 'noncandidate'
+
+
+def read_traits(path, reference, *, tier='strict'):
+    require(tier in ('strict', 'broad'), 'Unknown evidence tier')
     result = {}
     for row in read_csv(path):
         name = row['accepted_species'].strip()
         require(name and name not in result, f'Blank/duplicate accepted taxon: {name}')
-        result[name] = phenotype(row['flower_primary_color'], row['floral_form'],
-                                 row['tube_depth_class'], reference)
+        result[name] = (broad_phenotype(row['flower_primary_color'], row['floral_form'], reference)
+                        if tier == 'broad'
+                        else phenotype(row['flower_primary_color'], row['floral_form'],
+                                       row['tube_depth_class'], reference))
     return result
 
 
@@ -131,13 +144,15 @@ def summarize_validation(traits, interactions):
     return result
 
 
-def run(profiles, traits, interactions, output):
+def run(profiles, traits, interactions, output, *, tier='strict'):
     profiles, traits, interactions, output = map(Path, (profiles, traits, interactions, output))
     require(not output.exists(), 'Output directory exists: refuse accidental overwrite')
     ref = reference_profiles(profiles)
-    labels = read_traits(traits, ref)
+    labels = read_traits(traits, ref, tier=tier)
     positives = read_globi(interactions)
     report = summarize_validation(labels, positives)
+    report['phenotype_tier'] = tier
+    report['strict_tier_requires_documented_deep_tube'] = tier == 'strict'
     report['n_reference_profiles'] = len(ref)
     report['source_sha256'] = {p.name: sha256(p) for p in (profiles, traits, interactions)}
     report['sources_are_positive_evidence_only'] = True
@@ -157,8 +172,9 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     for arg in ('profiles', 'traits', 'interactions', 'output'):
         p.add_argument('--' + arg, type=Path, required=True)
+    p.add_argument('--tier', choices=['strict', 'broad'], default='strict')
     args = p.parse_args()
-    result = run(args.profiles, args.traits, args.interactions, args.output)
+    result = run(args.profiles, args.traits, args.interactions, args.output, tier=args.tier)
     print(json.dumps({k: result[k] for k in ('n_reference_profiles',
             'total_unique_trait_taxa', 'counts')}, ensure_ascii=False))
 
