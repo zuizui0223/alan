@@ -30,10 +30,12 @@ jobs:
           from pathlib import Path
           p=Path('audit/alan_real_global_moth_butterfly_source_count.json')
           r=json.loads(p.read_text())
-          assert r['source_human_observations_only'] and r['source_hasCoordinates']
-          assert r['moth_paraphyletic_not_distinguishable_by_taxon_remainder']
-          assert len(r['preselected_country_source_counts'])==20
-          assert r['global_source_counts']['lepidoptera_all']['n_actual_GBIF_occurrence_records']>0
+          assert r['source_2013_to_2025_human_observation_only']
+          assert r['source_has_true_coordinates']
+          assert r['other_lepidoptera_remainder_not_verified_moth_or_nocturnal']
+          assert len(r['20_country_counts_NOT_exact_islands'])==20
+          assert r['global_lepidoptera_records']>r['global_six_butterfly_family_records']>0
+          assert r['global_partial_verified_moth_family_records']>0
           print('ALAN_TRUE_GLOBAL_GBIF_LEPIDOPTERA_COUNTS_VERIFIED',flush=True)
           PY
       - uses: actions/upload-artifact@v4
