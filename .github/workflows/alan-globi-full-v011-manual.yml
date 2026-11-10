@@ -1,6 +1,11 @@
 name: ALAN full GloBI v0.11 lepidopteran flower interaction source (manual, SHA pinned)
 
 on:
+  push:
+    branches:
+      - research/moth-gecko-flora-feasibility-20261111
+    paths:
+      - .github/workflows/alan-globi-full-v011-manual.yml
   workflow_dispatch:
 
 permissions:
