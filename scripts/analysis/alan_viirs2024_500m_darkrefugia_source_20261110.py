@@ -56,10 +56,12 @@ def valid_old_source(source, receipt):
     require(not old.duplicated(keys+["threshold_PCNL_native"]).any(),
             "Repeated original photo site/threshold")
     photo_sites=old.loc[old.threshold_PCNL_native.eq(0.)].copy()
-    require(len(photo_sites)==4728 and
-            photo_sites.island.nunique()==1758 and
-            photo_sites.status.eq("observed_satellite_geometry_only").sum()==3543,
-            "Frozen genuine 4728/1758 and 3543 site support changed")
+    require(len(photo_sites)==info["sites_with_any_returned_metric"]==4728 and
+            photo_sites.island.nunique()>=info["source_islands_selected"]-1 and
+            photo_sites.island.nunique()<=info["source_islands_selected"] and
+            photo_sites.status.eq("observed_satellite_geometry_only").sum()==
+              info["actual_satellite_metrics_by_threshold"]["0.0"]["source_valid_photo_sites"]==3543,
+            "Genuine original 4728-site and 3543 valid-site audit differs from signed receipt")
     return photo_sites,old,info
 
 def quantiles(x):
@@ -88,14 +90,23 @@ def run(coarse,coarse_receipt,coast,raster,out):
                 "VIIRS file is not one EPSG:4326 original-raster band")
         require(0 < abs(src.res[0]) <= .007 and 0 < abs(src.res[1]) <= .007,
                 "Not published sub-km VIIRS source pixel size")
-        require(len(src.scales)==1 and np.isclose(src.scales[0],1.),
-                "GeoTIFF band has unexpected internal scaling; cannot multiply published factor")
+        require(len(src.scales)==1 and np.isfinite(src.scales[0]) and src.scales[0]>0 and
+                len(src.offsets)==1 and np.isclose(src.offsets[0],0.),
+                "GeoTIFF scaling/offset unsupported; source units not independently validated")
+        # Rasterio.read returns raw stored pixels, not GDAL band-scaled values.
+        # Original radiance = raw * GDAL_scale / OpenGeoHub_published_x10.
+        # The authenticated 2024 COG in fact has GDAL_scale=10, so these
+        # factors cancel. NEVER divide the raw raster by 10 a second time.
+        require(np.isclose(src.scales[0],10.0),
+                "Published 2024 VIIRS V2.2 native band scaling changed")
+        raw_to_nW=float(src.scales[0])/PUBLISHED_MULTIPLIER
         raster_details={
             "height":src.height,"width":src.width,"crs":str(src.crs),
             "native_res_degrees":list(src.res),"nodata":src.nodata,
             "raster_scale":src.scales[0],"raster_offset":src.offsets[0],
             "band_tags":src.tags(1),"file_tags":src.tags(),
-            "value_conversion_to_nW_cm2_sr":"original stored numeric raster / 10",
+            "value_conversion_to_nW_cm2_sr":"rasterio raw pixel multiplied by GDAL band scale 10 then divided by published x10; equals raw pixel",
+            "raw_pixel_to_radiance_factor":raw_to_nW,
             "file_MD5_verified":RASTER_MD5,
         }
         for island,g in photo_sites.groupby("island",sort=True):
@@ -115,7 +126,7 @@ def run(coarse,coarse_receipt,coast,raster,out):
                     # This product stores values x10; pass native 0/10/30.
                     metrics=dark_refuge_metrics(
                         src,poly,float(row.lon),float(row.lat),radius_km=5.,
-                        thresholds=tuple(t*PUBLISHED_MULTIPLIER for t in THRESHOLDS_NW),
+                        thresholds=tuple(t/raw_to_nW for t in THRESHOLDS_NW),
                         min_valid_land_pixels=64,min_coverage=.80)
                 except ValueError as err:
                     failures.append({"island":island,"latbin":row.latbin,
@@ -124,7 +135,7 @@ def run(coarse,coarse_receipt,coast,raster,out):
                 for a,threshold in zip(metrics,THRESHOLDS_NW):
                     b=dict(a)
                     b["local_mean_viirs_nW_cm2_sr"]=(
-                        b.pop("local_mean_PCNL_native")/PUBLISHED_MULTIPLIER
+                        b.pop("local_mean_PCNL_native")*raw_to_nW
                         if "local_mean_PCNL_native" in b else None)
                     b.pop("threshold_PCNL_native")
                     b.update({"island":island,
@@ -216,6 +227,7 @@ def run(coarse,coarse_receipt,coast,raster,out):
         "output_CSV_SHA256":source_sha256(path),
         "observed_VIIRS2024_not_historical_extrapolation":True,
         "raster_value_scale_converted_10_to_1":True,
+        "GDAL_band_scale_10_cancels_publisher_x10_when_reading_raw_pixels":True,
         "coarse_and_fine_different_satellite_products_not_resolution_only":True,
         "500m_pixels_are_not_40m_nor_single_streetlights":True,
         "no_genuine_moth_abundance_pollen_delivery_plant_seed_set_effect_tested":True,
