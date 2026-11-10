@@ -275,10 +275,17 @@ def run(sites_path, globi, groups, out):
             "Common-plant numerator does not conserve original moth response")
     contribution = {k: site_outcome_model(site, site[k]) for k in
                     ("original", "top1", "rest")}
+    # Direct paired contrast gives the uncertainty of top-1% versus remaining
+    # source contributions (not the difference between independent p-values).
+    contribution["top1_minus_rest"] = site_outcome_model(site, site.top1-site.rest)
     require(abs(contribution["original"]["beta_pp"] -
                 contribution["top1"]["beta_pp"] -
                 contribution["rest"]["beta_pp"]) < 1.e-8,
             "The documented GloBI source decomposition must be exact")
+    require(abs(contribution["top1_minus_rest"]["beta_pp"] -
+                contribution["top1"]["beta_pp"] +
+                contribution["rest"]["beta_pp"]) < 1.e-8,
+            "Paired top-prevalence source contrast did not reconstruct contribution difference")
     require(abs(contribution["top1"]["beta_pp"] - .6318209378927077) < .00002,
             "Top prevalent taxa contribution not identical to original source")
     b = [0, 1, 4, 19, 99, 499, 10**9]
