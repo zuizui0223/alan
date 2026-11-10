@@ -101,6 +101,16 @@ class PipelineTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'country-only'):
             gecko.load_geckos(self.geckos)
 
+    def test_broad_tier_does_not_impute_tube_depth(self):
+        ref = moth.reference_profiles(self.profiles)
+        self.assertEqual(moth.broad_phenotype('white', 'tubular', ref), 'candidate')
+        self.assertEqual(moth.broad_phenotype('white|red_pink', 'tubular', ref), 'unknown')
+        broad = moth.run(self.profiles, self.traits, self.interactions,
+                         self.p / 'broad_result', tier='broad')
+        self.assertEqual(broad['phenotype_tier'], 'broad')
+        self.assertFalse(broad['strict_tier_requires_documented_deep_tube'])
+        self.assertEqual(broad['counts']['no_guild_record']['candidate'], 1)
+
     def test_unknown_not_noncandidate(self):
         ref = moth.reference_profiles(self.profiles)
         self.assertEqual(moth.phenotype('white', 'tubular', 'unresolved', ref), 'unknown')
