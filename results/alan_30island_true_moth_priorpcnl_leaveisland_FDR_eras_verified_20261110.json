@@ -1,0 +1,206 @@
+{
+  "all_island_leave_one_out": {
+    "log1p_moths_captured": {
+      "coefficient_range": {
+        "fraction_negative": 1,
+        "fraction_positive": 0,
+        "maximum": -0.048181502395837274,
+        "median": -0.06627787523870206,
+        "minimum": -0.08913329016833471,
+        "n_estimated": 30
+      },
+      "do_not_select_omission_by_p_value": true,
+      "n_estimable_omissions": 30,
+      "n_original_islands_deleted_one_at_a_time": 30,
+      "number_nominal_CI_above_zero": 0,
+      "number_nominal_CI_below_zero": 0
+    },
+    "rarefied10_expected_species": {
+      "coefficient_range": {
+        "fraction_negative": 1,
+        "fraction_positive": 0,
+        "maximum": -0.1534806863569023,
+        "median": -0.20367177995581642,
+        "minimum": -0.23563241765728574,
+        "n_estimated": 30
+      },
+      "do_not_select_omission_by_p_value": true,
+      "n_estimable_omissions": 30,
+      "n_original_islands_deleted_one_at_a_time": 30,
+      "number_nominal_CI_above_zero": 0,
+      "number_nominal_CI_below_zero": 30
+    },
+    "rarefied20_expected_species": {
+      "coefficient_range": {
+        "fraction_negative": 1,
+        "fraction_positive": 0,
+        "maximum": -0.19774643980040835,
+        "median": -0.40318635231767364,
+        "minimum": -0.4845799361493686,
+        "n_estimated": 30
+      },
+      "do_not_select_omission_by_p_value": true,
+      "n_estimable_omissions": 30,
+      "n_original_islands_deleted_one_at_a_time": 30,
+      "number_nominal_CI_above_zero": 0,
+      "number_nominal_CI_below_zero": 0
+    }
+  },
+  "historical_cohort_sensitivity": {
+    "years_ge_2012": {
+      "log1p_moths_captured": {
+        "95CI": [
+          -0.17121330586285857,
+          0.08272028587510086
+        ],
+        "coefficient": -0.04424650999387885,
+        "nominal_p": 0.48017342814601005,
+        "real_island_year_groups": 48,
+        "real_source_islands": 27,
+        "real_source_site_years": 294,
+        "status": "estimated_exploratory_original_field_data"
+      },
+      "rarefied10_expected_species": {
+        "95CI": [
+          -0.3689786675143267,
+          -0.0286386794017362
+        ],
+        "coefficient": -0.19880867345803144,
+        "nominal_p": 0.023772881002290396,
+        "real_island_year_groups": 47,
+        "real_source_islands": 27,
+        "real_source_site_years": 252,
+        "status": "estimated_exploratory_original_field_data"
+      },
+      "rarefied20_expected_species": {
+        "95CI": [
+          -0.8459719287364154,
+          0.11982030834735818
+        ],
+        "coefficient": -0.36307581019452856,
+        "nominal_p": 0.1343130750100684,
+        "real_island_year_groups": 46,
+        "real_source_islands": 27,
+        "real_source_site_years": 210,
+        "status": "estimated_exploratory_original_field_data"
+      }
+    },
+    "years_ge_2017": {
+      "log1p_moths_captured": {
+        "95CI": [
+          -0.17041804881374112,
+          0.09549552242049314
+        ],
+        "coefficient": -0.03746126319662398,
+        "nominal_p": 0.5669161171167351,
+        "real_island_year_groups": 44,
+        "real_source_islands": 26,
+        "real_source_site_years": 262,
+        "status": "estimated_exploratory_original_field_data"
+      },
+      "rarefied10_expected_species": {
+        "95CI": [
+          -0.46763874168176234,
+          -0.0382877608904619
+        ],
+        "coefficient": -0.25296325128611213,
+        "nominal_p": 0.022772128818557478,
+        "real_island_year_groups": 43,
+        "real_source_islands": 26,
+        "real_source_site_years": 225,
+        "status": "estimated_exploratory_original_field_data"
+      },
+      "rarefied20_expected_species": {
+        "95CI": [
+          -0.9157765067580226,
+          0.16287393233223119
+        ],
+        "coefficient": -0.3764512872128957,
+        "nominal_p": 0.16261452065253898,
+        "real_island_year_groups": 42,
+        "real_source_islands": 25,
+        "real_source_site_years": 185,
+        "status": "estimated_exploratory_original_field_data"
+      }
+    },
+    "years_ge_2020": {
+      "log1p_moths_captured": {
+        "95CI": [
+          -0.20367099538216232,
+          0.15179613124777452
+        ],
+        "coefficient": -0.0259374320671939,
+        "nominal_p": 0.7645050194537921,
+        "real_island_year_groups": 26,
+        "real_source_islands": 22,
+        "real_source_site_years": 152,
+        "status": "estimated_exploratory_original_field_data"
+      },
+      "rarefied10_expected_species": {
+        "95CI": [
+          -0.6507868899176077,
+          -0.08230472874638683
+        ],
+        "coefficient": -0.36654580933199726,
+        "nominal_p": 0.013961896515810373,
+        "real_island_year_groups": 26,
+        "real_source_islands": 22,
+        "real_source_site_years": 141,
+        "status": "estimated_exploratory_original_field_data"
+      },
+      "rarefied20_expected_species": {
+        "95CI": [
+          -1.1848108851122274,
+          0.04149587578920766
+        ],
+        "coefficient": -0.5716575046615099,
+        "nominal_p": 0.0659971053689109,
+        "real_island_year_groups": 25,
+        "real_source_islands": 21,
+        "real_source_site_years": 118,
+        "status": "estimated_exploratory_original_field_data"
+      }
+    }
+  },
+  "main_predeclared_five_original_field_outcomes_FDR_and_Holm": {
+    "hill1_effective_species": {
+      "Benjamini_Hochberg_5_endpoints_q": 0.2073174153412475,
+      "Holm_familywise_5_endpoints_p": 0.42019395299589296,
+      "nominal_p": 0.16585393227299802
+    },
+    "log1p_moths_captured": {
+      "Benjamini_Hochberg_5_endpoints_q": 0.2190153794242033,
+      "Holm_familywise_5_endpoints_p": 0.42019395299589296,
+      "nominal_p": 0.2190153794242033
+    },
+    "log1p_species_richness": {
+      "Benjamini_Hochberg_5_endpoints_q": 0.2073174153412475,
+      "Holm_familywise_5_endpoints_p": 0.42019395299589296,
+      "nominal_p": 0.10504848824897324
+    },
+    "rarefied10_expected_species": {
+      "Benjamini_Hochberg_5_endpoints_q": 0.10087661296244085,
+      "Holm_familywise_5_endpoints_p": 0.10087661296244085,
+      "nominal_p": 0.020175322592488172
+    },
+    "rarefied20_expected_species": {
+      "Benjamini_Hochberg_5_endpoints_q": 0.2073174153412475,
+      "Holm_familywise_5_endpoints_p": 0.42019395299589296,
+      "nominal_p": 0.12822408910347827
+    }
+  },
+  "no_flower_visitation_or_effective_pollen_measurement": true,
+  "no_multiple_test_significance_selected": true,
+  "original_primary_20individual_result_preserved": true,
+  "real_original_source_sha256": "8a790f57024c93e486f957f15454339896ed9cfd967fff43ef77d24085a18a72",
+  "schema": "ALAN_true_Korean_30island_moth_historic_PCNL_leaveislandout_and_FDR_v1",
+  "source_actual_moth_specimens": 30442,
+  "source_independent_islands": 30,
+  "source_observed_moth_survey_site_years": 377,
+  "source_real_moth_light_trap_count_not_true_population_density": true,
+  "spatial_and_temporal_confounding_unresolved": true,
+  "trap_nights_and_month_missing": true,
+  "source_run": "https://github.com/zuizui0223/alan/actions/runs/42775157869",
+  "source_artifact": "https://github.com/zuizui0223/alan/actions/runs/42775157869/artifacts/13742914593",
+  "source_decision": "No 5-endpoint BH-adjusted q<0.05; rarefied10 negative in all leave-one-out island runs, but this is observational method-dependent trap diversity and unmeasured seasonal/effort confounding"
+}
