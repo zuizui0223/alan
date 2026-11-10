@@ -1,0 +1,26 @@
+name: ALAN global moth real PCNL dark fragmentation ecological-model geometry tests
+on:
+  push:
+    branches: [analysis/alan-global-moth-priorlight-20261110]
+    paths:
+      - scripts/analysis/alan_global_moth_priorPCNL_darkpatch_conditionalFE_20261110.py
+      - tests/test_alan_global_moth_priorPCNL_darkpatch_FE_20261110.py
+      - .github/workflows/alan-global-moth-darkpatch-ecological-model-tests.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-geography-and-unidentifiable-dark-contrast-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5
+          python -m py_compile scripts/analysis/alan_global_moth_priorPCNL_darkpatch_conditionalFE_20261110.py
+          python -m unittest discover -s tests -p test_alan_global_moth_priorPCNL_darkpatch_FE_20261110.py -v
