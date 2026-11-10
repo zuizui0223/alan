@@ -19,7 +19,7 @@ Prespecified exploratory **within actual island × observation year** WLS: respo
 | **Primary** expected richness among 20 moths sampled without replacement (finite rarefaction) | **27 / 239** | **−0.40194 species** | [−0.92778, +0.12390] | **.12822** |
 | Rarefied 10 moths (support/sensitivity) | 27 / 292 | −0.20304 species | [−0.37168, −0.03439] | .02018 |
 | log(1 + actual moths trapped) | 27 / 347 | −0.06628 | [−0.17444, +0.04188] | .21902 |
-| log(1 + actually photographed? **NO**: actually trapped identified moth species) | 27 / 347 | −0.07234 | [−0.16088, +0.01620] | .10505 |
+| log(1 + actually trapped identified moth species) | 27 / 347 | −0.07234 | [−0.16088, +0.01620] | .10505 |
 | Shannon exp(H) effective moth species from actual counts | 27 / 347 | −1.16423 | [−2.84278, +0.51433] | .16585 |
 
 The original 20-individual primary has no resolved negative association at nominal 95% CI. There is a **consistent negative direction in sampled moth richness**; one sensitivity at 10 sampled individuals has an unadjusted interval excluding zero. The model does NOT support the simplistic positive prediction of larger numbers of light-trap moths near higher satellite nighttime-light pixels: measured trapped-individual coefficient is mildly negative and uncertain. But lamp attraction operates at a much finer spatial scale than PCNL and is not directly measured by this macro sampling design.
