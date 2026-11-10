@@ -81,7 +81,10 @@ def exact_taxon(name,rank):
 
 def count_source(key,country=None):
     query=[("taxonKey",int(key)),("basisOfRecord","HUMAN_OBSERVATION"),
-           ("hasCoordinate","true"),("occurrenceStatus","PRESENT"),
+           ("hasCoordinate","true"),
+           # Do not apply the legacy occurrenceStatus=PRESENT GBIF search
+           # filter: it returned ZERO for Gekkonidae although unrestricted
+           # records exist. Status mix must be verified from raw source.
            ("year",f"{YEAR_MIN},{YEAR_MAX}"),("limit","0")]
     if country:query.append(("country",country))
     source,url,checksum=api_json("/occurrence/search",query)
@@ -115,6 +118,8 @@ def s3_partition_census():
                    "source_taxon_partition":folder,
                    "source_compressed_bytes":int(item["Size"]),
                    "etag_not_guaranteed_md5":item["ETag"].strip('"')})
+    print("ALAN_TRUE_GBIF_GECKO_REPTILE_PARQUET_PATHS",
+          json.dumps(matches,sort_keys=True),flush=True)
     return {"s3_gbif_snapshot":ROOT,"source_DOI":GBIF_DOI,
             "total_source_parquet_files_all_partitions":listed,
             "total_source_taxonomic_partitions":len(parts),
@@ -163,6 +168,8 @@ def run(output):
       "past_moth_record_observer_effort_not_automatically_gecko_effort":True,
       "GBIF_gecko_presence_record_not_direct_predation_observation":True,
       "gecko_source_no_record_NOT_predator_absence":True,
+      "live_GBIF_status_filter_omitted_due_to_verified_zero_artifact":True,
+      "raw_source_occurrenceStatus_must_be_verified_before_population_analysis":True,
       "countryside_and_cities_confounded_with_ALAN":True,
       "no_gecko_x_moth_x_ALAN_statistical_association_claimed":True,
       "no_causal_predation_or_night_pollination_inferred":True}
