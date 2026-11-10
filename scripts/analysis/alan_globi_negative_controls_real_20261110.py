@@ -111,7 +111,7 @@ def run(pcnl, guild, out):
             "n_accepted_species_site_records": int(d[column].sum()),
             "models": {k: v["terms"][base.LIGHT] for k, v in fitted.items()}
         }
-    beta = lambda name: records[name]["models"]["island_equal"]["beta"]
+    beta = lambda name: records[name]["models"]["island_equal"]["beta_pp"]
     require(abs(beta("moth_positive") - 0.44933020729608203) < 1e-6,
             "Existing PR24 empirical moth association not exactly reproduced")
     require(np.isclose(beta("any_moth_or_butterfly")-beta("moth_positive"),
