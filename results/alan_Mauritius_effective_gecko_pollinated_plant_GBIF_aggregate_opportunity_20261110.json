@@ -1,0 +1,36 @@
+{
+  "schema": "ALAN_Mauritius_effective_gecko_plant_GBIF_public_metadata_20261110_source_v1",
+  "source_success_run": "https://github.com/zuizui0223/alan/actions/runs/42833699295",
+  "source_original_GBIF_live_api_asof_2026_11_10": true,
+  "independently_Kew_accepted_species": [
+    "Roussea simplex",
+    "Ruizia blackburniana"
+  ],
+  "source_genus_synonym_Trochetia_blackburniana_not_independent_species": true,
+  "original_GBIF_presence_by_name_country_MU_years": {
+    "Roussea simplex": {
+      "all_Mauritius_1992_2025": 1,
+      "georeferenced_Mauritius_1992_2025": 1,
+      "georeferenced_Mauritius_2013_2025": 1,
+      "human_observed_georeferenced_Mauritius_2013_2025": 1,
+      "specimen_georeferenced_Mauritius_1992_2025": 0
+    },
+    "Ruizia blackburniana": {
+      "all_Mauritius_1992_2025": 5,
+      "georeferenced_Mauritius_1992_2025": 1,
+      "georeferenced_Mauritius_2013_2025": 1,
+      "human_observed_georeferenced_Mauritius_2013_2025": 1,
+      "specimen_georeferenced_Mauritius_1992_2025": 0
+    },
+    "Trochetia blackburniana": {
+      "all_Mauritius_1992_2025": 3,
+      "georeferenced_Mauritius_1992_2025": 0,
+      "georeferenced_Mauritius_2013_2025": 0,
+      "human_observed_georeferenced_Mauritius_2013_2025": 0,
+      "specimen_georeferenced_Mauritius_1992_2025": 0
+    }
+  },
+  "no_original_precise_endangered_plant_locations_redistributed": true,
+  "not_field_biological_live_population_census": true,
+  "no_confirmed_positive_or_negative_ALAN_effect": true
+}

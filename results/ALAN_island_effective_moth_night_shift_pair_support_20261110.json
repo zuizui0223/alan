@@ -1,0 +1,108 @@
+{
+  "schema": "ALAN_island_literature_nocturnal_effective_moth_day_control_pair_support_v1",
+  "date": "2026-11-10",
+  "original_photo_source": {
+    "repo": "zuizui0223/alan",
+    "run_id": 42616279235,
+    "distinct_original_photo_ID_registry": 93209351,
+    "source_photo_years": [
+      2019,
+      2021,
+      2023,
+      2024,
+      2025
+    ]
+  },
+  "PCNL": {
+    "run_id": 42624285048,
+    "original_1992_2024_annual_rasters": 33,
+    "source_site_Sha256": "440a8313d71168e0a4dfd2f41a7bef45623abb068b07e3282026f1c35dccbd2c",
+    "island_sample": 562,
+    "site_years": 77647
+  },
+  "published_study": {
+    "doi": "10.1111/ele.70036",
+    "run_id": 42745392510,
+    "author_original_plant_names": 145,
+    "author_independently_tested_species_matched_accepted_source": 54,
+    "source_species_site_years": 21833
+  },
+  "study_photo_pairs": {
+    "coobserved_species_pairs": 298,
+    "same_genus_pairs": 8,
+    "same_genus_day_night_bloom_trait_pairs": 0,
+    "actual_effective_moth_vs_day_in_island_endemics_verified_pairs": 0
+  },
+  "seed_candidates": {
+    "Ipomoea habeliana": {
+      "evidence": "Galapagos endemic, effective hawkmoth pollination observed; facultative autogamy; independent evolutionary switch unknown",
+      "original_island_photos": 44,
+      "original_observation_uuids": 22,
+      "source_islands": 5,
+      "photo_site_years": 10,
+      "supported_PCNLSiteyears_562islands": 3,
+      "supported_562islands": 2,
+      "sameyear_withinisland_light_gradient_islands": 0,
+      "source": "10.1111/j.1095-8339.2009.00963.x"
+    },
+    "Brighamia insignis": {
+      "evidence": "Hawaiian endemic moth-syndrome only, no observed effective moth; extinct in wild; not validated evolutionary shift",
+      "original_island_photos": 0,
+      "original_observation_uuids": 0,
+      "source_islands": 0,
+      "photo_site_years": 0,
+      "sameyear_withinisland_light_gradient_islands": 0,
+      "source": "10.1016/j.flora.2019.151448"
+    },
+    "Canarina canariensis": {
+      "evidence": "Canary Islands endemic effective passerine pollination",
+      "original_island_photos": 917,
+      "original_observation_uuids": 472,
+      "source_islands": 5,
+      "photo_site_years": 128,
+      "supported_PCNLSiteyears_562islands": 126,
+      "sameyear_withinisland_light_gradient_islands": 4,
+      "source": "PMID:18931830"
+    },
+    "Digitalis canariensis": {
+      "evidence": "WCVP accepted species of synonym Isoplexis canariensis; Canary endemic, effective passerine pollination",
+      "original_island_photos": 396,
+      "original_observation_uuids": 194,
+      "source_islands": 2,
+      "photo_site_years": 55,
+      "supported_PCNLSiteyears_562islands": 54,
+      "sameyear_withinisland_light_gradient_islands": 1,
+      "source": "10.3732/ajb.0800055"
+    },
+    "Echium simplex": {
+      "evidence": "Tenerife endemic, flying insects contribute to reproduction, not proven daytime only",
+      "original_island_photos": 121,
+      "original_observation_uuids": 56,
+      "source_islands": 4,
+      "photo_site_years": 25,
+      "sameyear_withinisland_light_gradient_islands": 2,
+      "source": "10.1111/plb.12926"
+    },
+    "Cordia lutea": {
+      "evidence": "Galapagos native not endemic, daytime and nocturnal pollination reports, not a day-only negative control",
+      "original_island_photos": 1000,
+      "original_observation_uuids": 605,
+      "source_islands": 19,
+      "photo_site_years": 114,
+      "sameyear_withinisland_light_gradient_islands": 3,
+      "coobserved_site_years_with_I_habeliana": 8,
+      "coobserved_GSHHG_island_units_with_I_habeliana": 3,
+      "source": "McMullen 2012; PMC3489146"
+    }
+  },
+  "complete_global_endemicity_and_evolutionary_shift_register": false,
+  "mainland_control_independently_built": false,
+  "three_way_ALAN_evolutionary_switch_island_interaction_estimated": false,
+  "evidence_gates": {
+    "bloom_time_not_effective_pollination": true,
+    "GloBI_visitor_not_effective_dependence": true,
+    "original_island_species_photo_not_wild_status": true,
+    "source_matched_photo_unit_not_true_plant_abundance": true,
+    "same_site_pair_does_not_eliminate_species_specific_observer_selection": true
+  }
+}
