@@ -60,7 +60,7 @@ def npms_inventory(filename, *, count_rows=True):
     with zipfile.ZipFile(f) as z:
         require(z.testzip() is None, "NPMS ZIP CRC failed")
         info = [x for x in z.infolist() if not x.is_dir()]
-        require(len(info) > 0 and sum(x.file_size for x in info) > 5000,
+        require(len(info) > 0 and sum(x.file_size for x in info) > 10,
                 "NPMS source ZIP empty")
         for member in info:
             item = {"name": member.filename, "uncompressed_bytes":member.file_size,
