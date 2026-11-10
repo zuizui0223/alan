@@ -59,11 +59,11 @@ jobs:
           python -m scripts.analysis.alan_globi_negative_controls_real_20261110 \
             --pcnl src/current/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
             --guild true_guild_evidence/source_guild_overlap_site_year.csv.gz \
-            --out results
+            --out negative_control_results
           python - <<'PY'
           import json
           from pathlib import Path
-          j=json.loads(Path('results/ALAN_real_full93m_GloBI_negative_controls_20261110.json').read_text())
+          j=json.loads(Path('negative_control_results/ALAN_real_full93m_GloBI_negative_controls_20261110.json').read_text())
           x=j['results']
           b=lambda k:x[k]['models']['island_equal']['beta']
           assert j['original_within_island_sites']==77647
@@ -86,7 +86,7 @@ jobs:
         with:
           name: alan-full93m-GloBI-moth-butterfly-negative-controls
           path: |
-            results/
+            negative_control_results/
             true_guild_evidence/source_guild_overlap_result.json
           retention-days: 90
           if-no-files-found: warn
