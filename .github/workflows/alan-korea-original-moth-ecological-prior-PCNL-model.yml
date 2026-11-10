@@ -1,0 +1,69 @@
+name: ALAN original 30-island 30442-moth direct ecological light association
+on:
+  push:
+    branches: [analysis/alan-korean-island-real-moth-nightlight-20261110]
+    paths:
+      - scripts/analysis/alan_korean_moth_count_rarefied_priorpcnl_20261110.py
+      - tests/test_alan_korean_moth_count_rarefied_priorpcnl_20261110.py
+      - .github/workflows/alan-korea-original-moth-ecological-prior-PCNL-model.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  real-Korean-moths-original-source-model:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify exact species-rarefaction and original within-island comparison tests
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2 \
+            statsmodels==0.14.5 openpyxl==3.1.5
+          python -m py_compile scripts/analysis/alan_korean_moth_count_rarefied_priorpcnl_20261110.py
+          python -m unittest discover -s tests -p test_alan_korean_moth_count_rarefied_priorpcnl_20261110.py -v
+      - name: Restore actual 377 source observations and corresponding true prior-year PCNL
+        run: |
+          set -euo pipefail
+          mkdir -p signed_source
+          gh run download 42773386737 --repo zuizui0223/alan \
+            --name alan-korea-moths-377siteyears-authentic-prior-PCNL-complete \
+            --dir signed_source
+          test -s signed_source/korean_30island_377_actual_moth_siteyear_prior_PCNL_yearminus1.csv.gz
+          test -s signed_source/korean_30island_prior_PCNL_complete_source_receipt.json
+          echo '8a790f57024c93e486f957f15454339896ed9cfd967fff43ef77d24085a18a72  signed_source/korean_30island_377_actual_moth_siteyear_prior_PCNL_yearminus1.csv.gz' | sha256sum -c -
+      - name: Fit real directly sampled insular moth communities to historically prior nightlight
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_korean_moth_count_rarefied_priorpcnl_20261110 \
+            --source signed_source/korean_30island_377_actual_moth_siteyear_prior_PCNL_yearminus1.csv.gz \
+            --receipt signed_source/korean_30island_prior_PCNL_complete_source_receipt.json \
+            --out actual_moth_ecology/alan_original_30island_moth_PCNL_observational_models_20261110.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('actual_moth_ecology/alan_original_30island_moth_PCNL_observational_models_20261110.json')
+          r=json.loads(p.read_text())
+          assert r['source_quality']['all_true_source_moth_samples']==377
+          assert r['source_quality']['all_true_islands']==30
+          assert r['source_quality']['all_original_observed_moth_individuals']==30442
+          assert r['no_GloBI_plant_moth_claims_used']
+          assert r['no_moth_density_or_actual_pollen_delivery']
+          print('ALAN_AUTHENTIC_30ISLAND_MOTH_PRIOR_LIGHT_MODEL_RESULT',
+                json.dumps(r,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-authentic-Korean-30island-moths-prior-PCNL-field-models
+          path: actual_moth_ecology/alan_original_30island_moth_PCNL_observational_models_20261110.json
+          retention-days: 90
+          if-no-files-found: warn
