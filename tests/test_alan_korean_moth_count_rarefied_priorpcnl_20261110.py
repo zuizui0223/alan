@@ -29,6 +29,7 @@ class KoreanMothObservationalGates(unittest.TestCase):
             {"island_year":"c|2020","island":"c","sites":"c1",
              "prior_year_log1p_PCNL":.1,"elevation_km":.1,"y":2},
         ])
+        d["year"]=d.island_year.str.split("|",regex=False).str[-1].astype(int)
         x,s=valid_within_island_year(d,"y")
         self.assertEqual(len(x),2)
         self.assertEqual(s["within_island_year_contrast_islands"],1)
