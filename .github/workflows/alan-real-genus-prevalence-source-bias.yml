@@ -6,6 +6,12 @@ on:
       - scripts/analysis/alan_real_genus_prevalence_bias_20261110.py
       - tests/test_alan_real_genus_prevalence_bias_20261110.py
       - .github/workflows/alan-real-genus-prevalence-source-bias.yml
+  pull_request:
+    branches: [analysis/alan-pcnl-globi-negative-controls-20261110]
+    paths:
+      - scripts/analysis/alan_real_genus_prevalence_bias_20261110.py
+      - tests/test_alan_real_genus_prevalence_bias_20261110.py
+      - .github/workflows/alan-real-genus-prevalence-source-bias.yml
   workflow_dispatch:
 permissions:
   contents: read
