@@ -1,0 +1,63 @@
+name: ALAN true dark refugia vs photographed GloBI source proxy within islands
+on:
+  push:
+    branches: [analysis/alan-dark-refugia-spatial-metrics-20261110]
+    paths:
+      - scripts/analysis/alan_dark_refugia_photosource_paircheck_20261110.py
+      - tests/test_alan_dark_refugia_photosource_paircheck_20261110.py
+      - .github/workflows/alan-true-dark-refugia-photo-proxy-controls.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  matched-site-source-proxy-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 pyproj==3.7.2
+          python -m py_compile scripts/analysis/alan_dark_refugia_photosource_paircheck_20261110.py
+          python -m unittest discover -s tests -p test_alan_dark_refugia_photosource_paircheck_20261110.py -v
+      - name: Restore already-verified actual photo site and 2024 PCNL raster source
+        run: |
+          set -euo pipefail
+          mkdir -p source/refugia source/macro
+          gh run download 42764291562 --repo zuizui0223/alan \
+            --name alan-2025-true-island-2024PCNL-dark-refugia-landmasked-pilot --dir source/refugia
+          gh run download 42624285048 --repo zuizui0223/alan \
+            --name alan-full93m-actual-PCNL1992-2024-moth-positive-macro --dir source/macro
+      - name: Test observed 2025 source-paired trait-documentation composition
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_dark_refugia_photosource_paircheck_20261110 \
+            --exposure source/refugia/real_original_island_dark_refugia_2025_photo_sites_PCNL2024.csv.gz \
+            --exposure-receipt source/refugia/dark_refugia_original_real_source_receipt.json \
+            --source source/macro/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --source-receipt source/macro/joined/real_pcnl_join_receipt.json \
+            --out diagnostics/alan_real_dark_refugia_photo_globi_source_diagnostic.json
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          x=json.loads(Path("diagnostics/alan_real_dark_refugia_photo_globi_source_diagnostic.json").read_text())
+          assert x["original_2025_photo_sites_with_2024_real_raster"]==3543
+          assert x["per_threshold"]["0.0"]["all_candidate_matched_pairs"]==544
+          assert x["per_threshold"]["0.0"]["all_candidate_matched_islands"]==235
+          assert x["result_is_post_hoc_ascertainment_diagnostic_not_confirmatory"]
+          print("ALAN_SOURCE_REAL_GLOBI_PROXY_NOT_MOTH_ABUNDANCE",json.dumps(x,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-island-dark-source-GloBI-proxy-site-controls
+          path: diagnostics/alan_real_dark_refugia_photo_globi_source_diagnostic.json
+          if-no-files-found: warn
+          retention-days: 90

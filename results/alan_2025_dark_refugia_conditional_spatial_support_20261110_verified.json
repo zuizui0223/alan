@@ -1,0 +1,115 @@
+{
+  "fraction_sites_exactly_same_dark_land_PCNL0_and1": 1,
+  "not_species_moth_or_pollination": true,
+  "same_original_sites_threshold0_and1": 3543,
+  "schema": "ALAN_dark_refugia_within_island_conditional_contrast_feasibility_v1",
+  "source_original_site_raster_SHA256": "32327abb37ee85f3d1d9e7446d9d742fb5adf1457dab60fae1aae791c29f7837",
+  "threshold_results": {
+    "0.0": {
+      "conditional_connectivity_quantiles": {
+        "0.05": 0.3333767068504699,
+        "0.25": 0.6842441099877831,
+        "0.5": 0.9705838230963294,
+        "0.75": 1,
+        "0.95": 1.0000000000000009
+      },
+      "dark_fraction_quantiles": {
+        "0.05": 0.030358630431667435,
+        "0.25": 0.30770333431456587,
+        "0.5": 0.7008615763786883,
+        "0.75": 0.9641645469746221,
+        "0.95": 1
+      },
+      "joint_similar_total_light_connectivity_delta0p10_darkfraction_delta0p10_loglight_delta0p2": {
+        "n_islands": 235,
+        "n_pairs": 544
+      },
+      "n_independent_islands": 970,
+      "n_islands_with_two_or_more_valid_photo_sites": 659,
+      "n_original_valid_sites": 3543,
+      "n_sites_with_no_detected_dark_land": 125,
+      "n_within_island_dark_site_pairs": 7627,
+      "potential_matched_pairs_connectivity_delta0p10_darkfraction_delta0p10": {
+        "n_islands": 308,
+        "n_pairs": 1039
+      },
+      "stronger_contrasts_connectivity_delta0p20_darkfraction_delta0p10": {
+        "n_islands": 224,
+        "n_pairs": 666
+      },
+      "threshold_PCNL_native": 0
+    },
+    "1.0": {
+      "conditional_connectivity_quantiles": {
+        "0.05": 0.3333767068504699,
+        "0.25": 0.6842441099877831,
+        "0.5": 0.9705838230963294,
+        "0.75": 1,
+        "0.95": 1.0000000000000009
+      },
+      "dark_fraction_quantiles": {
+        "0.05": 0.030358630431667435,
+        "0.25": 0.30770333431456587,
+        "0.5": 0.7008615763786883,
+        "0.75": 0.9641645469746221,
+        "0.95": 1
+      },
+      "joint_similar_total_light_connectivity_delta0p10_darkfraction_delta0p10_loglight_delta0p2": {
+        "n_islands": 235,
+        "n_pairs": 544
+      },
+      "n_independent_islands": 970,
+      "n_islands_with_two_or_more_valid_photo_sites": 659,
+      "n_original_valid_sites": 3543,
+      "n_sites_with_no_detected_dark_land": 125,
+      "n_within_island_dark_site_pairs": 7627,
+      "potential_matched_pairs_connectivity_delta0p10_darkfraction_delta0p10": {
+        "n_islands": 308,
+        "n_pairs": 1039
+      },
+      "stronger_contrasts_connectivity_delta0p20_darkfraction_delta0p10": {
+        "n_islands": 224,
+        "n_pairs": 666
+      },
+      "threshold_PCNL_native": 1
+    },
+    "3.0": {
+      "conditional_connectivity_quantiles": {
+        "0.05": 0.3572835228224562,
+        "0.25": 0.7301376398370408,
+        "0.5": 0.9791820505490804,
+        "0.75": 1,
+        "0.95": 1.0000000000000009
+      },
+      "dark_fraction_quantiles": {
+        "0.05": 0.04353505618301135,
+        "0.25": 0.3852613528643341,
+        "0.5": 0.7760951117468092,
+        "0.75": 0.9862108636323531,
+        "0.95": 1
+      },
+      "joint_similar_total_light_connectivity_delta0p10_darkfraction_delta0p10_loglight_delta0p2": {
+        "n_islands": 230,
+        "n_pairs": 549
+      },
+      "n_independent_islands": 970,
+      "n_islands_with_two_or_more_valid_photo_sites": 659,
+      "n_original_valid_sites": 3543,
+      "n_sites_with_no_detected_dark_land": 102,
+      "n_within_island_dark_site_pairs": 7736,
+      "potential_matched_pairs_connectivity_delta0p10_darkfraction_delta0p10": {
+        "n_islands": 300,
+        "n_pairs": 964
+      },
+      "stronger_contrasts_connectivity_delta0p20_darkfraction_delta0p10": {
+        "n_islands": 220,
+        "n_pairs": 610
+      },
+      "threshold_PCNL_native": 3
+    }
+  },
+  "thresholds_exploratory_sensitivities_not_independent_samples": true,
+  "github_actions_run": "https://github.com/zuizui0223/alan/actions/runs/42765060768",
+  "github_actions_artifact": "https://github.com/zuizui0223/alan/actions/runs/42765060768/artifacts/13739591784",
+  "result_is_observed_geospatial_contrast_support_not_moth_or_pollination": true
+}
