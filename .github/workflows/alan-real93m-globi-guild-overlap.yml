@@ -1,4 +1,4 @@
-name: ALAN real 93m source: co-recorded moth and butterfly evidence across islands
+name: "ALAN real 93m source: co-recorded moth and butterfly evidence across islands"
 on:
   pull_request:
     branches: [analysis/alan-island-pollinator-shift-gated-20261109]
