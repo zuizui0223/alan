@@ -1,0 +1,49 @@
+name: ALAN original GBIF Squamata event time and sampling protocol source audit
+on:
+  push:
+    branches: [analysis/alan-gecko-reptile-detection-controlled-20261110]
+    paths:
+      - scripts/acquisition/alan_gbif_reptile_clock_field_schema_20261110.py
+      - .github/workflows/alan-gecko-time-of-day-original-source-audit.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  actual-gecko-original-clock-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q pyarrow==21.0.0
+          python -m py_compile scripts/acquisition/alan_gbif_reptile_clock_field_schema_20261110.py
+          mkdir -p source
+          gh run download 42790214757 --repo zuizui0223/alan \
+            --name alan-original-202608-gecko-reptile-Parquet-partition-manifest \
+            --dir source
+          python -m scripts.acquisition.alan_gbif_reptile_clock_field_schema_20261110 \
+            --manifest source/gbif_202608_reptile_gecko_partition_manifest.json \
+            --out original-clock/ALAN_gecko_original_GBIF_202608_timefield_availability.json
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          a=json.loads(Path('original-clock/ALAN_gecko_original_GBIF_202608_timefield_availability.json').read_text())
+          assert a['true_original_reptile_source_rows']==11634053
+          assert a['no_source_observation_clock_values_read_or_inferred']
+          assert a['no_gecko_moth_predation_or_activity_observed']
+          print('ALAN_TRUE_GBIF_GECKO_TIMEFIELD_SOURCE_SCHEMA_VERIFIED',flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-global-gecko-original-202608-clock-and-protocol-field-source-audit
+          path: original-clock/ALAN_gecko_original_GBIF_202608_timefield_availability.json
+          retention-days: 90
+          if-no-files-found: warn

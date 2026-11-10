@@ -1,0 +1,88 @@
+name: ALAN real gecko vs skink photographic light-niche same-island-year models
+on:
+  push:
+    branches: [analysis/alan-gecko-reptile-detection-controlled-20261110]
+    paths:
+      - scripts/analysis/alan_gecko_skink_recorded_light_niche_FE_20261110.py
+      - tests/test_alan_gecko_skink_recorded_light_niche_FE_20261110.py
+      - .github/workflows/alan-gecko-skink-original-photo-light-niche-FE.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  genuine-gecko-scink-documented-island-sameyear-alan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify no-gecko-absence and same-island-year model source gates
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5 pyarrow==21.0.0
+          python -m py_compile scripts/analysis/alan_gecko_skink_recorded_light_niche_FE_20261110.py
+          python -m unittest discover -s tests -p test_alan_gecko_skink_recorded_light_niche_FE_20261110.py -v
+      - name: Restore exact source-verified authentic 101399 gecko and skink photographs against historical original PCNL
+        timeout-minutes: 22
+        run: |
+          set -euo pipefail
+          mkdir -p real-reptile-light
+          ok=0
+          for i in $(seq 1 40); do
+            if gh run download 42796502910 --repo zuizui0223/alan \
+                --name alan-original-101399-gecko-scink-photo-13year-historical-PCNL-all-islands \
+                --dir real-reptile-light 2>/dev/null; then
+              ok=1
+              break
+            fi
+            echo "Original signed gecko/year-minus-one raster not ready; no light/year interpolation or fabricated source"
+            sleep 15
+          done
+          test "$ok" = 1
+          test -s real-reptile-light/gecko_scink_true_2013_2025_original_island_photo_cells_priorPCNL.csv.gz
+          test -s real-reptile-light/gecko_scink_original_13prior_PCNL_source_receipt.json
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          r=json.loads(Path('real-reptile-light/gecko_scink_original_13prior_PCNL_source_receipt.json').read_text())
+          p=Path('real-reptile-light/gecko_scink_true_2013_2025_original_island_photo_cells_priorPCNL.csv.gz')
+          assert hashlib.file_digest(open(p,'rb'),'sha256').hexdigest()==r['original_reptile_photo_cell_CSV_SHA256']
+          assert r['all_original_gecko_and_scink_photo_record_events']==101399
+          print('ALAN_GECKO_SKINK_TRUE_SOURCE_13YEARS_SHA_VERIFIED',flush=True)
+          PY
+      - name: Actual original gecko versus Scincidae photo-record environmental response and source detectability sensitivities
+        timeout-minutes: 17
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_gecko_skink_recorded_light_niche_FE_20261110 \
+            --source real-reptile-light/gecko_scink_true_2013_2025_original_island_photo_cells_priorPCNL.csv.gz \
+            --receipt real-reptile-light/gecko_scink_original_13prior_PCNL_source_receipt.json \
+            --out actual-gecko-both/ALAN_gecko_vs_scink_both_documented_photos_priorPCNL_FE.json
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          r=json.loads(Path('actual-gecko-both/ALAN_gecko_vs_scink_both_documented_photos_priorPCNL_FE.json').read_text())
+          assert r['two_source_taxa_compared_both_directly_photo_documented']
+          assert r['true_gecko_reptile_photo_composition_not_predator_count_or_occupancy']
+          assert r['gecko_moth_predation_AND_flower_pollen_services_not_observed']
+          print('ALAN_REAL_SAME_ISLAND_YEAR_GECKO_SCINK_SOURCE_INFERENCE',json.dumps({
+           'main':r['all_source_13year_observational_model_variants']['primary_both_reptile_photo_families_same_islandyear'],
+           'negative_control':r['all_source_13year_observational_model_variants']['negative_control_total_gecko_plus_skink_photo_event_volume']
+          },sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-actual-gecko-vs-scink-both-documented-light-niche-priorPCNL
+          path: actual-gecko-both/ALAN_gecko_vs_scink_both_documented_photos_priorPCNL_FE.json
+          if-no-files-found: warn
+          retention-days: 90

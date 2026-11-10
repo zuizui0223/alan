@@ -1,0 +1,119 @@
+name: ALAN real global gecko-vs-skink photographed light-niche 13 preyear PCNL rasters
+on:
+  push:
+    branches: [analysis/alan-gecko-reptile-detection-controlled-20261110]
+    paths:
+      - scripts/analysis/alan_gecko_skink_original_13year_priorPCNL_20261110.py
+      - .github/workflows/alan-gecko-skink-13yr-original-PCNL.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  independent-original-gecko-year-shards:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        shard: [0, 1, 2, 3]
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify signed original 2026-08 Squamata source and land geometries
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5 pyarrow==21.0.0
+          python -m py_compile scripts/analysis/alan_gecko_skink_original_13year_priorPCNL_20261110.py
+          mkdir -p original/gecko original/coast
+          gh run download 42791325209 --repo zuizui0223/alan \
+            --name alan-global-202608-true-gecko-scincidae-GSHHG-island-year-source \
+            --dir original/gecko
+          gh run download 42175243391 --repo zuizui0223/mois \
+            --name mois-GSHHG-2.3.7-high-L1-L2-SHA-source-no-images \
+            --dir original/coast
+          echo 'c2e0c823ee9fcf61182b920724e488d9130b1d1ca9d53266511c2da8873983c9  original/gecko/GBIF_202608_actual_gecko_skink_island_geo_cells2013_2025.csv.gz' | sha256sum -c -
+      - name: Reconstruct exact observation-year-minus-one historical PCNL at authentic reptile photo cell locations
+        timeout-minutes: 75
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_gecko_skink_original_13year_priorPCNL_20261110 worker \
+            --source original/gecko/GBIF_202608_actual_gecko_skink_island_geo_cells2013_2025.csv.gz \
+            --receipt original/gecko/ALAN_2026_11_true_global_gecko_family_source_receipt.json \
+            --coast original/coast --shard ${{ matrix.shard }} --out true-reptile-prior
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=next(Path('true-reptile-prior').glob('gecko_scink_prior_PCNL_original_reptile_shard*.json'))
+          r=json.loads(p.read_text())
+          assert r['every_satellite_source_year_precedes_observed_reptile_photo']
+          assert r['actual_source_PCNL_valid_cells']>0
+          assert len(r['source_observed_years']) in (3,4)
+          print('ALAN_GECKO_SCINK_REAL_HISTORIC_PCNL_SHARD_OK',r['shard'],flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-authentic-gecko-skink-yearminus1-PCNL-shard-${{ matrix.shard }}
+          path: |
+            true-reptile-prior/*.csv.gz
+            true-reptile-prior/*.json
+          retention-days: 90
+          if-no-files-found: warn
+  original-gecko-PCNL-sitecollector:
+    needs: independent-original-gecko-year-shards
+    runs-on: ubuntu-24.04
+    timeout-minutes: 23
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Collect all 13 source years only after four independently SHA audited shards
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 \
+            rasterio==1.4.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 \
+            statsmodels==0.14.5 pyarrow==21.0.0
+          mkdir -p original/gecko parts
+          gh run download 42791325209 --repo zuizui0223/alan \
+            --name alan-global-202608-true-gecko-scincidae-GSHHG-island-year-source \
+            --dir original/gecko
+          gh run download "$GITHUB_RUN_ID" --repo zuizui0223/alan \
+            --pattern 'alan-authentic-gecko-skink-yearminus1-PCNL-shard-*' \
+            --dir downloads
+          test "$(find downloads -name 'gecko_scink_prior_PCNL_original_reptile_shard?.csv.gz' | wc -l)" -eq 4
+          test "$(find downloads -name 'gecko_scink_prior_PCNL_original_reptile_shard?.json' | wc -l)" -eq 4
+          find downloads -name 'gecko_scink_prior_PCNL_original_reptile_shard?.csv.gz' -exec cp {} parts/ \;
+          find downloads -name 'gecko_scink_prior_PCNL_original_reptile_shard?.json' -exec cp {} parts/ \;
+          python -m scripts.analysis.alan_gecko_skink_original_13year_priorPCNL_20261110 collect \
+            --source original/gecko/GBIF_202608_actual_gecko_skink_island_geo_cells2013_2025.csv.gz \
+            --receipt original/gecko/ALAN_2026_11_true_global_gecko_family_source_receipt.json \
+            --parts parts --out genuine-reptile-light
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('genuine-reptile-light/gecko_scink_original_13prior_PCNL_source_receipt.json').read_text())
+          assert a['all_original_gecko_and_scink_photo_record_events']==101399
+          assert a['original_Gekkonidae_plus_other5photo_event_count']==66038
+          assert a['original_Scincidae_photo_event_count']==35361
+          assert a['real_source_valid_prior_year_PCNL_site_years']>0
+          print('ALAN_REAL_REPTILE_BOTH_OBSERVED_SOURCE_PCNL_READY',json.dumps(a,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-101399-gecko-scink-photo-13year-historical-PCNL-all-islands
+          path: genuine-reptile-light/
+          retention-days: 90
+          if-no-files-found: warn
