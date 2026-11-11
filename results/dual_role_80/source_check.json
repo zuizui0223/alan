@@ -1,0 +1,110 @@
+{
+  "357642588": {
+    "date": "2024-05-29",
+    "organism": "Macroglossum stellatarum",
+    "note": null,
+    "interaction_fields": [
+      [
+        "Interaction->Preyed on",
+        "Macroglossum stellatarum"
+      ]
+    ],
+    "url": "https://www.inaturalist.org/observations/357642588"
+  },
+  "32443214": {
+    "date": "2019-09-09",
+    "organism": "Dolichovespula maculata",
+    "note": null,
+    "interaction_fields": [
+      [
+        "Interaction->Preyed on",
+        "Cisseps fulvicollis"
+      ],
+      [
+        "Feeding on",
+        "Cisseps fulvicollis"
+      ]
+    ],
+    "url": "https://www.inaturalist.org/observations/32443214"
+  },
+  "186580299": {
+    "date": "2023-10-07",
+    "organism": "Macroglossum stellatarum",
+    "note": "ID for the moth, being scavenged by ants",
+    "interaction_fields": [
+      [
+        "URL for \"partner\" observation",
+        "https://www.inaturalist.org/observations/186584694"
+      ],
+      [
+        "Is observation one of these special types of feeding?",
+        "Scavenging"
+      ],
+      [
+        "Interaction->Carcass scavenged by",
+        "Linepithema humile"
+      ]
+    ],
+    "url": "https://www.inaturalist.org/observations/186580299"
+  },
+  "186584694": {
+    "date": "2023-10-07",
+    "organism": "Linepithema humile",
+    "note": "ID for ants, attacking Sphinx moth",
+    "interaction_fields": [
+      [
+        "Eating: (Interaction)",
+        "https://www.inaturalist.org/observations/186580299"
+      ],
+      [
+        "URL for \"partner\" observation",
+        "https://www.inaturalist.org/observations/186580299"
+      ],
+      [
+        "Is observation one of these special types of feeding?",
+        "Scavenging"
+      ],
+      [
+        "Interaction->Scavenged carcass of",
+        "Macroglossum stellatarum"
+      ]
+    ],
+    "url": "https://www.inaturalist.org/observations/186584694"
+  },
+  "Dolichovespula maculata": [
+    {
+      "source_taxon_name": "Dolichovespula maculata",
+      "interaction_type": "pollinates",
+      "target_taxon_name": "Heracleum maximum",
+      "study_title": "Guzman, Laura Melissa; Kelly, Tyler; Elle, Elizabeth, 2022, \"A dataset for pollinator diversity and their interactions with plants in the Pacific NorthWest\", https://doi.org/10.5683/SP3/WTEZNH, Borealis, V1. Accessed at <https://github.com/globalbioticinteractions/guzman2022/archive/e24f70b4a435156264c45a853b4a58687df4cdfc.zip> on 26 Oct 2026."
+    }
+  ],
+  "Cisseps fulvicollis": [
+    {
+      "source_taxon_name": "Cisseps fulvicollis",
+      "source_specimen_occurrence_id": "https://www.inaturalist.org/observations/364954981",
+      "interaction_type": "visitsFlowersOf",
+      "target_taxon_name": "Heracleum maximum",
+      "study_title": "http://iNaturalist.org is a place where you can record what you see in nature, meet other nature lovers, and learn about the natural world. Accessed at <https://www.inaturalist.org/observations/globi-observations-resource-relationships-dwca.zip> on 26 Oct 2026."
+    }
+  ],
+  "364954981": {
+    "organism": "Cisseps fulvicollis",
+    "date": "2026-05-21",
+    "url": "https://www.inaturalist.org/observations/364954981"
+  },
+  "original_pollinator_table": {
+    "url": "https://raw.githubusercontent.com/globalbioticinteractions/guzman2022/e24f70b4a435156264c45a853b4a58687df4cdfc/main_pollinator_plant.csv",
+    "source_sha256": "b4d28c8f685975bf8975d1192d4bcb8eb87948875508dc5b449f5eb8051a12e7",
+    "heracleum_records": [
+      {
+        "plant_species": "Heracleum maximum",
+        "collection_method": "net",
+        "year_collected": 2017,
+        "day_collected": 20,
+        "month_collected": "May",
+        "basis_of_record": "specimen"
+      }
+    ]
+  }
+}

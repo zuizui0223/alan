@@ -1,0 +1,1760 @@
+{
+  "frozen_site_sha256": "37f3c2c519871b6905ffa81c5a14536b248611861ad143b1d4d77d95b7c6b00d",
+  "source": {
+    "predator_flower_sha256": "8f1e7e09cf749327ec3c62f2eadb9b6b7e51308aed173f9abd89d32224c9f4e8",
+    "scanned": 24453954,
+    "source_sha256": "670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3",
+    "rows": 2572,
+    "prey_table_sha256": "9218ae508531c0a115a72faa50fa47589db0cf024225a955724eff4f8dfa79f9"
+  },
+  "cohort_sites": {
+    "island": 933,
+    "mainland": 9765
+  },
+  "source_checked_site_years": {
+    "0.05deg": {
+      "fixed_57_species": {
+        "island": 0,
+        "mainland": 0
+      },
+      "scale_specific_island_cohort": {
+        "island": 0,
+        "mainland": 0
+      },
+      "years": {
+        "island": [],
+        "mainland": []
+      }
+    },
+    "1deg": {
+      "fixed_57_species": {
+        "island": 1,
+        "mainland": 8
+      },
+      "scale_specific_island_cohort": {
+        "island": 1,
+        "mainland": 8
+      },
+      "years": {
+        "island": [
+          2025
+        ],
+        "mainland": [
+          2019,
+          2021,
+          2023,
+          2024,
+          2025
+        ]
+      }
+    }
+  },
+  "wcvp_resolution": {
+    "moth_visits": {
+      "resolved": 450,
+      "ambiguous_or_unresolved": 79,
+      "no_exact_species_name": 3
+    },
+    "predator_pollinates": {
+      "resolved": 687,
+      "ambiguous_or_unresolved": 174,
+      "no_exact_species_name": 13
+    }
+  },
+  "island_species_005": 57,
+  "island_species_1deg": 68,
+  "stages": [
+    {
+      "scale": "1deg",
+      "level": "plant",
+      "site_years": {
+        "island": 24,
+        "mainland": 95
+      },
+      "site_years_fine_cohort": {
+        "island": 24,
+        "mainland": 95
+      }
+    },
+    {
+      "scale": "1deg",
+      "level": "adult_moth_and_plant",
+      "site_years": {
+        "island": 14,
+        "mainland": 49
+      },
+      "site_years_fine_cohort": {
+        "island": 14,
+        "mainland": 49
+      }
+    },
+    {
+      "scale": "1deg",
+      "level": "database_roles_including_self_links",
+      "site_years": {
+        "island": 14,
+        "mainland": 49
+      },
+      "site_years_fine_cohort": {
+        "island": 14,
+        "mainland": 49
+      }
+    },
+    {
+      "scale": "0.05deg",
+      "level": "plant",
+      "site_years": {
+        "island": 14,
+        "mainland": 49
+      },
+      "site_years_fine_cohort": {
+        "island": 14,
+        "mainland": 49
+      }
+    },
+    {
+      "scale": "0.05deg",
+      "level": "adult_moth_and_plant",
+      "site_years": {
+        "island": 1,
+        "mainland": 14
+      },
+      "site_years_fine_cohort": {
+        "island": 1,
+        "mainland": 14
+      }
+    },
+    {
+      "scale": "0.05deg",
+      "level": "database_roles_including_self_links",
+      "site_years": {
+        "island": 1,
+        "mainland": 13
+      },
+      "site_years_fine_cohort": {
+        "island": 1,
+        "mainland": 13
+      }
+    }
+  ],
+  "cohort": [
+    {
+      "predator": "Agrotis ipsilon",
+      "gbif_species_key": 1771245,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Ammophila procera",
+      "gbif_species_key": 5041254,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Ammophila sabulosa",
+      "gbif_species_key": 5041296,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Ancistrocerus gazella",
+      "gbif_species_key": 5037434,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 1,
+      "adult_prey_with_visit": 1,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Antrozous pallidus",
+      "gbif_species_key": 2432339,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": false,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": null
+    },
+    {
+      "predator": "Artibeus jamaicensis",
+      "gbif_species_key": 2433272,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Artibeus lituratus",
+      "gbif_species_key": 2433270,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Camponotus japonicus",
+      "gbif_species_key": 5034161,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Chrysococcyx caprius",
+      "gbif_species_key": 2496333,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Coleomegilla maculata",
+      "gbif_species_key": 1043637,
+      "gbif_taxonomic_status": "DOUBTFUL",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Cyanocorax cristatellus",
+      "gbif_species_key": 2482561,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": false,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": null
+    },
+    {
+      "predator": "Dasysyrphus tricinctus",
+      "gbif_species_key": 1542069,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Delta unguiculatum",
+      "gbif_species_key": 5036694,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Dolichovespula maculata",
+      "gbif_species_key": 1311815,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 1,
+      "adult_prey_with_visit": 1,
+      "shared_plants": 1,
+      "shared_plants_on_frozen_sites": 1,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 1,
+        "mainland": 8
+      }
+    },
+    {
+      "predator": "Epargyreus clarus",
+      "gbif_species_key": 1947915,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Eremnophila aureonotata",
+      "gbif_species_key": 1347370,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Eristalis tenax",
+      "gbif_species_key": 1541217,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Eumenes coarctatus",
+      "gbif_species_key": 5037103,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Eumenes coronatus",
+      "gbif_species_key": 5036899,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": false,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": null
+    },
+    {
+      "predator": "Eumenes fraternus",
+      "gbif_species_key": 5037177,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Euodynerus dantici",
+      "gbif_species_key": 5762352,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Euodynerus hidalgo",
+      "gbif_species_key": 5037590,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 1,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Ferdinandea cuprea",
+      "gbif_species_key": 1542979,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Ficedula hypoleuca",
+      "gbif_species_key": 2492606,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Florisuga fusca",
+      "gbif_species_key": 2476193,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Forficula auricularia",
+      "gbif_species_key": 1419845,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Formica fusca",
+      "gbif_species_key": 1314881,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 1,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Formica rufa",
+      "gbif_species_key": 1315132,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Formica rufibarbis",
+      "gbif_species_key": 1315117,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": false,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": null
+    },
+    {
+      "predator": "Glossophaga commissarisi",
+      "gbif_species_key": 2433193,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": false,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": null
+    },
+    {
+      "predator": "Glossophaga soricina",
+      "gbif_species_key": 2433194,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Harmonia axyridis",
+      "gbif_species_key": 4989904,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Hemidactylus frenatus",
+      "gbif_species_key": 9537238,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 3,
+      "adult_prey_with_visit": 1,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Hyles lineata",
+      "gbif_species_key": 1862841,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Ischnura elegans",
+      "gbif_species_key": 1423395,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Leptochilus alpestris",
+      "gbif_species_key": 1333105,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": false,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": null
+    },
+    {
+      "predator": "Leucochloris albicollis",
+      "gbif_species_key": 2476291,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Linepithema humile",
+      "gbif_species_key": 1316908,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 1,
+      "adult_prey_with_visit": 1,
+      "shared_plants": 1,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Lucilia illustris",
+      "gbif_species_key": 5064094,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Lydella thompsoni",
+      "gbif_species_key": 1463549,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": false,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": null
+    },
+    {
+      "predator": "Lymantria dispar",
+      "gbif_species_key": 1820406,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Macroglossum stellatarum",
+      "gbif_species_key": 1864652,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 1,
+      "adult_prey_with_visit": 1,
+      "shared_plants": 24,
+      "shared_plants_on_frozen_sites": 11,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Microplitis croceipes",
+      "gbif_species_key": 5024872,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": false,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": null
+    },
+    {
+      "predator": "Myrmica rubra",
+      "gbif_species_key": 1318874,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Orocrambus flexuosellus",
+      "gbif_species_key": 1880318,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": false,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": null
+    },
+    {
+      "predator": "Pachodynerus nasidens",
+      "gbif_species_key": 1328213,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": false,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": null
+    },
+    {
+      "predator": "Papilio rutulus",
+      "gbif_species_key": 1937691,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Parapolybia varia",
+      "gbif_species_key": 1311773,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Passer domesticus",
+      "gbif_species_key": 5231190,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 4,
+      "adult_prey_with_visit": 4,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Pheidole pallidula",
+      "gbif_species_key": 1322537,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Philaenus spumarius",
+      "gbif_species_key": 2016038,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Philanthus gibbosus",
+      "gbif_species_key": 7582634,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Philanthus triangulum",
+      "gbif_species_key": 5760758,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Philanthus ventilabris",
+      "gbif_species_key": 7802047,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Phimenes flavopictus",
+      "gbif_species_key": 6128509,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Phoenicurus ochruros",
+      "gbif_species_key": 5739315,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Phylloscopus trochilus",
+      "gbif_species_key": 2493052,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 1,
+      "adult_prey_with_visit": 1,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Picromerus bidens",
+      "gbif_species_key": 5160015,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Platyrrhinus lineatus",
+      "gbif_species_key": 5218765,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": false,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": null
+    },
+    {
+      "predator": "Podalonia tydei",
+      "gbif_species_key": 1347933,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Polistes annularis",
+      "gbif_species_key": 1310936,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Polistes canadensis",
+      "gbif_species_key": 1310702,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Polistes dominula",
+      "gbif_species_key": 5871389,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Polistes fuscatus",
+      "gbif_species_key": 1310556,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Polistes metricus",
+      "gbif_species_key": 1310805,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Pycnonotus barbatus",
+      "gbif_species_key": 2486147,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": false,
+      "island_1deg": false,
+      "named_adult_prey": 1,
+      "adult_prey_with_visit": 1,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": null,
+      "coarse_sites": null
+    },
+    {
+      "predator": "Sphecius speciosus",
+      "gbif_species_key": 1338940,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 1,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Strymon melinus",
+      "gbif_species_key": 1925429,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Sympetrum danae",
+      "gbif_species_key": 1428334,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Tetramorium immigrans",
+      "gbif_species_key": 10114596,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 1,
+      "adult_prey_with_visit": 1,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Tettigonia viridissima",
+      "gbif_species_key": 1692898,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 1,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Vespa crabro",
+      "gbif_species_key": 1311527,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Vespa velutina",
+      "gbif_species_key": 1311477,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 1,
+      "adult_prey_with_visit": 1,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Vespula germanica",
+      "gbif_species_key": 1311649,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 1,
+      "adult_prey_with_visit": 1,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Vespula vulgaris",
+      "gbif_species_key": 1311671,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Villa modesta",
+      "gbif_species_key": 1671632,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Volucella inflata",
+      "gbif_species_key": 1541819,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Xanthandrus comtus",
+      "gbif_species_key": 1538946,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Zerene cesonia",
+      "gbif_species_key": 1920809,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    },
+    {
+      "predator": "Zonotrichia capensis",
+      "gbif_species_key": 5231103,
+      "gbif_taxonomic_status": "ACCEPTED",
+      "island_005": true,
+      "island_1deg": true,
+      "named_adult_prey": 0,
+      "adult_prey_with_visit": 0,
+      "shared_plants": 0,
+      "shared_plants_on_frozen_sites": 0,
+      "fine_sites": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse_sites": {
+        "island": 0,
+        "mainland": 0
+      }
+    }
+  ],
+  "chains": [
+    {
+      "predator": "Dolichovespula maculata",
+      "moth": "Cisseps fulvicollis",
+      "plant": "Heracleum maximum",
+      "source_assessment": "predation_recorded",
+      "fine": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse": {
+        "island": 1,
+        "mainland": 8
+      }
+    },
+    {
+      "predator": "Macroglossum stellatarum",
+      "moth": "Macroglossum stellatarum",
+      "plant": "Cirsium heterophyllum",
+      "source_assessment": "self_link",
+      "fine": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse": {
+        "island": 0,
+        "mainland": 1
+      }
+    },
+    {
+      "predator": "Macroglossum stellatarum",
+      "moth": "Macroglossum stellatarum",
+      "plant": "Daphne gnidium",
+      "source_assessment": "self_link",
+      "fine": {
+        "island": 0,
+        "mainland": 3
+      },
+      "coarse": {
+        "island": 0,
+        "mainland": 4
+      }
+    },
+    {
+      "predator": "Macroglossum stellatarum",
+      "moth": "Macroglossum stellatarum",
+      "plant": "Dianthus hyssopifolius",
+      "source_assessment": "self_link",
+      "fine": {
+        "island": 0,
+        "mainland": 1
+      },
+      "coarse": {
+        "island": 0,
+        "mainland": 7
+      }
+    },
+    {
+      "predator": "Macroglossum stellatarum",
+      "moth": "Macroglossum stellatarum",
+      "plant": "Galium verum",
+      "source_assessment": "self_link",
+      "fine": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse": {
+        "island": 0,
+        "mainland": 3
+      }
+    },
+    {
+      "predator": "Macroglossum stellatarum",
+      "moth": "Macroglossum stellatarum",
+      "plant": "Geranium robertianum",
+      "source_assessment": "self_link",
+      "fine": {
+        "island": 0,
+        "mainland": 2
+      },
+      "coarse": {
+        "island": 3,
+        "mainland": 4
+      }
+    },
+    {
+      "predator": "Macroglossum stellatarum",
+      "moth": "Macroglossum stellatarum",
+      "plant": "Glaucium flavum",
+      "source_assessment": "self_link",
+      "fine": {
+        "island": 1,
+        "mainland": 1
+      },
+      "coarse": {
+        "island": 5,
+        "mainland": 6
+      }
+    },
+    {
+      "predator": "Macroglossum stellatarum",
+      "moth": "Macroglossum stellatarum",
+      "plant": "Helleborus foetidus",
+      "source_assessment": "self_link",
+      "fine": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse": {
+        "island": 0,
+        "mainland": 4
+      }
+    },
+    {
+      "predator": "Macroglossum stellatarum",
+      "moth": "Macroglossum stellatarum",
+      "plant": "Helleborus orientalis",
+      "source_assessment": "self_link",
+      "fine": {
+        "island": 0,
+        "mainland": 0
+      },
+      "coarse": {
+        "island": 0,
+        "mainland": 1
+      }
+    },
+    {
+      "predator": "Macroglossum stellatarum",
+      "moth": "Macroglossum stellatarum",
+      "plant": "Lonicera implexa",
+      "source_assessment": "self_link",
+      "fine": {
+        "island": 0,
+        "mainland": 3
+      },
+      "coarse": {
+        "island": 4,
+        "mainland": 8
+      }
+    },
+    {
+      "predator": "Macroglossum stellatarum",
+      "moth": "Macroglossum stellatarum",
+      "plant": "Prasium majus",
+      "source_assessment": "self_link",
+      "fine": {
+        "island": 0,
+        "mainland": 1
+      },
+      "coarse": {
+        "island": 1,
+        "mainland": 1
+      }
+    },
+    {
+      "predator": "Macroglossum stellatarum",
+      "moth": "Macroglossum stellatarum",
+      "plant": "Salvia pratensis",
+      "source_assessment": "self_link",
+      "fine": {
+        "island": 0,
+        "mainland": 2
+      },
+      "coarse": {
+        "island": 0,
+        "mainland": 3
+      }
+    }
+  ],
+  "moth_taxa": {
+    "Cisseps fulvicollis": 1810469,
+    "Macroglossum stellatarum": 1864652
+  },
+  "gbif_query_pages": {
+    "screen": 117,
+    "chains": 45
+  },
+  "unfiltered_database_matched_years": {
+    "0.05deg": {
+      "island": [
+        2025
+      ],
+      "mainland": [
+        2024,
+        2025
+      ]
+    },
+    "1deg": {
+      "island": [
+        2023,
+        2024,
+        2025
+      ],
+      "mainland": [
+        2019,
+        2021,
+        2023,
+        2024,
+        2025
+      ]
+    }
+  }
+}
