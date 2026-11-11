@@ -1,0 +1,493 @@
+{
+  "frozen_primary_hash": "37f3c2c519871b6905ffa81c5a14536b248611861ad143b1d4d77d95b7c6b00d",
+  "gbif": {
+    "downloaded": 30921,
+    "precise_present": 18799,
+    "assigned": 17852,
+    "input_sha256": {
+      "2019_9537238.json.gz": "211e8f74291dea40afb2e4ddfbae48daeba8e3ab212c5a725d38561e22de3fac",
+      "2019_5959942.json.gz": "b37a848dce47bf90bb077ebf15c15e9bb12c4b9aa7db3c4b1669fbea42e4a524",
+      "2021_9537238.json.gz": "99c6c339b91902e6148267153bb4b654ca9f53b8356a200ea5c813262348c31a",
+      "2021_5959942.json.gz": "afa89b0ee134244c5a6df28bf99e3c8bda135310f36c964c031ad03e0e6a02aa",
+      "2023_9537238.json.gz": "7bd368c71c1646c286ae3e8d16558d5a1ab15409b1acb420282ebf187d00b2be",
+      "2023_5959942.json.gz": "101fcd001737cb51a569fea1ef41f22d041e557299ad5003e5e89f8d6665c753",
+      "2024_9537238.json.gz": "0a45fbf244d7387863ad1372b74df0b7c6e9818fc2f78acbc1796e8a2c2aced8",
+      "2024_5959942.json.gz": "c24374a8be19b4afdf3da39dc38a0ba3ccd202411e83affcdab11cada875f152",
+      "2025_9537238.json.gz": "e4a267db91d48a7ab3d4c14cd1cc8e0b02016cb47818f172a43ade2fe0e106c7",
+      "2025_5959942.json.gz": "2d3aafb1343d6d61a31c4e8b9f3c489cfd5b6260913a46156430d7e9c9268ed0"
+    },
+    "query_scope": [
+      {
+        "year": 2019,
+        "taxon": "Hemidactylus frenatus",
+        "rows": 2939,
+        "coverage": "world"
+      },
+      {
+        "year": 2019,
+        "taxon": "Hemidactylus mabouia",
+        "rows": 1232,
+        "coverage": "world"
+      },
+      {
+        "year": 2021,
+        "taxon": "Hemidactylus frenatus",
+        "rows": 2599,
+        "coverage": "world"
+      },
+      {
+        "year": 2021,
+        "taxon": "Hemidactylus mabouia",
+        "rows": 1700,
+        "coverage": "world"
+      },
+      {
+        "year": 2023,
+        "taxon": "Hemidactylus frenatus",
+        "rows": 3439,
+        "coverage": "world"
+      },
+      {
+        "year": 2023,
+        "taxon": "Hemidactylus mabouia",
+        "rows": 2492,
+        "coverage": "world"
+      },
+      {
+        "year": 2024,
+        "taxon": "Hemidactylus frenatus",
+        "rows": 4744,
+        "coverage": "world"
+      },
+      {
+        "year": 2024,
+        "taxon": "Hemidactylus mabouia",
+        "rows": 2897,
+        "coverage": "world"
+      },
+      {
+        "year": 2025,
+        "taxon": "Hemidactylus frenatus",
+        "rows": 4862,
+        "coverage": "world"
+      },
+      {
+        "year": 2025,
+        "taxon": "Hemidactylus mabouia",
+        "rows": 4017,
+        "coverage": "world"
+      }
+    ],
+    "dataset_keys": [
+      "0645ccdb-e001-4ab0-9729-51f1755e007e",
+      "1850e2cd-37d5-4c56-9927-a20cae8acdc4",
+      "22a00d8c-1bf6-4e04-92b2-b58c7037bd4b",
+      "2aa6735e-274e-4d02-a013-482fc89d0888",
+      "3085139e-975b-415f-a46b-836a002cfaa0",
+      "34cdc6ac-77ab-42bc-9303-3b055dffa9b6",
+      "358fbd61-739f-4102-afc9-9d468f571e4d",
+      "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+      "5e67e42a-e2de-4848-920f-2a1a857c2c79",
+      "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "707853f6-cc81-4408-9e5a-8aa2f4f50ebc",
+      "761a54c8-e1af-4434-b861-cc7e4c9ec85f",
+      "768823ab-5726-4420-8cc7-d4c4c14fed52",
+      "775f7aae-521d-4b90-a1d2-69f491b181bf",
+      "7de15d3d-9582-4a0c-9dee-60b0897fea7e",
+      "83cbdde7-998f-4354-95de-72d885cc5863",
+      "87b8eaf5-a3ee-4144-80a2-cc6eaf71503a",
+      "8914dae4-bf3c-4659-b471-7f032ab54365",
+      "8a863029-f435-446a-821e-275f4f641165",
+      "8b053bb6-e54a-4250-bd61-e45e1bd0cb56",
+      "921ab2a6-c7ee-47fd-8df3-d36bff1ec00c",
+      "96ae8a00-c4f6-48e6-a99a-09e9bad57ae0",
+      "a244eea4-a8e0-4b54-9da5-3e9757ef5ab7",
+      "a7910107-b902-401c-989a-3b4e70c9070d",
+      "b22afcb8-2c53-44ca-b24d-32d0597fa299",
+      "b4b20e8e-b4fa-40d4-a0c5-b4c3a515a399",
+      "bb5fb23d-80b8-4867-8590-577543fbe5e6",
+      "c65e35d1-0e75-4bd5-bd7d-2a07382bc0ad",
+      "c980f5fd-86f1-40f2-8f20-4ce31eb73cd9",
+      "cf5e37a6-e657-4ee2-91c0-b1da03251a62",
+      "d3b6cb30-0a64-4f82-91ea-0bb14637ee17",
+      "d4919a44-090f-4cc6-8643-4c5f7906117f",
+      "d4f0993a-0f72-445e-8d5c-1b685e5268b1",
+      "dea05a0f-6245-4adc-9e76-c1335033b6f8",
+      "e0d7dc2b-2494-449d-b1b2-9d9b717e64ee",
+      "e2ddfdc4-c1ce-46f9-8466-3b92865a0d62",
+      "e6a07cea-2549-4980-a9d8-81959e8036a3",
+      "e715ca42-81bc-4168-9180-bd0c0ed1fef3"
+    ]
+  },
+  "support": [
+    {
+      "year": 2019,
+      "land_class": "island",
+      "primary": 73,
+      "documented_1deg": 11,
+      "documented_005deg": 6
+    },
+    {
+      "year": 2019,
+      "land_class": "mainland",
+      "primary": 710,
+      "documented_1deg": 89,
+      "documented_005deg": 22
+    },
+    {
+      "year": 2021,
+      "land_class": "island",
+      "primary": 110,
+      "documented_1deg": 8,
+      "documented_005deg": 3
+    },
+    {
+      "year": 2021,
+      "land_class": "mainland",
+      "primary": 1363,
+      "documented_1deg": 214,
+      "documented_005deg": 47
+    },
+    {
+      "year": 2023,
+      "land_class": "island",
+      "primary": 185,
+      "documented_1deg": 20,
+      "documented_005deg": 13
+    },
+    {
+      "year": 2023,
+      "land_class": "mainland",
+      "primary": 1820,
+      "documented_1deg": 262,
+      "documented_005deg": 69
+    },
+    {
+      "year": 2024,
+      "land_class": "island",
+      "primary": 238,
+      "documented_1deg": 38,
+      "documented_005deg": 14
+    },
+    {
+      "year": 2024,
+      "land_class": "mainland",
+      "primary": 2298,
+      "documented_1deg": 424,
+      "documented_005deg": 110
+    },
+    {
+      "year": 2025,
+      "land_class": "island",
+      "primary": 327,
+      "documented_1deg": 73,
+      "documented_005deg": 24
+    },
+    {
+      "year": 2025,
+      "land_class": "mainland",
+      "primary": 3574,
+      "documented_1deg": 687,
+      "documented_005deg": 195
+    }
+  ],
+  "landmasses_by_class": {
+    "island": 30,
+    "mainland": 4
+  },
+  "positive_same_1deg": 1826,
+  "matched_year_region_counts": {
+    "island": 88,
+    "mainland": 1236
+  },
+  "model_conditional_on_positive_documentation": {
+    "estimable": true,
+    "scope": "all",
+    "guild": "moth",
+    "balanced_year_region_landclass": true,
+    "n_site_years": 1324,
+    "n_island_site_years": 88,
+    "n_mainland_site_years": 1236,
+    "source_5degree_clusters": 15,
+    "year_region_groups": 34,
+    "beta_island_minus_mainland_slope_pp_per_log1p": -2.8031228385843425,
+    "SE_cluster_5deg": 2.797304860674718,
+    "95CI_cluster_5deg": [
+      -8.802745065804793,
+      3.1964993886361084
+    ],
+    "p_nominal": 0.33331132699818666,
+    "beta_mainland_pp_per_log1p": 0.7051075993283265,
+    "beta_island_pp_per_log1p": -2.098015239256016,
+    "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+    "no_true_pollinator_absence_inferred": true,
+    "not_local_effective_nocturnal_pollination": true
+  },
+  "moth_gbif": {
+    "downloaded": 21908,
+    "precise_present": 13889,
+    "assigned": 13453,
+    "input_sha256": {
+      "2019_1886251.json.gz": "3beb4afb83f17adfeea456247c714bac0d22f19efc9dba465a820f47964f6032",
+      "2019_7400814.json.gz": "767dfd8754d3613fa6039f691d3b69d3025539cc5f5b8a98f382a61810a76e97",
+      "2021_1886251.json.gz": "a6a7b3a89dd2a8cfafbabb08815d9e7eed006f68d29a5d5bf9c1b17f5ffb7297",
+      "2021_7400814.json.gz": "c9d3ccbd14388d7cf280445fa517bd90afbdb53f067612006911ac066d6e60f6",
+      "2023_1886251.json.gz": "4523265e7d965a62c20da643ed8b639ff466b0b30eb2f5f3833683008ccbaca1",
+      "2023_7400814.json.gz": "b2b93a90e415d02f93087326952ecb0c71e2b3bb3aa9569b3f2ee57e8bcc6654",
+      "2024_1886251.json.gz": "2b79720123ccfbeed33c7200dbc6d36839dbeb618df4dcf3f968a6321cfbdb46",
+      "2024_7400814.json.gz": "7f14eaf239dfaa8e90d516a6a953ea6b3b0f06af0305de60fe8eafb3b30dc1e3",
+      "2025_1886251.json.gz": "61d70ea240a02a876c0b2da6a72256e94cfb1918b382971258a0db82c7245086",
+      "2025_7400814.json.gz": "75aa28ec8f93e7fc89f1202cd75dcb71c74ce449f557f08bc98b5e096ce2f518"
+    },
+    "query_scope": [
+      {
+        "year": 2019,
+        "taxon": "Spoladea recurvalis",
+        "rows": 1074,
+        "coverage": "world"
+      },
+      {
+        "year": 2019,
+        "taxon": "Feltia subterranea",
+        "rows": 285,
+        "coverage": "world"
+      },
+      {
+        "year": 2021,
+        "taxon": "Spoladea recurvalis",
+        "rows": 2245,
+        "coverage": "world"
+      },
+      {
+        "year": 2021,
+        "taxon": "Feltia subterranea",
+        "rows": 647,
+        "coverage": "world"
+      },
+      {
+        "year": 2023,
+        "taxon": "Spoladea recurvalis",
+        "rows": 3654,
+        "coverage": "world"
+      },
+      {
+        "year": 2023,
+        "taxon": "Feltia subterranea",
+        "rows": 1114,
+        "coverage": "world"
+      },
+      {
+        "year": 2024,
+        "taxon": "Spoladea recurvalis",
+        "rows": 5687,
+        "coverage": "world"
+      },
+      {
+        "year": 2024,
+        "taxon": "Feltia subterranea",
+        "rows": 1180,
+        "coverage": "world"
+      },
+      {
+        "year": 2025,
+        "taxon": "Spoladea recurvalis",
+        "rows": 5238,
+        "coverage": "world"
+      },
+      {
+        "year": 2025,
+        "taxon": "Feltia subterranea",
+        "rows": 784,
+        "coverage": "world"
+      }
+    ],
+    "dataset_keys": [
+      "1f490aff-c9aa-4af2-952c-557e057074e7",
+      "2dd3b5c1-2a7f-4324-83d3-d05cff85676b",
+      "467aa349-720b-44d0-93b6-0d3b2d7058f2",
+      "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+      "5e43a220-a91d-485b-b608-58fd22693be7",
+      "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "72e4c986-88c9-4ce2-a805-c4fcfda92675",
+      "8a863029-f435-446a-821e-275f4f641165",
+      "95e635d4-f762-11e1-a439-00145eb45e9a",
+      "9a51436f-3c81-4b1a-92d6-6f0c1dbb05de",
+      "a67ec884-e895-4e14-a3c7-fc39795ee749",
+      "aa6c5ee6-d4d7-4a65-a04f-379cffbf4842",
+      "b124e1e0-4755-430f-9eab-894f25a9b59c",
+      "ba8b3250-6115-4680-8c21-6129c35ba738",
+      "c4583bb0-b6df-4c38-b18f-8b39d2da1a5b",
+      "c8ab6260-a5b3-4605-a810-130bc08cf7ea"
+    ]
+  },
+  "gecko_prey_legacy_plant_link": [
+    {
+      "gecko": "Hemidactylus frenatus",
+      "prey_stage": "any",
+      "relationship_rows": 7,
+      "named_prey": 5,
+      "named_prey_with_flower_link": 1,
+      "study_plant_names": 106,
+      "plants_on_primary_sites": 88,
+      "plants_on_gecko_positive_sites": 31,
+      "site_years_by_land": {
+        "island": 17,
+        "mainland": 89
+      }
+    },
+    {
+      "gecko": "Hemidactylus frenatus",
+      "prey_stage": "adult",
+      "relationship_rows": 3,
+      "named_prey": 3,
+      "named_prey_with_flower_link": 1,
+      "study_plant_names": 106,
+      "plants_on_primary_sites": 88,
+      "plants_on_gecko_positive_sites": 31,
+      "site_years_by_land": {
+        "island": 17,
+        "mainland": 89
+      }
+    },
+    {
+      "gecko": "Hemidactylus mabouia",
+      "prey_stage": "any",
+      "relationship_rows": 12,
+      "named_prey": 4,
+      "named_prey_with_flower_link": 1,
+      "study_plant_names": 3,
+      "plants_on_primary_sites": 3,
+      "plants_on_gecko_positive_sites": 2,
+      "site_years_by_land": {
+        "mainland": 3
+      }
+    },
+    {
+      "gecko": "Hemidactylus mabouia",
+      "prey_stage": "adult",
+      "relationship_rows": 7,
+      "named_prey": 3,
+      "named_prey_with_flower_link": 1,
+      "study_plant_names": 3,
+      "plants_on_primary_sites": 3,
+      "plants_on_gecko_positive_sites": 2,
+      "site_years_by_land": {
+        "mainland": 3
+      }
+    }
+  ],
+  "three_way_local_support": [
+    {
+      "gecko": "Hemidactylus frenatus",
+      "moth": "Spoladea recurvalis",
+      "gbif_stage": "any_stage",
+      "scale": "1deg",
+      "plants": 26,
+      "years": [
+        2019,
+        2021,
+        2023,
+        2024,
+        2025
+      ],
+      "site_years_by_land": {
+        "island": 13,
+        "mainland": 71
+      }
+    },
+    {
+      "gecko": "Hemidactylus frenatus",
+      "moth": "Spoladea recurvalis",
+      "gbif_stage": "adult_recorded",
+      "scale": "1deg",
+      "plants": 26,
+      "years": [
+        2019,
+        2021,
+        2023,
+        2024,
+        2025
+      ],
+      "site_years_by_land": {
+        "island": 9,
+        "mainland": 69
+      }
+    },
+    {
+      "gecko": "Hemidactylus frenatus",
+      "moth": "Spoladea recurvalis",
+      "gbif_stage": "any_stage",
+      "scale": "0.05deg",
+      "plants": 5,
+      "years": [
+        2019,
+        2024,
+        2025
+      ],
+      "site_years_by_land": {
+        "island": 2,
+        "mainland": 5
+      }
+    },
+    {
+      "gecko": "Hemidactylus frenatus",
+      "moth": "Spoladea recurvalis",
+      "gbif_stage": "adult_recorded",
+      "scale": "0.05deg",
+      "plants": 5,
+      "years": [
+        2019,
+        2024,
+        2025
+      ],
+      "site_years_by_land": {
+        "island": 2,
+        "mainland": 5
+      }
+    },
+    {
+      "gecko": "Hemidactylus mabouia",
+      "moth": "Feltia subterranea",
+      "gbif_stage": "any_stage",
+      "scale": "1deg",
+      "plants": 1,
+      "years": [
+        2021
+      ],
+      "site_years_by_land": {
+        "mainland": 1
+      }
+    },
+    {
+      "gecko": "Hemidactylus mabouia",
+      "moth": "Feltia subterranea",
+      "gbif_stage": "adult_recorded",
+      "scale": "1deg",
+      "plants": 1,
+      "years": [
+        2021
+      ],
+      "site_years_by_land": {
+        "mainland": 1
+      }
+    },
+    {
+      "gecko": "Hemidactylus mabouia",
+      "moth": "Feltia subterranea",
+      "gbif_stage": "any_stage",
+      "scale": "0.05deg",
+      "plants": 0,
+      "years": [],
+      "site_years_by_land": {}
+    },
+    {
+      "gecko": "Hemidactylus mabouia",
+      "moth": "Feltia subterranea",
+      "gbif_stage": "adult_recorded",
+      "scale": "0.05deg",
+      "plants": 0,
+      "years": [],
+      "site_years_by_land": {}
+    }
+  ]
+}
