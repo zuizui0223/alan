@@ -1,0 +1,24 @@
+{
+  "observed_site_year_shares": {
+    "island": {
+      "size": 933,
+      "mean": 31.928961248753563,
+      "median": 33.333333333333336
+    },
+    "mainland": {
+      "size": 9765,
+      "mean": 29.285718341009122,
+      "median": 28.571428571428573
+    }
+  },
+  "total_islands": 186,
+  "matched_islands": 129,
+  "matched_regions": 28,
+  "matched_region_years": 72,
+  "island_region_year_rows": 229,
+  "between_island_pp_per_log1p": -5.432594736221543,
+  "ci95_cluster_region": [
+    -13.707067763634566,
+    2.8418782911914784
+  ]
+}
