@@ -104,9 +104,9 @@ def run(inputs: Path, signed: Path) -> dict:
     flags = pd.read_csv(ROOT / "results/globi_v011_fiveyear/source_moth_species.csv")
     assert not flags.accepted_name.duplicated().any()
     flags = flags.set_index("accepted_name")
-    assert set(traits.index).issubset(flags.index)
+    # The positive-only source table legitimately omits species with neither GloBI claim.
     for tag in ("legacy_wcvp", "v011_wcvp"):
-        traits[tag] = flags.loc[traits.index, tag].astype(str).str.lower().eq("true").to_numpy()
+        traits[tag] = flags[tag].reindex(traits.index).fillna(False).astype(str).str.lower().eq("true").to_numpy()
     assert int(traits.v011_wcvp.sum()) == 30
     assert int(traits.legacy_wcvp.sum()) == 54
 
