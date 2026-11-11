@@ -1,0 +1,126 @@
+{
+  "schema": "alan_globi_primary_island_source_verified_20261111_v1",
+  "status": "actual_source_join_exploratory_support_NOT_alan_gecko_effect",
+  "sources": {
+    "GloBI_stage2": {
+      "repository": "zuizui0223/mois",
+      "run_id": 41976552977,
+      "artifact_id": 13391803415,
+      "member_sha256": "a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994"
+    },
+    "island_historical_flora": {
+      "repository": "zuizui0223/island",
+      "run_id": 34232450884,
+      "artifact_id": 10058653212,
+      "member_sha256": "6b5006322d15dd87aa3aad3b4dd050d4c6420485521be314ae511f39e05b859a"
+    },
+    "photo_support": {
+      "repository": "zuizui0223/mois",
+      "run_id": 42171173575,
+      "artifact_id": 13481850056,
+      "member_sha256": "acaf9287a29ef01e2fc79fd4b3450b4c09bb5eee16737e55b4326a80359cbdf8"
+    }
+  },
+  "source": {
+    "globi_claim_rows": 61967,
+    "moth_claim_rows": 13262,
+    "butterfly_claim_rows": 48705,
+    "study_rows_with_iNaturalist_string": 26558,
+    "study_rows_with_trophiCH_string": 11945,
+    "historical_island_species_rows": 1039757,
+    "historical_island_IDs": 4505
+  },
+  "scenarios": {
+    "all_GloBI_bounded_stage2": {
+      "interaction_rows": 61967,
+      "moth_plant_names": 2362,
+      "butterfly_plant_names": 6193,
+      "both_guild_record_names": 1843,
+      "moth_recorded_only_names_not_true_exclusivity": 519,
+      "exact_moth_flora_species_names": 1880,
+      "moth_island_species_rows": 175485,
+      "islands_moth_ge1": 3404,
+      "islands_moth_ge3": 2729,
+      "islands_moth_ge5": 2417,
+      "islands_moth_ge10": 2019,
+      "islands_both_positive_guilds_ge3": 2724,
+      "islands_recorded_only_guilds_ge3": 1430,
+      "introduced_origin_moth_species_NOT_naturalization": 688,
+      "introduced_origin_moth_islands_NOT_naturalization": 121,
+      "introduced_origin_moth_island_species_rows": 4745,
+      "historical_flora_origin_rows": {
+        "native": 13433,
+        "introduced": 4745,
+        "unresolved": 157307
+      }
+    },
+    "exclude_iNaturalist_interaction_sources": {
+      "interaction_rows": 35409,
+      "moth_plant_names": 1057,
+      "exact_moth_flora_species_names": 821,
+      "moth_island_species_rows": 104044,
+      "islands_moth_ge1": 2890,
+      "islands_moth_ge3": 2155,
+      "islands_moth_ge5": 1881,
+      "islands_moth_ge10": 1525,
+      "introduced_origin_moth_species_NOT_naturalization": 347,
+      "introduced_origin_moth_islands_NOT_naturalization": 110
+    },
+    "exclude_iNaturalist_and_trophiCH": {
+      "interaction_rows": 23464,
+      "moth_plant_names": 786,
+      "exact_moth_flora_species_names": 634,
+      "moth_island_species_rows": 86827,
+      "islands_moth_ge1": 2850,
+      "islands_moth_ge3": 2116,
+      "islands_moth_ge5": 1848,
+      "islands_moth_ge10": 1485,
+      "introduced_origin_moth_species_NOT_naturalization": 265,
+      "introduced_origin_moth_islands_NOT_naturalization": 110
+    },
+    "non_iNaturalist_visitsFlowersOf_only": {
+      "interaction_rows": 18891,
+      "moth_plant_names": 540,
+      "exact_moth_flora_species_names": 469,
+      "moth_island_species_rows": 80268,
+      "islands_moth_ge1": 2679,
+      "islands_moth_ge3": 2006,
+      "islands_moth_ge5": 1728,
+      "islands_moth_ge10": 1384,
+      "introduced_origin_moth_species_NOT_naturalization": 236,
+      "introduced_origin_moth_islands_NOT_naturalization": 109
+    }
+  },
+  "photo_support": {
+    "islands": 889,
+    "island_years": 3575,
+    "all_original_plant_photos": 61734,
+    "photos_of_GloBI_moth_positive_plant_taxa_NOT_actual_moth_photos": 14041,
+    "islands_with_moth_positive_plant_photos_ge1": 590,
+    "islands_ge5": 213,
+    "islands_ge20": 72,
+    "islands_positive_in_2_years": 344,
+    "quarterly_not_annual_same_year_light_islands": 19,
+    "quarterly_not_annual_light_island_years": 25,
+    "quarterly_not_annual_with_moth_positive_plant_photo_island_years": 24
+  },
+  "stable_source_next_step": {
+    "record": "https://zenodo.org/records/22691479",
+    "version": "0.11",
+    "published": "2026-09-10",
+    "interactions_csv_gz_md5": "df4a2adaef38b848d00556df5019ed3e",
+    "interactions_csv_gz_sha256": "670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3",
+    "approx_compressed_bytes": "2.5 GB",
+    "downloaded_for_this_audit": false
+  },
+  "limitations": {
+    "species_name_match_not_island_moth_visitation": true,
+    "GloBI_recorded_only_not_verified_pollinator_absence": true,
+    "moth_visit_not_effective_night_pollination": true,
+    "introduced_not_naturalized": true,
+    "photo_light_is_quarterly_proxy_not_annual": true,
+    "annual_VIIRS_gecko_three_way_not_fitted": true,
+    "FD_morphology_not_used_as_filter": true,
+    "original_species_island_private_rows_not_published": true
+  }
+}

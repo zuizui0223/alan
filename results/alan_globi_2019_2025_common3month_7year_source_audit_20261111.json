@@ -1,0 +1,177 @@
+{
+  "schema": "alan_GloBI_2019_2025_uniform_JanAprJul_20261111_v1",
+  "status": "actual_authentic_source_observational_exploration_not_confirmatory",
+  "research_home": "zuizui0223/alan PR #40; island and fd Chapter 1 unchanged",
+  "GloBI_source": {
+    "rows": 61967,
+    "sha256": "a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994",
+    "definition": "plant species name with a positive moth-family flower-interaction record somewhere; NOT GloBI full v0.11 and NOT local effective pollination"
+  },
+  "photo_source": {
+    "original_photo_sha256": "f033661d76e07898a5c13199a55c5d0ce6e55353daa48b0058c456979e90644c",
+    "accepted_taxon_map_sha256": "dc5bb0e3686fde0cfd327e4336245d0ceae3c7657b3bd12841bb814cc94d1eb2",
+    "accepted_name_sha256": "9cd6aa7ca29f00c64283bcc08dcb778e212b644b837e64070051339b11d8b7b3"
+  },
+  "exposure": {
+    "years": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "months": [
+      1,
+      4,
+      7
+    ],
+    "min_valid_months": 2,
+    "source": "same-month sampled VIIRS original monthly pixels, NOT annual VNL V2",
+    "negative_provider_OK_radiance": "retained as valid measurements; clipped only at log1p transform",
+    "population": "excluded in ALL years, since 2020 only uses Global1 rather than consistently processed WorldPop R2024B UC"
+  },
+  "source_reconstruction": {
+    "all_photo_sites_with_at_least_one_WCVP_name": 284950,
+    "broad_photo_sites_with_3photos_and_2species_and_at_least_2_valid_months": 48005,
+    "year2020": {
+      "complete_knownland_reference_sites": 37084,
+      "verified_sourced_photo_geography_subset": 30630,
+      "partial": true,
+      "matched_island": 83,
+      "matched_mainland": 505,
+      "matched_geographical_blocks": 23
+    },
+    "year2022": {
+      "knownland_environment_sites": 52075,
+      "october_provider_error_rows": 52075,
+      "matched_island": 181,
+      "matched_mainland": 1876,
+      "matched_geographical_blocks": 35
+    },
+    "source_sample_repeated_sites_2plus_old5": 7613,
+    "source_sample_repeated_sites_2plus_7year_partial": 9540,
+    "source_sample_repeated_island_sites_old5": 906,
+    "source_sample_repeated_island_sites_7year_partial": 1159
+  },
+  "model": "Equal-total island/mainland weights within actually shared observation year × 5-degree geographic blocks; dependent variable 100 × distinct originally photographed accepted species with GloBI-positive moth visitors / all originally photographed accepted species. Year-region fixed effects; log1p(VIIRS) × island; log photo opportunities, log botanical observed species, bio5, log rainfall, elevation; 5-degree geographic cluster-robust t CI, exploratory.",
+  "coefficients": {
+    "fiveyear_same_3month_no_population": {
+      "n": 10989,
+      "island": 950,
+      "spatial_blocks": 79,
+      "slope_difference": -1.8769311097563994,
+      "ci95": [
+        -3.6809820670076587,
+        -0.07288015250514013
+      ],
+      "nominal_p": 0.041639965485362376,
+      "annual_slope_change": -0.17062072444141266,
+      "annual_trend_nominal_p": 0.7279435349925653
+    },
+    "sixyear_plus_2022_no_partial_2020": {
+      "n": 13046,
+      "island": 1131,
+      "spatial_blocks": 80,
+      "slope_difference": -1.6670139138029743,
+      "ci95": [
+        -3.35077404939723,
+        0.01674622179128127
+      ],
+      "nominal_p": 0.05226643626673184,
+      "annual_slope_change": -0.2174753709099708,
+      "annual_trend_nominal_p": 0.6336286306772558
+    },
+    "sevenyear_partial_2020": {
+      "n": 13634,
+      "island": 1214,
+      "mainland": 12420,
+      "spatial_blocks": 82,
+      "slope_difference": -1.2032083910697993,
+      "ci95": [
+        -2.843022214257958,
+        0.43660543211835945
+      ],
+      "nominal_p": 0.1481780740580422,
+      "annual_slope_change": -0.44789288527474674,
+      "annual_trend_ci95": [
+        -1.2295334378134755,
+        0.3337476672639819
+      ],
+      "annual_trend_nominal_p": 0.25759516325020393
+    },
+    "sevenyear_three_months_all_valid": {
+      "n": 12115,
+      "island": 1015,
+      "spatial_blocks": 70,
+      "slope_difference": -0.6816744833131868,
+      "ci95": [
+        -2.383037134729475,
+        1.0196881681031011
+      ],
+      "nominal_p": 0.4268580426177483
+    },
+    "sevenyear_fivephotos_threespecies": {
+      "n": 3496,
+      "island": 352,
+      "spatial_blocks": 41,
+      "slope_difference": -0.15284409806311522,
+      "ci95": [
+        -2.272862185020388,
+        1.9671739888941573
+      ],
+      "nominal_p": 0.8848815477107073
+    },
+    "repeated_site_7year": {
+      "sites": 2238,
+      "site_years": 6453,
+      "island_site_years": 556,
+      "mainland_site_years": 5897,
+      "spatial_blocks": 34,
+      "site_fixed_effect_slope_difference": -5.017785228656315,
+      "site_fixed_effect_ci95": [
+        -24.71146271443571,
+        14.675892257123081
+      ],
+      "site_fixed_effect_nominal_p": 0.607653460356251,
+      "site_fixed_effect_annual_slope_change": -0.27547058069548724,
+      "site_fixed_effect_annual_slope_change_ci95": [
+        -1.159129974139658,
+        0.6081888127486835
+      ],
+      "site_fixed_effect_annual_trend_nominal_p": 0.5302988450197528
+    },
+    "sevenyear_moth_minus_butterfly": {
+      "mean_slope_difference": -0.34785522895868815,
+      "mean_ci95": [
+        -2.17251638000595,
+        1.4768059220885736
+      ],
+      "mean_nominal_p": 0.7054459647967344,
+      "annual_slope_difference_change": -1.0827137170146177,
+      "annual_ci95": [
+        -1.7006166085795358,
+        -0.46481082544969954
+      ],
+      "annual_nominal_p": 0.0007935686504896913
+    },
+    "sevenyear_non_iNaturalist_moth_minus_butterfly_trend": {
+      "beta": -0.3998276129239369,
+      "ci95": [
+        -0.94375515898134,
+        0.14409993313346608
+      ],
+      "nominal_p": 0.14745474542995873
+    }
+  },
+  "warnings": [
+    "The 2020 environment/landmass source is the archived final 30,630-site tranche, not all 37,084 known-land sites. It is selected and incomplete.",
+    "Uniform 3-month VIIRS samples are not annual satellite composites.",
+    "This is source-matched photographic composition, not moth visitation observations, naturalization success or biological population decline.",
+    "The negative 7-year light association is not statistically robust to year inclusion or cohort strictness.",
+    "No preregistered primary null or multiplicity-corrected discovery is claimed.",
+    "The nominal annual moth-minus-butterfly contrast result is predominantly data-source sensitive and non-robust to iNaturalist exclusion, not a moth decline.",
+    "No protected original photo coordinates, species-site identities, private derived source rows, or GloBI full release byte stream are published."
+  ]
+}

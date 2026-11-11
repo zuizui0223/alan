@@ -1,0 +1,37 @@
+name: ALAN full GloBI predator-guild flower/photo light source replay tests
+
+on:
+  push:
+    branches:
+      - research/moth-gecko-flora-feasibility-20261111
+    paths:
+      - .github/workflows/alan-globi-crossguild-photo-light-source-tests.yml
+  pull_request:
+    paths:
+      - scripts/analysis/alan_globi_crossguild_photo_light_replay_20261111.py
+      - tests/test_alan_globi_crossguild_photo_light_replay_20261111.py
+      - .github/workflows/alan-globi-crossguild-photo-light-source-tests.yml
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-model-invariants:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Install source model dependencies
+        run: python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2 statsmodels==0.14.5
+      - name: Validate code and numerical invariants
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/analysis/alan_globi_crossguild_photo_light_replay_20261111.py
+          python -m unittest discover -s tests -p test_alan_globi_crossguild_photo_light_replay_20261111.py -v
+      - name: Claim limit
+        run: echo "Synthetic tests validate the estimator only; real source-positive numerical aggregate and original source SHAs are separately recorded."

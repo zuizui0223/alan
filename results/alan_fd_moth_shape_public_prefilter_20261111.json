@@ -1,0 +1,45 @@
+{
+  "schema": "alan_fd_moth_shape_public_reference_prefilter_v1",
+  "status": "public_source_count_only_not_moth_pollination_evidence",
+  "source": {
+    "repository": "zuizui0223/island",
+    "commit": "d4a5dafab5f0737ea6c1c1c0263fc20decf6035c",
+    "path": "results/floral_space_20261106/all/profile_coordinates.csv",
+    "blob_sha": "982ecb538eea67fff290c6025be7f5c5a093596d"
+  },
+  "method": "Across exactly 496 original fd reference profile rows, match flower_primary_color exactly white AND floral_form exactly one of tubular, salverform, funnel_trumpet. Never split multistate sets. Sum n_species_scope only for those rows; tube depth, nativity and moth visits are NOT present in reference.",
+  "counts": {
+    "all_reference_profiles": 496,
+    "white_only_reference_profiles": 28,
+    "strict_white_plus_single_mothlike_form_profiles": 3,
+    "white_reference_n_species_scope_sum": 3280,
+    "strict_prefilter_n_species_scope_sum": 1125
+  },
+  "matched_profiles": [
+    {
+      "profile_id": 434,
+      "flower_primary_color": "white",
+      "floral_form": "funnel_trumpet",
+      "n_species_scope": 243
+    },
+    {
+      "profile_id": 442,
+      "flower_primary_color": "white",
+      "floral_form": "salverform",
+      "n_species_scope": 53
+    },
+    {
+      "profile_id": 446,
+      "flower_primary_color": "white",
+      "floral_form": "tubular",
+      "n_species_scope": 829
+    }
+  ],
+  "prohibitions": {
+    "no_tube_depth_test": true,
+    "no_gecko_or_ALAN_test": true,
+    "no_naturalized_status": true,
+    "not_obligate_moth_plant_count": true,
+    "no_island_effect_estimate": true
+  }
+}

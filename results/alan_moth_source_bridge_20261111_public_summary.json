@@ -1,0 +1,69 @@
+{
+  "schema": "alan_moth_source_bridge_20261111_public_summary_v1",
+  "status": "ACTUAL source-joined feasibility, NOT measured ALAN-gecko-naturalization effect",
+  "source_runs": [
+    {
+      "repository": "zuizui0223/island",
+      "run_id": 34232450884,
+      "scope": "historical September 2026 trait and origin snapshot"
+    },
+    {
+      "repository": "zuizui0223/mois",
+      "run_id": 41976552977,
+      "scope": "61,967 positive GloBI moth/butterfly records"
+    },
+    {
+      "repository": "zuizui0223/mois",
+      "run_id": 42171173575,
+      "scope": "889 island source photo panel"
+    }
+  ],
+  "source_members_sha256": {
+    "trait_all": "2d95136fc7df1dcce92aab738ce0364cdb1434746e1f7b794c529900192cbf4d",
+    "trait_direct": "d7d6a0372ce7f3ebe958047a222ae0504f01564e364f93bab360273235c6661b",
+    "island_status": "6b5006322d15dd87aa3aad3b4dd050d4c6420485521be314ae511f39e05b859a",
+    "GloBI": "a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994",
+    "island_photo_aggregate": "acaf9287a29ef01e2fc79fd4b3450b4c09bb5eee16737e55b4326a80359cbdf8"
+  },
+  "flora_status_pairs": 1039757,
+  "documented_flora_islands": 4505,
+  "source_photo_islands": 889,
+  "source_photo_island_years": 3575,
+  "GloBI_records": 61967,
+  "GloBI_distinct_botanical_names": 6712,
+  "all_scope": {
+    "colour_and_form_names": 15382,
+    "colour_form_depth_complete_names": 1918,
+    "white_single_tubular_form_names": 950,
+    "candidate_names_missing_tube_depth": 881,
+    "candidate_names_tube_depth_known": 69,
+    "strict_white_single_tubular_deep_names": 10,
+    "strict_candidates_with_recorded_moth_flower_visits": 0,
+    "broad_candidates_with_positive_moth_flower_visit": 14,
+    "broad_candidate_observed_island_taxon_pairs": 7477,
+    "broad_candidate_observed_islands": 1740,
+    "broad_candidate_introduced_record_species": 48,
+    "broad_candidate_introduced_record_islands": 67,
+    "broad_candidate_introduced_islands_with_provisional_photo_ID_match": 59,
+    "broad_plus_moth_positive_introduced_record_species": 5,
+    "broad_plus_moth_positive_introduced_record_islands": 8
+  },
+  "direct_scope": {
+    "colour_and_form_names": 6736,
+    "colour_form_depth_complete_names": 975,
+    "white_single_tubular_form_names": 738,
+    "candidate_names_missing_tube_depth": 683,
+    "candidate_names_tube_depth_known": 55,
+    "strict_white_single_tubular_deep_names": 10,
+    "broad_candidate_introduced_record_islands": 67,
+    "broad_plus_moth_positive_introduced_record_islands": 8
+  },
+  "interpretation_boundaries": {
+    "introduced_is_NOT_naturalized": true,
+    "positive_moth_flower_visit_is_NOT_effective_nocturnal_pollination": true,
+    "no_record_is_NOT_confirmed_absence": true,
+    "photo_island_ID_match_does_NOT_guarantee_identical_polygon": true,
+    "no_gecko_or_annual_VIIRS_3way_data_join": true,
+    "restricted_species_to_trait_and_species_to_island_raw_rows_NOT_published": true
+  }
+}

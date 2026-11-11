@@ -1,0 +1,44 @@
+name: ALAN GloBI five observed-year temporal source tests (synthetic only)
+on:
+  push:
+    branches:
+      - research/moth-gecko-flora-feasibility-20261111
+    paths:
+      - .github/workflows/alan-globi-fiveyear-temporal-tests.yml
+      - scripts/analysis/alan_globi_fiveyear_temporal.py
+      - scripts/analysis/alan_globi_photo_month_source.py
+      - tests/test_alan_globi_fiveyear_temporal.py
+  pull_request:
+    paths:
+      - .github/workflows/alan-globi-fiveyear-temporal-tests.yml
+      - scripts/analysis/alan_globi_fiveyear_temporal.py
+      - scripts/analysis/alan_globi_photo_month_source.py
+      - tests/test_alan_globi_fiveyear_temporal.py
+
+permissions:
+  contents: read
+
+jobs:
+  fiveyear-temporal-math-and-source-invariants:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen calculation dependencies
+        run: |
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5
+      - name: Compile temporal and photographic season scripts
+        run: |
+          python -m py_compile scripts/analysis/alan_globi_fiveyear_temporal.py scripts/analysis/alan_globi_photo_month_source.py
+      - name: Verify exact weighted fixed-effect numerical equivalence and genuine photo source contract
+        run: |
+          python -m unittest discover -s tests -p 'test_alan_globi_fiveyear_temporal.py' -v
+      - name: Preserve empirical interpretation limit
+        run: |
+          echo 'Synthetic test success is NOT GloBI full version extraction, a causal time trend or source validation of the private original photo cohort.'

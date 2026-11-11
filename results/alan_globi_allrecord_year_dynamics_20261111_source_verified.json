@@ -1,0 +1,318 @@
+{
+  "schema": "alan_globi_5_observed_years_photo_temporal_20261111_public_aggregate_v1",
+  "status": "Executed original-source observational associations; no biological time trend established",
+  "source": {
+    "GloBI_legacy": "61,967 bounded positive moth/butterfly source records, ALL used in primary",
+    "GloBI_sha256": "a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994",
+    "original_one_photo_per_observation_sha256": "f033661d76e07898a5c13199a55c5d0ce6e55353daa48b0058c456979e90644c",
+    "private_site_year_source_sha256": "66dffdae13ec3ece2d5c74e38049a136ae0741c129e31ceac5e58fa4498888d5",
+    "months_derived_source_sha256": "4fa9d19844284595b6543991250302585adef3b7158fb15d29e7e2447389bdab",
+    "years": [
+      2019,
+      2021,
+      2023,
+      2024,
+      2025
+    ],
+    "years_missing": [
+      2020,
+      2022
+    ],
+    "ALAN_exposure": "source-verified same-year FOUR-month VIIRS radiance, not 12-month annual exposure",
+    "denominator": "Distinct accepted plant species actually photographed at 0.05-degree cell × year",
+    "outcome": "Percent with GloBI-positive moth visit somewhere; NOT actual site moth visits",
+    "original_photo_timing": "416,735 original photo opportunities reconciled across 213,276 source site-years",
+    "original_month_multimonth_sites": 49994
+  },
+  "analysis": {
+    "model": "Within original year x 5-degree region: separate/pooled island-vs-mainland log1p(VIIRS) slope difference; year-region fixed effects, geographic 5-degree cluster CR1; region-year island/mainland opportunity-balanced; population, photo effort, species support, climate, elevation covariates",
+    "broad_cohort": {
+      "minimum_photo_attempts": 3,
+      "minimum_documented_plant_species": 2,
+      "island_site_years": 933,
+      "mainland_site_years": 9765,
+      "spatial_blocks": 78,
+      "year_region_blocks": 195
+    },
+    "strict_cohort": {
+      "minimum_photo_attempts": 5,
+      "minimum_documented_plant_species": 3,
+      "island_site_years": 265,
+      "mainland_site_years": 2658,
+      "spatial_blocks": 35,
+      "year2019": {
+        "island": 19,
+        "blocks": 8
+      },
+      "year2021": {
+        "island": 28,
+        "blocks": 9
+      },
+      "strict_year_heterogeneity_unsafe_due_sparse_early_years": true
+    },
+    "year_site_counts": [
+      {
+        "year": 2019,
+        "island": 73,
+        "mainland": 710,
+        "spatial_blocks": 24
+      },
+      {
+        "year": 2021,
+        "island": 110,
+        "mainland": 1363,
+        "spatial_blocks": 30
+      },
+      {
+        "year": 2023,
+        "island": 185,
+        "mainland": 1820,
+        "spatial_blocks": 42
+      },
+      {
+        "year": 2024,
+        "island": 238,
+        "mainland": 2298,
+        "spatial_blocks": 42
+      },
+      {
+        "year": 2025,
+        "island": 327,
+        "mainland": 3574,
+        "spatial_blocks": 57
+      }
+    ]
+  },
+  "all_GloBI_moth_primary": {
+    "pooled_slope_diff": {
+      "beta": -1.901720622,
+      "ci95": [
+        -3.705839033,
+        -0.097602212
+      ],
+      "p_nominal": 0.039096
+    },
+    "per_year": [
+      {
+        "year": 2019,
+        "beta": 2.219154319,
+        "ci95": [
+          -3.366961481,
+          7.805270119
+        ],
+        "p": 0.419629
+      },
+      {
+        "year": 2021,
+        "beta": -6.426973721,
+        "ci95": [
+          -13.74379774,
+          0.889850298
+        ],
+        "p": 0.08284
+      },
+      {
+        "year": 2023,
+        "beta": -1.437563645,
+        "ci95": [
+          -5.01026779,
+          2.135140501
+        ],
+        "p": 0.421135
+      },
+      {
+        "year": 2024,
+        "beta": -2.620387817,
+        "ci95": [
+          -5.834415922,
+          0.593640288
+        ],
+        "p": 0.107301
+      },
+      {
+        "year": 2025,
+        "beta": -1.918783419,
+        "ci95": [
+          -4.609638374,
+          0.772071536
+        ],
+        "p": 0.158713
+      }
+    ],
+    "different_year_slopes_global_F": {
+      "F": 2.007513615,
+      "df_num": 4,
+      "df_den": 77,
+      "p_nominal": 0.10173803
+    },
+    "linear_change_in_island_minus_mainland_light_slope_per_calendar_year": {
+      "beta": -0.24095266,
+      "ci95": [
+        -1.17963056,
+        0.697725241
+      ],
+      "p_nominal": 0.61071393
+    },
+    "photo_month_and_hemisphere_adjusted_change": {
+      "beta": -0.244294107,
+      "ci95": [
+        -1.206228861,
+        0.717640647
+      ],
+      "p_nominal": 0.61451096
+    },
+    "pooled_leave_one_year_out": [
+      {
+        "omit_year": 2019,
+        "beta": -2.422393179
+      },
+      {
+        "omit_year": 2021,
+        "beta": -1.333656994
+      },
+      {
+        "omit_year": 2023,
+        "beta": -2.158239013
+      },
+      {
+        "omit_year": 2024,
+        "beta": -1.6468573
+      },
+      {
+        "omit_year": 2025,
+        "beta": -2.014912873
+      }
+    ],
+    "same_photo_sites_repeated_min2_years": 2064,
+    "source_sites_all_five_observed_years": 113,
+    "source_island_sites_all_five_observed_years": 5,
+    "repeated_site_geographic_common_cohort": {
+      "sites": 1546,
+      "photo_site_years": 4203,
+      "island_site_years": 359,
+      "mainland_site_years": 3844,
+      "spatial_blocks": 27
+    },
+    "repeated_site_FE_pooled": {
+      "beta": -2.333323112,
+      "ci95": [
+        -26.47611354,
+        21.80946732
+      ],
+      "p": 0.844074
+    },
+    "repeated_site_FE_year_change": {
+      "beta": -0.359635443,
+      "ci95": [
+        -2.397886956,
+        1.678616071
+      ],
+      "p": 0.719773
+    },
+    "same_region_year_overlapping_brightness_trend": {
+      "beta": -0.344154291,
+      "ci95": [
+        -1.776586445,
+        1.088277862
+      ],
+      "p": 0.629023
+    },
+    "strict_cohort_year_change": {
+      "beta": -0.515643918,
+      "ci95": [
+        -2.052579767,
+        1.021291931
+      ],
+      "p": 0.499971
+    },
+    "exclude_iNaturalist_year_change": {
+      "beta": -0.006256212,
+      "ci95": [
+        -0.416775233,
+        0.404262809
+      ],
+      "p": 0.975869
+    },
+    "claim": "No demonstrated monotonic temporal strengthening of the moth-positive plant light association"
+  },
+  "secondary_moth_minus_butterfly": {
+    "broad_year_change": {
+      "beta": -1.190121877,
+      "ci95": [
+        -2.006520703,
+        -0.373723052
+      ],
+      "p_nominal": 0.00482219
+    },
+    "photo_season_adjusted": {
+      "beta": -1.177185426,
+      "ci95": [
+        -1.993107788,
+        -0.361263064
+      ],
+      "p_nominal": 0.005252917
+    },
+    "butterfly_positive_side_year_change": {
+      "beta": 0.949169218,
+      "ci95": [
+        0.166463311,
+        1.731875125
+      ],
+      "p_nominal": 0.01811891
+    },
+    "moth_positive_side_year_change": {
+      "beta": -0.24095266,
+      "ci95": [
+        -1.17963056,
+        0.697725241
+      ],
+      "p_nominal": 0.610714
+    },
+    "exclude_iNaturalist_contrast_change": {
+      "beta": -0.661650864,
+      "ci95": [
+        -1.298042782,
+        -0.025258946
+      ],
+      "p_nominal": 0.0417778
+    },
+    "strict_cohort_change": {
+      "beta": -0.834548056,
+      "ci95": [
+        -2.102535397,
+        0.433439285
+      ],
+      "p_nominal": 0.18992
+    },
+    "repeated_site_FE_change": {
+      "beta": -1.384325688,
+      "ci95": [
+        -3.043547278,
+        0.274895903
+      ],
+      "p_nominal": 0.098247
+    },
+    "common_brightness_overlap_change": {
+      "beta": -1.529543705,
+      "ci95": [
+        -2.700629989,
+        -0.358457421
+      ],
+      "p_nominal": 0.0119164
+    },
+    "conclusion": "Suggestive contrast dynamics predominantly due to changing butterfly-positive photo composition; not consistent in strict/repeated-site cohorts; not evidence of moth decline"
+  },
+  "interpretation": {
+    "all_source_primary_but_provenance_restricted_sensitivity_retained": true,
+    "missing_2020_2022_precludes_continuous_annual_time_series": true,
+    "season_of_plant_photography_not_nocturnal_activity": true,
+    "original_photo_composition_not_species_population_change": true,
+    "GloBI_no_record_not_true_pollinator_absence": true,
+    "no_local_moth_visitation_confirmed_from_global_GloBI_flag": true,
+    "both_guild_evidence_not_independent_moth_daytime_controls": true,
+    "original_VIIRS_four_month_not_annual_light": true,
+    "no_gecko_naturalization_mediation_or_causal_effect": true,
+    "multiple_posthoc_tests_not_preregistered": true,
+    "no_private_location_or_species_by_island_rows_exported": true
+  }
+}

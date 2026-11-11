@@ -1,0 +1,86 @@
+{
+  "schema": "alan_GloBI_v011_full_24m_predator_and_flower_multi_role_source_verified_20261111",
+  "status": "SOURCE_COMPLETE_BROAD_RELATIONSHIP_SCREEN; stricter eats/preysOn vs kills and adult/larva audit separately pending",
+  "source": {
+    "zenodo": "https://zenodo.org/records/22691479",
+    "SHA256": "670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3",
+    "n_interactions": 24453954,
+    "github_actions_run": 42944244963,
+    "github_actions_artifact": 13823905478,
+    "version": "0.11",
+    "date": "2026-09-10"
+  },
+  "animal_species_names_with_any_source_role": 5030,
+  "unique_species_names_with_broad_predator_and_flower_records": 310,
+  "guilds": [
+    {
+      "group": "bats",
+      "positive_moth_family_predation_or_kill": 94,
+      "flower_visitation_or_DB_pollination": 55,
+      "dual_role_exact_names_broad_moth_or_unresolved_lepidoptera": 17,
+      "database_pollinates_species": 44
+    },
+    {
+      "group": "birds",
+      "positive_moth_family_predation_or_kill": 349,
+      "flower_visitation_or_DB_pollination": 505,
+      "dual_role_exact_names_broad_moth_or_unresolved_lepidoptera": 157,
+      "database_pollinates_species": 195
+    },
+    {
+      "group": "geckos",
+      "positive_moth_family_predation_or_kill": 7,
+      "flower_visitation_or_DB_pollination": 4,
+      "dual_role_exact_names_broad_moth_or_unresolved_lepidoptera": 1,
+      "database_pollinates_species": 3
+    },
+    {
+      "group": "centipedes",
+      "positive_moth_family_predation_or_kill": 3,
+      "flower_visitation_or_DB_pollination": 2,
+      "dual_role_exact_names_broad_moth_or_unresolved_lepidoptera": 1,
+      "database_pollinates_species": 0
+    },
+    {
+      "group": "spiders",
+      "positive_moth_family_predation_or_kill": 155,
+      "flower_visitation_or_DB_pollination": 90,
+      "dual_role_exact_names_broad_moth_or_unresolved_lepidoptera": 40,
+      "database_pollinates_species": 1
+    },
+    {
+      "group": "mantises",
+      "positive_moth_family_predation_or_kill": 17,
+      "flower_visitation_or_DB_pollination": 10,
+      "dual_role_exact_names_broad_moth_or_unresolved_lepidoptera": 6,
+      "database_pollinates_species": 0
+    },
+    {
+      "group": "predatory_wasps",
+      "positive_moth_family_predation_or_kill": 58,
+      "flower_visitation_or_DB_pollination": 644,
+      "dual_role_exact_names_broad_moth_or_unresolved_lepidoptera": 88,
+      "database_pollinates_species": 288
+    },
+    {
+      "group": "frogs",
+      "positive_moth_family_predation_or_kill": 3,
+      "flower_visitation_or_DB_pollination": 2,
+      "dual_role_exact_names_broad_moth_or_unresolved_lepidoptera": 0,
+      "database_pollinates_species": 0
+    }
+  ],
+  "flagged_species": {
+    "gecko_broad_dual": "Hemidactylus frenatus",
+    "centipede_broad_dual": "Thereuopoda clunifera",
+    "note": "Neither species is verified as performing effective pollination at the same place and time as prey capture. Thereuopoda's Lepidoptera prey is family-unresolved and its flower-visit record is not DB pollinates."
+  },
+  "caveats": {
+    "broad_predation_includes_kills_hasPrey_as_well_as_eats_preysOn": true,
+    "moth_predation_may_be_larval_or_unspecified_Lepidoptera": true,
+    "no_record_is_not_absence": true,
+    "reported_pollinates_not_measured_pollination_effectiveness": true,
+    "same_species_name_does_not_establish_site_or_year_specific_dual_role": true,
+    "current_source_values_not_ALAN_causal_or_predator_intensity": true
+  }
+}
