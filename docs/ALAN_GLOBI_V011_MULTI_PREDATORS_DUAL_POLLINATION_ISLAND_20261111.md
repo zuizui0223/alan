@@ -73,3 +73,42 @@ The ecological hypothesis is conditional, not a discovery: ALAN may redistribute
 - Hemidactylus frenatus nocturnal hunting and incidental nectar consumption: https://www.iucngisd.org/gisd/speciesname/Hemidactylus%2Bfrenatus
 
 Avoid significance hunting and mixing global GloBI relationships with unobserved site-specific predation, native/invasive status, or effective pollen deposition. Current research findings are source coverage and functional network opportunity, not an island ALAN causal coefficient. Preserve Draft status.
+
+
+## 2026-11-11 completed strict GloBI source: stronger than initial broad counts
+
+**Completed SHA-locked processing, independently verified**: The stricter source runner scanned exactly all **24,453,954** original v0.11 interactions; source digest and all four output members match. Full-source workflow run [42952223131](https://github.com/zuizui0223/alan/actions/runs/42952223131) ended *FAILURE only after scan and artifact upload*, because its final test referenced an incorrectly named JSON caveat key. The artifact **13826322051** was produced intact; a separate no-redownload verification run [42954755175](https://github.com/zuizui0223/alan/actions/runs/42954755175) completed **SUCCESS**, SHA-verifying each extracted file and confirming source row totals and caveats. The original workflow is now corrected and manual-only, avoiding another costly 2.5GB download.
+
+The stricter scan excludes kill-only claims from its moth-predation arm, separates butterfly prey, records moth prey life stage, and distinguishes flower visits from database-pollinates claims.
+
+| Animal group | Source-positive species with moth predation | Source-positive species with flower visit or DB pollinates | SAME source species with both functions | Both after iNaturalist+trophiCH exclusion |
+|---|---:|---:|---:|---:|
+| Bats | 94 | 54 | **6** | **6** |
+| Geckos | 7 | 4 | 1 | 0 |
+| Centipedes | 3 | 2 | **0** | 0 |
+| Spiders | 155 | 75 | 30 | 1 |
+| Birds | 349 | 435 | 84 | 3 |
+| Mantises | 17 | 10 | 6 | 0 |
+
+Among **41,270** source moth predation relationship rows, documented prey stage is **adult 4,420**, **nonadult 547**, **unknown 36,303**. Therefore the large majority of source claims do **not** document killing flower-visiting adult moths. The strict 6 bats are species names with separate family-confirmed moth prey and flower interactions (in this dataset they also have a DB-pollinates relationship), NOT confirmed adult moth capture and effective local flower fertilization.
+
+Positive plant-name associations by animal group: bats **135** plant names, geckos **10**, centipedes **1**, spiders **167**, birds **1,170**. For centipedes, **zero DB-pollinates** relationships; a flower visit is not proven service.
+
+Public summarized strict source data and exact output-member hashes:
+[results/alan_GloBI_v011_strict_predator_pollinator_real_all_24m_20261111.json](https://github.com/zuizui0223/alan/blob/research/moth-gecko-flora-feasibility-20261111/results/alan_GloBI_v011_strict_predator_pollinator_real_all_24m_20261111.json).
+
+## First actual non-gecko GBIF geographic observation cohort
+
+Successful [real GBIF source run 42954162844](https://github.com/zuizui0223/alan/actions/runs/42954162844), original aggregate-only artifact **13826800146**, read 2019 and 2024 exact direct positive observations with positional uncertainty <=25km:
+
+| Target animal taxon | 2019 recorded directly | 2024 recorded directly |
+|---|---:|---:|
+| Glossophaga soricina (bat) | 51 | 38 |
+| Antrozous pallidus (bat) | 56 | 82 |
+| Mystacina tuberculata (bat) | 3 | 3 |
+| Thereuopoda clunifera (centipede) | 6 | 53 |
+| Scolopendra subspinipes (centipede) | 62 | 173 |
+
+Vespa velutina, Argiope bruennichi and Mantis religiosa cannot be fully counted under the bounded 12k source-event cap; all remain **UNRESOLVED**, NOT "zero" occurrence. Data are public source observations but this study deliberately does not export rare bat exact coordinates. Their growth is NOT an organism abundance trend; GBIF monitoring effort is uncontrolled. Source code at scripts/acquisition/alan_multiguild_gbif_positive_pilot.py and tests/test_alan_multiguild_gbif_positive_pilot.py. Raw GBIF positive records are NOT observed predation or visitation events.
+
+**Completed source stage, not biological mechanism**: no valid predator detection–nondetection denominator, same-plant predator+visitor interaction or long-term annual light exposure has yet been observed across all predator groups. The next model requires same-landmass/polygon geography plus reliable observation effort and preferably verified adult moth capture vs flowers' pollen deposition. No predator-group ALAN regression coefficient or p value is claimed here.
