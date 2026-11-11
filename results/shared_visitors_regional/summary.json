@@ -1,0 +1,210 @@
+{
+  "target_sha256": "37f3c2c519871b6905ffa81c5a14536b248611861ad143b1d4d77d95b7c6b00d",
+  "condition": "same plant, same 5-degree region and observed year",
+  "survey_coverage_before_cohort": {
+    "Andrews": {
+      "species": 7,
+      "regions": 1,
+      "region_years": 1,
+      "species_region_years": 7
+    },
+    "CropPol": {
+      "species": 2,
+      "regions": 2,
+      "region_years": 2,
+      "species_region_years": 2
+    },
+    "EuPPollNet": {
+      "species": 161,
+      "regions": 14,
+      "region_years": 16,
+      "species_region_years": 450
+    },
+    "PollAgri": {
+      "species": 3,
+      "regions": 3,
+      "region_years": 4,
+      "species_region_years": 4
+    },
+    "UK_FIT": {
+      "species": 77,
+      "regions": 6,
+      "region_years": 16,
+      "species_region_years": 212
+    }
+  },
+  "matched_effort_including_zero": {
+    "species": 38,
+    "regions": 4,
+    "region_years": 6,
+    "species_region_years": 42
+  },
+  "matched_positive_coverage": {
+    "species": 38,
+    "regions": 4,
+    "region_years": 6,
+    "species_region_years": 42,
+    "by_source": {
+      "EuPPollNet": {
+        "species": 33,
+        "regions": 3,
+        "region_years": 3,
+        "species_region_years": 34
+      },
+      "UK_FIT": {
+        "species": 7,
+        "regions": 1,
+        "region_years": 3,
+        "species_region_years": 8
+      }
+    }
+  },
+  "local_photo_both_sides": {
+    "species": 1,
+    "regions": 1,
+    "region_years": 1,
+    "species_region_years": 1
+  },
+  "survey_region_years_both_sides": 0,
+  "comparable_coverage": {
+    "species": 33,
+    "regions": 4,
+    "region_years": 6,
+    "species_region_years": 37
+  },
+  "matched_light_overlap": {
+    "species": 31,
+    "regions": 3,
+    "region_years": 4,
+    "species_region_years": 35
+  },
+  "uk_timed_counts": 49,
+  "uk_minutes": 490,
+  "support_by_year": {
+    "2019.0": 1,
+    "2021.0": 36,
+    "2023.0": 5
+  },
+  "models": {
+    "order_diversity": {
+      "all_matched": {
+        "n": 117,
+        "regions": 4,
+        "region_years": 6,
+        "islands": 34,
+        "mainland": 83,
+        "rank": 12,
+        "parameters": 12,
+        "interaction": 10.784178953630303,
+        "q25": 1.1715749568182876,
+        "q75": 1.384964568746707,
+        "gap_q25": 5.109008633806006,
+        "gap_q75": 7.4102403956878025
+      },
+      "within_land_light_overlap": {
+        "n": 103,
+        "regions": 3,
+        "region_years": 4,
+        "islands": 31,
+        "mainland": 72,
+        "rank": 12,
+        "parameters": 12,
+        "interaction": 28.446562406140863,
+        "q25": 1.143798894143412,
+        "q75": 1.2421082126302228,
+        "gap_q25": 6.956070265742543,
+        "gap_q75": 9.752632429182778
+      }
+    },
+    "uk_visitors_per_10min": {
+      "all_matched": {
+        "n": 51,
+        "regions": 1,
+        "region_years": 3,
+        "islands": 23,
+        "mainland": 28,
+        "rank": 12,
+        "parameters": 12,
+        "interaction": -1.3855158333717599,
+        "q25": 9.776680672268908,
+        "q75": 20.258823529411764,
+        "gap_q25": 12.730555793801017,
+        "gap_q75": -1.7926191024351077
+      },
+      "within_land_light_overlap": {
+        "n": 40,
+        "regions": 1,
+        "region_years": 2,
+        "islands": 22,
+        "mainland": 18,
+        "rank": 12,
+        "parameters": 12,
+        "interaction": -1.1317541566447282,
+        "q25": 7.906197478991597,
+        "q75": 11.64716386554622,
+        "gap_q25": 15.822356968436491,
+        "gap_q75": 11.588502710585088
+      }
+    },
+    "original_response_order_diversity": {
+      "all_matched": {
+        "n": 117,
+        "regions": 4,
+        "region_years": 6,
+        "islands": 34,
+        "mainland": 83,
+        "rank": 12,
+        "parameters": 12,
+        "interaction": 36.82741036235991,
+        "q25": 1.1715749568182876,
+        "q75": 1.384964568746707,
+        "gap_q25": 5.46932085853782,
+        "gap_q75": 13.327907664090446
+      },
+      "within_land_light_overlap": {
+        "n": 103,
+        "regions": 3,
+        "region_years": 4,
+        "islands": 31,
+        "mainland": 72,
+        "rank": 12,
+        "parameters": 12,
+        "interaction": 51.64004992702833,
+        "q25": 1.143798894143412,
+        "q75": 1.2421082126302228,
+        "gap_q25": 6.481704592612196,
+        "gap_q75": 11.558402707563225
+      }
+    },
+    "original_response_uk_frequency": {
+      "all_matched": {
+        "n": 51,
+        "regions": 1,
+        "region_years": 3,
+        "islands": 23,
+        "mainland": 28,
+        "rank": 12,
+        "parameters": 12,
+        "interaction": -2.908034500527315,
+        "q25": 9.776680672268908,
+        "q75": 20.258823529411764,
+        "gap_q25": 17.477814286403735,
+        "gap_q75": -13.004618781623655
+      },
+      "within_land_light_overlap": {
+        "n": 40,
+        "regions": 1,
+        "region_years": 2,
+        "islands": 22,
+        "mainland": 18,
+        "rank": 12,
+        "parameters": 12,
+        "interaction": -2.27748353519768,
+        "q25": 7.906197478991597,
+        "q75": 11.64716386554622,
+        "gap_q25": 21.50174604508627,
+        "gap_q75": 12.981756693980156
+      }
+    }
+  }
+}
