@@ -1,0 +1,117 @@
+{
+  "schema": "alan_GloBI_v011_strict_moth_predation_and_plant_flower_positive_roles_20261111_v1",
+  "status": "ACTUAL complete GloBI 24,453,954-row original source processed, artifact contents SHA independently checked locally; original GitHub job failed only post-analysis due mismatched JSON assertion key",
+  "source": {
+    "zenodo": "https://zenodo.org/records/22691479",
+    "full_interactions_sha256": "670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3",
+    "run_id": 42952223131,
+    "run_conclusion": "failure_postrun_assertion_only",
+    "artifact_id": 13826322051,
+    "artifact_zip_sha256": "1b2fc73ba568369125a5b22bafd220b0044fbb052e049fcc46156d70ae1c605d",
+    "member_sha256": {
+      "guild_summary.csv": "1ff37d0c2f6f5ff8eb543cd82f8a859b83bf81b3b8ea052f8dcbf92c3e571677",
+      "animal_species_role_flags.csv.gz": "72d7e348783f6c8c982a2a28531d0ac4d4f99ddbe0c3dcc58eab8e4e28df3b0b",
+      "animal_flower_plant_positive_flags.csv.gz": "3ef335e609add0ee03c1b77680cef7b153b579d52e1485ffce0cda202a67c0e5",
+      "source_receipt.json": "94a653d04c7396a706c81059678840cc08424c943218574206045419d1a4a8f5"
+    }
+  },
+  "counts": {
+    "all_original_GloBI_rows": 24453954,
+    "actual_source_moth_predation_interaction_records": 41270,
+    "moth_prey_life_stage": {
+      "adult": 4420,
+      "nonadult": 547,
+      "unknown": 36303
+    },
+    "recorded_flower_visit_relations_actor_groups_total": 234931,
+    "reported_pollinates_relations_actor_groups_total": 275448,
+    "reported_dispersal_relations_actor_groups_total": 1974,
+    "predation_between_predator_or_other_actor_groups": 926972
+  },
+  "strict_source_group_counts": {
+    "bats": {
+      "moth_predator_names": 94,
+      "flower_positive": 54,
+      "source_reports_pollinates": 43,
+      "dual_moth_and_flower": 6,
+      "dual_moth_and_db_pollinates": 6,
+      "strict_noninat_trophich_dual": 6,
+      "plant_species_from_bat_flower_links": 135,
+      "recorded_plant_dispersal_animal_names": 9
+    },
+    "geckos": {
+      "moth_predator_names": 7,
+      "flower_positive": 4,
+      "source_reports_pollinates": 3,
+      "dual_moth_and_flower": 1,
+      "dual_moth_and_db_pollinates": 1,
+      "strict_noninat_trophich_dual": 0,
+      "plant_species_from_gecko_flower_links": 10,
+      "recorded_plant_dispersal_animal_names": 0
+    },
+    "centipedes": {
+      "moth_predator_names": 3,
+      "flower_positive": 2,
+      "source_reports_pollinates": 0,
+      "dual_moth_and_flower": 0,
+      "dual_moth_and_db_pollinates": 0,
+      "strict_noninat_trophich_dual": 0,
+      "plant_species_from_centipede_flower_links": 1,
+      "recorded_plant_dispersal_animal_names": 0
+    },
+    "spiders": {
+      "moth_predator_names": 155,
+      "flower_positive": 75,
+      "source_reports_pollinates": 1,
+      "dual_moth_and_flower": 30,
+      "dual_moth_and_db_pollinates": 0,
+      "strict_noninat_trophich_dual": 1,
+      "plant_species_from_spider_flower_links": 167,
+      "recorded_plant_dispersal_animal_names": 0
+    },
+    "birds": {
+      "moth_predator_names": 349,
+      "flower_positive": 435,
+      "source_reports_pollinates": 185,
+      "dual_moth_and_flower": 84,
+      "dual_moth_and_db_pollinates": 10,
+      "strict_noninat_trophich_dual": 3,
+      "plant_species_from_bird_flower_links": 1170,
+      "recorded_plant_dispersal_animal_names": 289
+    },
+    "mantises": {
+      "moth_predator_names": 17,
+      "flower_positive": 10,
+      "source_reports_pollinates": 0,
+      "dual_moth_and_flower": 6,
+      "dual_moth_and_db_pollinates": 0,
+      "strict_noninat_trophich_dual": 0,
+      "plant_species_from_mantis_flower_links": 26,
+      "recorded_plant_dispersal_animal_names": 0
+    },
+    "other_insects_including_wasps": {
+      "moth_predator_names": 359,
+      "flower_positive": 10172,
+      "source_reports_pollinates": 4508,
+      "dual_moth_and_flower": 131,
+      "dual_moth_and_db_pollinates": 61,
+      "strict_noninat_trophich_dual": 14,
+      "plant_species_from_insect_flower_links": 9485,
+      "recorded_plant_dispersal_animal_names": 0
+    }
+  },
+  "major_qualification": {
+    "qualified_moth_predation": "eats/preysOn or source inverse, moth family identified; kills-only stored separately, butterfly excluded; prey life stage often not known",
+    "flower_positive": "positive visitsFlowersOf or pollinates database relation, NOT reproductive success",
+    "dual": "same exact binomial actor with both positive guild relationships SOMEWHERE in GloBI, NOT local same-year dual interaction",
+    "other_insects_including_wasps": "the stricter scanner groups wasps under other_insects; source-native wasp comparison is available only in the earlier broader classifier"
+  },
+  "limitations": {
+    "no_database_link_is_NOT_role_absence": true,
+    "valid_moth_prey_life_stage_rare": true,
+    "DB_pollinates_not_verified_effective_stigma_deposition": true,
+    "GloBI_extracted_trophic_relationship_not_local_island_event": true,
+    "ALAN_x_predator_x_pollination_not_fitted": true,
+    "based_on_selected_relationship_types_not_all_roles_in_source": true
+  }
+}
