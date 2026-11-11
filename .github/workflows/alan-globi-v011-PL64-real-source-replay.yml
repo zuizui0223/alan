@@ -66,7 +66,7 @@ jobs:
           assert len(man)-len(skip)>=17
           print('COMPLETE_README_64_SOURCE_SHA_MANIFEST_OK')
           PY
-      - name: Actual original 10698 source rows and v0.11 PL effect reanalysis
+      - name: Actual original 10698 source rows and v0.11 positive-only plant-list PL reanalysis
         run: |
           set -euo pipefail
           mkdir -p result
