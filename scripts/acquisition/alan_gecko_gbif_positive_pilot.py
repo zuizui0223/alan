@@ -45,7 +45,9 @@ def taxon(s,name):
  return k,r
 
 def record(r,name,year):
- if r.get('occurrenceStatus','PRESENT')!='PRESENT':return None,'not_present'
+ status=str(r.get('occurrenceStatus','DETECTED')).upper()
+ if status in ('ABSENT','NOT_DETECTED'):return None,'not_present'
+ need(status in ('PRESENT','DETECTED'),f'Unsupported GBIF occurrence status: {status}')
  if r.get('basisOfRecord') not in OBS:return None,'not_direct_observation'
  if r.get('year')!=year:return None,'not_exact_year'
  if not str(r.get('species') or r.get('acceptedScientificName') or '').startswith(name):
