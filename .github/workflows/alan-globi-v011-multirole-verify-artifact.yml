@@ -1,0 +1,78 @@
+name: ALAN verify completed full GloBI predator-pollinator source receipt (no 2.5GB re-download)
+
+on:
+  push:
+    branches: [research/moth-gecko-flora-feasibility-20261111]
+    paths: [.github/workflows/alan-globi-v011-multirole-verify-artifact.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  independently-verify-complete-GloBI-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Download already-executed source-qualified 24,453,954-row artifact
+        run: |
+          set -euo pipefail
+          mkdir -p original_GloBI_full_multilayer
+          gh run download 42952223131 --repo zuizui0223/alan \
+            --name alan-full-GloBI-v011-moth-predator-floral-pollinator-source-roles \
+            --dir original_GloBI_full_multilayer
+      - name: Independently verify exact source member SHA and false-effect guards
+        run: |
+          set -euo pipefail
+          echo '1ff37d0c2f6f5ff8eb543cd82f8a859b83bf81b3b8ea052f8dcbf92c3e571677  original_GloBI_full_multilayer/guild_summary.csv' | sha256sum -c -
+          echo '72d7e348783f6c8c982a2a28531d0ac4d4f99ddbe0c3dcc58eab8e4e28df3b0b  original_GloBI_full_multilayer/animal_species_role_flags.csv.gz' | sha256sum -c -
+          echo '3ef335e609add0ee03c1b77680cef7b153b579d52e1485ffce0cda202a67c0e5  original_GloBI_full_multilayer/animal_flower_plant_positive_flags.csv.gz' | sha256sum -c -
+          echo '94a653d04c7396a706c81059678840cc08424c943218574206045419d1a4a8f5  original_GloBI_full_multilayer/source_receipt.json' | sha256sum -c -
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('original_GloBI_full_multilayer')
+          r=json.loads((p/'source_receipt.json').read_text())
+          assert r['schema']=='alan_full_GloBI_v011_predator_pollinator_multilayer_v1'
+          assert r['status']=='FULL_GLOBI_V011_VERIFIED'
+          assert r['all_original_interaction_rows']==24453954
+          assert r['source_sha256']=='670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3'
+          assert len(r['guild_summary'])==36
+          assert r['limitations']['caterpillar_predation_not_equal_to_adult_moth_predation']
+          assert r['limitations']['one_species_dual_role_not_same_place_or_same_time']
+          assert r['limitations']['missing_GloBI_link_not_actual_absence']
+          assert r['moth_prey_stage_counts']['adult']==4420
+          assert r['moth_prey_stage_counts']['nonadult']==547
+          assert r['moth_prey_stage_counts']['unknown']==36303
+          counts={(x['scope'],x['predator_group']):x for x in r['guild_summary']}
+          assert counts[('all','bats')]['animal_species_both_moth_predation_and_pollinates_relation']==6
+          assert counts[('non_inaturalist_trophich','bats')]['animal_species_both_moth_predation_and_pollinates_relation']==6
+          assert counts[('all','geckos')]['animal_species_both_moth_predation_and_pollinates_relation']==1
+          assert counts[('non_inaturalist_trophich','geckos')]['animal_species_both_moth_predation_and_pollinates_relation']==0
+          receipt={'schema':'ALAN_GloBI_full_v011_STRICT_SOURCE_ARTIFACT_INDEPENDENT_VERIFICATION_v1',
+            'source_release_SHA256':r['source_sha256'],
+            'source_records_actually_processed':r['all_original_interaction_rows'],
+            'source_code_job':42952223131,
+            'original_job_failure_explanation':'A post-analysis assertion used wrong JSON key; GloBI processing and artifact upload completed',
+            'all_original_artifact_members_sha256_verified':True,
+            'source_predation_links_NOT_local_adult_moth_predation_efficacy':True,
+            'species_dual_role_NOT_local_effective_pollination':True,
+            'strict_bat_dual_count':6,
+            'strict_gecko_dual_count':1,
+            'record_source_restricted_bat_dual_count':6,
+            'record_source_restricted_gecko_dual_count':0}
+          Path('source_artifact_independent_verification.json').write_text(json.dumps(receipt,indent=2)+'\n')
+          print('FULL_GLOBI_SOURCE_INDEPENDENT_VALIDATION_SUCCESS',json.dumps(receipt))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-full-GloBI-v011-predator-dual-role-independent-validation
+          path: source_artifact_independent_verification.json
+          retention-days: 60
