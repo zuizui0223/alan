@@ -1,0 +1,253 @@
+{
+  "schema": "alan_GloBI_2012_2025_14year_photo_temporal_source_audit_v1",
+  "status": "source_verified_photographic_observation_composition_only_NO_pre2019_light_effect",
+  "analysis_window": "2012–2025 calendar-year original photos (14 years); source-matched photo plant composition, not annual VIIRS exposure",
+  "source": {
+    "historical_original_photo_SHA256": "f033661d76e07898a5c13199a55c5d0ce6e55353daa48b0058c456979e90644c",
+    "GloBI_legacy_positive_claims_sha256": "a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994",
+    "WCVP_species_id_sha256": "dc5bb0e3686fde0cfd327e4336245d0ceae3c7657b3bd12841bb814cc94d1eb2",
+    "GSHHG_h_L1_shp_sha256": "d870bdbc90a074f87a8c09a9630abb5f18916314b9a196dba2e6866fd51ef325",
+    "GSHHG_h_L2_shp_sha256": "7bbe284fc085632ee4c1aa1e343330c50f9bbc99988cb499e69a5e912c84a83b",
+    "source_subarm": "historical_main",
+    "species_scope": "accepted WCVP original photo ID species, one counted per 0.05°cell×physical landmass×year",
+    "GloBI_scope": "all 61,967 bounded positive insect-flower interactions; NOT the full interpreted v0.11 snapshot"
+  },
+  "counts": {
+    "raw_2012_2025_photos": 649694,
+    "source_photos_valid_coordinates": 649604,
+    "newly_recovered_2012_2018_photos": 63715,
+    "source_photo_site_years_with_recognized_landmass": 332576,
+    "source_site_years_with_at_least_3photos_2accepted_species": 54055,
+    "repeated_broad_photo_sites_2plus_years": 10478,
+    "repeated_broad_island_photo_sites_2plus_years": 1316,
+    "year_region_island_mainland_matched_source_site_years": 14590,
+    "island_matched": 1338,
+    "regional_blocks_over_any_year": 85
+  },
+  "source_2020_reconciliation": {
+    "original_full2020_geographic_rebuild_n_sites": 31102,
+    "previous_partial_2020_source_sites": 25327,
+    "exact_overlap_target_ids": 25290,
+    "disagreeing_photo_or_species_site_rows": 233,
+    "full_14year_island_mainland_photo_trend_unadjusted_full2020": -0.006777,
+    "prior_partial2020": -0.134,
+    "exclude_disagreeing": 0.033
+  },
+  "models": {
+    "full_2012_2025": {
+      "matched_siteyears": 14590,
+      "matched_island_siteyears": 1338,
+      "regional_5deg_blocks": 85,
+      "year_island_photo_proxy_trend_pp_per_year": {
+        "beta": -0.006777,
+        "ci95": [
+          -0.735,
+          0.721
+        ],
+        "nominal_p": 0.985275
+      },
+      "photo_month_adjusted": {
+        "beta": -0.0459,
+        "ci95": [
+          -0.838,
+          0.746
+        ],
+        "nominal_p": 0.908606
+      },
+      "repeated_site_fixed_effect": {
+        "n_siteyears": 7635,
+        "n_sites": 2479,
+        "beta": -0.5157,
+        "ci95": [
+          -1.121,
+          0.089
+        ],
+        "nominal_p": 0.092484
+      },
+      "moth_minus_butterfly_yearly_difference": {
+        "beta": -0.0763,
+        "ci95": [
+          -0.951,
+          0.798
+        ],
+        "nominal_p": 0.86262
+      }
+    },
+    "official_annual_VIIRS_window_2013_2024_PHOTO_ONLY": {
+      "matched_siteyears": 10598,
+      "matched_island": 992,
+      "regional_blocks": 71,
+      "photo_proxy_yearly_difference": {
+        "beta": -0.33003,
+        "ci95": [
+          -1.207,
+          0.547
+        ],
+        "nominal_p": 0.4553
+      },
+      "site_FE": {
+        "beta": -1.1484,
+        "ci95": [
+          -2.367,
+          0.071
+        ],
+        "nominal_p": 0.063983
+      }
+    },
+    "better_spatial_support_2017_2025_PHOTO_ONLY": {
+      "matched_siteyears": 14538,
+      "matched_island": 1322,
+      "regional_blocks": 85,
+      "photo_proxy_yearly_difference": {
+        "beta": -0.01777,
+        "ci95": [
+          -0.811,
+          0.775
+        ],
+        "nominal_p": 0.964553
+      },
+      "site_FE": {
+        "beta": -0.87,
+        "ci95": [
+          -1.628,
+          -0.112
+        ],
+        "nominal_p": 0.02557
+      },
+      "site_FE_non_iNaturalist_GloBI_positive": {
+        "beta": -0.4028,
+        "ci95": [
+          -1.01,
+          0.204
+        ],
+        "nominal_p": 0.187013
+      }
+    }
+  },
+  "year_moth_positive_photo_plant_site_mean_pct": [
+    {
+      "year": 2012,
+      "island": 19.85,
+      "mainland": 17.54,
+      "island_sites": 18,
+      "mainland_sites": 124,
+      "matched_island_sites": 1
+    },
+    {
+      "year": 2013,
+      "island": 14.55,
+      "mainland": 22.25,
+      "island_sites": 31,
+      "mainland_sites": 204,
+      "matched_island_sites": 7
+    },
+    {
+      "year": 2014,
+      "island": 18.56,
+      "mainland": 15.08,
+      "island_sites": 22,
+      "mainland_sites": 196,
+      "matched_island_sites": 0
+    },
+    {
+      "year": 2015,
+      "island": 19.75,
+      "mainland": 23.11,
+      "island_sites": 79,
+      "mainland_sites": 265,
+      "matched_island_sites": 4
+    },
+    {
+      "year": 2016,
+      "island": 17,
+      "mainland": 24.6,
+      "island_sites": 86,
+      "mainland_sites": 457,
+      "matched_island_sites": 4
+    },
+    {
+      "year": 2017,
+      "island": 16.54,
+      "mainland": 27.19,
+      "island_sites": 168,
+      "mainland_sites": 712,
+      "matched_island_sites": 13
+    },
+    {
+      "year": 2018,
+      "island": 20.07,
+      "mainland": 27.61,
+      "island_sites": 238,
+      "mainland_sites": 1367,
+      "matched_island_sites": 40
+    },
+    {
+      "year": 2019,
+      "island": 20.94,
+      "mainland": 28.23,
+      "island_sites": 434,
+      "mainland_sites": 2638,
+      "matched_island_sites": 73
+    },
+    {
+      "year": 2020,
+      "island": 20.91,
+      "mainland": 30.9,
+      "island_sites": 505,
+      "mainland_sites": 4391,
+      "matched_island_sites": 98
+    },
+    {
+      "year": 2021,
+      "island": 23.36,
+      "mainland": 28.06,
+      "island_sites": 537,
+      "mainland_sites": 5429,
+      "matched_island_sites": 119
+    },
+    {
+      "year": 2022,
+      "island": 22.95,
+      "mainland": 27.24,
+      "island_sites": 839,
+      "mainland_sites": 5854,
+      "matched_island_sites": 187
+    },
+    {
+      "year": 2023,
+      "island": 21.2,
+      "mainland": 26.84,
+      "island_sites": 977,
+      "mainland_sites": 7292,
+      "matched_island_sites": 193
+    },
+    {
+      "year": 2024,
+      "island": 24.09,
+      "mainland": 27.15,
+      "island_sites": 1187,
+      "mainland_sites": 8547,
+      "matched_island_sites": 254
+    },
+    {
+      "year": 2025,
+      "island": 23.42,
+      "mainland": 27.15,
+      "island_sites": 1688,
+      "mainland_sites": 9770,
+      "matched_island_sites": 345
+    }
+  ],
+  "interpretation_limitations": {
+    "no_annual_source_VIIRS_2012_2018_attached": true,
+    "photo_species_share_NOT_true_community_richness": true,
+    "GloBI_positive_record_anywhere_NOT_site_specific_visitation": true,
+    "undocumented_GloBI_moth_NOT_true_absence": true,
+    "photos_2012_2016_too_few_island_matched_sites": true,
+    "one_year_2014_zero_direct_matched_geographic_island_sites": true,
+    "photo_sampling_intensity_and_source_composition_change_across_years": true,
+    "site_fe_source_restriction_loses_significance": true,
+    "source_all_photo_years_older_than_2012_exist_but_sparse": true,
+    "no_published_species_site_identity_rows": true
+  }
+}
