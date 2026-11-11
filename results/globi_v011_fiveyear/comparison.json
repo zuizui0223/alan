@@ -1,0 +1,457 @@
+{
+  "fits": {
+    "published": {
+      "estimable": true,
+      "scope": "all",
+      "guild": "moth",
+      "balanced_year_region_landclass": true,
+      "n_site_years": 10698,
+      "n_island_site_years": 933,
+      "n_mainland_site_years": 9765,
+      "source_5degree_clusters": 78,
+      "year_region_groups": 195,
+      "beta_island_minus_mainland_slope_pp_per_log1p": -1.9017206220556133,
+      "SE_cluster_5deg": 0.906021056241565,
+      "95CI_cluster_5deg": [
+        -3.705839032611056,
+        -0.09760221150017045
+      ],
+      "p_nominal": 0.03909606216002934,
+      "beta_mainland_pp_per_log1p": 1.374464148228847,
+      "beta_island_pp_per_log1p": -0.5272564738267662,
+      "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+      "no_true_pollinator_absence_inferred": true,
+      "not_local_effective_nocturnal_pollination": true
+    },
+    "old_resolved": {
+      "estimable": true,
+      "scope": "all",
+      "guild": "moth",
+      "balanced_year_region_landclass": true,
+      "n_site_years": 10698,
+      "n_island_site_years": 933,
+      "n_mainland_site_years": 9765,
+      "source_5degree_clusters": 78,
+      "year_region_groups": 195,
+      "beta_island_minus_mainland_slope_pp_per_log1p": -2.0058164744766147,
+      "SE_cluster_5deg": 1.0493309929528571,
+      "95CI_cluster_5deg": [
+        -4.095301426411249,
+        0.08366847745801964
+      ],
+      "p_nominal": 0.05965881596526405,
+      "beta_mainland_pp_per_log1p": 0.6290577847713941,
+      "beta_island_pp_per_log1p": -1.3767586897052206,
+      "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+      "no_true_pollinator_absence_inferred": true,
+      "not_local_effective_nocturnal_pollination": true
+    },
+    "updated": {
+      "estimable": true,
+      "scope": "all",
+      "guild": "moth",
+      "balanced_year_region_landclass": true,
+      "n_site_years": 10698,
+      "n_island_site_years": 933,
+      "n_mainland_site_years": 9765,
+      "source_5degree_clusters": 78,
+      "year_region_groups": 195,
+      "beta_island_minus_mainland_slope_pp_per_log1p": 0.7502573359160855,
+      "SE_cluster_5deg": 0.9171694001468343,
+      "95CI_cluster_5deg": [
+        -1.0760602634420264,
+        2.576574935274197
+      ],
+      "p_nominal": 0.41587345071446224,
+      "beta_mainland_pp_per_log1p": 0.005964305360088185,
+      "beta_island_pp_per_log1p": 0.7562216412761736,
+      "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+      "no_true_pollinator_absence_inferred": true,
+      "not_local_effective_nocturnal_pollination": true
+    },
+    "priority": {
+      "estimable": true,
+      "scope": "all",
+      "guild": "moth",
+      "balanced_year_region_landclass": true,
+      "n_site_years": 10698,
+      "n_island_site_years": 933,
+      "n_mainland_site_years": 9765,
+      "source_5degree_clusters": 78,
+      "year_region_groups": 195,
+      "beta_island_minus_mainland_slope_pp_per_log1p": 0.3919113144123105,
+      "SE_cluster_5deg": 0.8234221155766515,
+      "95CI_cluster_5deg": [
+        -1.247731592489699,
+        2.03155422131432
+      ],
+      "p_nominal": 0.6354545750220021,
+      "beta_mainland_pp_per_log1p": 0.10185330861566566,
+      "beta_island_pp_per_log1p": 0.49376462302797614,
+      "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+      "no_true_pollinator_absence_inferred": true,
+      "not_local_effective_nocturnal_pollination": true
+    },
+    "new_exact": {
+      "estimable": true,
+      "scope": "all",
+      "guild": "moth",
+      "balanced_year_region_landclass": true,
+      "n_site_years": 10698,
+      "n_island_site_years": 933,
+      "n_mainland_site_years": 9765,
+      "source_5degree_clusters": 78,
+      "year_region_groups": 195,
+      "beta_island_minus_mainland_slope_pp_per_log1p": 0.4636331548327991,
+      "SE_cluster_5deg": 0.7672301152395324,
+      "95CI_cluster_5deg": [
+        -1.0641171844122566,
+        1.9913834940778545
+      ],
+      "p_nominal": 0.5474241288277342,
+      "beta_mainland_pp_per_log1p": -0.12865251611108774,
+      "beta_island_pp_per_log1p": 0.33498063872171135,
+      "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+      "no_true_pollinator_absence_inferred": true,
+      "not_local_effective_nocturnal_pollination": true
+    },
+    "updated_minus_published": {
+      "estimable": true,
+      "scope": "all",
+      "guild": "moth_minus_butterfly",
+      "balanced_year_region_landclass": true,
+      "n_site_years": 10698,
+      "n_island_site_years": 933,
+      "n_mainland_site_years": 9765,
+      "source_5degree_clusters": 78,
+      "year_region_groups": 195,
+      "beta_island_minus_mainland_slope_pp_per_log1p": 2.6519779579717015,
+      "SE_cluster_5deg": 0.8188234812509739,
+      "95CI_cluster_5deg": [
+        1.0214921018834815,
+        4.282463814059922
+      ],
+      "p_nominal": 0.0017728073967009832,
+      "beta_mainland_pp_per_log1p": -1.368499842868761,
+      "beta_island_pp_per_log1p": 1.2834781151029406,
+      "GloBI_both_recorded_guilds_cancel_in_contrast": true,
+      "no_true_pollinator_absence_inferred": true,
+      "not_local_effective_nocturnal_pollination": true
+    },
+    "updated_minus_old_resolved": {
+      "estimable": true,
+      "scope": "all",
+      "guild": "moth_minus_butterfly",
+      "balanced_year_region_landclass": true,
+      "n_site_years": 10698,
+      "n_island_site_years": 933,
+      "n_mainland_site_years": 9765,
+      "source_5degree_clusters": 78,
+      "year_region_groups": 195,
+      "beta_island_minus_mainland_slope_pp_per_log1p": 2.7560738103927003,
+      "SE_cluster_5deg": 0.6637877198309545,
+      "95CI_cluster_5deg": [
+        1.4343035956744787,
+        4.077844025110922
+      ],
+      "p_nominal": 8.437762996424946e-05,
+      "beta_mainland_pp_per_log1p": -0.6230934794113066,
+      "beta_island_pp_per_log1p": 2.1329803309813937,
+      "GloBI_both_recorded_guilds_cancel_in_contrast": true,
+      "no_true_pollinator_absence_inferred": true,
+      "not_local_effective_nocturnal_pollination": true
+    }
+  },
+  "yearly": [
+    {
+      "year": 2019,
+      "old": {
+        "estimable": true,
+        "scope": "all",
+        "guild": "moth",
+        "balanced_year_region_landclass": true,
+        "n_site_years": 783,
+        "n_island_site_years": 73,
+        "n_mainland_site_years": 710,
+        "source_5degree_clusters": 24,
+        "year_region_groups": 24,
+        "beta_island_minus_mainland_slope_pp_per_log1p": 2.219154318954833,
+        "SE_cluster_5deg": 2.7003578418176217,
+        "95CI_cluster_5deg": [
+          -3.3669614813759265,
+          7.805270119285592
+        ],
+        "p_nominal": 0.4196285636171655,
+        "beta_mainland_pp_per_log1p": 0.5882705101690773,
+        "beta_island_pp_per_log1p": 2.80742482912391,
+        "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+        "no_true_pollinator_absence_inferred": true,
+        "not_local_effective_nocturnal_pollination": true
+      },
+      "updated": {
+        "estimable": true,
+        "scope": "all",
+        "guild": "moth",
+        "balanced_year_region_landclass": true,
+        "n_site_years": 783,
+        "n_island_site_years": 73,
+        "n_mainland_site_years": 710,
+        "source_5degree_clusters": 24,
+        "year_region_groups": 24,
+        "beta_island_minus_mainland_slope_pp_per_log1p": -2.3875687149845506,
+        "SE_cluster_5deg": 1.528802805556526,
+        "95CI_cluster_5deg": [
+          -5.550138273529038,
+          0.7750008435599374
+        ],
+        "p_nominal": 0.1320085030651473,
+        "beta_mainland_pp_per_log1p": 0.07691427592685152,
+        "beta_island_pp_per_log1p": -2.310654439057699,
+        "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+        "no_true_pollinator_absence_inferred": true,
+        "not_local_effective_nocturnal_pollination": true
+      }
+    },
+    {
+      "year": 2021,
+      "old": {
+        "estimable": true,
+        "scope": "all",
+        "guild": "moth",
+        "balanced_year_region_landclass": true,
+        "n_site_years": 1473,
+        "n_island_site_years": 110,
+        "n_mainland_site_years": 1363,
+        "source_5degree_clusters": 30,
+        "year_region_groups": 30,
+        "beta_island_minus_mainland_slope_pp_per_log1p": -6.426973721092056,
+        "SE_cluster_5deg": 3.5775073214668085,
+        "95CI_cluster_5deg": [
+          -13.743797739902742,
+          0.8898502977186302
+        ],
+        "p_nominal": 0.08284042123151406,
+        "beta_mainland_pp_per_log1p": 2.681212848442521,
+        "beta_island_pp_per_log1p": -3.7457608726495346,
+        "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+        "no_true_pollinator_absence_inferred": true,
+        "not_local_effective_nocturnal_pollination": true
+      },
+      "updated": {
+        "estimable": true,
+        "scope": "all",
+        "guild": "moth",
+        "balanced_year_region_landclass": true,
+        "n_site_years": 1473,
+        "n_island_site_years": 110,
+        "n_mainland_site_years": 1363,
+        "source_5degree_clusters": 30,
+        "year_region_groups": 30,
+        "beta_island_minus_mainland_slope_pp_per_log1p": -0.7101098016632398,
+        "SE_cluster_5deg": 3.159409845386042,
+        "95CI_cluster_5deg": [
+          -7.171828469092674,
+          5.751608865766194
+        ],
+        "p_nominal": 0.8237419774964563,
+        "beta_mainland_pp_per_log1p": -0.005017798074812063,
+        "beta_island_pp_per_log1p": -0.7151275997380518,
+        "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+        "no_true_pollinator_absence_inferred": true,
+        "not_local_effective_nocturnal_pollination": true
+      }
+    },
+    {
+      "year": 2023,
+      "old": {
+        "estimable": true,
+        "scope": "all",
+        "guild": "moth",
+        "balanced_year_region_landclass": true,
+        "n_site_years": 2005,
+        "n_island_site_years": 185,
+        "n_mainland_site_years": 1820,
+        "source_5degree_clusters": 42,
+        "year_region_groups": 42,
+        "beta_island_minus_mainland_slope_pp_per_log1p": -1.4375636445435886,
+        "SE_cluster_5deg": 1.7690674254580965,
+        "95CI_cluster_5deg": [
+          -5.010267789729459,
+          2.1351405006422817
+        ],
+        "p_nominal": 0.42113468214636773,
+        "beta_mainland_pp_per_log1p": 1.0890535770440946,
+        "beta_island_pp_per_log1p": -0.3485100674994941,
+        "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+        "no_true_pollinator_absence_inferred": true,
+        "not_local_effective_nocturnal_pollination": true
+      },
+      "updated": {
+        "estimable": true,
+        "scope": "all",
+        "guild": "moth",
+        "balanced_year_region_landclass": true,
+        "n_site_years": 2005,
+        "n_island_site_years": 185,
+        "n_mainland_site_years": 1820,
+        "source_5degree_clusters": 42,
+        "year_region_groups": 42,
+        "beta_island_minus_mainland_slope_pp_per_log1p": 0.6567985712204897,
+        "SE_cluster_5deg": 1.4901733421795955,
+        "95CI_cluster_5deg": [
+          -2.352667546370759,
+          3.6662646888117387
+        ],
+        "p_nominal": 0.661707059980269,
+        "beta_mainland_pp_per_log1p": 1.7369354754594537,
+        "beta_island_pp_per_log1p": 2.3937340466799433,
+        "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+        "no_true_pollinator_absence_inferred": true,
+        "not_local_effective_nocturnal_pollination": true
+      }
+    },
+    {
+      "year": 2024,
+      "old": {
+        "estimable": true,
+        "scope": "all",
+        "guild": "moth",
+        "balanced_year_region_landclass": true,
+        "n_site_years": 2536,
+        "n_island_site_years": 238,
+        "n_mainland_site_years": 2298,
+        "source_5degree_clusters": 42,
+        "year_region_groups": 42,
+        "beta_island_minus_mainland_slope_pp_per_log1p": -2.6203878172260797,
+        "SE_cluster_5deg": 1.5914646704331943,
+        "95CI_cluster_5deg": [
+          -5.834415922175897,
+          0.5936402877237379
+        ],
+        "p_nominal": 0.10730061137322981,
+        "beta_mainland_pp_per_log1p": 1.3276954730969224,
+        "beta_island_pp_per_log1p": -1.2926923441291573,
+        "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+        "no_true_pollinator_absence_inferred": true,
+        "not_local_effective_nocturnal_pollination": true
+      },
+      "updated": {
+        "estimable": true,
+        "scope": "all",
+        "guild": "moth",
+        "balanced_year_region_landclass": true,
+        "n_site_years": 2536,
+        "n_island_site_years": 238,
+        "n_mainland_site_years": 2298,
+        "source_5degree_clusters": 42,
+        "year_region_groups": 42,
+        "beta_island_minus_mainland_slope_pp_per_log1p": 2.453960008435565,
+        "SE_cluster_5deg": 1.1330519661157499,
+        "95CI_cluster_5deg": [
+          0.16571514122565478,
+          4.742204875645475
+        ],
+        "p_nominal": 0.036195504263906095,
+        "beta_mainland_pp_per_log1p": -0.8470303222978055,
+        "beta_island_pp_per_log1p": 1.6069296861377595,
+        "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+        "no_true_pollinator_absence_inferred": true,
+        "not_local_effective_nocturnal_pollination": true
+      }
+    },
+    {
+      "year": 2025,
+      "old": {
+        "estimable": true,
+        "scope": "all",
+        "guild": "moth",
+        "balanced_year_region_landclass": true,
+        "n_site_years": 3901,
+        "n_island_site_years": 327,
+        "n_mainland_site_years": 3574,
+        "source_5degree_clusters": 57,
+        "year_region_groups": 57,
+        "beta_island_minus_mainland_slope_pp_per_log1p": -1.9187834188324988,
+        "SE_cluster_5deg": 1.3432509282038232,
+        "95CI_cluster_5deg": [
+          -4.609638373840596,
+          0.772071536175599
+        ],
+        "p_nominal": 0.15871281518606228,
+        "beta_mainland_pp_per_log1p": 1.170991834068632,
+        "beta_island_pp_per_log1p": -0.7477915847638668,
+        "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+        "no_true_pollinator_absence_inferred": true,
+        "not_local_effective_nocturnal_pollination": true
+      },
+      "updated": {
+        "estimable": true,
+        "scope": "all",
+        "guild": "moth",
+        "balanced_year_region_landclass": true,
+        "n_site_years": 3901,
+        "n_island_site_years": 327,
+        "n_mainland_site_years": 3574,
+        "source_5degree_clusters": 57,
+        "year_region_groups": 57,
+        "beta_island_minus_mainland_slope_pp_per_log1p": 0.4761469467301875,
+        "SE_cluster_5deg": 0.9652591871779608,
+        "95CI_cluster_5deg": [
+          -1.457499561266703,
+          2.409793454727078
+        ],
+        "p_nominal": 0.6237408768005195,
+        "beta_mainland_pp_per_log1p": -0.05904375511377247,
+        "beta_island_pp_per_log1p": 0.417103191616415,
+        "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+        "no_true_pollinator_absence_inferred": true,
+        "not_local_effective_nocturnal_pollination": true
+      }
+    }
+  ],
+  "global_wcvp_sets": {
+    "old": 1980,
+    "new": 1440,
+    "retained": 1093,
+    "added": 347,
+    "lost": 887
+  },
+  "site_species_harmonized": {
+    "old": 1166,
+    "new": 744,
+    "retained": 619,
+    "added": 125,
+    "lost": 547
+  },
+  "site_species_as_published_vs_updated": {
+    "old": 1325,
+    "new": 744,
+    "retained": 612,
+    "added": 132,
+    "lost": 713
+  },
+  "dated_site_species_units": {
+    "old": 16311,
+    "new": 9674,
+    "retained": 8190,
+    "added": 1484,
+    "lost": 8121
+  },
+  "n_sites_increased": 637,
+  "n_sites_decreased": 4708,
+  "n_sites_same_count": 5353,
+  "n_species_denominator": 8581,
+  "target_key_set_sha256": "37f3c2c519871b6905ffa81c5a14536b248611861ad143b1d4d77d95b7c6b00d",
+  "unresolved": {
+    "old": {
+      "resolved": 1996,
+      "ambiguous_or_unresolved": 355,
+      "no_exact_species_name": 11
+    },
+    "new": {
+      "resolved": 1441,
+      "ambiguous_or_unresolved": 205,
+      "no_exact_species_name": 5
+    }
+  }
+}
