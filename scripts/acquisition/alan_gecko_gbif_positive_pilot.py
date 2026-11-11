@@ -78,14 +78,14 @@ def year_source(s,k,year,cap=50000):
  need(all(keys) and len(set(keys))==len(keys),'Duplicate GBIF occurrence keys')
  return rows
 
-def run(years,names,out,*,cap=50000,session=None):
+def run(years,names,out,*,cap=50000,session=None,shoreline=None):
  out=Path(out)
  need(not out.exists(),'Refuse source overwrite')
  need(len(set(years))==len(years) and years and all(2012<=y<=2025 for y in years),'Invalid years')
  need(names and len(set(names))==len(names) and all(n in GROUPS for n in names),'Unknown taxon')
  s=session or requests.Session()
  s.headers.update({'User-Agent':'ALAN-GloBI gecko GBIF positive-only source audit/1.0'})
- diagnostics=[];grid=defaultdict(set)
+ diagnostics=[];grid=defaultdict(set);common_points=[]
  for name in names:
   key,tax=taxon(s,name);audit=[]
   for year in years:
@@ -95,7 +95,13 @@ def run(years,names,out,*,cap=50000,session=None):
     obs,why=record(r,name,year)
     if why:excluded[why]+=1;continue
     valid+=1;lat,lon,dataset=obs;datasets.add(dataset);grids.add((lat,lon))
-    if GROUPS[name]=='house_nocturnal':grid[(year,lat,lon)].add(name)
+    if GROUPS[name]=='house_nocturnal':
+     grid[(year,lat,lon)].add(name)
+     common_points.append({'unit_id':str(r['key']),'year':year,'name':name,
+        'lat_grid_1deg':lat,'lon_grid_1deg':lon,
+        'latitude':float(r['decimalLatitude']),
+        'longitude':float(r['decimalLongitude']),
+        'accuracy_m':float(r['coordinateUncertaintyInMeters'])})
    need(valid+sum(excluded.values())==len(rows),'GBIF count reconciliation failed')
    audit.append({'year':year,'source_rows':len(rows),'qualified_direct_records':valid,
                  'occupied_1degree_source_grids':len(grids),
@@ -110,6 +116,47 @@ def run(years,names,out,*,cap=50000,session=None):
   w.writerow(['year','grid_lat_floor','grid_lon_floor','documented_common_gecko_names'])
   for (year,lat,lon),names in sorted(grid.items()):
    w.writerow([year,lat,lon,len(names)])
+ landmass_summary=None
+ if shoreline is not None:
+  import hashlib,sys
+  import pandas as pd
+  import geopandas as gpd
+  sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
+  from scripts.analysis.mois_global_2020_GSHHG_scope_20261107 import prepare_land,assign_points
+  shore=Path(shoreline)
+  coast_receipt=json.loads((shore/'source_receipt.json').read_text())
+  need(coast_receipt['original_archive_sha256']=='8dbbe7e071e77e9e75f2d639239099ebca8d5c16d6a07df8169729d49f15cf41',
+       'GSHHG source archive changed')
+  for part,expected in coast_receipt['extracted_sha256'].items():
+   need(hashlib.sha256((shore/part).read_bytes()).hexdigest()==expected,
+        'GSHHG component SHA mismatch: '+part)
+  land=prepare_land(gpd.read_file(shore/'GSHHS_h_L1.shp'))
+  lakes=gpd.read_file(shore/'GSHHS_h_L2.shp')
+  common=pd.DataFrame(common_points)
+  if len(common):
+   need(common.unit_id.is_unique,'Duplicate gecko GBIF source keys')
+   where=assign_points(common[['unit_id','longitude','latitude']],land,lakes)
+   common=common.merge(where,on='unit_id',validate='one_to_one')
+   precise=common.loc[common.accuracy_m.le(1000) &
+       common.land_class.isin(('island','mainland'))].copy()
+   keys=['year','lat_grid_1deg','lon_grid_1deg','land_id','land_class']
+   tile=precise.groupby(keys,observed=True).name.nunique().reset_index(
+       name='documented_house_gecko_species')
+  else:
+   tile=pd.DataFrame(columns=['year','lat_grid_1deg','lon_grid_1deg',
+                                'land_id','land_class','documented_house_gecko_species'])
+  tile.to_csv(out/'house_gecko_positive_same_landmass_1degree.csv',index=False)
+  landmass_summary={
+   'GSHHG_source_archive_sha256':coast_receipt['original_archive_sha256'],
+   'positive_house_gecko_observations_total':len(common),
+   'source_gecko_points_landmass_classifiable':int(common.land_class.isin(('island','mainland')).sum()) if len(common) else 0,
+   'gecko_point_uncertainty_le_1000m_and_landmass_mapped':len(precise) if len(common) else 0,
+   'source_gecko_1degree_year_landmass_cells':len(tile),
+   'source_island_gecko_gridyear_landmass_cells':int(tile.land_class.eq('island').sum()),
+   'source_mainland_gecko_gridyear_landmass_cells':int(tile.land_class.eq('mainland').sum()),
+   'landmass_same_photo_id_join_not_done_here':True,
+   'point_within_polygon_not_gecko_local_pollination':True,
+   'rare_day_gecko_locations_not_published':True}
  receipt={'schema':'alan_GBIF_gecko_positive_source_pilot_v1',
   'source':'GBIF live public occurrence/search, exploratory not DOI-frozen',
   'retrieved_utc':datetime.now(timezone.utc).isoformat(),
@@ -119,7 +166,8 @@ def run(years,names,out,*,cap=50000,session=None):
   'locally_native_or_invasive_gecko_status_not_estimated':True,
   'flower_pollination_predation_not_estimated':True,
   'rare_flower_gecko_locations_suppressed':True,
-  'GBIF_observation_effort_not_normalized':True}
+  'GBIF_observation_effort_not_normalized':True,
+  'spatial_GSHHG_landmass_precision_audit':landmass_summary}
  (out/'source_receipt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
  return receipt
 
@@ -129,7 +177,8 @@ if __name__=='__main__':
  p.add_argument('--taxa',nargs='+',default=list(GROUPS))
  p.add_argument('--cap',type=int,default=50000)
  p.add_argument('--out',type=Path,required=True)
+ p.add_argument('--shoreline',type=Path,default=None)
  a=p.parse_args()
- result=run(a.years,a.taxa,a.out,cap=a.cap)
+ result=run(a.years,a.taxa,a.out,cap=a.cap,shoreline=a.shoreline)
  print(json.dumps({'counts':result['documented_house_gecko_gridyear_counts'],
    'audited_species_years':sum(len(x['years']) for x in result['species_audit'])}))
