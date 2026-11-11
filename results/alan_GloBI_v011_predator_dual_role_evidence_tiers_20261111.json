@@ -1,0 +1,77 @@
+{
+  "schema": "alan_full_GloBI_v011_named_animal_moth_family_predation_and_flower_service_evidence_v1",
+  "status": "ACTUAL complete source positive-record joined; does not establish effective same-site pollination",
+  "source": {
+    "run": 42944244963,
+    "artifact_id": 13823905478,
+    "full_interaction_rows": 24453954,
+    "original_interactions_sha256": "670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3",
+    "note": "Full actual gzip SHA embedded in local artifact, do not treat abbreviated token as verified"
+  },
+  "columns": {
+    "broad_dual": "same species name has both broad moth or unresolved Lepidoptera predation and a plant flower visit/DB pollinates record",
+    "moth_family_predation_and_db_pollinates": "named animal with at least one GloBI moth-family preysOn/eats/kills/hasPrey and one pollinates relationship",
+    "source_restricted": "both positive roles retain source links after excluding iNaturalist and trophiCH",
+    "moth_family_predation_and_flower_visits": "named animal with family-confirmed moth prey relation and visitsFlowersOf relationship"
+  },
+  "group_counts": {
+    "bats": {
+      "broad_dual": 17,
+      "moth_family_predation_and_db_pollinates": 6,
+      "source_restricted": 6,
+      "moth_family_predation_and_flower_visits": 2,
+      "examples": [
+        "Antrozous pallidus",
+        "Artibeus jamaicensis",
+        "Artibeus lituratus",
+        "Glossophaga commissarisi",
+        "Glossophaga soricina",
+        "Platyrrhinus lineatus"
+      ]
+    },
+    "birds": {
+      "broad_dual": 157,
+      "moth_family_predation_and_db_pollinates": 11,
+      "source_restricted": 2,
+      "moth_family_predation_and_flower_visits": 91
+    },
+    "geckos": {
+      "broad_dual": 1,
+      "moth_family_predation_and_db_pollinates": 1,
+      "source_restricted": 0,
+      "moth_family_predation_and_flower_visits": 0
+    },
+    "centipedes": {
+      "broad_dual": 1,
+      "moth_family_predation_and_db_pollinates": 0,
+      "source_restricted": 0,
+      "moth_family_predation_and_flower_visits": 0
+    },
+    "spiders": {
+      "broad_dual": 40,
+      "moth_family_predation_and_db_pollinates": 0,
+      "source_restricted": 0,
+      "moth_family_predation_and_flower_visits": 34
+    },
+    "mantises": {
+      "broad_dual": 6,
+      "moth_family_predation_and_db_pollinates": 0,
+      "source_restricted": 0,
+      "moth_family_predation_and_flower_visits": 6
+    },
+    "predatory_wasps": {
+      "broad_dual": 88,
+      "moth_family_predation_and_db_pollinates": 25,
+      "source_restricted": 3,
+      "moth_family_predation_and_flower_visits": 46
+    }
+  },
+  "limitations": {
+    "source_predation_includes_kills_and_hasPrey": true,
+    "prey_life_stage_unknown": true,
+    "db_pollinates_not_reproductive_success": true,
+    "site_and_time_of_two_roles_unverified": true,
+    "trait_evidence_not_ALAN_effect": true,
+    "no_database_link_not_actual_non_role": true
+  }
+}
