@@ -24,7 +24,7 @@ jobs:
           python -m pip install -q requests==2.32.3
           python -m unittest discover -s tests -p 'test_alan_gecko_gbif_positive_pilot.py' -v
           python -m py_compile scripts/acquisition/alan_gecko_gbif_positive_pilot.py
-      - name: Retrieve real gecko detections in two contrasting photo years
+      - name: Retrieve real gecko detections in two contrasting photo years (GBIF DETECTED-compatible)
         run: |
           python scripts/acquisition/alan_gecko_gbif_positive_pilot.py \
             --years 2019 2024 \
