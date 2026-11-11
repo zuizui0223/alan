@@ -16,7 +16,7 @@ class Session:
        'kingdom':'Animalia','status':'ACCEPTED','usageKey':1234,'confidence':99})
   year=int(params['year'])
   r={'key':year+1,'year':year,'species':'Hemidactylus frenatus',
-     'basisOfRecord':'HUMAN_OBSERVATION','occurrenceStatus':'PRESENT',
+     'basisOfRecord':'HUMAN_OBSERVATION','occurrenceStatus':'DETECTED',
      'decimalLatitude':18.2,'decimalLongitude':-77.3,
      'coordinateUncertaintyInMeters':200,'hasGeospatialIssue':False,
      'datasetKey':'mock'}
@@ -48,6 +48,20 @@ class Tests(unittest.TestCase):
     return x
   with self.assertRaisesRegex(ValueError,'never truncate'):
    g.year_source(Oversized(),1234,2019)
+ def test_modern_GBIF_status_detected_and_not_detected(self):
+  r={'key':1,'year':2019,'species':'Hemidactylus frenatus',
+    'basisOfRecord':'HUMAN_OBSERVATION','decimalLatitude':18,
+    'decimalLongitude':-77,'coordinateUncertaintyInMeters':20,
+    'occurrenceStatus':'DETECTED'}
+  value,why=g.record(r,'Hemidactylus frenatus',2019)
+  self.assertIsNone(why)
+  self.assertEqual(value[:2],(18,-77))
+  r['occurrenceStatus']='NOT_DETECTED'
+  self.assertEqual(g.record(r,'Hemidactylus frenatus',2019)[1],'not_present')
+  r['occurrenceStatus']='PRESENT'
+  self.assertIsNone(g.record(r,'Hemidactylus frenatus',2019)[1])
+  r['occurrenceStatus']='ABSENT'
+  self.assertEqual(g.record(r,'Hemidactylus frenatus',2019)[1],'not_present')
  def test_only_authorized_taxa(self):
   with tempfile.TemporaryDirectory() as t:
    with self.assertRaisesRegex(ValueError,'Unknown taxon'):
