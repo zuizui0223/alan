@@ -26,7 +26,7 @@ jobs:
           python -m py_compile scripts/acquisition/alan_gecko_gbif_positive_pilot.py scripts/acquisition/alan_multiguild_gbif_positive_pilot.py
           python -m unittest discover -s tests -p test_alan_gecko_gbif_positive_pilot.py -v
           python -m unittest discover -s tests -p test_alan_multiguild_gbif_positive_pilot.py -v
-      - name: Read authentic GBIF observations in bats, centipedes, spiders, mantises and wasps
+      - name: Read authentic GBIF observations in bats, centipedes, spiders, mantises and wasps (after source test file is committed)
         run: |
           set -euo pipefail
           python -m scripts.acquisition.alan_multiguild_gbif_positive_pilot \
