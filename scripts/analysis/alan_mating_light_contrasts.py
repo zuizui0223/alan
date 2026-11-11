@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[2]
 GAP = "beta_island_minus_mainland_slope_pp_per_log1p"
 
 
-def analyze(s, hosts, out):
+def analyze(s, hosts, out, review=None):
     traits = pd.read_csv(ROOT/"results/moth_pollen_evidence/shared_544_evidence.csv").set_index("plant")
     assert traits.index.is_unique and len(traits)==544
     hosts = hosts.loc[hosts.wcvp_accepted_name.isin(traits.index), ["key","wcvp_accepted_name"]].drop_duplicates()
@@ -35,6 +35,15 @@ def analyze(s, hosts, out):
 
     pl = traits.glopl_median_log_response_ratio.dropna()
     assert len(pl)==64
+    flags = traits.loc[pl.index, "moth_transport_documented"].copy()
+    assert flags.sum() == 11
+    if review is not None:
+        records = pd.read_csv(review).set_index("plant")
+        assert records.index.is_unique and set(records.index) == set(flags.index[~flags])
+        assert records.status.isin(["confirmed", "unconfirmed"]).all()
+        promoted = records.loc[records.status.eq("confirmed")]
+        assert promoted[["source", "reason"]].notna().all().all()
+        flags.loc[promoted.index] = True
     centered = pl-pl.mean()
     slope_weights = centered/centered.pow(2).sum()
     constant = pd.Series(1/len(pl),index=pl.index)
@@ -47,9 +56,8 @@ def analyze(s, hosts, out):
     pl_groups = {}
     group_slopes = {}
     group_weights = {}
-    for documented, group in pl.groupby(traits.loc[pl.index,"moth_transport_documented"]):
+    for documented, group in pl.groupby(flags):
         label = "transport_documented" if documented else "transport_unconfirmed"
-        assert len(group) == (11 if documented else 53)
         pl_groups[label] = group.index
         centered_group = group - group.mean()
         group_weights[label] = centered_group / centered_group.pow(2).sum()
@@ -83,6 +91,7 @@ if __name__=="__main__":
     ap = argparse.ArgumentParser(description=__doc__)
     for arg in ("inputs","signed","out"):
         ap.add_argument(arg,type=Path)
+    ap.add_argument("--review", type=Path, help="Species-level review of the 53 originally unconfirmed plants")
     args = ap.parse_args()
     sites, _, plants, _ = primary(args.inputs,args.signed)
-    analyze(sites,plants.loc[plants.all_moth],args.out)
+    analyze(sites,plants.loc[plants.all_moth],args.out,args.review)
