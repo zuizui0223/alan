@@ -1,0 +1,60 @@
+name: ALAN multi-predator GBIF positive observation support 2019+2024
+
+on:
+  push:
+    branches: [research/moth-gecko-flora-feasibility-20261111]
+    paths: [.github/workflows/alan-multiguild-gbif-2019-2024-pilot.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  real-multiguild-geographic-opportunities:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Install source-record dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install -q requests==2.32.3
+          python -m py_compile scripts/acquisition/alan_gecko_gbif_positive_pilot.py scripts/acquisition/alan_multiguild_gbif_positive_pilot.py
+          python -m unittest discover -s tests -p test_alan_gecko_gbif_positive_pilot.py -v
+          python -m unittest discover -s tests -p test_alan_multiguild_gbif_positive_pilot.py -v
+      - name: Read authentic GBIF observations in bats, centipedes, spiders, mantises and wasps
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_multiguild_gbif_positive_pilot \
+            --years 2019 2024 --cap 12000 \
+            --out multi_predator_positive_2019_2024
+      - name: Assert positive-only status and record source problems explicitly
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('multi_predator_positive_2019_2024/PUBLIC_source_support_receipt.json').read_text())
+          assert r['years']==[2019,2024]
+          assert not r['false_absence_from_no_record']
+          assert not r['confirmed_predator_island_absence']
+          assert not r['actual_predator_on_moth_interaction_observed_at_GBIF_site']
+          assert not r['original_gecko_or_bat_coordinates_exported']
+          assert len(r['species_audit'])==8
+          print('MULTIGUILD_GBIF_REAL_AUDIT',json.dumps({
+            'genuine_species_years':[(s['scientific_name'],s['source_status'],
+              [(y['year'],y['qualified_direct_records']) for y in s['years']])
+              for s in r['species_audit']]
+            },sort_keys=True))
+          PY
+      - name: Release aggregate-only positive-observation support; no precise coordinates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-GBIF-multiple-predators-positive-observations-2019-2024-aggregates
+          path: multi_predator_positive_2019_2024/PUBLIC_source_support_receipt.json
+          retention-days: 60
+          if-no-files-found: warn
