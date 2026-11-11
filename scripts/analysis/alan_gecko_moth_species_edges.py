@@ -20,8 +20,12 @@ GECKOS = ("Hemidactylus frenatus", "Hemidactylus mabouia")
 ARTHROPODS = ("Mantis religiosa", "Argiope bruennichi", "Vespa velutina")
 
 
-def extract(source, destination, arthropods=False):
+def extract(source, destination, arthropods=False, cohort=None):
     predators = ARTHROPODS if arthropods else GECKOS
+    if cohort is not None:
+        predators = tuple(pd.read_csv(cohort).animal_species)
+        assert len(set(predators)) == len(predators) == 80
+        arthropods = True
     assert sha256(source) == SOURCE_SHA
     with gzip.open(source, "rt", encoding="utf-8") as handle:
         import csv as std_csv
@@ -70,5 +74,6 @@ if __name__ == "__main__":
     p.add_argument("source",type=Path)
     p.add_argument("destination",type=Path)
     p.add_argument("--arthropods", action="store_true")
+    p.add_argument("--cohort",type=Path)
     args=p.parse_args()
-    extract(args.source,args.destination,args.arthropods)
+    extract(args.source,args.destination,args.arthropods,args.cohort)
