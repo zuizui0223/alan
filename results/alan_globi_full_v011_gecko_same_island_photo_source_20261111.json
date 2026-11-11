@@ -1,0 +1,74 @@
+{
+  "schema": "alan_GloBI_v011_photo_x_GBIF_house_gecko_same_GSHHG_landmass_20261111_v1",
+  "status": "REAL source-joined coexistence support only, NOT a predator×ALAN ecological coefficient",
+  "source": {
+    "GloBI_complete_interpreted_v011_sha256": "670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3",
+    "GloBI_full_source_records": 24453954,
+    "original_photo_sha256": "f033661d76e07898a5c13199a55c5d0ce6e55353daa48b0058c456979e90644c",
+    "accepted_WCVP_exact_source_sha256": "dc5bb0e3686fde0cfd327e4336245d0ceae3c7657b3bd12841bb814cc94d1eb2",
+    "WCVP_accepted_names_sha256": "9cd6aa7ca29f00c64283bcc08dcb778e212b644b837e64070051339b11d8b7b3",
+    "gecko_GBIF_source": "original GBIF human observations, year 2019 or 2024, <=1000m coordinates, Hemidactylus frenatus or Hemidactylus mabouia",
+    "gecko_GSHHG_source_archive_sha256": "8dbbe7e071e77e9e75f2d639239099ebca8d5c16d6a07df8169729d49f15cf41",
+    "gecko_GBIF_retrieved_utc": "2026-11-11T02:00:23.563160+00:00",
+    "photo_geography": "year x original physical GSHHG landmass x 0.05 degree photo grid; exclude grid cells involving multiple GSHHG landmass polygons",
+    "matching": "same year, same exact GSHHG landmass_id, same 1-degree latitude/longitude floor grid",
+    "photo_source": "historical_main, unique original photo IDs, 3+ original photo attempts, 2+ different photographed accepted species",
+    "light_source": "source same-year 4-month VIIRS, require >=3 valid months, NOT annual EOG"
+  },
+  "known_GloBI_moth_visited_botanical_names": 1651,
+  "exact_WCVP_accepted_moth_positive_names": 1356,
+  "known_GloBI_butterfly_visited_botanical_names": 4065,
+  "results": [
+    {
+      "year": 2019,
+      "land_class": "island",
+      "n_qualifying_site_years": 505,
+      "n_gecko_positive_same_landmass_1deg_site_years": 169,
+      "n_any_moth_source_positive_plant_site_years": 193,
+      "n_gecko_positive_with_moth_source_positive_plant_site_years": 52,
+      "n_gecko_positive_with_butterfly_source_positive_plant_site_years": 111,
+      "n_GSHHG_landmasses_with_gecko_positive_and_photos": 26
+    },
+    {
+      "year": 2019,
+      "land_class": "mainland",
+      "n_qualifying_site_years": 2714,
+      "n_gecko_positive_same_landmass_1deg_site_years": 271,
+      "n_any_moth_source_positive_plant_site_years": 1359,
+      "n_gecko_positive_with_moth_source_positive_plant_site_years": 89,
+      "n_gecko_positive_with_butterfly_source_positive_plant_site_years": 151,
+      "n_GSHHG_landmasses_with_gecko_positive_and_photos": 5
+    },
+    {
+      "year": 2024,
+      "land_class": "island",
+      "n_qualifying_site_years": 1349,
+      "n_gecko_positive_same_landmass_1deg_site_years": 348,
+      "n_any_moth_source_positive_plant_site_years": 644,
+      "n_gecko_positive_with_moth_source_positive_plant_site_years": 107,
+      "n_gecko_positive_with_butterfly_source_positive_plant_site_years": 203,
+      "n_GSHHG_landmasses_with_gecko_positive_and_photos": 55
+    },
+    {
+      "year": 2024,
+      "land_class": "mainland",
+      "n_qualifying_site_years": 8793,
+      "n_gecko_positive_same_landmass_1deg_site_years": 1454,
+      "n_any_moth_source_positive_plant_site_years": 4282,
+      "n_gecko_positive_with_moth_source_positive_plant_site_years": 432,
+      "n_gecko_positive_with_butterfly_source_positive_plant_site_years": 832,
+      "n_GSHHG_landmasses_with_gecko_positive_and_photos": 5
+    }
+  ],
+  "warnings": {
+    "unrecorded_GBIF_not_confirmed_gecko_absence": true,
+    "unrecorded_GloBI_not_confirmed_moth_absence": true,
+    "GloBI_moth_visitor_somewhere_not_local_moth_visit_or_effective_pollination": true,
+    "same_landmass_and_one_degree_not_same_flower_or_actual_gecko_moth_contact": true,
+    "GloBI_moth_visited_plant_presence_not_native_flora_or_naturalization": true,
+    "no_annual_ALAN_or_predator_mediation_coefficient_fitted": true,
+    "photo_observer_and_species_selection_bias_uncontrolled": true,
+    "rare_day_gecko_GBIF_coordinates_not_published": true,
+    "no_private_photo_species_site_rows_or_coordinates_published": true
+  }
+}
