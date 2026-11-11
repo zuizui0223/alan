@@ -1,0 +1,249 @@
+name: ALAN measured 112428 RGB photos moth-positive GloBI stratified real ROI9 refit
+on:
+  push:
+    branches: [analysis/alan-tier08-remainder-tier09-geographic-support-audit-20261109]
+    paths:
+      - .github/workflows/alan-full112428-trueRGB-moth-guild-refit.yml
+      - scripts/analysis/alan_full112428_trueRGB_GloBI_moth_strata_20261109.py
+      - scripts/acquisition/alan_tier09_vs_full112428_measured_geography_20261110.py
+      - tests/test_alan_tier09_vs_full112428_measured_geography_20261110.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-five-year-island-ALAN-model:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 96
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify 5-year photographic analysis and year/geography source tests
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 geopandas==1.1.2 shapely==2.1.2
+          python -m unittest discover -s tests -p test_mois_island_ALAN_multiyear_sameyear_source_panel_20261107.py -v
+          python -m py_compile scripts/analysis/mois_island_ALAN_multiyear_sameyear_source_panel_20261107.py
+          python -m unittest discover -s tests -p test_alan_island_area_light_20261108.py -v
+          python -m py_compile scripts/analysis/alan_island_area_light_20261108.py
+          python -m unittest discover -s tests -p test_alan_real_oldnew_moth_GloBI_restricted_20261109.py -v
+          python -m py_compile scripts/analysis/alan_real_oldnew_moth_GloBI_restricted_20261109.py
+      - name: Verify MOIS source artifact visibility from ALAN token
+        run: |
+          set -euo pipefail
+          gh api repos/zuizui0223/mois/actions/runs/41007444495/artifacts --jq '.artifacts[] | select(.name=="mois-nohuman-canonical-climate-joined-20261030") | .expired' | grep -qx false
+          gh api repos/zuizui0223/mois/actions/runs/42175243391/artifacts --jq '.artifacts[] | select(.name=="mois-GSHHG-2.3.7-high-L1-L2-SHA-source-no-images") | .expired' | grep -qx false
+          gh api repos/zuizui0223/mois/actions/runs/42337703150/artifacts --jq '.artifacts[] | select(.name=="mois-2025-original73463-mainland-island-full-VIIRS-and-R2024B-UC-source") | .expired' | grep -qx false
+          echo 'ALAN_CROSS_REPO_SOURCE_ARTIFACT_VISIBILITY_OK'
+      - name: Restore signed frozen original photo and accepted-taxon sources
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          mkdir -p src/photo src/wcvp src/coast
+          gh run download 41007444495 --repo zuizui0223/mois --name mois-nohuman-canonical-climate-joined-20261030 --dir src/photo
+          gh run download 39225659840 --repo zuizui0223/mois --name mois-real350399-Kew-WCVP-native-source-TDWG3-no-point-status --dir src/wcvp
+          gh run download 42175243391 --repo zuizui0223/mois --name mois-GSHHG-2.3.7-high-L1-L2-SHA-source-no-images --dir src/coast
+          echo 'f033661d76e07898a5c13199a55c5d0ce6e55353daa48b0058c456979e90644c  src/photo/canonical_observations_climate.csv.gz' | sha256sum -c -
+          echo 'dc5bb0e3686fde0cfd327e4336245d0ceae3c7657b3bd12841bb814cc94d1eb2  src/wcvp/mois350399_wcvp_source_taxon_exact_name_resolution.csv.gz' | sha256sum -c -
+      - name: Restore three same-year original 2019 2021 2023 VIIRS and population sources
+        timeout-minutes: 9
+        run: |
+          set -euo pipefail
+          mkdir -p src/2019/viirs src/2019/pop src/2021/viirs src/2021/pop src/2023/viirs src/2023/pop
+          gh run download 42337911536 --repo zuizui0223/mois --name mois-original-2019-global-mainland-island-monthly-VIIRS-source-SHA --dir src/2019/viirs
+          gh run download 42338121269 --repo zuizui0223/mois --name mois-original-2019-R2024B-UC-global-popdensity-photo-source --dir src/2019/pop
+          gh run download 42337911536 --repo zuizui0223/mois --name mois-original-2021-global-mainland-island-monthly-VIIRS-source-SHA --dir src/2021/viirs
+          gh run download 42338121269 --repo zuizui0223/mois --name mois-original-2021-R2024B-UC-global-popdensity-photo-source --dir src/2021/pop
+          gh run download 42337911536 --repo zuizui0223/mois --name mois-original-2023-global-mainland-island-monthly-VIIRS-source-SHA --dir src/2023/viirs
+          gh run download 42338121269 --repo zuizui0223/mois --name mois-original-2023-R2024B-UC-global-popdensity-photo-source --dir src/2023/pop
+          test -f src/2019/viirs/source_year/2019/mois_2019_full_photo_landmass_source.csv
+          test -f src/2021/viirs/source_year/2021/mois_2021_full_photo_landmass_source.csv
+          test -f src/2023/viirs/source_year/2023/mois_2023_full_photo_landmass_source.csv
+          test -f src/2019/pop/source_receipt.json
+          test -f src/2021/pop/source_receipt.json
+          test -f src/2023/pop/source_receipt.json
+      - name: Restore independent 2024 sameyear VIIRS plus 2024 unconstrained population
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          mkdir -p src/2024/land src/2024/CN src/2024/UC
+          gh run download 42328254130 --repo zuizui0223/mois --name mois-global2024-original4096-WPGlobal2-2024-VIIRS-raw-SHA --dir src/2024/land
+          gh run download 42328567038 --repo zuizui0223/mois --name mois-global2024-rest62360-original-VIIRS-G2-all66456-source --dir src/2024/CN
+          gh run download 42333953557 --repo zuizui0223/mois --name mois-2024-WorldPop-UC-R2024B-full-original-66456-population-source --dir src/2024/UC
+          echo 'f7f65e6bc167089b3034555c655e777f528ecdd29952ab7ee9833d8722f39267  src/2024/land/original_source_2024/mois_2024_full_photo_landmass_source.csv' | sha256sum -c -
+          echo '6e0a077d496e90848d05d043bffae57e4772519f4572a457221c5ef4da0fb813  src/2024/CN/result_rest2024/all2024_known_land_combined_values.csv' | sha256sum -c -
+          echo 'a07af611836d215fb7997c7f574729df10787f5a7cc9bfa1b67bf5a831d613dc  src/2024/UC/2024_66k_UC_R2024B_fullcohort_values.csv' | sha256sum -c -
+      - name: Restore 2025 original VIIRS and sameyear WorldPop numeric plus verified original coast
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          mkdir -p src/2025/numeric
+          gh run download 42337703150 --repo zuizui0223/mois --name mois-2025-original73463-mainland-island-full-VIIRS-and-R2024B-UC-source --dir src/2025/numeric
+          python -m scripts.analysis.mois_global2025_original_source_20261107 --canonical src/photo/canonical_observations_climate.csv.gz --shoreline src/coast --out src/2025/geo --allow-knownland-verified-geo-roundoff
+          echo '45c5152e1edad997ff8749c645818996fb2b0bc03a2ab7c0753af446afaab143  src/2025/geo/mois_2025_all73463_knownland_source.csv' | sha256sum -c -
+      - name: Fetch only original precolour SHA-locked source photo IDs, not original image pixels
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          mkdir -p source06 source07
+          gh run download 42447983019 --repo zuizui0223/alan --name alan-source-8942-novel-island-UUID-disjoint256-batches --dir source06
+          gh run download 42466279952 --repo zuizui0223/alan --name alan-tier07-27507-original-island-precolour-1024photo-groups --dir source07
+          echo 'e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd  source06/progressive_8942_new_island_source_schedule.csv.gz' | sha256sum -c -
+          echo '7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62  source07/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz' | sha256sum -c -
+      - name: Recover completed tier06 first five original photo ROIs from source-signed workers
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          mkdir -p prior06/first prior06
+          gh run download 42447120685 --repo zuizui0223/alan --name alan-256-genuine-new-independent-island-original-image-ROI9 --dir prior06/first
+          gh run download 42454468186 --repo zuizui0223/alan --dir prior06
+          for n in 2 3 4 5; do
+            test -s "prior06/alan-original-novel-island-ROI9-batch-$n/finished/ALAN_original_novel_island_photo_ROI9_batch_$(printf '%02d' "$n").csv.gz"
+          done
+          echo '7789c5aa1916e5b1ff915d217744a80b990795cb24e362cff20007dda96ee94b  prior06/first/finished/new256_independent_island_actual_original_ROI9.csv.gz' | sha256sum -c -
+      - name: Download previously verified genuine 15 warm tier06 source photo CSV groups
+        timeout-minutes: 9
+        run: |
+          set -euo pipefail
+          mkdir -p raw06
+          gh run download 42456363487 --repo zuizui0223/alan --dir raw06
+          for g in $(seq 0 14); do
+            for s in 000 001 002 003; do
+              test -s "raw06/alan-real-originalROI9-7662-group-$g/measured/shard_$s/photos.csv"
+              test -s "raw06/alan-real-originalROI9-7662-group-$g/measured/shard_$s/receipt.json"
+            done
+          done
+          echo 'ALAN_ORIGINAL_TIER06_8942_REAL_PHOTO_SOURCES_AVAILABLE'
+      - name: Download previously verified genuine tier07 pilot and 52 original photo ROI9 source tasks
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          mkdir -p pilot07 raw07
+          gh run download 42552642250 --repo zuizui0223/alan --name alan-tier07-original1024-measured-only-last-shard-recovered-ROI9 --dir pilot07
+          echo '2988a8631cfb25bea57690a2a91db1e0a7f00074b8ca3ce7557aba8c09fda113  pilot07/finished/ALAN_tier07_first1024_original_floral_roi9.csv.gz' | sha256sum -c -
+          gh run download 42553223750 --repo zuizui0223/alan --dir raw07
+          for task in $(seq 0 51); do
+            test -s "raw07/alan-tier07-real-originalROI9-26483-task-$task/finished/ALAN_tier07_genuine_new_photo_ROI9_task_receipt.json"
+          done
+          echo 'ALAN_ORIGINAL_TIER07_27507_REAL_PHOTO_SOURCES_AVAILABLE'
+      - name: Refit actual original old and new photo floral ROI ALAN on independently documented moth-positive accepted WCVP plant species
+        timeout-minutes: 46
+        run: |
+          set -euo pipefail
+          mkdir -p source08
+          gh run download 42585672818 --repo zuizui0223/alan \
+            --name alan-tier08-910-authentic-original-ROI9-finished-and-source-SHA-receipts \
+            --dir source08
+          echo '37a329e54b0bbced86e40ed16d45ca095e530aa4faa64b3aa674c29023f8c1f9  source08/finished/alan_tier08_new910_actual_original_photo_ROI9.csv.gz' | sha256sum -c -
+          mkdir -p documented_moth
+          gh run download 39225659840 --repo zuizui0223/mois \
+            --name mois-real350399-Kew-WCVP-native-source-TDWG3-no-point-status --dir documented_moth
+          gh run download 41976552977 --repo zuizui0223/mois \
+            --name mois-ALAN-GloBI-stage2-actual-records-2019-2024-supported-source --dir documented_moth
+          echo '9cd6aa7ca29f00c64283bcc08dcb778e212b644b837e64070051339b11d8b7b3  documented_moth/mois350399_wcvp_accepted_native_distribution_TDWG3.csv.gz' | sha256sum -c -
+          echo 'a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994  documented_moth/GloBI_stage2_signed_extension.csv.gz' | sha256sum -c -
+          mkdir -p newbulk
+          gh run download 42601821195 --repo zuizui0223/alan \
+            --name alan-tier08-24576-three-real-original-RGB-ROI9-waves-signed --dir newbulk
+          echo '38d089278cfafd51d88ef9936e4882b9d115b2f8d0eefd0a9f4e4f2d0e4da33c  newbulk/source/manifest.json' | sha256sum -c -
+          python -m scripts.analysis.alan_full112428_trueRGB_GloBI_moth_strata_20261109 \
+            --canonical src/photo/canonical_observations_climate.csv.gz \
+            --wcvp src/wcvp/mois350399_wcvp_source_taxon_exact_name_resolution.csv.gz \
+            --geo2019 src/2019/viirs/source_year/2019/mois_2019_full_photo_landmass_source.csv \
+            --viirs2019 src/2019/viirs/VIIRS_2019/values.csv \
+            --pop2019 src/2019/pop/2024B_UC_2019_worldpop_sameyear_photo_landmass_popdensity.csv \
+            --geo2021 src/2021/viirs/source_year/2021/mois_2021_full_photo_landmass_source.csv \
+            --viirs2021 src/2021/viirs/VIIRS_2021/values.csv \
+            --pop2021 src/2021/pop/2024B_UC_2021_worldpop_sameyear_photo_landmass_popdensity.csv \
+            --geo2023 src/2023/viirs/source_year/2023/mois_2023_full_photo_landmass_source.csv \
+            --viirs2023 src/2023/viirs/VIIRS_2023/values.csv \
+            --pop2023 src/2023/pop/2024B_UC_2023_worldpop_sameyear_photo_landmass_popdensity.csv \
+            --geo2024 src/2024/land/original_source_2024/mois_2024_full_photo_landmass_source.csv \
+            --cn2024 src/2024/CN/result_rest2024/all2024_known_land_combined_values.csv \
+            --uc2024 src/2024/UC/2024_66k_UC_R2024B_fullcohort_values.csv \
+            --uc2024receipt src/2024/UC/UC_R2024B_source_receipt.json \
+            --geo2025 src/2025/geo/mois_2025_full_photo_landmass_source.csv \
+            --geo2025receipt src/2025/geo/2025_source_receipt.json \
+            --viirs2025 src/2025/numeric/numeric_2025/values.csv \
+            --coast src/coast \
+            --source06 source06/progressive_8942_new_island_source_schedule.csv.gz \
+            --source07 source07/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz \
+            --prior06 prior06 --bulk06 raw06 --pilot07 pilot07 --bulk07 raw07 \
+            --tier08 source08/finished/alan_tier08_new910_actual_original_photo_ROI9.csv.gz \
+            --tier08-receipt source08/finished/ALAN_tier08_new910_real_original_ROI9_receipt.json \
+            --large-receipt newbulk/finished/ALAN_tier08_additional24576_actual_original_RGB_ROI9_signed_receipt.json \
+            --wave1 newbulk/finished/tier08_additional_8192_real_original_photo_ROI9_wave1.csv.gz \
+            --wave2 newbulk/finished/tier08_additional_8192_real_original_photo_ROI9_wave2.csv.gz \
+            --wave3 newbulk/finished/tier08_additional_8192_real_original_photo_ROI9_wave3.csv.gz \
+            --accepted documented_moth/mois350399_wcvp_accepted_native_distribution_TDWG3.csv.gz \
+            --globi documented_moth/GloBI_stage2_signed_extension.csv.gz \
+            --out alan_full112428_GloBI_moth_guild_realROI9
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path("alan_full112428_GloBI_moth_guild_realROI9/ALAN_112428_true_RGB_GloBI_moth_strata.json")
+          j=json.loads(p.read_text())
+          assert j["schema"]=="ALAN_true112428_original_photo_RGB_GloBI_moth_guild_stratified_v1"
+          assert j["all_unique_original_photo_IDs"]==112428
+          assert j["original_numeric_flower_ROI9"]==40914
+          assert j["new_original_numeric_flower_ROI9"]==8803
+          assert j["new_original_technical_unknown"]==15773
+          s=j["summary"]
+          b=s["all_original_photographed_flora"]
+          assert b["strict_site_years"]==3481 and b["strict_islands"]==263
+          assert b["multisite_islands"]==133 and b["multisite_site_years"]==3315
+          assert abs(b["island_equal_area_ALAN"]["beta"]-0.6031352440580511)<1e-4
+          for k in ("moth_record_positive","moth_database_pollinates",
+                    "walton_direct_nocturnal_pollen_carriage",
+                    "moth_record_without_recorded_butterfly","butterfly_record_positive"):
+              assert s[k]["true_numeric_ROI9"]<=40914
+              if s[k]["multisite_islands"]<10:
+                  assert not s[k]["estimable"]
+          print("ALAN_TRUE112428_GLOBI_MOTH_AFTER_24576_VERIFIED",
+                {k:{"attempts":v["original_photo_attempts"],
+                    "numeric":v["true_numeric_ROI9"],"islands":v["multisite_islands"],
+                    "siteyears":v["multisite_site_years"],
+                    "area_ALAN":v.get("island_equal_area_ALAN")}
+                 for k,v in s.items()},flush=True)
+          PY
+      - name: Audit tier09 candidate cells against the entire original RGB 112428 source, not merely 24576
+        timeout-minutes: 9
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_tier09_vs_full112428_measured_geography_20261110.py -v
+          mkdir -p tier09
+          gh run download 42720324711 -R zuizui0223/alan \
+            -n alan-tier09-signed-moth-sameyear-VIIRS-existingcell-source-support -D tier09
+          python -m scripts.acquisition.alan_tier09_vs_full112428_measured_geography_20261110 \
+            --photos alan_full112428_GloBI_moth_guild_realROI9/ALAN_112428_original_photoID_sitecell_status.csv.gz \
+            --cells alan_full112428_GloBI_moth_guild_realROI9/ALAN_112428_original_sitecell_numeric_support.csv.gz \
+            --fullreport alan_full112428_GloBI_moth_guild_realROI9/ALAN_112428_true_RGB_GloBI_moth_strata.json \
+            --tier09 tier09/tier09_moth_original_photo_existingVIIRS_cell_status.csv.gz \
+            --tier09report tier09/tier09_moth_VIIRS_existingcell_gate.json \
+            --pairs tier09/tier09_moth_supporting_island_years.csv \
+            --out alan_full112428_GloBI_moth_guild_realROI9/full112428_tier09_geography
+          python - <<'PY'
+          import json
+          j=json.load(open("alan_full112428_GloBI_moth_guild_realROI9/full112428_tier09_geography/tier09_vs_entire_full112428_source_geography.json"))
+          r=j["result"]
+          assert j["schema"]=="ALAN_tier09_vs_entire_measured112428_RGB_source_geography_v1"
+          assert r["actual_overlapping_tier09_photo_IDs"]==0
+          assert r["tier09_qualified_existingVIIRS_cells"]==2328
+          assert r["tier09_qualified_cells_without_existing_true_numeric_ROI9"]<=1321
+          assert r["previously_genuine_numeric_original_RGB_ROI9"]==40914
+          print("ALAN_TIER09_FULL112428_SOURCE_GATE_SUCCESS",r,flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-112428-real-original-RGB-moth-GloBI-guild-stratified-ALAN
+          path: alan_full112428_GloBI_moth_guild_realROI9/
+          retention-days: 90
+          if-no-files-found: warn

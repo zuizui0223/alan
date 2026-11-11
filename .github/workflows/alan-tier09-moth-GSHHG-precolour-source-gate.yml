@@ -1,0 +1,106 @@
+name: ALAN tier09 moth-positive GSHHG source-only photo ID gate
+# Rev: canonical 1,032,882 source is a conservative exclusion superset of measured panel.
+# Source manifest SHA typo fixed in dc0a3ba; retry only this source-only audit.
+on:
+  push:
+    branches: [analysis/alan-tier08-remainder-tier09-geographic-support-audit-20261109]
+    paths: [.github/workflows/alan-tier09-moth-GSHHG-precolour-source-gate.yml]
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+concurrency:
+  group: alan-tier09-source-only-gate
+  cancel-in-progress: false
+jobs:
+  frozen-prior:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env: {GH_TOKEN: "${{ github.token }}"}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Test invariants and restore prior IDs
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 scipy==1.15.2 rasterio==1.4.3 statsmodels==0.14.5
+          python -m py_compile scripts/acquisition/alan_tier09_moth_precolour_GSHHG_photoID_gate_20261110.py
+          python -m unittest discover -s tests -p test_alan_tier09_moth_precolour_GSHHG_photoID_gate_20261110.py -v
+          mkdir -p old s6 s7 s8 q
+          gh run download 41007444495 -R zuizui0223/mois -n mois-nohuman-canonical-climate-joined-20261030 -D old
+          gh run download 42447983019 -R zuizui0223/alan -n alan-source-8942-novel-island-UUID-disjoint256-batches -D s6
+          gh run download 42466279952 -R zuizui0223/alan -n alan-tier07-27507-original-island-precolour-1024photo-groups -D s7
+          gh run download 42584655750 -R zuizui0223/alan -n alan-full93m-tier08-balanced-light-pair-independent-original-photo-source -D s8
+          gh run download 42601418957 -R zuizui0223/alan -n alan-tier08-24576-genuine-original-source-192shard-precolour-3waves -D q
+          python -m scripts.acquisition.alan_tier09_moth_precolour_GSHHG_photoID_gate_20261110 prior \
+            --canonical old/canonical_observations_climate.csv.gz \
+            --source06 s6/progressive_8942_new_island_source_schedule.csv.gz \
+            --source07 s7/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz \
+            --previous910 s8/tier08_precolour_reference_and_area_light_paired_queue.csv.gz \
+            --prior24576 q/precolour_24576_frozen_queue.csv.gz \
+            --prior24576_manifest q/manifest.json --out prior
+      - uses: actions/upload-artifact@v4
+        with: {name: alan-tier09-signed-conservative-prior-source-photoIDs, path: prior/, retention-days: 90, if-no-files-found: error}
+  source-group:
+    needs: frozen-prior
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        group: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    env: {GH_TOKEN: "${{ github.token }}", GROUP: "${{ matrix.group }}", OMP_NUM_THREADS: '1', OPENBLAS_NUM_THREADS: '1'}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Restore SHA-verified source metadata, not original photo pixels
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 scipy==1.15.2 rasterio==1.4.3 statsmodels==0.14.5
+          mkdir -p prior ids receipt coast wcvp
+          gh run download "$GITHUB_RUN_ID" -R zuizui0223/alan -n alan-tier09-signed-conservative-prior-source-photoIDs -D prior
+          gh run download 42608966731 -R zuizui0223/alan -n "alan-moth-full93m-extracted-photoids-group-$GROUP" -D ids
+          gh run download 42608966731 -R zuizui0223/alan -n "alan-moth-full93m-extracted-receipt-group-$GROUP" -D receipt
+          gh run download 42175243391 -R zuizui0223/mois -n mois-GSHHG-2.3.7-high-L1-L2-SHA-source-no-images -D coast
+          gh run download 39225659840 -R zuizui0223/mois -n mois-real350399-Kew-WCVP-native-source-TDWG3-no-point-status -D wcvp
+          g=$(printf '%02d' "$GROUP")
+          python -m scripts.acquisition.alan_tier09_moth_precolour_GSHHG_photoID_gate_20261110 group \
+            --group "$GROUP" --source_csv "ids/moth-positive-original-tier-09-group-$g.csv.gz" \
+            --source_receipt "receipt/original_moth_photoID_group$g"_verified_receipt.json \
+            --known_csv prior/already_attempted_exact_photo_ids.csv.gz \
+            --known_receipt prior/known_photo_receipt.json --coast coast \
+            --wcvp wcvp/mois350399_wcvp_source_taxon_exact_name_resolution.csv.gz \
+            --accepted_names wcvp/mois350399_wcvp_accepted_native_distribution_TDWG3.csv.gz \
+            --out result
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: "alan-tier09-GSHHG-source-group-${{ matrix.group }}"
+          path: result/
+          retention-days: 90
+          if-no-files-found: error
+  collect:
+    needs: [frozen-prior, source-group]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env: {GH_TOKEN: "${{ github.token }}"}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 geopandas==1.1.2 shapely==2.1.2 pyproj==3.7.2 scipy==1.15.2 rasterio==1.4.3 statsmodels==0.14.5
+          mkdir -p fetched groupfiles
+          gh run download "$GITHUB_RUN_ID" -R zuizui0223/alan -p 'alan-tier09-GSHHG-source-group-*' -D fetched
+          test "$(find fetched -name 'tier09_moth_island_group_??.json' | wc -l)" -eq 16
+          find fetched -name 'tier09_moth_island_group_??.json' -exec cp {} groupfiles/ \;
+          find fetched -name 'tier09_moth_island_group_??.csv.gz' -exec cp {} groupfiles/ \;
+          python -m scripts.acquisition.alan_tier09_moth_precolour_GSHHG_photoID_gate_20261110 collect --folder groupfiles --out final
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-tier09-moth-signed-GSHHG-dedup-source-only-final
+          path: final/
+          retention-days: 90
+          if-no-files-found: error

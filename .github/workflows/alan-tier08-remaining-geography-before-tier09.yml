@@ -1,0 +1,77 @@
+name: ALAN tier08 remaining original-photo geographic support gate before tier09, source only
+on:
+  push:
+    branches: [analysis/alan-tier08-remainder-tier09-geographic-support-audit-20261109]
+    paths:
+      - .github/workflows/alan-tier08-remaining-geography-before-tier09.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  audit-deduplicated-unmeasured-source-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 28
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Test source-only same-year geographic and photo dedup invariants
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5
+          python -m unittest discover -s tests -p test_alan_tier08_remaining_source_geography_gate_20261109.py -v
+          python -m py_compile scripts/acquisition/alan_tier08_remaining_source_geography_gate_20261109.py
+      - name: Restore SHA-verified 56440 original tier08 photos and 24576 previously attempted IDs
+        run: |
+          set -euo pipefail
+          mkdir -p src08 previously_measured
+          gh run download 42584655750 --repo zuizui0223/alan --name alan-full93m-tier08-balanced-light-pair-independent-original-photo-source --dir src08
+          gh run download 42601418957 --repo zuizui0223/alan --name alan-tier08-24576-genuine-original-source-192shard-precolour-3waves --dir previously_measured
+          echo 'b34a8a564dc9ba3f02934e1e04077b4655cf8a9333ecefcb6bc93c5d9dc757fd  src08/tier08_all_new_envmatched_island_observations.csv.gz' | sha256sum -c -
+          echo '38d089278cfafd51d88ef9936e4882b9d115b2f8d0eefd0a9f4e4f2d0e4da33c  previously_measured/manifest.json' | sha256sum -c -
+      - name: Recover signed old historical and prior tier06/07 exact photo IDs
+        run: |
+          set -euo pipefail
+          mkdir -p old source06 source07
+          gh run download 41007444495 --repo zuizui0223/mois --name mois-nohuman-canonical-climate-joined-20261030 --dir old
+          gh run download 42447983019 --repo zuizui0223/alan --name alan-source-8942-novel-island-UUID-disjoint256-batches --dir source06
+          gh run download 42466279952 --repo zuizui0223/alan --name alan-tier07-27507-original-island-precolour-1024photo-groups --dir source07
+          echo 'f033661d76e07898a5c13199a55c5d0ce6e55353daa48b0058c456979e90644c  old/canonical_observations_climate.csv.gz' | sha256sum -c -
+          echo 'e64f77d91ab9c19db7e38861baf96753395de5f1189f2599a1ac5cf1f55d8acd  source06/progressive_8942_new_island_source_schedule.csv.gz' | sha256sum -c -
+          echo '7198455819f1ac260a6cbeacd9f4536c30d766595daa64dc5205c75e9d5a1c62  source07/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz' | sha256sum -c -
+      - name: Audit all remaining truly new tier08 photo IDs and potential same-year island-light support
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_tier08_remaining_source_geography_gate_20261109 \
+            --master src08/tier08_all_new_envmatched_island_observations.csv.gz \
+            --previous910 src08/tier08_precolour_reference_and_area_light_paired_queue.csv.gz \
+            --canonical old/canonical_observations_climate.csv.gz \
+            --source06 source06/progressive_8942_new_island_source_schedule.csv.gz \
+            --source07 source07/alan_tier07_all27507_new_island_original_photo_1024group_source.csv.gz \
+            --prior24576 previously_measured/precolour_24576_frozen_queue.csv.gz \
+            --prior24576_manifest previously_measured/manifest.json \
+            --out remaining_source_only
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('remaining_source_only/tier08_remaining_geographic_support_audit.json').read_text())
+          assert d['tier08_eligible_after_exact_photo_ID_source_dedup']==55038
+          assert d['verified_prior_24576_new_original_photo_IDs']==24576
+          assert d['tier08_unattempted_exact_photo_ID_candidates']==30462
+          assert d['remaining_distinct_original_observation_UUIDs']==30462
+          assert d['source_only_not_real_RGB_or_floral_ROI9']
+          print('ALAN_TIER08_REMAINDER_30462_ID_EXACT_SOURCE_AUDIT_VERIFIED',d,flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-tier08-after24576-30462-unmeasured-photo-ID-geography-only
+          path: remaining_source_only/
+          retention-days: 90
+          if-no-files-found: warn

@@ -1,0 +1,100 @@
+name: ALAN tier09 moth original-photo same-year VIIRS existing-cell support gate
+# Source-only: compare signed original VIIRS values at EXACT 0.05-degree GSHHG cell/year.
+# Unmatched tier09 sites are unknown, not dark. No pixels or new RGB.
+on:
+  push:
+    branches: [analysis/alan-tier08-remainder-tier09-geographic-support-audit-20261109]
+    paths:
+      - .github/workflows/alan-tier09-moth-existingVIIRS-cell-gate.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: alan-tier09-moth-existingVIIRS-source-only
+  cancel-in-progress: false
+jobs:
+  sameyear-viirs-existingcell:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate synthetic missing/valid-light guards
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3
+          python -m py_compile scripts/acquisition/alan_tier09_existingVIIRS_cell_support_gate_20261110.py
+          python -m unittest discover -s tests -p test_alan_tier09_existingVIIRS_cell_support_gate_20261110.py -v
+      - name: Restore tier09 exact original photo IDs after GSHHG SHA and conservative dedup gate
+        run: |
+          set -euo pipefail
+          mkdir -p tier09
+          gh run download 42713686741 -R zuizui0223/alan \
+            -n alan-tier09-moth-signed-GSHHG-dedup-source-only-final -D tier09
+          test -s tier09/tier09_moth_GSHHG_exact_photoID_novel_precolour.csv.gz
+          test -s tier09/tier09_moth_precolour_geography_gate.json
+      - name: Restore signed same-year already-sampled original VIIRS target cells
+        run: |
+          set -euo pipefail
+          mkdir -p src/2019 src/2021 src/2023 src/2024 src/2025
+          gh run download 42337911536 -R zuizui0223/mois \
+            -n mois-original-2019-global-mainland-island-monthly-VIIRS-source-SHA -D src/2019
+          gh run download 42337911536 -R zuizui0223/mois \
+            -n mois-original-2021-global-mainland-island-monthly-VIIRS-source-SHA -D src/2021
+          gh run download 42337911536 -R zuizui0223/mois \
+            -n mois-original-2023-global-mainland-island-monthly-VIIRS-source-SHA -D src/2023
+          gh run download 42328567038 -R zuizui0223/mois \
+            -n mois-global2024-rest62360-original-VIIRS-G2-all66456-source -D src/2024
+          gh run download 42337703150 -R zuizui0223/mois \
+            -n mois-2025-original73463-mainland-island-full-VIIRS-and-R2024B-UC-source -D src/2025
+          test -s src/2019/VIIRS_2019/values.csv
+          test -s src/2021/VIIRS_2021/values.csv
+          test -s src/2023/VIIRS_2023/values.csv
+          test -s src/2024/result_rest2024/all2024_known_land_combined_values.csv
+          test -s src/2025/numeric_2025/values.csv
+          sha256sum src/2019/VIIRS_2019/values.csv src/2021/VIIRS_2021/values.csv \
+            src/2023/VIIRS_2023/values.csv src/2024/result_rest2024/all2024_known_land_combined_values.csv \
+            src/2025/numeric_2025/values.csv
+      - name: Compute supported same-year light spans without inventing unmatched nightlights
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_tier09_existingVIIRS_cell_support_gate_20261110 \
+            --source tier09/tier09_moth_GSHHG_exact_photoID_novel_precolour.csv.gz \
+            --receipt tier09/tier09_moth_precolour_geography_gate.json \
+            --viirs2019 src/2019/VIIRS_2019/values.csv --receipt2019 src/2019/VIIRS_2019/receipt.json \
+            --viirs2021 src/2021/VIIRS_2021/values.csv --receipt2021 src/2021/VIIRS_2021/receipt.json \
+            --viirs2023 src/2023/VIIRS_2023/values.csv --receipt2023 src/2023/VIIRS_2023/receipt.json \
+            --viirs2024 src/2024/result_rest2024/all2024_known_land_combined_values.csv \
+            --viirs2025 src/2025/numeric_2025/values.csv --receipt2025 src/2025/numeric_2025/receipt.json \
+            --out tier09_existingVIIRS_source_support
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('tier09_existingVIIRS_source_support/tier09_moth_VIIRS_existingcell_gate.json')
+          j=json.loads(p.read_text())
+          assert j['schema']=='ALAN_tier09_moth_sameyear_VIIRS_existingcell_source_gate_v1'
+          assert j['source_roster_photo_count']==78214
+          assert j['new_RGB_downloads']==j['new_numeric_ROI9']==0
+          assert j['source_only_existing_cell_VIIRS_values_not_new_raster_sampling']
+          for name, part in j['cohorts'].items():
+              assert part['independent_supported_islands'] <= part['qualified_existing_valid_VIIRS_islands']
+              assert part['supported_small_islands_le20km2'] <= part['independent_supported_islands']
+          print('ALAN_TIER09_SAMEYEAR_EXISTING_VIIRS_LIGHT_GATE_VERIFIED', {
+              n:{k:p[k] for k in ('photos','qualified_existing_valid_VIIRS_sites',
+                'independent_supported_islands','supported_small_islands_le20km2')}
+              for n,p in j['cohorts'].items()},flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-tier09-signed-moth-sameyear-VIIRS-existingcell-source-support
+          path: tier09_existingVIIRS_source_support/
+          retention-days: 90
+          if-no-files-found: warn
