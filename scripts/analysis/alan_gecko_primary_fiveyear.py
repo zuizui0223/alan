@@ -9,6 +9,8 @@ from pathlib import Path
 import geopandas as gpd
 import numpy as np
 import pandas as pd
+from shapely.geometry import box
+from shapely.ops import unary_union
 
 from alan_globi_v011_same_fiveyear import ROOT, ID, TERM, environment, site_species
 from alan_globi_crossland_light_robust_20261111 import prepare, fit
@@ -54,13 +56,14 @@ def positive_records(folder, coast, taxa=SPECIES, expected_blocks=None):
             partitions = obj.get("queries", [obj["query"]])
             spatial = any("decimalLatitude" in q for q in partitions)
             if spatial:
-                covered = set()
+                rectangles = []
                 for q in partitions:
-                    x, xmax = map(int,q["decimalLongitude"].split(","))
-                    y, ymax = map(int,q["decimalLatitude"].split(","))
-                    assert xmax-x == ymax-y and xmax-x in (1,5)
-                    covered.update((lon,lat) for lon in range(x,xmax) for lat in range(y,ymax))
-                assert set(map(tuple,expected_blocks[str(year)])) <= covered
+                    x, xmax = map(float, q["decimalLongitude"].split(","))
+                    y, ymax = map(float, q["decimalLatitude"].split(","))
+                    assert 0 < xmax-x <= 5 and abs((xmax-x)-(ymax-y)) < 1e-8
+                    rectangles.append(box(x,y,xmax,ymax))
+                coverage = unary_union(rectangles)
+                assert all(coverage.covers(box(x,y,x+1,y+1)) for x,y in expected_blocks[str(year)])
             queries.append(dict(year=year,taxon=taxa[taxon],rows=obj["count"],
                                 coverage="boxes covering all frozen-site 1-degree grids" if spatial else "world"))
             if not obj["rows"]:

@@ -25,6 +25,25 @@ GloBIの元ファイルをSHA256で確認し、全24,453,954行からヤモリ2�
 
 3者照合では**植物と、その植物に訪花記録のある蛾の成虫と、その蛾を食べた記録のあるヤモリ**を種名単位で限定した。蛾2種のGBIF人観察21,908件のうち精度・検出条件に合う13,889件、陸塊に割当可能な13,453件を使い、表ではGBIFにAdultまたはImagoと明記された蛾に限定している。旧訪花表で *S. recurvalis* は109行（訪花106、送粉関係ラベル3）、*F. subterranea* は訪花3行。粗い格子から植物観察の格子に絞ると、*S. recurvalis* の3者がそろうのは5植物種・7地点年である。場所と年がそろっても出来事の同時発生、同一個体の花粉輸送、照明下での捕食は未確認で、GloBIとGBIFには観察出典の重複もあり得る。この支持範囲から捕食媒介係数を推定することはできない。
 
+個々の捕食記録について、2026年11月11日にGloBIの現行APIからたどれるiNaturalist原観察を照合した。*H. frenatus* による *S. recurvalis* 捕食の記載は2026年5月18日で、固定した5観測年の外にある。*H. mabouia* と *F. subterranea* の4関係行が指すのは、同一観察者が2025年7月19日に登録した捕食者側と獲物側の2観察である。両者には対応する捕食関係が記録されており、4件の独立な捕食の証拠としては数えられない。この組が植物を含め1度格子でそろったのは本土の2021年のみである。現行APIと固定v0.11の行単位同一性は仮定していない。いずれの原観察も主解析地点での花粉輸送・種子生産の測定には接続していない。[H. frenatus の原観察](https://www.inaturalist.org/observations/362799293)・[H. mabouia の原観察](https://www.inaturalist.org/observations/299401130)・[F. subterranea の原観察](https://www.inaturalist.org/observations/299401875)・[照合記録](../results/alan_gecko_prey_live_originals_20261111.json)
+
+## 他の候補8種と主解析地点との重なり
+
+最近の2年分の調査で取り上げた8種について、元の5観測年すべてを照合した。GBIF人観察203,754件のうち同定・座標精度・検出条件に合う149,367件、陸塊を特定できる148,543件を使った。観察件数の多い種・年は元の植物地点の全1度格子を覆う領域に検索を限定し、分割境界の重複をGBIFキーで除いた。表は旧GloBI蛾訪花植物が1種以上ある地点のうち、その動物の観察が同年・同陸塊・同格子にある地点年数。獲物の種や段階までは照合していない。
+
+| 種 | GloBIの種別関係 | 1度 島／本土 | 0.05度 島／本土 |
+|---|---|---:|---:|
+| *Antrozous pallidus* | 蛾の捕食・訪花・送粉記載 | 0／891 | 0／15 |
+| *Argiope bruennichi* | 蛾の捕食・訪花 | 166／917 | 20／144 |
+| *Glossophaga soricina* | 蛾の捕食・訪花・送粉記載 | 1／4 | 0／0 |
+| *Mantis religiosa* | 蛾の捕食・訪花 | 325／3998 | 66／637 |
+| *Mystacina tuberculata* | 訪花・送粉記載 | 0／0 | 0／0 |
+| *Scolopendra subspinipes* | 訪花 | 8／0 | 0／0 |
+| *Thereuopoda clunifera* | 訪花 | 26／41 | 1／2 |
+| *Vespa velutina* | 蛾の捕食・訪花・送粉記載 | 53／653 | 16／134 |
+
+地点年数は観察努力にも左右される。同じ地点に複数種が重なるため行間で足し合わせられない。ゼロは照合条件を満たす記録が得られなかったことを指す。捕食と訪花の両方が記録された種でも、この表から現地での蛾の死亡率や植物への送粉量は求められない。[種別・年別の検索範囲と照合結果](../results/alan_gecko_primary_fiveyear_20261111.json)
+
 ## 再実行とデータの来歴
 
 固定入力は元の5年解析のINPUTS・SIGNEDとGSHHGの海岸線を用いる。GBIFはライブの観察APIで取得したため、取得時の圧縮スナップショットのSHA256、採用したデータセットのGBIFキー、検索種・年・地理範囲を結果JSONに保存した。再取得時は件数が変わり得る。個別の観察座標は非公開の作業ディレクトリに保存する。
@@ -33,6 +52,7 @@ GloBIの元ファイルをSHA256で確認し、全24,453,954行からヤモリ2�
 python scripts/acquisition/alan_gecko_gbif_fiveyear.py PRIVATE/gecko
 python scripts/analysis/alan_gecko_primary_fiveyear.py INPUTS SIGNED PRIVATE/gecko gecko.json --write-blocks PRIVATE/blocks.json
 python scripts/acquisition/alan_gecko_gbif_fiveyear.py PRIVATE/moths --linked-moths
+python scripts/acquisition/alan_dense_predator_partitions.py PRIVATE/multiguild PRIVATE/blocks.json 2023 2024 2025
 python scripts/acquisition/alan_gecko_gbif_fiveyear.py PRIVATE/multiguild --multiguild --blocks PRIVATE/blocks.json
 gh run download 42953901880 -R zuizui0223/alan -n two-house-gecko-moth-prey -D PREY
 python scripts/analysis/alan_gecko_primary_fiveyear.py INPUTS SIGNED PRIVATE/gecko final.json --prey PREY --moths PRIVATE/moths --multiguild PRIVATE/multiguild

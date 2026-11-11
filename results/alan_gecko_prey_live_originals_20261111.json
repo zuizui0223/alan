@@ -1,0 +1,69 @@
+[
+  {
+    "gecko": "Hemidactylus frenatus",
+    "moth": "Spoladea recurvalis",
+    "query": "https://api.globalbioticinteractions.org/interaction?sourceTaxon=Hemidactylus+frenatus&targetTaxon=Spoladea+recurvalis&interactionType=eats&includeObservations=true&limit=100",
+    "retrieved_utc": "2026-11-11",
+    "live_relation_rows": 1,
+    "same_observer_and_date": true,
+    "public_originals": [
+      {
+        "id": 362799293,
+        "url": "https://www.inaturalist.org/observations/362799293",
+        "observed_on": "2026-05-18",
+        "focal_name": "Hemidactylus frenatus",
+        "quality_grade": "research",
+        "interaction_fields": [
+          {
+            "name": "Interaction->Preyed on",
+            "value": "52043"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "gecko": "Hemidactylus mabouia",
+    "moth": "Feltia subterranea",
+    "query": "https://api.globalbioticinteractions.org/interaction?sourceTaxon=Hemidactylus+mabouia&targetTaxon=Feltia+subterranea&interactionType=eats&includeObservations=true&limit=100",
+    "retrieved_utc": "2026-11-11",
+    "live_relation_rows": 4,
+    "same_observer_and_date": true,
+    "public_originals": [
+      {
+        "id": 299401130,
+        "url": "https://www.inaturalist.org/observations/299401130",
+        "observed_on": "2025-07-19",
+        "focal_name": "Hemidactylus mabouia",
+        "quality_grade": "research",
+        "interaction_fields": [
+          {
+            "name": "Eating",
+            "value": "152979"
+          },
+          {
+            "name": "Interaction->Preyed on",
+            "value": "152979"
+          }
+        ]
+      },
+      {
+        "id": 299401875,
+        "url": "https://www.inaturalist.org/observations/299401875",
+        "observed_on": "2025-07-19",
+        "focal_name": "Feltia subterranea",
+        "quality_grade": "research",
+        "interaction_fields": [
+          {
+            "name": "Eaten by",
+            "value": "68492"
+          },
+          {
+            "name": "Interaction->Preyed upon by",
+            "value": "68492"
+          }
+        ]
+      }
+    ]
+  }
+]
