@@ -2,6 +2,12 @@
 
 **Research home for the ALAN × island/mainland floral-colour project, migrated from [MOIS](https://github.com/zuizui0223/mois) on 2026-11-08.** MOIS is reserved for global floral colour × moisture.
 
+## 蛾の訪花記録を持つ植物と夜間光
+
+**主要結果（探索的）**　2019・2021・2023・2024・2025年の78地域、10,698地点年で、観察された植物種に占める蛾の訪花記録を持つ種の割合について、夜間光に対する島−本土の傾き差は **−1.902** パーセントポイント／log(1＋VIIRS) だった（地域クラスタ名目95%信頼区間 −3.706～−0.098、未補正 p=0.039）。各種を地点年ごとに一度数えた群集構成の推定である。GloBI v0.11で種名と訪花記録を更新した同地点比較では負の差が維持されず、結果は使用する記録集合に依存した。[主要結果と固定条件](https://github.com/zuizui0223/alan/blob/ff069a160400588b8d6134c48b5481729d75eb9a/docs/ALAN_GLOBI_PRIMARY_RESULT_FREEZE_20261111.md)・[記録更新後の比較](https://github.com/zuizui0223/alan/blob/ff069a160400588b8d6134c48b5481729d75eb9a/docs/ALAN_GLOBI_V011_SAME_FIVEYEAR_20261111.md)
+
+**副次結果（花粉制限）**　島と本土に共通する544種のうち、補助授粉実験がある64種では、花粉制限が強い種ほど、同じ78地域で夜間光に対する種別の島−本土の傾き差が負に大きくなる傾向があった。花粉制限指標（手授粉／自然授粉の繁殖成績の対数比の種別中央値）が1高いと、傾き差は **−0.0194** ポイント変化した（地域クラスタ95%信頼区間 −0.0382～−0.0005、未補正 p=0.044、2仮説のHolm補正後 p=0.088）。花粉制限は文献の実験値であり、撮影地点での送粉不足や照明の因果効果は未検証である。[推定値](https://github.com/zuizui0223/alan/blob/ff069a160400588b8d6134c48b5481729d75eb9a/results/mating_light_contrasts/contrasts.csv)・[生態学的考察](https://github.com/zuizui0223/alan/blob/ff069a160400588b8d6134c48b5481729d75eb9a/manuscript/ALAN_GLOBI_ISLAND_POLLINATOR_SHIFT_DISCUSSION_ja.md)
+
 ## Central question
 
 Does the spatial association of artificial light at night (ALAN; VIIRS upward radiance) with the *photographed flower-region white-colour fraction* differ between island and mainland sites?
