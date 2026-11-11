@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies and validate source regression mathematics
         run: |
           set -euo pipefail
-          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 geopandas==1.1.2 shapely==2.1.2
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 geopandas==1.1.2 shapely==2.1.2 requests==2.32.3
           python -m py_compile scripts/analysis/alan_globi_v011_pl64_evidence_robustness.py
           python -m unittest discover -s tests -p test_alan_globi_v011_pl64_evidence_robustness.py -v
       - name: Restore signed source photographs and Kew WCVP
