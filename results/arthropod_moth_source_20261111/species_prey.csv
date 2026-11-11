@@ -1,0 +1,46 @@
+predator,moth,source_stage,non_inat_trophich,relationship_rows
+Argiope bruennichi,,unknown,False,1
+Argiope bruennichi,Chiasmia clathrata,nonadult,False,1
+Argiope bruennichi,Chiasmia clathrata,unknown,False,1
+Argiope bruennichi,Euclidia glyphica,adult,False,1
+Argiope bruennichi,Euplagia quadripunctaria,adult,False,1
+Argiope bruennichi,Euplagia quadripunctaria,unknown,False,1
+Argiope bruennichi,Zygaena filipendulae,adult,False,1
+Mantis religiosa,,unknown,False,1
+Mantis religiosa,Pyrrharctia isabella,nonadult,False,1
+Mantis religiosa,Zygaena fausta,adult,False,1
+Mantis religiosa,Zygaena fausta,unknown,False,1
+Vespa velutina,,adult,True,1
+Vespa velutina,,unknown,False,8
+Vespa velutina,,unknown,True,3
+Vespa velutina,Agrotis exclamationis,unknown,False,1
+Vespa velutina,Agrotis exclamationis,unknown,True,1
+Vespa velutina,Anthophila fabriciana,unknown,False,3
+Vespa velutina,Autographa gamma,unknown,False,1
+Vespa velutina,Autographa gamma,unknown,True,1
+Vespa velutina,Cabera exanthemata,unknown,False,1
+Vespa velutina,Cabera exanthemata,unknown,True,1
+Vespa velutina,Dysphania militaris,adult,False,1
+Vespa velutina,Dysphania militaris,nonadult,False,1
+Vespa velutina,Hypena crassalis,unknown,False,1
+Vespa velutina,Hypena lividalis,unknown,False,1
+Vespa velutina,Hypena munitalis,unknown,False,1
+Vespa velutina,Hypena obsitalis,unknown,False,1
+Vespa velutina,Hypena proboscidalis,unknown,False,1
+Vespa velutina,Hypena rostralis,unknown,False,1
+Vespa velutina,Lacanobia oleracea,unknown,False,1
+Vespa velutina,Lacanobia oleracea,unknown,True,1
+Vespa velutina,Mythimna unipuncta,unknown,False,1
+Vespa velutina,Mythimna unipuncta,unknown,True,1
+Vespa velutina,Noctua comes,unknown,False,1
+Vespa velutina,Noctua fimbriata,unknown,False,1
+Vespa velutina,Noctua fimbriata,unknown,True,2
+Vespa velutina,Noctua interjecta,unknown,False,1
+Vespa velutina,Noctua interposita,unknown,False,1
+Vespa velutina,Noctua janthe,unknown,False,1
+Vespa velutina,Noctua pronuba,unknown,False,1
+Vespa velutina,Noctua pronuba,unknown,True,1
+Vespa velutina,Nomophila noctuella,unknown,False,1
+Vespa velutina,Nomophila noctuella,unknown,True,1
+Vespa velutina,Orgyia antiqua,unknown,False,1
+Vespa velutina,Orgyia antiqua,unknown,True,1

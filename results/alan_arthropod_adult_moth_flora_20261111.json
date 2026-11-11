@@ -1,0 +1,602 @@
+{
+  "primary": {
+    "target_hash": "37f3c2c519871b6905ffa81c5a14536b248611861ad143b1d4d77d95b7c6b00d",
+    "cohort": {
+      "island": 933,
+      "mainland": 9765
+    },
+    "predator_snapshots": {
+      "2019_1311477.json.gz": "8534500116a772a15155196e0b4561cf22cb2d3a53b0169a41760318f50b3f54",
+      "2019_5170994.json.gz": "2b30e7dfc45bb1d2170a9452fc81c083e9b35af961678f28937d59ddbd7d7ef6",
+      "2019_6258028.json.gz": "c06254818d5406121478b698a04805400d75169e3c1c0f8cf03c08b850cfaffb",
+      "2021_1311477.json.gz": "f7c2bed95d6704fbb11bd88ec5057a48d87ddbbec3c34b73c143f40c75ac6b3c",
+      "2021_5170994.json.gz": "96e2bb25c6566ab689826873bc54a7c90a5235c7b82eb4adfcf76deda375b6c5",
+      "2021_6258028.json.gz": "670e1def94ee458d154d993144141a44a047353284993fd6048be39dc0c06ec7",
+      "2023_1311477.json.gz": "e1a7ea31fcac8f46974fedbb108088ae4dd19555c82bfe5e237bbcd92a2a9dcb",
+      "2023_5170994.json.gz": "c4e3fa1396458ed4be1a0c87bce937bd4ec5574aee0decb495d283ce86742740",
+      "2023_6258028.json.gz": "815bc898d8e8ae18c9365d7b59d98dacfdb1ebf3509ea7c1c7442342d23f2e1e",
+      "2024_1311477.json.gz": "1f949eabe38223dbe7c3d1440f2a80f73570e84b9ba5695ad8456bc42e45923d",
+      "2024_5170994.json.gz": "dc1961f2cdfbb39579c8dd8ee0439f62af3fe13abd26fcaac1881f439fcd5a79",
+      "2024_6258028.json.gz": "760c269c01ad910957327d2ecff4b9ff25da4bf0c83ead874dd83d6c7ddf2405",
+      "2025_1311477.json.gz": "15d7178ebddceada98ba85866ad2d7c32784a29e5f0b654bd532510ba6a5d1b8",
+      "2025_5170994.json.gz": "56f30bba74a9437d6b48f74a201cbee46edd68825f3b0435eb9bb7c1d7abc24e",
+      "2025_6258028.json.gz": "9863d377d6c8b064a61e8b52b71bc201132b7c067eb4ffe163f6654d800e4425"
+    }
+  },
+  "source": {
+    "predator_flower_sha256": "bf275f0e3e0518ba905ab32dce052cccb3ab6eb643ae6992b9e0223baf9a25fe",
+    "scanned": 24453954,
+    "source_sha256": "670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3",
+    "rows": 57,
+    "prey_table_sha256": "99cf6a6f01273e2e229f3f0ed35b88295dae9f40045bf21874efc308f31a7059"
+  },
+  "totals": [
+    {
+      "predator": "Mantis religiosa",
+      "named_adult_prey": 1,
+      "prey_with_visit_link": 0,
+      "plant_names": 0,
+      "plant_names_on_cohort": 0,
+      "predator_pollinates_plant_names": [],
+      "same_plant_with_pollinates_label": [],
+      "prey_rows_by_stage": {
+        "adult": 1,
+        "nonadult": 1,
+        "unknown": 2
+      },
+      "predator_flower_visit_plant_names": [
+        "Asclepias fascicularis",
+        "Heliotropium curassavicum",
+        "Isocoma menziesii",
+        "Limbarda crithmoides",
+        "Stephanomeria virgata"
+      ],
+      "1deg": {
+        "site_years": {
+          "island": 0,
+          "mainland": 0
+        },
+        "moths": 0,
+        "plants": 0,
+        "same_plant_reported_pollinates": {
+          "island": 0,
+          "mainland": 0
+        }
+      },
+      "0.05deg": {
+        "site_years": {
+          "island": 0,
+          "mainland": 0
+        },
+        "moths": 0,
+        "plants": 0,
+        "same_plant_reported_pollinates": {
+          "island": 0,
+          "mainland": 0
+        }
+      }
+    },
+    {
+      "predator": "Argiope bruennichi",
+      "named_adult_prey": 3,
+      "prey_with_visit_link": 2,
+      "plant_names": 83,
+      "plant_names_on_cohort": 61,
+      "predator_pollinates_plant_names": [],
+      "same_plant_with_pollinates_label": [],
+      "prey_rows_by_stage": {
+        "adult": 3,
+        "nonadult": 1,
+        "unknown": 3
+      },
+      "predator_flower_visit_plant_names": [
+        "Santolina chamaecyparissus"
+      ],
+      "1deg": {
+        "site_years": {
+          "island": 29,
+          "mainland": 175
+        },
+        "moths": 2,
+        "plants": 56,
+        "same_plant_reported_pollinates": {
+          "island": 0,
+          "mainland": 0
+        }
+      },
+      "0.05deg": {
+        "site_years": {
+          "island": 1,
+          "mainland": 12
+        },
+        "moths": 2,
+        "plants": 14,
+        "same_plant_reported_pollinates": {
+          "island": 0,
+          "mainland": 0
+        }
+      }
+    },
+    {
+      "predator": "Vespa velutina",
+      "named_adult_prey": 1,
+      "prey_with_visit_link": 1,
+      "plant_names": 3,
+      "plant_names_on_cohort": 1,
+      "predator_pollinates_plant_names": [
+        "Angelica pyrenaea",
+        "Angelica sylvestris",
+        "Berberis julianae",
+        "Berberis thunbergii",
+        "Cotoneaster adpressus",
+        "Cotoneaster dammeri",
+        "Cotoneaster dielsianus",
+        "Cotoneaster divaricatus",
+        "Cotoneaster franchetii",
+        "Cotoneaster horizontalis",
+        "Cotoneaster integerrimus",
+        "Cotoneaster microphyllus",
+        "Cotoneaster salicifolius",
+        "Eriobotrya japonica",
+        "Euphorbia amygdaloides",
+        "Euphorbia chamaesyce",
+        "Euphorbia cyparissias",
+        "Euphorbia davidii",
+        "Euphorbia dulcis",
+        "Euphorbia esula",
+        "Euphorbia falcata",
+        "Euphorbia maculata",
+        "Euphorbia palustris",
+        "Euphorbia peplus",
+        "Euphorbia prostrata",
+        "Euphorbia seguieriana",
+        "Euphorbia serpens",
+        "Euphorbia serpyllifolia",
+        "Euphorbia serrata",
+        "Euphorbia virgata",
+        "Euthamia graminifolia",
+        "Mentha pulegium",
+        "Mentha suaveolens",
+        "Parthenocissus inserta",
+        "Parthenocissus quinquefolia",
+        "Rhododendron ferrugineum",
+        "Salvia elegans",
+        "Solidago gigantea",
+        "Solidago virgaurea",
+        "Symphoricarpos albus",
+        "Tetrapanax papyrifer"
+      ],
+      "same_plant_with_pollinates_label": [],
+      "prey_rows_by_stage": {
+        "adult": 2,
+        "nonadult": 1,
+        "unknown": 43
+      },
+      "predator_flower_visit_plant_names": [
+        "Ampelopsis glandulosa",
+        "Angelica sylvestris",
+        "Barringtonia racemosa",
+        "Camellia drupifera",
+        "Camellia sasanqua",
+        "Caryopteris incana",
+        "Causonis japonica",
+        "Clethra barbinervis",
+        "Costus woodsonii",
+        "Crithmum maritimum",
+        "Daphne gnidium",
+        "Delairea odorata",
+        "Elaeagnus multiflora",
+        "Elsholtzia ciliata",
+        "Eriobotrya japonica",
+        "Euphorbia milii",
+        "Farfugium japonicum",
+        "Fatsia japonica",
+        "Hedera colchica",
+        "Hedera rhombea",
+        "Hydrangea chinensis",
+        "Lantana camara",
+        "Leea guineensis",
+        "Litsea japonica",
+        "Mallotus japonicus",
+        "Melaleuca citrina",
+        "Melaleuca glauca",
+        "Mentha suaveolens",
+        "Myoporum laetum",
+        "Nuphar pumila",
+        "Oenothera glazioviana",
+        "Oenothera lindheimeri",
+        "Polyspora axillaris",
+        "Rhaphiolepis umbellata",
+        "Rubus crataegifolius",
+        "Salvia leucantha",
+        "Sambucus javanica",
+        "Scrophularia auriculata",
+        "Smyrnium olusatrum",
+        "Syzygium elliptifolium",
+        "Tetrapanax papyrifer",
+        "Thalia geniculata",
+        "Tripolium pannonicum",
+        "Xanthostemon chrysanthus",
+        "Zanthoxylum ailanthoides"
+      ],
+      "1deg": {
+        "site_years": {
+          "island": 0,
+          "mainland": 1
+        },
+        "moths": 1,
+        "plants": 1,
+        "same_plant_reported_pollinates": {
+          "island": 0,
+          "mainland": 0
+        }
+      },
+      "0.05deg": {
+        "site_years": {
+          "island": 0,
+          "mainland": 0
+        },
+        "moths": 0,
+        "plants": 0,
+        "same_plant_reported_pollinates": {
+          "island": 0,
+          "mainland": 0
+        }
+      }
+    }
+  ],
+  "union_of_three": {
+    "1deg": {
+      "island": 29,
+      "mainland": 176
+    },
+    "0.05deg": {
+      "island": 1,
+      "mainland": 12
+    }
+  },
+  "pairs": [
+    {
+      "predator": "Mantis religiosa",
+      "moth": "Zygaena fausta",
+      "plant_names": [],
+      "1deg": {
+        "island": 0,
+        "mainland": 0
+      },
+      "0.05deg": {
+        "island": 0,
+        "mainland": 0
+      },
+      "plants_at_matched_sites": {
+        "island": [],
+        "mainland": []
+      }
+    },
+    {
+      "predator": "Argiope bruennichi",
+      "moth": "Euclidia glyphica",
+      "plant_names": [
+        "Achillea millefolium",
+        "Ajuga reptans",
+        "Allium roseum",
+        "Anemonoides sylvestris",
+        "Armeria arenaria",
+        "Bellis perennis",
+        "Campanula patula",
+        "Cardamine bulbifera",
+        "Centaurea calcitrapa",
+        "Centaurea cyanus",
+        "Centaurea decipiens",
+        "Centaurea diffusa",
+        "Centaurea jacea",
+        "Centaurea montana",
+        "Centaurea nemoralis",
+        "Centaurea nervosa",
+        "Centaurea nigra",
+        "Centaurea nigrescens",
+        "Centaurea paniculata",
+        "Centaurea pseudophrygia",
+        "Centaurea rhaetica",
+        "Centaurea scabiosa",
+        "Centaurea solstitialis",
+        "Centaurea splendens",
+        "Centaurea stoebe",
+        "Centaurea triumfettii",
+        "Centaurea uniflora",
+        "Centaurea valesiaca",
+        "Chamaenerion angustifolium",
+        "Cirsium acaule",
+        "Cirsium dissectum",
+        "Crepis biennis",
+        "Echinops sphaerocephalus",
+        "Echium vulgare",
+        "Galactites tomentosus",
+        "Galium mollugo",
+        "Gentiana lutea",
+        "Glechoma hederacea",
+        "Hippocrepis comosa",
+        "Hypericum perforatum",
+        "Jacobaea vulgaris",
+        "Knautia arvensis",
+        "Lavandula stoechas",
+        "Lepidium draba",
+        "Lotus corniculatus",
+        "Lysimachia vulgaris",
+        "Lythrum salicaria",
+        "Medicago lupulina",
+        "Mentha spicata",
+        "Mentha suaveolens",
+        "Onobrychis viciifolia",
+        "Origanum vulgare",
+        "Phyteuma orbiculare",
+        "Ranunculus acris",
+        "Robinia pseudoacacia",
+        "Scabiosa columbaria",
+        "Taraxacum officinale",
+        "Thymus praecox",
+        "Thymus vulgaris",
+        "Trifolium incarnatum",
+        "Trifolium repens",
+        "Veronica chamaedrys",
+        "Veronica teucrium",
+        "Vicia cracca"
+      ],
+      "1deg": {
+        "island": 23,
+        "mainland": 140
+      },
+      "0.05deg": {
+        "island": 0,
+        "mainland": 9
+      },
+      "plants_at_matched_sites": {
+        "island": [],
+        "mainland": [
+          "Centaurea nigrescens",
+          "Centaurea scabiosa",
+          "Crepis biennis",
+          "Echium vulgare",
+          "Glechoma hederacea",
+          "Hippocrepis comosa",
+          "Knautia arvensis",
+          "Lotus corniculatus",
+          "Mentha spicata",
+          "Origanum vulgare",
+          "Robinia pseudoacacia"
+        ]
+      }
+    },
+    {
+      "predator": "Argiope bruennichi",
+      "moth": "Euplagia quadripunctaria",
+      "plant_names": [
+        "Achillea millefolium",
+        "Buddleja davidii",
+        "Carlina vulgaris",
+        "Cephalaria leucantha",
+        "Cirsium arvense",
+        "Cirsium palustre",
+        "Cosmos bipinnatus",
+        "Cynara cardunculus",
+        "Daucus carota",
+        "Eryngium amethystinum",
+        "Eupatorium cannabinum",
+        "Hydrangea serrata",
+        "Jacobaea vulgaris",
+        "Lavandula angustifolia",
+        "Lophiolepis eriophora",
+        "Mentha aquatica",
+        "Mentha longifolia",
+        "Mentha suaveolens",
+        "Odontites luteus",
+        "Origanum vulgare",
+        "Sambucus ebulus",
+        "Scabiosa triandra",
+        "Tanacetum vulgare"
+      ],
+      "1deg": {
+        "island": 10,
+        "mainland": 49
+      },
+      "0.05deg": {
+        "island": 1,
+        "mainland": 4
+      },
+      "plants_at_matched_sites": {
+        "island": [
+          "Jacobaea vulgaris"
+        ],
+        "mainland": [
+          "Achillea millefolium",
+          "Buddleja davidii",
+          "Origanum vulgare"
+        ]
+      }
+    },
+    {
+      "predator": "Argiope bruennichi",
+      "moth": "Zygaena filipendulae",
+      "plant_names": [],
+      "1deg": {
+        "island": 0,
+        "mainland": 0
+      },
+      "0.05deg": {
+        "island": 0,
+        "mainland": 0
+      },
+      "plants_at_matched_sites": {
+        "island": [],
+        "mainland": []
+      }
+    },
+    {
+      "predator": "Vespa velutina",
+      "moth": "Dysphania militaris",
+      "plant_names": [
+        "Crateva unilocularis",
+        "Schima wallichii",
+        "Viburnum odoratissimum"
+      ],
+      "1deg": {
+        "island": 0,
+        "mainland": 1
+      },
+      "0.05deg": {
+        "island": 0,
+        "mainland": 0
+      },
+      "plants_at_matched_sites": {
+        "island": [],
+        "mainland": []
+      }
+    }
+  ],
+  "eligible_gbif_dataset_keys": [
+    "38b4c89f-584c-41bb-bd8f-cd1def33e92f",
+    "4718437d-76c6-432b-9883-4b9a253ac53f",
+    "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+    "8487c83f-4022-44f3-a93d-9c3e1ba10997",
+    "87b6acb8-4db2-4769-93ca-e086040dfe14",
+    "8a863029-f435-446a-821e-275f4f641165",
+    "963a6b96-4d22-4428-86e4-afee52cf4a8e",
+    "df12ca07-f133-4550-ab3b-fde13f0e76ba",
+    "eec457cc-5da6-448c-a6d4-c402f9909c08"
+  ],
+  "gbif": [
+    {
+      "moth": "Dysphania militaris",
+      "taxon": 5149174,
+      "year": 2025,
+      "count": 5,
+      "sha256": "7fb0bf49ef5e76564a8a3fb0be9c9c28fab9d1d02fccbee9305584a2a64386ee"
+    },
+    {
+      "moth": "Euclidia glyphica",
+      "taxon": 1798408,
+      "year": 2019,
+      "count": 10,
+      "sha256": "cc07246ea8da3e392642e92724b5471ede3997db13142aac5bfc4cbc23b764f5"
+    },
+    {
+      "moth": "Euclidia glyphica",
+      "taxon": 1798408,
+      "year": 2021,
+      "count": 77,
+      "sha256": "5fda52067f877e8cdfd78d8e377b18ec7b9aa529bbb815121c757293e59c4c11"
+    },
+    {
+      "moth": "Euclidia glyphica",
+      "taxon": 1798408,
+      "year": 2021,
+      "count": 61,
+      "sha256": "8bd5953d3dd87aad34b2be4a742ec5f5d66abb0070a2d86bd94731b27df7cb39"
+    },
+    {
+      "moth": "Euclidia glyphica",
+      "taxon": 1798408,
+      "year": 2023,
+      "count": 51,
+      "sha256": "a74e23ff3d8b51816ed181b9c69a86144bc3dc94eb37be30d5bada162ed6a0dc"
+    },
+    {
+      "moth": "Euclidia glyphica",
+      "taxon": 1798408,
+      "year": 2024,
+      "count": 56,
+      "sha256": "f7ce2d2fe2f1f05886bc478028b522f6bcc8b52c3bf64725bc018af6f270b6c9"
+    },
+    {
+      "moth": "Euclidia glyphica",
+      "taxon": 1798408,
+      "year": 2024,
+      "count": 2,
+      "sha256": "75ba626e5c9eff9ec4f136252950d2e6589290c29305a55e919c5dd58cd49d4d"
+    },
+    {
+      "moth": "Euclidia glyphica",
+      "taxon": 1798408,
+      "year": 2025,
+      "count": 52,
+      "sha256": "662937352764a0bc11218af17af08c586146d35affc04d4d8bc68d2fc52e7e85"
+    },
+    {
+      "moth": "Euclidia glyphica",
+      "taxon": 1798408,
+      "year": 2025,
+      "count": 64,
+      "sha256": "58c51f2086584ab1b12299be665e78bed008219e16897b97022e978168c4e661"
+    },
+    {
+      "moth": "Euclidia glyphica",
+      "taxon": 1798408,
+      "year": 2025,
+      "count": 399,
+      "sha256": "b6b9c2cf29776d25c31a424747bc21e2452f20992b1c61de1e63b33dacf410b8"
+    },
+    {
+      "moth": "Euclidia glyphica",
+      "taxon": 1798408,
+      "year": 2025,
+      "count": 312,
+      "sha256": "60694f46f0e2bc596d51be5c30c567dfb8c7930561f31a255534f0f58626d6d5"
+    },
+    {
+      "moth": "Euclidia glyphica",
+      "taxon": 1798408,
+      "year": 2025,
+      "count": 11,
+      "sha256": "d0fa333558ac8b465c566c771389a5295de9fbf44f7443ceccfd3a0085839fed"
+    },
+    {
+      "moth": "Euplagia quadripunctaria",
+      "taxon": 4532532,
+      "year": 2019,
+      "count": 27,
+      "sha256": "752cd6513b926b3cc3b9fa12a1d77a2aa4818ce60e44d7de7c1d0771b1d25eeb"
+    },
+    {
+      "moth": "Euplagia quadripunctaria",
+      "taxon": 4532532,
+      "year": 2021,
+      "count": 159,
+      "sha256": "93aa21fe1626439dcb2fa2fa2eca2aef46618579f1f1748eff69945438dd1b02"
+    },
+    {
+      "moth": "Euplagia quadripunctaria",
+      "taxon": 4532532,
+      "year": 2023,
+      "count": 235,
+      "sha256": "e0a3631d7cfb53d35e88a6130e32e9d87c0360b85c42fa76f75705863f8ddff4"
+    },
+    {
+      "moth": "Euplagia quadripunctaria",
+      "taxon": 4532532,
+      "year": 2024,
+      "count": 155,
+      "sha256": "34a5b8f4c1e853e5699ffb9763e26355f9dd0f3cfc9e3ccd02cd9defe59fd232"
+    },
+    {
+      "moth": "Euplagia quadripunctaria",
+      "taxon": 4532532,
+      "year": 2025,
+      "count": 291,
+      "sha256": "969059b862c5be1f6213098faaa02e3d1056bd877cbf7bdba799feb4f3c3544d"
+    },
+    {
+      "moth": "Euplagia quadripunctaria",
+      "taxon": 4532532,
+      "year": 2025,
+      "count": 366,
+      "sha256": "d059a86e85307b7f0d675c395ae00fcc6dc927999e708e2228bebf6274d3f2da"
+    },
+    {
+      "moth": "Euplagia quadripunctaria",
+      "taxon": 4532532,
+      "year": 2025,
+      "count": 32,
+      "sha256": "9203395c01a00261413ec74e57c00840b3b1c18ba487ed8a2a1f4dd914f5bc69"
+    }
+  ]
+}
