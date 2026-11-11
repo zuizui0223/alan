@@ -1,0 +1,74 @@
+name: ALAN actual NPMS same-method same-season plant cover x past light support
+on:
+  push:
+    branches: [analysis/alan-npms-glopl-pl-observation-support-20261110]
+    paths:
+      - scripts/analysis/alan_npms_repeated_method_season_ALAN_cover_gate_20261110.py
+      - .github/workflows/alan-npms-sameprotocol-pastlight-cover-source.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  real-NPMS-cover-comparability-gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 34
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Use original source code and real 16960 plot-year 11-year PCNL cohort
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 rasterio==1.4.3 pyproj==3.7.2
+          python -m py_compile scripts/analysis/alan_npms_repeated_method_season_ALAN_cover_gate_20261110.py
+          mkdir -p source
+          gh run download 42811341050 --repo zuizui0223/alan \
+            --name alan-original-5360NPMS-plots-16960-years-real-PCNL2014to2024-source \
+            --dir source
+          test -s source/NPMS_16960_real_plotyear_PCNl_prior2014to2024.csv.gz
+          test -s source/NPMS_priorPCNL_2014_2024_actual_repeated_plot_source_receipt.json
+          echo '5ecae6a9b62de636c8e68fd694c69698eec154e5a8a0ba641beb5a7e6061e427  source/NPMS_16960_real_plotyear_PCNl_prior2014to2024.csv.gz' | sha256sum -c -
+      - name: Obtain original EIDC vegetation observations and GloPL published experiment with CRC and SHA verification
+        timeout-minutes: 16
+        run: |
+          set -euo pipefail
+          curl -L --fail --show-error --retry 3 --max-time 690 \
+            https://data-package.ceh.ac.uk/data/64caeed0-160f-48f1-b182-cd24a1d7dca8.zip \
+            -o source/NPMS_original_2015to2025.zip
+          curl -L --fail --show-error --retry 3 --max-time 360 \
+            https://raw.githubusercontent.com/idiv-biodiversity/pollen-limitation-data-descriptor/abbe193770981b2c61713e75a0f01e004bdded8e/Output/GloPL.csv \
+            -o source/GloPL_original.csv
+          echo '264ca8c2237f126b3c209fcba039e19b291324ddf6e7a96992dc8235a55984de  source/GloPL_original.csv' | sha256sum -c -
+      - name: Compute true repeated same plot method season positive plant cover and light gradient support
+        timeout-minutes: 14
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_npms_repeated_method_season_ALAN_cover_gate_20261110 \
+            --npms source/NPMS_original_2015to2025.zip \
+            --glopl source/GloPL_original.csv \
+            --light source/NPMS_16960_real_plotyear_PCNl_prior2014to2024.csv.gz \
+            --receipt source/NPMS_priorPCNL_2014_2024_actual_repeated_plot_source_receipt.json \
+            --out genuine-NPMS-cover-support
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('genuine-NPMS-cover-support/NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json').read_text())
+          assert r['original_16960_plotyear_light_SHA256']=='5ecae6a9b62de636c8e68fd694c69698eec154e5a8a0ba641beb5a7e6061e427'
+          assert r['source_NPMS_distinct_plots']==5360
+          assert r['source_GloPL_species_with_exact_name_in_NPMS']==79
+          assert r['no_causal_ALAN_plant_occupancy_or_effective_moth_pollination_claimed']
+          print('ALAN_NPMS_TRUE_REPEAT_COVER_LIGHT_SUPPORT_VERIFIED',json.dumps(r,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-real-NPMS-sameplot-sameprotocol-positive-cover-pastlight-source
+          path: genuine-NPMS-cover-support/
+          if-no-files-found: warn
+          retention-days: 90

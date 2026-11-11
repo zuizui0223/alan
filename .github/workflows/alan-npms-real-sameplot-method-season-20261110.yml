@@ -1,0 +1,79 @@
+name: ALAN original NPMS 5360 plot same-method, season and GloPL source support audit
+on:
+  push:
+    branches: [analysis/alan-npms-glopl-pl-observation-support-20261110]
+    paths:
+      - scripts/analysis/alan_npms_sameplot_visitmethod_season_20261110.py
+      - .github/workflows/alan-npms-real-sameplot-method-season-20261110.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  authenticated-NPMS-repeated-vegetation-observation-methods:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate original-source method and year-code syntax
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          python -m py_compile scripts/analysis/alan_npms_sameplot_visitmethod_season_20261110.py
+      - name: Fetch only actual published CRC-signed original NPMS survey data and exact original GloPL study experiments
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          mkdir -p source
+          curl -L --fail --show-error --retry 3 --max-time 650 \
+            https://data-package.ceh.ac.uk/data/64caeed0-160f-48f1-b182-cd24a1d7dca8.zip \
+            -o source/NPMS_2015_2025.zip
+          curl -L --fail --show-error --retry 3 --max-time 320 \
+            https://raw.githubusercontent.com/idiv-biodiversity/pollen-limitation-data-descriptor/abbe193770981b2c61713e75a0f01e004bdded8e/Output/GloPL.csv \
+            -o source/GloPL_original.csv
+          echo '264ca8c2237f126b3c209fcba039e19b291324ddf6e7a96992dc8235a55984de  source/GloPL_original.csv' | sha256sum -c -
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+          p=Path('source/NPMS_2015_2025.zip')
+          assert zipfile.is_zipfile(p)
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None
+          print('ALAN_GENUINE_NPMS_ORIGINAL_ZIP_READABLE',flush=True)
+          PY
+      - name: Quantify comparable repeat-plot visit years, spring/summer, method, GloPL taxon evidence
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_npms_sameplot_visitmethod_season_20261110 \
+            --package source/NPMS_2015_2025.zip \
+            --glopl source/GloPL_original.csv \
+            --out observation-audit/NPMS_real_5360_plot_method_season_GloPL_overlap.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('observation-audit/NPMS_real_5360_plot_method_season_GloPL_overlap.json').read_text())
+          x=d['original_NPMS_method_and_repeat_visit_support']
+          y=d['real_recorded_plant_species_with_independent_GloPL_support']
+          assert x['actual_plot_locations']==5360
+          assert x['valid_true_location_year_coordinate_visits']==27603
+          assert x['source_plots_revisited_2plus_years']==3358
+          assert y['genuine_GloPL_exact_source_species_in_NPMS']==79
+          assert y['original_GloPL_taxa_with_2plus_original_independent_studies_in_NPMS']==19
+          assert d['source_missing_species_zeros_not_imputed']
+          print('ALAN_GENUINE_NPMS_REPEAT_METHOD_OBSERVER_SOURCE_OK',
+                json.dumps(d,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-NPMS-5360-plot-repeat-method-season-79GloPL-source-audit
+          path: observation-audit/NPMS_real_5360_plot_method_season_GloPL_overlap.json
+          retention-days: 90
+          if-no-files-found: warn

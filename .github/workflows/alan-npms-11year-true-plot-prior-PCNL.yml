@@ -1,0 +1,128 @@
+name: ALAN NPMS 5360 true repeat plots historical PCNL 11year before vegetation
+on:
+  push:
+    branches: [analysis/alan-npms-glopl-pl-observation-support-20261110]
+    paths:
+      - scripts/analysis/alan_npms_11yr_true_plot_priorPCNL_source_20261110.py
+      - tests/test_alan_npms_true_plotyear_priorPCNL_source_20261110.py
+      - .github/workflows/alan-npms-11year-true-plot-prior-PCNL.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  true-NPMS-site-year-and-raster-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 rasterio==1.4.3 \
+            pyproj==3.7.2 scipy==1.15.2
+          python -m py_compile scripts/analysis/alan_npms_11yr_true_plot_priorPCNL_source_20261110.py
+          python -m unittest discover -s tests -p test_alan_npms_true_plotyear_priorPCNL_source_20261110.py -v
+  true-2014to2024-PCNL-at-original-NPMS-plot:
+    needs: true-NPMS-site-year-and-raster-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        shard: [0,1,2]
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      GDAL_CACHEMAX: '128'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Restore real original NPMS visit/year geolocation and source-raster dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 \
+            pyproj==3.7.2 rasterio==1.4.3
+          mkdir -p original
+          curl -L --fail --show-error --retry 3 --max-time 750 \
+            https://data-package.ceh.ac.uk/data/64caeed0-160f-48f1-b182-cd24a1d7dca8.zip \
+            -o original/NPMS_2015_2025.zip
+          test -s original/NPMS_2015_2025.zip
+      - name: Actual annually previous PCNL at 16960 original NPMS plot/year source coordinates
+        timeout-minutes: 95
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_npms_11yr_true_plot_priorPCNL_source_20261110 worker \
+            --npms original/NPMS_2015_2025.zip \
+            --shard ${{ matrix.shard }} \
+            --out annual-true-NPMS-PCNL
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          a=json.loads(next(Path('annual-true-NPMS-PCNL').glob('NPMS_2015_2025_actual_plot_previous_PCNL_shard_*.json')).read_text())
+          assert a["source_fixed_plot_not_photo_detection_zeros"]
+          assert a["no_future_radiance_for_observed_plants"]
+          assert a["source_valid_prior_PCNL_plot_years"]>0
+          print("ALAN_NPMS_ORIGINAL_PREVIOUS_YEAR_REAL_PCNL_SOURCE",json.dumps({
+            "shard":a["shard"],"n_source_plotyears":a["source_original_NPMS_plot_years"],
+            "n_original_prior_PCNL_numeric":a["source_valid_prior_PCNL_plot_years"]},
+            sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-true-NPMS-annual-PCNL-plotyear-shard-${{ matrix.shard }}
+          path: |
+            annual-true-NPMS-PCNL/*.json
+            annual-true-NPMS-PCNL/*.csv.gz
+          retention-days: 90
+          if-no-files-found: warn
+  actual-NPMS-year-prior-exposure-union:
+    needs: [true-NPMS-site-year-and-raster-tests,true-2014to2024-PCNL-at-original-NPMS-plot]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 28
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 \
+            pyproj==3.7.2 rasterio==1.4.3
+          mkdir -p original downloaded trueparts
+          curl -L --fail --show-error --retry 3 --max-time 750 \
+            https://data-package.ceh.ac.uk/data/64caeed0-160f-48f1-b182-cd24a1d7dca8.zip \
+            -o original/NPMS_2015_2025.zip
+          gh run download "$GITHUB_RUN_ID" --repo zuizui0223/alan \
+            --pattern 'alan-true-NPMS-annual-PCNL-plotyear-shard-*' --dir downloaded
+          test "$(find downloaded -name 'NPMS_2015_2025_actual_plot_previous_PCNL_shard_?.json' | wc -l)" -eq 3
+          test "$(find downloaded -name 'NPMS_2015_2025_actual_plot_previous_PCNL_shard_?.csv.gz' | wc -l)" -eq 3
+          find downloaded -name 'NPMS_2015_2025_actual_plot_previous_PCNL_shard_?.json' -exec cp {} trueparts/ \;
+          find downloaded -name 'NPMS_2015_2025_actual_plot_previous_PCNL_shard_?.csv.gz' -exec cp {} trueparts/ \;
+          python -m scripts.analysis.alan_npms_11yr_true_plot_priorPCNL_source_20261110 collect \
+            --npms original/NPMS_2015_2025.zip --partials trueparts \
+            --out true-NPMS-annual-light
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('true-NPMS-annual-light/NPMS_priorPCNL_2014_2024_actual_repeated_plot_source_receipt.json').read_text())
+          assert d['genuine_source_2015_2025_original_plot_years']==16960
+          assert d['genuine_source_distinct_original_NPMS_plots']==5360
+          assert d['no_unreported_species_zeros_or_plot_absence_created']
+          print('ALAN_REAL_NPMS_5360_PLOTS_11YEAR_LIGHT_TEMPORAL_GRADIENT',json.dumps(d,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-5360NPMS-plots-16960-years-real-PCNL2014to2024-source
+          path: true-NPMS-annual-light/
+          retention-days: 90
+          if-no-files-found: warn

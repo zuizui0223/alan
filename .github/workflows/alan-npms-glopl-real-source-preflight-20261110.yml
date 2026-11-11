@@ -1,0 +1,201 @@
+name: ALAN actual NPMS 2015-2025 vegetation x published GloPL pollen limitation source audit
+on:
+  pull_request:
+    branches: [analysis/alan-island-nightshift-species-pair-feasibility-20261110]
+    paths:
+      - scripts/acquisition/alan_npms_glopl_source_overlap_preflight_20261110.py
+      - scripts/analysis/alan_npms_glopl_actual_species_repeat_support_20261110.py
+      - scripts/analysis/alan_glopl_true_experiment_year_ALAN_preflight_20261110.py
+      - tests/test_alan_glopl_true_experiment_year_ALAN_preflight_20261110.py
+      - tests/test_alan_npms_glopl_source_overlap_preflight_20261110.py
+      - .github/workflows/alan-npms-glopl-real-source-preflight-20261110.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-unit-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2
+          python -m py_compile scripts/acquisition/alan_npms_glopl_source_overlap_preflight_20261110.py scripts/analysis/alan_npms_glopl_actual_species_repeat_support_20261110.py
+          python -m unittest discover -s tests -p test_alan_npms_glopl_source_overlap_preflight_20261110.py -v
+          python -m unittest discover -s tests -p test_alan_glopl_true_experiment_year_ALAN_preflight_20261110.py -v
+  original-source-schema-audit:
+    needs: source-unit-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2
+      - name: Obtain the genuine EIDC 2015-2025 National Plant Monitoring Scheme data package
+        timeout-minutes: 23
+        run: |
+          set -euo pipefail
+          mkdir -p source
+          curl -L --fail --show-error --retry 4 --retry-delay 4 --max-time 1100 \
+            -A 'ALAN Macroecology Academic Data Audit (noncommercial)' \
+            https://data-package.ceh.ac.uk/data/64caeed0-160f-48f1-b182-cd24a1d7dca8.zip \
+            -o source/npms_2015_2025.zip
+          test "$(stat -c %s source/npms_2015_2025.zip)" -gt 5000
+          python - <<'PY'
+          import zipfile
+          f='source/npms_2015_2025.zip'
+          assert zipfile.is_zipfile(f), 'EIDC source did not return an actual NPMS ZIP'
+          print('ALAN_ACTUAL_EIDC_NPMS_ARCHIVE_RETRIEVED')
+          PY
+      - name: Obtain the original pinned GloPL pollen-addition experimental case CSV
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          curl -L --fail --show-error --retry 3 --max-time 450 \
+            https://raw.githubusercontent.com/idiv-biodiversity/pollen-limitation-data-descriptor/abbe193770981b2c61713e75a0f01e004bdded8e/Output/GloPL.csv \
+            -o source/GloPL_original.csv
+          echo '264ca8c2237f126b3c209fcba039e19b291324ddf6e7a96992dc8235a55984de  source/GloPL_original.csv' | sha256sum -c -
+      - name: Inspect exact NPMS plot/species/year and GloPL supplementation schemas, without inventing sample overlap
+        timeout-minutes: 18
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_npms_glopl_source_overlap_preflight_20261110 \
+            --npms source/npms_2015_2025.zip \
+            --glopl source/GloPL_original.csv \
+            --output original_audit
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('original_audit/npms_glopl_actual_source_schema_audit.json').read_text())
+          assert r['glopl']['n_experiment_records']==2969
+          assert r['npms']['csv_file_count']>0
+          assert r['NPMS_plot_is_NOT_GloPL_experiment_location']
+          assert r['GloPL_species_lacking_record_have_unknown_PL_not_zero']
+          print('ALAN_REAL_NPMS_GLOPL_SOURCE_SCHEMA',
+                json.dumps({'npms_source':r['npms']['NPMS_DOI'],
+                            'package_sha256':r['npms']['NPMS_archive_SHA256'],
+                            'npms_csv_files':r['npms']['csv_file_count'],
+                            'glopl_source_species':r['glopl']['n_species_accepted_names']},
+                           sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-actual-NPMS-2015-2025-GloPL-source-schema-and-support
+          path: original_audit/
+          retention-days: 90
+          if-no-files-found: warn
+
+  original-NPMS-repeated-plots-and-GloPL-species:
+    needs: [source-unit-tests, original-source-schema-audit]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 42
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2
+      - name: Restore the exact original CRC-valid 2015-2025 vegetation package and 2018 GloPL snapshot
+        timeout-minutes: 18
+        run: |
+          set -euo pipefail
+          mkdir -p source
+          curl -L --fail --show-error --retry 3 --max-time 850 \
+            https://data-package.ceh.ac.uk/data/64caeed0-160f-48f1-b182-cd24a1d7dca8.zip \
+            -o source/NPMS_2015_2025.zip
+          python - <<'PY'
+          import zipfile
+          f='source/NPMS_2015_2025.zip'
+          assert zipfile.is_zipfile(f)
+          with zipfile.ZipFile(f) as z:
+              assert z.testzip() is None
+          print('EIDC_NPMS_ZIP_WRAPPER_DYNAMIC_SOURCE_MEMBER_CHECKS_FOLLOW')
+          PY
+          curl -L --fail --show-error --retry 3 --max-time 300 \
+            https://raw.githubusercontent.com/idiv-biodiversity/pollen-limitation-data-descriptor/abbe193770981b2c61713e75a0f01e004bdded8e/Output/GloPL.csv \
+            -o source/GloPL_original.csv
+          echo '264ca8c2237f126b3c209fcba039e19b291324ddf6e7a96992dc8235a55984de  source/GloPL_original.csv' | sha256sum -c -
+      - name: Count 2015-2025 field survey repeats and exact pollen-supplementation source plant overlap
+        timeout-minutes: 18
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_npms_glopl_actual_species_repeat_support_20261110 \
+            --package source/NPMS_2015_2025.zip \
+            --glopl source/GloPL_original.csv \
+            --out observed
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('observed/NPMS_GloPL_source_exact_species_overlap_result.json').read_text())
+          assert x['schema']=='ALAN_true_NPMS_GloPL_repeat_plot_species_overlap_20261110_v1'
+          assert x['NPMS_2015_2025_source_plant_occurrence_rows']==271701
+          assert x['NPMS_original_sample_visits']==27611
+          assert x['NPMS_original_location_rows']==5360
+          assert x['NPMS_source_sample_attributes']==293561
+          assert x['GloPL_original_unique_unambiguous_binomial_species']>1000
+          assert x['GloPL_species_median_PL_not_NPMS_plot_measured_PL']
+          assert not x['pollen_limitation_ALAN_plant_decline_interaction_fitted']
+          print('ALAN_ACTUAL_NPMS_X_GLOPL_REPEATED_PLOT_AND_SPECIES_JOIN',
+                json.dumps(x,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: alan-real-NPMS-GloPL-pollen-limit-repeated-plot-species-overlap
+          path: observed/
+          retention-days: 90
+          if-no-files-found: error
+
+  original-GloPL-experimental-year-preALAN:
+    needs: source-unit-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 21
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2
+      - name: Restore the original exact Dryad-identical 2018 GloPL experimental evidence
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          curl -L --fail --show-error --retry 3 --max-time 300 \
+            https://raw.githubusercontent.com/idiv-biodiversity/pollen-limitation-data-descriptor/abbe193770981b2c61713e75a0f01e004bdded8e/Output/GloPL.csv \
+            -o original_GloPL.csv
+          echo '264ca8c2237f126b3c209fcba039e19b291324ddf6e7a96992dc8235a55984de  original_GloPL.csv' | sha256sum -c -
+      - name: Select only geographically valid, actual 1993-2015 experiment-year pollen-limitation cases BEFORE nightlight
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_glopl_true_experiment_year_ALAN_preflight_20261110 \
+            --source original_GloPL.csv --out observed_GloPL_year_support
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('observed_GloPL_year_support/glopl_true_experiment_year_prior_light_source_receipt.json').read_text())
+          assert x['original_GloPL_rows']==2969
+          assert x['selected_original_year_rows']>500
+          assert x['selected_unique_published_studies']>100
+          assert x['effect_size_not_inspected_for_source_eligibility']
+          assert x['historical_PCNLLight_exposure_not_yet_measured']
+          print('ALAN_GLOPL_ACTUAL_PRELIGHT_STUDY_YEAR_CASE_SUPPORT',
+                json.dumps(x,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: alan-GloPL-actual-experiment-year-georeferenced-prior1992-PCNL-support
+          path: observed_GloPL_year_support/
+          retention-days: 90
+          if-no-files-found: error
