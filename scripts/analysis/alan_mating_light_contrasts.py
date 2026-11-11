@@ -44,6 +44,19 @@ def analyze(s, hosts, out):
                 for label,v in zip(["Q25","Q75"],q)]
     change = estimate("PL_Q75_minus_Q25",slope_weights*(q.iloc[1]-q.iloc[0]))
     np.testing.assert_allclose(change,[high-low],atol=1e-12)
+    pl_groups = {}
+    group_slopes = {}
+    group_weights = {}
+    for documented, group in pl.groupby(traits.loc[pl.index,"moth_transport_documented"]):
+        label = "transport_documented" if documented else "transport_unconfirmed"
+        assert len(group) == (11 if documented else 53)
+        pl_groups[label] = group.index
+        centered_group = group - group.mean()
+        group_weights[label] = centered_group / centered_group.pow(2).sum()
+        group_slopes[label] = estimate("PL_"+label,group_weights[label])
+    diff = estimate("PL_documented_minus_unconfirmed",
+                    pd.concat([group_weights["transport_documented"],-group_weights["transport_unconfirmed"]]))
+    np.testing.assert_allclose(diff,group_slopes["transport_documented"]-group_slopes["transport_unconfirmed"],atol=1e-12)
     known = traits.loc[traits.sc_source_class.ne("unknown"),"sc_source_class"]
     assert len(known)==246
     means = {}
@@ -58,7 +71,7 @@ def analyze(s, hosts, out):
     pd.DataFrame(rows).to_csv(out/"contrasts.csv",index=False)
     matched = hosts.merge(s[["key","region5","land_class"]],on="key",validate="many_to_one")
     support = {}
-    for label, names in {"PL":pl.index,"all_classified":known.index,"SC":classes["SC"].index,"SI":classes["SI"].index}.items():
+    for label, names in {"PL":pl.index,**pl_groups,"all_classified":known.index,"SC":classes["SC"].index,"SI":classes["SI"].index}.items():
         data = matched[matched.wcvp_accepted_name.isin(names)]
         support[label] = dict(positive_site_years=data.groupby("land_class").key.nunique().to_dict(),
                               positive_regions=data.region5.nunique(),

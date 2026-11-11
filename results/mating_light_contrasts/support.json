@@ -10,6 +10,22 @@
       "positive_regions": 56,
       "positive_regions_both_sides": 25
     },
+    "transport_unconfirmed": {
+      "positive_site_years": {
+        "island": 99,
+        "mainland": 574
+      },
+      "positive_regions": 55,
+      "positive_regions_both_sides": 23
+    },
+    "transport_documented": {
+      "positive_site_years": {
+        "island": 33,
+        "mainland": 234
+      },
+      "positive_regions": 34,
+      "positive_regions_both_sides": 8
+    },
     "all_classified": {
       "positive_site_years": {
         "island": 391,
