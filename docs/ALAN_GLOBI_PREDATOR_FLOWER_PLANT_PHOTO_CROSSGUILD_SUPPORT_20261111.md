@@ -72,3 +72,16 @@ The independent original-source regeneration code, 4 synthetic tests (all passed
 - The independent GitHub replay explicitly stops estimation when there are fewer than 20 source-positive island cells, 40 mainland cells, 10 island geographic blocks or 15 total geographic blocks. The n=0 case is not treated as an inferred biological absence.
 - The 36 configured source-tier×animal-guild×flower-relation combinations were independently reproduced from the SHA-pinned private table, with EXACT matching numerical coefficients and same pre-fit gates. A synthetic independent statsmodels WLS check reproduced the point coefficient to numerical precision. The CI and p-values remain exploratory, geographic cluster-robust, not confirmatory.
 - CI source code: scripts/analysis/alan_globi_crossguild_photo_light_replay_20261111.py and tests/test_alan_globi_crossguild_photo_light_replay_20261111.py. Its GitHub Actions validation tests code/math only, without redistributing the private input.
+
+
+## Independently documented REAL dual-function bat examples (outside observational macro fit)
+
+The GloBI role table alone cannot certify effective pollination, but primary literature independently substantiates dual feeding functions for selected bats:
+
+- *Antrozous pallidus* (pallid bat) actually preys on arthropods and has directly measured flower pollen deposition at *Pachycereus pringlei*; Frick et al. (2013), American Naturalist, DOI https://doi.org/10.1086/668595, compared pollen deposition and visitation with a specialized nectar bat. This is an experimentally documented pollination role, unlike GloBI pollinates labels alone.
+- *Glossophaga soricina* actively hunts insects and eats noctuid moths confirmed by prey DNA and behavioral observations, while being normally nectarivorous; DOI https://doi.org/10.1111/1365-2435.12192. This corroborates trophic niche flexibility without proving local compensation for lost moth pollination.
+- These **individual bat species** with both functions must not be conflated with **plant species** whose GloBI database entry has flower-use records from some bats and moths. In particular, do NOT add *Pachycereus pringlei* to the ten GloBI bat+global-moth positive plant names unless the source actually records moth flower visitation. The two levels of evidence are biologically distinct.
+
+The functional explanation to evaluate is **predator ↔ floral visitor role switching/combination**, not an expectation that a light-attracted, moth-hunting gecko must be a good pollinator. Captured moths may be larvae, effective pollen deposition must be measured, and island-specific predator activity needs independent observation.
+
+A research synthesis on ALAN and nocturnal moth pollination notes multiple potential predator guilds including bats, spiders, reptiles and amphibians and explicitly advocates food-web interaction approaches: https://pmc.ncbi.nlm.nih.gov/articles/PMC4405039/ . Experimental work on moth evasive flight suggests light may reduce escape responses to echolocating bats: https://pubmed.ncbi.nlm.nih.gov/26361558/ . These mechanistic studies do not supply a GLOBAL causal coefficient to insert into this source-photo model.
