@@ -73,6 +73,7 @@ def parse(chunk):
  other_fam=col(d,'target','FamilyName').where(~rev,col(d,'source','FamilyName'))
  moth=taxon(d,'target','Order','Lepidoptera').where(~rev,taxon(d,'source','Order','Lepidoptera'))
  plant_target=plant(d,'target').where(~rev,plant(d,'source'))
+ other_predator_group=group(d,'target').where(~rev,group(d,'source'))
  relation=rel.loc[d.index]
  ispred=relation.isin(PRED_FWD|PRED_REV)
  isflower=relation.isin(FLOWER_FWD|FLOWER_REV)
@@ -81,6 +82,7 @@ def parse(chunk):
  role=role.mask(ispred&moth&other_fam.isin(BUTTERFLY),'predates_butterfly')
  role=role.mask(ispred&moth&other_fam.eq(''),'predates_Lepidoptera_unspecified')
  role=role.mask(ispred&plant_target,'eats_plant_not_pollination')
+ role=role.mask(ispred&other_predator_group.ne('')&~moth&~plant_target,'preys_on_predator_group')
  role=role.mask(isflower&plant_target&relation.isin({'visitsFlowersOf','flowersVisitedBy'}),'visits_flowers')
  role=role.mask(isflower&plant_target&relation.isin({'pollinates','pollinatedBy'}),'db_pollinates')
  references=pd.Series('',index=d.index,dtype='string')
@@ -108,7 +110,7 @@ def scan(path,out,*,expected_sha=RELEASE_SHA,fixture=False,chunk_size=160000):
   if i and i%4800000<chunk_size:print('GLOBI_V011_FULL_PREDATOR_SCAN',i,flush=True)
  groups=['gecko','bat','centipede','spider','mantis','wasp','frog','bird']
  roles=['predates_moth','predates_butterfly','predates_Lepidoptera_unspecified',
-        'visits_flowers','db_pollinates','eats_plant_not_pollination']
+        'visits_flowers','db_pollinates','eats_plant_not_pollination','preys_on_predator_group']
  out.mkdir(parents=True)
  with gzip.open(out/'positive_species_predator_flower_roles.csv.gz','wt',newline='',encoding='utf-8') as f:
   writer=csv.writer(f);writer.writerow(['guild','animal_name']+roles+
@@ -128,6 +130,7 @@ def scan(path,out,*,expected_sha=RELEASE_SHA,fixture=False,chunk_size=160000):
     'same_exact_animal_name_both_predation_and_flower_use':sum(bool(x&pred) and bool(x&visitor) for x in taxa),
     'db_claimed_pollination':sum('db_pollinates' in x for x in taxa),
     'plant_eating_not_pollination':sum('eats_plant_not_pollination' in x for x in taxa),
+    'predates_other_predator_group':sum('preys_on_predator_group' in x for x in taxa),
     'moth_predation_non_iNaturalist_trophiCH':sum(bool(x&{r+'_non_inat_trophich' for r in pred}) for x in taxa),
     'flower_use_non_iNaturalist_trophiCH':sum(bool(x&{r+'_non_inat_trophich' for r in visitor}) for x in taxa)}
  report={'schema':'alan_full_GloBI_v011_predator_prey_pollination_multirole_v1',
