@@ -1,0 +1,127 @@
+{
+  "schema": "alan_real_GBIF_2019_2024_bat_centipede_spider_wasp_mantis_positive_only_v1",
+  "status": "ACTUAL source-observed, 5 species complete within bounded cap; 3 species unresolved due provider cap, NOT zeros",
+  "source": {
+    "gbif_method": "live GBIF species/match + occurrence/search, actual observed year, HUMAN/MACHINE/OBSERVATION, accuracy <=25km",
+    "globi_v011_prior_SHA256": "670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3",
+    "github_actions_run": 42954162844,
+    "github_artifact_id": 13826800146,
+    "source_receipt_SHA256": "8fdbd7afcb09ee153d43588067bce38567ff66c0792bbb6b65045cfbd078af3f",
+    "source_artifact_zip_SHA256": "16a95be5caa434156a9b879c1fe3ab3102af96d8ee71f507afc6fb6a075015ac",
+    "per_species_year_max_untruncated_rows": 12000
+  },
+  "taxa": [
+    {
+      "species": "Glossophaga soricina",
+      "guild": "bat",
+      "status": "verified_positive_observation_audit",
+      "observed": {
+        "2019": 51,
+        "2024": 38
+      },
+      "source_rows": {
+        "2019": 559,
+        "2024": 231
+      },
+      "occupied_1deg_cells": {
+        "2019": 15,
+        "2024": 23
+      }
+    },
+    {
+      "species": "Antrozous pallidus",
+      "guild": "bat",
+      "status": "verified_positive_observation_audit",
+      "observed": {
+        "2019": 56,
+        "2024": 82
+      },
+      "source_rows": {
+        "2019": 103,
+        "2024": 119
+      },
+      "occupied_1deg_cells": {
+        "2019": 31,
+        "2024": 42
+      }
+    },
+    {
+      "species": "Mystacina tuberculata",
+      "guild": "bat",
+      "status": "verified_positive_observation_audit",
+      "observed": {
+        "2019": 3,
+        "2024": 3
+      },
+      "source_rows": {
+        "2019": 5,
+        "2024": 3
+      },
+      "occupied_1deg_cells": {
+        "2019": 2,
+        "2024": 2
+      }
+    },
+    {
+      "species": "Thereuopoda clunifera",
+      "guild": "centipede",
+      "status": "verified_positive_observation_audit",
+      "observed": {
+        "2019": 6,
+        "2024": 53
+      },
+      "source_rows": {
+        "2019": 10,
+        "2024": 81
+      },
+      "occupied_1deg_cells": {
+        "2019": 6,
+        "2024": 26
+      }
+    },
+    {
+      "species": "Scolopendra subspinipes",
+      "guild": "centipede",
+      "status": "verified_positive_observation_audit",
+      "observed": {
+        "2019": 62,
+        "2024": 173
+      },
+      "source_rows": {
+        "2019": 92,
+        "2024": 215
+      },
+      "occupied_1deg_cells": {
+        "2019": 25,
+        "2024": 55
+      }
+    },
+    {
+      "species": "Vespa velutina",
+      "guild": "wasp",
+      "status": "UNRESOLVED_source_incomplete_or_taxonomy",
+      "error": "provider year query returned 59,887 rows (>12,000 cap), intentionally no truncated total claimed"
+    },
+    {
+      "species": "Argiope bruennichi",
+      "guild": "spider",
+      "status": "UNRESOLVED_source_incomplete_or_taxonomy",
+      "error": "provider year query returned 18,265 rows (>12,000 cap), intentionally no truncated total claimed"
+    },
+    {
+      "species": "Mantis religiosa",
+      "guild": "mantis",
+      "status": "UNRESOLVED_source_incomplete_or_taxonomy",
+      "error": "provider year query returned 18,576 rows (>12,000 cap), intentionally no truncated total claimed"
+    }
+  ],
+  "constraints": {
+    "detected_observation_not_individual_abundance": true,
+    "gbif_unobserved_not_confirmed_absence": true,
+    "different_observers_years_unadjusted": true,
+    "georeferenced_presence_not_local_moth_predation": true,
+    "source_DNA_disambiguation_and_native_status_not_assumed": true,
+    "exact_rare_bat_coordinates_not_published": true,
+    "no_actual_ALAN_predator_time_effect_fitted": true
+  }
+}
