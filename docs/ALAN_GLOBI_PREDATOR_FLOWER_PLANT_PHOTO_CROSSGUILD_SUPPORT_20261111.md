@@ -63,3 +63,12 @@ If GloBI inaturalist and trophiCH-derived interaction sources are excluded, **NO
 - Acquire genuine 2012–2024 annual light with cloudfree source-QA and time-varying insect/plant recording effort before interpreting historical plant replacement.
 
 The independent original-source regeneration code, 4 synthetic tests (all passed), full-source support matrix and numerical source-provenance results are available in the 2026-11-11 user-facing ZIP, without original species×location or image bytes. Machine-readable reproducible *public aggregates* are in results/alan_GloBI_v011_predator_flower_moth_photo_island_mainland_light_20261111.json. The PR stays Draft.
+
+
+## Replay source and reproducibility gate (additional implementation)
+
+- The independently reconstructed PRIVATE source photo-cell×year numerical input is gzipped SHA256: 32000250071106f81f203ca8c40e2faa67d02152e06afd442d6f93df5f69d233. Do not commit that dataset: it includes identities derived from original photo/geographic source.
+- The new GitHub script scripts/analysis/alan_globi_crossguild_photo_light_replay_20261111.py verifies that exact private input checksum, then independently reproduces the WLS photo-site-year geographic tests. The local full original-artifact generator and associated four synthetic tests are supplied in the user's private reproducibility ZIP, not in the public research branch.
+- The independent GitHub replay explicitly stops estimation when there are fewer than 20 source-positive island cells, 40 mainland cells, 10 island geographic blocks or 15 total geographic blocks. The n=0 case is not treated as an inferred biological absence.
+- The 36 configured source-tier×animal-guild×flower-relation combinations were independently reproduced from the SHA-pinned private table, with EXACT matching numerical coefficients and same pre-fit gates. A synthetic independent statsmodels WLS check reproduced the point coefficient to numerical precision. The CI and p-values remain exploratory, geographic cluster-robust, not confirmatory.
+- CI source code: scripts/analysis/alan_globi_crossguild_photo_light_replay_20261111.py and tests/test_alan_globi_crossguild_photo_light_replay_20261111.py. Its GitHub Actions validation tests code/math only, without redistributing the private input.
