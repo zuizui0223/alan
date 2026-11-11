@@ -1,0 +1,76 @@
+name: ALAN tier09 source-only unmeasured small-island VIIRS opportunity gate
+# Inspect precolour source ID cells with missing EXISTING-GRID same-year VIIRS.
+# No nightlight pixels, original photo RGB, ROI9 or ALAN model are downloaded.
+on:
+  push:
+    branches: [analysis/alan-tier08-remainder-tier09-geographic-support-audit-20261109]
+    paths:
+      - .github/workflows/alan-tier09-missing-viirs-small-island-precolour-audit.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: alan-tier09-missing-viirs-small-island-source-only
+  cancel-in-progress: false
+jobs:
+  missing-viirs-original-source-gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate no-imputation and source-provenance safeguards
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3
+          python -m py_compile scripts/acquisition/alan_tier09_unmatched_viirs_source_priority_20261111.py
+          python -m unittest discover -s tests -p 'test_alan_tier09_unmatched_viirs_source_priority_20261111.py' -v
+      - name: Restore signed same-year VIIRS/source-only tier09 roster
+        run: |
+          set -euo pipefail
+          mkdir -p tier09
+          gh run download 42720324711 --repo zuizui0223/alan \
+            --name alan-tier09-signed-moth-sameyear-VIIRS-existingcell-source-support --dir tier09
+          find tier09 -name 'tier09_moth_original_photo_existingVIIRS_cell_status.csv.gz' -size +0c | grep -q .
+          find tier09 -name 'tier09_moth_VIIRS_existingcell_gate.json' -size +0c | grep -q .
+      - name: Restore signed entire 112428 attempted original photos and ROI9 statuses
+        run: |
+          set -euo pipefail
+          mkdir -p full
+          gh run download 42778593681 --repo zuizui0223/alan \
+            --name alan-112428-real-original-RGB-moth-GloBI-guild-stratified-ALAN --dir full
+          find full -name 'ALAN_112428_original_photoID_sitecell_status.csv.gz' -size +0c | grep -q .
+          find full -name 'ALAN_112428_true_RGB_GloBI_moth_strata.json' -size +0c | grep -q .
+      - name: Quantify missing same-year VIIRS source cells without fabricating light gradients
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_tier09_unmatched_viirs_source_priority_20261111 \
+            --tier09-root tier09 --full-root full --out output
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("output/tier09_missing_VIIRS_priority_receipt.json")
+          r=json.loads(p.read_text())
+          assert r["schema"]=="ALAN_tier09_missing_existing_VIIRS_precolour_geographic_priority_v1"
+          assert r["qualified_source_cells"]==3174
+          assert r["qualified_existingVIIRS_cells"]==2482
+          assert r["qualified_missing_or_ineligibleVIIRS_cells"]==692
+          assert r["photo_id_overlap"]==0
+          assert r["source_only_no_new_VIIRS_or_original_RGB_or_ROI9"]
+          assert not r["bulk_RGB_authorized"]
+          print("ALAN_TIER09_PRECOLOUR_MISSING_VIIRS_PRIORITY_VERIFIED",r,flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-tier09-SHA-verified-missingVIIRS-small-island-precolour-priority
+          path: output/
+          if-no-files-found: warn
+          retention-days: 90
