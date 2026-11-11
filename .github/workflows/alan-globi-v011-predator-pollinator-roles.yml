@@ -1,11 +1,7 @@
 name: ALAN GloBI v0.11 moth predators and dual-role pollinators (SHA pinned)
 
 on:
-  push:
-    branches:
-      - research/moth-gecko-flora-feasibility-20261111
-    paths:
-      - .github/workflows/alan-globi-v011-predator-pollinator-roles.yml
+  # Full 2.5GB source download is expensive; explicit manual dispatch only.
   workflow_dispatch:
 
 permissions:
@@ -66,7 +62,7 @@ jobs:
           assert r['all_original_interaction_rows']==24453954
           assert len(r['guild_summary'])==36
           assert r['limitations']['caterpillar_predation_not_equal_to_adult_moth_predation']
-          assert r['limitations']['same_named_species_both_roles_not_same_place_or_same_time']
+          assert r['limitations']['one_species_dual_role_not_same_place_or_same_time']
           assert (p/'guild_summary.csv').is_file()
           assert (p/'animal_species_role_flags.csv.gz').is_file()
           assert (p/'animal_flower_plant_positive_flags.csv.gz').is_file()
