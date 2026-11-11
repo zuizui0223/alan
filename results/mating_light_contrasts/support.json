@@ -1,0 +1,38 @@
+{
+  "pl_q25": 0.0329343687751132,
+  "pl_q75": 0.45036716608063027,
+  "support": {
+    "PL": {
+      "positive_site_years": {
+        "island": 125,
+        "mainland": 778
+      },
+      "positive_regions": 56,
+      "positive_regions_both_sides": 25
+    },
+    "all_classified": {
+      "positive_site_years": {
+        "island": 391,
+        "mainland": 2430
+      },
+      "positive_regions": 70,
+      "positive_regions_both_sides": 45
+    },
+    "SC": {
+      "positive_site_years": {
+        "island": 220,
+        "mainland": 1240
+      },
+      "positive_regions": 66,
+      "positive_regions_both_sides": 33
+    },
+    "SI": {
+      "positive_site_years": {
+        "island": 75,
+        "mainland": 423
+      },
+      "positive_regions": 43,
+      "positive_regions_both_sides": 17
+    }
+  }
+}
