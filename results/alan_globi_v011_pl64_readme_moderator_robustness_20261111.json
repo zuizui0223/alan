@@ -149,22 +149,22 @@
     {
       "cohort": "original PL64 exclude 5 taxa with absolute PL log-response >2",
       "n_species": 59,
-      "beta": 0.0064327423,
+      "beta": 0.0064347520469580175,
       "CI95": [
-        -0.022753,
-        0.035618
+        -0.0227513307675883,
+        0.03562083486150433
       ],
-      "p_nominal": 0.66188
+      "p_nominal": 0.6618776740036513
     },
     {
       "cohort": "v0.11 PL30 exclude 1 taxon with absolute PL log-response >2",
       "n_species": 29,
       "beta": 0.004811847750143006,
       "CI95": [
-        -0.046732,
-        0.056356
+        -0.04673330068358408,
+        0.056356996183870085
       ],
-      "p_nominal": 0.85302
+      "p_nominal": 0.8530215964983966
     }
   ],
   "leave_one_species_out": {
