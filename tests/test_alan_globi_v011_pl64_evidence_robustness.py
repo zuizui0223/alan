@@ -14,11 +14,11 @@ class PL64SourceMath(unittest.TestCase):
     def test_original_equal_species_moderator_algebra(self):
         names = ["Plant a", "Plant b", "Plant c"]
         samples = pd.DataFrame({"Plant a": [1, 0, 1], "Plant b": [0, 1, 1],
-                                "Plant c": [1, 0, 0]})
+                                "Plant c": [0, 0, 0]})
         PL = pd.Series([0., 1., 2.], index=names)
         result = m.weighted_species_response(samples, np.array([3, 4, 5]), PL)
-        self.assertTrue(np.allclose(result, [-100/3, 0, -100/5]))
-        self.assertAlmostEqual(float(result.sum()), -100/3 - 100/5)
+        self.assertTrue(np.allclose(result, [-50/3, 0, -50/5]))
+        self.assertAlmostEqual(float(result.sum()), -50/3 - 50/5)
 
     def test_direct_moderator_contrast_linear(self):
         cols = ["a", "b", "c", "d", "e", "f"]
