@@ -1,0 +1,97 @@
+name: ALAN README 64-plant pollen-limitation x light vs GloBI v0.11 real-source replay
+on:
+  push:
+    branches: [analysis/alan-globi-v011-pl64-robustness-20261111]
+    paths: [.github/workflows/alan-globi-v011-PL64-real-source-replay.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-readme-PL64-updated:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Install dependencies and validate source regression mathematics
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 geopandas==1.1.2 shapely==2.1.2
+          python -m py_compile scripts/analysis/alan_globi_v011_pl64_evidence_robustness.py
+          python -m unittest discover -s tests -p test_alan_globi_v011_pl64_evidence_robustness.py -v
+      - name: Restore signed source photographs and Kew WCVP
+        run: |
+          set -euo pipefail
+          mkdir -p signed/canonical signed/taxonomy inputs/old
+          gh run download 41007444495 --repo zuizui0223/mois --name mois-nohuman-canonical-climate-joined-20261030 --dir signed/canonical
+          gh run download 39225659840 --repo zuizui0223/mois --name mois-real350399-Kew-WCVP-native-source-TDWG3-no-point-status --dir signed/taxonomy
+          gh run download 41976552977 --repo zuizui0223/mois --name mois-ALAN-GloBI-stage2-actual-records-2019-2024-supported-source --dir inputs/old
+      - name: Restore all source-matched 2019 2021 2023 satellite and population data
+        run: |
+          set -euo pipefail
+          for yr in 2019 2021 2023; do
+            mkdir -p "inputs/g$yr" "inputs/p$yr"
+            gh run download 42337911536 --repo zuizui0223/mois --name "mois-original-$yr-global-mainland-island-monthly-VIIRS-source-SHA" --dir "inputs/g$yr"
+            gh run download 42338121269 --repo zuizui0223/mois --name "mois-original-$yr-R2024B-UC-global-popdensity-photo-source" --dir "inputs/p$yr"
+          done
+      - name: Restore source-matched 2024 and 2025 satellite and population data
+        run: |
+          set -euo pipefail
+          mkdir -p inputs/g2024 inputs/c2024 inputs/p2024 inputs/v2025
+          gh run download 42328254130 --repo zuizui0223/mois --name mois-global2024-original4096-WPGlobal2-2024-VIIRS-raw-SHA --dir inputs/g2024
+          gh run download 42328567038 --repo zuizui0223/mois --name mois-global2024-rest62360-original-VIIRS-G2-all66456-source --dir inputs/c2024
+          gh run download 42333953557 --repo zuizui0223/mois --name mois-2024-WorldPop-UC-R2024B-full-original-66456-population-source --dir inputs/p2024
+          gh run download 42337703150 --repo zuizui0223/mois --name mois-2025-original73463-mainland-island-full-VIIRS-and-R2024B-UC-source --dir inputs/v2025
+      - name: Verify original source SHA256 manifest, refusing changed bytes
+        run: |
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          man=json.loads(Path('config/alan_v011_fiveyear_input_sha256.json').read_text())
+          skip={'inputs/wcvp.zip',
+                'inputs/alan-GloBI-v011-full-source-moth-plant-positive-flags/GloBI_v011_positive_species_flags.csv.gz'}
+          for path,digest in man.items():
+              if path in skip:continue
+              f=Path(path)
+              assert f.is_file(),path
+              assert hashlib.sha256(f.read_bytes()).hexdigest()==digest,path
+          assert len(man)-len(skip)>=17
+          print('COMPLETE_README_64_SOURCE_SHA_MANIFEST_OK')
+          PY
+      - name: Actual original 10698 source rows and v0.11 PL effect reanalysis
+        run: |
+          set -euo pipefail
+          mkdir -p result
+          python scripts/analysis/alan_globi_v011_pl64_evidence_robustness.py inputs signed result/PL64_GloBIv011_exploratory.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('result/PL64_GloBIv011_exploratory.json').read_text())
+          assert x['status']=='real_signed_source_recomputed_exploratory'
+          assert x['design']['site_years']==10698 and x['design']['island_site_years']==933
+          assert x['source_label_counts']['v011_moth_positive']==30
+          m=x['models']
+          assert abs(m['original_PL64']['beta']+0.019380045756016737)<1e-9
+          assert abs(m['updated_v011_positive_PL30']['beta']+0.009164462003417938)<1e-8
+          assert abs(m['direct_v011_documented_minus_undocumented_PL_slope']['beta']-0.01023653733878865)<1e-8
+          print('ACTUAL_GLOBI_PL64_V011_SOURCE_REPLAY_OK',json.dumps({
+             k:m[k] for k in ('original_PL64','updated_v011_positive_PL30',
+               'direct_v011_documented_minus_undocumented_PL_slope')
+           },sort_keys=True))
+          PY
+      - name: Archive aggregate only (no private plant photo coordinates)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-READMEmoth-PL64-v011-2019to2025-original-source-verified
+          path: result/PL64_GloBIv011_exploratory.json
+          retention-days: 90
+          if-no-files-found: warn
