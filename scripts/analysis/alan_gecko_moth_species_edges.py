@@ -17,7 +17,11 @@ from alan_globi_predator_pollinator_multilayer_v011 import (
 GECKOS = ("Hemidactylus frenatus", "Hemidactylus mabouia")
 
 
-def extract(source, destination):
+ARTHROPODS = ("Mantis religiosa", "Argiope bruennichi", "Vespa velutina")
+
+
+def extract(source, destination, arthropods=False):
+    predators = ARTHROPODS if arthropods else GECKOS
     assert sha256(source) == SOURCE_SHA
     with gzip.open(source, "rt", encoding="utf-8") as handle:
         import csv as std_csv
@@ -34,18 +38,18 @@ def extract(source, destination):
                                                 column_types={k: pa.string() for k in included}))
         for batch in batches:
             n += batch.num_rows
-            mask = pc.is_in(batch.column(names[0]), value_set=pa.array(GECKOS))
+            mask = pc.is_in(batch.column(names[0]), value_set=pa.array(predators))
             for col in names[1:]:
-                mask = pc.or_(mask, pc.is_in(batch.column(col), value_set=pa.array(GECKOS)))
+                mask = pc.or_(mask, pc.is_in(batch.column(col), value_set=pa.array(predators)))
             found = batch.filter(mask)
             if not found.num_rows:
                 continue
             for group, actor, role, prey, other_group, stage, scopes in annotate(found.to_pandas().astype("string")):
-                if group == "geckos" and actor in GECKOS and role == "moth_predation":
+                if actor in predators and role == "moth_predation":
                     records.append((actor, prey, stage, "non_inaturalist_trophich" in scopes))
-    assert n == SOURCE_ROWS and set(r[0] for r in records) == set(GECKOS)
+    assert n == SOURCE_ROWS and set(r[0] for r in records) == set(predators)
     destination.mkdir(exist_ok=True, parents=True)
-    rows = pd.DataFrame(records,columns=["gecko","moth","source_stage","non_inat_trophich"])
+    rows = pd.DataFrame(records,columns=["predator" if arthropods else "gecko","moth","source_stage","non_inat_trophich"])
     out = destination / "species_prey.csv"
     rows.value_counts(sort=False).rename("relationship_rows").reset_index().to_csv(out,index=False)
     (destination / "receipt.json").write_text(json.dumps(dict(scanned=n, source_sha256=SOURCE_SHA,
@@ -56,5 +60,6 @@ if __name__ == "__main__":
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("source",type=Path)
     p.add_argument("destination",type=Path)
+    p.add_argument("--arthropods", action="store_true")
     args=p.parse_args()
-    extract(args.source,args.destination)
+    extract(args.source,args.destination,args.arthropods)
