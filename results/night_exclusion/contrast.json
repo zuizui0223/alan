@@ -1,0 +1,32 @@
+{
+  "estimable": true,
+  "scope": "exposure",
+  "guild": "moth",
+  "balanced_year_region_landclass": true,
+  "n_site_years": 10698,
+  "n_island_site_years": 933,
+  "n_mainland_site_years": 9765,
+  "source_5degree_clusters": 78,
+  "year_region_groups": 195,
+  "beta_island_minus_mainland_slope_pp_per_log1p": 0.023257360616471785,
+  "SE_cluster_5deg": 0.02295337729636202,
+  "95CI_cluster_5deg": [
+    -0.022448652813917034,
+    0.0689633740468606
+  ],
+  "p_nominal": 0.31411722811531295,
+  "beta_mainland_pp_per_log1p": -0.01985392001629238,
+  "beta_island_pp_per_log1p": 0.0034034406001794033,
+  "GloBI_both_recorded_guilds_cancel_in_contrast": false,
+  "no_true_pollinator_absence_inferred": true,
+  "not_local_effective_nocturnal_pollination": true,
+  "species": 12,
+  "studies": 17,
+  "target_keys_sha256": "37f3c2c519871b6905ffa81c5a14536b248611861ad143b1d4d77d95b7c6b00d",
+  "regions_with_species": 24,
+  "regions_positive_both_sides": 6,
+  "positive_site_years": {
+    "mainland": 104,
+    "island": 22
+  }
+}

@@ -1,0 +1,43 @@
+plant,plant_species,study_ID,locality,Site_period,year_start,plant_cultivar,additional_treatment,treatment_effectiveness_metric,source,basis,day_value,open_value,used,loss
+Asclepias syriaca,Asclepias syriaca,Jennersten_1991,Maine,,1987.0,,,fruit set,https://www.jstor.org/stable/2426365,"Pods per stalk, not per flower; not used",1.43069306930693,1.83663366336633,False,0.22102425876010545
+Silene latifolia,Silene latifolia,Anderson_2015,Saskatchewan,,2009.0,,,seed set,https://doi.org/10.1016/j.actao.2015.10.011,WPD Fig. 3,69.6517412935323,407.960199004975,True,0.8292682926829269
+Silene latifolia,Silene latifolia,Anderson_2015,Saskatchewan,,2009.0,,,fruit set,https://doi.org/10.1016/j.actao.2015.10.011,WPD Fig. 3,2.7029702970297,3.04950495049504,False,0.11363636363636176
+Silene latifolia,Silene latifolia,Anderson_2015,Saskatchewan,,2010.0,,,seed set,https://doi.org/10.1016/j.actao.2015.10.011,WPD Fig. 3,0.0,412.935323383084,True,1.0
+Silene latifolia,Silene latifolia,Anderson_2015,Saskatchewan,,2010.0,,,fruit set,https://doi.org/10.1016/j.actao.2015.10.011,WPD Fig. 3,0.164222873900293,7.69306930693069,False,0.9786531399434626
+Silene latifolia,Silene alba,Bartelmess_2006,Tennessee,distant 1: 20 meters,1998.0,,,fruit set,10.1111/j.1469-8137.2005.01580.x,,0.0361247947454843,0.715927750410509,True,0.9495412844036699
+Silene latifolia,Silene alba,Bartelmess_2006,Tennessee,distant 2: 80 meters,1998.0,,,fruit set,10.1111/j.1469-8137.2005.01580.x,,0.136288998357963,0.684729064039408,True,0.8009592326139099
+Lonicera etrusca,Lonicera etrusca,Guitan_1993,Leon,,1991.0,,,fruit set,"Guitian, Guitian & Navarro 1993, Acta Oecologica 14:219-227, Fig. 2",Fig. 2,0.361702127659574,0.585526315789474,True,0.3822615347836492
+Silene latifolia,Silene latifolia,Macgregor_2019,Yorkshire,,2015.0,,,fruit set,10.1002/ecs2.2550,Fig. 2,0.393501805054151,0.734657039711191,True,0.46437346437346494
+Asclepias syriaca,Asclepias syriaca,Morse_1983,Maine,pasture,1981.0,,,fruit set,10.1007/BF00379521,Table 1,0.306666666666667,0.2,True,-0.5333333333333348
+Asclepias syriaca,Asclepias syriaca,Morse_1983,Maine,pasture,1981.0,,,seed set,10.1007/BF00379521,Table 1,162.0,168.8,False,0.04028436018957349
+Asclepias syriaca,Asclepias syriaca,Morse_1983,Maine,field,1981.0,,,fruit set,10.1007/BF00379521,Table 1,0.553333333333333,0.486666666666667,True,-0.13698630136986156
+Asclepias syriaca,Asclepias syriaca,Morse_1983,Maine,field,1981.0,,,seed set,10.1007/BF00379521,Table 1,202.2,188.1,False,-0.07496012759170645
+Asclepias syriaca,Asclepias syriaca,Morse_1983,Maine,pasture,1982.0,,,fruit set,10.1007/BF00379521,Table 1,0.296666666666667,0.196666666666667,True,-0.5084745762711858
+Asclepias syriaca,Asclepias syriaca,Morse_1983,Maine,pasture,1982.0,,,seed set,10.1007/BF00379521,Table 1,138.7,138.9,False,0.0014398848092154193
+Asclepias syriaca,Asclepias syriaca,Morse_1983,Maine,field,1982.0,,,fruit set,10.1007/BF00379521,Table 1,0.406666666666667,0.26,True,-0.5641025641025654
+Asclepias syriaca,Asclepias syriaca,Morse_1983,Maine,field,1982.0,,,seed set,10.1007/BF00379521,Table 1,184.5,180.6,False,-0.021594684385382035
+Silene latifolia,Silene latifolia,Scopece_2018,Naples,,2011.0,,,fruit set,10.1093/aobpla/ply002,"Fig. 3, then metadigitize",4.49,4.25,False,-0.05647058823529427
+Silene latifolia,Silene latifolia,Scopece_2018,Naples,,2011.0,,,seed set,10.1093/aobpla/ply002,"Fig. 3, then metadigitize",232.05741627,578.94736842,True,0.5991735537147258
+Silene nutans,Silene nutans,Vanderplank_2020,Mons,,2018.0,,,fruit set,10.1016/j.actao.2020.103557,"Fig. 3, then metadigitize",0.09,0.7,True,0.8714285714285714
+Silene nutans,Silene nutans,Vanderplank_2020,Mons,,2018.0,,,seed set,10.1016/j.actao.2020.103557,"Fig. 3, then metadigitize",16.544,284.314,False,0.9418108148033513
+Silene latifolia,Silene alba,Young_2002,Golden Colorado,1,1994.0,,,seed set,https://doi.org/10.3732/ajb.89.3.433,webplot_digitizer,124.321,251.511,True,0.5057035278775084
+Malus domestica,Malus domestica,Robertson_2021,Fayetteville,1,2017.0,Unknown,,fruit set,10.1093/jee/toab145,in text,0.36,0.42,True,0.1428571428571429
+Malus domestica,Malus domestica,Robertson_2021,Fayetteville,1,2018.0,Enterprise ,,fruit set,10.1093/jee/toab145,in text,0.16,0.11,True,-0.4545454545454546
+Malus domestica,Malus domestica,Robertson_2021,Fayetteville,1,2018.0,Unknown,,seed set,10.1093/jee/toab145,in text,6.3,6.1,False,-0.032786885245901676
+Malus domestica,Malus domestica,Robertson_2021,Fayetteville,1,2018.0,Enterprise ,,seed set,10.1093/jee/toab145,in text,5.3,4.0,False,-0.32499999999999996
+Asclepias syriaca,Asclepias syriaca,Bertin_1980,"Urbana, Il",1,1978.0,,,seed set,10.1139/b80-202,"Published extraction; unit unresolved, not used",1.58,1.24,False,-0.27419354838709675
+Asclepias syriaca,Asclepias syriaca,Bertin_1980,"Urbana, Il",2,1979.0,,,seed set,10.1139/b80-202,"Published extraction; unit unresolved, not used",0.78,0.81,False,0.03703703703703709
+Vaccinium angustifolium,Vaccinium angustifolium,Cutler_2012,"Debert, Nova Scotia",1,2011.0,,,fruit set,10.4141/cjps2012-026,webplotdigitizer,0.447029091640102,0.394661267625857,True,-0.13269055848644928
+Saponaria officinalis,Saponaria officinalis,Jabbari_2013,"Marion County, Indiana",1,2009.0,,,fruit set,10.1111/j.1442-1984.2011.00352.x,webplotdigitizer,0.875672043010752,0.952956989247311,True,0.08110014104372354
+Saponaria officinalis,Saponaria officinalis,Jabbari_2013,"Marion County, Indiana",1,2009.0,,,seed set,10.1111/j.1442-1984.2011.00352.x,webplotdigitizer,0.361559139784946,0.455645161290322,False,0.20648967551622366
+Silene vulgaris,Silene vulgaris,Stone_2018,"Giles County, Virginia",1,2007.0,female,,fruit set,10.1111/jeb.13203,in-text-r,0.4552,0.4028,True,-0.13008937437934454
+Silene vulgaris,Silene vulgaris,Stone_2018,"Giles County, Virginia",2,2007.0,hermaphrodite,,fruit set,10.1111/jeb.13203,in-text-r,0.3162,0.3414,True,0.07381370826010547
+Silene vulgaris,Silene vulgaris,Stone_2018,"Giles County, Virginia",1,2007.0,female,,seed set,10.1111/jeb.13203,webplotdigitizer,30.0974976134211,62.6357219987793,False,0.5194835047322091
+Silene vulgaris,Silene vulgaris,Stone_2018,"Giles County, Virginia",2,2007.0,hermaphrodite,,seed set,10.1111/jeb.13203,webplotdigitizer,39.3157952393621,72.3629477769605,False,0.45668610183567193
+Vaccinium angustifolium,Vaccinium angustifolium,Noone_2022,Kent Island,1,2018.0,,,fruit set,10.1139/cjps-2021-0216,webplotdigitizer,0.718204488778055,0.725685785536159,True,0.010309278350514539
+Vaccinium angustifolium,Vaccinium angustifolium,Noone_2022,Kent Island,1,2018.0,,,seed set,10.1139/cjps-2021-0216,webplotdigitizer,7.36526946107784,7.72455089820359,False,0.04651162790697694
+Eupatorium perfoliatum,Eupatorium perfoliatum,Wonderlin_2023,"Ingham County, Michigan",1,2022.0,,,seed set,10.1111/een.13296,in-text-r-metadigitize,446.6667,263.3333,True,-0.6962028729370724
+Rubus idaeus,,SmallFruit_2025,,,,,,fruit set,10.1111/jen.70019,"Figshare 29930195, successes/all flowers",1.0,1.0,True,0.0
+Rubus idaeus,,SmallFruit_2025,,,,,,seed set,10.1111/jen.70019,"Figshare 29930195, seeds per fruit",43.411764705882355,47.0,False,0.07634543178973707
+Fagopyrum esculentum,,Nagano_2024,,,,,,seed set,10.1007/s11829-024-10117-x,"Fig 5 medians, y=521 for 0 and y=27 for 0.6; bar centres y=294 and 223",0.2757085020242915,0.36194331983805667,True,0.23825503355704702
+Carica papaya,,Otieno_2026,,,,,,fruit set,10.64898/2026.07.17.739175,"Preprint Table S1 adjusted fruit count ratio, open/day=1.58; normalized to open=1",0.6329113924050632,1.0,True,0.3670886075949368
