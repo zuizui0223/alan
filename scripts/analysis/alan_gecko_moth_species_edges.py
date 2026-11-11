@@ -30,6 +30,7 @@ def extract(source, destination, arthropods=False):
     names = [side + field for side in ("source", "target") for field in ("TaxonSpeciesName", "TaxonName")
              if side + field in included]
     records = []
+    flower_records = []
     n = 0
     with pa.input_stream(str(source), compression="gzip") as stream:
         batches = csv.open_csv(stream, read_options=csv.ReadOptions(block_size=8 << 20),
@@ -47,12 +48,20 @@ def extract(source, destination, arthropods=False):
             for group, actor, role, prey, other_group, stage, scopes in annotate(found.to_pandas().astype("string")):
                 if actor in predators and role == "moth_predation":
                     records.append((actor, prey, stage, "non_inaturalist_trophich" in scopes))
+                if arthropods and actor in predators and role in ("flower_visit", "reported_pollinates"):
+                    flower_records.append((actor, prey, role))
     assert n == SOURCE_ROWS and set(r[0] for r in records) == set(predators)
     destination.mkdir(exist_ok=True, parents=True)
     rows = pd.DataFrame(records,columns=["predator" if arthropods else "gecko","moth","source_stage","non_inat_trophich"])
     out = destination / "species_prey.csv"
     rows.value_counts(sort=False).rename("relationship_rows").reset_index().to_csv(out,index=False)
-    (destination / "receipt.json").write_text(json.dumps(dict(scanned=n, source_sha256=SOURCE_SHA,
+    flower_hash = {}
+    if arthropods:
+        flowers = pd.DataFrame(flower_records, columns=["predator", "plant", "role"])
+        flower_path = destination / "predator_flowers.csv"
+        flowers.value_counts(sort=False).rename("relationship_rows").reset_index().to_csv(flower_path, index=False)
+        flower_hash["predator_flower_sha256"] = sha256(flower_path)
+    (destination / "receipt.json").write_text(json.dumps(dict(**flower_hash, scanned=n, source_sha256=SOURCE_SHA,
         rows=len(records), prey_table_sha256=hashlib.sha256(out.read_bytes()).hexdigest()),indent=2)+"\n")
 
 
