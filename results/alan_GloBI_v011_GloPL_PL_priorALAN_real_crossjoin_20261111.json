@@ -1,0 +1,135 @@
+{
+  "schema": "ALAN_GloBI_v011_GloPL_experimental_PL_priorPCNL_exact_botanical_crossjoin_20261111_v1",
+  "status": "ACTUAL Sha-checked original GloBI and GloPL sources joined, exploratory cross-study models; not a causal ALAN or moth-pollination result",
+  "source": {
+    "globi_version": "v0.11",
+    "globi_original_interactions": 24453954,
+    "globi_interactions_sha256": "670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3",
+    "globi_original_action_run": 42924993614,
+    "globi_plant_flags_artifact": 13815335900,
+    "glopl_original_full_experiments": 2969,
+    "glopl_eligible_experiment_years": "1993-2015",
+    "glopl_prior_pc_nightlight_join_rows": 1419,
+    "glopl_priorPCNL_join_gzip_sha256": "a2b65a9a90e1cb97ed6ee366da8e8b86e67d14b51ded918284eaec3d917174a3",
+    "glopl_source_action_run": 42754948691,
+    "glopl_prior_light_artifact": 13735831120,
+    "taxonomy_join": "exact accepted-binomial botanical names only; no inferred synonyms"
+  },
+  "sample": {
+    "n_experiments": 1419,
+    "n_plants_original_names": 507,
+    "n_independent_publications": 341,
+    "n_original_site_coordinates": 597,
+    "unmatchable_infraspecific_or_nonbinomial_experiments": 36,
+    "all_globi_moth_positive": {
+      "n_plant_names": 41,
+      "n_experiments": 170,
+      "n_independent_studies": 42
+    },
+    "moth_non_inaturalist": {
+      "n_plant_names": 26,
+      "n_experiments": 100,
+      "n_independent_studies": 26
+    },
+    "moth_non_inaturalist_non_trophich": {
+      "n_plant_names": 23,
+      "n_experiments": 97,
+      "n_independent_studies": 25
+    },
+    "all_globi_butterfly_positive": {
+      "n_plant_names": 69,
+      "n_experiments": 248,
+      "n_independent_studies": 59
+    },
+    "both_moth_and_butterfly_positive": {
+      "n_plants": 31,
+      "n_experiments": 144,
+      "n_studies": 32
+    },
+    "recorded_moth_only_NOT_exclusivity": {
+      "n_plants": 10,
+      "n_experiments": 26,
+      "n_studies": 12
+    },
+    "studies_with_both_moth_positive_and_no_moth_record": 14
+  },
+  "models": {
+    "main_study_weighted_moth_positive_PL_logeffect_vs_no_GloBI_moth_record": {
+      "beta": -0.21043081986252105,
+      "ci95": [
+        -0.4120092909069794,
+        -0.008852348818062683
+      ],
+      "p_nominal": 0.0408037218761758,
+      "BH_q_five_related_record_tiers": 0.06924529288400715
+    },
+    "non_inaturalist_source_moth_positive_PL": {
+      "beta": -0.2470106,
+      "ci95": [
+        -0.48450515,
+        -0.00951605
+      ],
+      "p_nominal": 0.04154718
+    },
+    "non_inaturalist_non_trophich_PL": {
+      "beta": -0.22830123,
+      "ci95": [
+        -0.47254169,
+        0.01593922
+      ],
+      "p_nominal": 0.06684597
+    },
+    "moth_positive_by_priorPCNL_interaction": {
+      "beta": -0.03439407685870567,
+      "ci95": [
+        -0.15949258219756074,
+        0.09070442848014938
+      ],
+      "p_nominal": 0.5890067179708515
+    },
+    "moth_positive_adjusting_butterfly_positive": {
+      "beta": -0.2339581043646651,
+      "ci95": [
+        -0.5767904618848834,
+        0.10887425315555319
+      ],
+      "p_nominal": 0.1803908336352013
+    },
+    "within_12_mixed_genus_141_experiments_34_studies": {
+      "beta": 0.12121554379301144,
+      "ci95": [
+        -0.4021450082483947,
+        0.6445760958344177
+      ],
+      "p_nominal": 0.6405882174319335
+    },
+    "within_14_mixed_studies_278_experiments": {
+      "beta": -0.2765894538942482,
+      "ci95": [
+        -0.9104015436269048,
+        0.35722263583840846
+      ],
+      "p_nominal": 0.3629930459367377
+    },
+    "all_GloPL_prior_ALAN_original_model_no_GloBI_term": {
+      "beta": 0.01071579263223064,
+      "ci95": [
+        -0.04682744949566844,
+        0.06825903476012972
+      ],
+      "p_nominal": 0.7151206911982917
+    }
+  },
+  "model_specification": "Study-equal weighted WLS; GloPL pollen-supplementation log effect, source-positive GloBI recorded moth/butterfly flags, PCNL measured only before experimental year, experiment year, latitude/longitude quadratic terms, original experiment outcome type and supplementation definition, study-cluster robust t-based 95% CI. Genus within-source and original-study stratified checks separately.",
+  "limitations": {
+    "missing_GloBI_moth_record_NOT_verified_biological_no_moth": true,
+    "global_positive_GloBI_does_not_prove_local_effective_moth_pollination": true,
+    "GloPL_pollen_limitation_is_not_moth_specific": true,
+    "historical_plant_PCNLP_exposure_not_experimental_ALAN": true,
+    "moth_PL_nominal_p_not_BH_significant": true,
+    "genus_and_same_study_checks_not_replication": true,
+    "cannot_infer_causal_mediation_or_pollinator_compensation": true,
+    "no_source_experiment_species_site_rows_committed": true,
+    "posthoc_exploratory": true
+  }
+}
