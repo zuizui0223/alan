@@ -1,0 +1,58 @@
+name: ALAN gecko GBIF positive observation source pilot (NO inferred absences)
+on:
+  push:
+    branches:
+      - research/moth-gecko-flora-feasibility-20261111
+    paths:
+      - .github/workflows/alan-gecko-gbif-positive-pilot.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  gecko-source-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install source dependencies and offline source-contract tests
+        run: |
+          python -m pip install -q requests==2.32.3
+          python -m unittest discover -s tests -p 'test_alan_gecko_gbif_positive_pilot.py' -v
+          python -m py_compile scripts/acquisition/alan_gecko_gbif_positive_pilot.py
+      - name: Retrieve real gecko detections in two contrasting photo years
+        run: |
+          python scripts/acquisition/alan_gecko_gbif_positive_pilot.py \
+            --years 2019 2024 \
+            --taxa "Hemidactylus frenatus" "Hemidactylus mabouia" "Phelsuma ornata" \
+            --cap 50000 \
+            --out GBIF_gecko_positive_2019_2024
+      - name: Confirm receipt states source-positive only
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          f=Path('GBIF_gecko_positive_2019_2024/source_receipt.json')
+          r=json.loads(f.read_text())
+          assert r['years']==[2019,2024]
+          assert r['house_gecko_positive_grid_is_not_gecko_absence']
+          assert r['locally_native_or_invasive_gecko_status_not_estimated']
+          assert r['rare_flower_gecko_locations_suppressed']
+          assert len(r['species_audit'])==3
+          print('REAL_GBIF_GECKO_SOURCE_RECEIPT',json.dumps({
+            'cells':r['documented_house_gecko_gridyear_counts'],
+            'species_records':[(s['species'],[(y['year'],y['qualified_direct_records'])
+               for y in s['years']]) for s in r['species_audit']]},sort_keys=True))
+          PY
+      - name: Upload only privacy-safe coarse gecko detections and source audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-GBIF-gecko-positive-2019-2024-one-degree-and-source-QA
+          path: GBIF_gecko_positive_2019_2024/
+          retention-days: 60
+          if-no-files-found: warn
