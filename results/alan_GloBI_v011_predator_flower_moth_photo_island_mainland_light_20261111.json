@@ -1,0 +1,187 @@
+{
+  "schema": "ALAN_GloBI_v011_predator_flower_source_x_moth_photo_island_mainland_2019_2024_v1",
+  "status": "ACTUAL source-verified input and exploratory source-positive photographic composition; not local pollination or predator×ALAN causal inference",
+  "signatures": {
+    "GloBI_full_release_SHA256": "670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3",
+    "GloBI_release_interaction_rows": 24453954,
+    "original_photo_SHA256": "f033661d76e07898a5c13199a55c5d0ce6e55353daa48b0058c456979e90644c",
+    "WCVP_name_match_SHA256": "dc5bb0e3686fde0cfd327e4336245d0ceae3c7657b3bd12841bb814cc94d1eb2",
+    "WCVP_accepted_name_SHA256": "9cd6aa7ca29f00c64283bcc08dcb778e212b644b837e64070051339b11d8b7b3",
+    "full_predator_plant_source_run": 42952223131,
+    "full_predator_plant_source_artifact": 13826322051,
+    "independent_source_artifact_verification_run": 42954755175
+  },
+  "photo_source": {
+    "years": [
+      2019,
+      2024
+    ],
+    "selection": "historical_main; actual unique original-photo IDs; 3+ source photographs; 2+ distinct WCVP accepted observed botanical species; at least 3 valid same-year monthly VIIRS samples, original GSHHG physical landmass and same-year WorldPop R2024B UC",
+    "year_land_support": [
+      {
+        "year": 2019,
+        "land": "island",
+        "n_photo_site_years": 495
+      },
+      {
+        "year": 2019,
+        "land": "mainland",
+        "n_photo_site_years": 2708
+      },
+      {
+        "year": 2024,
+        "land": "island",
+        "n_photo_site_years": 1336
+      },
+      {
+        "year": 2024,
+        "land": "mainland",
+        "n_photo_site_years": 8760
+      }
+    ],
+    "strict_same_year_same_5degree_region": {
+      "n_photo_site_years": 4158,
+      "n_island_photo_site_years": 400,
+      "n_mainland_photo_site_years": 3758,
+      "n_distinct_island_landmasses": 117
+    }
+  },
+  "documented_plant_source_global": {
+    "bats": {
+      "GloBI_plant_names_with_group_flower_record": 135,
+      "moth_GloBI_positive_same_plant": 10,
+      "observed_original_photo_plants_with_both": 5
+    },
+    "geckos": {
+      "GloBI_plant_names_with_group_flower_record": 10,
+      "moth_GloBI_positive_same_plant": 3,
+      "observed_original_photo_plants_with_both": 1
+    },
+    "centipedes": {
+      "GloBI_plant_names_with_group_flower_record": 1,
+      "moth_GloBI_positive_same_plant": 1,
+      "observed_original_photo_plants_with_both": 0
+    },
+    "spiders": {
+      "GloBI_plant_names_with_group_flower_record": 167,
+      "moth_GloBI_positive_same_plant": 104,
+      "observed_original_photo_plants_with_both": 88
+    },
+    "birds": {
+      "GloBI_plant_names_with_group_flower_record": 1170,
+      "moth_GloBI_positive_same_plant": 185,
+      "observed_original_photo_plants_with_both": 145
+    },
+    "mantises": {
+      "GloBI_plant_names_with_group_flower_record": 26,
+      "moth_GloBI_positive_same_plant": 17,
+      "observed_original_photo_plants_with_both": 16
+    }
+  },
+  "full_source_positive_same_plant_photo_site_years_before_geographic_pairing": {
+    "2019_island": {
+      "bats": 0,
+      "geckos": 0,
+      "centipedes": 0,
+      "spiders": 32,
+      "birds": 39,
+      "mantises": 2
+    },
+    "2019_mainland": {
+      "bats": 1,
+      "geckos": 0,
+      "centipedes": 0,
+      "spiders": 238,
+      "birds": 363,
+      "mantises": 72
+    },
+    "2024_island": {
+      "bats": 2,
+      "geckos": 1,
+      "centipedes": 0,
+      "spiders": 114,
+      "birds": 157
+    },
+    "2024_mainland": {
+      "bats": 4,
+      "geckos": 0,
+      "centipedes": 0,
+      "spiders": 823,
+      "birds": 965
+    }
+  },
+  "source_same_year_geo_matched_support": {
+    "bats": {
+      "island": 0,
+      "mainland": 1,
+      "estimable": false
+    },
+    "geckos": {
+      "island": 0,
+      "mainland": 0,
+      "estimable": false
+    },
+    "centipedes": {
+      "island": 0,
+      "mainland": 0,
+      "estimable": false
+    },
+    "mantises": {
+      "island": 8,
+      "mainland": 134,
+      "estimable": false
+    },
+    "spiders": {
+      "island": 41,
+      "mainland": 443,
+      "positive_island_georegions": 18,
+      "estimable": true
+    },
+    "birds": {
+      "island": 51,
+      "mainland": 622,
+      "positive_island_georegions": 19,
+      "estimable": true
+    }
+  },
+  "actual_source_positive_photo_composition_ALAN_models": {
+    "model": "within matched year×5° geographic region, equal aggregate total weight island vs mainland photo sites, 5° geographical clustered uncertainty; adjust same-year log1p WorldPop R2024B UC population, photo efforts, observed accepted botanical species, BIO5, precipitation and elevation. Response = percent of photographed accepted plant species with GLOBAL positive GloBI moth flower evidence AND GLOBAL positive GloBI predator-guild flower visitor evidence.",
+    "site_support_gate": "at least 20 positive island, 40 positive mainland source photo cell-years, >=10 distinct island geography blocks, >=15 geographic blocks overall; pre-fit, independent of effect sign",
+    "results": [
+      {
+        "animal_group": "spiders",
+        "beta_island_minus_mainland_per_log1p_VIIRS_pp": 0.6335937608329446,
+        "nominal_95CI": [
+          -0.31054117939939874,
+          1.577728701065288
+        ],
+        "nominal_p": 0.18440088855849962,
+        "source_tier": "all"
+      },
+      {
+        "animal_group": "birds",
+        "beta_island_minus_mainland_per_log1p_VIIRS_pp": -0.20398505854109866,
+        "nominal_95CI": [
+          -0.839079475580881,
+          0.43110935849868376
+        ],
+        "nominal_p": 0.5228040390836373,
+        "source_tier": "all"
+      }
+    ],
+    "non_iNaturalist_non_trophiCH_source_sensitivity": "all 6 target guild models become inestimable at pre-fit positivity/geography gate; spiders 2 island/16 mainland positive photo-sites; birds 9 island/84 mainland",
+    "no_nominal_positive_comparison": true,
+    "exploratory_not_preregistered": true
+  },
+  "limitations": {
+    "GloBI global guild flower visitor != local visitor or effective pollination": true,
+    "any predator guild flower visitor != the animal species with moth predation record": true,
+    "spider flower visit can represent ambush rather than pollen transport": true,
+    "unrecorded GloBI links are NOT verified biological absences": true,
+    "photographic assemblages not plant population/community censuses": true,
+    "VIIRS based on sampled monthly values not official annual full-year": true,
+    "GBIF predator species point records NOT incorporated into this fitted ALAN model": true,
+    "source-study composition and photographer selection biases persist": true,
+    "no restricted site–species identity or coordinates published": true
+  }
+}
