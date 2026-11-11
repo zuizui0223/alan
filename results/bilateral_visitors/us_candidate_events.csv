@@ -1,0 +1,178 @@
+source,id,year,plant_raw,date,minutes,region5,binomial,plant,land_class,local_photo,confirmed_nonmoth,broad_nonlep,total_visitors
+Budburst,155683,2021,Baccharis halimifolia,2021-11-03,3.0,19_23,Baccharis halimifolia,Baccharis halimifolia,mainland,True,3.0,3.0,3.0
+Budburst,154824,2021,Helianthus annuus,2021-10-16,4.0,12_24,Helianthus annuus,Helianthus annuus,mainland,True,,1.0,1.0
+Budburst,153106,2021,Bidens alba,2021-09-20,20.0,19_23,Bidens alba,Bidens alba,mainland,True,,1.0,2.0
+Budburst,153120,2021,Vigna luteola,2021-09-20,10.0,19_23,Vigna luteola,Vigna luteola,mainland,True,,0.0,0.0
+Budburst,150302,2021,Trifolium hybridum,2021-07-04,2.0,21_26,Trifolium hybridum,Trifolium hybridum,mainland,True,,1.0,1.0
+Budburst,149601,2021,Penstemon digitalis,2021-06-21,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,5.0,5.0,5.0
+Budburst,149602,2021,Penstemon digitalis 'Pocahontas',2021-06-21,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,6.0,6.0,6.0
+Budburst,149489,2021,Eschscholzia californica,2021-06-17,1.0,11_27,Eschscholzia californica,Eschscholzia californica,mainland,True,3.0,3.0,3.0
+Budburst,149482,2021,Penstemon digitalis,2021-06-17,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,,1.0
+Budburst,149484,2021,Penstemon digitalis,2021-06-17,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,2.0,2.0,2.0
+Budburst,149480,2021,Penstemon digitalis 'Blackbeard',2021-06-17,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,4.0,4.0,4.0
+Budburst,149479,2021,Penstemon digitalis 'Husker Red',2021-06-17,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,17.0,17.0,17.0
+Budburst,149483,2021,Penstemon digitalis 'Husker Red',2021-06-17,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,,0.0
+Budburst,149485,2021,Penstemon digitalis 'Husker Red',2021-06-17,9.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,3.0,3.0,3.0
+Budburst,149645,2021,Penstemon digitalis 'Husker Red',2021-06-17,9.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,3.0,3.0,3.0
+Budburst,149428,2021,Penstemon digitalis,2021-06-16,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,7.0,7.0,7.0
+Budburst,149455,2021,Penstemon digitalis,2021-06-16,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,9.0,9.0,9.0
+Budburst,149531,2021,Penstemon digitalis,2021-06-16,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,7.0,7.0,7.0
+Budburst,149642,2021,Penstemon digitalis,2021-06-16,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,9.0,9.0,9.0
+Budburst,149440,2021,Penstemon digitalis 'Blackbeard',2021-06-16,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,6.0,6.0,7.0
+Budburst,149443,2021,Penstemon digitalis 'Husker Red',2021-06-16,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,30.0,30.0,32.0
+Budburst,149449,2021,Penstemon digitalis 'Husker Red',2021-06-16,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,1.0,1.0,1.0
+Budburst,149451,2021,Penstemon digitalis 'Husker Red',2021-06-16,11.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,2.0,2.0,2.0
+Budburst,149454,2021,Penstemon digitalis 'Husker Red',2021-06-16,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,13.0,13.0,13.0
+Budburst,149427,2021,Penstemon digitalis 'Pocahontas',2021-06-16,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,8.0,8.0,8.0
+Budburst,149530,2021,Penstemon digitalis 'Pocahontas',2021-06-16,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,8.0,8.0,8.0
+Budburst,149371,2021,Penstemon digitalis,2021-06-15,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,7.0,7.0,7.0
+Budburst,149376,2021,Penstemon digitalis,2021-06-15,6.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,,5.0
+Budburst,149533,2021,Penstemon digitalis,2021-06-15,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,7.0,7.0,7.0
+Budburst,149377,2021,Penstemon digitalis 'Blackbeard',2021-06-15,6.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,,2.0
+Budburst,149380,2021,Penstemon digitalis 'Blackbeard',2021-06-15,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,,3.0
+Budburst,149378,2021,Penstemon digitalis 'Husker Red',2021-06-15,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,4.0,4.0
+Budburst,149372,2021,Penstemon digitalis 'Pocahontas',2021-06-15,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,20.0,20.0,20.0
+Budburst,149373,2021,Penstemon digitalis 'Pocahontas',2021-06-15,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,63.0,63.0,64.0
+Budburst,149379,2021,Penstemon digitalis 'Pocahontas',2021-06-15,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,5.0,5.0
+Budburst,149532,2021,Penstemon digitalis 'Pocahontas',2021-06-15,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,20.0,20.0,20.0
+Budburst,149270,2021,Penstemon digitalis,2021-06-14,6.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,,0.0
+Budburst,149269,2021,Penstemon digitalis 'Blackbeard',2021-06-14,11.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,,0.0
+Budburst,149268,2021,Penstemon digitalis 'Husker Red',2021-06-14,11.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,,1.0
+Budburst,149265,2021,Penstemon digitalis 'Pocahontas',2021-06-14,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,,3.0
+Budburst,149599,2021,Penstemon digitalis,2021-06-11,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,6.0,6.0,6.0
+Budburst,149600,2021,Penstemon digitalis 'Pocahontas',2021-06-11,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,8.0,8.0,8.0
+Budburst,149103,2021,Penstemon digitalis 'Husker Red',2021-06-10,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,2.0,2.0
+Budburst,149067,2021,Penstemon digitalis,2021-06-09,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,9.0,9.0,9.0
+Budburst,149068,2021,Penstemon digitalis 'Blackbeard',2021-06-09,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,,5.0
+Budburst,149064,2021,Penstemon digitalis 'Pocahontas',2021-06-09,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,6.0,6.0,6.0
+Budburst,149066,2021,Penstemon digitalis 'Pocahontas',2021-06-09,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,29.0,29.0,29.0
+Budburst,148841,2021,Penstemon digitalis,2021-06-07,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,0.0,1.0
+Budburst,148842,2021,Penstemon digitalis,2021-06-07,11.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,2.0,2.0,2.0
+Budburst,149639,2021,Penstemon digitalis,2021-06-07,11.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,2.0,2.0,2.0
+Budburst,148840,2021,Penstemon digitalis 'Husker Red',2021-06-07,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,1.0,1.0,1.0
+Budburst,148844,2021,Penstemon digitalis 'Husker Red',2021-06-07,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,0.0,0.0,0.0
+Budburst,148845,2021,Penstemon digitalis 'Husker Red',2021-06-07,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,0.0,0.0
+Budburst,148680,2021,Penstemon digitalis,2021-06-04,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,5.0,5.0
+Budburst,149597,2021,Penstemon digitalis,2021-06-04,6.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,8.0,8.0,8.0
+Budburst,149632,2021,Penstemon digitalis 'Blackbeard',2021-06-04,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,0.0,0.0,0.0
+Budburst,149598,2021,Penstemon digitalis 'Pocahontas',2021-06-04,5.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,15.0,15.0,15.0
+Budburst,149634,2021,Penstemon digitalis 'Pocahontas',2021-06-04,15.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,2.0,2.0,2.0
+Budburst,149596,2021,Penstemon digitalis,2021-06-03,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,9.0,9.0,9.0
+Budburst,149594,2021,Penstemon digitalis 'Pocahontas',2021-06-03,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,9.0,9.0,9.0
+Budburst,149595,2021,Penstemon digitalis 'Pocahontas',2021-06-03,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,6.0,6.0,6.0
+Budburst,148538,2021,Penstemon digitalis,2021-06-02,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,13.0,13.0,13.0
+Budburst,148539,2021,Penstemon digitalis,2021-06-02,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,2.0,2.0
+Budburst,149624,2021,Penstemon digitalis,2021-06-02,12.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,4.0,4.0,4.0
+Budburst,148541,2021,Penstemon digitalis 'Pocahontas',2021-06-02,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,,3.0,4.0
+Budburst,149631,2021,Penstemon digitalis 'Pocahontas',2021-06-02,10.0,21_26,Penstemon digitalis,Penstemon digitalis,mainland,True,3.0,3.0,4.0
+Budburst,148300,2021,Prunus maritima,2021-05-25,10.0,21_26,Prunus maritima,Prunus maritima,mainland,True,0.0,0.0,1.0
+Budburst,145686,2021,Eschscholzia californica,2021-04-23,5.0,11_25,Eschscholzia californica,Eschscholzia californica,mainland,True,,,0.0
+Budburst,144644,2021,Oemleria cerasiformis,2021-04-10,3.0,11_27,Oemleria cerasiformis,Oemleria cerasiformis,mainland,True,,1.0,1.0
+Budburst,149582,2021,Pyrus calleryana,2021-04-09,10.0,21_26,Pyrus calleryana,Pyrus calleryana,mainland,True,,0.0,2.0
+Budburst,144292,2021,Eschscholzia californica,2021-04-08,7.0,11_27,Eschscholzia californica,Eschscholzia californica,mainland,True,,2.0,2.0
+Budburst,144197,2021,Pyrus calleryana 'Bradford',2021-03-10,10.0,18_24,Pyrus calleryana,Pyrus calleryana,mainland,True,,8.0,14.0
+Budburst,141893,2021,Berberis aquifolium,2021-02-22,10.0,11_27,Berberis aquifolium,Berberis aquifolium,mainland,True,,0.0,1.0
+Budburst,200984,2023,Encelia californica,2023-11-11,1.0,12_24,Encelia californica,Encelia californica,mainland,True,0.0,0.0,0.0
+Budburst,200878,2023,Asclepias curassavica,2023-11-10,10.0,16_23,Asclepias curassavica,Asclepias curassavica,mainland,True,,0.0,0.0
+Budburst,200429,2023,Asclepias curassavica,2023-11-03,10.0,16_23,Asclepias curassavica,Asclepias curassavica,mainland,True,,0.0,0.0
+Budburst,199482,2023,Asclepias curassavica,2023-10-27,10.0,16_23,Asclepias curassavica,Asclepias curassavica,mainland,True,,0.0,0.0
+Budburst,198808,2023,Solidago nemoralis,2023-10-21,11.0,20_25,Solidago nemoralis,Solidago nemoralis,mainland,True,,0.0,0.0
+Budburst,198781,2023,Asclepias curassavica,2023-10-20,10.0,16_23,Asclepias curassavica,Asclepias curassavica,mainland,True,,,1.0
+Budburst,197642,2023,Asclepias curassavica,2023-10-06,10.0,16_23,Asclepias curassavica,Asclepias curassavica,mainland,True,,0.0,0.0
+Budburst,197549,2023,Hamelia patens,2023-10-05,10.0,19_23,Hamelia patens,Hamelia patens,mainland,True,9.0,9.0,9.0
+Budburst,197555,2023,Hamelia patens,2023-10-05,10.0,19_23,Hamelia patens,Hamelia patens,mainland,True,25.0,25.0,25.0
+Budburst,197557,2023,Hamelia patens,2023-10-05,10.0,19_23,Hamelia patens,Hamelia patens,mainland,True,1.0,1.0,1.0
+Budburst,197611,2023,Hamelia patens,2023-10-05,10.0,19_23,Hamelia patens,Hamelia patens,mainland,True,14.0,14.0,14.0
+Budburst,197612,2023,Hamelia patens,2023-10-05,10.0,19_23,Hamelia patens,Hamelia patens,mainland,True,10.0,10.0,10.0
+Budburst,197585,2023,Bidens alba,2023-10-05,10.0,19_23,Bidens alba,Bidens alba,mainland,True,,0.0,0.0
+Budburst,197614,2023,Bidens alba,2023-10-05,10.0,19_23,Bidens alba,Bidens alba,mainland,True,2.0,2.0,3.0
+Budburst,196867,2023,Asclepias curassavica,2023-09-29,10.0,16_23,Asclepias curassavica,Asclepias curassavica,mainland,True,,0.0,0.0
+Budburst,196526,2023,Trifolium repens,2023-09-25,6.0,20_25,Trifolium repens,Trifolium repens,mainland,True,1.0,1.0,1.0
+Budburst,196241,2023,Asclepias curassavica,2023-09-22,10.0,16_23,Asclepias curassavica,Asclepias curassavica,mainland,True,,,5.0
+Budburst,195626,2023,Asclepias curassavica,2023-09-15,10.0,16_23,Asclepias curassavica,Asclepias curassavica,mainland,True,,5.0,5.0
+Budburst,192874,2023,Foeniculum vulgare,2023-08-05,7.0,20_25,Foeniculum vulgare,Foeniculum vulgare,mainland,True,7.0,7.0,7.0
+Budburst,190892,2023,Liatris spicata,2023-07-08,8.0,20_25,Liatris spicata,Liatris spicata,mainland,True,,3.0,3.0
+Budburst,190895,2023,Asclepias incarnata,2023-07-08,7.0,20_25,Asclepias incarnata,Asclepias incarnata,mainland,True,,1.0,1.0
+Budburst,187885,2023,Iris versicolor,2023-06-06,10.0,21_26,Iris versicolor,Iris versicolor,mainland,True,,2.0,5.0
+Budburst,187076,2023,Gaillardia pulchella,2023-05-30,10.0,19_23,Gaillardia pulchella,Gaillardia pulchella,island,True,3.0,3.0,4.0
+Budburst,186864,2023,Asclepias curassavica,2023-05-27,11.0,16_23,Asclepias curassavica,Asclepias curassavica,mainland,True,,1.0,4.0
+Budburst,186738,2023,Hirschfeldia incana,2023-05-25,10.0,12_24,Hirschfeldia incana,Hirschfeldia incana,mainland,True,3.0,3.0,5.0
+Budburst,186028,2023,Eschscholzia californica,2023-05-21,11.0,12_24,Eschscholzia californica,Eschscholzia californica,mainland,True,,3.0,3.0
+Budburst,186033,2023,Eschscholzia californica,2023-05-21,10.0,12_24,Eschscholzia californica,Eschscholzia californica,mainland,True,,3.0,3.0
+Budburst,185725,2023,Gaillardia pulchella,2023-05-19,2.0,16_23,Gaillardia pulchella,Gaillardia pulchella,mainland,True,,2.0,4.0
+Budburst,185735,2023,Asclepias curassavica,2023-05-19,4.0,16_23,Asclepias curassavica,Asclepias curassavica,mainland,True,,5.0,6.0
+Budburst,185780,2023,Asclepias curassavica,2023-05-19,7.0,16_23,Asclepias curassavica,Asclepias curassavica,mainland,True,,0.0,1.0
+Budburst,183313,2023,Vaccinium angustifolium,2023-05-01,30.0,21_26,Vaccinium angustifolium,Vaccinium angustifolium,mainland,True,,0.0,0.0
+Budburst,183315,2023,Lamium purpureum,2023-05-01,30.0,21_26,Lamium purpureum,Lamium purpureum,mainland,True,,0.0,0.0
+Budburst,183320,2023,Rumex acetosella,2023-05-01,30.0,21_26,Rumex acetosella,Rumex acetosella,mainland,True,,0.0,0.0
+Budburst,183055,2023,Encelia californica,2023-04-30,12.0,12_24,Encelia californica,Encelia californica,mainland,True,,40.0,40.0
+Budburst,183057,2023,Encelia californica,2023-04-30,10.0,12_24,Encelia californica,Encelia californica,mainland,True,,31.0,31.0
+Budburst,183088,2023,Gaillardia pulchella,2023-04-30,7.0,16_23,Gaillardia pulchella,Gaillardia pulchella,mainland,True,,11.0,11.0
+Budburst,182979,2023,Rubus trivialis,2023-04-30,10.0,16_23,Rubus trivialis,Rubus trivialis,mainland,True,,1.0,3.0
+Budburst,182892,2023,Tropaeolum majus,2023-04-29,2.0,12_24,Tropaeolum majus,Tropaeolum majus,mainland,True,,2.0,2.0
+Budburst,182918,2023,Tropaeolum majus,2023-04-29,14.0,12_24,Tropaeolum majus,Tropaeolum majus,mainland,True,,0.0,0.0
+Budburst,182935,2023,Hirschfeldia incana,2023-04-29,11.0,12_24,Hirschfeldia incana,Hirschfeldia incana,mainland,True,,6.0,6.0
+Budburst,182490,2023,Lobularia maritima,2023-04-27,3.0,12_24,Lobularia maritima,Lobularia maritima,mainland,True,,3.0,3.0
+Budburst,179101,2023,Hirschfeldia incana,2023-04-14,2.0,12_24,Hirschfeldia incana,Hirschfeldia incana,mainland,True,0.0,0.0,0.0
+Budburst,177952,2023,Prunus avium,2023-04-11,3.0,21_26,Prunus avium,Prunus avium,mainland,True,,0.0,1.0
+Budburst,177829,2023,Cornus sericea,2023-04-10,1.0,21_26,Cornus sericea,Cornus sericea,mainland,True,,0.0,0.0
+Budburst,177609,2023,Pyrus calleryana,2023-04-09,10.0,20_25,Pyrus calleryana,Pyrus calleryana,mainland,True,,4.0,5.0
+Budburst,177569,2023,Stellaria media,2023-04-09,10.0,20_25,Stellaria media,Stellaria media,mainland,True,,1.0,1.0
+Budburst,177286,2023,Lamium purpureum,2023-04-06,1.0,20_25,Lamium purpureum,Lamium purpureum,mainland,True,,0.0,0.0
+Budburst,177003,2023,Vinca minor,2023-04-05,1.0,20_25,Vinca minor,Vinca minor,mainland,True,2.0,2.0,2.0
+Budburst,176859,2023,Tropaeolum majus,2023-04-03,5.0,20_25,Tropaeolum majus,Tropaeolum majus,mainland,True,,2.0,2.0
+Budburst,176246,2023,Trifolium repens,2023-03-30,1.0,16_23,Trifolium repens,Trifolium repens,mainland,True,5.0,5.0,5.0
+Budburst,174753,2023,Encelia californica,2023-03-14,10.0,12_24,Encelia californica,Encelia californica,mainland,True,,2.0,2.0
+Budburst,174757,2023,Encelia californica,2023-03-14,10.0,12_24,Encelia californica,Encelia californica,mainland,True,,2.0,2.0
+Budburst,174745,2023,Rhus integrifolia,2023-03-14,3.0,12_24,Rhus integrifolia,Rhus integrifolia,mainland,True,,10.0,10.0
+Budburst,174338,2023,Trifolium repens,2023-03-09,9.0,16_23,Trifolium repens,Trifolium repens,mainland,True,15.0,15.0,16.0
+Budburst,174339,2023,Trifolium repens,2023-03-09,1.0,16_23,Trifolium repens,Trifolium repens,mainland,True,,0.0,0.0
+Budburst,174271,2023,Trifolium repens,2023-03-08,10.0,16_23,Trifolium repens,Trifolium repens,mainland,True,,1.0,1.0
+Budburst,174282,2023,Trifolium repens,2023-03-08,10.0,16_23,Trifolium repens,Trifolium repens,mainland,True,,1.0,1.0
+Budburst,174083,2023,Encelia californica,2023-03-06,10.0,12_24,Encelia californica,Encelia californica,mainland,True,,4.0,4.0
+Budburst,174186,2023,Encelia californica,2023-03-06,10.0,12_24,Encelia californica,Encelia californica,mainland,True,,,20.0
+Budburst,174187,2023,Encelia californica,2023-03-06,2.0,12_24,Encelia californica,Encelia californica,mainland,True,,7.0,7.0
+Budburst,174188,2023,Encelia californica,2023-03-06,10.0,12_24,Encelia californica,Encelia californica,mainland,True,,,20.0
+Budburst,174166,2023,Rhus integrifolia,2023-03-06,10.0,12_24,Rhus integrifolia,Rhus integrifolia,mainland,True,,18.0,18.0
+Budburst,174174,2023,Rhus integrifolia,2023-03-06,10.0,12_24,Rhus integrifolia,Rhus integrifolia,mainland,True,11.0,11.0,11.0
+Budburst,174176,2023,Rhus integrifolia,2023-03-06,10.0,12_24,Rhus integrifolia,Rhus integrifolia,mainland,True,,,11.0
+Budburst,174191,2023,Rhus integrifolia,2023-03-06,1.0,12_24,Rhus integrifolia,Rhus integrifolia,mainland,True,1.0,1.0,1.0
+Budburst,174193,2023,Rhus integrifolia,2023-03-06,3.0,12_24,Rhus integrifolia,Rhus integrifolia,mainland,True,,6.0,6.0
+Budburst,174008,2023,Erodium cicutarium,2023-03-04,1.0,12_24,Erodium cicutarium,Erodium cicutarium,mainland,True,,2.0,2.0
+Budburst,173886,2023,Trifolium repens,2023-02-28,9.0,16_23,Trifolium repens,Trifolium repens,mainland,True,,3.0,7.0
+Budburst,173042,2023,Narcissus papyraceus,2023-01-06,1.0,12_24,Narcissus papyraceus,Narcissus papyraceus,mainland,True,,0.0,0.0
+Budburst,220941,2024,Solidago rugosa,2024-09-30,5.0,20_25,Solidago rugosa,Solidago rugosa,mainland,True,,0.0,1.0
+Budburst,218342,2024,Prunella vulgaris,2024-08-07,10.0,20_25,Prunella vulgaris,Prunella vulgaris,mainland,True,,2.0,2.0
+Budburst,218131,2024,Vernonia noveboracensis,2024-08-02,20.0,20_25,Vernonia noveboracensis,Vernonia noveboracensis,mainland,True,,1.0,3.0
+Budburst,215763,2024,Asclepias syriaca,2024-06-13,2.0,20_25,Asclepias syriaca,Asclepias syriaca,mainland,True,,,6.0
+Budburst,215166,2024,Impatiens capensis,2024-06-02,10.0,20_25,Impatiens capensis,Impatiens capensis,mainland,True,,0.0,1.0
+Budburst,215168,2024,Conium maculatum,2024-06-02,5.0,20_25,Conium maculatum,Conium maculatum,mainland,True,,1.0,2.0
+Budburst,215023,2024,Trifolium repens,2024-06-01,10.0,20_25,Trifolium repens,Trifolium repens,mainland,True,19.0,19.0,23.0
+Budburst,214062,2024,Achillea millefolium,2024-05-19,2.0,20_25,Achillea millefolium,Achillea millefolium,mainland,True,,,0.0
+Budburst,215170,2024,Impatiens capensis,2024-05-18,11.0,20_25,Impatiens capensis,Impatiens capensis,mainland,True,,1.0,2.0
+Budburst,212952,2024,Asclepias syriaca,2024-05-09,1.0,20_25,Asclepias syriaca,Asclepias syriaca,mainland,True,,0.0,2.0
+Budburst,212383,2024,Vicia sativa,2024-05-06,10.0,20_25,Vicia sativa,Vicia sativa,mainland,True,,2.0,4.0
+Budburst,212379,2024,Trifolium pratense,2024-05-06,10.0,20_25,Trifolium pratense,Trifolium pratense,mainland,True,0.0,0.0,0.0
+Budburst,212005,2024,Helianthus annuus,2024-05-03,10.0,16_23,Helianthus annuus,Helianthus annuus,mainland,True,,6.0,16.0
+Budburst,207670,2024,Prunus laurocerasus,2024-04-10,3.0,20_25,Prunus laurocerasus,Prunus laurocerasus,mainland,True,,1.0,1.0
+Budburst,207992,2024,Sherardia arvensis,2024-04-10,6.0,20_25,Sherardia arvensis,Sherardia arvensis,mainland,True,,0.0,0.0
+Budburst,207979,2024,Kalmia latifolia,2024-04-10,12.0,20_25,Kalmia latifolia,Kalmia latifolia,mainland,True,,1.0,2.0
+Budburst,206696,2024,Cercis siliquastrum,2024-04-03,3.0,38_26,Cercis siliquastrum,Cercis siliquastrum,mainland,True,,6.0,10.0
+Budburst,205747,2024,Bidens alba,2024-03-14,24.0,19_23,Bidens alba,Bidens alba,island,True,,2.0,2.0
+Budburst,205575,2024,Lamium purpureum,2024-03-11,10.0,21_26,Lamium purpureum,Lamium purpureum,mainland,True,,1.0,1.0
+Budburst,205485,2024,Encelia californica,2024-03-10,11.0,12_24,Encelia californica,Encelia californica,mainland,True,,13.0,13.0
+Budburst,205501,2024,Baccharis salicifolia,2024-03-10,10.0,12_24,Baccharis salicifolia,Baccharis salicifolia,mainland,True,,16.0,22.0
+Budburst,205480,2024,Rubus trivialis,2024-03-10,10.0,19_23,Rubus trivialis,Rubus trivialis,mainland,True,,1.0,1.0
+Budburst,204452,2024,Rhus integrifolia,2024-02-13,2.0,12_24,Rhus integrifolia,Rhus integrifolia,mainland,True,,1.0,1.0
+Budburst,203200,2024,Vinca major,2024-01-18,2.0,12_24,Vinca major,Vinca major,mainland,True,,0.0,0.0
+Budburst,244725,2025,Vernonia noveboracensis,2025-10-21,10.0,20_25,Vernonia noveboracensis,Vernonia noveboracensis,mainland,True,,0.0,0.0
+Budburst,244714,2025,Ageratina altissima,2025-10-15,10.0,20_25,Ageratina altissima,Ageratina altissima,mainland,True,,3.0,3.0
+Budburst,243560,2025,Gaillardia pulchella,2025-10-02,6.0,20_25,Gaillardia pulchella,Gaillardia pulchella,mainland,True,31.0,31.0,39.0
+Budburst,242754,2025,Rudbeckia fulgida,2025-09-16,21.0,20_25,Rudbeckia fulgida,Rudbeckia fulgida,mainland,True,,1.0,4.0
+Budburst,244244,2025,Daucus carota,2025-09-13,10.0,11_27,Daucus carota,Daucus carota,mainland,True,,4.0,6.0
+Budburst,242357,2025,Catharanthus roseus,2025-09-07,10.0,19_23,Catharanthus roseus,Catharanthus roseus,mainland,True,,3.0,3.0
+Budburst,240058,2025,Leucanthemum vulgare,2025-06-27,10.0,11_27,Leucanthemum vulgare,Leucanthemum vulgare,mainland,True,,,5.0
+Budburst,239999,2025,Trifolium repens,2025-06-27,2.0,11_27,Trifolium repens,Trifolium repens,mainland,True,,,1.0
+Budburst,232489,2025,Alliaria petiolata,2025-04-22,20.0,20_25,Alliaria petiolata,Alliaria petiolata,mainland,True,1.0,1.0,1.0
+Budburst,226776,2025,Oxalis pes-caprae,2025-03-10,2.0,12_24,Oxalis pes-caprae,Oxalis pes-caprae,mainland,True,,0.0,1.0
+UGA,353,2025,Rubus trivialis,,15.0,19_24,Rubus trivialis,Rubus trivialis,mainland,True,,,
