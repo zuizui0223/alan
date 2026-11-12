@@ -1,0 +1,117 @@
+name: ALAN authentic source direct flower traits and GloBI moth-like syndrome x island nightlight
+on:
+  push:
+    branches: [analysis/alan-floral-syndrome-directtrait-light-20261112]
+    paths:
+      - .github/workflows/alan-direct-floral-syndrome-ALAN.yml
+      - scripts/analysis/alan_direct_flower_syndrome_light_20261112.py
+      - tests/test_alan_direct_flower_syndrome_light_20261112.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  actual-original-species-direct-trait-light:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Install pinned scientific dependencies and execute synthetic numerical tests
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 geopandas==1.1.2 shapely==2.1.2 requests==2.32.3
+          python -m py_compile scripts/analysis/alan_globi_v011_old_new_species_attribution_20261112.py
+          python -m unittest discover -s tests -p 'test_alan_direct_flower_syndrome_light_20261112.py' -v
+      - name: Restore unchanged historical original photo/taxonomy/GloBI from signed MOIS Actions
+        run: |
+          set -euo pipefail
+          mkdir -p signed/canonical signed/taxonomy inputs/old
+          gh run download 41007444495 --repo zuizui0223/mois --name mois-nohuman-canonical-climate-joined-20261030 --dir signed/canonical
+          gh run download 39225659840 --repo zuizui0223/mois --name mois-real350399-Kew-WCVP-native-source-TDWG3-no-point-status --dir signed/taxonomy
+          gh run download 41976552977 --repo zuizui0223/mois --name mois-ALAN-GloBI-stage2-actual-records-2019-2024-supported-source --dir inputs/old
+      - name: Restore original year-matched satellite and population source
+        run: |
+          set -euo pipefail
+          for yr in 2019 2021 2023; do
+            mkdir -p "inputs/g$yr" "inputs/p$yr"
+            gh run download 42337911536 --repo zuizui0223/mois --name "mois-original-$yr-global-mainland-island-monthly-VIIRS-source-SHA" --dir "inputs/g$yr"
+            gh run download 42338121269 --repo zuizui0223/mois --name "mois-original-$yr-R2024B-UC-global-popdensity-photo-source" --dir "inputs/p$yr"
+          done
+          mkdir -p inputs/g2024 inputs/c2024 inputs/p2024 inputs/v2025
+          gh run download 42328254130 --repo zuizui0223/mois --name mois-global2024-original4096-WPGlobal2-2024-VIIRS-raw-SHA --dir inputs/g2024
+          gh run download 42328567038 --repo zuizui0223/mois --name mois-global2024-rest62360-original-VIIRS-G2-all66456-source --dir inputs/c2024
+          gh run download 42333953557 --repo zuizui0223/mois --name mois-2024-WorldPop-UC-R2024B-full-original-66456-population-source --dir inputs/p2024
+          gh run download 42337703150 --repo zuizui0223/mois --name mois-2025-original73463-mainland-island-full-VIIRS-and-R2024B-UC-source --dir inputs/v2025
+      - name: Restore authoritative island source-DIRECT plant trait ledger
+        run: |
+          set -euo pipefail
+          mkdir -p trait_source
+          gh run download 34191508045 --repo zuizui0223/island --name source-scale-batch-integration-34191508045 --dir trait_source
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          path=Path("trait_source/direct_species_trait_ledger.csv.gz")
+          assert path.exists()
+          assert hashlib.sha256(path.read_bytes()).hexdigest()=="7e86170218814abe2845da9a0282aecfdc930819b9d0c439bae8df4a0679c577"
+          print("ORIGINAL_ISLAND_DIRECT_HIGH_MEDIUM_TRAIT_LEDGER_VERIFIED")
+          PY
+      - name: Fail closed on all original downloaded source file digests
+        run: |
+          python - <<'PY'
+          import json, hashlib
+          from pathlib import Path
+          manifest=json.loads(Path('config/alan_v011_fiveyear_input_sha256.json').read_text())
+          skip={
+            'inputs/wcvp.zip',
+            'inputs/alan-GloBI-v011-full-source-moth-plant-positive-flags/GloBI_v011_positive_species_flags.csv.gz'
+          }
+          for rel,expected in manifest.items():
+              if rel in skip: continue
+              p=Path(rel)
+              assert p.is_file(), rel
+              assert hashlib.sha256(p.read_bytes()).hexdigest()==expected,rel
+          assert len(manifest)-len(skip)>=17
+          print("VERIFIED_FROZEN_2019_2025_SOURCE_DIGESTS",len(manifest)-len(skip))
+          PY
+      - name: Execute real source species-direct floral syndrome and photoplants x ALAN
+        run: |
+          set -euo pipefail
+          mkdir -p outputs
+          python scripts/analysis/alan_direct_flower_syndrome_light_20261112.py \
+            inputs signed trait_source/direct_species_trait_ledger.csv.gz \
+            outputs/alan_original_directtrait_mothlike_20261112.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('outputs/alan_original_directtrait_mothlike_20261112.json').read_text())
+          assert d['status']=='REAL_SHA_VERIFIED_DIRECT_TRAIT_SOURCE_EXPLORATORY'
+          assert d['study']['photo_site_years']==10698
+          assert d['study']['accepted_plant_species']==8581
+          for n in ('direct_high_medium','direct_high_only'):
+              x=d['results'][n]
+              t=x['source_species_coverage_by_globi_label']
+              assert t['old_only']['species']==713
+              assert t['common']['species']==612
+              assert t['new_only']['species']==132
+              assert t['neither']['species']==7124
+              assert t['old_only']['broad_candidate']<=t['old_only']['eligible_broad']
+              assert t['old_only']['strict_candidate']<=t['old_only']['broad_candidate']
+              assert x['total_photo_species_site_year_units']>40000
+          print('REAL_MOTHLlKE_DIRECT_TRAITS_ISLAND_MAINLAND_ALAN_COMPLETE')
+          PY
+      - name: Upload aggregate-only science output (no private photo location or taxon-by-site rows)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-direct-floral-syndrome-alan-original-20261112
+          path: outputs/alan_original_directtrait_mothlike_20261112.json
+          retention-days: 90
+          if-no-files-found: warn
