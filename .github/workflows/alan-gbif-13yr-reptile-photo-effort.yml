@@ -3,7 +3,10 @@ name: ALAN 13-year actual GBIF reptile/photo effort reliability × prior ALAN
 on:
   push:
     branches: [analysis/alan-multichannel-light-island-20261112]
-    paths: [.github/workflows/alan-gbif-13yr-reptile-photo-effort.yml]
+    paths:
+      - .github/workflows/alan-gbif-13yr-reptile-photo-effort.yml
+      - scripts/analysis/alan_13year_guild_photo_effort_20261112.py
+      - tests/test_alan_13year_guild_photo_effort_20261112.py
   workflow_dispatch:
 
 permissions:
