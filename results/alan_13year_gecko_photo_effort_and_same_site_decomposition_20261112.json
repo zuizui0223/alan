@@ -1,0 +1,196 @@
+{
+  "schema": "alan_original_13yr_gecko_moth_photo_effort_and_same_site_space_time_20261112_v1",
+  "status": "REAL_AUTHENTIC_SOURCE_HASH_CHECKED_ACTIONS_COMPLETED_SUCCESS; exploratory GBIF photo-composition associations not causal",
+  "source": {
+    "original_insect_GBIF_photo_sha256": "64b269dd796b9095853c371909a0dd760921df2e396636a83fc59a2d659e4852",
+    "original_reptile_GBIF_photo_sha256": "03aa855c9e7691855bfee4baa099f0d3a31db8d53066ec36a95afda48c3ba339",
+    "GSHHG_physical_landmass": "same actual 0.05-degree island, observation year and original cell",
+    "PCNL": "actual 2012-2024 year-prior satellite radiance, not street-level lighting",
+    "observed_years": "2013-2025",
+    "effort_GitHub_Actions_run": 43143550363,
+    "effort_Actions_conclusion": "success",
+    "effort_original_source_artifact_id": 13911126024,
+    "between_within_GitHub_Actions_run": 43144086162,
+    "between_within_Actions_conclusion": "success",
+    "between_within_original_source_artifact_id": 13910747426
+  },
+  "dataset": {
+    "source_geographically_joined_photo_cell_years_with_PCNl": 15255,
+    "spatial_n_islands": 50,
+    "spatial_n_cells": 3424,
+    "spatial_n_year_island": 209,
+    "repeat_n_islands": 30,
+    "repeat_n_sites": 454,
+    "repeat_n_cells": 1979,
+    "repeat_n_year_island": 181,
+    "reptile_photo_median_spatial": 2,
+    "reptile_photo_median_repeat": 3,
+    "fraction_gecko_photo_composition_0_or_100_spatial": 0.6369742990654206,
+    "fraction_gecko_photo_composition_0_or_100_repeat": 0.5932289034866094,
+    "fraction_photocells_before2018_spatial": 0.06483644859813084,
+    "fraction_photocells_before2018_repeat": 0.08640727640222334
+  },
+  "spatial50_gecko_photo_proportion_vs_prior_loglight": {
+    "island_equal_raw": {
+      "beta": 3.0488940194354788,
+      "ci95": [
+        0.38379612095031534,
+        5.713991917920643
+      ],
+      "p_nominal": 0.02581034290115781
+    },
+    "capped_reptile_count_precision_weights": {
+      "beta": 3.4758417094289715,
+      "ci95": [
+        1.063799323814314,
+        5.8878840950436295
+      ],
+      "p_nominal": 0.005634778089242544
+    },
+    "jeffreys_0p5_smoothed_fraction": {
+      "beta": 2.1598036174014017,
+      "ci95": [
+        0.15978461088571683,
+        4.159822623917087
+      ],
+      "p_nominal": 0.03487358351461718
+    },
+    "min3_reptile_photo_records": {
+      "n_cells": 1629,
+      "n_islands": 41,
+      "beta": 2.4324,
+      "ci95": [
+        -1.4211,
+        6.286
+      ],
+      "p_nominal": 0.20941
+    },
+    "min5_reptile_photo_records": {
+      "n_cells": 1018,
+      "n_islands": 33,
+      "beta": 0.8735431052204269,
+      "ci95": [
+        -2.899693943457404,
+        4.646780153898257
+      ],
+      "p_nominal": 0.6404325863055398
+    },
+    "min10_reptile_photo_records": {
+      "n_cells": 487,
+      "n_islands": 22,
+      "beta": 0.7306,
+      "ci95": [
+        -3.7264,
+        5.1875
+      ],
+      "p_nominal": 0.73658
+    }
+  },
+  "same_site30_gecko_photo_proportion_vs_prior_loglight": {
+    "island_equal_raw": {
+      "beta": -12.313532315429642,
+      "ci95": [
+        -26.950078384935328,
+        2.323013754076044
+      ],
+      "p_nominal": 0.0959739581772763
+    },
+    "capped_reptile_count_precision_weights": {
+      "beta": -20.71739037351794,
+      "ci95": [
+        -44.3652847117035,
+        2.930503964667622
+      ],
+      "p_nominal": 0.08360953012666736
+    },
+    "jeffreys_0p5_smoothed_fraction": {
+      "beta": -11.29182111264545,
+      "ci95": [
+        -23.554335709040352,
+        0.9706934837494519
+      ],
+      "p_nominal": 0.06972005265621037
+    },
+    "min5_reptile_photo_records": {
+      "n_cells": 580,
+      "n_islands": 24,
+      "beta": -23.78153810788316,
+      "ci95": [
+        -59.05618367519499,
+        11.493107459428668
+      ],
+      "p_nominal": 0.17644611417730094
+    }
+  },
+  "same_site454_within_between_decomposition": {
+    "support": {
+      "n_sites": 454,
+      "n_cells": 1979,
+      "n_islands": 30
+    },
+    "design": "On identical repeated original GSHHG site-year cells, prior log-PCNL split into same site's mean and its within-site yearly deviation; source photo counts similarly decomposed within/between, island-year FE, 30-island CR1 t CI",
+    "gecko_between_site_meanlight": {
+      "beta": 5.645280833553387,
+      "ci95": [
+        -4.762007101968719,
+        16.052568769075492
+      ],
+      "p_nominal": 0.27637093396289225
+    },
+    "gecko_within_site_light_deviation": {
+      "beta": -4.691579481571059,
+      "ci95": [
+        -16.05898044619118,
+        6.675821483049061
+      ],
+      "p_nominal": 0.40551658459656825
+    },
+    "within_minus_between_direct_contrast": {
+      "beta": -10.336860315124447,
+      "ci95": [
+        -27.928287594415767,
+        7.254566964166873
+      ],
+      "p_nominal": 0.23916626614234016
+    }
+  },
+  "moth_record_fraction_negative_control": {
+    "spatial50": {
+      "beta": -0.1783433557578897,
+      "ci95": [
+        -1.8860538779160343,
+        1.5293671664002548
+      ],
+      "p_nominal": 0.8346406128780229
+    },
+    "same_site30": {
+      "beta": -3.532676235661144,
+      "ci95": [
+        -17.43664321879044,
+        10.371290747468151
+      ],
+      "p_nominal": 0.6072546744200596
+    }
+  },
+  "conclusion": "A photo-record-based positive spatial gecko-vs-skink light association exists in the 50-island cohort, including sample-count weights, but it attenuates when only cells with 5+ reptile photographs are eligible; the same-source 454-site temporal pattern and between/within difference are not statistically resolved. No moth decline, predation or pollination mechanism is inferred.",
+  "limits": {
+    "sample_effort_selective_photo_records_instead_of_standardized_census": true,
+    "clipped_count_weights_and_Jeffreys_are_posthoc_sensitivity_not_independent_positive_confirmation": true,
+    "limiting_min5_cells_also_changes_geographic_population": true,
+    "source_no_record_not_true_absence": true,
+    "no_direct_moth_catch_gecko_predation_stigma_deposition_or_seed_set": true,
+    "light_from_prior_year_PCNL_not_on_ground_illuminance": true,
+    "unequal_old_year_source_support": true,
+    "within_between_estimands_are_observational_not_causal": true,
+    "nominal_p_after_exploration": true,
+    "README_positive_PL64_unchanged": true,
+    "no_exact_original_photo_sites_published": true
+  },
+  "previous_source_positive_findings_frozen": {
+    "README_GloBI_bounded_old_island_mainland_photo_PL_moth_beta": -1.901720622055596,
+    "README_pollen_limitation_moderator_PL64_beta": -0.019380045756016737,
+    "README_PL64_nominal_p": 0.043993409104237075,
+    "README_PL64_Holm_adjusted_p": 0.08798681820847415,
+    "GloBI_v011_PL30_beta": -0.009164462003417938
+  }
+}
