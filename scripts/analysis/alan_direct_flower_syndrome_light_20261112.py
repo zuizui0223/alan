@@ -124,7 +124,8 @@ def stratum_test(names, target, a="old_only", b="common", gate=None):
     return {"trait_flag":target, "scope":gate or "all_accepted_source_species",
             "old_only_positive":n1, "old_only_denominator":int(len(x)),
             "common_positive":n2, "common_denominator":int(len(y)),
-            "odds_ratio":float(odds), "p_nominal_posthoc":float(p)}
+            "odds_ratio":float(odds) if np.isfinite(odds) else None,
+            "p_nominal_posthoc":float(p) if np.isfinite(p) else None}
 
 
 def site_count(s, obs, mask):
