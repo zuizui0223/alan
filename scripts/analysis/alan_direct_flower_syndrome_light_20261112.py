@@ -167,8 +167,9 @@ def regression(s, count, name, ratio_denominator=None):
         "total_island_site_years":int(g.land_class.eq("island").sum()),
         "matched_geographic_blocks":all_blocks,
     }
-    if not n_pos_island or not n_pos_main or len(g)<50 or all_blocks<10:
-        record.update(model_status="insufficient_common_support_for_regression", beta=None)
+    if (n_pos_island < 20 or n_pos_main < 20 or both_blocks < 10 or
+            len(g) < 50 or all_blocks < 10):
+        record.update(model_status="insufficient_independent_geographic_or_photo_support", beta=None)
         return record
     g["all_moth"] = response
     fit_model=fit(g,"all","moth",balance=True)
