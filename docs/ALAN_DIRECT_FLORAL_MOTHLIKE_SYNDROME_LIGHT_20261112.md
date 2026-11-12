@@ -1,6 +1,6 @@
 # ALAN × species-direct moth-like floral phenotype: real source test (2026-11-12)
 
-**Status:** Original 2019/21/23/24/25 plant-photo + same-year nightlight replay [#43161009513](https://github.com/zuizui0223/alan/actions/runs/43161009513) SUCCESS; a stricter fail-closed geographic-sample check is included in this branch. **All results exploratory.** This is a morphological resemblance study, **NOT verified nocturnal/effective moth pollination**.
+**Status:** Final original 2019/21/23/24/25 photo, VIIRS and independent species-direct trait replay [Actions #43161341190](https://github.com/zuizui0223/alan/actions/runs/43161341190) **SUCCESS**, aggregate artifact **13918525577**; stricter fail-closed geographic-sample check verified. **All results exploratory.** This is a morphological resemblance study, **NOT verified nocturnal/effective moth pollination**.
 
 ## Question and fixed empirical source
 
@@ -47,7 +47,7 @@ Next: independent actual nocturnal pollen deposition / day-night exclusions, wil
 
 ## Sources, audit and reproducibility
 
-- [Real source Actions #43161009513](https://github.com/zuizui0223/alan/actions/runs/43161009513)
+- [Final verified real source Actions #43161341190](https://github.com/zuizui0223/alan/actions/runs/43161341190) · [aggregate-only JSON artifact](https://github.com/zuizui0223/alan/actions/runs/43161341190/artifacts/13918525577)
 - [Final stronger evidence-support workflow](https://github.com/zuizui0223/alan/actions/workflows/alan-direct-floral-syndrome-ALAN.yml)
 - Source key SHA: 37f3c2c519871b6905ffa81c5a14536b248611861ad143b1d4d77d95b7c6b00d
 - Scripts: scripts/analysis/alan_direct_flower_syndrome_light_20261112.py; tests/test_alan_direct_flower_syndrome_light_20261112.py
