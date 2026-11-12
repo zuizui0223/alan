@@ -65,6 +65,7 @@ def fit_photo_share(data, response, weight="island_equal", repeat=False):
     else:
         raise ValueError(weight)
 
+    w = np.asarray(w, dtype=float)
     sw = np.sqrt(w)
     Zs = []
     dim, codes = [], []
