@@ -1,0 +1,42 @@
+{
+  "sweden_sha256": "3c281ddd6c25147972fe293ddee54659c83365f4cd054e3099c1ee69d0efe8e4",
+  "wcvp_sha256": "d32ea2b3a85e489b14e83bcc9eae7274532e1d113753f7be290d4b2dfde573fa",
+  "swedish_five_year_flower_rows_in_frozen_region_years": 4589,
+  "regional_shared_species": {
+    "rows": 1236,
+    "species": 83,
+    "regions": 2,
+    "region_years": 4,
+    "negative": 154,
+    "positive": 1082
+  },
+  "trained_regional_shared_species": {
+    "rows": 1153,
+    "species": 82,
+    "regions": 2,
+    "region_years": 4,
+    "negative": 144,
+    "positive": 1009
+  },
+  "regional_repeated_location_both_states_trained": {
+    "rows": 196,
+    "species": 12,
+    "regions": 2,
+    "region_years": 4,
+    "negative": 98,
+    "positive": 98
+  },
+  "same_frozen_cells": {
+    "rows": 28,
+    "species": 7,
+    "regions": 2,
+    "region_years": 3,
+    "negative": 10,
+    "positive": 18
+  },
+  "australian_archive_sha256": "c0964e26925e2f098927d46280c0a981fd25f841985a4ed0c488f3221a89aa4d",
+  "australian_archive_rows": 93603,
+  "australian_max_year": 2017,
+  "australian_missing_years": 0,
+  "australian_focal_year_rows": 0
+}

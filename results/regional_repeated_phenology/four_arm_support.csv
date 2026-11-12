@@ -1,0 +1,8 @@
+plant,region5,year,stage,island_bright,island_dark,mainland_bright,mainland_dark
+Holodiscus discolor,11_27,2021,dated_binary,21,2,70,184
+Ilex verticillata,22_26,2024,dated_binary,63,32,2,2
+Primula veris,39_29,2021,dated_binary,6,2,18,33
+Tanacetum vulgare,39_29,2021,dated_binary,1,1,2,6
+Tussilago farfara,39_29,2021,dated_binary,2,1,20,46
+Holodiscus discolor,11_27,2021,at_least_two_dates,1,1,2,5
+Primula veris,39_29,2021,both_states_across_locations,1,1,1,1

@@ -1,0 +1,56 @@
+{
+  "product": "DP1.10055.001",
+  "source_sites": 47,
+  "public_phenology_plots": 102,
+  "public_plot_child_locations": 194,
+  "sites_within_frozen_region_year": [
+    "ABBY",
+    "BART",
+    "BLAN",
+    "DELA",
+    "DSNY",
+    "HARV",
+    "JERC",
+    "LENO",
+    "OSBS",
+    "SCBI",
+    "SERC",
+    "TALL",
+    "WREF"
+  ],
+  "regions_within_frozen_region_year": [
+    "11_27",
+    "18_24",
+    "19_23",
+    "19_24",
+    "20_25",
+    "21_26"
+  ],
+  "region_plot_land_classes": {
+    "mainland": 910
+  },
+  "sites_with_point_in_frozen_cell_year": [
+    "DSNY",
+    "OSBS",
+    "SERC"
+  ],
+  "arms_of_plot_locations": [
+    "mainland_dark"
+  ],
+  "teaching_archive_sha256": "a879e2f9ae6f7fed996fe678f67c5625f858530c84c390ecbca771f6ef701027",
+  "teaching_years": [
+    2019
+  ],
+  "teaching_sites": [
+    "BLAN",
+    "SCBI",
+    "SERC"
+  ],
+  "teaching_yes_no_records": 13981,
+  "teaching_shared_species": 2,
+  "teaching_shared_species_records": 3275,
+  "teaching_cell_year_matched": 0,
+  "teaching_cell_year_matched_exact_sample_coordinate": 0,
+  "teaching_cell_year_matched_species": 0,
+  "teaching_cell_year_matched_regions": 0
+}

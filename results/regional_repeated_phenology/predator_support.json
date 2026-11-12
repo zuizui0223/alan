@@ -1,0 +1,9 @@
+{
+  "eligible_candidate_cells": 72,
+  "qualifying_animal_records": 15,
+  "animal_records_with_verified_day": 15,
+  "positive_cell_years": 7,
+  "positive_bounded_open_bout_cell_years": 0,
+  "positive_same_open_day_cell_years": 0,
+  "counts_are_positive_records_not_rates": true
+}

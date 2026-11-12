@@ -1,0 +1,38 @@
+{
+  "dated_binary": {
+    "strata": 0,
+    "species": 0,
+    "regions": 0
+  },
+  "at_least_two_dates": {
+    "strata": 0,
+    "species": 0,
+    "regions": 0
+  },
+  "both_states_across_locations": {
+    "strata": 0,
+    "species": 0,
+    "regions": 0
+  },
+  "both_states_in_repeated_unit": {
+    "strata": 0,
+    "species": 0,
+    "regions": 0
+  },
+  "bounded_flowering_bout": {
+    "strata": 0,
+    "species": 0,
+    "regions": 0
+  },
+  "population_peak_window": {
+    "strata": 0,
+    "species": 0,
+    "regions": 0
+  },
+  "any_arm": {
+    "records": 24924,
+    "species": 86,
+    "regions": 15,
+    "region_years": 37
+  }
+}

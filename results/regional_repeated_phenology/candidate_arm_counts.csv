@@ -1,0 +1,21 @@
+plant,region5,year,land_class,light,days,visits,open_visits,visits_without_open_flowers,units_with_both_states
+Holodiscus discolor,11_27,2021,island,bright,20,21,2,19,1
+Holodiscus discolor,11_27,2021,island,dark,2,2,0,2,0
+Holodiscus discolor,11_27,2021,mainland,bright,66,70,9,61,2
+Holodiscus discolor,11_27,2021,mainland,dark,39,184,14,170,5
+Ilex verticillata,22_26,2024,island,bright,23,63,0,63,0
+Ilex verticillata,22_26,2024,island,dark,16,32,0,32,0
+Ilex verticillata,22_26,2024,mainland,bright,1,2,0,2,0
+Ilex verticillata,22_26,2024,mainland,dark,2,2,1,1,1
+Primula veris,39_29,2021,island,bright,5,6,5,1,1
+Primula veris,39_29,2021,island,dark,2,2,1,1,0
+Primula veris,39_29,2021,mainland,bright,14,18,17,1,1
+Primula veris,39_29,2021,mainland,dark,23,33,30,3,1
+Tanacetum vulgare,39_29,2021,island,bright,1,1,1,0,0
+Tanacetum vulgare,39_29,2021,island,dark,1,1,1,0,0
+Tanacetum vulgare,39_29,2021,mainland,bright,2,2,2,0,0
+Tanacetum vulgare,39_29,2021,mainland,dark,6,6,6,0,0
+Tussilago farfara,39_29,2021,island,bright,2,2,2,0,0
+Tussilago farfara,39_29,2021,island,dark,1,1,1,0,0
+Tussilago farfara,39_29,2021,mainland,bright,16,20,16,4,2
+Tussilago farfara,39_29,2021,mainland,dark,34,46,35,11,1

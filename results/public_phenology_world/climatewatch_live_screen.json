@@ -1,0 +1,17 @@
+{
+  "named_source_categories": 203,
+  "record_totals": {
+    "Araujia sericifera": 27,
+    "Plantago lanceolata": 186
+  },
+  "other_plant_rows": 7214,
+  "other_plant_matched": 44,
+  "focal_year_status_rows": 81,
+  "region_year_status_rows": 3,
+  "region_year_positive": 1,
+  "region_year_negative": 2,
+  "distinct_target_regions": 1,
+  "distinct_shared_plants": 1,
+  "distinct_spot_threads": 3,
+  "same_frozen_cell_year_rows": 0
+}
