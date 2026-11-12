@@ -1,0 +1,24 @@
+{
+  "all_regional_site_years": 835,
+  "occupied_site_years": 37,
+  "focal_species_site_years": 38,
+  "physical_grids": 33,
+  "shared_cell_year": 2025,
+  "shared_land": "island",
+  "shared_dates": {
+    "Asclepias syriaca": "2025-06-28",
+    "Cirsium vulgare": "2025-09-14"
+  },
+  "shared_distance_m": 80,
+  "date_match": 73,
+  "observation_annotation_counts": {
+    "Asclepias syriaca": {
+      "flowering": 5,
+      "no_evidence_of_flowering": 2
+    },
+    "Cirsium vulgare": {
+      "flowering": 3,
+      "no_evidence_of_flowering": 0
+    }
+  }
+}

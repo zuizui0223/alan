@@ -1,0 +1,5 @@
+plant,land_class,observations,distinct_observers,obscured,reported_accuracy,median_reported_accuracy_m,within_100m
+Asclepias syriaca,island,4,4,0,4,314.5,1
+Asclepias syriaca,mainland,56,56,0,54,8.0,51
+Cirsium vulgare,island,6,6,0,6,7.5,6
+Cirsium vulgare,mainland,7,7,0,5,5.0,5

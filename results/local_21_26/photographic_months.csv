@@ -1,0 +1,27 @@
+year,land_class,month,plant,site_years,photos,flowering,background_days
+2019,island,4,Asclepias syriaca,1,1,0,5
+2019,mainland,8,Cirsium vulgare,1,1,1,25
+2019,mainland,11,Asclepias syriaca,1,1,0,8
+2021,island,7,Asclepias syriaca,1,1,1,4
+2021,mainland,7,Asclepias syriaca,2,2,0,28
+2021,mainland,7,Cirsium vulgare,1,1,0,28
+2023,island,8,Cirsium vulgare,1,1,0,4
+2023,mainland,8,Cirsium vulgare,2,2,0,28
+2023,mainland,10,Asclepias syriaca,1,1,0,18
+2024,island,3,Cirsium vulgare,1,1,0,4
+2024,island,4,Cirsium vulgare,1,1,0,11
+2024,island,6,Cirsium vulgare,1,1,0,11
+2024,island,7,Asclepias syriaca,1,1,1,20
+2024,mainland,4,Cirsium vulgare,1,1,0,25
+2024,mainland,5,Cirsium vulgare,2,2,0,31
+2024,mainland,6,Asclepias syriaca,2,2,0,29
+2024,mainland,9,Asclepias syriaca,1,1,0,28
+2025,island,6,Asclepias syriaca,1,1,1,10
+2025,island,9,Cirsium vulgare,2,2,2,12
+2025,mainland,5,Asclepias syriaca,2,2,0,30
+2025,mainland,6,Asclepias syriaca,5,9,1,29
+2025,mainland,7,Asclepias syriaca,7,10,1,28
+2025,mainland,8,Asclepias syriaca,4,5,0,30
+2025,mainland,9,Asclepias syriaca,4,7,0,25
+2025,mainland,10,Asclepias syriaca,3,10,0,23
+2025,mainland,11,Asclepias syriaca,4,6,0,15
