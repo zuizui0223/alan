@@ -1,0 +1,22 @@
+{
+  "flower": {
+    "files": 56,
+    "ordered_hash_digest": "cb0f82f45ccf0491c65f59a2ecc8e1d34671bae83326a4a3bd6c1bd11233d2eb"
+  },
+  "light": {
+    "files": 56,
+    "ordered_hash_digest": "cc2c768c36c1ff6816366885883bdbe685762663281a4f56ff76fcfb7b1d124e"
+  },
+  "moth": {
+    "files": 6,
+    "ordered_hash_digest": "ba0dcd22b1b8df2549a86eb535a4f688a6859686679f4cbf46d8654956211d21"
+  },
+  "modis": {
+    "files": 24,
+    "ordered_hash_digest": "9a18f8c19c5fbdcc9f686fced07b95b866027cf6aa6ec379109e69004f1d4091"
+  },
+  "ndvi": {
+    "files": 1167,
+    "ordered_hash_digest": "92491630ad5aa8f6f6302020291e27cffc7ea761eb5d23366ffa164638e26634"
+  }
+}
