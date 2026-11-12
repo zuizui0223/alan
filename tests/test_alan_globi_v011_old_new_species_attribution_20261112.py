@@ -23,6 +23,7 @@ def fake_sites():
                 for site in range(5):
                     island = float(land_class == "island")
                     loglight = float(rng.uniform(0, 4) + island * 0.15)
+                    n_species = int(rng.integers(4, 10))
                     records.append({
                         "target_id": f"t_{region}_{year}_{land_class}_{site}",
                         "key": f"k_{region}_{year}_{land_class}_{site}",
@@ -33,11 +34,11 @@ def fake_sites():
                         "light_island": loglight * island,
                         "logpop": float(rng.uniform(0, 5)),
                         "logphotos": float(rng.uniform(1, 4)),
-                        "logspecies": np.log1p(6),
+                        "logspecies": float(np.log1p(n_species)),
                         "bio5": float(rng.normal(20, 3)),
                         "lograin": float(rng.uniform(0, 5)),
                         "elevation_km": float(rng.uniform(-0.1, 2)),
-                        "n_species": 6
+                        "n_species": n_species
                     })
     return pd.DataFrame(records)
 
@@ -59,9 +60,9 @@ class TestOldNewAttribution(unittest.TestCase):
         rows = []
         rng = np.random.default_rng(4)
         old_count = []
-        for key in s.key:
+        for key, n_species in zip(s.key, s.n_species):
             cl = rng.choice(["common", "old_only", "new_only", "neither"],
-                            size=6, p=[0.23, 0.32, 0.10, 0.35])
+                            size=int(n_species), p=[0.23, 0.32, 0.10, 0.35])
             old_count.append(int(np.isin(cl, ["common", "old_only"]).sum()))
             rows.extend([{"key": key, "class": a} for a in cl])
         s["all_moth"] = old_count
