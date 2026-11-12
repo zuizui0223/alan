@@ -1,0 +1,58 @@
+{
+  "photos": 8466,
+  "regions": 72,
+  "species": 544,
+  "universe_photos": 61096,
+  "universe_region_years": 195,
+  "universe_regions": 78,
+  "api_observations_found": 8457,
+  "distinct_public_uuids": 8444,
+  "exact_photo_and_date": 8456,
+  "flowering_annotations": 5547,
+  "plants_with_flowering_annotation": 538,
+  "no_signs": 69,
+  "conflicting": 0,
+  "four_arm_species": 10,
+  "four_arm_regions": 3,
+  "four_arm_photos": 65,
+  "four_arm_year_min_days": {
+    "1": 9,
+    "2": 1
+  },
+  "common_month_species": 3,
+  "common_month_regions": 2,
+  "with_background_effort_species": 3,
+  "with_background_effort_regions": 2,
+  "max_common_months": 1,
+  "background_two_day_region_years": 26,
+  "background_two_day_regions": 13,
+  "three_month_background_region_years": 9,
+  "visual": {
+    "open": 39,
+    "no_open_visible": 15,
+    "unresolved": 11
+  },
+  "all_four_visibly_open": [
+    {
+      "plant": "Claytonia sibirica",
+      "region5": "11_27",
+      "year": 2021,
+      "min_days": 1
+    },
+    {
+      "plant": "Helianthus debilis",
+      "region5": "19_23",
+      "year": 2025,
+      "min_days": 1
+    },
+    {
+      "plant": "Vaccinium corymbosum",
+      "region5": "21_26",
+      "year": 2024,
+      "min_days": 1
+    }
+  ],
+  "exif": {
+    "no_tag_in_header": 65
+  }
+}
