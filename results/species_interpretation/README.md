@@ -30,3 +30,5 @@
 ```
 python scripts/analysis/alan_shared_species_contributions.py INPUTS SIGNED results/species_interpretation direct_species_trait_ledger.csv.gz
 ```
+
+Targeted primary-source follow-up added four species outside the original 49, bringing documented transport to at least 53 of 544. All four fall outside the 64-species pollen-limitation subset. See the [four additions](../mechanism_exemplars/transport_updates.csv) and [case synthesis](../../docs/ALAN_REPRESENTATIVE_MECHANISMS.md).

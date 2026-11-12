@@ -1,0 +1,10 @@
+plant,mechanism,study_doi,legacy_positive,v011_positive,island_site_years,mainland_site_years,island_pp,mainland_pp,gap_pp,paired_regions,paired_region_years,paired_region_year_ids,bilateral_region_year_months,region_years_with_all_four_photo_arms
+Silene latifolia,nursery_pollination_under_lighting,10.1038/s41598-020-75471-1,True,False,3,18,-0.0742528743470493,-0.0195817248306464,-0.0546711495164028,0,0,,0,0
+Vaccinium angustifolium,night_service_and_daytime_redundancy,10.1139/cjps-2021-0216,True,False,2,6,-0.1047801769065483,-0.0011745118696361,-0.1036056650369121,1,2,21_26:2023|21_26:2024,0,0
+Clerodendrum trichotomum,visitor_frequency_vs_effective_pollination,10.1371/journal.pone.0033803,True,False,3,2,-0.0014779142296638,0.0012062950146386,-0.0026842092443025,0,0,,0,0
+Saponaria officinalis,measured_pollen_delivery_by_a_frequent_visitor,10.1016/j.flora.2005.07.010,True,False,1,10,0.020153899086912,0.03096602291143,-0.0108121238245179,1,1,21_26:2025,0,0
+Datura wrightii,effective_hawkmoth_pollination,10.1093/aob/mcp053,True,False,3,32,0.0571326731617911,0.0088772588559402,0.0482554143058509,1,2,12_24:2019|12_24:2024,0,0
+Veronica persica,seasonal_flower_availability_under_lighting,10.1016/j.biocon.2025.111650,True,False,5,27,0.0049654387870058,0.0274565784581583,-0.0224911396711524,1,1,61_25:2025,0,0
+Heracleum maximum,adult_moth_prey_and_shared_flower_candidate,10.1111/een.13399,True,True,5,17,-0.0959974272952124,-0.0771226596193852,-0.0188747676758272,1,2,11_27:2023|11_27:2025,1,0
+Lonicera implexa,within_island_variation_in_floral_fit,10.1093/aobpla/plz078,True,True,6,8,-0.0959465108166514,-0.0012936396700837,-0.0946528711465677,1,1,37_26:2025,1,0
+Plantago lanceolata,wind_pollination_and_moth_carriage,10.6084/m9.figshare.c.4955030,True,True,6,35,0.0229955365806785,0.0627652562793297,-0.0397697196986512,3,3,11_27:2025|12_24:2025|21_26:2021,1,0

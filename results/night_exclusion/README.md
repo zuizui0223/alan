@@ -25,3 +25,5 @@
 ```
 python scripts/analysis/alan_night_exclusion.py INPUTS SIGNED SOURCE_FOLDER results/night_exclusion
 ```
+
+For Eupatorium perfoliatum, the archived extraction gives −69.6% while the raw unadjusted comparison gives −37.2%. Reproduction was studied in 2019 and visitor video was collected in 2022. See the [source audit](../../docs/ALAN_NIGHT_EXPERIMENT_BRIDGES.md).

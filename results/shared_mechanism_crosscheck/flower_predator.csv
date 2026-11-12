@@ -1,0 +1,6 @@
+plant,n_status,n_open,eligible_candidate_cells,qualifying_animal_records,animal_records_with_verified_day,positive_cell_years,positive_bounded_open_bout_cell_years,positive_same_open_day_cell_years,counts_are_positive_records_not_rates,predator_labels
+Holodiscus discolor,277,25,6,0,0,0,0,0,True,
+Ilex verticillata,99,1,5,1,1,0,0,0,True,
+Primula veris,59,53,35,9,9,5,0,0,True,Argiope bruennichi
+Tanacetum vulgare,10,10,8,1,1,1,0,0,True,Argiope bruennichi
+Tussilago farfara,69,54,39,8,8,4,0,0,True,Argiope bruennichi|Vespa velutina
