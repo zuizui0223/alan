@@ -1,0 +1,99 @@
+name: ALAN fixed original 10698 photo sites old/new GloBI label exact delta attribution
+on:
+  push:
+    branches: [analysis/alan-v011-labeldelta-attribution-20261112]
+    paths:
+      - .github/workflows/alan-globi-v011-species-label-delta.yml
+      - scripts/analysis/alan_globi_v011_old_new_species_attribution_20261112.py
+      - tests/test_alan_globi_v011_old_new_species_attribution_20261112.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  actual-original-site-and-species-attribution:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Install pinned scientific dependencies and execute synthetic numerical tests
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 geopandas==1.1.2 shapely==2.1.2 requests==2.32.3
+          python -m py_compile scripts/analysis/alan_globi_v011_old_new_species_attribution_20261112.py
+          python -m unittest discover -s tests -p 'test_alan_globi_v011_old_new_species_attribution_20261112.py' -v
+      - name: Restore unchanged historical original photo/taxonomy/GloBI from signed MOIS Actions
+        run: |
+          set -euo pipefail
+          mkdir -p signed/canonical signed/taxonomy inputs/old
+          gh run download 41007444495 --repo zuizui0223/mois --name mois-nohuman-canonical-climate-joined-20261030 --dir signed/canonical
+          gh run download 39225659840 --repo zuizui0223/mois --name mois-real350399-Kew-WCVP-native-source-TDWG3-no-point-status --dir signed/taxonomy
+          gh run download 41976552977 --repo zuizui0223/mois --name mois-ALAN-GloBI-stage2-actual-records-2019-2024-supported-source --dir inputs/old
+      - name: Restore original year-matched satellite and population source
+        run: |
+          set -euo pipefail
+          for yr in 2019 2021 2023; do
+            mkdir -p "inputs/g$yr" "inputs/p$yr"
+            gh run download 42337911536 --repo zuizui0223/mois --name "mois-original-$yr-global-mainland-island-monthly-VIIRS-source-SHA" --dir "inputs/g$yr"
+            gh run download 42338121269 --repo zuizui0223/mois --name "mois-original-$yr-R2024B-UC-global-popdensity-photo-source" --dir "inputs/p$yr"
+          done
+          mkdir -p inputs/g2024 inputs/c2024 inputs/p2024 inputs/v2025
+          gh run download 42328254130 --repo zuizui0223/mois --name mois-global2024-original4096-WPGlobal2-2024-VIIRS-raw-SHA --dir inputs/g2024
+          gh run download 42328567038 --repo zuizui0223/mois --name mois-global2024-rest62360-original-VIIRS-G2-all66456-source --dir inputs/c2024
+          gh run download 42333953557 --repo zuizui0223/mois --name mois-2024-WorldPop-UC-R2024B-full-original-66456-population-source --dir inputs/p2024
+          gh run download 42337703150 --repo zuizui0223/mois --name mois-2025-original73463-mainland-island-full-VIIRS-and-R2024B-UC-source --dir inputs/v2025
+      - name: Fail closed on all original downloaded source file digests
+        run: |
+          python - <<'PY'
+          import json, hashlib
+          from pathlib import Path
+          manifest=json.loads(Path('config/alan_v011_fiveyear_input_sha256.json').read_text())
+          skip={
+            'inputs/wcvp.zip',
+            'inputs/alan-GloBI-v011-full-source-moth-plant-positive-flags/GloBI_v011_positive_species_flags.csv.gz'
+          }
+          for rel,expected in manifest.items():
+              if rel in skip: continue
+              p=Path(rel)
+              assert p.is_file(), rel
+              assert hashlib.sha256(p.read_bytes()).hexdigest()==expected,rel
+          assert len(manifest)-len(skip)>=17
+          print("VERIFIED_FROZEN_2019_2025_SOURCE_DIGESTS",len(manifest)-len(skip))
+          PY
+      - name: Execute real old-v0.11 source label change and geographic-species contribution decomposition
+        run: |
+          set -euo pipefail
+          mkdir -p outputs
+          python scripts/analysis/alan_globi_v011_old_new_species_attribution_20261112.py \
+            inputs signed outputs/alan_old_new_globi_species_attribution_20261112_real.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          obj=json.loads(Path('outputs/alan_old_new_globi_species_attribution_20261112_real.json').read_text())
+          fit=obj['additive_component_fits']
+          key='beta_island_minus_mainland_slope_pp_per_log1p'
+          assert obj['status']=='AUTHENTIC_SOURCE_RECOMPUTED_EXPLORATORY'
+          assert abs(fit['published_old'][key]+1.9017206220556133)<1e-8
+          assert abs(fit['updated_v011'][key]-0.7502573359160855)<1e-8
+          assert abs(fit['updated_minus_published'][key]-2.6519779579717015)<1e-8
+          supp={r['class']:r['species'] for r in obj['additive_contribution_diagnostics']['species_support_by_record_class']}
+          assert supp['common']==612 and supp['old_only']==713 and supp['new_only']==132
+          assert sum(supp.values())==8581
+          print('ACTUAL_713_LOST_132_ADDED_GLOBI_SOURCE_ATTRIBUTION_COMPLETE')
+          PY
+      - name: Upload aggregate-only science output (no private photo location or taxon-by-site rows)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-source-verified-v011-old713-new132-attribution-20261112
+          path: outputs/alan_old_new_globi_species_attribution_20261112_real.json
+          retention-days: 90
+          if-no-files-found: warn
