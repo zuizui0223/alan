@@ -237,6 +237,51 @@ def old_only_evidence_sources(old: pd.DataFrame, sp: pd.DataFrame) -> dict:
     }
 
 
+
+def origin_contribution_fits(s: pd.DataFrame, sp: pd.DataFrame,
+                             old: pd.DataFrame, old_only_reference_beta: float) -> dict:
+    """Split the old-only negative component by available source-title evidence.
+
+    This DOES NOT establish that any excluded paper is invalid, independent of
+    others, nor whether the exact source edge exists under an alternate v0.11 ID.
+    """
+    oldonly = sp.loc[sp["class"].eq("old_only")].copy()
+    source = old.loc[old.guild.eq("moth_family_visit") &
+                     old.plant_name.isin(oldonly.wcvp_accepted_name)].copy()
+    source["inat_title"] = source.study_title.fillna("").str.lower().str.contains(
+        "inaturalist", regex=False)
+    title_only_inat = source.groupby("plant_name").inat_title.all()
+    assert len(title_only_inat) == 713
+    oldonly["inat_title_only"] = oldonly.wcvp_accepted_name.map(title_only_inat)
+    assert oldonly.inat_title_only.notna().all()
+    results = {}
+    summed_betas = 0.0
+    for label, mask in [
+        ("old_only_iNaturalist_title_only", oldonly.inat_title_only.eq(True)),
+        ("old_only_has_non_iNaturalist_title", oldonly.inat_title_only.eq(False))
+    ]:
+        chosen = oldonly.loc[mask]
+        cnt = chosen.groupby("key").size().reindex(s.key, fill_value=0).to_numpy()
+        fitted = fit(s.assign(all_moth=cnt), "all", "moth", balance=True)
+        assert fitted.get("estimable", False)
+        delta = -float(fitted[BETA])
+        results[label] = {
+            "accepted_species": int(chosen[ID].nunique()),
+            "observed_species_site_years": len(chosen),
+            "original_island_minus_mainland_beta_contribution": fitted,
+            "contribution_to_updated_minus_old": delta,
+        }
+        summed_betas += fitted[BETA]
+    assert sorted(r["accepted_species"] for r in results.values()) == [311, 402]
+    np.testing.assert_allclose(summed_betas, old_only_reference_beta, atol=1e-8, rtol=0)
+    return {
+        "fits": results,
+        "interpretation_limit": ("Substr study_title source provenance in original bounded "
+                                 "GloBI only; not proof of erroneous records, independent "
+                                 "field experiments, true absence in v0.11, or biology.")
+    }
+
+
 def run(inputs: Path, signed: Path, outfile: Path) -> dict:
     if outfile.exists():
         raise FileExistsError(f"Refusing to overwrite source output: {outfile}")
@@ -271,6 +316,8 @@ def run(inputs: Path, signed: Path, outfile: Path) -> dict:
         "additive_component_fits": models,
         "additive_contribution_diagnostics": species,
         "published_old_only_study_origin_proxy": old_only_evidence_sources(legacy, z),
+        "old_only_source_title_group_beta_decomposition": origin_contribution_fits(
+            s, z, legacy, models["old_only"][BETA]),
         "interpretation": {
             "contribution_measure": ("Regression-geometry-weighted species-presence "
                                      "contribution to observed photographic-GloBI evidence "
