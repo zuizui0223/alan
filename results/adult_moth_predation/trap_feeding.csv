@@ -1,0 +1,4 @@
+country,habitat,reported_fed_on,coverage,year,region5,threshold,land_class,valid_months,radiance,light,traps,trap_days,moths_caught_by_trap,reported_fraction_all_trap_catches
+Por,forest,5.0,forest_total,2025,34_25,2.0600000025,mainland,4,0.75,dark,5,364,366,0.01366120218579235
+Por,urban,,event_count_unreported,2025,34_25,2.0600000025,mainland,4,32.9949998855,bright,5,365,114,
+It,forest,3.0,event_trap_subset_unidentified,2025,38_27,0.579999998,mainland,4,0.9100000265,bright,10,804,3978,

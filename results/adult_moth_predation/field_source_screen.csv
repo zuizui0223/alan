@@ -1,0 +1,9 @@
+source,years,regions,method,prey_context,denominator,outcome,land_class,light
+Yuen and Bonebrake,2015|2016,58_22,video,free_adults,approaches and camera-hours,direct_outcomes,,
+Sakagami attack trial,2020,62_24,video,free_adults,moth encounters and camera-hours,direct_outcomes,island,
+Sakagami 2019 Honshu localities,2019,62_24|63_24,observations and video,free_adults,event times not linked to common effort for each locality,opportunistic_events,island,
+Diaz and Long,2021,19_25,video,free_adults,targeted hunting observations,selected_capture_clips,mainland,
+Corcoran and colleagues field experiment,2010|2011,14_24,field recording,field_releases,observed encounters,direct_outcomes,mainland,
+Bourougaaoui Portugal forest,2025,34_25,camera trap,immobilized_adults,all 366 forest trap catches,reported_feeding,mainland,dark
+Bourougaaoui Portugal urban,2025,34_25,camera trap,immobilized_adults,114 urban trap catches,numerator_unknown,mainland,bright
+Bourougaaoui Italy forest,2025,38_27,camera trap,immobilized_adults,audited trap denominator unresolved,reported_feeding,mainland,bright
