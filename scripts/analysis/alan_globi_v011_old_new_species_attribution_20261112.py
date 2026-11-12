@@ -21,6 +21,7 @@ import numpy as np
 import pandas as pd
 
 from alan_gecko_primary_fiveyear import primary
+from alan_globi_v011_713_source_commonality_20261112 import commonality
 from alan_globi_crossland_light_robust_20261111 import fit
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -316,6 +317,7 @@ def run(inputs: Path, signed: Path, outfile: Path) -> dict:
         "additive_component_fits": models,
         "additive_contribution_diagnostics": species,
         "published_old_only_study_origin_proxy": old_only_evidence_sources(legacy, z),
+        "old_only_genus_and_guild_documentation_commonality": commonality(z, legacy),
         "old_only_source_title_group_beta_decomposition": origin_contribution_fits(
             s, z, legacy, models["old_only"][BETA]),
         "interpretation": {
