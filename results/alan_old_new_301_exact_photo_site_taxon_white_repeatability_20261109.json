@@ -1,0 +1,45 @@
+{
+  "schema": "ALAN_real_old_vs_new_photographic_taxon_composition_301_exact_island_cell_years_20261109_v1",
+  "source_run": "https://github.com/zuizui0223/alan/actions/runs/42577690450",
+  "run_success": true,
+  "artifact_id": 13655213875,
+  "artifact_name": "alan-new36449-genuine-measured-ROI9-island-area-nightlight-observational-replication",
+  "original_source_artifact_JSON_SHA256": "ec3fa87ffce745d2198d58aa17b93b079cfdbdd864b8ca9049a16a6da492df03",
+  "source_original_photo_model": "same FCP original nine-palette ROI9 source, original same-year VIIRS+WorldPop and WCVP accepted taxonomy",
+  "overlap_population": {
+    "old_historical_main_original_strict_island_photo_cell_years": 710,
+    "new_independent_source_original_strict_island_photo_cell_years": 1137,
+    "old_historical_main_source_GSHHG_islands": 101,
+    "new_source_strict_GSHHG_islands": 75,
+    "old_and_new_sources_GSHHG_islands_both_present": 44,
+    "exact_same_island_same_0p05degree_site_same_original_observation_year_cells": 301,
+    "exact_shared_site_years_independent_GSHHG_islands": 33,
+    "original_photo_IDs_and_observation_UUIDs_identical_across_sources": 0
+  },
+  "same_site_year_photo_species_concordance": {
+    "old_original_numeric_FCP_ROI9_accepted_taxon_cell_pairs": 1572,
+    "new_original_numeric_FCP_ROI9_accepted_taxon_cell_pairs": 2372,
+    "shared_accepted_taxon_x_exact_photo_cell_year_pairs": 116,
+    "exact_photo_site_years_with_at_least_one_same_accepted_taxon_recorded_in_both": 87,
+    "exact_photo_site_years_with_no_accepted_taxon_in_both": 214,
+    "fraction_exact_photo_site_years_with_no_accepted_taxon_in_both": 0.7109634551495017,
+    "same_site_year_photographed_taxon_set_jaccard_mean": 0.02985641118202691,
+    "same_site_year_photographed_taxon_set_jaccard_median": 0
+  },
+  "same_site_year_photo_white_roi_measurement": {
+    "pearson_correlation_old_new_photographed_species_equal_whiteness": 0.24404037283623348,
+    "mean_new_minus_old_photo_white_pp": 0.5142179347109389,
+    "median_absolute_new_minus_old_photo_white_pp": 14.335209730410796,
+    "p90_absolute_new_minus_old_photo_white_pp": 38.08156912335594,
+    "matched_same_taxon_same_site_year_median_absolute_photo_white_difference_pp": 11.310634344015261
+  },
+  "scientific_interpretation": {
+    "photographed_species_identity_composition_is_stable_at_same_site_year": false,
+    "actual_field_plant_species_turnover_or_loss_demonstrated": false,
+    "same_taxon_photo_color_difference_proves_genetic_evolution": false,
+    "ALAN_causes_photo_white_differences_demonstrated": false,
+    "species_not_photographed_is_not_treated_as_field_absence": true,
+    "new_photo_source_nonrandom_island_site_targeted": true,
+    "historical_main_ALAN_coefficients_unmodified": true
+  }
+}

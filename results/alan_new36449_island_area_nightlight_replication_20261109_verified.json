@@ -1,0 +1,115 @@
+{
+  "schema": "ALAN_independent_new_source_island_area_nightlight_replication_20261109_v1",
+  "execution": "https://github.com/zuizui0223/alan/actions/runs/42576464001",
+  "execution_success": true,
+  "artifact_id": 13655871056,
+  "artifact_name": "alan-new36449-genuine-measured-ROI9-island-area-nightlight-observational-replication",
+  "artifact_original_JSON_SHA256": "c6a7daeecf84dc66f060f9f2b6e921ce84a2ec760c0a48a9e1776d06fab1e2af",
+  "frozen_photo_source": {
+    "new_observation_UUIDs": 36449,
+    "actual_nine_palette_flower_ROI9_success": 13842,
+    "strict_source_photo_cell_years": 1137,
+    "distinct_strict_source_islands": 75,
+    "original_FCP_model_git_blob": "b1d7091db44682559bbe4b48a9f3b8db648501a6",
+    "source_tier06_strict_sites": 156,
+    "source_tier07_strict_sites": 769
+  },
+  "observational_model": {
+    "formula": "photographic species-equal white ROI percentage points ~ log(1+year-VIIRS median) + log_light×centered log10(island area km2) + log_light×centered log10(1+nearest mainland coast-vertex km) + log(1+year-WorldPop UC density) + WorldClim BIO5 + log(1+BIO12) + elevation + log(1+source photo opportunities) + island fixed effects + original observation-year fixed effects",
+    "nominal_CI": "island-clustered t-based 95 percent intervals",
+    "photo_units": "photo-cell year (not original image or independent flora species)",
+    "island_equal_weight": "each sampled independent GSHHG island has total weight one",
+    "multi_site_requirement": "at least two actual different 0.05-degree geographic sites and two nightlight levels per GSHHG island",
+    "historical_main_comparison": {
+      "strict_original_photo_cells_years": 650,
+      "independent_islands": 44,
+      "island_equal_area_light_beta_pp": 5.383529291134088,
+      "ci_low_pp": 2.677832159052614,
+      "ci_high_pp": 8.08922642321556,
+      "nominal_p": 0.0002357540722017001,
+      "meaning": "historical-main 2019/2021/2023/2024/2025 original-photo 5-photo/3-species island cohort; not exchangeable with independently island-targeted new source"
+    },
+    "new_tier06": {
+      "strict_islands": 12,
+      "strict_cells": 156,
+      "spatially_repeated_islands": 8,
+      "spatial_cells": 152,
+      "estimable": false,
+      "reason": "only eight independent multi-site GSHHG islands; below preregistered ten-island model threshold"
+    },
+    "new_tier07": {
+      "strict_islands": 51,
+      "strict_cells": 769,
+      "model_islands": 25,
+      "model_cells": 735,
+      "cell_equal_area_beta_pp": 0.4254734119423182,
+      "cell_equal_area_CI": [
+        -2.028314055967048,
+        2.8792608798516843
+      ],
+      "island_equal_area_beta_pp": -0.4080066018901598,
+      "island_equal_area_CI": [
+        -3.1019307265766574,
+        2.2859175227963378
+      ],
+      "island_equal_area_nominal_p": 0.7572947972618597,
+      "island_equal_mainland_distance_beta_pp": 1.4420493335286335,
+      "island_equal_mainland_distance_CI": [
+        -1.145996376699772,
+        4.030095043757039
+      ],
+      "largest_island_share_of_model_cells": 0.46258503401360546
+    },
+    "new_cross_tier_union": {
+      "strict_islands": 75,
+      "strict_cells": 1137,
+      "model_islands": 35,
+      "model_cells": 1089,
+      "cell_equal_area_beta_pp": -0.2890158865391892,
+      "cell_equal_area_CI": [
+        -2.7186298330905934,
+        2.140598060012215
+      ],
+      "cell_equal_area_nominal_p": 0.8104286580557554,
+      "island_equal_area_beta_pp": -1.090476086034753,
+      "island_equal_area_CI": [
+        -4.333250721638243,
+        2.1522985495687363
+      ],
+      "island_equal_area_nominal_p": 0.4989848042658682,
+      "island_equal_mainland_distance_beta_pp": 0.9147829021055439,
+      "island_equal_mainland_distance_CI": [
+        -1.400296206640241,
+        3.2298620108513285
+      ],
+      "island_equal_mainland_distance_nominal_p": 0.4275394581278108,
+      "island_equal_median_area_loglight_beta_pp": -0.48379769575966247,
+      "island_equal_median_area_loglight_CI": [
+        -5.324699472760247,
+        4.357104081240922
+      ],
+      "largest_island_share_of_model_cells": 0.46005509641873277,
+      "leave_largest_island_out": {
+        "model_islands": 34,
+        "model_cells": 588,
+        "island_equal_area_beta_pp": -1.3125909928744748,
+        "island_equal_area_CI": [
+          -4.948921436972943,
+          2.323739451223993
+        ],
+        "nominal_p": 0.4678973523936034
+      }
+    }
+  },
+  "ecological_interpretation": {
+    "replication_of_historical_positive_area_x_ALAN": "not reproduced by the new island/site-targeted photographed species-equal ROI9 source",
+    "positive_nightlight_effect_excluded": "no; CI includes positive and negative slopes; not evidence of a zero causal effect",
+    "formal_old_vs_new_coefficient_difference_test_completed": false,
+    "source_detection_and_botanical_stage_limit": "original photo ROI9 not independently verified native flowering petals, pigment genotype or effective nocturnal pollination",
+    "design_dependence": "observational photos and selected island/site sampling schemes differ; the geographic and taxonomic support is not exchangeable with old historical-main",
+    "new_source_only_repeated_island_coverage": "35 of 75 strict-source islands have at least two genuine different geographic sites; one largest island supplies 46% of model cell years"
+  },
+  "photo_pixels_redownloaded_or_reinferred_in_this_test": 0,
+  "historical_main_original_ALAN_coefficients_modified": false,
+  "mois_moisture_only_repository_modified": false
+}
