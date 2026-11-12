@@ -1,0 +1,186 @@
+name: ALAN tier08 actual 910 novel original RGB ROI9 photos with SHA source and two parallel warm workers
+on:
+  push:
+    branches: [analysis/alan-tier08-balanced-independent-photo-source-20261109]
+    paths:
+      - .github/workflows/alan-tier08-910-original-rgb-roi9.yml
+      - scripts/acquisition/alan_tier08_new910_original_rgb_roi9_20261109.py
+      - tests/test_alan_tier08_new910_original_rgb_roi9_20261109.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify synthetic tests and freeze original 910 photo IDs before RGB acquisition
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          python -m unittest discover -s tests -p test_alan_tier08_new910_original_rgb_roi9_20261109.py -v
+          python -m py_compile scripts/acquisition/alan_tier08_new910_original_rgb_roi9_20261109.py
+          mkdir -p signed
+          gh run download 42584655750 --repo zuizui0223/alan \
+            --name alan-full93m-tier08-balanced-light-pair-independent-original-photo-source --dir signed
+          echo '9d2e60b9c9bdb2fb56c1c17dd69fca5b6c606d1e64d707020d070dd82e49a552  signed/tier08_precolour_reference_and_area_light_paired_queue.csv.gz' | sha256sum -c -
+          echo 'b34a8a564dc9ba3f02934e1e04077b4655cf8a9333ecefcb6bc93c5d9dc757fd  signed/tier08_all_new_envmatched_island_observations.csv.gz' | sha256sum -c -
+          python -m scripts.acquisition.alan_tier08_new910_original_rgb_roi9_20261109 prepare \
+            --queue signed/tier08_precolour_reference_and_area_light_paired_queue.csv.gz \
+            --receipt signed/ALAN_tier08_immutable_precolour_source_receipt.json \
+            --out source
+          test "$(find source/shards -name 'shard-*.csv' | wc -l)" -eq 8
+          echo 'ALAN_TIER08_PRECOLOUR_910_SOURCE_SHARDS_SHA_LOCKED'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-tier08-910-immutable-original-photo-work-shards
+          path: source/
+          retention-days: 90
+          if-no-files-found: error
+  original-rgb:
+    needs: source-preflight
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        group: [0, 1]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 83
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GROUP: ${{ matrix.group }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      TORCH_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Restore immutable source unit photo IDs and select only four source shards
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          gh run download "$GITHUB_RUN_ID" --repo zuizui0223/alan \
+            --name alan-tier08-910-immutable-original-photo-work-shards --dir source
+          python - <<'PY'
+          import json, os
+          from scripts.acquisition import mois_full_index_real_original_photo_measure as worker
+          g=int(os.environ['GROUP']); m=json.load(open('source/manifest.json'))
+          assert m['new_photo_attempts_planned']==910
+          assert m['source_precolour_queue_SHA256']=='9d2e60b9c9bdb2fb56c1c17dd69fca5b6c606d1e64d707020d070dd82e49a552'
+          counts=[len(worker.input_rows('source',i)[0]) for i in range(g*4,g*4+4)]
+          assert sum(counts)==(512 if g==0 else 398),counts
+          print('ALAN_ORIGINAL_910_IMAGE_WORK_GROUP_SHA_VALID',g,counts,flush=True)
+          PY
+      - name: Bootstrap exactly the old frozen FCP YOLO11 and EfficientSAM original ROI model
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          git init -q "$RUNNER_TEMP/fcp"
+          git -C "$RUNNER_TEMP/fcp" remote add origin https://github.com/zuizui0223/fcp.git
+          git -C "$RUNNER_TEMP/fcp" fetch -q --no-tags --depth=1 origin 74bf69a52cd68bfc7dbe6158f4a681235caa6ca0
+          git -C "$RUNNER_TEMP/fcp" checkout -q --detach FETCH_HEAD
+          python -m pip install -q pyarrow==19.0.1 Pillow==11.1.0 ultralytics==8.4.112 onnxruntime==1.23.2 scikit-image==0.25.2
+          (cd "$RUNNER_TEMP/fcp" && bash scripts/acquisition/bootstrap_fcp_original_roi_v4.sh --full --sam-dir "$RUNNER_TEMP/sam")
+          test -f "$RUNNER_TEMP/fcp/scripts/analysis/measure_random_photo_first_blind_partition.py"
+          test -f "$RUNNER_TEMP/fcp/data/atlas/qualification/roi_v4_training/jrc_yolo11n_last_v4.pt"
+      - name: Retrieve actual original S3 RGB pixels, classify flower regions, and measure numeric ROI9
+        timeout-minutes: 61
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$GITHUB_WORKSPACE:$RUNNER_TEMP/fcp"
+          python -m scripts.acquisition.mois_warm_original_roi \
+            --source source --runtime "$RUNNER_TEMP/fcp" --sam "$RUNNER_TEMP/sam" \
+            --group "$GROUP" --output measured
+          python - <<'PY'
+          import os,json
+          from pathlib import Path
+          from scripts.acquisition import mois_full_index_real_original_photo_measure as worker
+          g=int(os.environ["GROUP"])
+          for i in range(g*4,g*4+4):
+              fixed,m=worker.input_rows('source',i)
+              p=Path('measured')/f'shard_{i:03d}'
+              r=json.loads((p/'receipt.json').read_text())
+              assert r["source_sha256"]==m["photo_shard_sha256"][str(i)]
+              assert r["photos_sha256"]==worker.sha(p/'photos.csv')
+              assert r["method"]["measurement_git_blob"]=="b1d7091db44682559bbe4b48a9f3b8db648501a6"
+              assert r["attempted"]==len(fixed)
+          print("ALAN_TIER08_NEW910_GENUINE_ORIGINAL_IMAGE_WORK_GROUP_COMPLETE",g,flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-tier08-910-genuine-original-ROI9-measured-group-${{ matrix.group }}
+          path: measured/
+          retention-days: 90
+          if-no-files-found: warn
+  collect:
+    needs: [source-preflight, original-rgb]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Restore source-verified 910 real original photo ROI outcomes without re-downloading pixels
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          gh run download "$GITHUB_RUN_ID" --repo zuizui0223/alan \
+            --name alan-tier08-910-immutable-original-photo-work-shards --dir source
+          mkdir -p measured
+          for group in 0 1; do
+            gh run download "$GITHUB_RUN_ID" --repo zuizui0223/alan \
+              --name "alan-tier08-910-genuine-original-ROI9-measured-group-$group" --dir measured
+          done
+          python -m scripts.acquisition.alan_tier08_new910_original_rgb_roi9_20261109 collect \
+            --source source --measured measured --out finished
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('finished/ALAN_tier08_new910_real_original_ROI9_receipt.json').read_text())
+          assert r['schema']=='ALAN_tier08_910_real_original_photo_FCP_ROI9_v1'
+          assert r['original_photo_attempts']==910
+          assert r['independent_new_original_observation_UUIDs']==910
+          assert r['real_numeric_original_flower_ROI9_success']+r['real_original_technical_unknown_photos']==910
+          assert r['source_reference_photo_attempts']==256 and r['source_sameyear_pair_photo_attempts']==654
+          assert r['signed_original_128photo_worker_receipts']==8
+          assert not r['raw_original_rgb_image_bytes_persisted']
+          print('ALAN_TIER08_910_REAL_ORIGINAL_FCP_ROI9_SOURCE_VERIFIED',
+                {k:r[k] for k in ('original_photo_attempts',
+                     'real_numeric_original_flower_ROI9_success',
+                     'real_original_technical_unknown_photos',
+                     'real_strict_photo_cell_years_targeted_pairs',
+                     'targeted_island_years_with_two_strict_spatial_sites')},flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-tier08-910-authentic-original-ROI9-finished-and-source-SHA-receipts
+          path: |
+            finished/
+            source/manifest.json
+            measured/shard_*/receipt.json
+            measured/shard_*/photos.csv
+          retention-days: 90
+          if-no-files-found: warn

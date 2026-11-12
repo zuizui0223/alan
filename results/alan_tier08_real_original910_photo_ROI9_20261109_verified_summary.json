@@ -1,0 +1,31 @@
+{
+  "schema": "ALAN_tier08_910_original_RGB_photo_ROI9_verified_summary_v1",
+  "source_precolour_run": "https://github.com/zuizui0223/alan/actions/runs/42584655750",
+  "real_original_image_run": "https://github.com/zuizui0223/alan/actions/runs/42585672818",
+  "real_image_run_status": "success",
+  "artifact_id": 13660586946,
+  "genuine_frozen_source_photo_queue_sha256": "9d2e60b9c9bdb2fb56c1c17dd69fca5b6c606d1e64d707020d070dd82e49a552",
+  "real_original_photo_csv_sha256": "37a329e54b0bbced86e40ed16d45ca095e530aa4faa64b3aa674c29023f8c1f9",
+  "photo_opportunities": 910,
+  "original_photo_observation_UUIDs_unique_within_tier08": 910,
+  "actually_measured_numeric_FCP_nine_palette_flower_ROI": 330,
+  "technical_unknown_images": 580,
+  "retrieval_failures": 0,
+  "ROI_or_flip_gate_failures": 551,
+  "ambiguous_palette_failures": 29,
+  "reference_precolour_arm_photos": 256,
+  "targeted_sameyear_two_site_area_light_arm_photos": 654,
+  "source_islands_with_photo_attempts": 55,
+  "original_source_target_site_years": 300,
+  "actual_strict_5attempt_3numeric_3accepted_WCVP_site_years": 43,
+  "strict_sites_targeted_pair_arm": 41,
+  "strict_sites_reference_arm": 2,
+  "targeted_GSHHG_island_years_with_two_strict_spatial_sites": 15,
+  "true_FCP_evaluator_git_blob": "b1d7091db44682559bbe4b48a9f3b8db648501a6",
+  "caveats": [
+    "The 910 original photo identities are unique within the signed tier08 arm, but historical-main observation ID vs original UUID crosswalk is NOT yet verified.",
+    "A previous audit found 329 shared exact photo IDs between historical-main and tier06/07. No tier08 photo-ID crosssource collision audit has yet been completed.",
+    "Cannot add 910 photos, 330 numerical ROI outcomes, or 43 strict site-years to the previous pooled regression denominator without exact crosssource photo-ID and site-year deduplication.",
+    "Source is geographically selected, does not measure confirmed native individual flower colour prevalence or causal nighttime pollination."
+  ]
+}

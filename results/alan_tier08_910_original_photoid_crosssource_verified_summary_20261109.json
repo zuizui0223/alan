@@ -1,0 +1,31 @@
+{
+  "schema": "ALAN_tier08_910_original_photoID_crosssource_reuse_audit_v1",
+  "run": "https://github.com/zuizui0223/alan/actions/runs/42590547060",
+  "status": "success",
+  "source_original_910_RGB_inference_run": "https://github.com/zuizui0223/alan/actions/runs/42585672818",
+  "artifact_id": 13660832655,
+  "before": {
+    "original_photo_attempts": 910,
+    "original_real_nine_palette_success": 330,
+    "strict_island_photo_site_years": 43,
+    "targeted_strict_island_years_with_two_sites": 15
+  },
+  "photo_id_overlap": {
+    "canonical_all": 7,
+    "historical_main": 7,
+    "tier06": 0,
+    "tier07": 0,
+    "total_unique_tier08_collision": 7
+  },
+  "after_exact_photo_id_dedup": {
+    "original_photo_id_unique_novel_to_canonical_and_tier06_07": 903,
+    "real_numeric_original_flower_ROI9": 327,
+    "strict_sites_in_tier08_source_alone": 43,
+    "strict_targeted_pairs_island_years": 15
+  },
+  "conditions": [
+    "Exact photo ID dedup not an authenticated legacy observation-ID to modern UUID crosswalk; further different photo IDs can represent the same observation.",
+    "No additional historic photo download or reinference during crosssource audit.",
+    "43 source-alone strict sites are not automatically 43 newly added unique combined island site-years; successful three-arm pooled regression adds 27."
+  ]
+}
