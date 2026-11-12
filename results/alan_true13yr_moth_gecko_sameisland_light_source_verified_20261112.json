@@ -1,0 +1,124 @@
+{
+  "schema": "ALAN_moth_butterfly_x_gecko_skink_photo_fraction_prior_PCNl_original_same_island_cell_2013_2025_v1",
+  "status": "REAL_GBIF_ORIGINAL_SOURCE_EXACT_SHA_AND_MODEL_REPRODUCED_GITHUB_ACTIONS_SUCCESS",
+  "source": {
+    "observed_years": "2013-2025, 13 distinct years",
+    "original_GBIF_DWCA_DOI": "10.15468/dl.8yrbe7",
+    "PCNL_annual_DOI": "10.5281/zenodo.17013414",
+    "insect_source_joined_csv_sha256": "64b269dd796b9095853c371909a0dd760921df2e396636a83fc59a2d659e4852",
+    "reptile_source_joined_csv_sha256": "03aa855c9e7691855bfee4baa099f0d3a31db8d53066ec36a95afda48c3ba339",
+    "insect_original_photo_source_rows": 228361,
+    "reptile_original_photo_source_rows": 34056,
+    "same_original_GSHHG_island_year_0p05degree_cell_matches": 17944,
+    "matches_with_valid_consistent_year_before_PCNL": 15255,
+    "islands_in_valid_photo_cell_match": 431,
+    "primary_source_Github_actions_run_id": 43048872638,
+    "Github_job_conclusion": "success",
+    "verified_artifact_id": 13868277456
+  },
+  "endpoint": "Percent of actually photographed moth-family observations (Noctuidae+Geometridae) among true moth+butterfly source photographic observations, not independently sampled individual population abundance",
+  "moderator": "Percent of actually photographed gecko-family observations among gecko+Scincidae source photographic observations, not true predator density",
+  "model": "within exact source GSHHG island × actual 2013–2025 observation year fixed intercept, 5-km original 0.05degree source pixel, original corrected annual PCNL from year strictly before observation, original source gecko-fraction × light and both main effects; adjust insect+reptile photo count and latitude; equal island source total weight by default; island cluster-robust nominal t CI",
+  "common_support_gate": "at least five actual moth+butterfly photographs of which one moth and one butterfly, each actual reptile photo-count positive in same island-year across supported cells, at least two same-island-year cells with >=0.02 within-island-year loglight span",
+  "primary": {
+    "photo_cell_years": 3424,
+    "independent_islands": 50,
+    "island_year_fixed_effects": 209,
+    "gecko_fraction_by_priorloglight_interaction": {
+      "beta": -1.3858744682098092,
+      "CI95": [
+        -5.456768348104737,
+        2.6850194116851194
+      ],
+      "p_nominal": 0.4971162772580309
+    },
+    "light_main_at_gecko_photo_fraction_zero": {
+      "beta": 0.33429568560742934,
+      "CI95": [
+        -2.139088488819272,
+        2.807679860034131
+      ],
+      "p_nominal": 0.7870641030528549
+    }
+  },
+  "controls": [
+    {
+      "gate": "at least three reptile source photo records per cell",
+      "cells": 1606,
+      "islands": 40,
+      "island_years": 164,
+      "interaction_beta": -0.8315675299438984,
+      "CI95": [
+        -5.545065631562401,
+        3.881930571674604
+      ],
+      "p_nominal": 0.7231289448869895
+    },
+    {
+      "gate": "at least twenty moth+butterfly source photo records per cell",
+      "cells": 1734,
+      "islands": 29,
+      "island_years": 133,
+      "interaction_beta": 0.1754323935369591,
+      "CI95": [
+        -4.964010273522123,
+        5.314875060596042
+      ],
+      "p_nominal": 0.9447532256305159
+    },
+    {
+      "gate": "0.1-degree outcome-blind geographic source-cell thinning",
+      "cells": 2499,
+      "islands": 47,
+      "island_years": 202,
+      "interaction_beta": -1.8042380192913627,
+      "CI95": [
+        -6.5714626651040815,
+        2.9629866265213556
+      ],
+      "p_nominal": 0.4500588985480814
+    },
+    {
+      "gate": "original source cell-year-equal weights (not island equal)",
+      "cells": 3424,
+      "islands": 50,
+      "island_years": 209,
+      "interaction_beta": 1.0746220849384163,
+      "CI95": [
+        -0.6929235171529824,
+        2.842167687029815
+      ],
+      "p_nominal": 0.22764004830208526
+    },
+    {
+      "gate": "original island-year-equal weights (not island equal)",
+      "cells": 3424,
+      "islands": 50,
+      "island_years": 209,
+      "interaction_beta": 0.18213623619990324,
+      "CI95": [
+        -3.026999391277264,
+        3.39127186367707
+      ],
+      "p_nominal": 0.9096606187969932
+    }
+  ],
+  "original_frozen_prior_positive_findings_not_reestimated": {
+    "README_old_PL64_moderator_beta": -0.019380045756016737,
+    "README_old_PL64_nominal_p": 0.043993409104237075,
+    "README_PL64_Holm_adjusted_p": 0.08798681820847415,
+    "GloBI_v011_moth_documented_PL30_beta": -0.009164462003417938,
+    "positive_gecko_photo_fraction_spatial_ALAN_from_separate_true_gecko_vs_scink_model": 3.266934799987821
+  },
+  "limitations": {
+    "no_trophic_interaction_measured": true,
+    "no_moth_visitation_or_effective_pollination_measured": true,
+    "GBIF_source_is_not_standardized_observation_effort": true,
+    "unrecorded_source_not_biological_absence": true,
+    "PCNL_is_previous_calendar_year_not_local_streetlight_lux": true,
+    "source_temporal_selection_not_rigorously_longitudinal_population_change": true,
+    "site_year_number_necessarily_less_than_global_228361_photo_cells": true,
+    "exploratory_p_values_posthoc_uncorrected": true,
+    "all_private_source_species_site_and_coordinates_excluded": true
+  }
+}

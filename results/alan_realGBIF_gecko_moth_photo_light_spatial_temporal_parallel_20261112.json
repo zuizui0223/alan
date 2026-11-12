@@ -1,0 +1,124 @@
+{
+  "schema": "ALAN_2013_2025_GBIF_same_island_photo_gecko_moth_marginal_light_spatial_vs_temporal_v1",
+  "provenance": {
+    "original_insect_csv_sha256": "64b269dd796b9095853c371909a0dd760921df2e396636a83fc59a2d659e4852",
+    "original_gecko_scink_csv_sha256": "03aa855c9e7691855bfee4baa099f0d3a31db8d53066ec36a95afda48c3ba339",
+    "confirmed_original_source_Actions_run": 43127251987,
+    "Actions_success": true,
+    "Actions_result_artifact": 13902708845,
+    "original_GBIF_DOI": "10.15468/dl.8yrbe7",
+    "prior_corrected_PCNL_DOI": "10.5281/zenodo.17013414",
+    "observation_years": "2013–2025",
+    "source_first_exact_same_island_0p05degree_cell_years_with_prior_PCNL": 15255,
+    "parallel_source_model_code": "scripts/analysis/alan_13year_gecko_moth_parallel_light_FE_20261112.py",
+    "independent_formula_WLS_test": "tests/test_alan_13year_gecko_moth_parallel_light_FE_20261112.py"
+  },
+  "cohorts": {
+    "spatial_matched_same_islandyear_50islands": {
+      "cell_years": 3424,
+      "site_ids": 1423,
+      "islands": 50,
+      "islandyears": 209
+    },
+    "temporal_same_site_in_observation_year_30islands": {
+      "cell_years": 1979,
+      "site_ids": 454,
+      "islands": 30,
+      "islandyears": 181
+    }
+  },
+  "outcome_definitions": {
+    "gecko": "100 × gecko GBIF photo records / (gecko + Scincidae GBIF photo records), source-positive only; not biological gecko occupancy or abundance",
+    "moth": "100 × (Noctuidae+Geometridae GBIF photo records) / (Noctuidae+Geometridae+Nymphalidae+Pieridae GBIF photo records); not independent moth trapping or effective pollen delivery",
+    "exposure": "log1p authentic PCNL annual satellite radiance FROM the year BEFORE animal photo observation (Li–Cao, DOI 10.5281/zenodo.17013414)",
+    "geography": "same GSHHG island×observation year, original 0.05degree source cell IDs",
+    "confounders": "log1p source insect photo count, log1p reptile photo count, geographic latitude in spatial model",
+    "estimation": "original island-year fixed effects; for true repeats additionally 0.05-degree site fixed effects; island cluster CR1 t CI; island-equal primary weights"
+  },
+  "gecko_photo_share": {
+    "spatial_50islands": {
+      "beta": 3.0488940194354788,
+      "ci95": [
+        0.38379612095031623,
+        5.713991917920641
+      ],
+      "p_nominal": 0.025810342901157784
+    },
+    "spatial_only_30repeat_islands": {
+      "beta": 4.7582357858581705,
+      "ci95": [
+        -5.651490128847177,
+        15.167961700563518
+      ],
+      "p_nominal": 0.35757780959927704
+    },
+    "temporal_two_way_site_islandyear_FE_30islands": {
+      "beta": -12.313532315429635,
+      "ci95": [
+        -26.950078384935303,
+        2.323013754076033
+      ],
+      "p_nominal": 0.09597395817727614
+    },
+    "temporal_siteyear_cell_equal_30islands": {
+      "beta": -7.864556060528758,
+      "ci95": [
+        -14.067128294349555,
+        -1.6619838267079627
+      ],
+      "p_nominal": 0.01474656351287096,
+      "claim": "posthoc nominal association not stable under equal-island source weighting"
+    }
+  },
+  "moth_photo_share": {
+    "spatial_50islands": {
+      "beta": -0.17834335575788912,
+      "ci95": [
+        -1.8860538779160323,
+        1.5293671664002542
+      ],
+      "p_nominal": 0.8346406128780235
+    },
+    "spatial_only_30repeat_islands": {
+      "beta": -2.1658331915464415,
+      "ci95": [
+        -6.787224396990661,
+        2.4555580138977775
+      ],
+      "p_nominal": 0.34573168358136885
+    },
+    "temporal_two_way_site_islandyear_FE_30islands": {
+      "beta": -3.532676235661131,
+      "ci95": [
+        -17.436643218790415,
+        10.371290747468151
+      ],
+      "p_nominal": 0.6072546744200606
+    },
+    "temporal_siteyear_cell_equal_30islands": {
+      "beta": 2.4575765645958874,
+      "ci95": [
+        -3.986068322974528,
+        8.901221452166302
+      ],
+      "p_nominal": 0.44168701633932805
+    }
+  },
+  "interpretation": {
+    "gecko_positive_spatial_effect_reproduced_as_SOURCE_PHOTO_fraction_within_insect_observed_50islands": true,
+    "prior_153island_gecko_photo_spatial_association_beta": 3.266934799987821,
+    "independent_replication_from_new_original_GBIF_not_established": true,
+    "temporal_photo_change_not_directionally_robust_across_weights": true,
+    "spatial_full_cohort_50islands_and_temporal_repeat_cohort_30islands_not_identical": true,
+    "no_robust_moth_photo_share_light_response": true,
+    "no_actual_moth_eating_by_geckos_measured": true,
+    "no_GloBI_local_effective_pollen_transfer_measured": true,
+    "no_species_absence_inferred_from_missing_GBIF_photo": true,
+    "not_causal_ALAN_effect": true,
+    "no_sensitive_original_photo_locations_exported": true,
+    "original_README_PL64_beta_kept": -0.019380045756016737,
+    "original_README_PL64_nominal_p": 0.043993409104237075,
+    "original_README_PL64_Holm_p": 0.08798681820847415,
+    "GloBI_v011_PL30_beta": -0.009164462003417938
+  }
+}

@@ -1,0 +1,73 @@
+name: ALAN 13-year actual gecko and moth photo light spatial versus same-site source
+on:
+  push:
+    branches: [analysis/alan-multichannel-light-island-20261112]
+    paths: [.github/workflows/alan-gecko-moth-parallel-spatial-temporal-original.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  true-coobserved-guild-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Validate paired original-source marginal photo ratio WLS estimators
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5
+          python -m py_compile scripts/analysis/alan_13year_gecko_moth_parallel_light_FE_20261112.py
+          python -m unittest discover -s tests -p 'test_alan_13year_gecko_moth_parallel_light_FE_20261112.py' -v
+      - name: Restore original two authentic source arms, same actual island grids and preceding PCNL
+        run: |
+          set -euo pipefail
+          mkdir -p source/insects source/reptiles
+          gh run download 42786502922 --repo zuizui0223/alan \
+            --name alan-global-228361-islandcells-actual-13year-prior-PCNL-joined \
+            --dir source/insects
+          gh run download 42796502910 --repo zuizui0223/alan \
+            --name alan-original-101399-gecko-scink-photo-13year-historical-PCNL-all-islands \
+            --dir source/reptiles
+          echo '64b269dd796b9095853c371909a0dd760921df2e396636a83fc59a2d659e4852  source/insects/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz' | sha256sum -c -
+          echo '03aa855c9e7691855bfee4baa099f0d3a31db8d53066ec36a95afda48c3ba339  source/reptiles/gecko_scink_true_2013_2025_original_island_photo_cells_priorPCNL.csv.gz' | sha256sum -c -
+      - name: Fit independently original source photo guild fractions spatially and within repeated site
+        run: |
+          set -euo pipefail
+          python scripts/analysis/alan_13year_gecko_moth_parallel_light_FE_20261112.py \
+            --insects source/insects/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz \
+            --reptiles source/reptiles/gecko_scink_true_2013_2025_original_island_photo_cells_priorPCNL.csv.gz \
+            --out aggregate/gecko_moth_13year_parallel_spatial_temporal.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('aggregate/gecko_moth_13year_parallel_spatial_temporal.json').read_text())
+          g=a['results']['gecko']
+          s=g['same_islandyear_spatial_50islands']
+          t=g['same_exact_site_temporal_30islands']
+          assert s['independent_islands']==50 and s['cell_years']==3424
+          assert abs(s['slope_light']-3.0488940194354788)<1e-8
+          assert s['CI95'][0]>0
+          assert t['independent_islands']==30 and t['cell_years']==1979
+          assert abs(t['slope_light']+12.313532315429635)<1e-7
+          assert t['CI95'][0]<0<t['CI95'][1]
+          assert a['limitations']['spatial_full_cohort_50islands_and_temporal_repeat_30islands_differ']
+          print('REAL_SOURCE_POSITIVE_GECKO_SPATIAL_VS_SITE_FE',json.dumps({'spatial':s,'temporal':t}))
+          PY
+      - name: Upload only source-verified aggregate; never original observation coordinates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-13yr-gbif-gecko-and-moth-spatial-vs-temporal-source-aggregate
+          path: aggregate/gecko_moth_13year_parallel_spatial_temporal.json
+          retention-days: 90
+          if-no-files-found: warn

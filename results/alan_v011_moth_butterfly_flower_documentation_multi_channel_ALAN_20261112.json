@@ -1,0 +1,151 @@
+{
+  "schema": "ALAN_GloBI_v011_four_flower_documentation_categories_same_10698_photo_ALAN_v1",
+  "analysis_date": "2026-11-12",
+  "status": "original_source_reconstructed_observational_not_confirmed_pollination",
+  "source": {
+    "full_GloBI_v011_SHA256": "670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3",
+    "full_GloBI_source_flags_GZIP_SHA256": "cf750192b4d641a2d904f4f74d5b87d41fc97e04822a67d513d9bad74ece8e01",
+    "original_photo_SHA256": "f033661d76e07898a5c13199a55c5d0ce6e55353daa48b0058c456979e90644c",
+    "original_legacy_GloBI_61967_SHA256": "a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994",
+    "original_accepted_WCVP_SHA256": "9cd6aa7ca29f00c64283bcc08dcb778e212b644b837e64070051339b11d8b7b3",
+    "original_WCVP_taxonomy_SHA256": "dc5bb0e3686fde0cfd327e4336245d0ceae3c7657b3bd12841bb814cc94d1eb2",
+    "original_legacy_ALAN_slope_reconstructed": -1.901720622055596,
+    "photo_site_years": 10698,
+    "photo_island_site_years": 933,
+    "photo_mainland_site_years": 9765,
+    "photo_years": [
+      2019,
+      2021,
+      2023,
+      2024,
+      2025
+    ],
+    "geographic_5degree_blocks": 78,
+    "original_accepted_plant_species_photographed": 8581
+  },
+  "analysis": {
+    "fixed_design": "year x region5 FE; island vs mainland equal total photo-site weights per year×5degree region; spatial-5degree cluster-robust nominal tCI; original same-year 4-month VIIRS+population, photo effort, species number, bio5, rain, elevation",
+    "endpoint": "Percent distinct source-photographed accepted botanical species with positive globally observed GloBI moth or butterfly flower relationship at ANY site, mutually exclusive DOCUMENTATION groups; no-record is NOT a confirmed biological absence",
+    "separate_models": {
+      "moth_and_butterfly_recorded": {
+        "plant_names_photographed": 698,
+        "island_positive_siteyears": 453,
+        "beta": 0.163,
+        "CI95": [
+          -1.474,
+          1.8
+        ],
+        "p_nominal": 0.8434
+      },
+      "moth_recorded_no_butterfly_record": {
+        "plant_names_photographed": 141,
+        "island_positive_siteyears": 86,
+        "beta": 0.3006,
+        "CI95": [
+          -0.257,
+          0.859
+        ],
+        "p_nominal": 0.2868
+      },
+      "butterfly_recorded_no_moth_record": {
+        "plant_names_photographed": 1068,
+        "island_positive_siteyears": 530,
+        "beta": -0.6709,
+        "CI95": [
+          -2.256,
+          0.915
+        ],
+        "p_nominal": 0.402
+      },
+      "all_moth_v011": {
+        "plant_names_photographed": 839,
+        "island_positive_siteyears": 503,
+        "beta": 0.4636,
+        "CI95": [
+          -1.064,
+          1.991
+        ],
+        "p_nominal": 0.5474
+      },
+      "all_butterfly_v011": {
+        "plant_names_photographed": 1766,
+        "island_positive_siteyears": 720,
+        "beta": -0.5079,
+        "CI95": [
+          -2.321,
+          1.305
+        ],
+        "p_nominal": 0.5786
+      },
+      "strict_noninat_trophich_both": {
+        "plant_names_photographed": 141,
+        "island_positive_siteyears": 163,
+        "beta": 0.1849,
+        "CI95": [
+          -0.543,
+          0.913
+        ],
+        "p_nominal": 0.6145
+      },
+      "strict_noninat_trophich_moth_without_butterfly_record": {
+        "plant_names_photographed": 67,
+        "island_positive_siteyears": 90,
+        "beta": 0.0013,
+        "CI95": [
+          -0.448,
+          0.45
+        ],
+        "p_nominal": 0.9956
+      }
+    },
+    "direct_planned_contrasts": {
+      "both_documented_minus_moth_only_recorded": {
+        "beta": -0.1376,
+        "CI95": [
+          -2.048,
+          1.773
+        ],
+        "p_nominal": 0.8863
+      },
+      "both_documented_minus_butterfly_only_recorded": {
+        "beta": 0.8339,
+        "CI95": [
+          -1.831,
+          3.499
+        ],
+        "p_nominal": 0.535
+      },
+      "moth_recorded_minus_butterfly_recorded": {
+        "beta": 0.9716,
+        "CI95": [
+          -0.762,
+          2.705
+        ],
+        "p_nominal": 0.2678
+      },
+      "strict_both_minus_strict_moth_only": {
+        "beta": 0.1836,
+        "CI95": [
+          -0.739,
+          1.106
+        ],
+        "p_nominal": 0.693
+      }
+    },
+    "BH_q_four_direct_contrasts": 0.8863
+  },
+  "limitations": {
+    "not_true_moth_dependence": true,
+    "not_actual_daytime_pollination_compensation": true,
+    "absence_of_record_not_absence_of_guild": true,
+    "no_verified_night_day_pollination_exclusion": true,
+    "source_photo_census_not_actual_plant_abundance": true,
+    "multiple_comparisons_exploratory": true
+  },
+  "frozen_positive_result_unmodified": {
+    "readme_PL64_beta": -0.019380045756016737,
+    "p_nominal": 0.4799746115289204,
+    "Holm_adjusted_p": 0.08798681820847415,
+    "v011_PL30_beta": -0.009164462003417938
+  }
+}

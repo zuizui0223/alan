@@ -1,0 +1,198 @@
+{
+  "schema": "ALAN_2013_2025_same_true_GSHHG_island_005degree_site_repeated_source_moth_gecko_PCNL_v1",
+  "analysis_date": "2026-11-12",
+  "execution": {
+    "source_original_DWCA": "10.15468/dl.8yrbe7",
+    "corrected_year_prior_PCNl": "10.5281/zenodo.17013414",
+    "source_insect_csv_sha256": "64b269dd796b9095853c371909a0dd760921df2e396636a83fc59a2d659e4852",
+    "source_reptile_csv_sha256": "03aa855c9e7691855bfee4baa099f0d3a31db8d53066ec36a95afda48c3ba339",
+    "original_source_GitHub_actions": 43126070626,
+    "original_source_actions_success": true,
+    "original_source_result_artifact_id": 13902103446,
+    "original_GitHub_replay_code": "scripts/analysis/alan_13year_moth_gecko_repeat_site_FE_20261112.py",
+    "mathematical_tests": "tests/test_alan_13year_moth_gecko_repeat_site_FE_20261112.py",
+    "independent_alternating_FE_check": "real 1,979-row WLS coefficients numerically identical to sparse FE solver (<1.1e-14)",
+    "years": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ]
+  },
+  "source_and_selection": {
+    "four_insect_family_global_source_cell_years": 228361,
+    "gecko_scink_source_cell_years": 34056,
+    "actually_same_island_year_cell_crossarm_matches": 17944,
+    "equal_original_prior_year_light_land_valid_matches": 15255,
+    "prior_spatial_model": {
+      "islands": 50,
+      "island_years": 209,
+      "source_cells": 3424,
+      "site_identities": 1423
+    },
+    "now_repeat_site": {
+      "islands": 30,
+      "island_years": 181,
+      "site_identities": 454,
+      "cell_years": 1979,
+      "same_site_photo_years_at_least": 2,
+      "within_site_prior_PCNL_log1p_span_strictly_greater": 0.02
+    },
+    "year_prior_PCNl_source": "previous observation calendar year 2012–2024, not source 2013–2025 current year",
+    "median_in_scope_site_loglight_maxmin": 0.08370410118592586,
+    "median_reptile_photo_record_opportunities_per_cell_year": 3,
+    "fraction_gecko_record_share_zero": 0.36331480545730166,
+    "fraction_gecko_record_share_one": 0.22991409802930773,
+    "fraction_gecko_share_on_zero_or_one": 0.5932289034866094,
+    "four_family_moth_photo_positive_count_in_repeat": 94147,
+    "gecko_photo_positive_count_in_repeat": 8969
+  },
+  "primary_model": {
+    "outcome": "100 × source PHOTO records Geometridae+Noctuidae / original PHOTO records Geometridae+Noctuidae+Nymphalidae+Pieridae",
+    "moderator": "source PHOTO gecko family counts / source PHOTO gecko+Scincidae family counts",
+    "exposure": "log(1+corrected PCNL before observation year)",
+    "estimand": "(recorded gecko share × prior satellite light) on recorded moth share; source-photo co-observation, NOT actual gecko predation on moths",
+    "nuisance": "log1p insect photo count, log1p reptile photo count; 454 same-site fixed effects + 181 island-year fixed effects",
+    "geographic_cluster": "30 original GSHHG island units, t29 cluster-robust CR1 with rank-corrected absorbed FE; 32 bipartite FE components",
+    "WLS": "equal total site-year weight per original island",
+    "beta_interaction": -6.7777694539826,
+    "nominal_95CI": [
+      -16.692520910582473,
+      3.1369820026172714
+    ],
+    "nominal_p": 0.17267698992917363,
+    "biological_claim_supported": false
+  },
+  "sensitivity": [
+    {
+      "name": "same_repeat_sites_spatial_only_islandyear_FE",
+      "n": 1979,
+      "islands": 30,
+      "beta": -4.996893385470649,
+      "ci95": [
+        -15.49608940463608,
+        5.502302633694782
+      ],
+      "p": 0.3384101385203617
+    },
+    {
+      "name": "same_repeat_sites_cell_equal",
+      "n": 1979,
+      "islands": 30,
+      "beta": -1.9565861527285922,
+      "ci95": [
+        -6.0322200444506455,
+        2.119047738993461
+      ],
+      "p": 0.33429380668735886
+    },
+    {
+      "name": "same_repeat_sites_islandyear_equal",
+      "n": 1979,
+      "islands": 30,
+      "beta": -6.083448159913203,
+      "ci95": [
+        -15.755602593785952,
+        3.588706273959545
+      ],
+      "p": 0.2084864859850537
+    },
+    {
+      "name": "any_nonzero_original_within_site_light_change",
+      "n": 2251,
+      "sites": 566,
+      "islands": 30,
+      "beta": -6.419614695584031,
+      "ci95": [
+        -19.98758610781492,
+        7.148356716646858
+      ],
+      "p": 0.3412009696833511
+    },
+    {
+      "name": "large_0p1_within_site_light_change",
+      "n": 946,
+      "sites": 185,
+      "islands": 25,
+      "beta": -11.04707957165932,
+      "ci95": [
+        -25.268699225786317,
+        3.1745400824676757
+      ],
+      "p": 0.12197211469980682
+    },
+    {
+      "name": "at_least_3_reptile_photo_records_per_cell_year",
+      "n": 971,
+      "sites": 241,
+      "islands": 29,
+      "beta": 1.8891206733295374,
+      "ci95": [
+        -21.414993173499976,
+        25.19323452015905
+      ],
+      "p": 0.8693094784927528
+    },
+    {
+      "name": "at_least_20_insect_photo_records_per_cell_year",
+      "n": 1147,
+      "sites": 258,
+      "islands": 21,
+      "beta": -4.132988224204995,
+      "ci95": [
+        -24.774724579787517,
+        16.50874813137753
+      ],
+      "p": 0.6806442313479006
+    },
+    {
+      "name": "without_source_effort_controls",
+      "n": 1979,
+      "islands": 30,
+      "beta": -8.863841052879465,
+      "ci95": [
+        -19.152060470258952,
+        1.4243783645000203
+      ],
+      "p": 0.08859645255842553
+    }
+  ],
+  "leave_one_island_out": {
+    "negative_signs_across_30_overlapping_omissions": 30,
+    "total_omissions": 30,
+    "beta_range": [
+      -8.81431200662577,
+      -3.906133900639148
+    ],
+    "not_independent_confirmation": true
+  },
+  "original_positive_results_preserved": {
+    "README_moth_GloBI_legacy_source_spatial_island_mainland_beta": -1.901720622055596,
+    "README_pollen_limitation_64species_beta": -0.019380045756016737,
+    "README_PL64_Holm_two_outcomes_corrected_p": 0.08798681820847415,
+    "GloBI_v011_PL30_beta": -0.009164462003417938,
+    "documented_spatial_gecko_minus_skink_light_beta": 3.266934799987821,
+    "confirmed_EIDC_moth_lamphight_lit_to_dark_flight_ratio": 2.106
+  },
+  "caveats": {
+    "source_guild_photo_records_not_specimen_abundance": true,
+    "within_005_degree_grid_does_not_prove_species_encounter": true,
+    "not_gecko_predation_or_pollen_transfer_rate": true,
+    "GloBI_not_used_to_claim_local_visit": true,
+    "current_PCNL_year_must_be_one_before_source_observation_year": true,
+    "GBIF_observer_effort_and_source_taxon_detection_unknown": true,
+    "nonrecorded_is_not_true_biological_absence": true,
+    "original_2013_2017_samples_sparse_compared_to_recent_years": true,
+    "nominal_p_and_loo_not_confirmatory": true,
+    "no_original_photo_observer_or_geographic_site_keys_published": true
+  }
+}

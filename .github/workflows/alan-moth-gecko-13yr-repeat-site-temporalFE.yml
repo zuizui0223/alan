@@ -1,0 +1,83 @@
+name: ALAN genuine 13-year repeated-site moth×gecko historical-nightlight FE
+
+on:
+  push:
+    branches:
+      - analysis/alan-multichannel-light-island-20261112
+    paths:
+      - .github/workflows/alan-moth-gecko-13yr-repeat-site-temporalFE.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  same-physical-cell-multiyear-FE:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Install numerical dependencies and test source estimator against explicit WLS
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5
+          python -m py_compile scripts/analysis/alan_13year_moth_gecko_repeat_site_FE_20261112.py
+          python -m unittest discover -s tests -p test_alan_13year_moth_gecko_repeat_site_FE_20261112.py -v
+      - name: Restore original 2013-2025 source GBIF insects and reptiles with PRE-year PCNL
+        run: |
+          set -euo pipefail
+          mkdir -p source/insects source/reptiles
+          gh run download 42786502922 --repo zuizui0223/alan \
+            --name alan-global-228361-islandcells-actual-13year-prior-PCNL-joined \
+            --dir source/insects
+          gh run download 42796502910 --repo zuizui0223/alan \
+            --name alan-original-101399-gecko-scink-photo-13year-historical-PCNL-all-islands \
+            --dir source/reptiles
+          echo '64b269dd796b9095853c371909a0dd760921df2e396636a83fc59a2d659e4852  source/insects/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz' | sha256sum -c -
+          echo '03aa855c9e7691855bfee4baa099f0d3a31db8d53066ec36a95afda48c3ba339  source/reptiles/gecko_scink_true_2013_2025_original_island_photo_cells_priorPCNL.csv.gz' | sha256sum -c -
+      - name: Estimate source-verified same-site temporal contrasts, cluster island
+        run: |
+          set -euo pipefail
+          mkdir -p aggregate
+          python scripts/analysis/alan_13year_moth_gecko_repeat_site_FE_20261112.py \
+            --insects source/insects/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz \
+            --reptiles source/reptiles/gecko_scink_true_2013_2025_original_island_photo_cells_priorPCNL.csv.gz \
+            --out aggregate/alan_13year_same_grid_light_gecko_moth_temporalFE.json
+      - name: Verify original IDs and numerical coefficient against independent local source calculation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          f=Path('aggregate/alan_13year_same_grid_light_gecko_moth_temporalFE.json')
+          r=json.loads(f.read_text())
+          assert r['schema']=='alan_true_island_same_grid_multi_year_gecko_moth_priorPCNL_FE_v1'
+          s=r['source_support']['same_site_prior_loglight_span_gt0p02']
+          assert (s['cell_years'],s['sites'],s['independent_islands'])==(1979,454,30)
+          m=r['same_site_models']['primary_same_site_and_islandyear_FE']
+          assert m['estimable'] and m['source_connected_FE_components']==32
+          assert (m['fixed_effects']['site'],m['fixed_effects']['islandyear'])==(454,181)
+          c=m['coefficients']['cross']
+          assert abs(c['beta']+6.77776945398265)<1e-8
+          assert abs(c['CI95'][0]+16.692520910582438)<1e-6
+          assert c['CI95'][0]<0<c['CI95'][1]
+          assert r['interpretation_boundaries']['no_moth_pollen_carriage_or_effective_pollination_observed']
+          print('REPEATED_SOURCE_TEMPORAL_ALAN_MOTH_GECKO_VERIFIED',
+               json.dumps({'source_repeated_sites':s,'effect':c},sort_keys=True))
+          PY
+      - name: Release aggregate summary only, NO precise GBIF photo-site rows
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-13year-gbif-moth-gecko-SAME-site-variation-FE-source-verified
+          path: aggregate/alan_13year_same_grid_light_gecko_moth_temporalFE.json
+          retention-days: 90
+          if-no-files-found: warn
