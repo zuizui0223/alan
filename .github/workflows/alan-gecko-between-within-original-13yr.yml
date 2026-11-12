@@ -1,0 +1,70 @@
+name: ALAN actual same-site 13yr within-vs-between gecko prior ALAN source
+
+on:
+  push:
+    branches: [analysis/alan-multichannel-light-island-20261112]
+    paths:
+      - .github/workflows/alan-gecko-between-within-original-13yr.yml
+      - scripts/analysis/alan_13yr_gecko_light_between_within_20261112.py
+      - tests/test_alan_13yr_gecko_light_between_within_20261112.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  source-454-GBIF-photo-cells:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify independent within-between FE code and synthetic ground truth
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2 statsmodels==0.14.5
+          python -m py_compile scripts/analysis/alan_13yr_gecko_light_between_within_20261112.py
+          python -m unittest discover -s tests -p test_alan_13yr_gecko_light_between_within_20261112.py -v
+      - name: Restore authentic source-signed 13-year moth and gecko photographic observations with prior PCNL
+        run: |
+          set -euo pipefail
+          mkdir -p source/insect source/reptile
+          gh run download 42786502922 --repo zuizui0223/alan \
+            --name alan-global-228361-islandcells-actual-13year-prior-PCNL-joined --dir source/insect
+          gh run download 42796502910 --repo zuizui0223/alan \
+            --name alan-original-101399-gecko-scink-photo-13year-historical-PCNL-all-islands --dir source/reptile
+          echo '64b269dd796b9095853c371909a0dd760921df2e396636a83fc59a2d659e4852  source/insect/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz' | sha256sum -c -
+          echo '03aa855c9e7691855bfee4baa099f0d3a31db8d53066ec36a95afda48c3ba339  source/reptile/gecko_scink_true_2013_2025_original_island_photo_cells_priorPCNL.csv.gz' | sha256sum -c -
+      - name: Estimate genuine same-cell source geography versus annual-light change
+        run: |
+          set -euo pipefail
+          python scripts/analysis/alan_13yr_gecko_light_between_within_20261112.py \
+            --insects source/insect/ALAN_worldwide_GBIF_228361_island_cell_years_original_prior_PCNL_2012_2024.csv.gz \
+            --reptiles source/reptile/gecko_scink_true_2013_2025_original_island_photo_cells_priorPCNL.csv.gz \
+            --out aggregate/gecko_moth_between_vs_within_prior_year_light.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('aggregate/gecko_moth_between_vs_within_prior_year_light.json').read_text())
+          assert r['observational_same_site_support']=={'sites':454,'cell_years':1979,'islands':30}
+          g=r['models']['gecko__island_equal']['effects']
+          assert abs(g['between_site_meanlight']['beta']-5.645280833553384)<1e-8
+          assert abs(g['within_site_light_change']['beta']+4.691579481571074)<1e-8
+          assert abs(g['within_minus_between']['beta']+10.336860315124458)<1e-8
+          assert g['within_minus_between']['ci95'][0]<0<g['within_minus_between']['ci95'][1]
+          assert r['limitations']['both_components_not_experimental_ALAN_effect']
+          print('REAL_SOURCE_MOTH_GECKO_SAME_SITE_WITHIN_BETWEEN_VERIFIED',json.dumps(g,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-13year-genuine-GBIF-photo-site-space-time-decomposition
+          path: aggregate/gecko_moth_between_vs_within_prior_year_light.json
+          retention-days: 90
+          if-no-files-found: warn
