@@ -1,0 +1,149 @@
+{
+  "association_does_not_identify_plant_seed_set_or_local_moth_demography": true,
+  "exploratory_lamp_lux_dose_for_flight": {
+    "n_site_pairs_with_true_metered_lux": 20,
+    "spearman_rho_lamp_lux_to_flight_ratio": -0.452902438464911,
+    "unadjusted_spearman_two_sided_p": 0.04493139831762077
+  },
+  "independent_field_sites_not_pollen_moth_count_for_CI": true,
+  "not_global_nor_island_biogeography": true,
+  "original_EIDC_dataset_DOI": "10.5285/31cc5cec-d33b-4dd6-a932-061ff947e708",
+  "original_Pollen_grain_positive_record_integrity": {
+    "method_treatment_sums_of_original_positive_pollen_records": [
+      {
+        "actual_matched_individual_pollen_moth_IDs": 52,
+        "method": "Transect",
+        "pollen_source_rows": 52,
+        "source_recorded_pollen_grains": 690,
+        "treatment": "Lit"
+      },
+      {
+        "actual_matched_individual_pollen_moth_IDs": 90,
+        "method": "Transect",
+        "pollen_source_rows": 90,
+        "source_recorded_pollen_grains": 1177,
+        "treatment": "Unlit"
+      },
+      {
+        "actual_matched_individual_pollen_moth_IDs": 85,
+        "method": "Trap",
+        "pollen_source_rows": 85,
+        "source_recorded_pollen_grains": 3305,
+        "treatment": "Lit"
+      },
+      {
+        "actual_matched_individual_pollen_moth_IDs": 131,
+        "method": "Trap",
+        "pollen_source_rows": 133,
+        "source_recorded_pollen_grains": 12209,
+        "treatment": "Unlit"
+      }
+    ],
+    "n_independent_pollen_moth_refs_linked_to_real_captured_moths": 358,
+    "n_original_pollen_records": 361,
+    "n_pollen_references_unlinked_to_captured_individuals": 1,
+    "n_unique_original_pollen_moth_refs": 359,
+    "no_negative_pollen_inferred_for_F2_only_moths": true,
+    "not_effective_stigma_deposition": true,
+    "total_original_recorded_grains_in_F4": 17386
+  },
+  "original_inner_CSV_SHA256": {
+    "flight": "866e4257b8aed7652ee5b5738ed17e5023ad1aae8af2f4ef0d887e3bd4455b79",
+    "moths": "6a460e3314a51a609523553b04248416aa4494afe411f70d63ab702991cadc11",
+    "pollen": "e205e9d7320ec12e97e4d8bcbd1e31ed03fbde92d03dcf4688f520e595b9735b",
+    "sites": "0584befa8a5068be620ba977f179d55238222ddecab492076ff8864d2238c6e6"
+  },
+  "original_moth_individual_capture": {
+    "Transect": {
+      "matched_nonzero_pairs_are_not_complete_effort_zeros": true,
+      "n_distinct_source_moth_species": 124,
+      "n_individual_original_moth_rows": 609,
+      "n_site_date_events_with_nonzero_both_treatments": 45,
+      "n_source_sampling_event_keys_present": 91,
+      "paired_positive_only_diagnostic": {
+        "CI_unit": "site not each within-site observed-night repeat",
+        "caution": "exploratory matched observational; log ratio has a fixed 0.5 pseudocount",
+        "exact_ties": 5,
+        "independent_field_sites": 20,
+        "lit_more_events": 8,
+        "original_matched_sampling_events": 45,
+        "per_site_equal_exp_log_ratio": 0.6579793398030438,
+        "per_site_mean_log_lit_vs_unlit_ratio_with_0p5": -0.41858174662537956,
+        "t_reference_95CI_exp_log_ratio": [
+          0.5413451533544867,
+          0.7997426575723886
+        ],
+        "unadjusted_two_sided_t_p": 0.00025072872066103023,
+        "unlit_more_events": 32
+      },
+      "raw_source_capture_counts": {
+        "Lit": 242,
+        "Unlit": 367
+      }
+    },
+    "Trap": {
+      "matched_nonzero_pairs_are_not_complete_effort_zeros": true,
+      "n_distinct_source_moth_species": 139,
+      "n_individual_original_moth_rows": 990,
+      "n_site_date_events_with_nonzero_both_treatments": 40,
+      "n_source_sampling_event_keys_present": 82,
+      "paired_positive_only_diagnostic": {
+        "CI_unit": "site not each within-site observed-night repeat",
+        "caution": "exploratory matched observational; log ratio has a fixed 0.5 pseudocount",
+        "exact_ties": 5,
+        "independent_field_sites": 20,
+        "lit_more_events": 16,
+        "original_matched_sampling_events": 40,
+        "per_site_equal_exp_log_ratio": 0.9372051323626187,
+        "per_site_mean_log_lit_vs_unlit_ratio_with_0p5": -0.0648530960909573,
+        "t_reference_95CI_exp_log_ratio": [
+          0.7741618392515346,
+          1.1345863559692277
+        ],
+        "unadjusted_two_sided_t_p": 0.48619123742378,
+        "unlit_more_events": 19
+      },
+      "raw_source_capture_counts": {
+        "Lit": 455,
+        "Unlit": 535
+      }
+    }
+  },
+  "overhead_flight": {
+    "n_actual_matched_field_site_by_observation_date_pairs": 45,
+    "n_original_overhead_rows": 90,
+    "number_source_field_sites": 20,
+    "original_pooled_lit_passes": 286,
+    "original_pooled_unlit_passes": 148,
+    "pair_inference": {
+      "CI_unit": "site not each within-site observed-night repeat",
+      "caution": "exploratory matched observational; log ratio has a fixed 0.5 pseudocount",
+      "exact_ties": 6,
+      "independent_field_sites": 20,
+      "lit_more_events": 34,
+      "original_matched_sampling_events": 45,
+      "per_site_equal_exp_log_ratio": 2.1055427075074946,
+      "per_site_mean_log_lit_vs_unlit_ratio_with_0p5": 0.7445732521982664,
+      "t_reference_95CI_exp_log_ratio": [
+        1.5969955699764815,
+        2.7760315535523232
+      ],
+      "unadjusted_two_sided_t_p": 0.000019551198579782836,
+      "unlit_more_events": 5
+    },
+    "raw_ratio_lit_to_unlit": 1.9324324324324325
+  },
+  "publication_DOI": "10.1111/gcb.13371",
+  "schema": "ALAN_true_Macgregor2016_moth_flight_capture_pollen_matched_20site_v1",
+  "source_nonobserved_capture_events_not_imputed_as_zero": true,
+  "source_verified_record_counts": {
+    "flight": 90,
+    "moths": 1599,
+    "pollen": 361,
+    "sites": 22
+  },
+  "run_source": "https://github.com/zuizui0223/alan/actions/runs/42767682403",
+  "run_artifact": "https://github.com/zuizui0223/alan/actions/runs/42767682403/artifacts/13740117359",
+  "status": "genuine original-data exploratory reanalysis; NOT a novel experiment or independently replicated biological study",
+  "scientific_warning": "F2 captures lack explicit zero-event ledger; F4 is positive pollen records, one unmatched moth reference"
+}

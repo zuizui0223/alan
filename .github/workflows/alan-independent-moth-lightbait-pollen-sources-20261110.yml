@@ -1,0 +1,41 @@
+name: ALAN original independent moth light-bait and pollen source verification
+on:
+  push:
+    branches: [analysis/alan-moth-light-attraction-vs-function-20261110]
+    paths:
+      - scripts/acquisition/alan_independent_light_bait_pollen_raw_audit_20261110.py
+      - .github/workflows/alan-independent-moth-lightbait-pollen-sources-20261110.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-genuine-moth-originals:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q requests==2.32.5 pandas==2.2.3 openpyxl==3.1.5
+          python -m py_compile scripts/acquisition/alan_independent_light_bait_pollen_raw_audit_20261110.py
+      - name: Source-verify public EIDC moth transport and Zenodo trap workbook
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_independent_light_bait_pollen_raw_audit_20261110 --out source-audit
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path("source-audit/real_moth_public_original_schema_receipt.json").read_text())
+          assert a["no_empirical_biological_model_fitted"]
+          assert len(a["source_results"])==2
+          print("ALAN_INDEPENDENT_SOURCE_AUDIT_NOT_BIOLOGICAL_EFFECT",json.dumps(a,sort_keys=True),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-2026-11-10-original-independent-moth-lamppollen-source-audit
+          path: source-audit/real_moth_public_original_schema_receipt.json
+          if-no-files-found: warn
+          retention-days: 90

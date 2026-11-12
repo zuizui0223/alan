@@ -1,0 +1,31 @@
+name: ALAN true 2016 matched moth flight pollen relational source audit
+on:
+  push:
+    branches: [analysis/alan-moth-light-attraction-vs-function-20261110]
+    paths:
+      - scripts/analysis/alan_eidc_macgregor_sampling_support_20261110.py
+      - .github/workflows/alan-eidc-true-moth-pollen-sampling-support-20261110.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-eidc-data:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q requests==2.32.5 pandas==2.2.3 numpy==2.1.3
+          python -m py_compile scripts/analysis/alan_eidc_macgregor_sampling_support_20261110.py
+          python -m scripts.analysis.alan_eidc_macgregor_sampling_support_20261110 \
+            --out source-audit/macgregor_2016_original_keys.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-eidc-original-2016-actual-moth-flight-pollen-original-source-keys
+          path: source-audit/macgregor_2016_original_keys.json
+          if-no-files-found: warn
+          retention-days: 90

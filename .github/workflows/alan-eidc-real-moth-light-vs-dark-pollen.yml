@@ -1,0 +1,48 @@
+name: ALAN source-verified 2016 moth lit unlit flight and pollen matched analysis
+on:
+  push:
+    branches: [analysis/alan-moth-light-attraction-vs-function-20261110]
+    paths:
+      - scripts/analysis/alan_eidc_actual_lit_unlit_moth_pollen_20261110.py
+      - tests/test_alan_eidc_lit_unlit_paired_moth_20261110.py
+      - .github/workflows/alan-eidc-real-moth-light-vs-dark-pollen.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-eidc-moth-comparison:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 requests==2.32.5
+          python -m py_compile scripts/analysis/alan_eidc_actual_lit_unlit_moth_pollen_20261110.py
+          python -m unittest discover -s tests -p test_alan_eidc_lit_unlit_paired_moth_20261110.py -v
+      - name: Independently recompute genuine matched lit-unlit moth surveys from SHA-frozen source
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_eidc_actual_lit_unlit_moth_pollen_20261110 \
+            --out real-analysis/alan_eidc_2016_original_field_moth_pollen_comparison.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("real-analysis/alan_eidc_2016_original_field_moth_pollen_comparison.json").read_text())
+          assert r["overhead_flight"]["number_source_field_sites"]==20
+          assert r["overhead_flight"]["n_actual_matched_field_site_by_observation_date_pairs"]==45
+          assert r["source_verified_record_counts"]["moths"]==1599
+          assert r["original_Pollen_grain_positive_record_integrity"]["n_original_pollen_records"]==361
+          assert r["source_nonobserved_capture_events_not_imputed_as_zero"]
+          print("ALAN_TRUE_MOTH_POLLEN_SOURCE_AND_PAIR_TEST_PASSED",flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-2016-real-source-moth-lit-unlit-functional-pollen-matched-results
+          path: real-analysis/alan_eidc_2016_original_field_moth_pollen_comparison.json
+          if-no-files-found: warn
+          retention-days: 90

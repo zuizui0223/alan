@@ -1,0 +1,35 @@
+name: ALAN genuine independent moth-light-vs-bait Dryad public source preflight
+on:
+  push:
+    branches: [analysis/alan-moth-light-attraction-vs-function-20261110]
+    paths:
+      - scripts/acquisition/alan_dryad_moth_lightbait_preflight_20261110.py
+      - .github/workflows/alan-moth-lightbait-original-dryad-preflight.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-moth-lightbait:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Audit genuine public original moth/light/bait schema
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 openpyxl==3.1.5
+          python -m py_compile scripts/acquisition/alan_dryad_moth_lightbait_preflight_20261110.py
+          python -m scripts.acquisition.alan_dryad_moth_lightbait_preflight_20261110 \
+            --receipt results/alan_true_moth_lightbait_source_preflight.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-genuine-Dryad-light-bait-moth-original-source-audit
+          path: results/alan_true_moth_lightbait_source_preflight.json
+          if-no-files-found: warn
+          retention-days: 90
