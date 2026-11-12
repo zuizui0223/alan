@@ -1,0 +1,12 @@
+{
+  "product": "MCD12Q2",
+  "service": "https://modis.ornl.gov/rst/api/v1/MCD12Q2/subset",
+  "private_response_sha256": [
+    "5bada190bc97413ce8f34011e3ee319cd28552503cc876d8b4a5c42ecca0953d",
+    "7ea66555d3e4e3dec2d30060c632f61db638bf7c603c6d2e92a8e0778d86058c",
+    "a23899d30ca458d48263095c1235cb2bbd8ebd490ff055e9140722ffc022ee30",
+    "bff326b56f5917b17257f8b85fcba9b9284fe93daeec88a1243592771035c6b4",
+    "d5b836c91bc50db3c29142a2a3c19cfe038a665c7b7ce88573fbee84c100089f",
+    "e13be7234df46a2e2cca62bf4143ecea8f773eb90ba7170148727159c17f8a74"
+  ]
+}
