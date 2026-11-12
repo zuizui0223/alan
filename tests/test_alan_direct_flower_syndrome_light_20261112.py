@@ -51,7 +51,7 @@ class TestSourceTraits(unittest.TestCase):
         b=regression(pd.DataFrame({"key":["k1","k2","k3"],
             "n_species":[2,2,2],"land_class":["island","island","mainland"],
             "region5":["a","b","c"]}),a,"synthetic_support_only")
-        self.assertEqual(b["model_status"],"insufficient_common_support_for_regression")
+        self.assertEqual(b["model_status"],"insufficient_independent_geographic_or_photo_support")
         self.assertIsNone(b["beta"])
 
 if __name__=="__main__":
