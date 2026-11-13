@@ -26,9 +26,30 @@ from scripts.analysis.alan_real_genus_prevalence_bias_20261110 import (
     KEY, LIGHT, load_sites, load_labels, original_accepted_species,
     site_outcome_model, species_model, require
 )
-from scripts.analysis.alan_direct_flower_syndrome_light_20261112 import (
-    read_direct_traits, FLORAL_FORMS
-)
+# Source-direct trait parsing is reproduced locally to avoid pulling in unrelated
+# gecko/photography/geospatial dependencies during source-only macro fitting.
+FLORAL_FORMS = frozenset(("tubular", "salverform", "funnel_trumpet"))
+LEDGER_SHA = "7e86170218814abe2845da9a0282aecfdc930819b9d0c439bae8df4a0679c577"
+
+def read_direct_traits(path: Path, high_only: bool = False):
+    import hashlib
+    if hashlib.sha256(path.read_bytes()).hexdigest() != LEDGER_SHA:
+        raise ValueError("Original independently reviewed island traits SHA changed")
+    d = pd.read_csv(path, dtype=str, keep_default_na=False)
+    require((len(d), d.accepted_species.nunique()) == (134268, 62423),
+            "Original species-direct trait ledger dimensions changed")
+    selected = ("high",) if high_only else ("high", "medium")
+    d = d[d.trait_name.isin(("flower_primary_color", "floral_form", "tube_depth_class"))
+          & d.quality.isin(selected) & d.resolution_status.eq("resolved")].copy()
+    require(not d.duplicated(["accepted_species", "trait_name"]).any(),
+            "Conflicted original trait states")
+    d = d[d.multistate.eq("False") & d.normalized_value.ne("")
+          & ~d.normalized_value.str.contains("|", regex=False)]
+    result = d.pivot(index="accepted_species", columns="trait_name", values="normalized_value")
+    for col in ("flower_primary_color", "floral_form", "tube_depth_class"):
+        if col not in result: result[col] = pd.NA
+    return result[["flower_primary_color", "floral_form", "tube_depth_class"]]
+
 
 SOURCE_SITE_YEARS = 77647
 SOURCE_ISLANDS = 562
