@@ -24,6 +24,9 @@ class FiveArmControls(unittest.TestCase):
         self.assertEqual(out["negative_I_papers"], 2)
         self.assertEqual(out["positive_I_papers"], 1)
         self.assertAlmostEqual(out["median_study_H"], .15)
+        self.assertEqual(out["positive_H_papers"], 2)
+        self.assertEqual(out["negative_H_papers"], 1)
+        self.assertIsNone(out["hand_headroom_sign_p_nominal"])
 
     def test_strata_with_duplicated_papers_not_independent(self):
         sample = pd.DataFrame({
@@ -32,12 +35,13 @@ class FiveArmControls(unittest.TestCase):
             "two_window_nonadditivity": [-.1, -.2, .1],
             "hand_headroom_proxy": [.3, -.1, .2],
         })
-        positive = study_summary(sample.loc[sample.hand_headroom_proxy > 0])
-        negative = study_summary(sample.loc[sample.hand_headroom_proxy <= 0])
+        positive = study_summary(sample.loc[sample.hand_headroom_proxy > 0], infer=False)
+        negative = study_summary(sample.loc[sample.hand_headroom_proxy <= 0], infer=False)
         self.assertEqual((positive["papers"], negative["papers"]), (2, 1))
         self.assertEqual(sample.study_key.nunique(), 2)
         self.assertTrue(positive["papers"] + negative["papers"] > 2)
-        self.assertIsNone(negative["study_sign_p_nominal"])
+        self.assertTrue(positive["inference_not_run_on_outcome_selected_subgroup"])
+        self.assertTrue(negative["inference_not_run_on_outcome_selected_subgroup"])
 
     def test_hand_gap_not_mechanical_causal_statement(self):
         o, h = 5., 10.
