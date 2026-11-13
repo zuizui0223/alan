@@ -4,6 +4,7 @@ on:
     branches: [analysis/alan-real-diel-reproduction-study-support-20261113]
     paths:
       - scripts/analysis/alan_DvN_real_field_light_study_influence_bloom_20261113.py
+      - scripts/analysis/alan_DvN_original_bloom_independent_robustness_20261113.py
       - tests/test_alan_DvN_real_field_light_study_influence_bloom_20261113.py
       - .github/workflows/alan-DvN301-original-study-leverage-bloom-20261113.yml
   workflow_dispatch:
@@ -21,7 +22,7 @@ jobs:
       - run: |
           set -euo pipefail
           python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5
-          python -m py_compile scripts/analysis/alan_DvN_real_field_light_study_influence_bloom_20261113.py
+          python -m py_compile scripts/analysis/alan_DvN_real_field_light_study_influence_bloom_20261113.py scripts/analysis/alan_DvN_original_bloom_independent_robustness_20261113.py
           python -m unittest discover -s tests -p test_alan_DvN_real_field_light_study_influence_bloom_20261113.py -v
   genuine-original-published-experiment-model:
     needs: source-tests
@@ -97,6 +98,26 @@ jobs:
           assert x['all_one_at_a_time_plant_species_omissions']['original_omission_units']==123
           assert x['limits']['no_original_author_study_site_species_rows_exported']
           print('GENUINE_301_STUDY_DIEL_PCNL_PUBLICATION_AND_SPECIES_INFLUENCE_SOURCE_SUCCESS')
+          PY
+      - name: Source-check nocturnal flowering association against family/geography and all original study/plant omissions
+        timeout-minutes: 20
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_DvN_original_bloom_independent_robustness_20261113 \
+            --joined original_rejoined/Diel_original_daynight_reproductive_1993_2022_priorPCNL1992_2021.csv.gz \
+            --receipt original_rejoined/Diel_original_priorPCNL_source_receipt.json \
+            --trait original_author/data/SppTraitData_clean.csv \
+            --out audited_aggregate/ALAN_301Diel_BloomIndependent_Robustness_20261113.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('audited_aggregate/ALAN_301Diel_BloomIndependent_Robustness_20261113.json').read_text())
+          assert x['source']['source_bloom_trial_populations']['source_pairs']==196
+          m=x['models']['source_main_study_year_geography_elevation_metric']
+          assert abs(m['beta_night_reproductive_share_fraction']-.21474990651679526)<1e-7
+          assert x['full_source_publication_omissions']['n_full_source_deletions']==73
+          assert x['full_source_plant_omissions']['n_full_source_deletions']==74
+          print('ORIGINAL_196_NIGHTDAY_BLOOM_FUNCTION_STUDY_AND_FAMILY_AUDIT_SUCCESS')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
