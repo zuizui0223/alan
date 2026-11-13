@@ -24,7 +24,7 @@ from scripts.analysis.alan_original_diel_fourarm_reproductive_function_20261114 
 )
 
 
-def study_summary(frame: pd.DataFrame) -> dict:
+def study_summary(frame: pd.DataFrame, infer: bool = True) -> dict:
     """Independent publication medians, no individual taxon/site output."""
     paper = frame.groupby("study_key", observed=True).agg(
         I=("two_window_nonadditivity", "median"),
@@ -39,15 +39,25 @@ def study_summary(frame: pd.DataFrame) -> dict:
         "median_study_H": float(paper.H.median()) if n else None,
         "negative_I_papers": int(paper.I.lt(0).sum()),
         "positive_I_papers": int(paper.I.gt(0).sum()),
+        "positive_H_papers": int(paper.H.gt(0).sum()),
+        "negative_H_papers": int(paper.H.lt(0).sum()),
+        "zero_H_papers": int(paper.H.eq(0).sum()),
     }
-    if n >= 25 and frame.species.nunique() >= 30:
+    if infer and n >= 25 and frame.species.nunique() >= 30:
         v = paper.I.to_numpy(float)
         nn = int(np.sum(v < 0))
         np_ = int(np.sum(v > 0))
+        pos_h = int(np.sum(paper.H.to_numpy(float) > 0))
+        neg_h = int(np.sum(paper.H.to_numpy(float) < 0))
         out["study_sign_p_nominal"] = float(binomtest(nn, nn + np_, 0.5).pvalue)
-    else:
+        out["hand_headroom_sign_p_nominal"] = float(
+            binomtest(pos_h, pos_h + neg_h, 0.5).pvalue)
+    elif infer:
         out["study_sign_p_nominal"] = None
+        out["hand_headroom_sign_p_nominal"] = None
         out["inferential_gate"] = "NOT_ESTIMABLE_FEW_INDEPENDENT_PAPERS_OR_TAXA"
+    else:
+        out["inference_not_run_on_outcome_selected_subgroup"] = True
     return out
 
 
@@ -118,8 +128,8 @@ def describe_hand_subset(four: pd.DataFrame) -> dict:
         },
         "new_fivearm_study_grain": {
             "all_original_fifth_arm": study_summary(h),
-            "HAND_better_than_OPEN_outcome_condition_descriptive": study_summary(positive),
-            "HAND_not_better_than_OPEN_outcome_condition_descriptive": study_summary(nonpositive),
+            "HAND_better_than_OPEN_outcome_condition_descriptive": study_summary(positive, infer=False),
+            "HAND_not_better_than_OPEN_outcome_condition_descriptive": study_summary(nonpositive, infer=False),
             "original_I_study_sign_test_nominal": main["source_study_sign_test_two_sided_p_nominal"],
             "study_equal_spearman_headroom_I": float(rho),
             "study_equal_spearman_p_nominal_exploratory": float(nominal_p),
