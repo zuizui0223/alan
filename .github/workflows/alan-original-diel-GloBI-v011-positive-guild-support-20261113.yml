@@ -82,7 +82,7 @@ jobs:
           gh run download 42924993614 --repo zuizui0223/alan \
             --name alan-GloBI-v011-full-source-moth-plant-positive-flags \
             --dir original_GloBI
-          echo 'cf750192b4d641a2d904f4f74d5b87d41fc97e04822a67d513d9bad74ece8e01  original_GloBI/GloBI_v011_positive_species_flags.csv.gz' | sha256sum -c -
+          echo 'cf750192b4d641a2d904f4f74d5b87d41fc97e04822a67c513d9bad74ece8e01  original_GloBI/GloBI_v011_positive_species_flags.csv.gz' | sha256sum -c -
           python - <<'PY'
           import json
           from pathlib import Path
