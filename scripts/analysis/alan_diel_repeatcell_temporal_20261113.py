@@ -39,6 +39,9 @@ def repeat_panel(sites: pd.DataFrame, min_repeats=2):
         "repeated_islands":int(x.island.nunique()),
         "repeated_island_by_year_groups":int(islandyear.nunique()),
         "repeated_cells_with_nonzero_prior_mean_PCNL_change":int(site_span.gt(0).sum()),
+        "independent_islands_with_nonzero_within_cell_PCNL_change":int(
+            x.loc[x.source_cell_id.isin(set(site_span.loc[site_span.gt(1e-9)].index)),
+                  "island"].nunique()),
         "median_within_cell_historic_PCNL_mean_span":float(site_span.median()) if len(site_span) else None,
         "max_within_cell_historic_PCNL_mean_span":float(site_span.max()) if len(site_span) else None,
         "repeated_cell_location_not_original_population_identity":True
@@ -61,9 +64,12 @@ def longitudinal_regression(sites:pd.DataFrame, response:np.ndarray, name:str,
     metadata["weight"]=weight
     if len(repeated)<min_rows or repeated.island.nunique()<min_islands:
         return {"status":"NOT_ESTIMABLE_REPEATED_SOURCE_CELL_SUPPORT","support":metadata}
-    median_span=metadata["median_within_cell_historic_PCNL_mean_span"]
-    if median_span is None or median_span<=0:
-        return {"status":"NOT_ESTIMABLE_NO_PRIOR_LIGHT_CHANGE","support":metadata}
+    if (metadata["repeated_cells_with_nonzero_prior_mean_PCNL_change"]<100 or
+        metadata["independent_islands_with_nonzero_within_cell_PCNL_change"]<min_islands):
+        return {"status":"NOT_ESTIMABLE_INSUFFICIENT_WITHIN_CELL_PRELIGHT_VARIATION",
+                "support":metadata}
+    # A zero median exposure change does not imply zero identifying support:
+    # use the actual repeated-site fixed effects rank check below.
     site=repeated.source_cell_id.to_numpy()
     iy=repeated.island.astype(str).str.cat(repeated.year.astype(str),sep="|").to_numpy()
     if weight=="island_equal":
