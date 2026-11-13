@@ -90,6 +90,11 @@ def describe_hand_subset(four: pd.DataFrame) -> dict:
         I=("two_window_nonadditivity", "median"),
         H=("hand_headroom_proxy", "median"),
     )
+    species = h.groupby("species", observed=True).hand_headroom_proxy.median()
+    species_pos = int(species.gt(0).sum())
+    species_neg = int(species.lt(0).sum())
+    require((len(species), species_pos, species_neg) == (39, 31, 8),
+            "Authenticated plant-grain HAND>OPEN source support changed")
     rho, nominal_p = spearmanr(paper.H.to_numpy(), paper.I.to_numpy())
     require(np.isfinite(rho), "Non-identifiable hand/headroom association")
     # Paper-resampled interval is exploratory; shared OPEN in I and H
@@ -125,6 +130,12 @@ def describe_hand_subset(four: pd.DataFrame) -> dict:
             "nonpositive_hand_minus_open_pairs": len(nonpositive),
             "median_all_pair_headroom_proxy": float(h.hand_headroom_proxy.median()),
             "median_original_study_headroom_proxy": float(paper.H.median()),
+            "original_plant_median_headroom_positive": species_pos,
+            "original_plant_median_headroom_negative": species_neg,
+            "original_plant_median_headroom": float(species.median()),
+            "plant_grain_sign_p_nominal_exploratory": float(
+                binomtest(species_pos, species_pos + species_neg, .5).pvalue),
+            "source_species_phylogenetically_nonindependent": True,
         },
         "new_fivearm_study_grain": {
             "all_original_fifth_arm": study_summary(h),
