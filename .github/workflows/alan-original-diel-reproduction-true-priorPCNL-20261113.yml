@@ -1,0 +1,127 @@
+name: ALAN authentic daytime/nighttime reproductive experiments versus historical satellite light
+on:
+  push:
+    branches: [analysis/alan-diel-experimental-reproduction-global-PCNL-20261113]
+    paths:
+      - .github/workflows/alan-original-diel-reproduction-true-priorPCNL-20261113.yml
+      - scripts/analysis/alan_original_diel_experiment_true_priorPCNL_20261113.py
+      - tests/test_alan_original_diel_experiment_true_priorPCNL_20261113.py
+      - scripts/acquisition/alan_pcnl_1992_2024_verified_zenodo_download_20261109.py
+      - config/alan_pcnl_1992_2024_zenodo_v3_md5.json
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-source-contracts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 rasterio==1.4.3
+          python -m py_compile scripts/analysis/alan_original_diel_experiment_true_priorPCNL_20261113.py
+          python -m unittest discover -s tests -p test_alan_original_diel_experiment_true_priorPCNL_20261113.py -v
+          git clone -q --depth 1 https://github.com/liamkendall/bumble-bat.git original_author
+          test "$(git -C original_author hash-object data/DvN_LiteratureDataClean_2024-09-13.csv)" = 39a82d966afcdde670603add1c881ace8791ffe9
+          test "$(git -C original_author hash-object data/SppTraitData_clean.csv)" = 18381e550a7e405fe4f198909f0bb381bbecf1e0
+          python - <<'PY'
+          from scripts.analysis.alan_original_diel_experiment_true_priorPCNL_20261113 import author_pairs
+          s,d=author_pairs("original_author/data/DvN_LiteratureDataClean_2024-09-13.csv",
+                           "original_author/data/SppTraitData_clean.csv")
+          assert len(s)==146 and s.study.nunique()==87 and s.species.nunique()==94
+          print("AUTHENTIC_AUTHOR_DAYNIGHT_146_PAIR_87_STUDY_SOURCE",d,flush=True)
+          PY
+  historical-satellite-md5-shard:
+    needs: original-source-contracts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        shard: [0,1,2,3,4,5]
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      GDAL_CACHEMAX: '512'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 rasterio==1.4.3
+          git clone -q --depth 1 https://github.com/liamkendall/bumble-bat.git original_author
+          test "$(git -C original_author hash-object data/DvN_LiteratureDataClean_2024-09-13.csv)" = 39a82d966afcdde670603add1c881ace8791ffe9
+      - name: Original published PCNL annual rasters each MD5 verified and sampled at actual experiment sites
+        timeout-minutes: 100
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_original_diel_experiment_true_priorPCNL_20261113 worker \
+            --study original_author/data/DvN_LiteratureDataClean_2024-09-13.csv \
+            --traits original_author/data/SppTraitData_clean.csv \
+            --manifest config/alan_pcnl_1992_2024_zenodo_v3_md5.json \
+            --shard ${{ matrix.shard }} --raster-dir annual --out real_year_part
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: alan-original-diel-repro-pcnl-shard-${{ matrix.shard }}
+          path: real_year_part/
+          retention-days: 90
+          if-no-files-found: error
+  model-on-authentic-reproductive-field:
+    needs: [original-source-contracts, historical-satellite-md5-shard]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5
+          git clone -q --depth 1 https://github.com/liamkendall/bumble-bat.git original_author
+          test "$(git -C original_author hash-object data/DvN_LiteratureDataClean_2024-09-13.csv)" = 39a82d966afcdde670603add1c881ace8791ffe9
+      - name: Reconcile 30 historic annual satellite rasters and study-cluster within-reproduction day/night benefit
+        timeout-minutes: 25
+        run: |
+          set -euo pipefail
+          mkdir -p downloads shards verified
+          gh run download "$GITHUB_RUN_ID" --repo zuizui0223/alan --pattern 'alan-original-diel-repro-pcnl-shard-*' --dir downloads
+          test "$(find downloads -name 'diel_pcNL_shard_?.csv.gz' | wc -l)" -eq 6
+          test "$(find downloads -name 'diel_pcNL_shard_?.json' | wc -l)" -eq 6
+          find downloads -name 'diel_pcNL_shard_?.csv.gz' -exec cp {} shards/ \;
+          find downloads -name 'diel_pcNL_shard_?.json' -exec cp {} shards/ \;
+          python -m scripts.analysis.alan_original_diel_experiment_true_priorPCNL_20261113 collect \
+            --study original_author/data/DvN_LiteratureDataClean_2024-09-13.csv \
+            --traits original_author/data/SppTraitData_clean.csv \
+            --parts shards \
+            --out verified/ALAN_original_Diel_TruePriorPCNL_20261113.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path("verified/ALAN_original_Diel_TruePriorPCNL_20261113.json").read_text())
+          assert a["schema"]=="ALAN_true_diel_daynight_exclusion_reproductive_field_priorPCNL_1993_2022_v1"
+          assert a["source_support"]["original_source_pairs"]==146
+          assert a["source_support"]["source_years_verified"]==30
+          assert a["no_causal_inference"]["within_source_experiment_day_night_reproduction_measured"]
+          print("ACTUAL_STUDY_DAYNIGHT_REPRO_PCNL_ORIGINAL_SHA_SUCCESS")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-authentic-diel-field-reproduction-historical-PCNL-20261113
+          path: verified/
+          retention-days: 90
+          if-no-files-found: warn
