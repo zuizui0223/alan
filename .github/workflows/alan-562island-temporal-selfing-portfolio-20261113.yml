@@ -1,0 +1,98 @@
+name: ALAN authentic 562-island selfing portfolio and repeat-photo-cell temporal functional test
+on:
+  push:
+    branches: [analysis/alan-diel-temporal-selfing-macro-20261113]
+    paths:
+      - scripts/analysis/alan_diel_temporal_selfing_macro_runner_20261113.py
+      - tests/test_alan_diel_temporal_selfing_macro_runner_20261113.py
+      - .github/workflows/alan-562island-temporal-selfing-portfolio-20261113.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  unit-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 geopandas==1.1.2 shapely==2.1.2 requests==2.32.3
+          python -m py_compile scripts/analysis/alan_diel_temporal_selfing_macro_runner_20261113.py
+          python -m unittest discover -s tests -p test_alan_diel_temporal_selfing_macro_runner_20261113.py -v
+  actual-source-macro:
+    needs: unit-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Restore 85,318 original 33-year PCNL eligible island sites, exact immutable GloBI
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          mkdir -p source/pcnl source/globi original_batches raw groups
+          gh run download 42624285048 --repo zuizui0223/alan --name alan-full93m-actual-PCNL1992-2024-moth-positive-macro --dir source/pcnl
+          echo '440a8313d71168e0a4dfd2f41a7bef45623abb068b07e3282026f1c35dccbd2c  source/pcnl/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz' | sha256sum -c -
+          gh run download 41976552977 --repo zuizui0223/mois --name mois-ALAN-GloBI-stage2-actual-records-2019-2024-supported-source --dir source/globi
+          echo 'a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994  source/globi/GloBI_stage2_signed_extension.csv.gz' | sha256sum -c -
+          gh run download 42616279235 --repo zuizui0223/alan --pattern 'alan-93m-fullflora-moth-island-group-*' --dir original_batches
+          test "$(find original_batches -name 'allflora-island-group-??.sqlite' | wc -l)" -eq 16
+          test "$(find original_batches -name 'allflora-island-group-??.json' | wc -l)" -eq 16
+          find original_batches -name 'allflora-island-group-??.sqlite' -exec cp {} groups/ \;
+          find original_batches -name 'allflora-island-group-??.json' -exec cp {} groups/ \;
+      - name: Restore original independently published day/night exclusion experimental data
+        run: |
+          set -euo pipefail
+          git clone -q --depth 1 https://github.com/liamkendall/bumble-bat.git original_diel
+          test "$(git -C original_diel hash-object data/DvN_LiteratureDataClean_2024-09-13.csv)" = 39a82d966afcdde670603add1c881ace8791ffe9
+          test "$(git -C original_diel hash-object data/SppTraitData_clean.csv)" = 18381e550a7e405fe4f198909f0bb381bbecf1e0
+          echo 'ORIGINAL_DIEL_AUTHOR_BLOBS_VERIFIED'
+      - name: Restore independently audited species-direct reproductive-assurance trait file
+        run: |
+          set -euo pipefail
+          mkdir -p direct_traits
+          gh run download 34191508045 --repo zuizui0223/island --name source-scale-batch-integration-34191508045 --dir direct_traits
+          echo '7e86170218814abe2845da9a0282aecfdc930819b9d0c439bae8df4a0679c577  direct_traits/direct_species_trait_ledger.csv.gz' | sha256sum -c -
+      - name: Real 562-island selfing functional portfolio and original repeated-cell year effects
+        timeout-minutes: 70
+        run: |
+          set -euo pipefail
+          mkdir -p verified_portfolio
+          python -m scripts.analysis.alan_diel_temporal_selfing_macro_runner_20261113 \
+            --sites source/pcnl/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --globi source/globi/GloBI_stage2_signed_extension.csv.gz \
+            --groups groups \
+            --study original_diel/data/DvN_LiteratureDataClean_2024-09-13.csv \
+            --study_traits original_diel/data/SppTraitData_clean.csv \
+            --island_traits direct_traits/direct_species_trait_ledger.csv.gz \
+            --out verified_portfolio/alan_global562_temporal_selfing_20261113.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path("verified_portfolio/alan_global562_temporal_selfing_20261113.json").read_text())
+          assert a["status"]=="AUTHENTIC_SOURCE_93M_AND_34YEAR_LIGHT_RECOMPUTED_EXPLORATORY"
+          assert a["source"]["original_islands"]==562
+          assert a["source"]["original_source_photo_cell_years"]==77647
+          assert a["source"]["original_plant_species_site_years"]==2012925
+          assert a["baseline_previous_analysis"]["support"]["evaluated_islands"]==39
+          assert a["baseline_previous_analysis"]["support"]["evaluated_sites"]==2373
+          assert a["source"]["study_species_excluded_from_SELFING_portfolio_numerator_and_denominator"]
+          print("ALAN_REAL_GLOBAL_DIRECT_SELFING_TEMPORAL_SOURCE_COMPLETED")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-562island-direct-selfing-functional-temporal-source-20261113
+          path: verified_portfolio/
+          retention-days: 90
+          if-no-files-found: warn
