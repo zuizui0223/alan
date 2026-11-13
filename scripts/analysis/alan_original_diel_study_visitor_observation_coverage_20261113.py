@@ -11,7 +11,7 @@ reproductive experiment locations and source GloBI v0.11 positive-only guild
 plants. A mechanism comment with 'moth'/'bat'/'bee' is a TEXT SCREEN,
 NOT an independently verified local visitor observation.
 
-Aggregate counts only; no DOI×taxon/site/year, coordinates or raw comments.
+Aggregate counts plus public DOI-only study screening queue; no DOI×taxon/site/year, coordinates or raw comments.
 """
 from __future__ import annotations
 import argparse
@@ -51,14 +51,16 @@ def original_published_observations(path):
             stat="not_included_in_author_study_source"
         else:
             stat="unknown_or_mixed"
-        # The source DOI is public metadata; no DOI/author details are
-        # released in aggregated output.
+        # Original published DOI is public study-level bibliographic
+        # metadata; no botanical study species or coordinates ever exported.
         doi=set(records.DOI)-{"NA",""}
         comment=" ".join(records.mechanism_comments.drop_duplicates().astype(str))
         state[study]={
             "status":stat,
             "n_original_treatment_rows":len(records),
             "source_paper_has_DOI":bool(doi),
+            "source_paper_original_DOI_literal":next(iter(doi)) if len(doi)==1 else None,
+            "source_paper_DOI_ambiguous":bool(len(doi)>1),
             # SCREENING KEYWORDS ONLY, never coded as actual observer taxa.
             "contains_moth_keyword_in_mechanism_text":bool(re.search(
                 r"\b(?:moths?|hawk.?moths?|sphinx)\b",comment,re.I)),
@@ -80,7 +82,7 @@ def original_published_observations(path):
     return state,summary
 
 
-def run(joined,receipt,author_study,flags,flag_receipt,out):
+def run(joined,receipt,author_study,flags,flag_receipt,out,doi_queue=None):
     out=Path(out)
     if out.exists():raise FileExistsError("Existing independent source audit cannot be overwritten")
     source,_=load_source(joined,receipt)
@@ -160,6 +162,58 @@ def run(joined,receipt,author_study,flags,flag_receipt,out):
          "next_curation_gate":"Read original author study DOI evidence / reported pollinator observation table, extract exact observed visitor guild, target plant and same field site/year; keep paper-level observation flag distinct from local guild counts"
       }
     }
+    # Open bibliographic DOI queue to procure ACTUAL published visitor field
+    # observations at the same study plant/site/time. Study-level metadata
+    # ONLY; never publish the original field coordinates or plant identity.
+    # This is a curation queue, not a database of verified local pollinators.
+    if doi_queue is not None:
+        queue=[]
+        count_by_study=x.groupby("study_key",observed=True).size().to_dict()
+        for study in sorted(original_studies):
+            item=state[study]
+            if item["status"]!="included_some_observations":continue
+            queue.append({
+                "original_publication_source_key":str(study),
+                "original_source_DOI_literal":item["source_paper_original_DOI_literal"],
+                "original_source_DOI_unique":not item["source_paper_DOI_ambiguous"],
+                "author_says_paper_includes_pollinator_observations":True,
+                "actual_qualified_night_day_reproductive_source_pairs":int(
+                    count_by_study[study]),
+                "moth_keyword_in_proposed_MECHANISM_notes_UNVERIFIED":
+                    item["contains_moth_keyword_in_mechanism_text"],
+                "bee_keyword_in_proposed_MECHANISM_notes_UNVERIFIED":
+                    item["contains_bee_keyword_in_mechanism_text"],
+                "bat_keyword_in_proposed_MECHANISM_notes_UNVERIFIED":
+                    item["contains_bat_keyword_in_mechanism_text"],
+                "actual_pollinator_guild_verified_in_this_queue":False,
+                "same_study_site_year_visitor_record_exists_NOT_YET_CHECKED":True,
+            })
+        require(len(queue)==92 and sum(
+            bool(a["original_source_DOI_literal"]) for a in queue)==91,
+            "Original DOI-only 92-study curation opportunities changed")
+        destination=Path(doi_queue)
+        if destination.exists():raise FileExistsError("Do not replace existing DOI curation queue")
+        destination.parent.mkdir(parents=True,exist_ok=True)
+        destination.write_text(json.dumps({
+            "schema":"ALAN_public_DvN_published_visitor_observation_study_DOI_curation_queue_v1",
+            "status":"PUBLIC_BIBLIOGRAPHIC_STUDY_METADATA_NOT_VERIFIED_GUILD",
+            "eligible_publications":len(queue),
+            "source_papers_with_DOI":91,
+            "source_original_301_reproductive_field_outcomes":301,
+            "paper_flag_not_certain_site_matched_local_taxon_observation":True,
+            "mechanism_comment_keywords_ARE_NOT_TRUE_VISITOR_EVIDENCE":True,
+            "needed_evidence_fields":["same_original_field_site","same_year",
+                    "same_plant_taxon","original_visitor_species_or_family",
+                    "visit_event_time_or_activity_window",
+                    "visit_observation_effort","effective_pollen_stigma_deposition"],
+            "no_rare_botanical_name_or_source_field_coordinates":True,
+            "study_DOI_queue":queue},indent=2,ensure_ascii=False,allow_nan=False)+"\n")
+        results["source_metadata_acquisition_queue"]={
+            "papers_original_observations_y":92,
+            "papers_with_public_original_DOI":91,
+            "paper_level_metadata_export_without_species_or_field_coordinates":True,
+            "actual_local_animal_guilds_not_yet_curated":True
+        }
     out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(json.dumps(results,indent=2,ensure_ascii=False,allow_nan=False)+"\n")
     print("ALAN_ORIGINAL_STUDY_POLINATOR_OBSERVATION_SCREEN",
@@ -172,5 +226,6 @@ if __name__=="__main__":
     p=argparse.ArgumentParser(description=__doc__)
     for name in ("joined","receipt","author_study","globi_flags","globi_receipt","out"):
         p.add_argument("--"+name,required=True,type=Path)
+    p.add_argument("--paper_queue_out",type=Path,required=False)
     a=p.parse_args()
-    run(a.joined,a.receipt,a.author_study,a.globi_flags,a.globi_receipt,a.out)
+    run(a.joined,a.receipt,a.author_study,a.globi_flags,a.globi_receipt,a.out,a.paper_queue_out)
