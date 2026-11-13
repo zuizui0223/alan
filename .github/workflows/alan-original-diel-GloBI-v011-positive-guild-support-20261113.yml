@@ -131,7 +131,8 @@ jobs:
             --author_study original_author/data/DvN_LiteratureDataClean_2024-09-13.csv \
             --globi_flags original_GloBI/GloBI_v011_positive_species_flags.csv.gz \
             --globi_receipt original_GloBI/source_receipt.json \
-            --out audited_source_guilds/ALAN_original301_study_pollinator_observation_coverage_20261113.json
+            --out audited_source_guilds/ALAN_original301_study_pollinator_observation_coverage_20261113.json \
+            --paper_queue_out audited_source_guilds/ALAN_original_92study_public_DOI_pollinator_observation_curation_queue_20261113.json
           python - <<'PY'
           import json
           from pathlib import Path
@@ -143,7 +144,12 @@ jobs:
             'not_included_in_author_study_source':27,
             'unknown_or_mixed':2}
           assert x['what_is_not_identified']['original_observer_observation_inclusion_does_not_encode_visitor_taxonomic_guild']
-          print('ACTUAL_AUTHORS_140_PAPERS_VISITOR_OBSERVATION_INCLUSION_GUILD_TRIAGE_VERIFIED')
+          q=json.loads(Path('audited_source_guilds/ALAN_original_92study_public_DOI_pollinator_observation_curation_queue_20261113.json').read_text())
+          assert q['status']=='PUBLIC_BIBLIOGRAPHIC_STUDY_METADATA_NOT_VERIFIED_GUILD'
+          assert len(q['study_DOI_queue'])==92
+          assert sum(z['original_source_DOI_literal'] is not None for z in q['study_DOI_queue'])==91
+          assert q['no_rare_botanical_name_or_source_field_coordinates']
+          print('ACTUAL_AUTHORS_140_PAPERS_VISITOR_OBSERVATION_INCLUSION_GUILD_TRIAGE_AND_92_DOI_QUEUE_VERIFIED')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
