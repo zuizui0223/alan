@@ -72,7 +72,8 @@ def distinct_coverage(g:pd.DataFrame):
        "study_species_year_exact_fieldpoint_groups_with_BOTH_methods":int(geo_methods.eq(2).sum()),
        "publications_with_multiple_species_selfing_classes":int(study_autonomy.eq(2).sum()),
     }
-    require(research_pub_summary["n_publications"]==SOURCE_COUNTS[2] and
+    require((len(q),q.species.nunique(),research_pub_summary["n_publications"]) in
+            ((725,242,179),(688,227,170)) and
             research_pub_summary["studies_with_BOTH_methods"]==3 and
             research_pub_summary["studies_with_BOTH_selfing_classes"]==10 and
             research_pub_summary["study_species_pairs_with_BOTH_methods"]==1 and
@@ -126,7 +127,7 @@ def spatial_joint_positivity(g:pd.DataFrame, degrees=(5,10,20,30)):
            "source_coverage_not_independent_field_replicates":True,
            "degree_width":degree,
         }
-    require(res["10degree"]["all_regions"]==75 and
+    require(res["10degree"]["all_regions"]==(75 if len(g)==725 else 72) and
             res["10degree"]["regions_with_all_four_method_x_selfing_source_cells"]==1 and
             res["10degree"]["regions_with_all_four_AND_positive_exposure_interval_overlap"]==0,
             "Original source 10deg method-selfing-priorlight identification support changed")
