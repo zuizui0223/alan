@@ -1,0 +1,106 @@
+name: ALAN original field fruit seed night function and floral morphology cross-study transfer
+on:
+  push:
+    branches: [analysis/alan-diel-floral-functional-trait-transfer-20261113]
+    paths:
+      - scripts/analysis/alan_flower_multitraits_reproductive_diel_transfer_20261113.py
+      - tests/test_alan_flower_multitraits_reproductive_diel_transfer_20261113.py
+      - .github/workflows/alan-original-DvN-repro-flower-syndrome-transfer-20261113.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 scikit-learn==1.6.1
+          python -m py_compile scripts/analysis/alan_flower_multitraits_reproductive_diel_transfer_20261113.py
+          python -m unittest discover -s tests -p test_alan_flower_multitraits_reproductive_diel_transfer_20261113.py -v
+  genuine-original-published-experiment-model:
+    needs: source-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Restore already MD5-authenticated original 301 field site×year and six REAL annual PCNL shards
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 scikit-learn==1.6.1
+          mkdir -p original_study downloads parts
+          gh run download 43379308366 --repo zuizui0223/alan \
+            --name alan-true-daynight-study-site-year-experiment-source-20261113 \
+            --dir original_study
+          echo '21b1fef1beb9e6238cfa47101b991815d4c0f33787b9737f834426dc3bab15af  original_study/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz' | sha256sum -c -
+          gh run download 43380089481 --repo zuizui0223/alan \
+            --pattern 'alan-original-DvN-PCNL1992_2021-year-shard-*' \
+            --dir downloads
+          test "$(find downloads -name 'diel_annual_shard_?.csv.gz' | wc -l)" -eq 6
+          test "$(find downloads -name 'diel_annual_shard_?.json' | wc -l)" -eq 6
+          find downloads -name 'diel_annual_shard_?.csv.gz' -exec cp {} parts/ \;
+          find downloads -name 'diel_annual_shard_?.json' -exec cp {} parts/ \;
+          git clone -q --depth 1 https://github.com/liamkendall/bumble-bat.git original_author
+          test "$(git -C original_author hash-object data/SppTraitData_clean.csv)" = 18381e550a7e405fe4f198909f0bb381bbecf1e0
+      - name: Rejoin the 30 exact original annual PCNL samples without redownloading 30 original GeoTIFFs
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_authentic_diel_siteyear_PCNL_6shards_20261113 collect \
+            --source original_study/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz \
+            --receipt original_study/original_DvN_source_year_geo_repro_audit.json \
+            --partialdir parts --out original_rejoined
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          file=Path('original_rejoined/Diel_original_daynight_reproductive_1993_2022_priorPCNL1992_2021.csv.gz')
+          receipt=json.loads(Path('original_rejoined/Diel_original_priorPCNL_source_receipt.json').read_text())
+          actual=hashlib.sha256(file.read_bytes()).hexdigest()
+          assert receipt['joined_file_sha256']==actual
+          assert receipt['original_source_sha256']=='21b1fef1beb9e6238cfa47101b991815d4c0f33787b9737f834426dc3bab15af'
+          assert receipt['annual_rasters_MD5_source_verified']==30 and receipt['source_pairs_full_pre_experiment_PCNL']==301
+          print('ORIGINAL_EXPOSURE_CONTENT_IDENTICAL_BY_SOURCE_AND_30_YEAR_MANIFEST',actual)
+          PY
+      - name: Test independent original floral colour shape scent nectar and flowering time against REAL paired fruit seed output
+        timeout-minutes: 25
+        run: |
+          set -euo pipefail
+          mkdir -p verified_flower_function
+          python -m scripts.analysis.alan_flower_multitraits_reproductive_diel_transfer_20261113 \
+            --joined original_rejoined/Diel_original_daynight_reproductive_1993_2022_priorPCNL1992_2021.csv.gz \
+            --receipt original_rejoined/Diel_original_priorPCNL_source_receipt.json \
+            --trait original_author/data/SppTraitData_clean.csv \
+            --out verified_flower_function/ALAN_301_DvN_original_flower_syndrome_reproductive_transfer_20261113.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('verified_flower_function/ALAN_301_DvN_original_flower_syndrome_reproductive_transfer_20261113.json').read_text())
+          assert x['status']=='AUTHENTIC_PAIR_DAYNIGHT_FIELD_REPRODUCTION_FLORAL_TRAIT_EXPLORATION'
+          assert x['source']['original_field_site_year_reproductive_pairs']==301
+          assert x['source']['original_independent_publications']==118
+          assert x['source']['original_accepted_botanical_taxa']==123
+          assert x['direct_trait_coverage']['author_bloom_day_night_source_pairs']==196
+          assert abs(x['models']['baseline_original_bloom_only_full_support']['terms']['night_bloom']['coefficient_fraction']-.21474990651679526)<1.e-7
+          assert x['strict_scientific_limits']['ALAN_previous_PCNL_observational_NOT_at_flower_lux']
+          print("ORIGINAL_301_DIEL_FLORAL_FUNCTIONAL_TRAIT_STUDY_FAMILY_TRANSFER_VERIFIED")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-DvN301-real-floral-syndrome-functional-transfer-20261113
+          path: verified_flower_function/
+          retention-days: 90
+          if-no-files-found: warn
