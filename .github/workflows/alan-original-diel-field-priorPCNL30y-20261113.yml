@@ -1,0 +1,118 @@
+name: ALAN real day-night field reproduction vs thirty signed prior-light years
+on:
+  push:
+    branches: [analysis/alan-authentic-diel-reproduction-priorPCNL-20261113]
+    paths:
+      - .github/workflows/alan-original-diel-field-priorPCNL30y-20261113.yml
+      - scripts/analysis/alan_authentic_diel_siteyear_PCNL_6shards_20261113.py
+      - scripts/analysis/alan_original_DvN_reproductive_vs_PRIOR_PCNL_20261113.py
+      - tests/test_alan_authentic_diel_priorPCNL_20261113.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 rasterio==1.4.3
+          python -m py_compile scripts/analysis/alan_authentic_diel_siteyear_PCNL_6shards_20261113.py scripts/analysis/alan_original_DvN_reproductive_vs_PRIOR_PCNL_20261113.py
+          python -m unittest discover -s tests -p test_alan_authentic_diel_priorPCNL_20261113.py -v
+  annual:
+    needs: tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        shard: [0,1,2,3,4,5]
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Restore immutable original day-night field site and year
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 rasterio==1.4.3
+          mkdir -p source
+          gh run download 43379308366 -R zuizui0223/alan -n alan-true-daynight-study-site-year-experiment-source-20261113 -D source
+          echo '21b1fef1beb9e6238cfa47101b991815d4c0f33787b9737f834426dc3bab15af  source/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz' | sha256sum -c -
+      - name: Download 5 verified original PCNL annual rasters and sample true field coordinates
+        timeout-minutes: 85
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_authentic_diel_siteyear_PCNL_6shards_20261113 worker \
+            --source source/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz \
+            --receipt source/original_DvN_source_year_geo_repro_audit.json \
+            --manifest config/alan_pcnl_1992_2024_zenodo_v3_md5.json \
+            --shard ${{ matrix.shard }} --rasterdir original_rasters --out raster_part
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: alan-original-DvN-PCNL1992_2021-year-shard-${{ matrix.shard }}
+          path: raster_part/
+          retention-days: 90
+          if-no-files-found: error
+  original-model:
+    needs: [tests, annual]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Restore original 301 field site-year pairs and all six annual prior-light shards
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 rasterio==1.4.3
+          mkdir -p source downloaded annualparts
+          gh run download 43379308366 -R zuizui0223/alan -n alan-true-daynight-study-site-year-experiment-source-20261113 -D source
+          echo '21b1fef1beb9e6238cfa47101b991815d4c0f33787b9737f834426dc3bab15af  source/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz' | sha256sum -c -
+          gh run download "$GITHUB_RUN_ID" -R zuizui0223/alan -p 'alan-original-DvN-PCNL1992_2021-year-shard-*' -D downloaded
+          test "$(find downloaded -name 'diel_annual_shard_?.csv.gz' | wc -l)" -eq 6
+          test "$(find downloaded -name 'diel_annual_shard_?.json' | wc -l)" -eq 6
+          find downloaded -name 'diel_annual_shard_?.csv.gz' -exec cp {} annualparts/ \;
+          find downloaded -name 'diel_annual_shard_?.json' -exec cp {} annualparts/ \;
+          python -m scripts.analysis.alan_authentic_diel_siteyear_PCNL_6shards_20261113 collect \
+            --source source/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz \
+            --receipt source/original_DvN_source_year_geo_repro_audit.json \
+            --partialdir annualparts --out paired_original
+      - name: Fit actual within-study day-night reproductive benefit versus preceding light
+        run: |
+          set -euo pipefail
+          mkdir -p aggregate_results
+          python -m scripts.analysis.alan_original_DvN_reproductive_vs_PRIOR_PCNL_20261113 \
+            --joined paired_original/Diel_original_daynight_reproductive_1993_2022_priorPCNL1992_2021.csv.gz \
+            --receipt paired_original/Diel_original_priorPCNL_source_receipt.json \
+            --output aggregate_results/ALAN_original_DvN_reproduction_priorPCNL_20261113.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          q=json.loads(Path('aggregate_results/ALAN_original_DvN_reproduction_priorPCNL_20261113.json').read_text())
+          assert q['status']=='EXPLORATORY_ACTUAL_WITHIN_EXPERIMENT_DAYNIGHT_REPRO_AGAINST_HISTORICAL_LIGHT'
+          assert q['source']['original_source_pairs_before_light']==301
+          print('AUTHENTIC_DIEL_REPRO_LIGHT_GLOBAL_ORIGINAL_ESTIMATED')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-true-original-night-day-reproductive-benefit-priorPCNL
+          path: |
+            paired_original/Diel_original_priorPCNL_source_receipt.json
+            aggregate_results/ALAN_original_DvN_reproduction_priorPCNL_20261113.json
+          retention-days: 90
+          if-no-files-found: warn
