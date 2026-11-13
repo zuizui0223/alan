@@ -1,0 +1,23 @@
+plant,land,stations,onsets,flower_and_flight,complete_years,repeat_years
+Asclepias syriaca,island,2,1,2,0,0
+Asclepias syriaca,mainland,28,146,82,66,63
+Cirsium arvense,island,2,0,0,0,0
+Cirsium arvense,mainland,1,1,0,0,0
+Gaylussacia baccata,island,7,51,10,35,34
+Gaylussacia baccata,mainland,2,5,1,3,2
+Hamamelis virginiana,island,2,3,3,0,0
+Hamamelis virginiana,mainland,28,130,4,60,58
+Holodiscus discolor,island,4,8,0,4,3
+Holodiscus discolor,mainland,4,15,0,7,4
+Kalmia latifolia,island,1,4,1,3,3
+Kalmia latifolia,mainland,11,40,21,19,17
+Lythrum salicaria,island,2,0,1,0,0
+Lythrum salicaria,mainland,1,1,1,1,0
+Phragmites australis,island,2,1,0,0,0
+Phragmites australis,mainland,5,5,0,3,2
+Robinia pseudoacacia,island,1,2,0,0,0
+Robinia pseudoacacia,mainland,1,4,0,3,3
+Rudbeckia hirta,island,2,2,3,1,0
+Rudbeckia hirta,mainland,3,4,0,2,2
+Vaccinium corymbosum,island,3,6,3,4,2
+Vaccinium corymbosum,mainland,1,2,0,0,0
