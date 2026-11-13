@@ -44,7 +44,7 @@ def original_counts(d, exposure, sites):
     ].copy()
     source=d.loc[d.species.isin(relevant.species),KEY+["species"]].copy()
     source=source.merge(relevant,on="species",how="left",validate="many_to_one")
-    require(source[["night_stronger","day_stronger"]].notna().all(),
+    require(source[["night_stronger","day_stronger"]].notna().all().all(),
             "Original photo species failure to join known author experimental effects")
     source["genus"]=source.species.str.split().str[0]
     aggregate=(source.groupby(KEY,observed=True).agg(
