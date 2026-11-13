@@ -98,7 +98,11 @@ def lofo_models(q:pd.DataFrame, group="plant_family"):
             te=scale.transform(xx[test])
             # Preserve original published study equal weighting; independent
             # studies' test records never enter the scaling/fitting.
-            tw=base_w[train]/np.mean(base_w[train])
+            # Re-estimate each publication's training share AFTER excluding
+            # the entire held-out botanical family (no test data opportunity
+            # is allowed to alter training publication weights).
+            wtrain=1.0/q.iloc[train].groupby("study_key").study_key.transform("size").to_numpy(float)
+            tw=wtrain/np.mean(wtrain)
             fit=Ridge(alpha=ALPHA,fit_intercept=True)
             fit.fit(tr,y[train],sample_weight=tw)
             pred[name][test]=np.clip(fit.predict(te),0.,1.)
@@ -234,7 +238,10 @@ def purged_study_out(q:pd.DataFrame):
             scaler=StandardScaler()
             tr=scaler.fit_transform(XX[purged]);ts=scaler.transform(XX[test])
             r=Ridge(alpha=ALPHA,fit_intercept=True)
-            r.fit(tr,y[purged],sample_weight=w[purged]/w[purged].mean())
+            # Entire held-out publication + shared species already removed;
+            # calculate publication-equal weights on TRAINING rows only.
+            ww=1.0/q.iloc[purged].groupby("study_key").study_key.transform("size").to_numpy(float)
+            r.fit(tr,y[purged],sample_weight=ww/ww.mean())
             pred[name][test]=np.clip(r.predict(ts),0,1)
     for name in pred:require(np.isfinite(pred[name]).all(),
                               "Missing source fold from independent study-species purge")
