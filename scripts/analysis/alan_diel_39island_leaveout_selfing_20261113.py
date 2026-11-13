@@ -56,7 +56,7 @@ def original_counts(d, exposure, sites):
             "Experimental source taxon pair double counted")
     require(int((s.night>=1).sum())>0 and int((s.day>=1).sum())>0,
             "No original documented functional channels in photo sources")
-    require(int((s.night>=1)&(s.day>=1)).sum() == 2565,
+    require(int(((s.night>=1)&(s.day>=1)).sum()) == 2565,
             "Original 2565 co-documented original photo-cell support changed")
     # Unique taxon x source photographic cell/year row for omission audit.
     require(not source.duplicated(KEY+["species"]).any(), "Repeated source plant")
