@@ -1,0 +1,97 @@
+name: ALAN real301 day-night original field study influence and bloom × historical prior PCNL
+on:
+  push:
+    branches: [analysis/alan-real-diel-reproduction-study-support-20261113]
+    paths:
+      - scripts/analysis/alan_DvN_real_field_light_study_influence_bloom_20261113.py
+      - tests/test_alan_DvN_real_field_light_study_influence_bloom_20261113.py
+      - .github/workflows/alan-DvN301-original-study-leverage-bloom-20261113.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5
+          python -m py_compile scripts/analysis/alan_DvN_real_field_light_study_influence_bloom_20261113.py
+          python -m unittest discover -s tests -p test_alan_DvN_real_field_light_study_influence_bloom_20261113.py -v
+  genuine-original-published-experiment-model:
+    needs: source-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Restore already MD5-authenticated original 301 field site×year and six REAL annual PCNL shards
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5
+          mkdir -p original_study downloads parts
+          gh run download 43379308366 --repo zuizui0223/alan \
+            --name alan-true-daynight-study-site-year-experiment-source-20261113 \
+            --dir original_study
+          echo '21b1fef1beb9e6238cfa47101b991815d4c0f33787b9737f834426dc3bab15af  original_study/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz' | sha256sum -c -
+          gh run download 43380089481 --repo zuizui0223/alan \
+            --pattern 'alan-original-DvN-PCNL1992_2021-year-shard-*' \
+            --dir downloads
+          test "$(find downloads -name 'diel_annual_shard_?.csv.gz' | wc -l)" -eq 6
+          test "$(find downloads -name 'diel_annual_shard_?.json' | wc -l)" -eq 6
+          find downloads -name 'diel_annual_shard_?.csv.gz' -exec cp {} parts/ \;
+          find downloads -name 'diel_annual_shard_?.json' -exec cp {} parts/ \;
+          git clone -q --depth 1 https://github.com/liamkendall/bumble-bat.git original_author
+          test "$(git -C original_author hash-object data/SppTraitData_clean.csv)" = 18381e550a7e405fe4f198909f0bb381bbecf1e0
+      - name: Rejoin the 30 exact original annual PCNL samples without redownloading 30 original GeoTIFFs
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_authentic_diel_siteyear_PCNL_6shards_20261113 collect \
+            --source original_study/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz \
+            --receipt original_study/original_DvN_source_year_geo_repro_audit.json \
+            --partialdir parts --out original_rejoined
+          echo '0ea518558117e517a73345a93daee132f9ba7f4525296a744df131df805a359f  original_rejoined/Diel_original_daynight_reproductive_1993_2022_priorPCNL1992_2021.csv.gz' | sha256sum -c -
+      - name: Test every independent study and plant omission, actual satellite light support and source botanical bloom-time
+        timeout-minutes: 25
+        run: |
+          set -euo pipefail
+          mkdir -p audited_aggregate
+          python -m scripts.analysis.alan_DvN_real_field_light_study_influence_bloom_20261113 \
+            --joined original_rejoined/Diel_original_daynight_reproductive_1993_2022_priorPCNL1992_2021.csv.gz \
+            --receipt original_rejoined/Diel_original_priorPCNL_source_receipt.json \
+            --trait original_author/data/SppTraitData_clean.csv \
+            --out audited_aggregate/ALAN_301Diel_StudyInfluence_Bloom_PriorPCNL_20261113.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          f=Path('audited_aggregate/ALAN_301Diel_StudyInfluence_Bloom_PriorPCNL_20261113.json')
+          x=json.loads(f.read_text())
+          assert x['status']=='AUTHENTIC_PREEXPERIMENT_PCNL_ORIGINAL_PAIRED_FIELD_STUDY_AUDIT'
+          assert x['source']['original_field_reproductive_pairs']==301
+          assert x['source']['original_independent_studies']==118
+          assert x['source']['original_botanical_species']==123
+          assert x['all_one_at_a_time_publication_omissions']['original_omission_units']==118
+          assert x['all_one_at_a_time_plant_species_omissions']['original_omission_units']==123
+          assert x['limits']['no_original_author_study_site_species_rows_exported']
+          print('GENUINE_301_STUDY_DIEL_PCNL_PUBLICATION_AND_SPECIES_INFLUENCE_SOURCE_SUCCESS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original301-diel-studies-ALAN-robustness-bloom-20261113
+          path: audited_aggregate/
+          retention-days: 90
+          if-no-files-found: warn
