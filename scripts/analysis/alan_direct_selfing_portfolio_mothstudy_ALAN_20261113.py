@@ -73,7 +73,9 @@ def portfolio_frame(d,sites,experiment,trait_table,trait):
     p["trait_no"]=p.source_direct_trait.eq(no).fillna(False)
     p["trait_known"]=p.trait_yes|p.trait_no
     g=p.groupby(KEY,observed=True)[["trait_yes","trait_no","trait_known"]].sum().reset_index()
-    q=q.merge(g,on=KEY,validate="one_to_one")
+    q=q.merge(g,on=KEY,how="left",validate="one_to_one")
+    for k in ("trait_yes","trait_no","trait_known"):
+        q[k]=q[k].fillna(0).astype(int)
     require((q.trait_yes+q.trait_no==q.trait_known).all(),
             "Direct trait denominator includes unclassified species")
     require((q.trait_known<=q.all_accepted_recorded_species).all(),
