@@ -4,6 +4,8 @@ on:
     branches: [analysis/alan-diel-temporal-selfing-macro-20261113]
     paths:
       - scripts/analysis/alan_diel_temporal_selfing_macro_runner_20261113.py
+      - scripts/analysis/alan_diel_repeatcell_temporal_20261113.py
+      - scripts/analysis/alan_direct_selfing_portfolio_mothstudy_ALAN_20261113.py
       - tests/test_alan_diel_temporal_selfing_macro_20261113.py
       - .github/workflows/alan-562island-temporal-selfing-portfolio-20261113.yml
   workflow_dispatch:
@@ -80,7 +82,7 @@ jobs:
           import json
           from pathlib import Path
           a=json.loads(Path("verified_portfolio/alan_global562_temporal_selfing_20261113.json").read_text())
-          assert a["status"]=="AUTHENTIC_SOURCE_93M_AND_34YEAR_LIGHT_RECOMPUTED_EXPLORATORY"
+          assert a["status"]=="AUTHENTIC_SOURCE_93M_AND_33YEAR_LIGHT_RECOMPUTED_EXPLORATORY"
           assert a["source"]["original_islands"]==562
           assert a["source"]["original_source_photo_cell_years"]==77647
           assert a["source"]["original_plant_species_site_years"]==2012925
