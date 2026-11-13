@@ -66,23 +66,30 @@ def canonical_int(v):
     return int(f)
 
 
+def source_literal(v):
+    # pandas default CSV reader converts the author's LITERAL "NA" units
+    # and season labels to NaN. Restore those original source tokens
+    # for exact byte-equivalent treatment group keys, never impute value.
+    return "NA" if pd.isna(v) or str(v) in ("nan","None") else str(v).strip()
+
+
 def canonical_key_from_raw(values):
     z=values.iloc[0]
     return (str(z.study_ID).strip()," ".join(str(z.plant_species).split()),
             str(z.treatment_effectiveness_metric),
-            str(z.effectiveness_units),
+            source_literal(z.effectiveness_units),
             round(float(z.coordinates_lat),7),
             round(float(z.coordinates_lon),7),
             canonical_int(z.year_start),canonical_int(z.year_end),
-            str(z.month_start).strip(),str(z.month_end).strip())
+            source_literal(z.month_start),source_literal(z.month_end))
 
 
 def canonical_key_from_preflight(row):
     return (str(row.study_key).strip()," ".join(str(row.species).split()),
-            str(row.metric),str(row.units),
+            str(row.metric),source_literal(row.units),
             round(float(row.lat),7),round(float(row.lon),7),
             canonical_int(row.year_exp),canonical_int(row.year_end),
-            str(row.month_start).strip(),str(row.month_end).strip())
+            source_literal(row.month_start),source_literal(row.month_end))
 
 
 def original_mean(rows):
@@ -161,6 +168,11 @@ def exact_source_arms(original:pd.DataFrame,source:pd.DataFrame):
             "night":average["night pollination"],
         }
         outcome.append(out)
+    print("AUTHENTIC_FIELD_FOURARM_PAIR_KEY_AUDIT",json.dumps({
+        "original_301_expected":SOURCE_N[0],"matched_source_pairs":len(outcome),
+        "source_pair_groups_not_identically_reconstructed":len(missing),
+        "source_day_night_mean_differences":bad_daynight,
+        "original_valid_group_keys":len(bins)}),flush=True)
     require(len(missing)==0 and len(outcome)==SOURCE_N[0] and bad_daynight==0,
             "Original signed day/night source cannot be reconstructed from author interventions")
     for original_col,counted in (("open_pollination_arms_present","open pollination"),
