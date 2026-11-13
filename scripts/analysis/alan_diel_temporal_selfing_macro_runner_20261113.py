@@ -52,7 +52,7 @@ def run(sites_path,globi_path,groups,study,study_traits,island_traits,output):
     selfing=run_selfing_portfolio(flora,sites,studies,island_traits)
     result={
         "schema":"ALAN_true562island_independent_selfing_x_night_experiment_rollingpriorPCNL_and_temporal_source_v1",
-        "status":"AUTHENTIC_SOURCE_93M_AND_34YEAR_LIGHT_RECOMPUTED_EXPLORATORY",
+        "status":"AUTHENTIC_SOURCE_93M_AND_33YEAR_LIGHT_RECOMPUTED_EXPLORATORY",
         "source":{
             "source_photo_ID_index":93209351,
             "original_plant_species_site_years":len(flora),
