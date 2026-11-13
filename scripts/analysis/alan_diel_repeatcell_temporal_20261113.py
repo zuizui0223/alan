@@ -91,6 +91,62 @@ def longitudinal_regression(sites:pd.DataFrame, response:np.ndarray, name:str,
                 "support":metadata,"reason":str(e)[:180]}
 
 
+
+def changing_cell_temporal_regression(sites:pd.DataFrame,
+                                      response:np.ndarray,
+                                      name:str,
+                                      *, minimum_within_cell_span=.01,
+                                      weight:str="island_equal"):
+    """Posthoc SOURCE EXPOSURE variation gate, not a treatment choice.
+
+    Only repeated original photographed cells whose rolling preceding-years'
+    log1p PCNL mean varies by at least .01. This is not a global randomized
+    sample and zero-change cells are retained in the separate full cohort
+    source-support counts. Do not claim illumination intervention or decline.
+    """
+    require(len(sites)==len(response),"Misaligned repeated-cell outcome")
+    frame=sites.copy()
+    frame["outcome"]=np.asarray(response,float)
+    repeated,base_support=repeat_panel(frame)
+    span=repeated.groupby("source_cell_id",observed=True)[LIGHT].agg(
+        lambda z:float(z.max()-z.min()))
+    allowed=set(span[span.ge(minimum_within_cell_span)].index)
+    changed=repeated.loc[repeated.source_cell_id.isin(allowed)].copy()
+    support={
+        **base_support,
+        "posthoc_exposure_span_threshold":minimum_within_cell_span,
+        "changed_cell_count":len(allowed),
+        "changed_cell_site_years":len(changed),
+        "changed_cell_independent_islands":int(changed.island.nunique()),
+        "changed_cell_observed_years":int(changed.year.nunique()),
+        "photo_cell_years_selection_is_exposure_only":True,
+        "not_original_full_global_floristic_sample":True,
+    }
+    if len(changed)<300 or changed.island.nunique()<30 or changed.year.nunique()<2:
+        return {"status":"NOT_ESTIMABLE_INDEPENDENT_CHANGED_PHOTO_CELL_SUPPORT",
+                "source_support":support}
+    y=changed.outcome.to_numpy(float)
+    w=(1/changed.groupby("island",observed=True).island.transform("size").to_numpy(float)
+       if weight=="island_equal" else np.ones(len(changed)))
+    iy=changed.island.astype(str).str.cat(changed.year.astype(str),sep="|").to_numpy()
+    try:
+        ans=fixed_effects_regression(
+           y,changed[LIGHT].to_numpy(float),
+           changed.log_obs.to_numpy(float),w,
+           changed.island.to_numpy(),
+           [changed.source_cell_id.to_numpy(),iy])
+        return {"status":"EXPLORATORY_ORIGINAL_CHANGED_PHOTO_CELL_WITHIN_SOURCE_TEMPORAL",
+                "fit":ans,
+                "response":name,
+                "weight":weight,
+                "source_support":support,
+                "L_variation_is_rolling_prior_mean_not_lamp_onset":True,
+                "no_measured_local_reproductive_or_pollinator_function":True}
+    except (ValueError,np.linalg.LinAlgError) as e:
+        return {"status":"NOT_ESTIMABLE_ORIGINAL_TEMPORAL_DESIGN_OR_SOLVER",
+                "reason":str(e)[:180],"source_support":support}
+
+
 def global_source_and_codocumented_temporal(s:pd.DataFrame,study_source:pd.DataFrame):
     """Compare full source nighttime-vs-daytime documented plant fraction with
     39-island common-source bin contrast under repeatedly sampled cells."""
@@ -113,8 +169,18 @@ def global_source_and_codocumented_temporal(s:pd.DataFrame,study_source:pd.DataF
     qy=q.night.to_numpy(float)/(q.night+q.day).to_numpy(float)
     narrower=longitudinal_regression(
         q,qy,"night_share_among_both_diel_experiment_source_documented")
+    changed=changing_cell_temporal_regression(
+        g,y,"externally_documented_night_minus_day")
+    changed_eq=changing_cell_temporal_regression(
+        g,y,"externally_documented_night_minus_day",weight="site_equal")
+    documented_y=(g.night+g.day).to_numpy(float)/g.all_accepted_recorded_species.to_numpy(float)
+    changed_study=changing_cell_temporal_regression(
+        g,documented_y,"control_total_photo_reproductive_experiment_species_documented")
     return {
         "full_562_island_original_photo_site_year_response":full,
+        "changed_cell_exposure_supported_within_cell":changed,
+        "changed_cell_site_equal_sensitivity":changed_eq,
+        "control_experiment_study_documentation_on_identical_exposure_qualified_cells":changed_study,
         "full_562_island_source_site_equal_sensitivity":full_site_equal,
         "original_39island_common_source_response":narrower,
         "frozen_parent_comparison":{
