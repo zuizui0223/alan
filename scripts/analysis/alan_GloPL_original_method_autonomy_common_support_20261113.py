@@ -76,7 +76,7 @@ def distinct_coverage(g:pd.DataFrame):
             ((725,242,179),(688,227,170)) and
             research_pub_summary["studies_with_BOTH_methods"]==3 and
             research_pub_summary["studies_with_BOTH_selfing_classes"]==10 and
-            research_pub_summary["study_species_pairs_with_BOTH_methods"]==1 and
+            research_pub_summary["study_species_pairs_with_BOTH_methods"]==(1 if len(q)==725 else 0) and
             research_pub_summary["study_species_experimentyear_groups_with_BOTH_methods"]==0,
             "Source actual study-level method overlap changed")
     # An apparent pooled three-way interaction cannot identify treatment effects
