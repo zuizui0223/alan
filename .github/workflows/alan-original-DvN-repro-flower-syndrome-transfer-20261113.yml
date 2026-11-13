@@ -1,4 +1,4 @@
-name: ALAN original field fruit and seed night function: floral morphology and cross-study-family transfer
+name: ALAN original field fruit seed night function and floral morphology cross-study transfer
 on:
   push:
     branches: [analysis/alan-diel-floral-functional-trait-transfer-20261113]
