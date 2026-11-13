@@ -21,6 +21,7 @@ study×plant×location or direct trait rows in results.
 """
 from __future__ import annotations
 import argparse
+import io
 import hashlib
 import json
 from pathlib import Path
@@ -70,7 +71,17 @@ def normal_study(s:pd.Series):
 def source_environment_file(path:Path,expected_blob:str,value:str):
     require(sha_git_blob(path)==expected_blob,
             "Independent original study site climatic variable file Git SHA changed")
-    z=pd.read_csv(path,dtype=str,keep_default_na=False,encoding="utf-8-sig")
+    # Original author data includes pre-Unicode R CSVs with Latin-1 bytes
+    # (e.g., Jürgens_2014). Preserve exact raw Git blob verification,
+    # decode to Unicode explicitly before study-ID key reconciliation.
+    raw=path.read_bytes()
+    try:
+        text_source=raw.decode("utf-8-sig")
+        source_encoding="utf-8-sig"
+    except UnicodeDecodeError:
+        text_source=raw.decode("latin-1")
+        source_encoding="latin-1"
+    z=pd.read_csv(io.StringIO(text_source),dtype=str,keep_default_na=False)
     names={"study_ID","coordinates_lat","coordinates_lon","year_start",
            "month_start","month_end",value}
     require(names.issubset(z.columns),"Original author environment columns drift")
@@ -96,6 +107,7 @@ def source_environment_file(path:Path,expected_blob:str,value:str):
     require(not good.duplicated(ENV_KEYS).any(),"Ambiguous original study weather row join")
     return good,{
         "original_source_file_blob":expected_blob,
+        "original_source_text_encoding":source_encoding,
         "original_site_season_year_rows":219,
         "numeric_season_rows":int(len(z)),
         "original_distinct_site_season_year_keys":int(len(report)),
