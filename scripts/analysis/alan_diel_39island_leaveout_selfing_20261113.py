@@ -79,7 +79,7 @@ def supported(s):
                   evaluated_islands=int(q.island.nunique()))
 
 
-def fit_sample(s, *, min_islands=25):
+def fit_sample(s, *, min_islands=30):
     q,support=supported(s)
     if len(q)<150 or q.island.nunique()<min_islands:
         return {"status":"not_estimable_common_source_geography","support":support}
