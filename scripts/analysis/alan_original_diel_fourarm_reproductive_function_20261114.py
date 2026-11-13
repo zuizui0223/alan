@@ -327,6 +327,112 @@ def original_observational_pcNL(a:pd.DataFrame,metric):
             "no_nocturnal_moth_specific_effect":True}
 
 
+
+def family_cluster_and_source_influence(a:pd.DataFrame):
+    """Independent botanical-family aggregation and original study/species
+    deletions. No source family or individual species ID is exported."""
+    z=a.loc[a.plant_family.notna() & ~a.plant_family.astype(str).isin(
+        ("NA","unknown",""))].copy()
+    if z.empty:
+        return {"status":"NOT_ESTIMABLE_ORIGINAL_DIRECT_FAMILY_TRAITS"}
+    sf=(z.groupby(["plant_family","study_key"],observed=True)
+          .two_window_nonadditivity.median().reset_index())
+    family=(sf.groupby("plant_family",observed=True)
+              .two_window_nonadditivity.median())
+    n_neg=int(family.lt(-1.e-12).sum())
+    n_pos=int(family.gt(1.e-12).sum())
+    n_zero=len(family)-n_neg-n_pos
+    study_n=z.groupby("plant_family").study_key.nunique()
+    family_n=z.groupby("plant_family").source_pair_id.size()
+    result={
+        "source_distinct_plant_families":int(len(family)),
+        "source_comparisons_with_independent_family_identification":len(z),
+        "family_equal_median_nonadditivity_fraction":float(family.median()),
+        "families_negative_median":n_neg,
+        "families_positive_median":n_pos,
+        "families_exact_zero":n_zero,
+        "study_replicates_per_family_median":float(study_n.median()),
+        "families_at_least_three_original_published_studies":int(study_n.ge(3).sum()),
+        "source_comparisons_per_family_min_max":[int(family_n.min()),int(family_n.max())],
+        "source_largest_family_fraction_of_studied_comparisons":float(
+             family_n.max()/len(z)),
+        "family_median_sign_test_p_nominal":float(
+            binomtest(n_neg,n_neg+n_pos,.5).pvalue) if n_neg+n_pos>=10 else None,
+        "family_source_missing_not_classified_as_true_biological_absence":True,
+    }
+    family_loo=[]
+    for fam in family.index:
+        remain=z.loc[z.plant_family.ne(fam)]
+        study=remain.groupby("study_key").two_window_nonadditivity.median()
+        if len(study)<30:continue
+        family_loo.append(float(study.median()))
+    vals=np.array(family_loo)
+    if len(vals):
+        result["leave_each_one_family_out_original_published_study_median"]={
+            "n_families_deleted_and_reestimated":len(vals),
+            "study_median_index_range":[float(vals.min()),float(vals.max())],
+            "all_point_estimates_negative":bool((vals<0).all()),
+            "overlapping_refits_not_independent_replications":True
+        }
+    # Within-paper source morphology variation much lower than global
+    # family or species counts; don't fit a bloom-causal association.
+    q=z.loc[z.bloom_period_simple.isin(("night","day"))].copy()
+    if len(q):
+        val=q.groupby("study_key").bloom_period_simple.nunique()
+        result["published_bloom_time_opportunity"]={
+           "known_day_bloom_source_pairs":int(q.bloom_period_simple.eq("day").sum()),
+           "known_night_bloom_source_pairs":int(q.bloom_period_simple.eq("night").sum()),
+           "original_papers_with_both_day_and_night_bloomed_plant_species":int(val.ge(2).sum()),
+           "source_bloom_is_not_experimental_treatment":True
+        }
+    return {"status":"EXPLORATORY_FOUR_ARM_FAMILY_SOURCE_BIAS_AND_LEVERAGE",
+            **result}
+
+
+def original_two_primary_contrasts_study_species_omissions(a:pd.DataFrame,main:dict):
+    """Correct for testing TWO NEW predeclared four-arm scores (open greater
+    than better, and four-arm nonadditivity); the already-established
+    open-vs-closed pollinator dependence is a descriptive positive control."""
+    names=("two_window_nonadditivity","open_relative_to_best")
+    p={k:main[k].get("source_study_sign_test_two_sided_p_nominal") for k in names}
+    require(all(p[k] is not None for k in names),
+            "No independent real study support for original two primary endpoints")
+    ordered=sorted(names,key=lambda k:p[k])
+    holm={}
+    running=0.
+    for i,k in enumerate(ordered):
+        running=max(running,min(1.,(len(ordered)-i)*p[k]))
+        holm[k]=running
+    deletion={}
+    for dimension in ("study_key","species"):
+        rows=[]
+        for label in a[dimension].unique():
+            b=a.loc[a[dimension].ne(label)]
+            vals=b.groupby("study_key").two_window_nonadditivity.median()
+            if len(vals)<30:continue
+            negatives=int(vals.lt(-1.e-12).sum())
+            positives=int(vals.gt(1.e-12).sum())
+            sign=binomtest(negatives,negatives+positives,.5).pvalue if negatives+positives else 1.
+            rows.append({"median":float(vals.median()),"nominal_p":float(sign)})
+        m=np.array([x["median"] for x in rows])
+        deletion[dimension]={
+            "source_original_units_examined":int(a[dimension].nunique()),
+            "original_source_refits_estimated":len(rows),
+            "negative_original_study_median_after_omission":int(np.sum(m<0)),
+            "source_original_study_median_range":[float(m.min()),float(m.max())],
+            "nominal_p_below_005_in_overlapping_refits":int(sum(x["nominal_p"]<.05 for x in rows)),
+            "original_refits_not_independent_studies":True,
+        }
+    return {
+      "two_predeclared_new_fourarm_scores":{
+          name:{"original_p_nominal":p[name],"Holm_two_new_endpoints":holm[name]}
+          for name in names},
+      "original_open_closed_is_a_previous_literature_positive_control_not_new_discovery":True,
+      "all_studies_and_all_species_omission":deletion,
+      "no_source_study_plant_names_exported":True,
+    }
+
+
 def full_analysis(joined,receipt,author,plant_traits,out):
     out=Path(out)
     if out.exists():raise FileExistsError("Do not overwrite original published-source audit")
@@ -338,6 +444,8 @@ def full_analysis(joined,receipt,author,plant_traits,out):
     trait=original_traits(plant_traits)
     b=a.merge(trait[["species","bloom_period_simple","plant_family"]],
               on="species",validate="many_to_one",how="left")
+    require((len(a),a.study_key.nunique(),a.species.nunique())==(153,79,85),
+            "Authentic original 153 four-arm pairs/79 papers/85 plants changed")
     group_support={
         "documented_day_bloom_fourarm_pairs":int(b.bloom_period_simple.eq("day").sum()),
         "documented_night_bloom_fourarm_pairs":int(b.bloom_period_simple.eq("night").sum()),
@@ -351,6 +459,8 @@ def full_analysis(joined,receipt,author,plant_traits,out):
         name:descriptive_study_sign(a,name)
         for name in ("two_window_nonadditivity","open_relative_to_best","open_vs_closed")
     }
+    family_sensitivity=family_cluster_and_source_influence(b)
+    multiplicity_and_influence=original_two_primary_contrasts_study_species_omissions(b,primary)
     stratified={}
     for name,subset in {
        "source_native_plant_only":a.loc[a.plant_native_source.eq("native")],
@@ -381,6 +491,8 @@ def full_analysis(joined,receipt,author,plant_traits,out):
        "four_arm_positive_total_source_support":eligible,
        "fourarm_other_study_metadata":group_support,
        "primary_true_experimental_four_arm_reproductive_contrasts":primary,
+       "independent_botanical_family_sensitivity":family_sensitivity,
+       "primary_comparison_multiplicity_and_study_species_leverage":multiplicity_and_influence,
        "original_functional_sensitivity_by_protocol":stratified,
        "secondary_prior_satellite_light_associations":{
            name:original_observational_pcNL(a,name) for name in
@@ -403,7 +515,8 @@ def full_analysis(joined,receipt,author,plant_traits,out):
     out.write_text(json.dumps(output,indent=2,ensure_ascii=False,allow_nan=False)+"\n")
     print("ALAN_GENUINE_FOURARM_DIEL_FUNCTION",
           json.dumps({"coverage":coverage,"eligible":eligible,
-                      "main":primary,"strata":stratified,
+                      "main":primary,"family":family_sensitivity,
+                      "correction":multiplicity_and_influence,"strata":stratified,
                       "pcnl":output["secondary_prior_satellite_light_associations"]},
                       ensure_ascii=False),flush=True)
     return output
