@@ -176,6 +176,63 @@ def signed_contrast(d,sites,a,b,min_positive_islands=25):
             "note":"Same denominator and model; exact difference of slopes, not independent comparisons of p values"}
 
 
+
+def species_night_share_continuous(m:pd.DataFrame,sites:pd.DataFrame, *,
+                                  perhour:bool=False):
+    """Keep observed source reproductive effect magnitudes as 0–1 night share.
+
+    Each external study/species score is weighted equally for each observed
+    species in a cell, divided by ALL actually photographed accepted species.
+    Absent experimental evidence contributes zero to the *documented score*
+    but is not coded as biologically day- or night-pollinated.
+    """
+    field="night_share_per_hour" if perhour else "night_share"
+    score=pd.to_numeric(m[field],errors="coerce").sub(.5).fillna(0.)
+    counts=m[KEY].copy()
+    counts["score"]=score.to_numpy(float)
+    count=counts.groupby(KEY,observed=True).score.sum().reset_index()
+    q=sites.merge(count,on=KEY,validate="one_to_one")
+    require(q.score.notna().all(),"Mismatch between signed photographed species and score")
+    f=site_outcome_model(q,q.score.to_numpy(float))
+    return {"status":"EXPLORATORY_CONTINUOUS_REPRODUCTIVE_EXPERIMENT_DOCUMENTATION",
+            "source_score":field, "fit":f,
+            "external_effect_missing_is_UNOBSERVED_NOT_ZERO_BIOLOGY":True}
+
+
+def coobserved_functional_ratio(m:pd.DataFrame,sites:pd.DataFrame):
+    """Within SAME actually photographed cell/year, requiring BOTH study guilds.
+
+    Selection on documented positive source categories makes this a deliberately
+    conditional diagnostic, not a worldwide census or unbiased ALAN impact.
+    """
+    d=(m.groupby(KEY,observed=True)
+       .agg(night=("night_stronger","sum"),day=("day_stronger","sum"))
+       .reset_index())
+    z=sites.merge(d,on=KEY,validate="one_to_one")
+    z=z.loc[z.night.ge(1)&z.day.ge(1)].copy()
+    raw_n=int(len(z));raw_islands=int(z.island.nunique())
+    mixed=z.groupby(["island","year"],observed=True)[LIGHT].agg(["size","min","max"])
+    ok=mixed.loc[mixed["size"].ge(2) &
+                 (mixed["max"]-mixed["min"]).ge(.02)]
+    x=z.merge(ok[[]].reset_index(),on=["island","year"],how="inner",
+              validate="many_to_one")
+    support={"same_source_photo_site_years_with_both_positive":raw_n,
+             "islands_with_both_positive_any_year":raw_islands,
+             "same_island_year_with_2plus_photo_sites_and_light_span":int(len(ok)),
+             "supported_coobserved_photo_cell_years":int(len(x)),
+             "supported_coobserved_independent_islands":int(x.island.nunique())}
+    if len(x)<100 or x.island.nunique()<25 or len(ok)<25:
+        return {"status":"NOT_ESTIMABLE_SHARED_LIGHT_SUPPORT", "source_support":support}
+    # Analytic observed within-coobserved documentation share (two guilds
+    # present); use original FE source fit's candidate-count/total converter.
+    night_fraction=x.night.to_numpy(float)/(x.night+x.day).to_numpy(float)
+    fitted=site_outcome_model(x,night_fraction * x.all_accepted_recorded_species)
+    return {"status":"EXPLORATORY_WITHIN_CELL_CODOCUMENTED_NIGHT_SHARE",
+            "source_support":support,"fit":fitted,
+            "response":"share of study-reproductive night-stronger among photographed experiment-classified plants at source sites with both classes",
+            "no_functional_compensation_or_actual_night_pollen_deposition_inferred":True}
+
+
 def calculate(sites_path,globisource,groups,study,traits,output):
     if output.exists():raise FileExistsError(output)
     sites=load_sites(sites_path)
@@ -205,6 +262,9 @@ def calculate(sites_path,globisource,groups,study,traits,output):
     for k in support:candidate_models[k]=source_regression(m,sites,k)
     direct=signed_contrast(m,sites,"night_stronger","day_stronger")
     perhour=signed_contrast(m,sites,"perhour_night_stronger","perhour_day_stronger")
+    continuous=species_night_share_continuous(m,sites)
+    continuous_hours=species_night_share_continuous(m,sites,perhour=True)
+    within_coobserved=coobserved_functional_ratio(m,sites)
     blossom=signed_contrast(m,sites,"night_bloom","day_bloom")
     # Cross-product support: do we have independent island×year source
     # sites with both experimentally night- and day-favored species?
@@ -235,6 +295,9 @@ def calculate(sites_path,globisource,groups,study,traits,output):
        "night_vs_day_experimental_reproductive_strength":direct,
        "night_vs_day_perhour_sensitivity":perhour,
        "night_vs_day_bloom_period_source":blossom,
+       "continuous_reproductive_night_share_centered":continuous,
+       "continuous_daynight_hours_adjusted":continuous_hours,
+       "coobserved_same_site_night_fraction":within_coobserved,
      },
      "within_source_photo_cell_year_support":{
        "photo_site_years_containing_both_night_and_day_stronger_species":len(overlap),
