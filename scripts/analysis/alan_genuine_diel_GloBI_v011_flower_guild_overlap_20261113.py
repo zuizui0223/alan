@@ -37,7 +37,7 @@ from scripts.analysis.alan_flower_multitraits_reproductive_diel_transfer_2026111
     original_traits
 )
 
-FLAGS_SHA="cf750192b4d641a2d904f4f74d5b87d41fc97e04822a67d513d9bad74ece8e01"
+FLAGS_SHA="cf750192b4d641a2d904f4f74d5b87d41fc97e04822a67c513d9bad74ece8e01"
 SOURCE_SHA="670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3"
 AUTHOR_TRAITS_BLOB="18381e550a7e405fe4f198909f0bb381bbecf1e0"
 COHORT=(301,118,123)
