@@ -1,0 +1,106 @@
+name: ALAN field night reproduction cross-botanical family LOFO and taxon-purged study validation
+on:
+  push:
+    branches: [analysis/alan-floral-family-transfer-diagnostic-20261113]
+    paths:
+      - scripts/analysis/alan_real_DvN_flower_function_family_LOFO_purgedCV_20261113.py
+      - tests/test_alan_real_DvN_flower_function_family_LOFO_purgedCV_20261113.py
+      - .github/workflows/alan-real301-floral-function-family-transfer-20261113.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 scikit-learn==1.6.1
+          python -m py_compile scripts/analysis/alan_real_DvN_flower_function_family_LOFO_purgedCV_20261113.py
+          python -m unittest discover -s tests -p test_alan_real_DvN_flower_function_family_LOFO_purgedCV_20261113.py -v
+  genuine-original-published-experiment-model:
+    needs: source-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Restore already MD5-authenticated original 301 field site×year and six REAL annual PCNL shards
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 scikit-learn==1.6.1
+          mkdir -p original_study downloads parts
+          gh run download 43379308366 --repo zuizui0223/alan \
+            --name alan-true-daynight-study-site-year-experiment-source-20261113 \
+            --dir original_study
+          echo '21b1fef1beb9e6238cfa47101b991815d4c0f33787b9737f834426dc3bab15af  original_study/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz' | sha256sum -c -
+          gh run download 43380089481 --repo zuizui0223/alan \
+            --pattern 'alan-original-DvN-PCNL1992_2021-year-shard-*' \
+            --dir downloads
+          test "$(find downloads -name 'diel_annual_shard_?.csv.gz' | wc -l)" -eq 6
+          test "$(find downloads -name 'diel_annual_shard_?.json' | wc -l)" -eq 6
+          find downloads -name 'diel_annual_shard_?.csv.gz' -exec cp {} parts/ \;
+          find downloads -name 'diel_annual_shard_?.json' -exec cp {} parts/ \;
+          git clone -q --depth 1 https://github.com/liamkendall/bumble-bat.git original_author
+          test "$(git -C original_author hash-object data/SppTraitData_clean.csv)" = 18381e550a7e405fe4f198909f0bb381bbecf1e0
+      - name: Rejoin the 30 exact original annual PCNL samples without redownloading 30 original GeoTIFFs
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_authentic_diel_siteyear_PCNL_6shards_20261113 collect \
+            --source original_study/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz \
+            --receipt original_study/original_DvN_source_year_geo_repro_audit.json \
+            --partialdir parts --out original_rejoined
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          file=Path('original_rejoined/Diel_original_daynight_reproductive_1993_2022_priorPCNL1992_2021.csv.gz')
+          receipt=json.loads(Path('original_rejoined/Diel_original_priorPCNL_source_receipt.json').read_text())
+          actual=hashlib.sha256(file.read_bytes()).hexdigest()
+          assert receipt['joined_file_sha256']==actual
+          assert receipt['original_source_sha256']=='21b1fef1beb9e6238cfa47101b991815d4c0f33787b9737f834426dc3bab15af'
+          assert receipt['annual_rasters_MD5_source_verified']==30 and receipt['source_pairs_full_pre_experiment_PCNL']==301
+          print('ORIGINAL_EXPOSURE_CONTENT_IDENTICAL_BY_SOURCE_AND_30_YEAR_MANIFEST',actual)
+          PY
+      - name: Original real nocturnal reproductive study LOFO botanical families genera and study-species purge
+        timeout-minutes: 25
+        run: |
+          set -euo pipefail
+          mkdir -p verified_independent_transfer
+          python -m scripts.analysis.alan_real_DvN_flower_function_family_LOFO_purgedCV_20261113 \
+            --joined original_rejoined/Diel_original_daynight_reproductive_1993_2022_priorPCNL1992_2021.csv.gz \
+            --receipt original_rejoined/Diel_original_priorPCNL_source_receipt.json \
+            --traits original_author/data/SppTraitData_clean.csv \
+            --out verified_independent_transfer/ALAN_DvN301_LOFO_Family_Genus_StudyPurge_20261113.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path("verified_independent_transfer/ALAN_DvN301_LOFO_Family_Genus_StudyPurge_20261113.json").read_text())
+          assert a["status"]=="EXPLORATORY_ORIGINAL_301_FIELD_NIGHT_REPRO_LEAVE_FAMILY_OUT_AND_PURGED_STUDY"
+          assert a["source"]["original_301_comparisons"]==301
+          assert a["source"]["eligible_same_completecase_morphology_pairs"]==196
+          assert a["source"]["eligible_independent_publications"]==73
+          assert a["source"]["eligible_plant_species"]==74
+          assert a["source"]["eligible_botanical_families"]==28
+          assert a["scientific_limits"]["cross_family_generalization_not_a_test_of_biological_evolution"]
+          print("ORIGINAL_DV_N_FIELD_301_28FAMILY_AND_STUDY_SPECIES_PURGED_REAL_SUCCESS")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-DvN301-real28family-taxonomic-transfer-audit-20261113
+          path: verified_independent_transfer/
+          retention-days: 90
+          if-no-files-found: warn
