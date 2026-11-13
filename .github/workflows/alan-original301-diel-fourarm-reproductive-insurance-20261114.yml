@@ -1,0 +1,111 @@
+name: ALAN original 301 real field four-arm diel open closed reproductive access
+on:
+  push:
+    branches: [analysis/alan-real-diel-fourarm-functional-insurance-20261114]
+    paths:
+      - scripts/analysis/alan_original_diel_fourarm_reproductive_function_20261114.py
+      - tests/test_alan_original_diel_fourarm_reproductive_function_20261114.py
+      - .github/workflows/alan-original301-diel-fourarm-reproductive-insurance-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 scikit-learn==1.6.1
+          python -m py_compile scripts/analysis/alan_original_diel_fourarm_reproductive_function_20261114.py
+          python -m unittest discover -s tests -p test_alan_original_diel_fourarm_reproductive_function_20261114.py -v
+  genuine-original-published-experiment-model:
+    needs: source-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Restore already MD5-authenticated original 301 field site×year and six REAL annual PCNL shards
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 scikit-learn==1.6.1
+          mkdir -p original_study downloads parts
+          gh run download 43379308366 --repo zuizui0223/alan \
+            --name alan-true-daynight-study-site-year-experiment-source-20261113 \
+            --dir original_study
+          echo '21b1fef1beb9e6238cfa47101b991815d4c0f33787b9737f834426dc3bab15af  original_study/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz' | sha256sum -c -
+          gh run download 43380089481 --repo zuizui0223/alan \
+            --pattern 'alan-original-DvN-PCNL1992_2021-year-shard-*' \
+            --dir downloads
+          test "$(find downloads -name 'diel_annual_shard_?.csv.gz' | wc -l)" -eq 6
+          test "$(find downloads -name 'diel_annual_shard_?.json' | wc -l)" -eq 6
+          find downloads -name 'diel_annual_shard_?.csv.gz' -exec cp {} parts/ \;
+          find downloads -name 'diel_annual_shard_?.json' -exec cp {} parts/ \;
+          git clone -q --depth 1 https://github.com/liamkendall/bumble-bat.git original_author
+          test "$(git -C original_author hash-object data/SppTraitData_clean.csv)" = 18381e550a7e405fe4f198909f0bb381bbecf1e0
+      - name: Rejoin the 30 exact original annual PCNL samples without redownloading 30 original GeoTIFFs
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_authentic_diel_siteyear_PCNL_6shards_20261113 collect \
+            --source original_study/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz \
+            --receipt original_study/original_DvN_source_year_geo_repro_audit.json \
+            --partialdir parts --out original_rejoined
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          file=Path('original_rejoined/Diel_original_daynight_reproductive_1993_2022_priorPCNL1992_2021.csv.gz')
+          receipt=json.loads(Path('original_rejoined/Diel_original_priorPCNL_source_receipt.json').read_text())
+          actual=hashlib.sha256(file.read_bytes()).hexdigest()
+          assert receipt['joined_file_sha256']==actual
+          assert receipt['original_source_sha256']=='21b1fef1beb9e6238cfa47101b991815d4c0f33787b9737f834426dc3bab15af'
+          assert receipt['annual_rasters_MD5_source_verified']==30 and receipt['source_pairs_full_pre_experiment_PCNL']==301
+          print('ORIGINAL_EXPOSURE_CONTENT_IDENTICAL_BY_SOURCE_AND_30_YEAR_MANIFEST',actual)
+          PY
+      - name: Verify published original day/night/open/closed study treatment data
+        run: |
+          set -euo pipefail
+          test "$(git -C original_author hash-object data/DvN_LiteratureDataClean_2024-09-13.csv)" = 39a82d966afcdde670603add1c881ace8791ffe9
+          test "$(git -C original_author hash-object data/SppTraitData_clean.csv)" = 18381e550a7e405fe4f198909f0bb381bbecf1e0
+      - name: Measure real-day-night open-versus-closed nonadditivity and true reproduction across study ALAN
+        timeout-minutes: 25
+        run: |
+          set -euo pipefail
+          mkdir -p original_reproductive_fourarm
+          python -m scripts.analysis.alan_original_diel_fourarm_reproductive_function_20261114 \
+            --joined original_rejoined/Diel_original_daynight_reproductive_1993_2022_priorPCNL1992_2021.csv.gz \
+            --receipt original_rejoined/Diel_original_priorPCNL_source_receipt.json \
+            --author original_author/data/DvN_LiteratureDataClean_2024-09-13.csv \
+            --trait original_author/data/SppTraitData_clean.csv \
+            --out original_reproductive_fourarm/ALAN_Original_2x2_DielFourArm_RealReproduction_Source_20261114.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          z=json.loads(Path("original_reproductive_fourarm/ALAN_Original_2x2_DielFourArm_RealReproduction_Source_20261114.json").read_text())
+          assert z["status"]=="SOURCE_AUTHENTIC_ORIGINAL_DAY_NIGHT_OPEN_CLOSED_FRUIT_SEED_CONTRAST"
+          assert z["source"]["original_full_301_pairs"]==301
+          assert z["source"]["original_independent_studies"]==118
+          assert z["arm_source_coverage"]["original_open_24h_access_pairs_documented"]==264
+          assert z["arm_source_coverage"]["study_daynight_original_mean_disagreements"]==0
+          assert z["biological_interpretation_guardrails"]["open_can_include_unmeasured_wind_or_visit_behaviour"]
+          print("REAL_301_FIELD_DIEL_TWO_BY_TWO_OPEN_CLOSED_REPRO_FUNCTION_SUCCESS",flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original301-diel-2x2-open-closed-reproductive-field-20261114
+          path: original_reproductive_fourarm/
+          retention-days: 90
+          if-no-files-found: warn
