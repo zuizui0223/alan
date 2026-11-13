@@ -142,7 +142,7 @@ def build(study,trait,elevation,output):
                                 "year_exp","year_end","month_start","month_end"]).any(),
             "Scientific original study×species×site×year pair not unique")
     # Source author-supplied elevation; no invented DEM values.
-    elev=pd.read_csv(elevation,dtype=str,keep_default_na=False)
+    elev=pd.read_csv(elevation,dtype=str,keep_default_na=False,encoding='latin-1')
     require({"study_ID","coordinates_lat","coordinates_lon","elevation"}.issubset(elev),
             "Original author elevation metadata unavailable")
     elev=elev.copy()
