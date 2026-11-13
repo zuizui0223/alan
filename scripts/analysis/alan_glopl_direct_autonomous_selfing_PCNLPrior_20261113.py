@@ -45,6 +45,12 @@ TARGET="pcnl_prior_mean_log1p:autonomy"
 REPRO_CLASSES=("absent","autonomous")
 METHOD_FORMULA=" + ".join("C("+k+")" for k in METH_COLS)
 CONTROLS="exp_year + lat + lat2 + lon + lon2 + "+METHOD_FORMULA
+METHOD_DIFF_TERM=EXPOSURE+":autonomy:C(PL_Effect_Size_Type2)[T.Sup]"
+METHOD_DESIGN_CONTROLS=(
+    "exp_year + lat + lat2 + lon + lon2 + "+
+    " + ".join("C("+k+")" for k in METH_COLS if k!="PL_Effect_Size_Type2"))
+METHOD_DESIGN_MAIN="PL_log_ratio ~ "+EXPOSURE+"*autonomy*C(PL_Effect_Size_Type2) + "+METHOD_DESIGN_CONTROLS
+
 PRIMARY="PL_log_ratio ~ "+EXPOSURE+"*autonomy + "+CONTROLS
 BASE="PL_log_ratio ~ "+EXPOSURE+" + "+CONTROLS
 
@@ -300,6 +306,37 @@ def run(joined,receipt,ledger,author_study,author_trait,out):
             gsource=subsets.get(name,g)
             print("ALAN_GLOPL_DIRECT_TRAIT_MODEL",tier,name,len(gsource),flush=True)
             fits[name]=fit_source(gsource,formula)
+        method_contrasts={
+            "GloPL_Bagout_vs_Sup_10deg_source_design": (
+                 METHOD_DESIGN_MAIN+" + C(geo10)",g),
+            "GloPL_Bagout_vs_Sup_20deg_source_design": (
+                 METHOD_DESIGN_MAIN+" + C(geo20)",g),
+            "GloPL_Bagout_vs_Sup_10deg_no_absPL_gt2": (
+                 METHOD_DESIGN_MAIN+" + C(geo10)",
+                 g.loc[g.PL_log_ratio.abs().le(2)]),
+        }
+        method_result={}
+        for model_name,(formula,subset) in method_contrasts.items():
+            method_result[model_name]=fit_source(
+                subset,formula,term=METHOD_DIFF_TERM)
+        summaries=[]
+        for src_type,v in g.groupby("PL_Effect_Size_Type2",observed=True):
+            summaries.append({
+                "original_GloPL_method_type":src_type,
+                "original_genuine_PL_experiment_rows":int(len(v)),
+                "source_plant_species":int(v.species.nunique()),
+                "source_publications":int(v.study_key.nunique()),
+                "source_autonomous_cases":int(v.autonomy.sum()),
+                "source_no_autonomous_cases":int((1-v.autonomy).sum()),
+                "source_PL_abs_gt2_cases":int(v.PL_log_ratio.abs().gt(2).sum()),
+                "source_dark_PCNL_zero_case_count":int(v[EXPOSURE].eq(0).sum()),
+            })
+        fits["source_pollination_treatment_design_method_contrast"]={
+            "posthoc_diagnostic_NO_CLAIM_OF_PHYSIOLOGICAL_MECHANISM":True,
+            "GloPL_Bagout_differs_from_Sup_in_excluding_natural_pollination":True,
+            "source_method_groups":summaries,
+            "Sup_minus_Bagout_PCNL_autonomy_moderation":method_result,
+        }
         results[tier]=fits
         if tier=="high_medium":
             main=g
