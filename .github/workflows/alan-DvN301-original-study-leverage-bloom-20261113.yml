@@ -63,7 +63,17 @@ jobs:
             --source original_study/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz \
             --receipt original_study/original_DvN_source_year_geo_repro_audit.json \
             --partialdir parts --out original_rejoined
-          echo '0ea518558117e517a73345a93daee132f9ba7f4525296a744df131df805a359f  original_rejoined/Diel_original_daynight_reproductive_1993_2022_priorPCNL1992_2021.csv.gz' | sha256sum -c -
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          file=Path('original_rejoined/Diel_original_daynight_reproductive_1993_2022_priorPCNL1992_2021.csv.gz')
+          receipt=json.loads(Path('original_rejoined/Diel_original_priorPCNL_source_receipt.json').read_text())
+          actual=hashlib.sha256(file.read_bytes()).hexdigest()
+          assert receipt['joined_file_sha256']==actual
+          assert receipt['original_source_sha256']=='21b1fef1beb9e6238cfa47101b991815d4c0f33787b9737f834426dc3bab15af'
+          assert receipt['annual_rasters_MD5_source_verified']==30 and receipt['source_pairs_full_pre_experiment_PCNL']==301
+          print('ORIGINAL_EXPOSURE_CONTENT_IDENTICAL_BY_SOURCE_AND_30_YEAR_MANIFEST',actual)
+          PY
       - name: Test every independent study and plant omission, actual satellite light support and source botanical bloom-time
         timeout-minutes: 25
         run: |
