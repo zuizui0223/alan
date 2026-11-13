@@ -13,10 +13,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+# Existing ALAN analysis helpers use legacy sibling absolute imports.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from scripts.analysis.alan_real_genus_prevalence_bias_20261110 import (
     KEY, LIGHT, load_sites, load_labels, original_accepted_species,
