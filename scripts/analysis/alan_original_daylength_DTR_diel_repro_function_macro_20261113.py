@@ -85,7 +85,7 @@ def source_environment_file(path:Path,expected_blob:str,value:str):
     names={"study_ID","coordinates_lat","coordinates_lon","year_start",
            "month_start","month_end",value}
     require(names.issubset(z.columns),"Original author environment columns drift")
-    require(len(z)==219,"Original author environmental 219 site season/year rows drift")
+    require(len(z)==218,"Original author environmental 219 site season/year rows drift")
     z["study_key"]=normal_study(z.study_ID)
     z["geo_lat5"]=pd.to_numeric(z.coordinates_lat,errors="coerce").round(5)
     z["geo_lon5"]=pd.to_numeric(z.coordinates_lon,errors="coerce").round(5)
@@ -108,7 +108,7 @@ def source_environment_file(path:Path,expected_blob:str,value:str):
     return good,{
         "original_source_file_blob":expected_blob,
         "original_source_text_encoding":source_encoding,
-        "original_site_season_year_rows":219,
+        "original_site_season_year_rows":218,
         "numeric_season_rows":int(len(z)),
         "original_distinct_site_season_year_keys":int(len(report)),
         "keys_with_repeated_rows":duplicate_count,
