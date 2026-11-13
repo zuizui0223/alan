@@ -4,6 +4,7 @@ on:
     branches: [analysis/alan-real-diel-guild-evidence-gate-20261113]
     paths:
       - scripts/analysis/alan_genuine_diel_GloBI_v011_flower_guild_overlap_20261113.py
+      - scripts/analysis/alan_original_diel_study_visitor_observation_coverage_20261113.py
       - tests/test_alan_genuine_diel_GloBI_v011_flower_guild_overlap_20261113.py
       - .github/workflows/alan-original-diel-GloBI-v011-positive-guild-support-20261113.yml
   workflow_dispatch:
@@ -21,7 +22,7 @@ jobs:
       - run: |
           set -euo pipefail
           python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5 scikit-learn==1.6.1
-          python -m py_compile scripts/analysis/alan_genuine_diel_GloBI_v011_flower_guild_overlap_20261113.py
+          python -m py_compile scripts/analysis/alan_genuine_diel_GloBI_v011_flower_guild_overlap_20261113.py scripts/analysis/alan_original_diel_study_visitor_observation_coverage_20261113.py
           python -m unittest discover -s tests -p test_alan_genuine_diel_GloBI_v011_flower_guild_overlap_20261113.py -v
   genuine-original-published-experiment-model:
     needs: source-tests
@@ -118,6 +119,31 @@ jobs:
           assert x['source']['original_GloBI_source_georeferenced_AND_event_dated_butterfly_flower_rows']==0
           assert x['strict_functional_conclusion']['no_biological_absence_from_missing_source']
           print('ACTUAL_ORIGINAL_301_MOTH_BUTTERFLY_SOURCE_FUNCTION_SUPPORT_VERIFIED')
+          PY
+      - name: Original study included actual field pollinator observation? Audit author source flag independently
+        timeout-minutes: 20
+        run: |
+          set -euo pipefail
+          test "$(git -C original_author hash-object data/DvN_LiteratureDataClean_2024-09-13.csv)" = 39a82d966afcdde670603add1c881ace8791ffe9
+          python -m scripts.analysis.alan_original_diel_study_visitor_observation_coverage_20261113 \
+            --joined original_rejoined/Diel_original_daynight_reproductive_1993_2022_priorPCNL1992_2021.csv.gz \
+            --receipt original_rejoined/Diel_original_priorPCNL_source_receipt.json \
+            --author_study original_author/data/DvN_LiteratureDataClean_2024-09-13.csv \
+            --globi_flags original_GloBI/GloBI_v011_positive_species_flags.csv.gz \
+            --globi_receipt original_GloBI/source_receipt.json \
+            --out audited_source_guilds/ALAN_original301_study_pollinator_observation_coverage_20261113.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('audited_source_guilds/ALAN_original301_study_pollinator_observation_coverage_20261113.json').read_text())
+          assert x['status']=='AUTHENTIC_PUBLISHED_STUDY_POLLINATOR_OBSERVATION_AVAILABILITY_SCREEN_ONLY'
+          assert x['sources']['original_real_field_experiment_pairs']==301
+          assert x['sources']['original_140_published_studies_observation_status']=={
+            'included_some_observations':111,
+            'not_included_in_author_study_source':27,
+            'unknown_or_mixed':2}
+          assert x['what_is_not_identified']['original_observer_observation_inclusion_does_not_encode_visitor_taxonomic_guild']
+          print('ACTUAL_AUTHORS_140_PAPERS_VISITOR_OBSERVATION_INCLUSION_GUILD_TRIAGE_VERIFIED')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
