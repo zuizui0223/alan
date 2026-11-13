@@ -193,6 +193,103 @@ def influence(s,source):
     return summary
 
 
+
+def time_and_genus_sensitivities(s,source,exposure):
+    """Predeclared robustness: whole-genus deletion, source time normalization,
+    measured night-share continuous on SAME 39-island cohort, site weighting."""
+    from scripts.analysis.alan_real_genus_prevalence_bias_20261110 import fixed_effects_regression
+    index=pd.MultiIndex.from_frame(s[KEY])
+    src=source.copy()
+    src["_site_ix"]=index.get_indexer(pd.MultiIndex.from_frame(src[KEY]))
+    require(src._site_ix.ge(0).all(),"Source species outside original photo cells")
+    deletion=[]
+    for genus,rows in src.groupby("genus",observed=True):
+        v=s.copy()
+        for label,flag in [("night","night_stronger"),("day","day_stronger")]:
+            keep=rows.loc[rows[flag]]
+            arr=v[label].to_numpy(copy=True)
+            arr[keep._site_ix.to_numpy(int)]-=1
+            require((arr>=0).all(),"Genus omission double subtract")
+            v[label]=arr
+        result=fit_sample(v)
+        deletion.append({
+            "genus_source_taxa":int(rows.species.nunique()),
+            "source_species_site_year_rows":len(rows),
+            "status":result["status"],
+            "beta":get_beta(result),
+            "CI95":result.get("estimate",{}).get("95CI_pp"),
+            "remaining_islands":result["support"].get("evaluated_islands"),
+            "remaining_source_sites":result["support"].get("evaluated_sites"),
+        })
+    valid=[d for d in deletion if d["beta"] is not None]
+    require(valid,"No supported genus deletion for source ratio")
+    vals=np.array([d["beta"] for d in valid])
+    q,base=supported(s)
+    require(len(q)==2373 and q.island.nunique()==39,"Baseline sites changed")
+
+    # Same 39 islands/site-years; estimate continuous original external study
+    # night share, conditional on BOTH experimentally classified plant classes.
+    grouped=src.groupby(KEY,observed=True).agg(
+        n_trait_species=("species","size"),
+        sum_night_share=("night_share","sum")).reset_index()
+    con=q.merge(grouped,on=KEY,validate="one_to_one")
+    require(con.n_trait_species.ge(2).all(),"Each source co-site must have both classes")
+    continuous=con.sum_night_share.to_numpy(float)/con.n_trait_species.to_numpy(float)
+    fit_cont=site_outcome_model(con,continuous*con.all_accepted_recorded_species.to_numpy(float))
+
+    # Same light/same-site groups, only weight changes: decompose whether
+    # populous documented islands dominate the sign.
+    ix=q.island.astype(str).str.cat(q.year.astype(str),sep="|").to_numpy()
+    fit_site_equal=fixed_effects_regression(
+        (q.night.to_numpy(float)/(q.night+q.day).to_numpy(float)),
+        q[LIGHT].to_numpy(float),q.log_obs.to_numpy(float),
+        np.ones(len(q)),q.island.to_numpy(),[ix])
+
+    # Alternate definition: normalize laboratory/field daytime and nighttime
+    # exclusion-response by eligible pollination-hours, no mean-time imputation.
+    hours=src.merge(exposure[["species","night_share_per_hour"]],
+                    on="species",validate="many_to_one")
+    hours["hour_night"]=hours.night_share_per_hour.gt(.5+1e-12)
+    hours["hour_day"]=hours.night_share_per_hour.lt(.5-1e-12)
+    agg=hours.groupby(KEY,observed=True)[["hour_night","hour_day"]].sum().reset_index()
+    alt=s[KEY+list(set(s.columns)-set(KEY))].merge(agg,on=KEY,how="left",
+                                         validate="one_to_one")
+    alt["night"]=alt.hour_night.fillna(0).astype(int)
+    alt["day"]=alt.hour_day.fillna(0).astype(int)
+    altfit=fit_sample(alt)
+    return {
+        "leave_one_genus_out":{
+            "total_studied_genera":len(deletion),
+            "supported_genus_deletions":len(valid),
+            "not_estimable_genus_deletions":len(deletion)-len(valid),
+            "beta_range":[float(vals.min()),float(vals.max())],
+            "median_beta":float(np.median(vals)),
+            "fraction_negative":float((vals<0).mean()),
+            "n_nominal_95CI_entirely_negative":int(sum(z["CI95"][1]<0 for z in valid)),
+            "n_beta_sign_reversed":int(sum(z["beta"]>=0 for z in valid)),
+            "largest_genus_omission_effect_no_identity":sorted(
+                [{k:z[k] for k in ("genus_source_taxa","source_species_site_year_rows",
+                     "beta","remaining_islands","remaining_source_sites")}
+                 for z in valid],key=lambda a:abs(a["beta"]-BASELINE),reverse=True)[:5],
+            "no_taxonomic_or_site_identity_released":True,
+        },
+        "same_39island_original_coobservation_cohort":{
+            "original_source_photo_cell_years":len(q),
+            "original_islands":int(q.island.nunique()),
+            "continuous_night_share_from_external_experiment":fit_cont,
+            "site_year_equal_instead_of_island_equal_bin_class":fit_site_equal,
+        },
+        "hours_normalized_alternate_functional_classification":{
+            "observed_reproductive_photo_taxa_with_valid_hours":int(
+                exposure.loc[exposure.species.isin(src.species)
+                             & exposure.night_share_per_hour.notna(),"species"].nunique()),
+            "alternate_class_source_support":altfit,
+            "source_group_is_altered_by_day_night_hours_missingness":True,
+        },
+        "interpretation_limit":"None of these are same-site experimental pollen transfer, compensating pollination, or an independent replication",
+    }
+
+
 def direct_selfing(exposure,source,ledger:Path):
     require(hashlib.sha256(ledger.read_bytes()).hexdigest()==LEDGER_SHA,
             "Original island species direct trait file changed")
@@ -291,6 +388,7 @@ def run(sites_path,globisource,groups,study,traitfile,ledger,out):
     siteframe,source,_=original_counts(flora,experiment,sites)
     source_stability=influence(siteframe,source)
     selfing=direct_selfing(experiment,source,ledger)
+    third_axis=time_and_genus_sensitivities(siteframe,source,experiment)
     output={
        "schema":"ALAN_39island_codocumented_stability_selfing_direct_v1",
        "status":"AUTHENTIC_FROZEN_SOURCE_REPLAY_EXPLORATORY",
@@ -304,6 +402,7 @@ def run(sites_path,globisource,groups,study,traitfile,ledger,out):
        "external_experiment_source":meta,
        "functional_coobservation_influence_diagnostics":source_stability,
        "external_autonomous_selfing_and_SCSI_species_direct_overlap":selfing,
+       "site_weight_and_genus_time_normalized_sensitivity":third_axis,
        "guardrails":{
          "no_anonymized_site_x_species_location_data_exported":True,
          "unknown_source_function_not_absence":True,
