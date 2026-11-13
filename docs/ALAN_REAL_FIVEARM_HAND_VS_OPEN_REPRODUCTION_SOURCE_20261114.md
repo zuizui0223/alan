@@ -1,6 +1,6 @@
 # ALAN — true original five-arm HAND reproductive headroom audit
 
-**Original-source GitHub Actions SUCCESS** on 2026-11-14 JST: [run #43529400905](https://github.com/zuizui0223/alan/actions/runs/43529400905), [aggregate-only artifact #14087285335](https://github.com/zuizui0223/alan/actions/runs/43529400905/artifacts/14087285335), [Draft PR #59](https://github.com/zuizui0223/alan/pull/59).
+**Original-source GitHub Actions SUCCESS** on 2026-11-14 JST: [run #43529862353](https://github.com/zuizui0223/alan/actions/runs/43529862353), [aggregate-only artifact #14086129825](https://github.com/zuizui0223/alan/actions/runs/43529862353/artifacts/14087285335), [Draft PR #59](https://github.com/zuizui0223/alan/pull/59).
 
 ## Question and source
 
@@ -32,4 +32,4 @@ No causal source-verified link to artificial nightlight, local moth losses, repr
 
 ## Reproduce
 
-Source-locked GitHub Actions #43529400905 SUCCESS. Code path: scripts/analysis/alan_original_diel_fivearm_hand_headroom_20261114.py. Tests: tests/test_alan_original_diel_fivearm_hand_headroom_20261114.py. Workflow: .github/workflows/alan-original301-diel-fivearm-hand-headroom-20261114.yml. Genuine aggregate artifact #14087285335. Original study×species×site/year rows and plant traits are not published in this fork. Keep this stacked PR Draft; all earlier PRs and main unchanged.
+Source-locked GitHub Actions #43529862353 SUCCESS. Code path: scripts/analysis/alan_original_diel_fivearm_hand_headroom_20261114.py. Tests: tests/test_alan_original_diel_fivearm_hand_headroom_20261114.py. Workflow: .github/workflows/alan-original301-diel-fivearm-hand-headroom-20261114.yml. Genuine aggregate artifact #14086129825. Original study×species×site/year rows and plant traits are not published in this fork. Keep this stacked PR Draft; all earlier PRs and main unchanged.
