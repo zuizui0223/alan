@@ -205,6 +205,8 @@ def grouped_transfer(s:pd.DataFrame,group:str):
     variants={
        "original_context":[],
        "context_plus_night_bloom":["night_bloom"],
+       "context_plus_bloom_daylength_only":["night_bloom","photoperiod_h"],
+       "context_plus_bloom_DTR_only":["night_bloom","DTR_C"],
        "context_plus_natural_daylength_DTR":["photoperiod_h","DTR_C"],
        "context_plus_night_bloom_daylength_DTR":["night_bloom","photoperiod_h","DTR_C"],
        "context_plus_bloom_x_DTR_daylength":["night_bloom","photoperiod_h","DTR_C",
@@ -246,6 +248,39 @@ def grouped_transfer(s:pd.DataFrame,group:str):
     base=result["original_context"]["RMSE_fraction"]
     for val in result.values():
         val["RMSE_improvement_pct_against_original_context"]=100*(base-val["RMSE_fraction"])/base
+    # Aggregate family-specified paired prediction errors, not original
+    # individual biological source data. Even with LOFO, the source is a
+    # nonrandom highly imbalanced 28-family literature sample.
+    family_bootstrap=None
+    if group=="plant_family":
+        fam_names=sorted(d.plant_family.unique())
+        source_family_MSE={}
+        for variant,pred in preds.items():
+            source_family_MSE[variant]=np.array([
+                float(np.mean((y[d.plant_family.to_numpy()==fam]-
+                               pred[d.plant_family.to_numpy()==fam])**2))
+                for fam in fam_names])
+        focal=source_family_MSE["context_plus_night_bloom"]
+        combined=source_family_MSE["context_plus_night_bloom_daylength_DTR"]
+        baseline=source_family_MSE["original_context"]
+        rng=np.random.default_rng(20261113)
+        repeat=rng.integers(0,len(fam_names),size=(3000,len(fam_names)))
+        base_rmse=np.sqrt(np.mean(focal[repeat],axis=1))
+        combined_rmse=np.sqrt(np.mean(combined[repeat],axis=1))
+        gain=100*(base_rmse-combined_rmse)/base_rmse
+        family_bootstrap={
+            "family_independent_source_groups":len(fam_names),
+            "family_count_where_bloom_plus_climate_lower_MSE_than_bloom_only":
+                int((combined<focal).sum()),
+            "family_count_where_bloom_plus_climate_lower_MSE_than_original_context":
+                int((combined<baseline).sum()),
+            "family_equal_RMSE_incremental_gain_pct_climate_OVER_bloom_only":
+                float(100*(np.sqrt(np.mean(focal))-np.sqrt(np.mean(combined)))/np.sqrt(np.mean(focal))),
+            "family_block_fixed_seed_descriptive_95pct_gain_interval_pct":
+                [float(np.quantile(gain,.025)),float(np.quantile(gain,.975))],
+            "family_block_bootstrap_draws":3000,
+            "not_universal_random_botanical_family_replicates":True
+        }
     return {"status":"EXPLORATORY_ORIGINAL_SOURCE_INDEPENDENT_GROUP_TRANSFER",
             "source_holdout_group":group,"n_source_pairs":len(d),
             "original_published_studies":int(d.study_key.nunique()),
@@ -254,7 +289,71 @@ def grouped_transfer(s:pd.DataFrame,group:str):
             "all_models_identical_eligible_original_study_site_year_pairs":True,
             "source_selection_for_environment_independent_of_reproductive_outcomes":True,
             "unobserved_weather_never_imputed_from_future_month":True,
+            "environment_incremental_family_bootstrap":family_bootstrap,
             "metrics":result}
+
+
+
+def study_plus_species_purged_transfer(s:pd.DataFrame):
+    """True study GroupKFold, remove all heldout test PLANT SPECIES from
+    training. No paper IDs nor species values used as predictive features.
+    """
+    if len(s)<110 or s.study_key.nunique()<48 or s.plant_family.nunique()<15:
+        return {"status":"NOT_ESTIMABLE_INDEPENDENT_STUDY_SPECIES_ENVIRONMENT_SUPPORT"}
+    d=s.copy()
+    d["metric_seed_set"]=d.metric.eq("seed set").astype(int)
+    cols=["exp_year","lat","lat2","lon","lon2","elevation_km",LIGHT,"metric_seed_set"]
+    variants={
+       "context":[],
+       "bloom":["night_bloom"],
+       "bloom_and_daylength_DTR":["night_bloom","photoperiod_h","DTR_C"],
+       "bloom_x_natural_conditions":["night_bloom","photoperiod_h","DTR_C",
+                "night_bloom_x_DTR","night_bloom_x_photoperiod"]
+    }
+    xx={key:d[cols+v].to_numpy(float) for key,v in variants.items()}
+    require(all(np.isfinite(x).all() for x in xx.values()),"Incomplete original study environmental features")
+    y=d.night_share.to_numpy(float)
+    tests=list(GroupKFold(n_splits=5).split(d,y,groups=d.study_key))
+    prediction={k:np.full(len(d),np.nan) for k in variants}
+    deleted=[]
+    for train,test in tests:
+        forbidden=set(d.iloc[test].species)
+        retained=train[~d.iloc[train].species.isin(forbidden).to_numpy()]
+        deleted.append(int(len(train)-len(retained)))
+        if (len(retained)<85 or d.iloc[retained].study_key.nunique()<38 or
+            d.iloc[retained].night_bloom.nunique()!=2):
+            return {"status":"NOT_ESTIMABLE_AFTER_STUDY_AND_SPECIES_PURGE",
+                    "source_samples":len(d),"purged_training_rows_per_fold":deleted}
+        w=1/d.iloc[retained].groupby("study_key").study_key.transform("size").to_numpy(float)
+        for name,arr in xx.items():
+            st=StandardScaler()
+            trainxx=st.fit_transform(arr[retained])
+            testxx=st.transform(arr[test])
+            model=Ridge(alpha=5.0)
+            model.fit(trainxx,y[retained],sample_weight=w/w.mean())
+            prediction[name][test]=np.clip(model.predict(testxx),0,1)
+    weight=1/d.groupby("study_key").study_key.transform("size").to_numpy(float)
+    weight=weight/weight.sum()
+    out={}
+    for name,p in prediction.items():
+        require(np.isfinite(p).all(),"Unpredicted independent original source test fold")
+        out[name]={
+            "RMSE_fraction":float(np.sqrt(np.sum(weight*(p-y)**2))),
+            "MAE_fraction":float(np.sum(weight*np.abs(p-y)))}
+    for name,a in out.items():
+        a["RMSE_improvement_pct_vs_context"]=float(
+            100*(out["context"]["RMSE_fraction"]-a["RMSE_fraction"])/out["context"]["RMSE_fraction"])
+        a["RMSE_change_pct_vs_bloom_only"]=float(
+            100*(out["bloom"]["RMSE_fraction"]-a["RMSE_fraction"])/out["bloom"]["RMSE_fraction"])
+    return {"status":"EXPLORATORY_STUDY_HELDOUT_ALL_TEST_SPECIES_PURGED",
+            "n_original_pairs":len(d),
+            "n_heldout_study_folds":5,
+            "n_original_botanical_species":int(d.species.nunique()),
+            "n_original_independent_studies":int(d.study_key.nunique()),
+            "study_rows_excluded_for_species_overlap_per_fold":deleted,
+            "training_study_weights_recomputed_after_species_exclusion":True,
+            "metrics":out,
+            "study_source_species_and_georeferenced_locations_private":True}
 
 
 def run(joined,receipt,author_trait,day,dtr,out):
@@ -265,7 +364,8 @@ def run(joined,receipt,author_trait,day,dtr,out):
     env_models=conditional_models(alljoint)
     transfers={
        "leave_one_whole_botanical_family_out":grouped_transfer(alljoint,"plant_family"),
-       "held_out_published_study_fivefold":grouped_transfer(alljoint,"study_key")
+       "held_out_published_study_fivefold":grouped_transfer(alljoint,"study_key"),
+       "heldout_study_and_all_shared_species_purged":study_plus_species_purged_transfer(alljoint)
     }
     report={
         "schema":"ALAN_real301_original_DvN_reproductive_daylength_DTR_bloom_priorPCNL_environment_v1",
