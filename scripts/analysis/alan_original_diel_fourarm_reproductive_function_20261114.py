@@ -218,8 +218,10 @@ def qualify(q:pd.DataFrame):
     a["open_vs_closed"]=np.divide(n-c,n+c,out=np.full(len(a),np.nan),where=(n+c)>0)
     a["two_window_source_scale_total"]=n+c+d+z
     require(a["two_window_nonadditivity"].between(-1.,1.).all(),"Original bounded nonadditive index invalid")
-    require(a.open_relative_to_best.between(-1,1).all(),
+    require(a.open_relative_to_best.dropna().between(-1,1).all(),
             "Original 24h vs best single access outcome invalid")
+    # If only the closed outcome is positive, the open/max-single ratio
+    # is 0/0 and must remain unknown, not an invented zero effect.
     require((a.study_key.nunique()>=50 and a.species.nunique()>=60),
             "Too few independent original fully measured four-arm studies/taxa")
     return a,{
@@ -280,12 +282,12 @@ def original_observational_pcNL(a:pd.DataFrame,metric):
     """Secondary exposure association only; true light not experimentally
     assigned. Study-equal weights, independent publication clusters."""
     x=a.loc[a[metric].notna()].copy()
-    x["exp_year"]=x.year_exp.astype(int)
-    x["lat2"]=x.lat**2;x["lon2"]=x.lon**2
-    x["elevation_km"]=x.elevation_m.astype(float)/1000
     if len(x)<110 or x.study_key.nunique()<55 or x[LIGHT].std()<.02:
         return {"status":"NOT_ESTIMABLE_TRUE_STUDY_LIGHT_SUPPORT",
                 "observations":len(x),"studies":int(x.study_key.nunique())}
+    x["exp_year"]=x.year_exp.astype(int)
+    x["lat2"]=x.lat**2;x["lon2"]=x.lon**2
+    x["elevation_km"]=x.elevation_m.astype(float)/1000
     x["study_equal_weight"]=1/x.groupby("study_key").study_key.transform("size")
     formula=(metric+" ~ "+LIGHT+" + exp_year + lat + lat2 + lon + lon2 + elevation_km + C(metric)")
     # Metric name also 'metric' for reproductive fruit/seed treatment. Use
