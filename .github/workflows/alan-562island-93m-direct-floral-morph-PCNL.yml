@@ -26,9 +26,9 @@ jobs:
         with: {python-version: '3.12'}
       - run: |
           set -euo pipefail
-          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
-          python -m py_compile scripts/analysis/alan_real_genus_prevalence_bias_20261110.py
-          python -m unittest discover -s tests -p test_alan_real_genus_prevalence_bias_20261110.py -v
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 geopandas==1.1.2 shapely==2.1.2
+          python -m py_compile scripts/analysis/alan_real93m_direct_flower_mothlike_PCNL_20261113.py
+          python -m unittest discover -s tests -p test_alan_real93m_direct_flower_mothlike_PCNL_20261113.py -v
   actual-source-macro:
     needs: unit-tests
     runs-on: ubuntu-24.04
