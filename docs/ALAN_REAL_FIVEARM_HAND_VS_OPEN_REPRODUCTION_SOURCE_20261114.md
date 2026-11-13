@@ -17,6 +17,7 @@ The original author paper **already reports** flowering-time associations, day-n
 - Exactly **63** independent-metric fifth-arm pairs have a valid additional original HAND outcome, representing **32** independent source papers and **39** species, no zero or missing substitutes.
 - Let H=original hand-treated reproduction and O=original unrestricted open reproduction; exploratory **headroom P=(H−O)/(H+O)**. HAND exceeds OPEN in **50/63** genuine matched outcomes. Across original paper-level medians **26/32** are positive, exact sign **p=.00053505** (nominal, posthoc). Source-paper P median **+.13377261**; original outcome P median **+.11054638**.
 - In the same fifth-arm subset the actual four-arm nonadditivity I paper median **−.04780997** with **20/32** negative papers; exact sign **p=.215327**, not a supported independent pattern.
+- Independently aggregated original plant taxa: **31/39** plant medians P>0, exact nominal exploratory sign **p=.00029408**. These 39 taxa share evolutionary history, and the data were not randomly selected from global plants.
 - Study-median Spearman **rho(P,I)=+.1085044**, p=.554438; 3,000-study bootstrap descriptive 95% CI **[−.27972,+.46577]**; no resolved relationship.
 
 The original source independent desk check spans 14 reported countries, 1993–2021 experimental start years, and 62/63 source pair records reported native plant status. This does not make the sample globally random or taxonomically representative.
