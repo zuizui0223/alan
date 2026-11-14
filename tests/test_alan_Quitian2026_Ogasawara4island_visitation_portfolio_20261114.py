@@ -13,6 +13,7 @@ class OgasawaraSourceMath(unittest.TestCase):
   self.assertIsNone(entropy_effective({}))
  def test_honeybee_string_and_other_insect_not_native(self):
   self.assertTrue(api("Apis mellifera"))
+  self.assertTrue(api("Apis_mellifera"))
   self.assertTrue(api(" A. mellifera "))
   self.assertFalse(api("Ceratina boninensis"))
   self.assertEqual(len(COLUMNS),11)
