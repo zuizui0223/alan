@@ -101,7 +101,7 @@ def main(root, out):
              ["14,330 distinct species", "**1,691 species**", "**257 species**", "**13 species**",
               "genus fixed effects"])
     contains(root,"docs/ALAN_301_ORIGINAL_VISITOR_OBS_OA_SAMPLING_SELECTION_20261114.md",
-             ["**92**", "**247**", "**36 candidate OA links**"])
+             ["**92**", "247 of the 301", "**36 candidate OA links**"])
     contains(root,"docs/ALAN_TRUE_WENZELL2019_POPULATIONYEAR_GUILD_REPRODUCTION_LINK_20261114.md",
              ["**6**", "5/6 mapped", "within **1 km**"])
     contains(root,"docs/ALAN_ORIGINAL_KAYS2012_GAMBOA_KINKAJOU_FRUIT_CLOSED_SEMANTICS_20261114.md",
