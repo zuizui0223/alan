@@ -1,0 +1,27 @@
+{
+  "schema": "ALAN_reproductive_publication_candidate_registry_v1",
+  "as_of": "2026-11-14",
+  "count_publications": 9,
+  "not_exhaustive_global_systematic_review": true,
+  "number_independent_experiments_not_certified": true,
+  "new_to_previous_PR75_reproductive_panel": 4,
+  "papers": [
+    {"id":"knop2017","doi":"10.1038/nature23288","in_2023_review_reproductive_ALAN_set":true,"design":"lighting manipulation","outcomes":["flower visitation","fruit set"],"current_evidence":"published source findings; no new raw numerical refit in this branch"},
+    {"id":"macgregor2019","doi":"10.1002/ecs2.2550","in_2023_review_reproductive_ALAN_set":false,"design":"lighting and pollinator-access manipulation; repeated runs and plants","outcomes":["per-flower pollination success","conditional seeds per pollinated uninfested capsule"],"current_evidence":"author code inspected in PR75; required three raw CSVs absent from inspected archives","not_listed_does_not_establish_reason_for_exclusion":true},
+    {"id":"boom2020","doi":"10.1038/s41598-020-75471-1","in_2023_review_reproductive_ALAN_set":true,"design":"spectral lighting manipulation","outcomes":["fruit set","fruit infestation","ovule fertilization","estimated seeds per flower"],"current_evidence":"published aggregate table reconstructed in PR67; no new raw row fit here"},
+    {"id":"giavi2020","doi":"10.1038/s41598-020-68667-y","in_2023_review_reproductive_ALAN_set":true,"new_to_PR75_panel":true,"design":"four lit and four control meadows; lit and adjacent-dark share the same four meadows","outcomes":["selected capsule seed production","infestation odds","unattacked capsule to exposed flower index"],"current_evidence":"original XML model coefficients and SE acquired and reoriented; raw data on author request","relative_reproduction_denominator_wording_ambiguous":true},
+    {"id":"bariles2021","doi":"10.1093/biolinnean/blab114","in_2023_review_reproductive_ALAN_set":true,"new_to_PR75_panel":true,"design":"six-site observational sky radiance and tree cover gradient; not randomized lamp assignment","outcomes":["stigmatic pollen","germinated pollen","fruit set","seeds per fruit"],"current_evidence":"primary methods inspected; underlying data by author request","review_field_experiment_label_does_not_certify_ALAN_manipulation":true},
+    {"id":"wilson2021","doi":"10.1093/icb/icab010","in_2023_review_reproductive_ALAN_set":true,"new_to_PR75_panel":true,"design":"mixed light-tower and skyglow study; reproductive design details need further source reconciliation","outcomes":["adult diurnal yucca-moth attraction","fruit recruitment","larval recruitment"],"current_evidence":"primary published findings, no new original row reanalysis","adult_trap_response_not_population_abundance":true},
+    {"id":"dzul2022","doi":"10.1007/s00114-021-01783-5","in_2023_review_reproductive_ALAN_set":true,"new_to_PR75_panel":true,"design":"observational light/noise gradient","outcomes":["bat visit records","stigma pollen","pollen tubes","fruit set","seed to ovule proportion"],"current_evidence":"public author CSV SHA-verified; same 43-record descriptive correlations computed","source_sha256":"f5b4dca48da2fc9736e8e2441491f365d9916f595ad129eebf3dd5809a4190d5","source_ID_alone_not_verified_independent_experiment":true},
+    {"id":"li2026","doi":"10.64898/2026.07.10.737511","in_2023_review_reproductive_ALAN_set":false,"design":"three-field compound array/point/dark lighting manipulation","outcomes":["plant any-seed outcome","seed count","fruit count"],"current_evidence":"preprint; original 79-row source analyzed in PR73/74","peer_reviewed_status_not_established":true},
+    {"id":"lu2026jpe","doi":"10.1093/jpe/rtag160","in_2023_review_reproductive_ALAN_set":false,"design":"two-plant pollination-access and lighting comparison reported in original source","outcomes":["stigma pollen","seed set"],"current_evidence":"published source findings; no raw reproduction rows recovered in this branch","related_visit_paper":"10.1002/ece3.74368","experiment_overlap_with_related_visit_paper_unknown":true}
+  ],
+  "meta_analysis_rules": [
+    "ALAN and enhanced UV-B remain separate exposure classes.",
+    "Visitation, pollen delivery, fruit success, seed/ovule fraction and total seed output are separate outcomes.",
+    "Observational light gradients and randomized/manipulated lighting are separate design strata.",
+    "Author group or paper DOI does not prove independent experimental units.",
+    "No shared global estimate is reported without effect-level estimates, variance and dependence accounting.",
+    "Do not require every source to observe every moderator; retain outcome-specific usable subsets with explicit unknowns."
+  ]
+}
