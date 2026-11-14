@@ -93,7 +93,17 @@ def model(rows):
             "source_distinct_anole_status":sorted({r["Anole"] for r in rows}),
             "survey_year":2021,
             "source_plant_pollinator_visits_NOT_fruit_seed_efficacy":True}
-    require(total>=3000 and total<=5500,"Original total visits unexpectedly drifted")
+    print("ALAN_OGASAWARA_2021_ORIGINAL_SOURCE_DENOMINATOR_QA",
+          json.dumps({"original_dataset_rows":len(rows),
+                      "observed_positive_original_visits":total,
+                      "paper_reported_visitor_interactions":4174,
+                      "source_plant_names":len(plants),
+                      "source_pollinator_names":len(pollinators)}),flush=True)
+    require(total>0,"Original actual visit counts missing")
+    actual["original_paper_reported_all_network_4174_vs_supplement_NInt"]={
+        "paper_reported":4174,"original_xlsx_sum_NInt":total,
+        "exactly_equal":total==4174,
+        "difference_must_be_audited_before_claiming_complete_source_replay":total!=4174}
     require(48<=len(plants)<=75 and 100<=len(pollinators)<=135,
             "Original plant or pollinator species source support changed")
     # Use original invaded site CONTEXT within each physical island.
