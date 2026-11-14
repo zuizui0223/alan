@@ -48,6 +48,9 @@ def main(out):
             v.append({k:obj[k] for k in ("id","versionNumber","version","versionStatus",
                 "publicationDate","lastModified") if k in obj})
     paths=[x for x in hrefs(versions) if "/versions/" in x or "/files" in x]
+    version_debug=[{"keys":sorted(o.keys()),"versionNumber":o.get("versionNumber"),
+                    "links":o.get("_links")} for o in objects(versions)
+                   if isinstance(o,dict) and "versionNumber" in o][:12]
     # Follow only known origin; do not allow arbitrary redirected external APIs.
     for x in paths:
         if not x.startswith("https://"):
@@ -91,7 +94,9 @@ def main(out):
         "corrected_2025_12_11_data_preferred_over_2025_12_03":True,
         "main_843_moth_23species_three_families_numbers_from_published_abstract_not_recomputed":True,
         "no_video_frame_pseudoreplication_or_pollen_delivery_claim":True,
-        "url_candidates":candidates}
+        "url_candidates":candidates,
+        "version_public_metadata_debug":version_debug,
+        "version_link_href_samples":paths[:15]}
     out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(json.dumps(result,indent=2,ensure_ascii=False,allow_nan=False)+"\n")
     print("ALAN_DRYAD_MOTH_23SP_MANIFEST",json.dumps(result,ensure_ascii=False),flush=True)
