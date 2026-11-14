@@ -98,12 +98,12 @@ def main(root, out):
     contains(root,"docs/ALAN_ORIGINAL_DAYNIGHT_REPRODUCTIVE_562ISLAND_PRIORLIGHT_20261113.md",
              ["**562 exact GSHHG islands", "**52** of 134", "**2,373 cell", "39 independent islands"])
     contains(root,"docs/ALAN_GLOBAL562_DIRECT_FLORAL_MOTHLIKE_PCNL_EMPIRICAL_20261113.md",
-             ["**14,330 distinct species**", "**1,691 species**", "**257 species**", "**13 species**",
+             ["14,330 distinct species", "**1,691 species**", "**257 species**", "**13 species**",
               "genus fixed effects"])
     contains(root,"docs/ALAN_301_ORIGINAL_VISITOR_OBS_OA_SAMPLING_SELECTION_20261114.md",
              ["**92**", "**247**", "**36 candidate OA links**"])
     contains(root,"docs/ALAN_TRUE_WENZELL2019_POPULATIONYEAR_GUILD_REPRODUCTION_LINK_20261114.md",
-             ["**6**", "five", "within **1 km**"])
+             ["**6**", "5/6 mapped", "within **1 km**"])
     contains(root,"docs/ALAN_ORIGINAL_KAYS2012_GAMBOA_KINKAJOU_FRUIT_CLOSED_SEMANTICS_20261114.md",
              ["**bees can pass**","2010", "same"])
 
