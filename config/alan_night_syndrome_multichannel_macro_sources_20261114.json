@@ -90,9 +90,11 @@
       "illuminated_sites": 14,
       "paired_controls": 14,
       "flowering_schedule_species_in_percent": 75,
-      "flowering_schedule_species_n": 16,
       "verified_local_pollinator_mismatch": false,
-      "source_url": "https://doi.org/10.1016/j.biocon.2025.111650"
+      "source_url": "https://doi.org/10.1016/j.biocon.2025.111650",
+      "plant_species_with_detected_schedule_change_n": 16,
+      "original_tested_flowering_species_total_NOT_DIRECTLY_VERIFIED": null,
+      "species_pct_is_reported_relative_to_original_study_cohort": true
     },
     {
       "doi": "10.1111/cobi.70304",
