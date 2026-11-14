@@ -1,0 +1,54 @@
+name: ALAN original 452 global lizard flower efficacy records island mainland source acquisition
+on:
+  push:
+    branches: [analysis/alan-global-lizard-effective-pollination-island-source-20261114]
+    paths:
+      - scripts/analysis/alan_2023_global452_lizard_flower_efficacy_original_source_probe_20261114.py
+      - tests/test_alan_2023_global452_lizard_flower_efficacy_source_probe_20261114.py
+      - .github/workflows/alan-452-global-lizard-island-pollen-efficacy-original-source-probe-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-island-mainland-direct-functional-evidence:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify original global review source and binary XLS parser safeguards
+        run: |
+          set -euo pipefail
+          python -m pip install -q xlrd==2.0.1
+          python -m py_compile scripts/analysis/alan_2023_global452_lizard_flower_efficacy_original_source_probe_20261114.py
+          python -m unittest discover -s tests -p 'test_alan_2023_global452_lizard_flower_efficacy_source_probe_20261114.py' -v
+      - name: Attempt original paper 452-row supplement and original lizard phylogenetic Figshare article
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          mkdir -p original_global_lizard_function
+          python -m scripts.analysis.alan_2023_global452_lizard_flower_efficacy_original_source_probe_20261114 \
+            --out original_global_lizard_function/ALAN_2023_global_lizard452_original_island_mainland_source_probe.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("original_global_lizard_function/ALAN_2023_global_lizard452_original_island_mainland_source_probe.json")
+          z=json.loads(p.read_text())
+          assert z["schema"]=="ALAN_lizard_global_2023_452_interactions_original_source_20261114_v1"
+          assert z["reported_review_source_counts_NOT_REANALYZED"]["interaction_records"]==452
+          assert z["reported_review_source_counts_NOT_REANALYZED"]["records_with_effective_pollination_evidence"]==90
+          assert z["source_interpretation_gates"]["no_effective_light_by_island_lizard_interaction_estimated"]
+          assert z["status"] in ("ORIGINAL_GLOBAL_LIZARD_REVIEW_XLS_VERIFIED",
+             "ORIGINAL_REVIEW_XLS_UNAVAILABLE_OR_NOT_XLS_ONLY_PUBLISHED_GLOBAL_SUMMARY")
+          print("ALAN_GENUINE_ISLAND_LIZARD_SOURCE_REVIEW_AUTHENTICITY_AND_MISSINGNESS_GATE",flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-2023-original-global-452-lizard-flower-effective-pollination-island-sources
+          path: original_global_lizard_function/
+          retention-days: 90
+          if-no-files-found: warn

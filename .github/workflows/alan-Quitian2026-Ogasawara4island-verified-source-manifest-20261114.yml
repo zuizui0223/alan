@@ -1,0 +1,49 @@
+name: ALAN original 2026 Ogasawara four-island predator floral network author xlsx source
+on:
+  push:
+    branches: [analysis/alan-global-lizard-effective-pollination-island-source-20261114]
+    paths:
+      - scripts/analysis/alan_Quitian2026_original_Ogasawara_4island_network_source_manifest_20261114.py
+      - tests/test_alan_Quitian2026_original_Ogasawara_4island_network_manifest_20261114.py
+      - .github/workflows/alan-Quitian2026-Ogasawara4island-verified-source-manifest-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-four-island-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install author original XLSX reader and source tests
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m py_compile scripts/analysis/alan_Quitian2026_original_Ogasawara_4island_network_source_manifest_20261114.py
+          python -m unittest discover -s tests -p 'test_alan_Quitian2026_original_Ogasawara_4island_network_manifest_20261114.py' -v
+      - name: Authenticate real four-island 2021 pollination networks and original study fields
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p original_island_community
+          python -m scripts.analysis.alan_Quitian2026_original_Ogasawara_4island_network_source_manifest_20261114 \
+            --out original_island_community/ALAN_original_Quitian2026_Ogasawara4island_network_schema.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          q=json.loads(Path("original_island_community/ALAN_original_Quitian2026_Ogasawara4island_network_schema.json").read_text())
+          assert q["status"]=="ZENODO_AUTHENTIC_4ISLAND_RAW_XLSX_SCHEMA_VERIFIED_NO_NEW_FIT"
+          assert q["paper_reported_not_refitted"]["reported_legitimate_plant_visitor_interactions"]==4174
+          assert q["publisher_author_MD5_verified"]=="68f295b91605ea82bce0c05bffc7f884"
+          assert q["no_fabricated_claims"]["no_ALAN_lux_or_light_treatment_in_this_island_study"]
+          print("ALAN_TRUE_OGASAWARA_4ISLAND_NETWORK_AUTHOR_MD5_AND_CATEGORICAL_SCHEMA_SUCCESS")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original2026-Ogasawara-four-island-flower-community-network-schema-20261114
+          path: original_island_community/
+          if-no-files-found: warn
+          retention-days: 90

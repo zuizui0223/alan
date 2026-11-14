@@ -1,0 +1,58 @@
+name: ALAN genuine original four Ogasawara island pollinator community channels by invasive predator context
+on:
+  push:
+    branches: [analysis/alan-global-lizard-effective-pollination-island-source-20261114]
+    paths:
+      - scripts/analysis/alan_Quitian2026_Ogasawara4island_visitation_functional_portfolio_20261114.py
+      - tests/test_alan_Quitian2026_Ogasawara4island_visitation_portfolio_20261114.py
+      - .github/workflows/alan-Ogasawara-2021-original-fourisland-pollinator-community-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-source-island-network:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify real source, source-labeled functional diversity and original samples
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m py_compile scripts/analysis/alan_Quitian2026_Ogasawara4island_visitation_functional_portfolio_20261114.py
+          python -m unittest discover -s tests -p 'test_alan_Quitian2026_Ogasawara4island_visitation_portfolio_20261114.py' -v
+      - name: Aggregate real 2021 four-island original network and predator-anole source support
+        timeout-minutes: 9
+        run: |
+          set -euo pipefail
+          mkdir -p real_Ogasawara_source
+          python -m scripts.analysis.alan_Quitian2026_Ogasawara4island_visitation_functional_portfolio_20261114 \
+            --out real_Ogasawara_source/ALAN_real_Ogasawara4island_2021_predator_pollinator_network_baseline.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          z=json.loads(Path("real_Ogasawara_source/ALAN_real_Ogasawara4island_2021_predator_pollinator_network_baseline.json").read_text())
+          assert z["status"]=="ORIGINAL_ZENODO_REAL_2021_ISLAND_CHANNEL_PORTFOLIO_WITHOUT_ALAN"
+          assert z["original_source_support"]["source_interaction_rows"]==2063
+          assert z["original_publication_main_cohort_reconciliation"]["raw_original_source_visit_rows"]==2745
+          assert z["original_source_support"]["source_genuine_recorded_legitimate_visits"]==4174
+          assert z["original_source_support"]["source_positive_plant_names"]==55
+          assert z["original_source_support"]["source_positive_pollinator_names_and_morphotypes"]==116
+          assert z["original_publication_main_cohort_reconciliation"]["included_source_pollinator_names"]!=115
+          assert z["independent_islands"]==4
+          assert z["source"]["original_XLSX_SHA256"]=="4e0c4a293e2a522e67bc1f87f567249d45b42000b78eaef9d355e8658b1987a6"
+          assert z["interpretation"]["daytime_only_original_census_makes_night_moth_shift_UNOBSERVED"]
+          assert z["interpretation"]["no_source_field_nightlight_exposure"]
+          print("ALAN_REAL_OGASAWARA_DAYTIME_POLLINATOR_NETWORK_ANOLE_FUNCTIONAL_PORTFOLIO_SUCCESS",flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-genuine-Ogasawara-2021-fourisland-pollinator-anole-original-networks-20261114
+          path: real_Ogasawara_source/
+          retention-days: 90
+          if-no-files-found: warn
