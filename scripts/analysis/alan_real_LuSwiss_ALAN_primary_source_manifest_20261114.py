@@ -62,7 +62,7 @@ def xlsx_manifest(b, size_limit=120_000_000):
     except Exception as e:
         return {"status":"xlsx_read_error","error_type":type(e).__name__}
 
-def manifest_zip_bytes(blob,label):
+def manifest_zip_bytes(blob,label,depth=0):
     if not zipfile.is_zipfile(io.BytesIO(blob)):
         return {"status":"not_zip","source":label,"bytes":len(blob)}
     f=zipfile.ZipFile(io.BytesIO(blob))
@@ -74,6 +74,10 @@ def manifest_zip_bytes(blob,label):
            "CRC32":format(item.CRC,"08x")}
         if item.file_size>120_000_000:
             z["skipped"]="oversized_uncompressed_file"
+        elif item.filename.lower().endswith(".zip") and depth<2:
+            raw=f.read(item)
+            z["sha256"]=hashlib.sha256(raw).hexdigest()
+            z["inner_archive"]=manifest_zip_bytes(raw,item.filename,depth+1)
         elif item.filename.lower().endswith((".xlsx",".xlsm")):
             raw=f.read(item)
             z["sha256"]=hashlib.sha256(raw).hexdigest()
