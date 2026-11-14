@@ -45,7 +45,7 @@ jobs:
           for p in ("Nocturnal","Diurnal"):
             assert z["guild_visitation"][p]["n_visitation_source_records"]==200
             for k,v in z["guild_visitation"][p]["experimental_survey_pair_group_effects"].items():
-              assert v["n_paired_survey_units"]==100
+              assert v["n_paired_block_rounds"]==20
           assert z["interpretation_limits"]["guild_replacement_only_VISITS_not_effective_pollination"]
           assert z["interpretation_limits"]["no_local_island_mainland_contrast"]
           print("ALAN_REAL_LU_2026_SOURCE_BLOCK_PAIRED_VISITOR_COMPENSATION_AUDIT_SUCCESS")
