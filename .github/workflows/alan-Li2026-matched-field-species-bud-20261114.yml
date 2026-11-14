@@ -41,6 +41,8 @@ jobs:
           assert a["n_comparable_strata"]==9
           assert (a["n_positive"],a["n_negative"],a["n_equal"])==(4,1,4)
           assert z["source"]["L_and_P_photometric_power_and_exposure_geometry_not_held_fixed"] is True
+          assert z["adversarial_source_data_vs_90_potential_slots_bound"]["L-C"]["first_possible_sign_reversal_if_adversarial_missing"]["hypothetical_total_missing"]==23
+          assert z["adversarial_source_data_vs_90_potential_slots_bound"]["P-C"]["first_possible_sign_reversal_if_adversarial_missing"]["hypothetical_total_missing"]==9
           assert abs(z["raw_pooled_three_arm_pairs"]["L-C"]["seed_presence_difference"]-(20/27-8/26))<1e-10
           print("ORIGINAL_LI79_AUTHOR_SHA_FIELD_SPECIES_ROUND_STARTING_BUD_AUDIT_PASS")
           PY
