@@ -116,7 +116,7 @@ def run(out):
         # The original tiny README is a public paper methods note. Retain
         # exact source byte hash; extract only the sections about data design.
         r=original["readme"].decode("utf-8",errors="replace")
-        extracted["readme_preview"]=r[:6000]
+        extracted["readme_preview"]=r[:450]
         extracted["readme_original_chars"]=len(r)
     if "script.R" in original:
         s=original["script.R"].decode("utf-8",errors="replace")
