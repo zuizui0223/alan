@@ -37,7 +37,7 @@ def entropy_effective(vis):
 def normalize(s):
     return " ".join(str(s or "").strip().split())
 def api(s):
-    t=s.strip().lower()
+    t=s.strip().lower().replace("_"," ")
     return t=="apis mellifera" or t.startswith("apis mellifera ") or t=="a. mellifera"
 
 def read():
@@ -82,7 +82,7 @@ def original_publication_main_cohort(raw):
     original author's supplementary protocol confirmed unless the 4174/55/115
     source counts all match (not merely selected favorable subsets).
     """
-    excluded={"Formicidae":0,"Collembola":0,"Acari":0}
+    excluded={"Formicidae":0,"Collembola":0,"Acari":0,"zero_visits":0}
     counts=collections.Counter()
     taxon_apoidea=collections.Counter()
     alltop=collections.Counter()
@@ -99,6 +99,9 @@ def original_publication_main_cohort(raw):
         if cls:
             excluded[cls]+=n
             counts[cls]+=1
+            continue
+        if n==0:
+            counts["zero_visits"]+=1
             continue
         keep.append(r)
     rawtotal=sum(x["N.Int"] for x in raw)
@@ -123,6 +126,7 @@ def original_publication_main_cohort(raw):
         total==4174 and names==55 and visitors==115,
       "source_reported_paper_excluded_ants":True,
       "springtail_mite_exclusion_in_paper_method_text_not_yet_independently_verified":True,
+      "source_zero_visit_rows_cannot_count_as_visitor_partner_presence":True,
       "source_top_Apoidea_positive_labels":taxon_apoidea.most_common(16),
       "source_top_visitor_labels_overall":alltop.most_common(16),
       "exclusion_identified_from_source_sum_not_a_preregistered_main_analysis":True,
