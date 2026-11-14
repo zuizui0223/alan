@@ -46,7 +46,9 @@
     "site_independent_randomization_units_unverified": true,
     "no_nocturnal_effective_pollinator_pollen_data": true,
     "island_mainland_comparison": false,
-    "floral_opening_or_peak_doy_not_recorded_in_published_path_parameters": true
+    "floral_opening_or_peak_doy_not_recorded_in_published_path_parameters": true,
+    "original_inflorescence_assessed_for_florivory": 355,
+    "original_inflorescence_flower_damage_prevalence": 0.335
   },
   "published_reported_coefficients": {
     "ALAN_without_herbivores_day_pollinator_visits": {
@@ -138,6 +140,12 @@
       "inferential_status": "NOT_RESOLVED_STATISTICALLY_IN_ORIGINAL_PREPRINT",
       "numerical_effect_unpublished_in_extracted_summary": null,
       "never_impute_seed_compensation": true
+    },
+    "ALAN_on_florivory_incidence": {
+      "inferential_status": "NO_DETECTED_DIRECT_ALAN_TREATMENT_EFFECT_ON_FLORIVORY",
+      "numerical_effect_unpublished_in_extracted_summary": null,
+      "source_section": "Results & Discussion, Question 2",
+      "not_an_assumed_true_zero_effect": true
     }
   },
   "mechanistic_caveats": {
@@ -152,6 +160,9 @@
     "source_CI_not_reverse_engineered_as_raw_standard_errors": true,
     "no_pollen_or_seed_effective_alternative_by_trophic_predator_verification": true,
     "no_direct_phenology_mismatch_coefficient": true,
-    "no_global_island_light_vulnerability_coefficient": true
+    "no_global_island_light_vulnerability_coefficient": true,
+    "direct_light_to_FOLIAR_damage_significant_but_foliage_to_VISIT_NOT_CLEARED_CI": true,
+    "florivory_to_VISITS_and_light_by_florivory_significant_but_ALAN_to_FLORIVORY_not_detected": true,
+    "complete_causal_herbivore_mediation_path_not_identified_from_individual_reported_coefficients": true
   }
 }
