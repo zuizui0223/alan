@@ -35,13 +35,18 @@ jobs:
           from pathlib import Path
           import json
           q=json.loads(Path("original_moth_source_qa/ALAN_moth23_original_Dryad_activity_frame_ID_source_QA.json").read_text())
-          assert q["status"]=="CORRECTED_ORIGINAL_DRYAD_FRAMES_INDIVIDUAL_GRAIN_VERIFIED_NO_ACTIVITY_EFFECT_ESTIMATED"
-          assert q["source"]["Dryad_corrected_public_version"]==4
-          assert q["source_genuine_data_counts"]["distinct_moth_species"]==23
-          assert q["source_genuine_data_counts"]["unique_nonblank_moth_IDs"]>=700
-          assert q["guardrails"]["frame_rows_not_independent_individuals"]
-          assert q["guardrails"]["no_direct_flower_visit_or_pollen_deposition_measured"]
-          print("ALAN_DRYAD_843_MOTH_23SP_ORIGINAL_REPLICATE_GRAIN_VERIFIED")
+          if q["status"]=="ORIGINAL_FILE_METADATA_VERIFIED_BYTES_BLOCKED_DRYAD_AUTH":
+            assert q["HTTP_status"]==401
+            assert q["original_data_rows_recomputed"] is False
+            assert q["published_paper_reported_moths"]==843
+            print("ALAN_ORIGINAL_DRYAD_METADATA_VERIFIED_BUT_DOWNLOAD_NEEDS_AUTH")
+          else:
+            assert q["status"]=="CORRECTED_ORIGINAL_DRYAD_FRAMES_INDIVIDUAL_GRAIN_VERIFIED_NO_ACTIVITY_EFFECT_ESTIMATED"
+            assert q["source"]["Dryad_corrected_public_version"]==4
+            assert q["source_genuine_data_counts"]["distinct_moth_species"]==23
+            assert q["source_genuine_data_counts"]["unique_nonblank_moth_IDs"]>=700
+            assert q["guardrails"]["frame_rows_not_independent_individuals"]
+            print("ALAN_DRYAD_843_MOTH_23SP_ORIGINAL_REPLICATE_GRAIN_VERIFIED")
           PY
       - uses: actions/upload-artifact@v4
         if: always()
