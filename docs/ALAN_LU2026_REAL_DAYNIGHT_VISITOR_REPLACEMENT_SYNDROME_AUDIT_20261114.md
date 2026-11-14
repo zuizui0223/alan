@@ -1,6 +1,6 @@
 # ALAN — original light experiment: moth-dominant visitor guilds and incomplete fly substitution
 
-**Real original-source analysis SUCCESS (2026-11-14 JST):** [GitHub Actions #43567365631](https://github.com/zuizui0223/alan/actions/runs/43567365631), [aggregate-only artifact #14102987254](https://github.com/zuizui0223/alan/actions/runs/43567365631/artifacts/14102987254). Original primary paper: Lu et al. 2026, Ecology and Evolution, [DOI 10.1002/ece3.74368](https://doi.org/10.1002/ece3.74368), PMCID PMC13645961. This study's ecological phenomenon was already published by its authors; the additions here are a new source-verified syndrome grouping, independently reproducible block-level audit and explicit functional limits.
+**Real original-source analysis SUCCESS (2026-11-14 JST):** [GitHub Actions #43567618252](https://github.com/zuizui0223/alan/actions/runs/43567618252), [aggregate-only artifact #14102173873](https://github.com/zuizui0223/alan/actions/runs/43567618252/artifacts/14102173873). Original primary paper: Lu et al. 2026, Ecology and Evolution, [DOI 10.1002/ece3.74368](https://doi.org/10.1002/ece3.74368), PMCID PMC13645961. This study's ecological phenomenon was already published by its authors; the additions here are a new source-verified syndrome grouping, independently reproducible block-level audit and explicit functional limits.
 
 ## Original public data recovered and SHA-pinned
 
@@ -49,6 +49,14 @@ The 11 focal plant species have positive night visitation records under BOTH tre
 The five majority-class plants lost **425** documented nocturnal Lepidoptera visits (680→255), while gaining 46 Diptera visits (87→133). The six non-majority plants lost 22 nocturnal Lepidoptera visits (95→73) but gained 29 Diptera visits (19→48). Thus **5/5** originally Lepidoptera-majority focal plants showed fewer lit-site nocturnal Lepidoptera visits; **6/11** focal plants showed both moth visits decreasing and fly visits increasing.
 
 This suggests the **identity and degree of dependence on light-sensitive visitor channels**, rather than a simple binary moth-visited label, can help predict the magnitude of source-observed visitation changes. However the 5-versus-6 difference is **within one original experimental research system, not a replicated causal cross-syndrome meta-analysis**. Control-majority group assignment and treatment differences share one original data source; flower availability, baseline frequency and uneven species detection confound the comparison. No p-value is reported for this post-hoc 5-vs-6 grouping, and the fact that all six group comparisons are positive-record restricted prevents treating undocumented local guilds as absent.
+
+## Crucial leave-one-block-out *prospective* syndrome transfer diagnostic
+
+To reduce shared-outcome selection bias, one original field block is completely HELD OUT. A plant is labelled Lepidoptera-majority using nocturnal **unlit visitor counts in the other four blocks only**, while the held-out block's illuminated/unlit total visits are used strictly for assessment. Missing plant×block source records are excluded as UNKNOWN rather than imputed zero. Each test requires **at least two positively documented plants in both syndrome groups** and original unlit visit support.
+
+**Actual original five-block result:** 4/5 heldout blocks pass this minimal gate; in only **2 of these 4** do majority-class plants show a stronger lit/dark total visit decline. The two others reverse the relative ordering. One block has only ONE source-positive plant in the non-majority group and is **NOT ESTIMABLE**. Between-class lit/unlit ratio difference (moth-majority minus other) ranges **−0.72481 to +0.36040** in eligible blocks.
+
+This is a meaningful negative robustness result: the striking pooled source-positive **−44.88% versus −7.23%** grouping is **not robustly transferable across independent original experimental blocks**, and the full 11 plant taxa are not representative of all 29 original nocturnal blooming plants. DO NOT claim an ALAN-susceptible morphologic/evolved moth floral syndrome from the pooled 5-versus-6 descriptive data. Group categorization is based on sampled *visitor composition* and both groups have heterogeneous true flowering availability and pollination efficiency. This study's main confirmed result remains **night Lepidoptera visits ↓, Diptera visits ↑, total night visits ↓** at the study level.
 
 ## Macroecological extension and limitations
 
