@@ -1,0 +1,80 @@
+name: ALAN original 92 pollinator-study DOI and OA bibliographic evidence gate
+on:
+  push:
+    branches: [analysis/alan-real-diel-92paper-OA-sourcegate-20261114]
+    paths:
+      - scripts/analysis/alan_original_92paper_visitor_bibliography_oa_20261114.py
+      - tests/test_alan_original_92paper_visitor_bibliography_oa_20261114.py
+      - .github/workflows/alan-92-original-visitor-paper-DOI-OA-source-gate-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3
+          python -m py_compile scripts/analysis/alan_original_92paper_visitor_bibliography_oa_20261114.py
+          python -m unittest discover -s tests -p test_alan_original_92paper_visitor_bibliography_oa_20261114.py -v
+  true-original-source-public-metadata:
+    needs: source-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Restore SHA-locked original field paired reproduction and exact author study
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3
+          mkdir -p original_source
+          gh run download 43379308366 --repo zuizui0223/alan \
+            --name alan-true-daynight-study-site-year-experiment-source-20261113 \
+            --dir original_source
+          echo '21b1fef1beb9e6238cfa47101b991815d4c0f33787b9737f834426dc3bab15af  original_source/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz' | sha256sum -c -
+          git clone -q --depth 1 https://github.com/liamkendall/bumble-bat.git original_author
+          test "$(git -C original_author hash-object data/DvN_LiteratureDataClean_2024-09-13.csv)" = 39a82d966afcdde670603add1c881ace8791ffe9
+      - name: Discover public bibliographic metadata only, never local guild inference
+        timeout-minutes: 25
+        run: |
+          set -euo pipefail
+          mkdir -p source_public_oa
+          python -m scripts.analysis.alan_original_92paper_visitor_bibliography_oa_20261114 \
+            --author original_author/data/DvN_LiteratureDataClean_2024-09-13.csv \
+            --preflight original_source/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz \
+            --queue_out source_public_oa/ALAN_original92_papers_public_identifier_oa_queue_20261114.json \
+            --summary_out source_public_oa/ALAN_original92_DOI_OA_original_source_summary_20261114.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path("source_public_oa")
+          x=json.loads((root/"ALAN_original92_DOI_OA_original_source_summary_20261114.json").read_text())
+          q=json.loads((root/"ALAN_original92_papers_public_identifier_oa_queue_20261114.json").read_text())["records"]
+          assert x["status"] == "PUBLIC_BIBLIOGRAPHIC_LINKS_ONLY_NO_LOCAL_GUILD"
+          assert x["published_studies_with_author_visitor_observation_flag"] == 92
+          assert x["genuine_experiment_reproductive_outcome_pairs_of_these_papers"] == 247
+          assert x["distinct_original_experiment_plants_in_these_papers"] == 110
+          assert x["original_identifier_class_counts"] == {"doi_syntax":87, "invalid_literal":3, "non_doi_url":1, "missing":1}
+          assert len(q) == 92 and sum(x["actual_authentic_field_daynight_reproductive_comparisons"] for x in q) == 247
+          assert all(x["actual_local_field_visitor_taxon_verified"] is False for x in q)
+          print("ALAN_AUTHENTIC_92_PAPERS_PUBLIC_DOI_METADATA_AND_LOCAL_GUILD_GATE_SUCCESS",flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-92study-public-DOI-OA-metadata-only-20261114
+          path: source_public_oa/
+          if-no-files-found: warn
+          retention-days: 90
