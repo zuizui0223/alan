@@ -1,0 +1,56 @@
+name: ALAN genuine author 79 plant light geometry seed outcome and 3-field design audit
+on:
+  push:
+    branches: [analysis/alan-real-2026-light-geometry-seed-block-validation-20261114]
+    paths:
+      - scripts/analysis/alan_Li2026_real_geometry_seed_hayfield_source_20261114.py
+      - tests/test_alan_Li2026_real_geometry_seed_hayfield_source_20261114.py
+      - .github/workflows/alan-Li2026-genuine-geometry-seed-threefield-20261114.yml
+      - docs/ALAN_Li2026_THREE_FIELD_GENUINE_GEOMETRY_REPRODUCTION_20261114.md
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  authentic-Li2026-3field-seed:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Run mathematical, missing-data, site-independence tests
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/analysis/alan_Li2026_real_geometry_seed_hayfield_source_20261114.py
+          python -m unittest discover -s tests -p test_alan_Li2026_real_geometry_seed_hayfield_source_20261114.py -v
+      - name: Re-download author original Git blob and compute 79 true reproductive outcomes
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p real_li_geometry
+          python -m scripts.analysis.alan_Li2026_real_geometry_seed_hayfield_source_20261114 \
+             --out real_li_geometry/ALAN_real_Li2026_79plants_three_hayfields.json
+          python - <<'PY'
+          from pathlib import Path
+          import json, math
+          z=json.loads(Path('real_li_geometry/ALAN_real_Li2026_79plants_three_hayfields.json').read_text())
+          assert z["source"]["actual_plant_source_rows"]==79
+          assert z["source"]["experimental_field_blocks"]==3
+          q={v["group"]["Treatment"]:v for v in z["treatment_summary"]}
+          assert (q["L"]["has_at_least_one_seed_plants"],q["L"]["nonmissing_seedset_source_plants"])==(20,27)
+          assert (q["C"]["has_at_least_one_seed_plants"],q["C"]["nonmissing_seedset_source_plants"])==(8,26)
+          assert (q["P"]["has_at_least_one_seed_plants"],q["P"]["nonmissing_seedset_source_plants"])==(12,25)
+          f=z["site_block_robustness"]["linear_array_versus_unlit"]
+          assert f["hayfields_positive_difference"]==3
+          assert f["independent_hayfields"]==3
+          assert math.isclose(f["two_sided_sign_fraction_descriptive_not_original_assignment_p"],.25)
+          assert z["functional_inference_guard"]["true_nocturnal_moth_visits_observed"] is False
+          print("ALAN_LI2026_REAL_79_PHYTOMETER_THREE_HAYFIELD_SOURCE_VALIDATED")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-Li2026-original-79plants-3field-seed-geometry-20261114
+          path: real_li_geometry/
+          retention-days: 90
+          if-no-files-found: warn
