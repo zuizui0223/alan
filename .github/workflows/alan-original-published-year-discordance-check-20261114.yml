@@ -1,0 +1,99 @@
+name: ALAN original 301 field reproduction published-year mismatch audit
+on:
+  push:
+    branches: [analysis/alan-original-visitor-source-year-audit-20261114]
+    paths:
+      - scripts/analysis/alan_original_reproduction_published_year_audit_20261114.py
+      - tests/test_alan_original_reproduction_published_year_audit_20261114.py
+      - .github/workflows/alan-original-published-year-discordance-check-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5
+          python -m py_compile scripts/analysis/alan_original_reproduction_published_year_audit_20261114.py
+          python -m unittest discover -s tests -p test_alan_original_reproduction_published_year_audit_20261114.py -v
+  original-field-source-model:
+    needs: source-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Restore the original SHA256 source and six previously MD5 verified satellite shards
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 statsmodels==0.14.5
+          mkdir -p original_study downloads parts
+          gh run download 43379308366 --repo zuizui0223/alan \
+            --name alan-true-daynight-study-site-year-experiment-source-20261113 \
+            --dir original_study
+          echo '21b1fef1beb9e6238cfa47101b991815d4c0f33787b9737f834426dc3bab15af  original_study/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz' | sha256sum -c -
+          gh run download 43380089481 --repo zuizui0223/alan \
+            --pattern 'alan-original-DvN-PCNL1992_2021-year-shard-*' \
+            --dir downloads
+          test "$(find downloads -name 'diel_annual_shard_?.csv.gz' | wc -l)" -eq 6
+          test "$(find downloads -name 'diel_annual_shard_?.json' | wc -l)" -eq 6
+          find downloads -name 'diel_annual_shard_?.csv.gz' -exec cp {} parts/ \;
+          find downloads -name 'diel_annual_shard_?.json' -exec cp {} parts/ \;
+      - name: Reconstitute 301 original prior-ALAN field site-year source
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_authentic_diel_siteyear_PCNL_6shards_20261113 collect \
+            --source original_study/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz \
+            --receipt original_study/original_DvN_source_year_geo_repro_audit.json \
+            --partialdir parts --out original_rejoined
+          python - <<'PY'
+          import json, hashlib
+          from pathlib import Path
+          p=Path("original_rejoined/Diel_original_daynight_reproductive_1993_2022_priorPCNL1992_2021.csv.gz")
+          s=json.loads(Path("original_rejoined/Diel_original_priorPCNL_source_receipt.json").read_text())
+          assert s["joined_file_sha256"]==hashlib.sha256(p.read_bytes()).hexdigest()
+          assert s["annual_rasters_MD5_source_verified"]==30
+          assert s["source_pairs_full_pre_experiment_PCNL"]==301
+          PY
+      - name: Study-omission audit where original field-year contradicted by published METHODS
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          mkdir -p original_chronology
+          python -m scripts.analysis.alan_original_reproduction_published_year_audit_20261114 \
+            --joined original_rejoined/Diel_original_daynight_reproductive_1993_2022_priorPCNL1992_2021.csv.gz \
+            --receipt original_rejoined/Diel_original_priorPCNL_source_receipt.json \
+            --out original_chronology/ALAN_real301_source_2022_vs_published2019_omission_20261114.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          q=json.loads(Path("original_chronology/ALAN_real301_source_2022_vs_published2019_omission_20261114.json").read_text())
+          assert q["status"]=="REAL_SOURCE_301_CHRONOLOGY_DISCORDANT_STUDY_OMISSION_REFIT"
+          assert q["case"]["published_bagging_experiment_year"]==2019
+          assert q["case"]["published_later_video_visitor_year"]==2022
+          assert q["case"]["original_author_year_field"]==2022
+          assert q["study_equal_adjusted_historical_light_vs_actual_reproduction"]["original301"]["pairs"]==301
+          print("REAL_301_ORIGINAL_PUBLICATION_CHRONOLOGY_SENSITIVITY_SUCCESS",flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-301-diel-published-year-mismatch-20261114
+          path: original_chronology/
+          retention-days: 90
+          if-no-files-found: warn
