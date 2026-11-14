@@ -174,7 +174,7 @@ def main(root, out):
     require(qtp["independent_spatial_blocks"]==5 and
             qtp["night_lepidoptera_pct_change"]==-57.5 and
             geo["plant_species"]==2 and
-            swiss["flowering_schedule_species_n"]==16,
+            swiss["plant_species_with_detected_schedule_change_n"]==16,
             "Published experimental-source registry metrics were altered")
     # NO four-factor regression is identifiable from separate summary sources.
     axis=[
@@ -216,6 +216,8 @@ def main(root, out):
         {"doi":swiss["doi"],"lit_sites":swiss["illuminated_sites"],
          "dark_sites":swiss["paired_controls"],
          "species_with_flowering_schedule_changes_percent":swiss["flowering_schedule_species_in_percent"],
+         "species_with_detected_schedule_changes_n":swiss["plant_species_with_detected_schedule_change_n"],
+         "tested_plant_species_denominator_not_directly_verified":True,
          "actual_pollinator_mismatch_NOT_measured":True},
       ],
       "old_source_record_provenance_bug":{
