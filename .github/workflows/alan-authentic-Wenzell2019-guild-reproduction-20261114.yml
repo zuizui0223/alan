@@ -4,7 +4,9 @@ on:
     branches: [analysis/alan-authentic-populationyear-visitor-repro-20261114]
     paths:
       - scripts/analysis/alan_real_Wenzell2019_populationyear_pollinator_reproduction_20261114.py
+      - scripts/analysis/alan_primary_Marques2015_bat_bird_reproductive_table_audit_20261114.py
       - tests/test_alan_real_Wenzell2019_populationyear_pollinator_reproduction_20261114.py
+      - tests/test_alan_primary_Marques2015_bat_bird_reproductive_table_audit_20261114.py
       - .github/workflows/alan-authentic-Wenzell2019-guild-reproduction-20261114.yml
   workflow_dispatch:
 permissions:
@@ -23,6 +25,8 @@ jobs:
           python -m pip install -q numpy==2.1.3 pandas==2.2.3
           python -m py_compile scripts/analysis/alan_real_Wenzell2019_populationyear_pollinator_reproduction_20261114.py
           python -m unittest discover -s tests -p test_alan_real_Wenzell2019_populationyear_pollinator_reproduction_20261114.py -v
+          python -m py_compile scripts/analysis/alan_primary_Marques2015_bat_bird_reproductive_table_audit_20261114.py
+          python -m unittest discover -s tests -p test_alan_primary_Marques2015_bat_bird_reproductive_table_audit_20261114.py -v
   original-source-guild-reproductive-bridge:
     needs: source-tests
     runs-on: ubuntu-24.04
@@ -78,6 +82,23 @@ jobs:
           assert q["meta_source_and_direct_fruitset_sign_agreement"]==6
           assert s["epistemic_limits"]["one_independent_original_published_study_not_seven_studies"]
           print("ORIGINAL_GLOBAL_META_TO_DIRECT_SAME_POPULATION_YEAR_GUILD_REPRODUCTION_VERIFIED",flush=True)
+          PY
+      - name: Verify second independent study bat-versus-bird published direct fruit and seed source table
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_primary_Marques2015_bat_bird_reproductive_table_audit_20261114 \
+            --author original_global/data/DvN_LiteratureDataClean_2024-09-13.csv \
+            --output original_match/ALAN_Marques2015_primary_table_bat_hummingbird_fruitseed_20261114.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          q=json.loads(Path("original_match/ALAN_Marques2015_primary_table_bat_hummingbird_fruitseed_20261114.json").read_text())
+          assert q["status"]=="AUTHENTIC_PUBLIC_PRIMARY_FRUIT_SEED_TABLE_VERIFIED_STUDY_FIELD_VISITORS_YEAR_NOT_PROVEN"
+          assert q["functional_source_descriptive"]["night_reproductive_fruit_set_exceeds_day"]
+          assert not q["functional_source_descriptive"]["visitor_field_year_explicitly_proved_against_secondary_year_2010"]
+          assert q["provenance"]["source_global_reproductive_metric_pairs"]==2
+          print("ORIGINAL_MARQUES_BAT_HUMMINGBIRD_STUDY_SOURCE_TABLE_VERIFIED",flush=True)
           PY
       - uses: actions/upload-artifact@v4
         if: always()
