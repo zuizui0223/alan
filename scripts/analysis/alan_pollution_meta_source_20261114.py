@@ -4,7 +4,7 @@
 Original data DOI 10.5281/zenodo.7439705; code DOI 10.5281/zenodo.7521548.
 Source rows are published effect estimates, not experimental individuals.
 """
-import argparse,csv,hashlib,io,json,re,urllib.request
+import argparse,csv,hashlib,io,json,os,re,time,urllib.request,urllib.error
 from collections import Counter
 from pathlib import Path
 DATA=(7439705,'Meta-analysis data.csv','9af3fc55b053388b5992e0e80d6c1fbd8d')
@@ -12,13 +12,29 @@ CODE=(7521548,'Pollination-meta.R','18fb1c5c6027162802879a7152bc719ea5')
 def valid_md5(raw,expected):return hashlib.md5(raw).hexdigest()==expected
 
 def get(url):
-    req=urllib.request.Request(url,headers={'User-Agent':'ALAN-primary-source-meta-audit/1.0'})
-    with urllib.request.urlopen(req,timeout=60) as r:raw=r.read(2000001)
-    if len(raw)>2000000:raise ValueError('Unexpected large source')
-    return raw
+    for attempt in range(4):
+        req=urllib.request.Request(url,headers={'User-Agent':'ALAN-primary-source-meta-audit/1.0'})
+        try:
+            with urllib.request.urlopen(req,timeout=60) as r:raw=r.read(2000001)
+            if len(raw)>2000000:raise ValueError('Unexpected large source')
+            return raw
+        except urllib.error.HTTPError as e:
+            if e.code not in (429,500,502,503,504) or attempt==3:raise
+        except (urllib.error.URLError,TimeoutError):
+            if attempt==3:raise
+        time.sleep(2**attempt)
+    raise RuntimeError('Source retrieval exhausted')
 
 def acquire(spec):
     record,name,digest=spec
+    cache=Path(os.environ.get('RUNNER_TEMP','/tmp'))/('alan-source-'+digest)
+    receipt_path=cache.with_suffix('.json')
+    if cache.exists() and receipt_path.exists():
+        raw=cache.read_bytes();receipt=json.loads(receipt_path.read_text())
+        if (valid_md5(raw,digest) and receipt.get('record')==record
+            and receipt.get('filename')==name and receipt.get('bytes')==len(raw)
+            and receipt.get('sha256')==hashlib.sha256(raw).hexdigest()):
+            return raw,receipt
     meta=json.loads(get(f'https://zenodo.org/api/records/{record}'))
     if int(meta.get('id',-1))!=record:raise ValueError('Wrong original record')
     files=[f for f in meta['files'] if f['key']==name]
@@ -28,7 +44,9 @@ def acquire(spec):
     raw=get(f['links'].get('self') or f['links']['download'])
     if not valid_md5(raw,digest):raise ValueError('Original source MD5 mismatch')
     if len(raw)!=f['size']:raise ValueError('Source file truncated')
-    return raw,{'record':record,'filename':name,'bytes':len(raw),'md5':digest,'sha256':hashlib.sha256(raw).hexdigest()}
+    receipt={'record':record,'filename':name,'bytes':len(raw),'md5':digest,'sha256':hashlib.sha256(raw).hexdigest()}
+    cache.write_bytes(raw);receipt_path.write_text(json.dumps(receipt))
+    return raw,receipt
 
 def parse_csv(raw):
     try:txt=raw.decode('utf-8-sig')
