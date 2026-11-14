@@ -1,0 +1,59 @@
+name: ALAN original Lu source-sheet reconciliation and functional sensitivity
+on:
+  push:
+    branches: [analysis/alan-lu-crosssheet-compensation-gate-20261114]
+    paths:
+      - scripts/analysis/alan_Lu2026_cross_sheet_functional_threshold_20261114.py
+      - tests/test_alan_Lu2026_cross_sheet_functional_threshold_20261114.py
+      - docs/ALAN_LU2026_ORIGINAL_SHEETS_NONNESTING_FUNCTIONAL_COMPENSATION_20261114.md
+      - .github/workflows/alan-Lu2026-crosssheet-functional-threshold-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  raw-genuine-cross-sheet-and-functional-scenario:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install pinned original source dependencies and run falsification tests
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 openpyxl==3.1.5
+          python -m py_compile scripts/analysis/alan_Lu2026_cross_sheet_functional_threshold_20261114.py
+          python -m unittest discover -s tests -p test_alan_Lu2026_cross_sheet_functional_threshold_20261114.py -v
+      - name: Download genuine author workbook, SHA-verify, and rederive both count sheets
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          mkdir -p real_lu_crosssheet
+          python -m scripts.analysis.alan_Lu2026_cross_sheet_functional_threshold_20261114 \
+            --out real_lu_crosssheet/ALAN_original_Lu2026_sheet_nesting_function_sensitivity.json
+          python - <<'PY'
+          import json, math
+          from pathlib import Path
+          z=json.loads(Path("real_lu_crosssheet/ALAN_original_Lu2026_sheet_nesting_function_sensitivity.json").read_text())
+          assert z["analysis_status"]=="ORIGINAL_SOURCE_SHEETS_NOT_STRICTLY_NESTED_POLLEN_EFFECTIVENESS_NOT_MEASURED"
+          assert z["cross_sheet"]["focal_11_plant_sums"]["fly"]["dark"]==106
+          assert z["cross_sheet"]["all_400_survey_counts"]["fly"]["dark"]==54
+          assert z["cross_sheet"]["focal_11_plant_sums"]["fly"]["lit"]==181
+          assert z["cross_sheet"]["all_400_survey_counts"]["fly"]["lit"]==151
+          s=z["within_sheet_visit_only_sensitivity"]
+          assert math.isclose(s["400_survey_nocturnal"]["relative_fly_to_lepidoptera_per_visit_effectiveness_break_even_two_orders_only"],481/97)
+          assert math.isclose(s["1038_plant_rows_focal_5_moth_majority"]["relative_fly_to_lepidoptera_per_visit_effectiveness_break_even_two_orders_only"],425/46)
+          assert z["generalization_gate"]["eligible_blocks_majority_stronger_visitation_decline"]==2
+          print("GENUINE_LU_2026_RAW_SHEET_RECONCILIATION_AND_FUNCTION_SCENARIO_VALIDATED")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-Lu2026-genuine-original-cross-sheet-function-scenario-20261114
+          path: real_lu_crosssheet/
+          retention-days: 90
+          if-no-files-found: warn
