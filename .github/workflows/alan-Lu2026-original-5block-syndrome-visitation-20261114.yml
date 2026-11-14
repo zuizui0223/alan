@@ -1,0 +1,59 @@
+name: ALAN genuine Lu field day-night replacement guild real 5-block experiment
+on:
+  push:
+    branches: [analysis/alan-alanfield-syndrome-network-rawsource-20261114]
+    paths:
+      - scripts/analysis/alan_original_Lu2026_daynight_guild_syndrome_source_20261114.py
+      - tests/test_alan_original_Lu2026_daynight_guild_syndrome_source_20261114.py
+      - .github/workflows/alan-Lu2026-original-5block-syndrome-visitation-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  genuine-alan-experimental-guild-visits:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install pinned source parser and run five block mathematical safeguards
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 openpyxl==3.1.5
+          python -m py_compile scripts/analysis/alan_original_Lu2026_daynight_guild_syndrome_source_20261114.py
+          python -m unittest discover -s tests -p test_alan_original_Lu2026_daynight_guild_syndrome_source_20261114.py -v
+      - name: Restore original signed nested supplementary workbook and test ALAN visitor group turnover
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          mkdir -p real_lu2026
+          python -m scripts.analysis.alan_original_Lu2026_daynight_guild_syndrome_source_20261114 \
+             --out real_lu2026/ALAN_real_Lu2026_daynight_guild_replacement_published_source.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          z=json.loads(Path("real_lu2026/ALAN_real_Lu2026_daynight_guild_replacement_published_source.json").read_text())
+          assert z["status"]=="AUTHENTIC_OPEN_PUBLISHED_FIELD_VISIT_COUNTS_BLOCK_PAIRED_NO_SEED_CLAIM"
+          assert z["source"]["verified_original_400_experiment_survey_rows"]==400
+          assert z["source"]["verified_original_1038_plant_visitation_source_rows"]==1038
+          assert z["source"]["source_independent_field_blocks"]==5
+          for p in ("Nocturnal","Diurnal"):
+            assert z["guild_visitation"][p]["n_visitation_source_records"]==200
+            for k,v in z["guild_visitation"][p]["experimental_survey_pair_group_effects"].items():
+              assert v["n_paired_block_rounds"]==20
+          assert z["interpretation_limits"]["guild_replacement_only_VISITS_not_effective_pollination"]
+          assert z["interpretation_limits"]["no_local_island_mainland_contrast"]
+          print("ALAN_REAL_LU_2026_SOURCE_BLOCK_PAIRED_VISITOR_COMPENSATION_AUDIT_SUCCESS")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-Lu2026-original-fiveblock-daynight-guild-experimental-source-20261114
+          path: real_lu2026/
+          retention-days: 90
+          if-no-files-found: warn
