@@ -1,0 +1,95 @@
+name: ALAN published effect-size data stage panel
+on:
+  push:
+    branches: [analysis/alan-published-effectsize-stage-panel-20261114]
+    paths:
+      - .github/workflows/alan-published-effectsize-stage-panel-20261114.yml
+      - scripts/analysis/alan_published_effectsize_stage_panel_20261114.py
+      - scripts/analysis/alan_published_effectsize_realized_capture_20261114.py
+      - tests/test_alan_published_effectsize_stage_panel_20261114.py
+      - tests/test_alan_published_effectsize_realized_capture_20261114.py
+      - docs/ALAN_PUBLISHED_EFFECTSIZE_STAGE_META_20261114.md
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-data:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Test actual estimation, response-scale and endpoint safeguards
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 scipy==1.14.1
+          python -m unittest discover -s tests -p 'test_alan_published_effectsize*20261114.py' -v
+      - name: Reacquire byte-identical public author summary data
+        run: |
+          set -euo pipefail
+          mkdir -p source_panel evidence
+          python - <<'PY'
+          import hashlib,json,urllib.request
+          from pathlib import Path
+          def get(url):
+              req=urllib.request.Request(url,headers={'User-Agent':'ALAN-primary-effect-source-audit/1.0'})
+              with urllib.request.urlopen(req,timeout=35) as r:return r.read(2000000)
+          rec=json.loads(get('https://zenodo.org/api/records/3998338'))
+          assert str(rec['id'])=='3998338'
+          expected={'Sanders_et_al_datafile.csv':'665c1077ea63b2e11ededd24371ce0cf','Sanders_meta__rcode.r':'4f5025fae8097e2826c291fa4e9d46d0'}
+          receipt={'doi':'10.5061/dryad.wpzgmsbjn','archive':3998338,'license':'CC0-1.0','snapshot':'2020 archive; not verified current Dryad revision','files':[]}
+          for f in rec['files']:
+              name=f['key']
+              if name not in expected:continue
+              raw=get(f['links']['self']);md5=hashlib.md5(raw).hexdigest()
+              assert md5==expected[name] and f['checksum']=='md5:'+md5
+              Path('source_panel',name).write_bytes(raw)
+              receipt['files'].append({'name':name,'bytes':len(raw),'md5':md5,'sha256':hashlib.sha256(raw).hexdigest()})
+          assert len(receipt['files'])==2
+          Path('evidence/source_receipt.json').write_text(json.dumps(receipt,indent=2))
+          print('AUTHENTIC_SANDERS_SOURCE',json.dumps(receipt))
+          PY
+      - name: Recompute separate stages and all covariance/exclusion sensitivities
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_published_effectsize_stage_panel_20261114 \
+            --source source_panel/Sanders_et_al_datafile.csv --out evidence/results
+          python -m scripts.analysis.alan_published_effectsize_realized_capture_20261114 \
+            --source source_panel/Sanders_et_al_datafile.csv --out evidence/realized_capture_only.json
+      - name: Independently verify small-study arithmetic without estimation helper
+        run: |
+          python - <<'PY'
+          import json,math
+          from pathlib import Path
+          from scipy.stats import t
+          z=json.loads(Path('evidence/results/stage_meta_result.json').read_text())
+          assert z['counts']['source_rows']==1304 and z['counts']['source_study_ids']==126
+          assert z['counts']['author_Keep_rows']==1109
+          broad=z['predation_scenarios']['SD_and_known_replication_guard'][1]
+          realized=json.loads(Path('evidence/realized_capture_only.json').read_text())['scenarios'][1]
+          assert (broad['k_studies'],broad['n_contrasts'])==(3,10)
+          assert (realized['k_studies'],realized['n_contrasts'])==(2,8)
+          for q in [broad,realized]:
+              assert q['tau2']==0
+              s=q['studies'];w=[1/r['within_study_variance'] for r in s];df=len(s)-1
+              mu=sum(a*r['log_response_ratio'] for a,r in zip(w,s))/sum(w)
+              resid=sum(a*(r['log_response_ratio']-mu)**2 for a,r in zip(w,s))
+              se=math.sqrt(max(1,resid/df)/sum(w))
+              lo=math.exp(mu-t.ppf(.975,df)*se);hi=math.exp(mu+t.ppf(.975,df)*se)
+              assert math.isclose(math.exp(mu),q['ratio'],rel_tol=1e-10)
+              assert math.isclose(lo,q['ratio_ci95'][0],rel_tol=1e-10)
+              assert math.isclose(hi,q['ratio_ci95'][1],rel_tol=1e-10)
+              print('STAGE_META_INDEPENDENT_ARITHMETIC_PASS',len(s),q['ratio'],lo,hi)
+          assert sum(p.get('exclude_from_inverse_variance_plant_synthesis',False) for p in z['plant_function_contrasts'])==4
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-published-summary-stage-meta-20261114
+          path: evidence/
+          retention-days: 90
+          if-no-files-found: error
