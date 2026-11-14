@@ -132,8 +132,34 @@ def by_guild(a):
         b=bysite.xs(guild,level="insect_group")
         require(len(b)==6,"Original independent Swiss site pair missing for "+guild)
         dark,lit=[float(totals.loc[guild,k]) for k in ("C","T")]
-        site_ratio=(b.T / b.C.replace(0,np.nan)) if False else None
         site_d=(b["T"]-b["C"]).to_numpy(float)
+        # Complete six-source-site omission spectrum, precomputed for EVERY
+        # independent pair regardless of the resulting sign.
+        leave_site=[]
+        for omit in b.index:
+            remaining_control=dark-float(b.loc[omit,"C"])
+            remaining_lit=lit-float(b.loc[omit,"T"])
+            leave_site.append({
+                "omitted_anonymous_field_site":int(len(leave_site)+1),
+                "remaining_original_five_site_control_visits":remaining_control,
+                "remaining_original_five_site_lit_visits":remaining_lit,
+                "remaining_five_site_percent_change":float(
+                    100*(remaining_lit/remaining_control-1))
+                    if remaining_control>0 else None,
+            })
+        # Exhaustive independent-site bootstrap as descriptive heterogeneity
+        # only; n=6 cannot promise normal model inference.
+        rng=np.random.default_rng(20261114)
+        c=b["C"].to_numpy(float)
+        t=b["T"].to_numpy(float)
+        reps=rng.integers(0,6,size=(5000,6))
+        ctl=c[reps].sum(axis=1)
+        lit_count=t[reps].sum(axis=1)
+        good=ctl>0
+        require(int(good.sum())>=4990,
+                "Original site-level denominator bootstrap unstable")
+        boot=100*(lit_count[good]/ctl[good]-1)
+        site_ratios=(b["T"]+0.5)/(b["C"]+0.5)
         # Site pair diagnostics even if each site sampled 6 or 7 surveys.
         # Because C and T within a pair have equal observation opportunity,
         # an aggregated site ratio is only an OBSERVED visitation count ratio.
@@ -146,6 +172,16 @@ def by_guild(a):
           "original_lit_minus_dark_visits":lit-dark,
           "observed_percent_light_change":float((lit/dark-1)*100) if dark>0 else None,
           "source_visit_difference_site_signs":stat,
+          "six_source_site_leave_one_out_original_percent_change":leave_site,
+          "number_omissions_where_lit_change_positive":int(sum(
+              v["remaining_five_site_percent_change"]>0
+              for v in leave_site if v["remaining_five_site_percent_change"] is not None)),
+          "six_site_equal_weight_median_lit_dark_visits_ratio_continuity_half":
+              float(np.median(site_ratios)),
+          "paired_site_bootstrap_5000_resamples_descriptive_CI95_percent_change":[
+              float(np.quantile(boot,.025)),float(np.quantile(boot,.975))],
+          "bootstrap_resamples":5000,
+          "observed_lit_dark_total_matched_survey_opportunity_within_paired_event":True,
           "no_effective_pollen_seed_outcome_measured":True}
     # Cannot claim the original 2384 visits if original Rdata is an analysis
     # subset that does not perfectly recreate the reported raw total.
