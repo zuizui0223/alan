@@ -258,6 +258,48 @@ def model(rows):
     for k,d in pool.items():
         if set(d)=={"Presence","Absence"}:
             plant_matched.append(k)
+    # Within-island source-anole comparison: only Anijima has one natural
+    # forest source context in each status. Compare common original plant and
+    # calendar season, NEVER independent 18 experiment replications or ALAN.
+    qpair=collections.defaultdict(dict)
+    for r in portfolio:
+        if r["island"]!="C_Anijima":continue
+        context_status={x["original_invasion_context"]:x["anole_status"]
+                        for x in ctable if x["anonymous_original_island"]=="C_Anijima"}
+        qpair[(r["season"],r["plant"])][context_status[r["context"]]]=r
+    matched=[]
+    for key,pair in qpair.items():
+        if set(pair)=={"Presence","Absence"}:
+            pos=pair["Presence"];neg=pair["Absence"]
+            matched.append({
+              "delta_Apis_share":pos["Apis_visit_share"]-neg["Apis_visit_share"],
+              "delta_effective_partner_number":pos["effective_pollinator_partner_number_expShannon"]-
+                  neg["effective_pollinator_partner_number_expShannon"],
+              "original_present_context_visits":pos["recorded_visits"],
+              "original_absent_context_visits":neg["recorded_visits"]})
+    same_Anijima={
+       "source_island":"C_Anijima",
+       "original_anole_present_forest_type":"Natural",
+       "original_anole_absent_forest_type":"Natural",
+       "independent_island_comparison_units":1,
+       "matched_same_plant_and_calendar_month_positive_pairs":len(matched),
+       "matched_pairs_with_higher_Apis_share_when_anoles_recorded_present":
+          sum(x["delta_Apis_share"]>0 for x in matched),
+       "matched_pairs_with_lower_partner_diversity_when_anoles_recorded_present":
+          sum(x["delta_effective_partner_number"]<0 for x in matched),
+       "mean_paired_Apis_share_difference":(
+          sum(x["delta_Apis_share"] for x in matched)/len(matched) if matched else None),
+       "median_paired_effective_partner_number_difference":(
+          sorted(x["delta_effective_partner_number"] for x in matched)[len(matched)//2]
+          if matched else None),
+       "total_original_source_visits_in_matched_plants_anole_present":
+          sum(x["original_present_context_visits"] for x in matched),
+       "total_original_source_visits_in_matched_plants_anole_absent":
+          sum(x["original_absent_context_visits"] for x in matched),
+       "nonrandomized_two_site_comparison_not_causal_anole_effect":True,
+       "no_pollination_efficiency_or_reproductive_fitness_data":True,
+       "source_names_of_original_plant_x_season_not_exported":True
+    }
     conclusion={
       "schema":"ALAN_Ogasawara2021_four_islands_real_legitimate_plant_pollinator_network_v1",
       "status":"ORIGINAL_ZENODO_REAL_2021_ISLAND_CHANNEL_PORTFOLIO_WITHOUT_ALAN",
@@ -275,6 +317,7 @@ def model(rows):
       "source_island_contexts":ctable,
       "source_island_seasons":island_season,
       "island_anole_field_design":anole_by_island,
+      "same_Anijima_Natural_forest_anole_presence_absence_matched_plants":same_Anijima,
       "islands_with_actual_within_island_anole_state_variation":n_cross,
       "plant_x_calendar_season_with_positive_both_predator_state_source_support":len(plant_matched),
       "independent_islands":4,
