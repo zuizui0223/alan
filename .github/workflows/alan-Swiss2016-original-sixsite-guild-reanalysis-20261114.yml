@@ -1,0 +1,54 @@
+name: ALAN 2016 Swiss six-site original daylight guild manipulation reanalysis
+on:
+  push:
+    branches: [analysis/alan-independent-swiss-2016-guild-network-20261114]
+    paths:
+      - scripts/analysis/alan_Giavi2021_Swiss_original_daytime_guild_reanalysis_20261114.py
+      - tests/test_alan_Giavi2021_Swiss_original_daytime_guild_reanalysis_20261114.py
+      - .github/workflows/alan-Swiss2016-original-sixsite-guild-reanalysis-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-2016-swiss-sixsite:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Check original source and real paired site arithmetic with immutable published Zenodo hash
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 pyreadr==0.5.3 numpy==2.1.3
+          python -m py_compile scripts/analysis/alan_Giavi2021_Swiss_original_daytime_guild_reanalysis_20261114.py
+          python -m unittest discover -s tests -p test_alan_Giavi2021_Swiss_original_daytime_guild_reanalysis_20261114.py -v
+      - name: Estimate actual Swiss original lit/dark daytime network by true six field site pairs
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          mkdir -p verified_swiss
+          python -m scripts.analysis.alan_Giavi2021_Swiss_original_daytime_guild_reanalysis_20261114 --out verified_swiss/ALAN_Giavi2021_Swiss6site_21plant_original_daylight_insect_order_results.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          z=json.loads(Path("verified_swiss/ALAN_Giavi2021_Swiss6site_21plant_original_daylight_insect_order_results.json").read_text())
+          assert z["status"]=="ORIGINAL_2016_SWISS_SIX_PAIRED_FIELD_SITE_SOURCE_VERIFIED"
+          assert z["source_design"]["original_source_rows"]==1884
+          assert z["source_design"]["original_original_field_site_pairs"]==6
+          assert z["source_design"]["original_paired_transect_sampling_event_count"]==37
+          assert len(z["original_guild_visit_contrasts"])==3
+          assert z["interpretation"]["no_same_plant_fruit_seed_reproduction"]
+          print("ORIGINAL_SWISS2016_SOURCE_SIXSITE_ALAN_DAYTIME_GUILD_VERIFIED")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-Swiss2016-SixSite-Daytime-Visitor-Guild-20261114
+          path: verified_swiss/
+          retention-days: 90
+          if-no-files-found: warn
