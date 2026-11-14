@@ -37,7 +37,12 @@ jobs:
           from pathlib import Path
           z=json.loads(Path("real_Ogasawara_source/ALAN_real_Ogasawara4island_2021_predator_pollinator_network_baseline.json").read_text())
           assert z["status"]=="ORIGINAL_ZENODO_REAL_2021_ISLAND_CHANNEL_PORTFOLIO_WITHOUT_ALAN"
-          assert z["original_source_support"]["source_interaction_rows"]==2745
+          assert z["original_source_support"]["source_interaction_rows"]==2063
+          assert z["original_publication_main_cohort_reconciliation"]["raw_original_source_visit_rows"]==2745
+          assert z["original_source_support"]["source_genuine_recorded_legitimate_visits"]==4174
+          assert z["original_source_support"]["source_positive_plant_names"]==55
+          assert z["original_source_support"]["source_positive_pollinator_names_and_morphotypes"]==116
+          assert z["original_publication_main_cohort_reconciliation"]["included_source_pollinator_names"]!=115
           assert z["independent_islands"]==4
           assert z["source"]["original_XLSX_SHA256"]=="4e0c4a293e2a522e67bc1f87f567249d45b42000b78eaef9d355e8658b1987a6"
           assert z["interpretation"]["daytime_only_original_census_makes_night_moth_shift_UNOBSERVED"]
