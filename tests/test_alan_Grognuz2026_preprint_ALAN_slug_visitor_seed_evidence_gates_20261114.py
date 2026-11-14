@@ -37,8 +37,7 @@ class OriginalPreprintPathAudit(unittest.TestCase):
 
     def test_cannot_falsely_claim_light_reduced_florivory(self):
         s=self.get()
-        s["published_reported_coefficients"]["ALAN_on_florivory_incidence"]
-         ["inferential_status"]="LIGHT_REDUCES_FLOWER_DAMAGE"
+        s["published_reported_coefficients"]["ALAN_on_florivory_incidence"]["inferential_status"]="LIGHT_REDUCES_FLOWER_DAMAGE"
         with self.assertRaisesRegex(ValueError,"lacks a verified completed"):
             path(s)
 
