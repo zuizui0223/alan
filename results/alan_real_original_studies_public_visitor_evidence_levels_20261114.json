@@ -90,10 +90,15 @@
         "hawkmoths at night for a subset of populations",
         "small diurnal bees in some populations"
       ],
-      "site_match_status": "published 9 experimental populations and 23 separate visitation census populations not yet matched one-to-one to original six coordinates",
-      "year_match_status": "published exclusion experiments include 2012,2013,2019; visitor census 2017-2019; 2019 temporal opportunity but site-pair matching not verified",
-      "same_plant_site_year_verified": false,
-      "group_specific_effectiveness": "ecological fitness contribution analyzed in paper but source site-year guild record not yet connected"
+      "site_match_status": "Original-source 2019 botanical population-year bridge now performed: 5/6 <=1 km and one additional 1.65 km provisional same-species/year match, per Wenzell author raw + global original metadata SHA replay #43560918822",
+      "year_match_status": "2019 year independently identical in all six original meta-analytic Wenzell site outcomes and author direct plant-level treatment/visitor data",
+      "same_plant_site_year_verified": true,
+      "group_specific_effectiveness": "ecological fitness contribution analyzed in paper but source site-year guild record not yet connected",
+      "same_population_year_botanical_strict_geographic_matches": 5,
+      "same_population_year_botanical_provisional_1to2km_matches": 1,
+      "same_individual_trial_day_visitor_record_verified": false,
+      "actual_day_night_reproductive_sign_matches_public_original_raw": 6,
+      "related_original_source_actions_url": "https://github.com/zuizui0223/alan/actions/runs/43560918822"
     }
   ],
   "source_limitations": {
@@ -102,6 +107,9 @@
     "no_original_rare_plant_geographic_rows_exported": true,
     "direct_visitation_not_automatically_effective_pollination": true,
     "year_2019_article_vs_2022_meta_thesis_may_be_separate_data": true,
-    "global_inferential_comparison_not_eligible_without_independent_confirmed_study_support": true
+    "global_inferential_comparison_not_eligible_without_independent_confirmed_study_support": true,
+    "population_year_validated_for_one_original_paper_only": true,
+    "one_study_six_sites_are_not_six_independent_publications": true,
+    "other_four_screened_papers_not_equivalently_population_year_validated": true
   }
 }
