@@ -1,0 +1,52 @@
+name: ALAN original Dryad 843 moths 23 species video-frame source replicate audit
+on:
+  push:
+    branches: [analysis/alan-multispecies-moth-activity-light-spectrum-dryad-20261114]
+    paths:
+      - scripts/analysis/alan_moth23_Dryad_corrected_source_grain_20261114.py
+      - tests/test_alan_moth23_Dryad_corrected_source_grain_20261114.py
+      - .github/workflows/alan-23moths-Dryad-corrected-original-frame-grain-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  authentic-corrected-moth-experiment-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Check frozen original file hashes and individual grain tests
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/analysis/alan_moth23_Dryad_corrected_source_grain_20261114.py
+          python -m unittest discover -s tests -p test_alan_moth23_Dryad_corrected_source_grain_20261114.py -v
+      - name: Rehydrate corrected 2025 Dryad 77MB video frame source and original analysis R code
+        timeout-minutes: 20
+        run: |
+          set -euo pipefail
+          mkdir -p original_moth_source_qa
+          python -m scripts.analysis.alan_moth23_Dryad_corrected_source_grain_20261114 \
+            --out original_moth_source_qa/ALAN_moth23_original_Dryad_activity_frame_ID_source_QA.json
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          q=json.loads(Path("original_moth_source_qa/ALAN_moth23_original_Dryad_activity_frame_ID_source_QA.json").read_text())
+          assert q["status"]=="CORRECTED_ORIGINAL_DRYAD_FRAMES_INDIVIDUAL_GRAIN_VERIFIED_NO_ACTIVITY_EFFECT_ESTIMATED"
+          assert q["source"]["Dryad_corrected_public_version"]==4
+          assert q["source_genuine_data_counts"]["distinct_moth_species"]==23
+          assert q["source_genuine_data_counts"]["unique_nonblank_moth_IDs"]>=700
+          assert q["guardrails"]["frame_rows_not_independent_individuals"]
+          assert q["guardrails"]["no_direct_flower_visit_or_pollen_deposition_measured"]
+          print("ALAN_DRYAD_843_MOTH_23SP_ORIGINAL_REPLICATE_GRAIN_VERIFIED")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-Dryad-corrected-843moths-23species-frame-grain-20261114
+          path: original_moth_source_qa/
+          retention-days: 90
+          if-no-files-found: warn
