@@ -1,0 +1,148 @@
+{
+  "schema": "ALAN_source_locked_macro_syndrome_predation_phenology_island_registry_v1",
+  "analysis_date": "2026-11-14",
+  "hypotheses": [
+    {
+      "id": "H1",
+      "name": "ALAN × measured effective nocturnal dependence × breeding assurance",
+      "estimand": "Within study/site and light manipulation, diel reproductive outcome change across verified nocturnal dependence and autonomous selfing states",
+      "minimum_independent_publications_per_state": 25,
+      "minimum_plant_species_per_state": 20,
+      "requires": [
+        "actual_light_treatment",
+        "real_night_reproductive_share",
+        "effective_night_pollinator_or_stigma_pollen",
+        "autonomous_selfing_or_SI",
+        "source_study_site_year"
+      ]
+    },
+    {
+      "id": "H2",
+      "name": "ALAN × predator direct negative predation × alternative positive plant services",
+      "estimand": "Change in effective pollen deposition and mature fruit/seed by predator pressure with prey-specific predation and the same predator taxon's actual floral pollen transfer measured at same source site/time",
+      "minimum_independent_publications_per_state": 25,
+      "minimum_plant_species_per_state": 20,
+      "requires": [
+        "actual_light_treatment",
+        "source_study_site_year",
+        "adult_moth_predation_events",
+        "predator_floral_pollen_delivery",
+        "real_night_reproductive_share"
+      ]
+    },
+    {
+      "id": "H3",
+      "name": "ALAN × flowering and pollinator phenological overlap (seasonal and diel separate)",
+      "estimand": "Light/dark difference in effort-adjusted flowering-abundance versus effective pollinator activity overlap, separately time-of-day and month/day-of-year",
+      "minimum_independent_publications_per_state": 25,
+      "minimum_plant_species_per_state": 20,
+      "requires": [
+        "actual_light_treatment",
+        "same_site_year_daily_flowering_phenophase",
+        "same_site_year_pollinator_effort_time",
+        "effective_night_pollinator_or_stigma_pollen"
+      ]
+    },
+    {
+      "id": "H4",
+      "name": "Island × mainland × ALAN × prior pollinator-shift phenotype",
+      "estimand": "Compare light-response differences among populations with source-verified existing moth/bat/bird/lizard/insect replacement, ideally phylogenetically matched island and mainland lineages",
+      "minimum_independent_publications_per_state": 25,
+      "minimum_plant_species_per_state": 20,
+      "requires": [
+        "actual_light_treatment",
+        "source_study_site_year",
+        "island_vs_mainland_matched",
+        "prior_shift_locally_verified",
+        "real_night_reproductive_share"
+      ]
+    }
+  ],
+  "published_sources": [
+    {
+      "doi": "10.1002/ece3.74368",
+      "class": "light_manipulated_plant_visitor_network",
+      "independent_field_sites": 1,
+      "independent_spatial_blocks": 5,
+      "night_visits_total": 2160,
+      "day_visits_total": 3381,
+      "night_plant_species": 29,
+      "day_plant_species": 40,
+      "night_lepidoptera_pct_change": -57.5,
+      "night_diptera_pct_change": 179.6,
+      "reported_real_seed_set": false,
+      "local_moth_predation_measured": false,
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13645961/"
+    },
+    {
+      "doi": "10.1093/jpe/rtag160",
+      "class": "light_manipulated_plant_reproduction_mating",
+      "independent_field_sites": 1,
+      "plant_species": 2,
+      "SI_nocturnal_night_ALAN_seed_set_pct_change": -56,
+      "SC_diurnal_no_ALAN_detected": true,
+      "source_url": "https://doi.org/10.1093/jpe/rtag160",
+      "same_region_and_lead_researcher_as_2026_network": true
+    },
+    {
+      "doi": "10.1016/j.biocon.2025.111650",
+      "class": "light_manipulated_plant_flowering_phenology",
+      "illuminated_sites": 14,
+      "paired_controls": 14,
+      "flowering_schedule_species_in_percent": 75,
+      "verified_local_pollinator_mismatch": false,
+      "source_url": "https://doi.org/10.1016/j.biocon.2025.111650",
+      "plant_species_with_detected_schedule_change_n": 16,
+      "original_tested_flowering_species_total_NOT_DIRECTLY_VERIFIED": null,
+      "species_pct_is_reported_relative_to_original_study_cohort": true
+    },
+    {
+      "doi": "10.1111/cobi.70304",
+      "class": "island_invasive_predator_pollinator_replacement_network",
+      "archipelago": "Ogasawara",
+      "islands_surveyed": 4,
+      "ALAN_manipulation": false,
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13613568/"
+    },
+    {
+      "doi": "10.1111/ele.70036",
+      "class": "true_field_daynight_reproduction_observational_light",
+      "source_field_pairs": 301,
+      "independent_published_studies": 118,
+      "source_field_plant_species": 123,
+      "ALAN_manipulation": false,
+      "source_url": "https://github.com/liamkendall/bumble-bat"
+    },
+    {
+      "doi": "10.1002/ece3.11443",
+      "class": "original_population_year_visitor_fruit_set_link",
+      "independent_studies": 1,
+      "matched_pop_years": 6,
+      "strict_within_1km_pop_years": 5,
+      "ALAN_manipulation": false,
+      "source_url": "https://github.com/KWenzell/Castilleja_sessiliflora_exclusion"
+    },
+    {
+      "doi": null,
+      "class": "kays_2012_same_flower_mammal_visit_2010_reproductive_trial",
+      "independent_studies": 1,
+      "original_field_site_match_m": 35.58,
+      "ALAN_manipulation": false,
+      "source_url": "https://www.revistas.up.ac.pa/index.php/mesoamericana/article/download/907/777"
+    }
+  ],
+  "rules": {
+    "no_GloBI_missing_record_as_absence": true,
+    "no_moth_like_white_tubular_as_effective_moth_confirmation": true,
+    "no_same_year_GBIF_photo_cooccurrence_as_predation": true,
+    "no_inat_flower_photo_month_as_first_flowering_date": true,
+    "no_assumed_existing_moth_shift_on_all_islands": true,
+    "no_2026_two_same_station_experiments_as_independent_global_replications": true,
+    "no_1992_2021_PCNL_as_experimental_streetlight_lux": true,
+    "no_power_of_25_papers_inferred_from_562_islands": true,
+    "no_adult_moth_activity_as_true_flower_visitation": true,
+    "no_effective_daytime_replacement_from_study_flower_visitor_flag": true,
+    "distinguish_missing_from_zero": true,
+    "daylight_daylength_natural_versus_ALAN_experimental_treatments": true
+  }
+}
