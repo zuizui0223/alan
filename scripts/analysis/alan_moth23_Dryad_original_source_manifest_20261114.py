@@ -58,13 +58,23 @@ def main(out):
         if not x.startswith("https://datadryad.org/"):
             continue
         # Version file lists use /api/v2/versions/<id>/files.
-    ids=sorted(set(int(x["id"]) for x in v if str(x.get("id","")).isdigit()))
-    latest=max(ids) if ids else None
-    candidates=[]
-    if latest is not None:candidates.append(BASE+"/versions/"+str(latest)+"/files")
-    for x in sorted(set(paths)):
-        if x.startswith("https://datadryad.org/") and x.endswith("/files"):
-            candidates.append(x)
+    # Dryad public V2 returns relative links and numeric version IDs only in
+    # each version self URL; a version NUMBER (4) is not a version ID (413461).
+    source_versions=[
+       o for o in objects(versions) if isinstance(o,dict) and
+       isinstance(o.get("versionNumber"),int) and
+       isinstance(o.get("_links"),dict)]
+    if not source_versions:raise ValueError("No published dataset versions")
+    selected=max(source_versions,key=lambda v:v["versionNumber"])
+    if selected["versionNumber"] != 4:
+        raise ValueError("Corrected 2025-12-11 Dryad version changed")
+    href=selected["_links"].get("stash:files",{}).get("href")
+    if not isinstance(href,str):raise ValueError("No corrected source files link")
+    candidate=urllib.parse.urljoin("https://datadryad.org",href)
+    if not candidate.startswith(BASE+"/versions/"):
+        raise ValueError("Unexpected untrusted Dryad corrected source origin")
+    candidates=[candidate]
+    latest_public_version=selected["versionNumber"]
     errors=[]
     files=None
     for candidate in candidates:
@@ -89,6 +99,7 @@ def main(out):
         "raw_versions_metadata_schema_keys":sorted(versions),
         "raw_versions_indexed":v,
         "listed_original_files":files,
+        "corrected_selected_version_number":latest_public_version,
         "file_get_errors":errors,
         "data_not_downloaded_this_phase":True,
         "corrected_2025_12_11_data_preferred_over_2025_12_03":True,
