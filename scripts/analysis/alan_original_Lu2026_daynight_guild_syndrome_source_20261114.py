@@ -39,7 +39,10 @@ def download():
     req=urllib.request.Request(OUTER,headers={"User-Agent":"ALAN-original-Lu-ECE-2026-licensed-open-data"})
     with urllib.request.urlopen(req,timeout=75) as r:
         b=r.read(20_000_000)
-    require(sha(b)==OUTER_SHA,"Original EuropePMC supplementary ZIP source changed")
+    # EuropePMC dynamically assembles the outer supplementary archive; its ZIP
+    # receipt may differ byte-wise on repeated requests even with identical
+    # published files. Pin the original nested XLSX SHA and ZIP member name.
+    require(zipfile.is_zipfile(io.BytesIO(b)), "EuropePMC supplied non-ZIP bytes")
     with zipfile.ZipFile(io.BytesIO(b)) as f:
         require(INNER in f.namelist(),"Original source ECE nested zip absent")
         nested=f.read(INNER)
@@ -47,7 +50,7 @@ def download():
         require(XLSX in z.namelist(),"Original Date.xlsx workbook absent")
         raw=z.read(XLSX)
     require(sha(raw)==XLSX_SHA,"Original published Date.xlsx changed")
-    return raw
+    return raw,sha(b)
 
 def sheet(w,name,maxrows=2500):
     require(name in w.sheetnames,"Original author worksheet unavailable: "+name)
@@ -214,7 +217,7 @@ def species_descriptive(s):
 def main(out):
     out=Path(out)
     require(not out.exists(),"Original source aggregate exists; refuse overwrite")
-    raw=download()
+    raw,outer_actual_sha=download()
     w=load_workbook(io.BytesIO(raw),read_only=True,data_only=True)
     vis=sheet(w,"visitation")
     sp=sheet(w,"species visitation")
@@ -226,7 +229,9 @@ def main(out):
        "status":"AUTHENTIC_OPEN_PUBLISHED_FIELD_VISIT_COUNTS_BLOCK_PAIRED_NO_SEED_CLAIM",
        "source":{"article_DOI":"10.1002/ece3.74368",
          "PMCID":"PMC13645961","original_workbook_title":"Date.xlsx",
-         "original_EuropePMC_zip_sha256":OUTER_SHA,
+         "first_EuropePMC_assembled_outer_zip_receipt_SHA256":OUTER_SHA,
+         "actual_outer_zip_dynamic_receipt_SHA256":outer_actual_sha,
+         "inner_original_workbook_SHA_pinned_instead_of_dynamic_outer":True,
          "actual_workbook_sha256":XLSX_SHA,
          "verified_original_400_experiment_survey_rows":len(vis),
          "verified_original_1038_plant_visitation_source_rows":len(sp),
