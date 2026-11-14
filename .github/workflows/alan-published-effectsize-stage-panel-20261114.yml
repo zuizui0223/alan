@@ -45,12 +45,15 @@ jobs:
               out.joinpath(name).write_bytes(raw)
               receipt['files'].append({'name':name,'bytes':len(raw),'md5':md5,'sha256':hashlib.sha256(raw).hexdigest()})
               if name.endswith('.csv'):
-                  txt=raw.decode('utf-8-sig',errors='strict')
+                  # Metadata scan uses a reversible single-byte decode. Original bytes stay unchanged.
+                  txt=raw.decode('latin-1')
+                  assert txt.encode('latin-1')==raw
                   dialect=csv.Sniffer().sniff(txt[:5000])
                   rows=list(csv.DictReader(io.StringIO(txt),dialect=dialect))
                   receipt['rows']=len(rows)
                   receipt['columns']=list(rows[0])
                   receipt['delimiter']=dialect.delimiter
+                  receipt['text_scan_encoding']='latin-1 byte-preserving; numeric fields ASCII; source author names may require charset audit'
                   print('SOURCE_COLUMN_NAMES',list(rows[0]))
                   for col in rows[0]:
                       values=sorted({r[col] for r in rows})
@@ -67,7 +70,45 @@ jobs:
           out.joinpath('source_receipt.json').write_text(json.dumps(receipt,indent=2))
           print('AUTHENTIC_EFFECT_DATA_RECEIPT',json.dumps(receipt))
           PY
+      - name: Acquire newer spectrum meta-analysis through official Dryad API
+        run: |
+          python - <<'PY'
+          import hashlib,json,urllib.request,urllib.parse
+          from pathlib import Path
+          out=Path('source_panel'); receipt={'doi':'10.5061/dryad.xwdbrv1q0','status':'NOT_ACQUIRED','files':[]}
+          def get(url):
+              req=urllib.request.Request(url,headers={'User-Agent':'ALAN-primary-effect-source-audit/1.0','Accept':'application/json'})
+              with urllib.request.urlopen(req,timeout=35) as r:return r.read(5000000)
+          def url(href):return urllib.parse.urljoin('https://datadryad.org',href)
+          try:
+              meta=json.loads(get('https://datadryad.org/api/v2/datasets/doi%3A10.5061%2Fdryad.xwdbrv1q0'))
+              out.joinpath('czarnecka_dataset_metadata.json').write_text(json.dumps(meta,indent=2))
+              links=meta.get('_links',{})
+              print('DRYAD_DATASET_LINKS',links)
+              ver=links.get('stash:version',links.get('stash:versions',{}))
+              v=json.loads(get(url(ver['href'])))
+              out.joinpath('czarnecka_version_metadata.json').write_text(json.dumps(v,indent=2))
+              print('DRYAD_VERSION_LINKS',v.get('_links',{}))
+              fref=v['_links']['stash:files']['href']
+              fl=json.loads(get(url(fref)))
+              out.joinpath('czarnecka_files_metadata.json').write_text(json.dumps(fl,indent=2))
+              for f in fl.get('_embedded',{}).get('stash:files',[]):
+                  print('DRYAD_FILE_METADATA',f)
+                  fname=f.get('path',f.get('filename','unknown'))
+                  dl=f.get('_links',{}).get('stash:download',{})
+                  if dl.get('href') and (fname.endswith('.xlsx') or fname.endswith('.md')):
+                      raw=get(url(dl['href']))
+                      if fname.endswith('.xlsx'):assert raw[:2]==b'PK','not XLSX'
+                      out.joinpath(Path(fname).name).write_bytes(raw)
+                      receipt['files'].append({'name':fname,'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'declared_digest':f.get('digest'),'source_file_id':f.get('id')})
+              receipt['status']='ACQUIRED' if receipt['files'] else 'METADATA_ONLY'
+          except Exception as e:
+              receipt['error']=type(e).__name__+': '+str(e)
+          out.joinpath('czarnecka_source_receipt.json').write_text(json.dumps(receipt,indent=2))
+          print('NEWER_SOURCE_RECEIPT',json.dumps(receipt))
+          PY
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: alan-sanders-original-effectsize-stage-source-20261114
           path: source_panel/
