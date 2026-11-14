@@ -176,6 +176,9 @@ def species_descriptive(s):
             raw_visits=("all","sum"),
             moth=("Lepidoptera","sum"),
             fly=("Diptera","sum")).reset_index()
+        if not {"Lit","Unlit"} <= set(by.treatment):
+            groups[per]={"status":"NOT_ESTIMABLE_NO_POSITIVE_SOURCE_COMMON_SUPPORT"}
+            continue
         w=by.pivot(index="plant",columns="treatment",
                    values=["raw_visits","moth","fly"])
         supported=w["raw_visits"].dropna()
