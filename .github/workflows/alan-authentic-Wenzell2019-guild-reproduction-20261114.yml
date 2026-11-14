@@ -5,8 +5,10 @@ on:
     paths:
       - scripts/analysis/alan_real_Wenzell2019_populationyear_pollinator_reproduction_20261114.py
       - scripts/analysis/alan_primary_Marques2015_bat_bird_reproductive_table_audit_20261114.py
+      - scripts/analysis/alan_original301_observer_OA_sampling_bias_20261114.py
       - tests/test_alan_real_Wenzell2019_populationyear_pollinator_reproduction_20261114.py
       - tests/test_alan_primary_Marques2015_bat_bird_reproductive_table_audit_20261114.py
+      - tests/test_alan_original301_observer_OA_sampling_bias_20261114.py
       - .github/workflows/alan-authentic-Wenzell2019-guild-reproduction-20261114.yml
   workflow_dispatch:
 permissions:
@@ -27,6 +29,8 @@ jobs:
           python -m unittest discover -s tests -p test_alan_real_Wenzell2019_populationyear_pollinator_reproduction_20261114.py -v
           python -m py_compile scripts/analysis/alan_primary_Marques2015_bat_bird_reproductive_table_audit_20261114.py
           python -m unittest discover -s tests -p test_alan_primary_Marques2015_bat_bird_reproductive_table_audit_20261114.py -v
+          python -m py_compile scripts/analysis/alan_original301_observer_OA_sampling_bias_20261114.py
+          python -m unittest discover -s tests -p test_alan_original301_observer_OA_sampling_bias_20261114.py -v
   original-source-guild-reproductive-bridge:
     needs: source-tests
     runs-on: ubuntu-24.04
@@ -99,6 +103,32 @@ jobs:
           assert not q["functional_source_descriptive"]["visitor_field_year_explicitly_proved_against_secondary_year_2010"]
           assert q["provenance"]["source_global_reproductive_metric_pairs"]==2
           print("ORIGINAL_MARQUES_BAT_HUMMINGBIRD_STUDY_SOURCE_TABLE_VERIFIED",flush=True)
+          PY
+      - name: Reuse authenticated previous 92 original visitor-paper OA links and test empirical availability selection bias
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          mkdir -p original_oa
+          gh run download 43538019810 --repo zuizui0223/alan \
+            --name alan-original-92study-public-DOI-OA-metadata-only-20261114 \
+            --dir original_oa
+          test -s original_oa/ALAN_original92_papers_public_identifier_oa_queue_20261114.json
+          python -m scripts.analysis.alan_original301_observer_OA_sampling_bias_20261114 \
+            --preflight fieldsource/original_DvN_field_site_year_outcome_pre_PCNLP.csv.gz \
+            --author original_global/data/DvN_LiteratureDataClean_2024-09-13.csv \
+            --oa_queue original_oa/ALAN_original92_papers_public_identifier_oa_queue_20261114.json \
+            --output original_match/ALAN_original301_observer_OA_source_selection_20261114.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          z=json.loads(Path("original_match/ALAN_original301_observer_OA_source_selection_20261114.json").read_text())
+          assert z["status"]=="REAL_301_SOURCE_OBSERVATION_METADATA_SAMPLING_BIAS_DIAGNOSTIC"
+          q=z["representation"]
+          assert (q["independent_original_studies_total"],q["observer_flag_yes_studies"],q["observer_flag_no_or_unknown_studies"])==(118,92,26)
+          assert (q["observer_flag_yes_original_paired_reproductive_outcomes"],q["observer_flag_no_or_unknown_original_paired_outcomes"])==(247,54)
+          assert (q["observed_study_OA_candidate"],q["observed_study_NO_OA_candidate"])==(36,56)
+          assert z["guardrails"]["OA_link_metadata_not_a_source_verified_moth_or_visitor"]
+          print("ORIGINAL_301_OBSERVER_OA_SELECTION_REAL_DATA_QA_SUCCESS",flush=True)
           PY
       - uses: actions/upload-artifact@v4
         if: always()
