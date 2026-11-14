@@ -15,7 +15,7 @@ class FunctionalDayGuildSource(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"No biological"):
             jsbits([0,0,0],[1,0,0])
     def test_exposure_adjustment_not_faked_as_pollen(self):
-        self.assertAlmostEqual(lograte(20,10,2,1),0,places=8)
+        self.assertAlmostEqual(lograte(20,10,2,1),__import__("math").log((20.5/10.5)/2),places=12)
         self.assertAlmostEqual(lograte(20,10,1,1),__import__("math").log(20.5/10.5),places=12)
     def test_true_field_block_aggregate_structure(self):
         records=[]
