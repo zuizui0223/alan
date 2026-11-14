@@ -78,7 +78,7 @@ def standardize_swiss():
     plab=d.groupby(["site","pair","plant","treatment"],observed=True).plab.agg(
          ["median","min","max"]).reset_index()
     incons=int((plab["max"]-plab["min"]>1e-9).sum())
-    cover=plab.groupby(["site","treatment"]).median.sum().unstack("treatment")
+    cover=plab.groupby(["site","treatment"])["median"].sum().unstack("treatment")
     require(set(cover.columns)=={"C","T"} and cover.notna().all().all() and
             cover.gt(0).all().all(),"Original Swiss floral cover not observed in both treatments")
     site_ids=sorted(d.site.unique())
