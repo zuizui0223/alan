@@ -105,8 +105,9 @@ def original_visitation_design(a):
         require(a[c].ge(0).all() and np.isfinite(a[c]).all(),
                 "Visit counts cannot be missing or negative")
     sums=a[list(GUILDS.values())].sum(axis=1)
-    require(np.allclose(sums,a.abundance,atol=1e-8),
-            "Original source visit counts do not sum across 5 orders")
+    # Source visit columns do not always conserve to total 'abundance'.
+    # Preserve a transparent discrepancy; no false exact guild mass balance.
+    a["source_sum_minus_total"]=sums-a.abundance
     return a
 
 def original_design_model(a):
@@ -140,10 +141,18 @@ def original_design_model(a):
                 "block_level_difference":exact_paired_block_sign(blockdelta.to_numpy()),
                 "n_paired_block_rounds":int(len(unit)),
                 "source_repeat_labels_not_forced_to_be_unique":True}
-        require(abs(sum(each[x]["net_difference_original_100_surveys_each"]
-                        for x in SOURCE_GUILDS)
-                    -each["Total"]["net_difference_original_100_surveys_each"])<1e-7,
-                "Visit replacement mass-balance did not close")
+        total_d=each["Total"]["net_difference_original_100_surveys_each"]
+        group_d=sum(each[x]["net_difference_original_100_surveys_each"]
+                    for x in SOURCE_GUILDS)
+        source_errors=source["source_sum_minus_total"].to_numpy(float)
+        conservation={
+            "source_row_sums_match_total_n":int(np.sum(np.isclose(source_errors,0,atol=1e-8))),
+            "source_original_200_rows":len(source),
+            "original_group_sum_vs_total_delta":float(group_d-total_d),
+            "sum_discrepancies_min_max":[float(np.min(source_errors)),float(np.max(source_errors))],
+            "sum_discrepancies_total":float(np.sum(source_errors)),
+            "group_composition_complete":bool(np.allclose(source_errors,0,atol=1e-8))
+        }
         d=each["Diptera"]["net_difference_original_100_surveys_each"]
         m=each["Lepidoptera"]["net_difference_original_100_surveys_each"]
         # Signed visit ratio describes observed replacement OPPORTUNITY only.
@@ -155,6 +164,7 @@ def original_design_model(a):
             "source_repeated_full_design_keys":int(source.duplicated(CORE).sum()),
             "experimental_survey_pair_group_effects":each,
             "fly_visit_gain_divided_by_moth_visit_loss_if_opposite_signs":replacement,
+            "original_source_visit_count_conservation_audit":conservation,
             "actual_pollen_replacement_measured":False,
             "per_flower_visitation_denom_NOT_available":True}
     return outcome
@@ -167,14 +177,16 @@ def species_descriptive(s):
     for c in ("all","Lepidoptera","Coleoptera","Diptera","Hymenoptera","Others"):
         s[c]=pd.to_numeric(s[c],errors="raise")
         require(s[c].ge(0).all(),"Original source species visit count invalid")
-    require(np.allclose(
-      s[["Lepidoptera","Coleoptera","Diptera","Hymenoptera","Others"]].sum(axis=1),
-      s["all"],atol=1e-8),"Plant recorded visits do not sum across 5 guilds")
+    source_species_error=(s[["Lepidoptera","Coleoptera","Diptera","Hymenoptera","Others"]].sum(axis=1)-s["all"])
+    species_conserved=int(np.isclose(source_species_error,0,atol=1e-8).sum())
     # Not all plant species necessarily flower at every survey; unlisted rows
     # remain UNKNOWN and will never be assigned real flowering availability 0.
     total=s.plant.nunique()
     support={"all_original_plant_positive_observation_rows":len(s),
       "plant_names_with_any_recorded_visits":int(total),
+      "species_rows_with_five_order_sum_matching_all":species_conserved,
+      "species_guild_sum_to_total_discrepancy_range":[float(source_species_error.min()),float(source_species_error.max())],
+      "species_counts_are_not_assumed_complete_partition":species_conserved!=len(s),
       "no_missing_plant_survey_row_coded_zero":True,
       "flower_availability_by_plant_survey_unmeasured":True}
     groups={}
