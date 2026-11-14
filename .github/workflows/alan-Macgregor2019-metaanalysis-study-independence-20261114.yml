@@ -1,0 +1,51 @@
+name: ALAN genuine independent peer reviewed Macgregor 2019 source + 2026 study ID gates
+on:
+  push:
+    branches: [analysis/alan-macgregor2019-experimental-design-source-gate-20261114]
+    paths:
+      - scripts/analysis/alan_Macgregor2019_original_zenodo_and_study_independence_20261114.py
+      - tests/test_alan_Macgregor2019_original_study_independence_20261114.py
+      - docs/ALAN_2019_PEERREVIEWED_POSITIVE_REPRODUCTION_META_INDEPENDENCE_20261114.md
+      - .github/workflows/alan-Macgregor2019-metaanalysis-study-independence-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-author-study-experiment-grain:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Test original scientific evidence and non-independent publication handling
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/analysis/alan_Macgregor2019_original_zenodo_and_study_independence_20261114.py
+          python -m unittest discover -s tests -p test_alan_Macgregor2019_original_study_independence_20261114.py -v
+      - name: Fetch original Zenodo 1743917 record manifest and verify primary paper evidence tiers
+        run: |
+          set -euo pipefail
+          mkdir -p source_manifest
+          python -m scripts.analysis.alan_Macgregor2019_original_zenodo_and_study_independence_20261114 \
+             --out source_manifest/ALAN_Macgregor2019_Zenodo1743917_independence_provenance.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("source_manifest/ALAN_Macgregor2019_Zenodo1743917_independence_provenance.json")
+          z=json.loads(p.read_text())
+          assert z["number_publications"]==6
+          assert z["source_reproduction_outcome_publications"]==5
+          assert z["first_valid_2019_positive_peer_reviewed_reproductive_counterexample"] is True
+          assert z["critical_source_independence"]["do_not_pool_JPE_and_EcolEvol_as_independent_effects"]
+          assert z["meta_analytic_stopping_rules"]["cannot_pool_different_endpoints_as_one_log_response_ratio"]
+          print("ALAN_PEERREVIEWED_2019_INDEPENDENCE_SOURCE_GATES_PASS")
+          print("ZENODO_SOURCE_MANIFEST_STATUS",z["source_manifest"]["status"])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-peerreviewed-Macgregor2019-source-study-independence-20261114
+          path: source_manifest/
+          retention-days: 90
+          if-no-files-found: warn
