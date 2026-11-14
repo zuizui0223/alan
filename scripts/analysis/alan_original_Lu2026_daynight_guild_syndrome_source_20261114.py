@@ -169,6 +169,58 @@ def original_design_model(a):
             "per_flower_visitation_denom_NOT_available":True}
     return outcome
 
+def heldout_block_moth_syndrome(q):
+    """Label each plant using OTHER four blocks' actual unlit source visitors.
+    Score real illuminated-unlit response on one heldout block only.
+    A missing plant×block×treatment record remains missing, not biological 0.
+    """
+    blocks=sorted(int(v) for v in q.block.dropna().unique())
+    require(blocks==[1,2,3,4,5],"Original species guild blocks changed")
+    rows=[]
+    for held in blocks:
+        train=q.loc[(q.block.ne(held))&q.treatment.eq("Unlit")]
+        controls=train.groupby("plant")[["all","Lepidoptera"]].sum()
+        controls=controls.loc[controls["all"].gt(0)]
+        classes=controls["Lepidoptera"].gt(.5*controls["all"])
+        test=q.loc[q.block.eq(held)].groupby(
+            ["plant","treatment"])[["all","Lepidoptera","Diptera"]].sum().reset_index()
+        pair=test.pivot(index="plant",columns="treatment",values=["all","Lepidoptera","Diptera"])
+        keep=pair["all"].dropna().index.intersection(classes.index)
+        chosen=pair.loc[keep]
+        labels=classes.loc[keep]
+        items={}
+        for label,mask in (("train_other_four_blocks_moth_majority",labels),
+                           ("train_other_four_blocks_not_moth_majority",~labels)):
+            g=chosen.loc[mask]
+            d=float(g[("all","Unlit")].sum()) if len(g) else 0.
+            l=float(g[("all","Lit")].sum()) if len(g) else 0.
+            items[label]={"n_positive_comparable_plants":int(len(g)),
+                "heldout_actual_unlit_visits":d,"heldout_actual_lit_visits":l,
+                "heldout_lit_unlit_ratio":float(l/d) if d>0 else None,
+                "no_plant_flowering_absence_from_undocumented_visits":True}
+        a=items["train_other_four_blocks_moth_majority"]
+        b=items["train_other_four_blocks_not_moth_majority"]
+        eligible=(a["n_positive_comparable_plants"]>=2 and
+                  b["n_positive_comparable_plants"]>=2 and
+                  a["heldout_lit_unlit_ratio"] is not None and
+                  b["heldout_lit_unlit_ratio"] is not None)
+        rows.append({"heldout_source_block":held,"groups":items,
+            "comparative_lit_dark_ratio_difference_moth_minus_other":
+                float(a["heldout_lit_unlit_ratio"]-b["heldout_lit_unlit_ratio"])
+                if eligible else None,
+            "source_independent_plant_support_gate_passed":eligible})
+    diffs=[r["comparative_lit_dark_ratio_difference_moth_minus_other"]
+           for r in rows if r["source_independent_plant_support_gate_passed"]]
+    return {"status":"EXPLORATORY_CROSS_BLOCK_CONTROL_ONLY_SYNDROME_TRANSFER",
+            "blocks":rows,
+            "n_supported_heldout_blocks":len(diffs),
+            "heldout_blocks_where_moth_majority_stronger_relative_visitor_loss":
+                int(sum(x<0 for x in diffs)),
+            "five_block_range_of_group_ratio_difference":[float(min(diffs)),float(max(diffs))] if diffs else None,
+            "class_groups_training_uses_unlit_only_not_heldout":True,
+            "no_formal_block_p_due_one_source_study":True,
+            "not_plant_flower_or_pollen_available_denominator":True}
+
 def species_descriptive(s):
     expected=set(CORE+["plant","all","Lepidoptera","Coleoptera",
                        "Diptera","Hymenoptera","Others"])
@@ -244,6 +296,8 @@ def species_descriptive(s):
                   (moth_down&fly_up).sum()),
               "plants_moth_visits_lower":int(moth_down.sum()),
               "plants_fly_visits_higher":int(fly_up.sum()),
+              "cross_block_control_only_visitation_syndrome_transfer":
+                   heldout_block_moth_syndrome(q) if per=="Nocturnal" else None,
               "all_plant_level_population_effort_and_flower_availability_not_equal":True,
               "all_plant_guild_labels_descriptive_NOT_effective_pollination":True
             }
