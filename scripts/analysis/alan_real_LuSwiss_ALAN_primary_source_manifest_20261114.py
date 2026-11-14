@@ -54,9 +54,33 @@ def xlsx_manifest(b, size_limit=120_000_000):
                 header=[str(v)[:125] if v is not None else None for v in x[:70]]
                 if sum(v is not None for v in x)>=2:
                     break
+            # Original design support only. These are study-factor levels and
+            # public ReadMe descriptions, NOT an extracted botanical/site table.
+            design={}
+            names={str(h).strip():i for i,h in enumerate(header) if h is not None}
+            for field in ("time","sampling_time","treatment","block","repeat"):
+                if field in names and s.title!="ReadMe":
+                    values=set()
+                    idx=names[field]
+                    for rr in s.iter_rows(min_row=2,max_row=min(2500,s.max_row),
+                                          min_col=idx+1,max_col=idx+1,
+                                          values_only=True):
+                        if rr[0] is not None:values.add(str(rr[0]).strip())
+                    design[field]={"values":sorted(values)[:80],
+                                  "distinct_levels":len(values)}
+            if s.title=="ReadMe":
+                notes=[]
+                for rr in s.iter_rows(min_row=2,max_row=min(65,s.max_row),
+                                      values_only=True):
+                    values=[str(v)[:240] if v is not None else ""
+                            for v in rr[:5]]
+                    if any(v.strip() for v in values):
+                        notes.append(values)
+                design["original_author_readme"]=notes
             info.append({"sheet":s.title,"rows_including_header":s.max_row,
                          "columns":s.max_column,"first_readable_header_row":header,
-                         "sample_row_values_included":False})
+                         "sample_row_values_included":False,
+                         "design_levels_and_original_readme":design})
         w.close()
         return {"status":"valid_xlsx","sheets":info}
     except Exception as e:
