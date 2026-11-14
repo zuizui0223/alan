@@ -1,0 +1,168 @@
+{
+  "schema": "ALAN_public_2026_factorial_herbivore_light_pollination_seed_primary_manuscript_ledger_v1",
+  "audit_date": "2026-11-14",
+  "primary_source": {
+    "manuscript": "Grognuz and Knop (2026), Artificial light at night restructures daytime plant-pollinator interactions through direct and herbivore-mediated pathways",
+    "status": "PUBLIC_PREPRINT_NOT_CONFIRMED_PEER_REVIEWED",
+    "preprint_date": "2026-03",
+    "preprint_DOI": "10.13140/RG.2.2.36822.10563",
+    "public_full_text": "https://www.researchgate.net/publication/401424487_Artificial_light_at_night_restructures_daytime_plant-pollinator_interactions_through_direct_and_herbivore-mediated_pathways",
+    "independent_Zurich_thesis_DOI": "10.5167/uzh-434379",
+    "raw_data_DOI": "10.17632/drhzznh4ps.1",
+    "raw_data_date": "2026-04-10",
+    "raw_data_landing": "https://data.mendeley.com/datasets/drhzznh4ps/1",
+    "raw_data_bytes_reacquired_in_this_ALAN_analysis": false,
+    "model_parameters_are_as_published_NOT_raw_reanalysis": true
+  },
+  "design": {
+    "setting": "potted plants placed in controlled nocturnal lit/dark × slug/no-slug factorial for 3 consecutive nights, then mixed on neutral daytime habitat for flower-visiting insects; later counted seeds",
+    "plant_species": 2,
+    "plant_taxa": [
+      "Trifolium pratense",
+      "Centaurea jacea"
+    ],
+    "herbivore": "Arion lusitanicus, nocturnal slug",
+    "light_factor": [
+      "natural_dark",
+      "artificial_light_at_night"
+    ],
+    "herbivore_factor": [
+      "no_slug",
+      "slug_present"
+    ],
+    "four_treatment_combinations": true,
+    "light_exposure_nights": 3,
+    "daytime_pollinator_survey_rounds_reported": 28,
+    "total_visit_events_reported": 819,
+    "block_groups_source_reported": {
+      "Trifolium_pratense": 20,
+      "Centaurea_jacea": 8
+    },
+    "herbivory_treated_plant_source_count": 276,
+    "visiting_insect_orders_reported": [
+      "Hymenoptera",
+      "Diptera"
+    ],
+    "site_independent_randomization_units_unverified": true,
+    "no_nocturnal_effective_pollinator_pollen_data": true,
+    "island_mainland_comparison": false,
+    "floral_opening_or_peak_doy_not_recorded_in_published_path_parameters": true,
+    "original_inflorescence_assessed_for_florivory": 355,
+    "original_inflorescence_flower_damage_prevalence": 0.335
+  },
+  "published_reported_coefficients": {
+    "ALAN_without_herbivores_day_pollinator_visits": {
+      "beta": -0.38,
+      "CI95": [
+        -0.6,
+        -0.16
+      ],
+      "p": 0.013,
+      "model_units": "AUTHOR_MODEL_COEFFICIENT_UNVERIFIED_SCALE; NEVER_CONVERT_TO_PERCENT",
+      "source_section": "Results & Discussion, Question 1"
+    },
+    "ALAN_day_hymenoptera_visits": {
+      "beta": -0.3,
+      "CI95": [
+        -0.52,
+        -0.09
+      ],
+      "p": 0.018,
+      "source_section": "Results & Discussion, Question 1"
+    },
+    "ALAN_day_diptera_visits": {
+      "beta": 0.06,
+      "CI95": [
+        -0.05,
+        0.25
+      ],
+      "p": 0.49,
+      "source_section": "Results & Discussion, Question 1"
+    },
+    "ALAN_by_florivory_on_day_visitor_response": {
+      "beta": 4.6,
+      "CI95": [
+        2.3,
+        7
+      ],
+      "p_upper_bound_exclusive": 0.001,
+      "source_section": "Results & Discussion, Question 3",
+      "raw_covariate_and_model_scale_not_reconstructed": true
+    },
+    "ALAN_by_folivory_on_day_visitor_response": {
+      "beta": 2.1,
+      "CI95": [
+        -0.27,
+        4.4
+      ],
+      "p": 0.083,
+      "source_section": "Results & Discussion, Question 3"
+    },
+    "florivory_on_day_visits": {
+      "beta": -3.9,
+      "CI95": [
+        -6.2,
+        -1.7
+      ],
+      "p_upper_bound_exclusive": 0.001,
+      "source_section": "Results & Discussion, Question 3"
+    },
+    "folivory_on_day_visits": {
+      "beta": -1.3,
+      "CI95": [
+        -2.6,
+        0.05
+      ],
+      "p": 0.06,
+      "source_section": "Results & Discussion, Question 3"
+    },
+    "ALAN_slug_damaged_leaf_odds_ratio": {
+      "odds_ratio": 0.21,
+      "CI95": [
+        0.045,
+        0.99
+      ],
+      "p": 0.048,
+      "source_section": "Results & Discussion, Question 2",
+      "herbivore_perceived_predation_risk_not_directly_manipulated": true
+    },
+    "ALAN_on_seed_set": {
+      "beta": -0.4,
+      "CI95": [
+        -0.73,
+        -0.08
+      ],
+      "p": 0.014,
+      "source_section": "Results & Discussion, Question 4",
+      "log_or_linear_link_not_independently_verified": true
+    },
+    "ALAN_by_herbivory_seed_set": {
+      "inferential_status": "NOT_RESOLVED_STATISTICALLY_IN_ORIGINAL_PREPRINT",
+      "numerical_effect_unpublished_in_extracted_summary": null,
+      "never_impute_seed_compensation": true
+    },
+    "ALAN_on_florivory_incidence": {
+      "inferential_status": "NO_DETECTED_DIRECT_ALAN_TREATMENT_EFFECT_ON_FLORIVORY",
+      "numerical_effect_unpublished_in_extracted_summary": null,
+      "source_section": "Results & Discussion, Question 2",
+      "not_an_assumed_true_zero_effect": true
+    }
+  },
+  "mechanistic_caveats": {
+    "positive_light_x_florivory_on_VISITS_does_not_equal_positive_light_x_florivory_on_SEEDS": true,
+    "slug_herbivory_suppression_not_predator_self_pollination": true,
+    "slug_herbivory_change_not_demonstrated_predator_abundance_increase": true,
+    "plant_scent_VOC_proposed_not_directly_measured_as_causal_mediator": true,
+    "same_alpine_Lu2026_experiment_not_merged_with_swiss_Grognuz_preprint": true,
+    "coauthorship_Eva_Knop_shared_with_Giavi2021_not_entirely_independent_research_lineage": true,
+    "this_is_one_new_experiment_not_28_independent_published_trials": true,
+    "raw_Mendeley_access_known_prior_401_not_assumed_permanently_unavailable": true,
+    "source_CI_not_reverse_engineered_as_raw_standard_errors": true,
+    "no_pollen_or_seed_effective_alternative_by_trophic_predator_verification": true,
+    "no_direct_phenology_mismatch_coefficient": true,
+    "no_global_island_light_vulnerability_coefficient": true,
+    "direct_light_to_FOLIAR_damage_significant_but_foliage_to_VISIT_NOT_CLEARED_CI": true,
+    "florivory_to_VISITS_and_light_by_florivory_significant_but_ALAN_to_FLORIVORY_not_detected": true,
+    "complete_causal_herbivore_mediation_path_not_identified_from_individual_reported_coefficients": true
+  }
+}
