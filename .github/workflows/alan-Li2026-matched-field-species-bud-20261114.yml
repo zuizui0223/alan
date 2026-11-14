@@ -1,0 +1,53 @@
+name: ALAN genuine Li 79plants matched field-species-round and starting-bud source QC
+on:
+  push:
+    branches: [analysis/alan-li2026-matched-strata-bud-bias-audit-20261114]
+    paths:
+      - scripts/analysis/alan_Li2026_original_matched_strata_bud_audit_20261114.py
+      - tests/test_alan_Li2026_original_matched_strata_bud_audit_20261114.py
+      - docs/ALAN_Li2026_FIELD_SPECIES_ROUND_STARTING_BUD_DESIGN_AUDIT_20261114.md
+      - .github/workflows/alan-Li2026-matched-field-species-bud-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  authentic-Li2026-strata:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Test source ecological grain and lack of inferred zeros
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/analysis/alan_Li2026_original_matched_strata_bud_audit_20261114.py
+          python -m unittest discover -s tests -p test_alan_Li2026_original_matched_strata_bud_audit_20261114.py -v
+      - name: Verify original author CSV from Git blob and field-species-round conditional effects
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p real_li_matched
+          python -m scripts.analysis.alan_Li2026_original_matched_strata_bud_audit_20261114 \
+            --out real_li_matched/ALAN_original_Li2026_matched_species_field_round_bud_results.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          z=json.loads(Path("real_li_matched/ALAN_original_Li2026_matched_species_field_round_bud_results.json").read_text())
+          assert z["source"]["original_independent_field_blocks"]==3
+          assert z["source_data_vs_methods"]["total_potential_slots_described"]==90
+          assert z["source_data_vs_methods"]["source_data_rows_by_species"]=={"ML":44,"SN":18,"ZC":17}
+          a=z["matched_original_species_x_field"]["L-P"]
+          assert a["n_comparable_strata"]==9
+          assert (a["n_positive"],a["n_negative"],a["n_equal"])==(4,1,4)
+          assert z["source"]["L_and_P_photometric_power_and_exposure_geometry_not_held_fixed"] is True
+          assert abs(z["raw_pooled_three_arm_pairs"]["L-C"]["seed_presence_difference"]-(20/27-8/26))<1e-10
+          print("ORIGINAL_LI79_AUTHOR_SHA_FIELD_SPECIES_ROUND_STARTING_BUD_AUDIT_PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-Li2026-genuine79-original-field-species-round-buds-20261114
+          path: real_li_matched/
+          retention-days: 90
+          if-no-files-found: warn
