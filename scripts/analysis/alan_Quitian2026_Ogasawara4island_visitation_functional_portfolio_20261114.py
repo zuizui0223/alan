@@ -77,6 +77,61 @@ def group(rows,keys):
         out[tuple(r[k] for k in keys)].append(r)
     return out
 
+def original_publication_main_cohort(raw):
+    """Construct explicit source taxon-filter candidate; do not claim
+    original author's supplementary protocol confirmed unless the 4174/55/115
+    source counts all match (not merely selected favorable subsets).
+    """
+    excluded={"Formicidae":0,"Collembola":0,"Acari":0}
+    counts=collections.Counter()
+    taxon_apoidea=collections.Counter()
+    alltop=collections.Counter()
+    keep=[]
+    for r in raw:
+        n=r["N.Int"]
+        alltop[r["Poll_sp"]]+=n
+        if r["Ord_Fam"]=="Apoidea":
+            taxon_apoidea[r["Poll_sp"]]+=n
+        cls=None
+        if r["Ord_Fam"]=="Formicidae":cls="Formicidae"
+        elif r["Order"]=="Collembola":cls="Collembola"
+        elif r["Order"]=="Acari":cls="Acari"
+        if cls:
+            excluded[cls]+=n
+            counts[cls]+=1
+            continue
+        keep.append(r)
+    rawtotal=sum(x["N.Int"] for x in raw)
+    total=sum(x["N.Int"] for x in keep)
+    names=len({x["Plant_sp"] for x in keep})
+    visitors=len({x["Poll_sp"] for x in keep})
+    receipt={
+      "raw_original_source_visit_rows":len(raw),
+      "raw_original_visit_total":rawtotal,
+      "raw_original_plant_names":len({x["Plant_sp"] for x in raw}),
+      "raw_original_pollinator_names":len({x["Poll_sp"] for x in raw}),
+      "excluded_original_source_visit_counts":excluded,
+      "excluded_original_source_rows":dict(counts),
+      "included_original_source_visit_rows":len(keep),
+      "included_source_visit_total":total,
+      "included_source_plant_names":names,
+      "included_source_pollinator_names":visitors,
+      "original_paper_reported_legitimate_visitor_visits":4174,
+      "original_paper_reported_plants":55,
+      "original_paper_reported_visitors":115,
+      "all_three_manuscript_counts_exactly_match":
+        total==4174 and names==55 and visitors==115,
+      "source_reported_paper_excluded_ants":True,
+      "springtail_mite_exclusion_in_paper_method_text_not_yet_independently_verified":True,
+      "source_top_Apoidea_positive_labels":taxon_apoidea.most_common(16),
+      "source_top_visitor_labels_overall":alltop.most_common(16),
+      "exclusion_identified_from_source_sum_not_a_preregistered_main_analysis":True,
+    }
+    print("ALAN_OGASAWARA_PUBLISHED_NETWORK_COHORT_RECONCILIATION",
+          json.dumps(receipt,ensure_ascii=False),flush=True)
+    require(total==4174,"Even after original source exclusions published 4174 cannot be reconstructed")
+    return keep,receipt
+
 def model(rows):
     total=sum(r["N.Int"] for r in rows)
     plants={r["Plant_sp"] for r in rows}
@@ -241,8 +296,10 @@ def main(out):
     out=Path(out)
     require(not out.exists(),"Refuse overwriting author-source results")
     data,sha=read()
-    result=model(data)
+    cohort,cohort_receipt=original_publication_main_cohort(data)
+    result=model(cohort)
     result["source"]["original_XLSX_SHA256"]=sha
+    result["original_publication_main_cohort_reconciliation"]=cohort_receipt
     out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(json.dumps(result,indent=2,ensure_ascii=False,allow_nan=False)+"\n")
     print("ALAN_ISLAND_GENUINE_OGASAWARA_POLLINATOR_CHANNELS",
