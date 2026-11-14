@@ -110,6 +110,41 @@ def source_coverage(rows):
         "do_not_infer_unrecorded_rows_as_failed_pollination":True,
         "no_source_verified_individual_missingness_reason":True}
 
+def missingness_tipping_bound(rows, treatment, control, max_missing=40):
+    """Extreme unfavorable hypothetical allocation of unobserved plant slots.
+
+    For each missing M, allocate x failures to treatment and M-x successes
+    to control. This ignores species, site, round and actual eligibility;
+    it is only a mathematical sensitivity, never source-attributed outcomes.
+    """
+    a=eligible_group(rows,treatment)
+    b=eligible_group(rows,control)
+    require(a is not None and b is not None,"Both source groups required")
+    a_yes=a["seed_positive"];a_n=a["n"]
+    b_yes=b["seed_positive"];b_n=b["n"]
+    def find(m):
+        options=[]
+        for x in range(m+1):
+            y=m-x
+            delta=a_yes/(a_n+x)-(b_yes+y)/(b_n+y)
+            options.append((delta,x,y))
+        diff,x,y=min(options,key=lambda q:q[0])
+        return {"hypothetical_total_missing":m,
+                "minimum_possible_unadjusted_risk_difference":diff,
+                "unobserved_treatment_failures":x,
+                "unobserved_control_successes":y}
+    original_delta=a_yes/a_n-b_yes/b_n
+    bound11=find(11)
+    reversal=next((find(m) for m in range(max_missing+1)
+                   if find(m)["minimum_possible_unadjusted_risk_difference"]<=0),None)
+    return {"pair":treatment+"-"+control,
+            "original_raw_difference":original_delta,
+            "hypothetical_11_missing_worst_case":bound11,
+            "first_possible_sign_reversal_if_adversarial_missing":reversal,
+            "not_actual_assignment_or_missingness_model":True,
+            "treatment_specific_missing_counts_unknown":True,
+            "valid_only_as_unstratified_algebra_not_per_field_causal_identification":True}
+
 def analyze(rows, raw):
     results={"schema":"ALAN_Li2026_79_original_plants_matched_species_field_round_baseline_bias_v1",
       "source":{"original_author_csv_sha256":hashlib.sha256(raw).hexdigest(),
@@ -126,6 +161,8 @@ def analyze(rows, raw):
         "original_author_methods_report_no_significant_baseline_bud_treatment_difference":True,
         "do_not_infer_starting_bud_difference_statistically_significant":True},
       "raw_pooled_three_arm_pairs":{a+"-"+b:pair_result(rows,a,b) for a,b in PAIR},
+      "adversarial_source_data_vs_90_potential_slots_bound":{
+        a+"-"+b:missingness_tipping_bound(rows,a,b) for a,b in PAIR},
       "matched_original_species_x_field":{
         a+"-"+b:strata_table(rows,("species","replicate"),a,b) for a,b in PAIR},
       "matched_original_species_x_field_x_round":{
