@@ -1,0 +1,44 @@
+name: ALAN 2025 published spectrum source
+on:
+  push:
+    branches: [analysis/alan-published-effectsize-stage-panel-20261114]
+    paths: [.github/workflows/alan-czarnecka2025-public-source-20261114.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Fetch public browser download not authenticated API
+        run: |
+          mkdir -p public_source
+          python - <<'PY'
+          import urllib.request,hashlib,json
+          from pathlib import Path
+          out=Path('public_source')
+          receipt={'doi':'10.5061/dryad.xwdbrv1q0','version':403756,'files':[]}
+          files=[(4426061,'Data_S1_Czarnecka_et_al..xlsx','8fae8a0244047ab057808ea321962bf848cff42b6fd521f34b37a360efa154d6'),(4426059,'README.md','f4f4e7005be4bcdb84baae13dc652d9ecd27b8cd5f8556a1251207d9b7d1411b')]
+          for fid,name,digest in files:
+              url=f'https://datadryad.org/downloads/file_stream/{fid}'
+              try:
+                  req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 ALAN-source-research','Referer':'https://datadryad.org/dataset/doi%3A10.5061/dryad.xwdbrv1q0'})
+                  with urllib.request.urlopen(req,timeout=40) as r:b=r.read(3000000)
+                  actual=hashlib.sha256(b).hexdigest()
+                  assert actual==digest,(actual,'not the declared original file')
+                  out.joinpath(name).write_bytes(b)
+                  receipt['files'].append({'file_id':fid,'name':name,'bytes':len(b),'sha256':actual,'status':'VERIFIED'})
+              except Exception as e:
+                  receipt['files'].append({'file_id':fid,'name':name,'status':'UNAVAILABLE','error':type(e).__name__+': '+str(e)})
+          out.joinpath('receipt.json').write_text(json.dumps(receipt,indent=2))
+          print('ORIGINAL_2025_PUBLIC_SOURCE',json.dumps(receipt))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-czarnecka2025-original-source
+          path: public_source/
+          retention-days: 90
+          if-no-files-found: error
