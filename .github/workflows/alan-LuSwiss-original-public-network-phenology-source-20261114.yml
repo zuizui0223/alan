@@ -1,0 +1,54 @@
+name: ALAN primary Lu network and Swiss experimental phenology public raw source manifest
+on:
+  push:
+    branches: [analysis/alan-alanfield-syndrome-network-rawsource-20261114]
+    paths:
+      - scripts/analysis/alan_real_LuSwiss_ALAN_primary_source_manifest_20261114.py
+      - tests/test_alan_real_LuSwiss_ALAN_primary_source_manifest_20261114.py
+      - .github/workflows/alan-LuSwiss-original-public-network-phenology-source-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-primary-public-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Pin libraries and guard raw-source publication claims
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m py_compile scripts/analysis/alan_real_LuSwiss_ALAN_primary_source_manifest_20261114.py
+          python -m unittest discover -s tests -p test_alan_real_LuSwiss_ALAN_primary_source_manifest_20261114.py -v
+      - name: Resolve primary publisher supplementary ZIP and authentic Swiss experiment DOI dataset manifest
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          mkdir -p original_public_manifest
+          python -m scripts.analysis.alan_real_LuSwiss_ALAN_primary_source_manifest_20261114 \
+            --out original_public_manifest/ALAN_2026_original_Lu_Swiss_primary_source_manifest.json
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path("original_public_manifest/ALAN_2026_original_Lu_Swiss_primary_source_manifest.json")
+          z=json.loads(p.read_text())
+          assert z["schema"]=="ALAN_primary_manipulated_light_daynight_syndrome_rawsource_manifest_v1"
+          assert z["status"]=="ACTUAL_PUBLIC_SOURCE_PROBE_ONLY_NO_MODEL_ESTIMATED"
+          assert z["source_gates"]["no_automatic_same_site_year_phenology_overlap"]
+          assert z["source_gates"]["not_causal_effect_of_predator_or_island_shift"]
+          print("ALAN_REAL_PRIMARY_PUBLIC_MANIFEST_WITH_FALSE_CLAIM_GATES",flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-Lu2026-Swiss2025-public-source-manifests-20261114
+          path: original_public_manifest/
+          retention-days: 90
+          if-no-files-found: warn
