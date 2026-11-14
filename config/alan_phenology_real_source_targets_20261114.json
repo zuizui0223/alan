@@ -9,7 +9,6 @@
       "dataset_landing": "https://data.mendeley.com/datasets/xjmn5jhxyn/2",
       "experiment_site_lit": 14,
       "experiment_site_dark": 14,
-      "plant_species_with_seasonal_schedule_analysis": 16,
       "experiment_years": [
         2022,
         2023
@@ -21,7 +20,10 @@
       "actual_file_manifest_acquired": false,
       "oa_download_verified": false,
       "source_status": "PUBLISHED_REAL_EXPERIMENT_METADATA_DATASET_LINK_NOT_YET_SOURCE_FILE_AUTHENTICATED",
-      "next_gate": "Obtain raw published files and hash each source; verify site-paired treatments, flowering-onset/peak endpoint units and exact day/hour effort"
+      "next_gate": "Obtain raw published files and hash each source; verify site-paired treatments, flowering-onset/peak endpoint units and exact day/hour effort",
+      "plant_species_with_detected_schedule_changes_n": 16,
+      "total_flowering_species_tested_NOT_VERIFIED": null,
+      "reported_change_fraction_pct": 75
     },
     {
       "name": "Phenobase_PhenoVision_original_global_machine_flower_fruit_labels",
