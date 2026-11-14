@@ -5,6 +5,8 @@ on:
     paths:
       - scripts/analysis/alan_Macgregor2019_original_zenodo_and_study_independence_20261114.py
       - tests/test_alan_Macgregor2019_original_study_independence_20261114.py
+      - tests/test_alan_Macgregor2019_original_script_data_dependency_20261114.py
+      - scripts/analysis/alan_Macgregor2019_original_script_data_dependency_20261114.py
       - docs/ALAN_2019_PEERREVIEWED_POSITIVE_REPRODUCTION_META_INDEPENDENCE_20261114.md
       - .github/workflows/alan-Macgregor2019-metaanalysis-study-independence-20261114.yml
   workflow_dispatch:
@@ -41,6 +43,22 @@ jobs:
           assert z["meta_analytic_stopping_rules"]["cannot_pool_different_endpoints_as_one_log_response_ratio"]
           print("ALAN_PEERREVIEWED_2019_INDEPENDENCE_SOURCE_GATES_PASS")
           print("ZENODO_SOURCE_MANIFEST_STATUS",z["source_manifest"]["status"])
+          PY
+      - name: Inspect exact archived author's original R script and original Zenodo ZIP file members
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_Macgregor2019_original_script_data_dependency_20261114.py -v
+          python -m scripts.analysis.alan_Macgregor2019_original_script_data_dependency_20261114 \
+              --out source_manifest/ALAN_Macgregor2019_original_code_primary_CSV_dependency_receipt.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          z=json.loads(Path("source_manifest/ALAN_Macgregor2019_original_code_primary_CSV_dependency_receipt.json").read_text())
+          assert z["exact_author_script_sha1_verified"]=="04136ea82d6c1bbef22f4fd60c41de9907b00550"
+          assert len(z["required_original_primary_csv_filenames"])==3
+          assert z["original_required_csv_present_in_public_GitHub_tree"]==[]
+          assert z["2019_full_numerical_GLM_reproduced"] is False
+          print("AUTHOR_MACGREGOR2019_ORIGINAL_CODE_REQUIRED_DATA_GATE",z["original_zip_member_listing_status"])
           PY
       - uses: actions/upload-artifact@v4
         if: always()
