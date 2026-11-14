@@ -9,7 +9,7 @@ activity effect or call a source picture a pollen visit, field population or
 sample of independent video frames.
 """
 from __future__ import annotations
-import argparse,csv,hashlib,io,json,re,urllib.request
+import argparse,csv,hashlib,io,json,re,urllib.request,urllib.error
 from pathlib import Path
 from collections import Counter, defaultdict
 
@@ -37,7 +37,34 @@ def median(x):
 def audit(out):
     out=Path(out)
     require(not out.exists(),"Never overwrite existing original audit")
-    code=get("Analysis_Script.R").decode("utf8-sig",errors="replace")
+    try:
+        original_code_bytes=get("Analysis_Script.R")
+    except urllib.error.HTTPError as e:
+        if e.code != 401:raise
+        result={
+          "schema":"ALAN_Dryad2025_v4_source_main_23moth_motion_frames_original_audit_v1",
+          "status":"ORIGINAL_FILE_METADATA_VERIFIED_BYTES_BLOCKED_DRYAD_AUTH",
+          "dataset_DOI":"10.5061/dryad.jq2bvq8ps",
+          "source_publication_DOI":"10.1098/rspb.2025.2704",
+          "source_version":4,
+          "original_data_sha256_published":FILES["Activity_MainData.csv"][2],
+          "original_R_code_sha256_published":FILES["Analysis_Script.R"][2],
+          "Dryad_public_download_endpoint":"https://datadryad.org/api/v2/files/4507224/download",
+          "HTTP_status":e.code,
+          "requires_authentication_without_assuming_data_absent":True,
+          "original_data_rows_recomputed":False,
+          "published_paper_reported_moths":843,
+          "published_paper_reported_species":23,
+          "published_paper_reported_families":3,
+          "published_paper_reported_10lux_white_LED_activity_suppression_pct":85,
+          "original_image_frames_not_treated_independent":True,
+          "not_claimed_new_species_sensitivity_coefficient":True
+        }
+        out.parent.mkdir(parents=True,exist_ok=True)
+        out.write_text(json.dumps(result,indent=2,allow_nan=False)+"\n")
+        print("ALAN_REAL_DRYAD_23SP_AUTH_GATE",json.dumps(result),flush=True)
+        return result
+    code=original_code_bytes.decode("utf8-sig",errors="replace")
     origin_code_lines=code.splitlines()
     hints=[]
     for i,x in enumerate(origin_code_lines):
