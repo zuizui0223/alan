@@ -214,7 +214,27 @@ def species_descriptive(s):
             fly_up=q2[("fly","Lit")].astype(float).gt(fly)
             # Source-documented visitor proportions, not a plant evolutionary
             # pollination syndrome or a causal service-loss coefficient.
+            def subgroup(label,mask):
+                mask=np.asarray(mask,dtype=bool)
+                z=q2.loc[mask]
+                vals={}
+                for name in ("raw_visits","moth","fly"):
+                    dark_count=float(z[(name,"Unlit")].sum())
+                    lit_count=float(z[(name,"Lit")].sum())
+                    vals[name]={
+                        "unlit_source_positive_visit_counts":dark_count,
+                        "lit_source_positive_visit_counts":lit_count,
+                        "lit_minus_unlit_visit_counts":lit_count-dark_count,
+                        "lit_over_unlit_visit_ratio":float(lit_count/dark_count) if dark_count>0 else None,
+                    }
+                return {"source_control_composition_group":label,
+                    "plant_taxa_with_both_lit_unlit_positive_visit_records":int(len(z)),
+                    "treatment_visit_counts_UNADJUSTED_FOR_TRUE_FLOWER_AVAILABILITY":vals,
+                    "not_causal_effective_pollen_or_seed":True}
             groups[per]={
+              "realized_control_moth_visitation_majority_groups":{
+                "source_unlit_moth_fraction_above_half":subgroup("moth_over_half",majority),
+                "source_unlit_moth_fraction_not_over_half":subgroup("moth_not_over_half",~majority)},
               "unique_plant_names_with_source_visits":int(q.plant.nunique()),
               "plants_positive_in_both_original_lit_and_dark_observations":int(len(q2)),
               "dark_moth_dominant_documented_plants":int(majority.sum()),
