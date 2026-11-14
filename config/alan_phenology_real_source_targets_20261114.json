@@ -1,0 +1,56 @@
+{
+  "schema": "ALAN_REAL_PHENOLOGY_SOURCE_TARGETS_20261114_v1",
+  "created_at": "2026-11-14",
+  "sources": [
+    {
+      "name": "Grognuz_Gisler_Knop_Swiss_ALAN_flowering_diel_seasonal_experiment",
+      "journal_doi": "10.1016/j.biocon.2025.111650",
+      "dataset_doi": "10.17632/xjmn5jhxyn.2",
+      "dataset_landing": "https://data.mendeley.com/datasets/xjmn5jhxyn/2",
+      "experiment_site_lit": 14,
+      "experiment_site_dark": 14,
+      "plant_species_with_seasonal_schedule_analysis": 16,
+      "experiment_years": [
+        2022,
+        2023
+      ],
+      "has_measured_plant_diel_open_close": true,
+      "has_measured_plant_seasonal_onset_peak": true,
+      "has_same_site_year_effective_pollinator_time_series": false,
+      "has_same_site_year_seed_outcomes_for_all_species": false,
+      "actual_file_manifest_acquired": false,
+      "oa_download_verified": false,
+      "source_status": "PUBLISHED_REAL_EXPERIMENT_METADATA_DATASET_LINK_NOT_YET_SOURCE_FILE_AUTHENTICATED",
+      "next_gate": "Obtain raw published files and hash each source; verify site-paired treatments, flowering-onset/peak endpoint units and exact day/hour effort"
+    },
+    {
+      "name": "Phenobase_PhenoVision_original_global_machine_flower_fruit_labels",
+      "journal_doi": "10.1111/2041-210X.70081",
+      "dataset_doi": "10.5281/zenodo.15306421",
+      "dataset_landing": "https://zenodo.org/records/15306421",
+      "data_file": "annotations_all_w_headers_9cf8ad8.csv",
+      "data_file_size_bytes_approx": 12900000000,
+      "reported_machine_phenology_records": 30199391,
+      "reported_flowers": 25276056,
+      "reported_fruits": 4923335,
+      "has_observation_day_of_year": true,
+      "has_geo_and_taxon": true,
+      "has_direct_observer_effort_control": false,
+      "has_first_flowering_or_daily_population_census": false,
+      "has_same_cell_year_pollinator_activity_and_true_efficacy": false,
+      "source_status": "PUBLISHED_RAW_ARCHIVE_NOT_ACQUIRED_FOR_ALAN",
+      "next_gate": "Use file streaming/chunking and iNaturalist observation ID deduplication; audit negative photo opportunity denominator, camera/media/source and latitude, separate detection from phenology of true population"
+    }
+  ],
+  "constraints": {
+    "reject_pseudo_same_study_from_cross_site_sources": true,
+    "no_inaturalist_observation_DOY_as_first_flower_date": true,
+    "no_background_visitor_activity_without_actual_hour_or_season_effort": true,
+    "no_proxy_photo_species_positive_as_effective_pollination": true,
+    "align_flower_and_pollinator_observation_hours_in_local_time": true,
+    "align_flowering_and_visitors_by_DOY_with_site_year": true,
+    "compare_island_mainland_only_after_true_same_region_year_common_support": true,
+    "specimen_phenology_biased_by_observation_effort": true,
+    "no_current_phenology_mismatch_beta_estimated": true
+  }
+}
