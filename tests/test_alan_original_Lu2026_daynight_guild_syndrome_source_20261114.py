@@ -31,7 +31,7 @@ class SourceVerifiedFiveBlock(unittest.TestCase):
           "C_abundance":n,"O_abundance":0})
   q=original_design_model(pd.DataFrame(a))
   self.assertEqual(q["Nocturnal"]["independent_field_blocks"],5)
-  self.assertEqual(q["Nocturnal"]["experimental_survey_pair_group_effects"]["Total"]["n_paired_survey_units"],100)
+  self.assertEqual(q["Nocturnal"]["experimental_survey_pair_group_effects"]["Total"]["n_paired_block_rounds"],20)
   self.assertAlmostEqual(q["Nocturnal"]["experimental_survey_pair_group_effects"]["Total"]["lit_dark_visit_ratio"],2)
  def test_species_source_unknown_without_plant_flowering_denominator(self):
   z=pd.DataFrame([{"plant":"X","time":1,"sampling_time":"Nocturnal",
