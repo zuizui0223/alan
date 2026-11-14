@@ -1,7 +1,7 @@
 """Synthetic tests for matched original 3-site Li array-vs-point source audit."""
 import unittest
 from scripts.analysis.alan_Li2026_original_matched_strata_bud_audit_20261114 import (
-    pair_result, strata_table, by_round, source_coverage, eligible_group
+    pair_result, strata_table, by_round, source_coverage, eligible_group, missingness_tipping_bound
 )
 
 def record(sp, field, rnd, arm, yes, buds=8):
@@ -37,6 +37,23 @@ class TestMatchedOriginalEcologicalGrain(unittest.TestCase):
         self.assertAlmostEqual(z[0]["same_round_original_plant_level"]["seed_presence_difference"],1.0)
         self.assertAlmostEqual(z[1]["same_round_original_plant_level"]["seed_presence_difference"],-1.0)
         self.assertFalse(z[2]["same_round_original_plant_level"]["comparable"])
+
+    def test_adversarial_missingness_is_scenario_and_flips_only_at_enough_n(self):
+        # Observed aggregate synthetic fixture matching author 79-plant
+        # binary counts, not an asserted raw source reconstruction.
+        x=[]
+        for arm,n,yes in (("L",27,20),("P",25,12),("C",26,8)):
+            for i in range(n):
+                x.append(record("ML",1,1,arm,int(i<yes)))
+        b=missingness_tipping_bound(x,"L","C",max_missing=30)
+        self.assertAlmostEqual(
+            b["hypothetical_11_missing_worst_case"]["minimum_possible_unadjusted_risk_difference"],
+            0.18670576735092864)
+        self.assertEqual(b["first_possible_sign_reversal_if_adversarial_missing"]["hypothetical_total_missing"],23)
+        self.assertTrue(b["not_actual_assignment_or_missingness_model"])
+        c=missingness_tipping_bound(x,"P","C",max_missing=30)
+        self.assertLess(c["hypothetical_11_missing_worst_case"]["minimum_possible_unadjusted_risk_difference"],0)
+        self.assertEqual(c["first_possible_sign_reversal_if_adversarial_missing"]["hypothetical_total_missing"],9)
 
     def test_archived_rows_differ_from_potential_design_slots(self):
         x=[record("ML",1,1,"L",1),record("SN",2,1,"L",1),record("ZC",3,1,"C",0)]
