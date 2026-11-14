@@ -1,6 +1,6 @@
 # ALAN — genuine independent Swiss and Tibetan guild responses after source-measured flowering cover
 
-**New cross-source method, 2026-11-14.** This uses two **independent original artificial-light experiments**, not two independent global biomes sampled in a common design. Swiss original Giavi, Fontaine & Knop (2021), *Nature Communications*, [DOI 10.1038/s41467-021-22011-8](https://doi.org/10.1038/s41467-021-22011-8), authenticated Zenodo [4540407](https://zenodo.org/records/4540407); Tibet Lu et al. (2026), *Ecology and Evolution*, [DOI 10.1002/ece3.74368](https://doi.org/10.1002/ece3.74368), authenticated nested Europe PMC workbook (actual SHA256 ba7e15e66986f64943a38fd294e49d7128cf7719d318578f6b805d29cde8f98f).
+**New cross-source method, 2026-11-14.** [Original field data QA and final same-source rerun SUCCESS #43574048558](https://github.com/zuizui0223/alan/actions/runs/43574048558), [aggregate-only result #14105441985](https://github.com/zuizui0223/alan/actions/runs/43574048558/artifacts/14105441985). This uses two **independent original artificial-light experiments**, not two independent global biomes sampled in a common design. Swiss original Giavi, Fontaine & Knop (2021), *Nature Communications*, [DOI 10.1038/s41467-021-22011-8](https://doi.org/10.1038/s41467-021-22011-8), authenticated Zenodo [4540407](https://zenodo.org/records/4540407); Tibet Lu et al. (2026), *Ecology and Evolution*, [DOI 10.1002/ece3.74368](https://doi.org/10.1002/ece3.74368), authenticated nested Europe PMC workbook (actual SHA256 ba7e15e66986f64943a38fd294e49d7128cf7719d318578f6b805d29cde8f98f).
 
 The **original real source reanalysis** independently reconstructs: Swiss **6** paired lit/dark field sites, **37** paired survey occasions, 21 plants, 2,384 actual documented interactions in 1,884 source rows; Tibet **5** independent original blocks, four rounds, 400 true-day/night group-count records (night and day each have 100 lit and 100 unlit). Plant taxa are not assumed the same between regions and study-site nested records do not become 1,884 independent sites or 400 randomized plot replicates.
 
@@ -31,6 +31,20 @@ Tibet daytime Diptera independent-block equal-weight ratio is **1.471**, 5/5 blo
 - Tibet daytime **fly/bee relative visitation-channel balance** (ratio of lit/dark ratios) rises **1.858×**, **5/5** blocks. Swiss equivalent **1.079×**, **4/6** sites, extremely heterogeneous site-specific ratio range 0.103–3.200. These group differences *cancel* a shared floral-cover denominator, but remain visit-count ratios rather than different insects' conspecific pollen deposition efficiencies.
 - Same exactly three orders Diptera/Hymenoptera/Coleoptera: original independent site-mean Jensen–Shannon **guild visitation composition** divergence under lit versus dark is **0.0613 bits** in Swiss day, versus **0.0327 bits** in Tibet day. Their identical taxa make this *numerically* comparable as descriptive compositional statistics, but two ecosystems have non-matched species pools, light spectra and survey geometry; no ecological effect ranking or inferential cross-region means are claimed.
 - Tibet night may have substantially different 3-order composition change, but **the three shared orders EXCLUDE dominant nocturnal Lepidoptera**. This omission means a day-versus-night contrast of the *three-order* JS indices does NOT capture the full pollination network. A separate fully documented Tibet **five-order** day/night original within-block diagnostic is calculated in this branch, without treating actual light–flower phenology as measured.
+
+## Original Tibetan complete five-order *night-versus-day* source result
+
+For Tibetan original five field experimental blocks only, compute treatment-versus-control JS divergence on **ALL FIVE** source order columns, including the nocturnally dominant Lepidoptera. Compare the two diel periods within each identical experimental block, not across differing ecosystems or Swiss plant pairs.
+
+| Experimental diel period | Five-order independent field-block mean JS divergence (bits) |
+|---|---:|
+| Diurnal | 0.04483924 |
+| Nocturnal | **0.07298861** |
+| Original mean of within-block nocturnal minus diurnal | **+0.02814937** |
+
+Nocturnal light/dark guild-composition divergence was larger than diurnal in **5 of the 5** actual blocks (paired difference range +0.01886 to +0.04236 bits). This constitutes an *observed five-block compositional pattern within ONE original study*. Its minimum two-sided sign fraction is 2/32=.0625, and it must not become a new significant global meta-analytic discovery.
+
+**Crucial biological interpretation:** This difference is a taxonomy-specific change in recorded interaction composition across two 4-round daily survey windows. It does not measure functional reproductive pollen delivery, existing island moth pollinator shifts, predators, floral opening/closing, seasonal flowering–visitor overlap, or plant seed formation. Main total vs five-order counts differ slightly in 23/400 original Tibetan rows; five-order JS is computed on explicitly recorded guild counts without silently reallocating the discrepancy.
 
 ## Why this changes the global syndrome question
 
