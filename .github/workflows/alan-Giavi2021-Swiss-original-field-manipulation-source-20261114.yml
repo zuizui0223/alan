@@ -1,0 +1,55 @@
+name: ALAN independent Swiss 2016 published field manipulation original-source audit
+on:
+  push:
+    branches: [analysis/alan-independent-swiss-2016-guild-network-20261114]
+    paths:
+      - scripts/analysis/alan_Giavi2021_Swiss_original_data_source_audit_20261114.py
+      - tests/test_alan_Giavi2021_Swiss_original_data_source_audit_20261114.py
+      - .github/workflows/alan-Giavi2021-Swiss-original-field-manipulation-source-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-original-swiss-2016-guild-study:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Test original source audit and install Rdata schema reader
+        run: |
+          set -euo pipefail
+          python -m pip install -q pandas==2.2.3 pyreadr==0.5.3 numpy==2.1.3
+          python -m unittest discover -s tests -p 'test_alan_Giavi2021_Swiss_original_data_source_audit_20261114.py' -v
+          python -m py_compile scripts/analysis/alan_Giavi2021_Swiss_original_data_source_audit_20261114.py
+      - name: Fetch original 2021 Zenodo deposit and record actual original R data design
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          mkdir -p verified_swiss
+          python -m scripts.analysis.alan_Giavi2021_Swiss_original_data_source_audit_20261114 --out verified_swiss/ALAN_Giavi_Swiss2016_original_Zenodo_manipulation_source_schema.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          z=json.loads(Path("verified_swiss/ALAN_Giavi_Swiss2016_original_Zenodo_manipulation_source_schema.json").read_text())
+          assert z["study"]["original_interaction_events_reported"] == 2384
+          assert z["study"]["number_field_sites"] == 12
+          assert z["guardrails"]["no_unrecorded_plant_inferred_absent"]
+          if z["status"] != "ORIGINAL_ZENODO_DATA_SOURCE_AUTHENTICATED":
+              print("SWISS_SOURCE_ACCESS_UNAVAILABLE_FAIL_CLOSED",z["source_receipts"])
+              raise SystemExit(2)
+          assert z["original_data_structure"]["objects_read_success"]
+          print("ALAN_ORIGINAL_SWISS_FIELD_DAYTIME_GUILD_SOURCE_AUTHENTICATED",flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-Swiss2016-Giavi-original-RData-source-audit-20261114
+          path: verified_swiss/
+          retention-days: 90
+          if-no-files-found: warn
