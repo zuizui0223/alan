@@ -84,7 +84,7 @@ def main(out):
                     ("path" in obj or "name" in obj) and
                     ("size" in obj or "digest" in obj)]
             if potential:
-                files=[safe_file(x) for x in potential]
+                files=[{**safe_file(x), "download_link_metadata":x.get("_links")} for x in potential]
                 break
         except (urllib.error.HTTPError,urllib.error.URLError,ValueError) as e:
             errors.append({"target":candidate,"error":type(e).__name__,
