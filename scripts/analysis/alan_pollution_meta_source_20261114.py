@@ -33,9 +33,18 @@ def acquire(spec):
 def parse_csv(raw):
     try:txt=raw.decode('utf-8-sig')
     except UnicodeDecodeError:txt=raw.decode('cp1252')
-    dialect=csv.Sniffer().sniff(txt[:12000],delimiters=',;\t')
-    reader=csv.DictReader(io.StringIO(txt),dialect=dialect)
-    return reader.fieldnames,list(reader)
+    candidates=[]
+    for delimiter in (',',';','\t'):
+        try:rows=[r for r in csv.reader(io.StringIO(txt),delimiter=delimiter,strict=True) if r]
+        except csv.Error:continue
+        if rows and len(rows[0])>1 and all(len(r)==len(rows[0]) for r in rows):
+            candidates.append((delimiter,rows))
+    if len(candidates)!=1:
+        raise ValueError('CSV delimiter ambiguous or inconsistent row widths')
+    _,rows=candidates[0]
+    fields=rows[0]
+    if len(set(fields))!=len(fields):raise ValueError('Duplicated original CSV column names')
+    return fields,[dict(zip(fields,r)) for r in rows[1:]]
 
 def load_source():
     raw,receipt=acquire(DATA)
