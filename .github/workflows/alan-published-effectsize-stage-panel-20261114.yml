@@ -17,95 +17,70 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - name: Acquire exact public CC0 author dataset and code
+      - name: Acquire byte-identical original author data
         run: |
-          set -euo pipefail
           mkdir -p source_panel
           python - <<'PY'
-          import csv, hashlib, io, json, urllib.request
+          import csv,hashlib,io,json,urllib.request,urllib.parse
           from pathlib import Path
           out=Path('source_panel')
           def get(url):
               req=urllib.request.Request(url,headers={'User-Agent':'ALAN-primary-effect-source-audit/1.0'})
-              with urllib.request.urlopen(req,timeout=45) as r:
-                  b=r.read(3000000)
-              return b
-          record=json.loads(get('https://zenodo.org/api/records/3998338'))
-          assert str(record['id'])=='3998338'
-          out.joinpath('zenodo_3998338.json').write_text(json.dumps(record,indent=2))
+              with urllib.request.urlopen(req,timeout=35) as r:return r.read(5000000)
+          rec=json.loads(get('https://zenodo.org/api/records/3998338'))
+          assert str(rec['id'])=='3998338'
+          out.joinpath('zenodo_3998338.json').write_text(json.dumps(rec,indent=2))
           expected={'Sanders_et_al_datafile.csv':'665c1077ea63b2e11ededd24371ce0cf','Sanders_meta__rcode.r':'4f5025fae8097e2826c291fa4e9d46d0'}
-          receipt={'dataset_doi':'10.5061/dryad.wpzgmsbjn','article_doi':'10.1038/s41559-020-01322-x','archive_id':3998338,'source_license':'CC0-1.0','snapshot':'2020 Zenodo mirror; do not assume latest Dryad revision','files':[],'new_effect_model_fitted':False}
-          for f in record['files']:
-              name=f['key']
-              if name not in expected:continue
-              raw=get(f['links']['self'])
-              md5=hashlib.md5(raw).hexdigest()
-              assert md5==expected[name],(name,md5,'archived content changed')
-              assert f['checksum']=='md5:'+md5
-              out.joinpath(name).write_bytes(raw)
-              receipt['files'].append({'name':name,'bytes':len(raw),'md5':md5,'sha256':hashlib.sha256(raw).hexdigest()})
-              if name.endswith('.csv'):
-                  # Metadata scan uses a reversible single-byte decode. Original bytes stay unchanged.
-                  txt=raw.decode('latin-1')
-                  assert txt.encode('latin-1')==raw
-                  dialect=csv.Sniffer().sniff(txt[:5000])
-                  rows=list(csv.DictReader(io.StringIO(txt),dialect=dialect))
-                  receipt['rows']=len(rows)
-                  receipt['columns']=list(rows[0])
-                  receipt['delimiter']=dialect.delimiter
-                  receipt['text_scan_encoding']='latin-1 byte-preserving; numeric fields ASCII; source author names may require charset audit'
-                  print('SOURCE_COLUMN_NAMES',list(rows[0]))
-                  for col in rows[0]:
-                      values=sorted({r[col] for r in rows})
-                      if len(values)<80:
-                          print('SOURCE_VALUES',col,values)
+          receipt={'doi':'10.5061/dryad.wpzgmsbjn','archive':3998338,'license':'CC0-1.0','files':[]}
+          for f in rec['files']:
+              n=f['key']
+              if n not in expected:continue
+              b=get(f['links']['self']); md5=hashlib.md5(b).hexdigest()
+              assert md5==expected[n] and f['checksum']=='md5:'+md5
+              out.joinpath(n).write_bytes(b)
+              receipt['files'].append({'name':n,'bytes':len(b),'md5':md5,'sha256':hashlib.sha256(b).hexdigest()})
+              if n.endswith('.csv'):
+                  txt=b.decode('latin1'); assert txt.encode('latin1')==b
+                  rows=list(csv.DictReader(io.StringIO(txt,newline=None)))
+                  assert len(rows)==1304 and len(rows[0])==30
+                  receipt['nrows']=len(rows);receipt['columns']=list(rows[0])
+                  receipt['decode']='latin1 reversible; universal newlines in parser only'
           assert len(receipt['files'])==2
-          try:
-              dryad=json.loads(get('https://datadryad.org/api/v2/datasets/doi%3A10.5061%2Fdryad.wpzgmsbjn'))
-              out.joinpath('dryad_current_metadata.json').write_text(json.dumps(dryad,indent=2))
-              receipt['dryad_current_metadata_obtained']=True
-          except Exception as e:
-              receipt['dryad_current_metadata_obtained']=False
-              receipt['dryad_metadata_error']=type(e).__name__
           out.joinpath('source_receipt.json').write_text(json.dumps(receipt,indent=2))
-          print('AUTHENTIC_EFFECT_DATA_RECEIPT',json.dumps(receipt))
+          print('SANDERS_SOURCE_RECEIPT',json.dumps(receipt))
           PY
-      - name: Acquire newer spectrum meta-analysis through official Dryad API
+      - name: Inspect official 2025 spectrum data source and download public files
+        if: always()
         run: |
           python - <<'PY'
           import hashlib,json,urllib.request,urllib.parse
           from pathlib import Path
-          out=Path('source_panel'); receipt={'doi':'10.5061/dryad.xwdbrv1q0','status':'NOT_ACQUIRED','files':[]}
+          out=Path('source_panel');out.mkdir(exist_ok=True)
+          receipt={'doi':'10.5061/dryad.xwdbrv1q0','status':'NOT_ACQUIRED','files':[]}
           def get(url):
-              req=urllib.request.Request(url,headers={'User-Agent':'ALAN-primary-effect-source-audit/1.0','Accept':'application/json'})
+              req=urllib.request.Request(url,headers={'User-Agent':'ALAN-primary-effect-source-audit/1.0'})
               with urllib.request.urlopen(req,timeout=35) as r:return r.read(5000000)
           def url(href):return urllib.parse.urljoin('https://datadryad.org',href)
           try:
               meta=json.loads(get('https://datadryad.org/api/v2/datasets/doi%3A10.5061%2Fdryad.xwdbrv1q0'))
               out.joinpath('czarnecka_dataset_metadata.json').write_text(json.dumps(meta,indent=2))
-              links=meta.get('_links',{})
-              print('DRYAD_DATASET_LINKS',links)
-              ver=links.get('stash:version',links.get('stash:versions',{}))
-              v=json.loads(get(url(ver['href'])))
-              out.joinpath('czarnecka_version_metadata.json').write_text(json.dumps(v,indent=2))
-              print('DRYAD_VERSION_LINKS',v.get('_links',{}))
-              fref=v['_links']['stash:files']['href']
-              fl=json.loads(get(url(fref)))
+              links=meta.get('_links',{});print('DRYAD_DATASET_LINKS',links)
+              ref=links.get('stash:version',links.get('stash:versions',{}))
+              v=json.loads(get(url(ref['href'])))
+              out.joinpath('czarnecka_version_metadata.json').write_text(json.dumps(v,indent=2));print('DRYAD_VERSION_LINKS',v.get('_links',{}))
+              fl=json.loads(get(url(v['_links']['stash:files']['href'])))
               out.joinpath('czarnecka_files_metadata.json').write_text(json.dumps(fl,indent=2))
               for f in fl.get('_embedded',{}).get('stash:files',[]):
-                  print('DRYAD_FILE_METADATA',f)
-                  fname=f.get('path',f.get('filename','unknown'))
-                  dl=f.get('_links',{}).get('stash:download',{})
+                  print('DRYAD_FILE',json.dumps(f))
+                  fname=f.get('path',f.get('filename','unknown'));dl=f.get('_links',{}).get('stash:download',{})
                   if dl.get('href') and (fname.endswith('.xlsx') or fname.endswith('.md')):
-                      raw=get(url(dl['href']))
-                      if fname.endswith('.xlsx'):assert raw[:2]==b'PK','not XLSX'
-                      out.joinpath(Path(fname).name).write_bytes(raw)
-                      receipt['files'].append({'name':fname,'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'declared_digest':f.get('digest'),'source_file_id':f.get('id')})
+                      b=get(url(dl['href']))
+                      if fname.endswith('.xlsx'):assert b[:2]==b'PK','not XLSX'
+                      out.joinpath(Path(fname).name).write_bytes(b)
+                      receipt['files'].append({'name':fname,'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest(),'declared_digest':f.get('digest'),'source_file_id':f.get('id')})
               receipt['status']='ACQUIRED' if receipt['files'] else 'METADATA_ONLY'
-          except Exception as e:
-              receipt['error']=type(e).__name__+': '+str(e)
-          out.joinpath('czarnecka_source_receipt.json').write_text(json.dumps(receipt,indent=2))
-          print('NEWER_SOURCE_RECEIPT',json.dumps(receipt))
+          except Exception as e:receipt['error']=type(e).__name__+': '+str(e)
+          out.joinpath('czarnecka_source_receipt.json').write_text(json.dumps(receipt,indent=2));print('NEWER_SOURCE_RECEIPT',json.dumps(receipt))
           PY
       - uses: actions/upload-artifact@v4
         if: always()
