@@ -5,7 +5,7 @@ Lu et al. Ecology and Evolution 2026, DOI 10.1002/ece3.74368. Raw original
 Date.xlsx is inside Europe PMC supplementaryFiles outer ZIP and the paper's
 ECE3-16-e74368-s001.zip inner ZIP. Original workbook's sha256 preverified.
 Primary analysis:
-  (i) genuine paired experiment at block×round×replicate×diel scale,
+  (i) genuine paired experiment at block×round×diel scale (not pseudo-matched repeat),
   (ii) exact 2^5 block-sign randomization on mean visit differences,
   (iii) weighted raw visitation redistribution, and
   (iv) plant-specific positive documentation overlap (no false plant absence).
@@ -98,7 +98,8 @@ def original_visitation_design(a):
             set(a.block.astype(int))=={1,2,3,4,5} and
             set(a.repeat.astype(int))=={1,2,3,4,5},
             "Original 4 rounds, 5 blocks, 5 replicates changed")
-    require(not a.duplicated(CORE).any(),"Original experimental survey key duplicated")
+    # Source repeat labels are not asserted unique: check block×round means
+    # rather than invent a session-level lit/dark match from reused labels.
     for c in ["abundance"]+list(GUILDS.values()):
         a[c]=pd.to_numeric(a[c],errors="raise")
         require(a[c].ge(0).all() and np.isfinite(a[c]).all(),
@@ -120,10 +121,11 @@ def original_design_model(a):
                 "Original within-period trial count drift")
         each={}
         for label,col in cols.items():
-            unit=source.pivot(index=["time","block","repeat"],
-                              columns="treatment",values=col)
-            require(unit.shape==(100,2) and unit.notna().all().all(),
-                    "Original light/dark pairwise survey matching failed")
+            # Original source duplicates some repeat labels. Equal-weight
+            # within 20 block×round units, then 5 source blocks independent.
+            unit=source.groupby(["time","block","treatment"],observed=True)[col].mean().unstack("treatment")
+            require(unit.shape==(20,2) and unit.notna().all().all(),
+                    "Original 20 block-round illuminated/dark comparisons not matched")
             blockdelta=(unit["Lit"]-unit["Unlit"]).groupby(level="block").mean()
             require(len(blockdelta)==5,"Original block factor missing")
             by=source.groupby("treatment")[col].agg(["sum","mean"])
@@ -136,7 +138,8 @@ def original_design_model(a):
                 "lit_dark_visit_ratio":float(lit/dark) if dark>0 else None,
                 "relative_change_percent":float(100*difference/dark) if dark>0 else None,
                 "block_level_difference":exact_paired_block_sign(blockdelta.to_numpy()),
-                "n_paired_survey_units":int(len(unit))}
+                "n_paired_block_rounds":int(len(unit)),
+                "source_repeat_labels_not_forced_to_be_unique":True}
         require(abs(sum(each[x]["net_difference_original_100_surveys_each"]
                         for x in SOURCE_GUILDS)
                     -each["Total"]["net_difference_original_100_surveys_each"])<1e-7,
@@ -147,7 +150,9 @@ def original_design_model(a):
         replacement=(d/-m) if d>0 and m<0 else None
         outcome[period]={"n_visitation_source_records":len(source),
             "independent_field_blocks":5,"survey_rounds":4,
-            "replicates_per_block_round_treatment":5,
+            "nominal_replicate_levels":5,
+            "actual_block_round_light_record_count_range":[int(source.groupby(["time","block","treatment"],observed=True).size().min()),int(source.groupby(["time","block","treatment"],observed=True).size().max())],
+            "source_repeated_full_design_keys":int(source.duplicated(CORE).sum()),
             "experimental_survey_pair_group_effects":each,
             "fly_visit_gain_divided_by_moth_visit_loss_if_opposite_signs":replacement,
             "actual_pollen_replacement_measured":False,
