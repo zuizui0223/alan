@@ -103,7 +103,7 @@ def main(root, out):
     contains(root,"docs/ALAN_301_ORIGINAL_VISITOR_OBS_OA_SAMPLING_SELECTION_20261114.md",
              ["**92**", "247 of the 301", "**36 candidate OA links**"])
     contains(root,"docs/ALAN_TRUE_WENZELL2019_POPULATIONYEAR_GUILD_REPRODUCTION_LINK_20261114.md",
-             ["**6**", "5/6 mapped", "within **1 km**"])
+             ["SIX of these seven", "5/6 mapped", "within **1 km**"])
     contains(root,"docs/ALAN_ORIGINAL_KAYS2012_GAMBOA_KINKAJOU_FRUIT_CLOSED_SEMANTICS_20261114.md",
              ["**bees can pass**","2010", "same"])
 
