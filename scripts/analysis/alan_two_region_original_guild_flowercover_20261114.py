@@ -145,6 +145,11 @@ def standardize_tibet():
                     "log_lit_dark_per_survey":lograte(lit,dark,n_lit,n_dark)}
             row["three_order_JS_divergence_bits"]=jsbits(
                 [c[k][0] for k in ORDERS],[c[k][1] for k in ORDERS])
+            all_dark=[float(a.loc[a.treatment.eq("Unlit"),LU[k]].sum())
+                      for k in ("Diptera","Hymenoptera","Coleoptera","Lepidoptera","Other")]
+            all_lit=[float(a.loc[a.treatment.eq("Lit"),LU[k]].sum())
+                     for k in ("Diptera","Hymenoptera","Coleoptera","Lepidoptera","Other")]
+            row["five_order_JS_divergence_bits"]=jsbits(all_dark,all_lit)
             records[period].append(row)
     return records,{
         "source_original_workbook_SHA256":XLSX_SHA,
@@ -209,6 +214,24 @@ def main(out):
     snorm=summarize(swiss,cover=True)
     sraw=summarize(swiss)
     tnight=summarize(tibet["Nocturnal"])
+    night5=np.array([x["five_order_JS_divergence_bits"] for x in tibet["Nocturnal"]])
+    day5=np.array([x["five_order_JS_divergence_bits"] for x in tibet["Diurnal"]])
+    diel_difference=night5-day5
+    require(len(diel_difference)==5 and np.isfinite(diel_difference).all(),
+            "No same original five-block diel visitor composition support")
+    cross_diel={
+       "original_daytime_five_order_mean_JS_divergence_bits":float(day5.mean()),
+       "original_nocturnal_five_order_mean_JS_divergence_bits":float(night5.mean()),
+       "original_nocturnal_minus_daytime_mean_JS_diff_bits":float(diel_difference.mean()),
+       "independent_blocks_stronger_night_than_day":int(np.sum(diel_difference>0)),
+       "independent_blocks_stronger_day_than_night":int(np.sum(diel_difference<0)),
+       "source_original_block_diel_difference_range":
+            list(map(float,[diel_difference.min(),diel_difference.max()])),
+       "all_five_order_source_includes_nocturnal_Lepidoptera":True,
+       "no_actual_flower_phenological_mismatch_measured":True,
+       "five_source_guild_counts_not_always_equal_abundance_total":True,
+       "single_geographic_experiment_no_global_effect":True,
+    }
     across={}
     for guild in ORDERS:
         # Difference between TWO individual experiments, not random-effects
@@ -237,6 +260,7 @@ def main(out):
          "Tibet2024_daytime_per_survey_original":tday,
          "Tibet2024_nocturnal_per_survey_original":tnight},
        "cross_field_difference_NOT_meta":across,
+       "Tibetan_five_order_within_block_day_night_composition_comparison":cross_diel,
        "source_methodological_caveats":{
            "not_global_ALAN_pollination_syndrome_causal_effect":True,
            "Swiss_plant_cover_proxy_ascertained_at_original_source_event":True,
@@ -255,7 +279,7 @@ def main(out):
           json.dumps({"status":result["status"],"sources":result["sources"],
                       "Swiss_site_normalized":snorm,
                       "Swiss_raw":sraw,"Tibet_day":tday,
-                      "Tibet_night":tnight,"cross_site":across},
+                      "Tibet_night":tnight,"source_five_order_day_night":cross_diel,"cross_site":across},
                       ensure_ascii=False),flush=True)
     return result
 
