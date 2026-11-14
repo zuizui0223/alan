@@ -5,6 +5,7 @@ on:
     paths:
       - scripts/analysis/alan_crossstudy_source_intake_20261114.py
       - scripts/analysis/alan_crossstudy_scope_20261114.py
+      - scripts/analysis/alan_ceiba2022_original_source_20261114.py
       - tests/test_alan_crossstudy_scope_20261114.py
       - docs/ALAN_CROSSSTUDY_SCOPE_AND_DARK_SPILLOVER_20261114.md
       - .github/workflows/alan-crossstudy-reproduction-source-20261114.yml
@@ -28,7 +29,12 @@ jobs:
           set -euo pipefail
           python -m scripts.analysis.alan_crossstudy_source_intake_20261114 --out intake > intake_verbose.log
           python -m scripts.analysis.alan_crossstudy_scope_20261114 --source intake/source_tables.json --out intake/ALAN_scope_and_spillover_source.json
+      - name: Acquire public author bat-pollinated tree reproduction CSV and inspect original grain
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_ceiba2022_original_source_20261114 --out intake/ALAN_Ceiba2022_source_receipt.json
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: alan-original-crossstudy-scope-and-spillover
           path: intake/*.json
