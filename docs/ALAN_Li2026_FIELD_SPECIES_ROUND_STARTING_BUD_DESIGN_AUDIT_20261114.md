@@ -36,6 +36,35 @@ For a noncausal availability-denominator sensitivity (NOT actual per-open-flower
 
 This baseline-opportunity normalization still preserves a positive observed source linear-control contrast, but **is NOT a matched causal adjustment**, because initial buds are not ovules or the complete flowering resource availability. It cannot identify nocturnal insect function or linear illumination geometry.
 
+## Actual newly executed matched analysis (author-source replay)
+[Initial signed original Git SHA replay #43582105435 SUCCESS](https://github.com/zuizui0223/alan/actions/runs/43582105435); all four synthetic guard tests and original source matched-source reanalysis passed. Aggregate-only artifact **#14109225001**, SHA256 `22f416d2f80db0284f56365f24a8b85cce37ac2284db4c41f590658469546a2d`.
+
+| Original matched site-support | L-C | L-P | P-C |
+|---|---:|---:|---:|
+| Species × hayfield support (not independent sites) | 8 | 9 | 8 |
+| Positive / tie / negative | **6 / 2 / 0** | **4 / 4 / 1** | **4 / 3 / 1** |
+| Equal-support within-stratum seed-presence difference | **+0.4451** | **+0.2722** | **+0.2014** |
+| Species × hayfield × round support | 12 | 13 | 12 |
+| Positive / tie / negative in round-matched strata | **7 / 5 / 0** | **7 / 4 / 2** | **3 / 6 / 3** |
+| Equal-support within-stratum risk difference | **+0.4167** | **+0.3462** | **0.0000** |
+
+These 8–13 cells are **not 8–13 independent experimental hayfields**. They represent the same three original spatial hayfields and deliberately do not report misleading cluster p-values.
+
+Sensitivity to the flowering round: L versus C is **+0.4792** at round 1 (all three taxa), **+0.8000** at round 2 (only ML, n=3 L and n=5 C), and **+0.0333** at round 3 (only ML, n=6 L and n=5 C). The species composition and round are confounded; there is no valid general season-dependent ALAN coefficient. L-P is **+0.1042, +1.0000, +0.3333** by rounds, with extremely small round-2 samples. P-C changes sign across the rounds: **+0.3750, −0.2000, −0.3000**.
+
+Leave out each entire **plant species** (not independent geographic replication): source pooled array-minus-dark seed-presence differences remain positive **+0.5333** (without ML), **+0.4143** (without SN), and **+0.3961** (without ZC). The positive array-control direction is not explained by a single plant species in these descriptive subset checks.
+
+### Worst-case bounds for the 90 potential versus 79 archived plant observations
+Assume for sensitivity ONLY that the 11 unavailable potential source rows represent unknown outcome-bearing individuals. Allocate any hypothetical missing plants in the **most unfavorable possible way**: extra **failures** to the first arm and extra **successes** to the comparison arm (remaining treated arms can be ignored). No real missing trial treatment assignments are asserted. For each number M from 0 upward, exhaust all integer allocations x failures to A and M−x successes to B; minimize `p_A-p_B`.
+
+| Comparison | Observed source risk difference | Worst possible allocation of all 11 unrecorded plants | First possible algebraic reversal |
+|---|---:|---:|---:|
+| L−C | **+0.43305** | **+0.18671** (6 L failures, 5 C successes) | **23** such hypothetical missing observations |
+| L−P | **+0.26074** | **+0.03571** (8 L failures, 3 P successes) | **14** hypothetical |
+| P−C | **+0.17231** | **−0.04202** (3 P failures, 8 C successes) | **9** hypothetical |
+
+This calculation is a **mathematical worst-case pooled-direction bound**, not a scientifically established missingness model, proof that potential deployments occurred, or field-/plant-stratified causal inference. In particular, the per-field signs may be changed by allocating unknown observations to specific small fields; no claimed field-robustness to the 11 absent potential rows.
+
 ## Ecological interpretation
 The strongest source-replicated claim is a **conditional POSITIVE reproductive response to one compound linear-array treatment compared with an unlit control**, robust in direction across three fields, and preserved in observed source seed/fruit/bud ratios.
 
