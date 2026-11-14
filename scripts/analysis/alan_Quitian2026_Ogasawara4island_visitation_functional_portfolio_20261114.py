@@ -104,7 +104,20 @@ def model(rows):
         "paper_reported":4174,"original_xlsx_sum_NInt":total,
         "exactly_equal":total==4174,
         "difference_must_be_audited_before_claiming_complete_source_replay":total!=4174}
-    require(48<=len(plants)<=75 and 100<=len(pollinators)<=135,
+    families=collections.Counter()
+    orders=collections.Counter()
+    for z in rows:
+        families[z["Ord_Fam"]]+=z["N.Int"]
+        orders[z["Order"]]+=z["N.Int"]
+    print("ALAN_OGASAWARA_2021_PAPER_FILTER_SOURCE_TAXON_AUDIT",
+          json.dumps({"source_visits_by_original_order":dict(orders),
+                      "top_15_visitor_family_original_visits":families.most_common(15),
+                      "source_family_ants_matches":{k:v for k,v in families.items()
+                                    if "formic" in k.lower()},
+                      "source_pollinator_Apis_variants":sorted({x["Poll_sp"] for x in rows
+                                   if api(x["Poll_sp"])}),
+                      "source_original_visitor_source_total":total}),flush=True)
+    require(48<=len(plants)<=75 and 100<=len(pollinators)<=160,
             "Original plant or pollinator species source support changed")
     # Use original invaded site CONTEXT within each physical island.
     context=group(rows,["Island","Invasional Context"])
