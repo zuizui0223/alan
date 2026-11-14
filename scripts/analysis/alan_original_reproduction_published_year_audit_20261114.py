@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Audit independently confirmed source chronology mismatch (Wonderlin study).
+"""Audit published companion-article chronology discrepancy (Wonderlin study).
 
-Original author's study-year tag is 2022, while published Wonderlin
+Original meta-analysis study-year field is 2022, while companion published Wonderlin
 (Ecological Entomology, 2024, DOI 10.1111/een.13296) states its floral visitor
 videos were summer 2022 and its actual day/night reproductive bagging trial was
-summer 2019. This is *source metadata*, not a new site/year-light assignment.
+summer 2019. The original source is labelled a 2023 thesis, so the companion article's 2019 treatment date must not be silently substituted as the thesis's definitive trial date without checking original thesis treatment data. This is a source-chronology sensitivity, not a new site/year-light assignment.
 
 Strictly refit the unchanged 301-source historical-light night reproductive
 association after excluding the ONE source publication with this documented
-year discordance. No causal light inference and no new corrected PCNL values
+publication-level year discrepancy. No causal light inference and no new corrected PCNL values
 are claimed; zero individual plant/site/year records are exported.
 """
 from __future__ import annotations
@@ -82,6 +82,8 @@ def audit(joined, receipt, out):
             "published_later_video_visitor_year": PUBLISHED_VIDEO_OBSERVATION_YEAR,
             "published_video_and_experiment_are_NOT_same_year": True,
             "original_year_could_include_post_experiment_light_if_used_as_start": True,
+            "parent_thesis_trial_source_date_not_independently_verified": True,
+            "2019_companion_paper_may_not_be_exact_source_of_2023_thesis_effect": True,
             "original_contrasts_affected_by_study_exclusion": int(len(w)),
             "number_independent_source_studies_removed": 1,
             "we_did_not_impute_corrected_pcNL_without_original_annual_pixel_matching": True,
@@ -95,6 +97,7 @@ def audit(joined, receipt, out):
         },
         "guardrails": {
             "original_study_source_2022_may_be_visitor_2022_not_trial_2019": True,
+            "chronology_discrepancy_is_flag_not_proven_original_thesis_date_error": True,
             "no_reading_of_narrative_as_original_pollen_deposition": True,
             "no_assumption_87_DOI_metadata_links_identify_field_visitors": True,
             "comparison_not_a_causal_effect_of_ALAN": True,
