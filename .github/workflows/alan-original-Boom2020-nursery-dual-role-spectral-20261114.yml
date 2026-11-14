@@ -1,0 +1,54 @@
+name: ALAN nursery pollination positive pollen negative seed predation spectral source
+on:
+  push:
+    branches: [analysis/alan-nursery-pollinator-seed-predation-spectral-light-20261114]
+    paths:
+      - scripts/analysis/alan_original_Boom2020_nursery_pollinator_seedpredation_spectra_20261114.py
+      - tests/test_alan_original_Boom2020_nursery_pollinator_seedpredation_spectra_20261114.py
+      - .github/workflows/alan-original-Boom2020-nursery-dual-role-spectral-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-publisher-table:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify exact original-source parsing and output decomposition semantics
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/analysis/alan_original_Boom2020_nursery_pollinator_seedpredation_spectra_20261114.py
+          python -m unittest discover -s tests -p test_alan_original_Boom2020_nursery_pollinator_seedpredation_spectra_20261114.py -v
+      - name: Read original Boom 2020 EuropePMC publisher JATS Table 1 and publish aggregate only
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          mkdir -p publisher_spectral_source
+          python -m scripts.analysis.alan_original_Boom2020_nursery_pollinator_seedpredation_spectra_20261114 \
+            --out publisher_spectral_source/ALAN_Boom2020_primary_nursery_seedpredation_spectral_table.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          z=json.loads(Path("publisher_spectral_source/ALAN_Boom2020_primary_nursery_seedpredation_spectral_table.json").read_text())
+          assert z["status"]=="PRIMARY_PUBLISHED_TABLE_VERIFIED_ALGEBRAIC_MECHANISM_ONLY"
+          assert z["source"]["independent_field_sites"]==4
+          a=z["original_light_treatment_table_and_decomposition"]
+          assert a["Dark"]["published_original_estimated_seeds_per_flower"]==117
+          assert a["Green"]["published_original_estimated_seeds_per_flower"]==61
+          assert a["Green"]["published_original_fruit_infestation"]==.53
+          assert z["source_original_reported_inferential_tests"]["estimated_seeds_per_flower_ANOVA_p"]==.63
+          assert z["functional_interpretation"]["no_global_ALAN_by_syndrome_coefficient_estimated"]
+          print("ALAN_NURSERY_POLLINATOR_SEED_PREDATION_REAL_PRIMARY_JATS_TABLE_SUCCESS",flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-primary-Boom2020-spectral-nursery-pollinator-seed-predation-20261114
+          path: publisher_spectral_source/
+          retention-days: 90
+          if-no-files-found: warn
