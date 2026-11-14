@@ -1,0 +1,107 @@
+{
+  "schema": "ALAN_original_92_publication_level_direct_visitor_taxa_screen_v1",
+  "status": "FIVE_ORIGINAL_SOURCE_PUBLICATION_LINKS_READ_NO_GLOBAL_SITE_YEAR_POLLINATOR_GUILD_ASSIGNED",
+  "evidence_levels": [
+    "original_daynight_reproductive_study_flag",
+    "public_primary_article_describes_visitors",
+    "same_study_focal_plant_or_geographic_region",
+    "same_site_and_experiment_year_verified",
+    "effective_pollen_delivery_individually_measured"
+  ],
+  "papers": [
+    {
+      "source_study": "Marques_2015",
+      "published_source_year_in_meta_analysis": 2010,
+      "primary_public_article": "https://new.scielo.br/j/aabc/a/cSzbHtNkrVKjms8RK76zHMh/?lang=en",
+      "article_year": 2015,
+      "article_relation": "same original published study",
+      "source_identifier_original": "10.590/0001-3765201520140340",
+      "source_identifier_issue": "journal and PubMed print 10.590 prefix; public bibliographic API DOI normalization not established",
+      "reported_visitor_guilds": [
+        "nocturnal bats including Glossophaga soricina with pollination behavior",
+        "diurnal hummingbirds contacting reproductive structures",
+        "moths Noctuidae and Sphingidae visits only; pollen transfer not confirmed"
+      ],
+      "site_match_status": "paper study area reported; source georeference quality not formally validated",
+      "year_match_status": "field visitor observation year not confirmed against original 2010 experiment label",
+      "same_plant_site_year_verified": false,
+      "group_specific_effectiveness": "bat pollination documented; moth effective pollen transfer not demonstrated"
+    },
+    {
+      "source_study": "Ganesh_2000",
+      "published_source_year_in_meta_analysis": 1998,
+      "primary_public_article": "https://journals.flvc.org/selbyana/article/view/121717",
+      "article_year": 2000,
+      "article_relation": "same original published study",
+      "source_identifier_original": "https://journals.flvc.org/selbyana/article/view/121717",
+      "reported_visitor_guilds": [
+        "nonvolant arboreal mammalian flower consumers",
+        "bats",
+        "birds"
+      ],
+      "site_match_status": "paper reports Kakachi study site; exact original source-site identity not independently mapped",
+      "year_match_status": "article study interval 1996-1998 includes 1998 source label but original experiment dates not individually tied to visitor records",
+      "same_plant_site_year_verified": false,
+      "group_specific_effectiveness": "predator-pollinator possibility and pollen carriage reported, guild-specific measured fertilization not established for each visitor"
+    },
+    {
+      "source_study": "Kays_2012",
+      "published_source_year_in_meta_analysis": 2010,
+      "primary_public_article": "https://revistas.up.ac.pa/index.php/mesoamericana/article/view/907",
+      "article_year": 2012,
+      "article_relation": "same original published study",
+      "source_identifier_original": null,
+      "reported_visitor_guilds": [
+        "13 diurnal bird species",
+        "2 diurnal mammal species",
+        "5 nocturnal nonflying mammals",
+        "at least 2 bat species"
+      ],
+      "site_match_status": "Panamanian balsa-tree study; original reproductive source site and visitor focal trees not cross-checked",
+      "year_match_status": "original source experiment labeled 2010; field visitor observation year not independently confirmed",
+      "same_plant_site_year_verified": false,
+      "group_specific_effectiveness": "source reports visitation and animal movements; visitor guild counts do not all prove pollen delivery"
+    },
+    {
+      "source_study": "Wonderlin_2023",
+      "published_source_year_in_meta_analysis": 2022,
+      "primary_public_article": "https://doi.org/10.1111/een.13296",
+      "article_year": 2024,
+      "article_relation": "companion published journal article to source 2023 thesis; exact thesis outcome provenance not audited",
+      "source_identifier_original": "NA - have PDF",
+      "reported_visitor_guilds": [
+        "day: Diptera and non-ant Hymenoptera among leading visitors",
+        "night: ants, Dermaptera, Hemiptera frequently observed",
+        "moths present at low visit frequency"
+      ],
+      "site_match_status": "companion paper describes two Michigan gardens; original source single coordinate not independently mapped to one garden",
+      "year_match_status": "original source tag 2022; companion article bagging experiment summer 2019, visitor video summer 2022; do not treat as contemporaneous",
+      "same_plant_site_year_verified": false,
+      "group_specific_effectiveness": "article reports day/night exclusion fruit-seed response; taxon-specific pollen deposition was not measured"
+    },
+    {
+      "source_study": "Wenzell_2021",
+      "published_source_year_in_meta_analysis": 2019,
+      "primary_public_article": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11112297/",
+      "article_year": 2024,
+      "article_relation": "later open article on related original thesis experiment and visitor census",
+      "source_identifier_original": "NA - have PDF",
+      "reported_visitor_guilds": [
+        "hawkmoths at night for a subset of populations",
+        "small diurnal bees in some populations"
+      ],
+      "site_match_status": "published 9 experimental populations and 23 separate visitation census populations not yet matched one-to-one to original six coordinates",
+      "year_match_status": "published exclusion experiments include 2012,2013,2019; visitor census 2017-2019; 2019 temporal opportunity but site-pair matching not verified",
+      "same_plant_site_year_verified": false,
+      "group_specific_effectiveness": "ecological fitness contribution analyzed in paper but source site-year guild record not yet connected"
+    }
+  ],
+  "source_limitations": {
+    "no_guild_moth_assigned_from_GloBI_absence": true,
+    "source_same_study_paper_not_equivalent_to_exact_study_site_year": true,
+    "no_original_rare_plant_geographic_rows_exported": true,
+    "direct_visitation_not_automatically_effective_pollination": true,
+    "year_2019_article_vs_2022_meta_thesis_may_be_separate_data": true,
+    "global_inferential_comparison_not_eligible_without_independent_confirmed_study_support": true
+  }
+}
