@@ -1,0 +1,50 @@
+name: ALAN actual Dryad multi-species moth spectrum activity original source metadata
+on:
+  push:
+    branches: [analysis/alan-multispecies-moth-activity-light-spectrum-dryad-20261114]
+    paths:
+      - scripts/analysis/alan_moth23_Dryad_original_source_manifest_20261114.py
+      - tests/test_alan_moth23_Dryad_original_source_manifest_20261114.py
+      - .github/workflows/alan-23moths-Dryad-public-source-manifest-20261114.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  genuine-dryad-original-source-manifest:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify public Dryad DOI original file metadata guards
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/analysis/alan_moth23_Dryad_original_source_manifest_20261114.py
+          python -m unittest discover -s tests -p test_alan_moth23_Dryad_original_source_manifest_20261114.py -v
+      - name: Fetch true corrected source metadata for moth 23 species experiments
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p dryad_public_metadata
+          python -m scripts.analysis.alan_moth23_Dryad_original_source_manifest_20261114 \
+            --out dryad_public_metadata/ALAN_real_Dryad_moth_23species_source_manifest.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("dryad_public_metadata/ALAN_real_Dryad_moth_23species_source_manifest.json")
+          x=json.loads(p.read_text())
+          assert x["status"]=="ORIGINAL_PUBLIC_DATASET_MANIFEST_NO_ACTIVITY_RESULT"
+          assert x["data_not_downloaded_this_phase"]
+          assert x["DOI"]=="doi:10.5061/dryad.jq2bvq8ps"
+          print("ALAN_MOTH23_REAL_PUBLIC_API_METADATA_SOURCE_SUCCESS")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-public-Dryad-corrected-23species-moth-data-manifest-20261114
+          path: dryad_public_metadata/
+          if-no-files-found: warn
+          retention-days: 90
