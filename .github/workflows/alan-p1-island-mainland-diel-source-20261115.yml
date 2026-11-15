@@ -1,0 +1,78 @@
+name: ALAN P1 island/mainland authentic night-dependence source
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - scripts/analysis/alan_p1_island_mainland_diel_source_20261115.py
+      - tests/test_alan_p1_island_mainland_diel_source_20261115.py
+      - docs/ALAN_P1_ISLAND_MAINLAND_SOURCE_SCOPE_20261115.md
+      - .github/workflows/alan-p1-island-mainland-diel-source-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-verified-P1:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install numeric source dependencies and test geographic failure gates
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3
+          python -m py_compile scripts/analysis/alan_p1_island_mainland_diel_source_20261115.py
+          python -m unittest discover -s tests -p test_alan_p1_island_mainland_diel_source_20261115.py -v
+      - name: Reacquire original immutable 1652-row author source and SHA check
+        run: |
+          set -euo pipefail
+          mkdir -p original_p1
+          python - <<'PY'
+          import hashlib,urllib.request
+          from pathlib import Path
+          uri='https://raw.githubusercontent.com/liamkendall/bumble-bat/1945b7c114ad87000608ce6018d0280001c04ef1/data/DvN_LiteratureDataClean_2024-09-13.csv'
+          request=urllib.request.Request(uri,headers={'User-Agent':'ALAN-P1-verified-night-exclusion/1.0'})
+          with urllib.request.urlopen(request,timeout=60) as resp: raw=resp.read(2_000_001)
+          sha=hashlib.sha256(raw).hexdigest()
+          assert len(raw)<2_000_001
+          assert sha=='1d9c4c778206584130308b99ba21d902b0ccf1047118dfcf52abaec9d652e2aa'
+          Path('original_p1/authentic_diel_source.csv').write_bytes(raw)
+          print('P1_ORIGINAL_SOURCE_SHA_VERIFIED',sha,len(raw))
+          PY
+      - name: Source anchored P1 geographic evidence and falsification gate
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_p1_island_mainland_diel_source_20261115 \
+            --source original_p1/authentic_diel_source.csv \
+            --out original_p1/ALAN_P1_island_mainland_aggregate.json
+          python - <<'PY'
+          from pathlib import Path
+          import json,math
+          p=Path('original_p1/ALAN_P1_island_mainland_aggregate.json')
+          z=json.loads(p.read_text())
+          assert (z['source_rows'],z['source_reproductive_panels'],z['source_studies'])==(1652,340,113)
+          assert z['small_sea_island_n_studies']==10
+          assert z['small_sea_island_n_panels']==20
+          assert z['within_study_island_mainland_overlap']==0
+          assert z['geographic_groups']['oceanic']['n_studies']==6
+          assert z['geographic_groups']['continent']['n_studies']==98
+          f=z['oceanic_versus_continent']['fruit_proportion']
+          s=z['oceanic_versus_continent']['seed_per_fruit']
+          assert (f['island_studies'],f['mainland_studies'])==(2,33)
+          assert (s['island_studies'],s['mainland_studies'])==(4,38)
+          assert math.isclose(f['exploratory_island_minus_mainland_night_loss'],-0.14114661506508536,abs_tol=1e-12)
+          assert math.isclose(s['exploratory_island_minus_mainland_night_loss'],-0.28975950734059,abs_tol=1e-12)
+          assert z['P1_island_shift_x_ALAN_effect_estimable'] is False
+          print('P1_ACTUAL_SOURCE_NO_CAUSAL_ISLAND_TEST_GATES_PASS')
+          PY
+          # No original rare species×locality treatment rows redistributed.
+          rm original_p1/authentic_diel_source.csv
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-P1-actual-island-mainland-night-dependence-scope-20261115
+          path: original_p1/ALAN_P1_island_mainland_aggregate.json
+          retention-days: 90
+          if-no-files-found: warn
