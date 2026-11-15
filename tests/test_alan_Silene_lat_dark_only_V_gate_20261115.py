@@ -31,6 +31,12 @@ class TestSileneV(unittest.TestCase):
         self.assertTrue(r["strict_is_not_independently_measured_local_ALAN_V"])
         self.assertIsNone(r["global_beta_V"])
         self.assertTrue(r["original_species_geographical_model_not_refitted"])
+    def test_species_level_light_gap_diagnostic_not_inferential(self):
+        r=m.compute(self.source,self.original)
+        self.assertAlmostEqual(r["exploratory_12species_gap_OLS_per_10pp_V_before"],.0023257360616471784)
+        self.assertAlmostEqual(r["exploratory_12species_gap_OLS_per_10pp_V_strict"],.00222994105445492)
+        self.assertFalse(r["full_78region_model_refitted"])
+        self.assertTrue(r["exploratory_OLS_does_NOT_have_cluster_SE_or_p"])
     def test_fails_if_treatment_ratio_altered_without_loss(self):
         rows=[dict(x) for x in self.source]
         one=next(x for x in rows if x["used"]=="True")
