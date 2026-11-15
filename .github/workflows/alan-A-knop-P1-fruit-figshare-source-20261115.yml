@@ -1,0 +1,33 @@
+name: ALAN P1 nocturnal crop source and Knop A design audit
+on:
+  push:
+    branches:
+      - analysis/alan-floral-timing-dependence-20261115
+    paths:
+      - scripts/analysis/alan_P1_crop_figshare_probe_20261115.py
+      - tests/test_alan_A_knop_design_grain_20261115.py
+      - config/alan_A_reproductive_screen_20261115.json
+      - .github/workflows/alan-A-knop-P1-fruit-figshare-source-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  primary-source-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Assert original Knop light allocation and fruit denominator
+        run: python -m unittest discover -s tests -p 'test_alan_A_knop_design_grain_20261115.py' -v
+      - name: Verify Figshare source and preserve only metadata / CSV schema
+        run: python scripts/analysis/alan_P1_crop_figshare_probe_20261115.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-a-knop-P1-fruit-crop-source
+          path: results/alan_P1_B1_Bareau_Requier_original_figshare_manifest_20261115.json
+          if-no-files-found: ignore
+          retention-days: 30
