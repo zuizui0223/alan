@@ -71,6 +71,36 @@ def get(name,url):
                http_status=getattr(e,"code",None),error=str(e)[:350])
  return entry
 
+def strict_night_only_channel_loss_bound(night_share=.3571,alan_seed_loss=.56):
+    """Conditional identity check, NOT inferred mediation or same-cell data.
+
+    Requires BOTH percentages to have the SAME dark treatment baseline
+    and a genuinely additive daytime/nighttime seed contribution. Under a
+    "night only removed, everything else fixed" null the maximum attainable
+    decline equals the baseline night marginal fraction.
+    """
+    import math
+    if not (0<=night_share<=1 and 0<=alan_seed_loss<=1):
+        raise ValueError("valid 0..1 proportions required")
+    return {
+      "hypothesis":"ALAN removes a fraction q∈[0,1] of the nocturnal incremental contribution with other contributions unchanged",
+      "conditional_on_same_dark_reference_and_same_seedset_denominator":True,
+      "same_reference_verified_by_abstract":False,
+      "assumes_additive_nonoverlapping_night_day_seed_contributions":True,
+      "reported_dark_nocturnal_seed_share":night_share,
+      "reported_overall_seed_decline_under_ALAN":alan_seed_loss,
+      "maximum_possible_decline_if_only_dark_night_contribution_removed":night_share,
+      "minimum_possible_lit_over_dark_seed_ratio_night_only":1-night_share,
+      "reported_lit_over_dark_seed_ratio_from_reduction":1-alan_seed_loss,
+      "excess_total_loss_beyond_night_only_upper_bound":alan_seed_loss-night_share,
+      "fraction_observed_decline_not_coverable_by_night_only_maximum":
+          (alan_seed_loss-night_share)/alan_seed_loss if alan_seed_loss>0 else None,
+      "conditional_night_only_null_incompatible_if_common_reference":
+          bool(alan_seed_loss>night_share),
+      "does_not_prove_daytime_disruption_or_predator_mediation":True,
+      "treatment_cells_and_n_SE_needed_before_real_test":True
+    }
+
 def main(out):
  dest=Path(out)
  if dest.exists():raise FileExistsError("No overwrite")
@@ -109,6 +139,7 @@ def main(out):
    "Lu_experiment_sample_and_variance_retrieved":False,
    "source":"DOI 10.1093/jpe/rtag160 accepted manuscript abstract"},
   ],
+  "Lu_2026_conditional_night_only_seed_loss_bound":strict_night_only_channel_loss_bound(),
   "direct_P1xP3_interaction_coefficients_newly_estimated":0,
   "published_primary_light_x_diel_interaction_tests_identified":1,
   "published_primary_interaction_test_result":"Macgregor 2019 original GLMM lighting x caging pollination success NONSIGNIFICANT; exact LRT p/SE unrecovered",
