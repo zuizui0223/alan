@@ -44,7 +44,7 @@ class LinkParser(HTMLParser):
             return
         d = dict(attrs)
         url = d.get("href", "")
-        if re.search(r"rtag160|supplementary|suppl_file|\\.docx|\\.pdf", url, re.I):
+        if re.search(r"rtag160|supplementary|suppl_file|\.docx|\.pdf", url, re.I):
             self.links.append(url)
 
 
@@ -93,7 +93,7 @@ def inspect_docx(data: bytes) -> dict:
         joined = " ".join(texts).lower()
         out["document_tables"] = len(tables)
         out["text_paragraphs"] = len(paragraphs)
-        out["numeric_cells"] = sum(bool(re.search(r"\\d", " ".join(n.text or "" for n in cell.findall(".//" + ns + "t"))))
+        out["numeric_cells"] = sum(bool(re.search(r"\d", " ".join(n.text or "" for n in cell.findall(".//" + ns + "t"))))
                                    for cell in root.findall(".//" + ns + "tc"))
         for keyword in ("seed set", "pedicularis", "euphrasia", "illuminat", "dark", "pollination"):
             if keyword in joined:
@@ -106,7 +106,7 @@ def main() -> None:
     discovered_links = []
     for key, url in URLS.items():
         record, data = public_get(url)
-        if data and "json" in key:
+        if data and "metadata" in key:
             try:
                 doc = json.loads(data)
                 if key == "crossref_metadata":
