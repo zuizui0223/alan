@@ -48,7 +48,7 @@ class GiaviLabSourceTests(unittest.TestCase):
         q=z["original_lab_Table2_oviposition_response"]
         self.assertAlmostEqual(q["lit_distance_per_1m"]["source_two_meter_distance_multiplier"],math.exp(.48))
         self.assertAlmostEqual(q["lit_conditional_at_model_zero_distances"]["exponentiated_coefficient"],math.exp(-1.17))
-        self.assertTrue(z["new_lab_original_table2_behavior"]["mechanistic_field_laboratory_consistency_not_causal_mediation"])
+        self.assertTrue(z["source_inference_limits"]["but_lab_field_sequential_link_NOT_actual_mediation_estimation"])
         self.assertEqual(z["published_lab_design"]["independent_moth_individuals"],22)
         self.assertEqual(z["published_lab_design"]["true_release_sessions"],27)
         self.assertTrue(z["published_field_design"]["adjacent_dark_and_direct_light_share_same_four_meadows"])
