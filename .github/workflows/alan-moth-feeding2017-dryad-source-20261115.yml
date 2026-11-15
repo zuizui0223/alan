@@ -1,0 +1,32 @@
+name: ALAN moth feeding source sensitivity 2017 Dryad true individual units
+on:
+  push:
+    branches:
+      - analysis/alan-floral-timing-dependence-20261115
+    paths:
+      - scripts/analysis/alan_mothfeeding2017_Dryad_source_20261115.py
+      - tests/test_alan_mothfeeding2017_Dryad_source_20261115.py
+      - .github/workflows/alan-moth-feeding2017-dryad-source-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-moth-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate moth individual replication and source gates
+        run: python -m unittest discover -s tests -p 'test_alan_mothfeeding2017_Dryad_source_20261115.py' -v
+      - name: Attempt original CC0 Dryad source retrieval and aggregate if verified
+        run: python scripts/analysis/alan_mothfeeding2017_Dryad_source_20261115.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-mothfeeding2017-original-source-results
+          path: results/alan_mothfeeding2017_dryad_individual_light_20261115.json
+          if-no-files-found: ignore
+          retention-days: 30
