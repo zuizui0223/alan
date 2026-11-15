@@ -1,4 +1,4 @@
-name: ALAN A OpenAlex first-page reproductive evidence discovery
+name: ALAN A paginated reproductive discovery and source-outcome guard
 on:
   push:
     branches:
@@ -6,6 +6,8 @@ on:
     paths:
       - scripts/analysis/alan_A_openalex_discovery_20261115.py
       - scripts/analysis/alan_A_title_triage_20261115.py
+      - scripts/analysis/alan_A_effect_type_gate_20261115.py
+      - tests/test_alan_A_effect_type_gate_20261115.py
       - config/alan_A_reproductive_screen_20261115.json
       - .github/workflows/alan-A-openalex-reproduction-discovery-20261115.yml
   workflow_dispatch:
@@ -20,7 +22,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Query OpenAlex with bounded first-page searches
+      - name: Validate reproductive endpoint guard
+        run: |
+          python -m unittest discover -s tests -p 'test_alan_A_effect_type_gate_20261115.py' -v
+          python scripts/analysis/alan_A_effect_type_gate_20261115.py
+      - name: Query OpenAlex with audited pagination
         run: python scripts/analysis/alan_A_openalex_discovery_20261115.py --output openalex_a_discovery
       - name: Retain all titles and triage without auto-exclusion
         run: python scripts/analysis/alan_A_title_triage_20261115.py
@@ -28,6 +34,8 @@ jobs:
         if: always()
         with:
           name: alan-a-openalex-paged-triage
-          path: openalex_a_discovery/
+          path: |
+            openalex_a_discovery/
+            results/alan_A_source_effect_type_gate_20261115.json
           if-no-files-found: ignore
           retention-days: 30
