@@ -1,0 +1,32 @@
+name: ALAN A Lu2026 original reproductive treatment source discovery
+on:
+  push:
+    branches:
+      - analysis/alan-floral-timing-dependence-20261115
+    paths:
+      - scripts/analysis/alan_A_lu2026_source_probe_20261115.py
+      - tests/test_alan_A_lu2026_source_probe_20261115.py
+      - .github/workflows/alan-A-Lu2026-reproduction-source-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run source probe unit tests
+        run: python -m unittest discover -s tests -p 'test_alan_A_lu2026_source_probe_20261115.py' -v
+      - name: Probe public source URLs and record hash and status
+        run: python scripts/analysis/alan_A_lu2026_source_probe_20261115.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-a-lu2026-public-reproduction-source-receipt
+          path: results/alan_A_lu2026_public_source_probe_20261115.json
+          if-no-files-found: ignore
+          retention-days: 30
