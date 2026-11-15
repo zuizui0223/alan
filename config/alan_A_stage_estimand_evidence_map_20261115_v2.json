@@ -1,0 +1,339 @@
+{
+  "schema": "ALAN_A_stage_estimand_paper_identity_source_guard_v2",
+  "audit_date": "2026-11-15",
+  "source_registry": "config/alan_A_reproductive_screen_20261115.json",
+  "purpose": "Direction-complete paper/endpoint map; NOT pooled meta-analysis or final PRISMA corpus",
+  "paper_count_expected": 9,
+  "papers": [
+    {
+      "id": "knop2017",
+      "doi": "10.1038/nature23288",
+      "type": "peer_reviewed",
+      "design": "5 lit + 5 dark fruit meadows (not 7+7 night-network meadows)",
+      "outcomes": [
+        {
+          "stage": "open_fruit",
+          "contrast": "lit/dark published approximate fruit-set response",
+          "scale": "RR_approx",
+          "value": 0.87,
+          "ci95": null,
+          "se": null,
+          "scope": "all-visitors-open; originally reported 13% lower fruit set; true model-based cluster SE not reconstructed",
+          "ready": false
+        },
+        {
+          "stage": "all_access_bagging_interaction",
+          "contrast": "light×bagging developed achene proportion",
+          "scale": "author_logit_beta",
+          "value": -1.4,
+          "ci95": null,
+          "se": 0.592,
+          "scope": "all-visitor bagging, not day/night exclusion; sign conditional on source factor coding",
+          "ready": false
+        }
+      ]
+    },
+    {
+      "id": "macgregor2019",
+      "doi": "10.1002/ecs2.2550",
+      "type": "peer_reviewed",
+      "design": "5 sites × 4 rotations × 5 light schemes × 4 diel access regimes",
+      "outcomes": [
+        {
+          "stage": "seed_positive_flower",
+          "contrast": "full-night lighting vs dark, successful pollination",
+          "scale": "direction_only",
+          "value": null,
+          "ci95": null,
+          "se": null,
+          "scope": "positive in original study; dark/open arm-level mean/cluster variance missing; published day/night/open percentages are LIGHT-POOLED",
+          "ready": false
+        }
+      ]
+    },
+    {
+      "id": "boom2020",
+      "doi": "10.1038/s41598-020-75471-1",
+      "type": "peer_reviewed",
+      "design": "4 field sites, shared dark control, 3 artificial spectra",
+      "outcomes": [
+        {
+          "stage": "estimated_seeds_per_flower",
+          "contrast": "green/dark",
+          "scale": "derived_ratio_from_published_stage_means",
+          "value": 0.51497,
+          "ci95": null,
+          "se": null,
+          "scope": "not observed total seeds per original flower; source four-arm net seed output ANOVA p=0.63",
+          "ready": false
+        },
+        {
+          "stage": "estimated_seeds_per_flower",
+          "contrast": "white/dark",
+          "scale": "derived_ratio_from_published_stage_means",
+          "value": 0.72717,
+          "ci95": null,
+          "se": null,
+          "scope": "same source; correlated with green and red through common dark",
+          "ready": false
+        },
+        {
+          "stage": "estimated_seeds_per_flower",
+          "contrast": "red/dark",
+          "scale": "derived_ratio_from_published_stage_means",
+          "value": 0.7596,
+          "ci95": null,
+          "se": null,
+          "scope": "same source; net output uncertain",
+          "ready": false
+        }
+      ]
+    },
+    {
+      "id": "giavi2020",
+      "doi": "10.1038/s41598-020-68667-y",
+      "type": "peer_reviewed",
+      "design": "4 independently lit meadows plus 4 unlit control meadows; adjacency is nested",
+      "outcomes": [
+        {
+          "stage": "conditional_seed_positive_capsule",
+          "contrast": "published selected Epilobium lit/dark capsule contrast",
+          "scale": "OR_conditional",
+          "value": 0.2541,
+          "ci95": [
+            0.0612,
+            1.0544
+          ],
+          "se": null,
+          "scope": "selected capsule/fruit outcome; p=0.058; cannot infer flower-assignment net seed risk",
+          "ready": false
+        }
+      ]
+    },
+    {
+      "id": "wilson2021",
+      "doi": "10.1093/icb/icab010",
+      "type": "peer_reviewed",
+      "design": "5 sites, randomized 8 lit / 7 dark transects",
+      "outcomes": [
+        {
+          "stage": "mature_fruits_per_plant",
+          "contrast": "standardized illuminance coefficient (not binary lit/dark)",
+          "scale": "author_model_beta_standardized",
+          "value": 0.326,
+          "ci95": null,
+          "ci85": [
+            0.019,
+            0.657
+          ],
+          "se": null,
+          "scope": "original reported interval is 85%, not 95%; cannot treat as log RR; diurnal yucca moth",
+          "ready": false
+        }
+      ]
+    },
+    {
+      "id": "li2026",
+      "doi": "10.64898/2026.07.10.737511",
+      "type": "preprint",
+      "design": "3 manipulated fields, 3 species, array/point/dark light arrangements",
+      "outcomes": [
+        {
+          "stage": "seeds_per_initial_bud",
+          "contrast": "linear-array/dark",
+          "scale": "original_aggregate_RR",
+          "value": 4.23938,
+          "ci95": null,
+          "se": null,
+          "scope": "79 original plant rows; no valid 3-field assignment-cluster CI; lamp-number/geometry confounded",
+          "ready": false
+        },
+        {
+          "stage": "fruits_per_initial_bud",
+          "contrast": "linear-array/dark",
+          "scale": "original_aggregate_RR",
+          "value": 3.557259,
+          "ci95": null,
+          "se": null,
+          "scope": "same plants and initial buds as seed/bud endpoint; not independent",
+          "ready": false
+        },
+        {
+          "stage": "seeds_per_formed_fruit",
+          "contrast": "linear-array/dark pooled",
+          "scale": "original_aggregate_RR",
+          "value": 1.191755,
+          "ci95": null,
+          "se": null,
+          "scope": "3 species: 2 negative direction; pooled positive effect reverses without Zaluzianskya; treatment-conditioned fruit formation",
+          "ready": false
+        },
+        {
+          "stage": "any_seed_per_plant",
+          "contrast": "linear-array/dark published model",
+          "scale": "author_log_odds",
+          "value": 2.02,
+          "ci95": [
+            0.76,
+            3.74
+          ],
+          "se": null,
+          "scope": "published model CI, not reconstructed true 3-light-field cluster covariance; not log risk ratio",
+          "ready": false
+        },
+        {
+          "stage": "seed_number_per_plant",
+          "contrast": "linear-array/dark published model",
+          "scale": "author_log_rate",
+          "value": 1.51,
+          "ci95": [
+            0.65,
+            2.72
+          ],
+          "se": null,
+          "scope": "published model CI; multi-species, same 3 actual fields; not independent from other Li outcomes",
+          "ready": false
+        }
+      ]
+    },
+    {
+      "id": "lu2026jpe",
+      "doi": "10.1093/jpe/rtag160",
+      "type": "peer_reviewed",
+      "design": "5 true lit/dark plot pairs, 2 plant species, full/day/night/open access factorial",
+      "outcomes": [
+        {
+          "stage": "seed_ovule_conditional_on_fruit",
+          "contrast": "Pedicularis NIGHT-ONLY lit/dark",
+          "scale": "published_RR",
+          "value": 0.44,
+          "ci95": null,
+          "se": null,
+          "scope": "-56% applies only to night-only access, not to unrestricted/open seed yield",
+          "ready": false
+        },
+        {
+          "stage": "seed_ovule_conditional_on_fruit",
+          "contrast": "Pedicularis OPEN lit/dark",
+          "scale": "not_reported",
+          "value": null,
+          "ci95": null,
+          "se": null,
+          "scope": "source reports nonsignificance but numeric effect is UNKNOWN not zero; author arm rows unavailable",
+          "ready": false
+        },
+        {
+          "stage": "conspecific_pollen_per_stigma",
+          "contrast": "Pedicularis OPEN lit/dark",
+          "scale": "published_RR",
+          "value": 0.7691,
+          "ci95": null,
+          "se": null,
+          "scope": "rounded reported percent transformation; no source arm uncertainty",
+          "ready": false
+        },
+        {
+          "stage": "conspecific_pollen_per_stigma",
+          "contrast": "Pedicularis NIGHT-ONLY lit/dark",
+          "scale": "published_RR",
+          "value": 0.462,
+          "ci95": null,
+          "se": null,
+          "scope": "same pollen endpoint but shared experimental cluster covariance missing",
+          "ready": false
+        }
+      ]
+    },
+    {
+      "id": "xiao2025",
+      "doi": "10.1016/j.biocon.2025.111472",
+      "type": "peer_reviewed",
+      "design": "40 plots in 2×2 ALAN × animal exclusion experiment; independent lamp count uncertain",
+      "outcomes": [
+        {
+          "stage": "fruiting_inflorescences_per_plant",
+          "contrast": "ALAN vs dark",
+          "scale": "direction_only",
+          "value": null,
+          "ci95": null,
+          "se": null,
+          "scope": "author reports decrease; no marked originally assigned flower denominator and no valid original cell SE; exclusion not confirmed nocturnal insect access",
+          "ready": false
+        }
+      ]
+    },
+    {
+      "id": "grognuz2026pre",
+      "doi": "10.13140/RG.2.2.36822.10563",
+      "type": "preprint",
+      "design": "28 daylight choice blocks, 2 species, multiple pots share lamps and reused across weeks",
+      "outcomes": [
+        {
+          "stage": "seeds_after_daytime_only_visits",
+          "contrast": "Trifolium lit/dark derived block-equal",
+          "scale": "descriptive_RR",
+          "value": 0.714467,
+          "ci95": null,
+          "se": null,
+          "scope": "target flowers bagged during three exposure nights; 90 min daytime visits only; block resampling not lamp assignment CI",
+          "ready": false
+        },
+        {
+          "stage": "seeds_after_daytime_only_visits",
+          "contrast": "Centaurea lit/dark derived block-equal",
+          "scale": "descriptive_RR",
+          "value": 0.714789,
+          "ci95": null,
+          "se": null,
+          "scope": "same source; original 23 missing pot outcomes; one paper not second independent study",
+          "ready": false
+        },
+        {
+          "stage": "daytime_only_seed_count",
+          "contrast": "source author seed-effect model",
+          "scale": "author_model_beta_link_unharmonized",
+          "value": -0.4,
+          "ci95": [
+            -0.73,
+            -0.08
+          ],
+          "se": null,
+          "scope": "link-scale published coefficient, not harmonized logRR or night-only effect; original shared lamp/plant covariance unrecovered",
+          "ready": false
+        }
+      ]
+    }
+  ],
+  "additional_grey_leads": [
+    {
+      "id": "lofchick2023_silene",
+      "title": "Artificial light at night and its consequences for the pollination of wild plants",
+      "year": 2023,
+      "plant": "Silene palaestina",
+      "authors": [
+        "Arielle Lofchick",
+        "Boaz Koren",
+        "Yuval Sapir",
+        "Michal Gruntman"
+      ],
+      "source_url": "https://entomology.org.il/wp-content/uploads/2023/10/Israel-Entomological-Society-2023-abstracts-1.pdf",
+      "source_page_print": 58,
+      "source_page_pdf_zero_based": 61,
+      "original_claim": "ALAN reduced daytime pollination but enhanced nectar and seed production",
+      "status": "conference_abstract_only_not_meta_ready",
+      "se": null,
+      "exact_effect": null,
+      "independent_lamp_units": null,
+      "duplicate_publication_audit": "No verified peer-reviewed follow-up or independent primary data; do NOT count as tenth experimental paper",
+      "second_source": "https://lifesci.tau.ac.il/botanical/research/Silenepalaestina01"
+    }
+  ],
+  "limits": [
+    "Author published or derived means are not all on same estimator, denominator, assignment cluster, or sampling variance",
+    "Publication and light-arm repetitions are not independent study counts",
+    "Unknown is not zero; nonsignificant is not equivalence",
+    "Reported Li/Knop/Grognuz effects are not automatically valid common-study meta effect-size SE",
+    "No ALAN × independent nighttime marginal dependence V beta estimated",
+    "Pollen and fruit/seed outcomes belong to different multivariate outcomes"
+  ]
+}
