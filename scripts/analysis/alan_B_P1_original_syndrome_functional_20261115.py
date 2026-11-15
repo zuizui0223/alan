@@ -133,6 +133,19 @@ def contrast(q,a,b,index=0):
     }
     if not len(xx) or not len(yy):return out
     out["median_study_equal_difference"]=float(np.median(xx)-np.median(yy))
+    # Source-paper leave-one-out is descriptive, not a clustered CI. Distinct
+    # study ID is the unit of removal; original taxa within paper stay grouped.
+    if len(xx)>1 and len(yy)>1:
+        loo=np.array(
+            [np.median(np.delete(xx,i))-np.median(yy) for i in range(len(xx))]
+            + [np.median(xx)-np.median(np.delete(yy,i)) for i in range(len(yy))],
+            dtype=float)
+        out["leave_one_paper_difference_min_max"]=loo[[np.argmin(loo),np.argmax(loo)]].tolist()
+        out["leave_one_paper_n_total"]=len(loo)
+        out["leave_one_paper_n_positive"]=int(np.sum(loo>0))
+        out["leave_one_paper_n_negative"]=int(np.sum(loo<0))
+        out["leave_one_paper_n_zero"]=int(np.sum(loo==0))
+        out["leave_one_paper_not_proof_independence"]=True
     if min(len(xx),len(yy))<3:return out
     rng=np.random.default_rng(SEED+index)
     aa=rng.choice(xx,(BOOT,len(xx)),replace=True)
@@ -145,7 +158,7 @@ def contrast(q,a,b,index=0):
 def analyze(raw,traits):
     df,audit=prep(raw,traits)
     data={
-      "schema":"ALAN_B_20261115_original_flowering_shape_x_night_dependence_v1",
+      "schema":"ALAN_B_20261115_original_flowering_shape_x_night_dependence_v2",
       "source_doi":"10.1111/ele.70036",
       "source_commit":COMMIT,
       "source_SHA256":SOURCE_SHA,
@@ -159,6 +172,15 @@ def analyze(raw,traits):
       "shape_counts_all_repro":df.shape_bin.value_counts().to_dict(),
       "floral_syndrome_profile_counts_all_repro":df.trait_profile.value_counts().to_dict(),
       "study_outcomes_by_endpoint":{},
+      "strict_excluding_ALAN_treatment_pooled_study":{
+          "exclusion_source_id":"Macgregor_2019",
+          "rationale":"Source Fig.2 caging means pool across 5 manipulated lamp treatments and cannot define an ALAN-free night-dependence V",
+          "source_removed_panels":int((df.study_ID=="Macgregor_2019").sum()),
+          "full_source_340_preserved":True,
+          "remaining_panels":int((df.study_ID!="Macgregor_2019").sum()),
+          "remaining_study_IDs":int(df[df.study_ID!="Macgregor_2019"].study_ID.nunique()),
+          "study_outcomes_by_endpoint":{}
+      },
       "global_illumination_reproduction_effect":None,
       "global_ALAN_night_dependence_beta_V":None,
       "warning":"The source is a systematic day/night exclosure synthesis, NOT actual lit/dark ALAN experiments. Differences are between original papers and different taxa; no causal syndrome effect inferred."
@@ -179,6 +201,20 @@ def analyze(raw,traits):
           "all_traits_unknown_kept_in_denominator":True
         }
         data["study_outcomes_by_endpoint"][ep]=d
+        # Source-consistent sensitivity: the dark-only V moderator must NOT
+        # mix in the Macgregor 2019 caging rates pooled across light treatments.
+        qs=df[(df.endpoint_subtype==ep)&(df.study_ID!="Macgregor_2019")]
+        strict_cats={k:study_summary(qs[qs.trait_profile==k])
+                     for k in ("night_tube","night_non_tube","day_tube","day_non_tube","other_or_unknown")}
+        data["strict_excluding_ALAN_treatment_pooled_study"]["study_outcomes_by_endpoint"][ep]={
+            "coverage":study_summary(qs),
+            "profiles":strict_cats,
+            "night_tube_vs_day_non_tube":contrast(qs,"night_tube","day_non_tube",1000+10*ix),
+            "night_tube_vs_day_tube":contrast(qs,"night_tube","day_tube",1001+10*ix),
+            "night_nontube_vs_day_nontube":contrast(qs,"night_non_tube","day_non_tube",1002+10*ix),
+            "no_remaining_known_experimentally_ALAN_pooled_V":True,
+            "cannot_guarantee_zero_background_ambient_light":True
+        }
     if not (len(df[df.endpoint_subtype=="fruit_proportion"])==79 and
             len(df[df.endpoint_subtype=="seed_per_fruit"])==105):
         raise AssertionError("Source-specific denominator stage changed")
@@ -202,7 +238,12 @@ def main():
       "results":{k:{"profiles":v["profiles"],
                     "night_tube_vs_day_non_tube":v["night_tube_vs_day_non_tube"]}
                 for k,v in out["study_outcomes_by_endpoint"].items()},
-      "beta_ALAN":None
+      "beta_ALAN":None,
+      "source_ALAN_pooled_study_removed":out["strict_excluding_ALAN_treatment_pooled_study"]["source_removed_panels"],
+      "strict_results":{k:{
+          "profiles":v["profiles"],
+          "night_tube_vs_day_non_tube":v["night_tube_vs_day_non_tube"]
+      } for k,v in out["strict_excluding_ALAN_treatment_pooled_study"]["study_outcomes_by_endpoint"].items()}
     },ensure_ascii=False))
 
 if __name__=="__main__":
