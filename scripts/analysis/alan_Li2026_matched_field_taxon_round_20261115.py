@@ -126,13 +126,21 @@ def stats(pairs):
 def main():
     pairs,audit=matched(fetch())
     supported2=[p for p in pairs if p["dark_n_plants"]>=2 and p["lit_n_plants"]>=2]
-    out={"schema":"ALAN_Li2026_true_field_x_species_x_round_common_support_v2",
+    nonzero_dark=[p for p in pairs if p["dark_seeds"]>0]
+    supported2_nonzero_dark=[p for p in supported2 if p["dark_seeds"]>0]
+    out={"schema":"ALAN_Li2026_true_field_x_species_x_round_common_support_v3",
          "original_author_git_blob":BLOB,"original_doi":"10.64898/2026.07.10.737511",
          "source_audit":audit,"matched_strata":pairs,
          "stats":stats(pairs),
          "minimum_two_plants_per_arm_matched_strata":
               {"n":len(supported2),"results":stats(supported2),
                "descriptive_sensitivity_NOT_independent_field_replications":True},
+         "exclude_zero_seed_dark_control_strata":
+              {"n":len(nonzero_dark),"results":stats(nonzero_dark),
+               "selection_on_observed_control_outcome_not_a_preregistered_analysis":True},
+         "both_min_two_plants_and_nonzero_dark_control":
+              {"n":len(supported2_nonzero_dark),"results":stats(supported2_nonzero_dark),
+               "selection_on_observed_control_outcome_not_a_preregistered_analysis":True},
          "limits":["Only three independently manipulated fields; plant rows are not experimental light replicates",
                    "Equal-stratum difference is within-field descriptive and is not a field-randomization estimate",
                    "Round/species support is incomplete and can restrict the sample; unmatched plant rows excluded",
