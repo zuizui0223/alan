@@ -45,6 +45,12 @@ jobs:
           assert math.isclose(stage['nocturnal_lepidoptera_visitation'],math.log(.509))
           assert math.isclose(stage['nocturnal_conspecific_stigma_pollen'],math.log(.462))
           assert math.isclose(stage['seed_set_Pedicularis'],math.log(.44))
+          bound=z['Lu_2026_conditional_night_only_seed_loss_bound']
+          assert math.isclose(bound['maximum_possible_decline_if_only_dark_night_contribution_removed'],.3571)
+          assert math.isclose(bound['excess_total_loss_beyond_night_only_upper_bound'],.2029)
+          assert bound['conditional_night_only_null_incompatible_if_common_reference'] is True
+          assert bound['same_reference_verified_by_abstract'] is False
+          assert bound['does_not_prove_daytime_disruption_or_predator_mediation'] is True
           assert z['published_primary_light_x_diel_interaction_tests_identified']==1
           paper=next(x for x in z['sources'] if x['id']=='mac_original_openaccess_pdf')
           assert paper['retrieval_status']=='VERIFIED_BYTES' and paper['bytes']==1202971
