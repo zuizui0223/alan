@@ -6,6 +6,8 @@ on:
     paths:
       - scripts/analysis/alan_Xiao2025_true_supplement_table_20261115.py
       - tests/test_alan_Xiao2025_true_supplement_table_20261115.py
+      - tests/test_alan_A_Xiao2025_official_source_gate_20261115.py
+      - config/alan_A_reproductive_screen_20261115.json
       - .github/workflows/alan-A-Xiao2025-official-supplement-tables-20261115.yml
   workflow_dispatch:
 permissions:
@@ -21,6 +23,8 @@ jobs:
           python-version: '3.12'
       - name: Verify DOCX original factor table parser and source-only guard
         run: python -m unittest discover -s tests -p 'test_alan_Xiao2025_true_supplement_table_20261115.py' -v
+      - name: Verify Xiao original 40-plot source registry and that supplementary has no fruit model table
+        run: python -m unittest discover -s tests -p 'test_alan_A_Xiao2025_official_source_gate_20261115.py' -v
       - name: Download hash-pinned true Elsevier supplement and extract compact parameter table receipt
         run: python scripts/analysis/alan_Xiao2025_true_supplement_table_20261115.py
       - uses: actions/upload-artifact@v4
