@@ -1,0 +1,191 @@
+{
+  "provenance": {
+    "source_run": "https://github.com/zuizui0223/alan/actions/runs/43727065353",
+    "artifact_id": 14166513282,
+    "artifact_zip_sha256": "41af84b9272e53b50a4eb8276037f1ab786f6ccef20fc83150122fcef5d99764",
+    "data_and_checks_passed": true,
+    "no_restricted_raw_source_rows_exported": true
+  },
+  "population_join_count": 23018,
+  "matched_light_design": {
+    "sameyear_pixel_matched_original_site_years_before_gradient": 23018,
+    "sameyear_pixel_matched_source_islands_before_gradient": 463,
+    "eligible_photo_site_years_after_pop_and_light_gradient": 20582,
+    "eligible_islands_after_pop_and_light_gradient": 100,
+    "eligible_island_by_year_strata": 325,
+    "within_island_year_logPCNL_logpop_correlation": 0.7629124976121213,
+    "within_island_year_logPCNL_effort_correlation": 0.30466991504613417,
+    "within_island_year_logpop_effort_correlation": 0.31737312813598845,
+    "historical_NTL_cannot_be_called_local_light_treatment": true
+  },
+  "species_support": {
+    "population_eligible_original_species_positive_rows": 224759,
+    "documented_candidates_with_at_least_one_photo": 702,
+    "documented_candidates_with_at_least_one_informative_island_year": 702,
+    "original_fixed_703": 703,
+    "fit_with_population": 690,
+    "fitted_selfing_yes": 479,
+    "fitted_selfing_no": 211,
+    "not_fitted_source_reasons": {
+      "INSUFFICIENT_SPECIES_POP_MATCHED_SUPPORT": 12,
+      "NO_INFORMATIVE_SOURCE_STRATA": 1
+    }
+  },
+  "conditional_model": {
+    "fit_species": 690,
+    "all": {
+      "n_species": 690,
+      "island_support_ge10": 380,
+      "island_support_ge30": 58,
+      "beta_L_without_pop_pp": {
+        "n": 690,
+        "mean": 0.4600646735280815,
+        "median": 0.523975836684348,
+        "q025": -4.652512239161855,
+        "q25": -0.9033514067769844,
+        "q75": 1.8978764285348586,
+        "q975": 5.127169825077149
+      },
+      "beta_L_given_pop_pp": {
+        "n": 690,
+        "mean": 0.4132098084982902,
+        "median": 0.3028403505933507,
+        "q025": -5.250956841807273,
+        "q25": -1.0311117122494207,
+        "q75": 2.012965205262584,
+        "q975": 6.319880704289716
+      },
+      "beta_pop_given_L_pp": {
+        "n": 690,
+        "mean": 0.017570258479281065,
+        "median": 0.14511166501391914,
+        "q025": -3.3804738214009946,
+        "q25": -0.7789930992894164,
+        "q75": 0.995213334375423,
+        "q975": 2.842179383228711
+      },
+      "delta_beta_L_after_pop_pp": {
+        "n": 690,
+        "mean": -0.0468548650297912,
+        "median": -0.1752739434252723,
+        "q025": -3.4685096998268214,
+        "q25": -1.1009753337172752,
+        "q75": 0.8883111306854679,
+        "q975": 3.831571566200977
+      }
+    },
+    "autonomous": {
+      "n_species": 479,
+      "island_support_ge10": 290,
+      "island_support_ge30": 48,
+      "beta_L_without_pop_pp": {
+        "n": 479,
+        "mean": 0.5232731916083351,
+        "median": 0.6420542527500043,
+        "q025": -4.343088123139903,
+        "q25": -0.7033492780622296,
+        "q75": 1.9350840178757989,
+        "q975": 4.775445423742475
+      },
+      "beta_L_given_pop_pp": {
+        "n": 479,
+        "mean": 0.4273738508199055,
+        "median": 0.2936696389372798,
+        "q025": -4.756091276832402,
+        "q25": -0.9779685934687066,
+        "q75": 1.9985816068254816,
+        "q975": 6.053696270584161
+      },
+      "beta_pop_given_L_pp": {
+        "n": 479,
+        "mean": 0.061018149913381524,
+        "median": 0.1972276281234189,
+        "q025": -3.299205613256826,
+        "q25": -0.6694363879830971,
+        "q75": 1.0313878870804691,
+        "q975": 2.7138430852507165
+      },
+      "delta_beta_L_after_pop_pp": {
+        "n": 479,
+        "mean": -0.0958993407884296,
+        "median": -0.23338558417812344,
+        "q025": -3.228979733186452,
+        "q25": -1.1442146936822448,
+        "q75": 0.8038508015457588,
+        "q975": 3.8390097003885186
+      }
+    },
+    "absent": {
+      "n_species": 211,
+      "island_support_ge10": 90,
+      "island_support_ge30": 10,
+      "beta_L_without_pop_pp": {
+        "n": 211,
+        "mean": 0.3165723504928138,
+        "median": 0.0858451837668308,
+        "q025": -5.457480049336816,
+        "q25": -1.3720988810499903,
+        "q75": 1.8020569454874498,
+        "q975": 6.925966774901456
+      },
+      "beta_L_given_pop_pp": {
+        "n": 211,
+        "mean": 0.38105541858334385,
+        "median": 0.31648693338647793,
+        "q025": -6.187358136670612,
+        "q25": -1.2582764058709452,
+        "q75": 2.024999665441086,
+        "q975": 7.61248873107403
+      },
+      "beta_pop_given_L_pp": {
+        "n": 211,
+        "mean": -0.08106263250144939,
+        "median": -0.03474959862751058,
+        "q025": -3.6897296810826266,
+        "q25": -0.9408623166721055,
+        "q75": 0.7829518923196812,
+        "q975": 3.55794319868001
+      },
+      "delta_beta_L_after_pop_pp": {
+        "n": 211,
+        "mean": 0.06448306809053002,
+        "median": 0.04199522108975333,
+        "q025": -3.7040089895318236,
+        "q25": -0.8768668351505885,
+        "q75": 1.1141836484462266,
+        "q975": 3.7674118641402803
+      }
+    },
+    "beta_L_without_population_pp_autonomous_minus_absent": 0.20670084111552128,
+    "beta_L_conditional_population_pp_autonomous_minus_absent": 0.046318432236561624,
+    "beta_population_conditional_light_pp_autonomous_minus_absent": 0.1420807824148309
+  },
+  "bootstrap": {
+    "status": "CONDITIONAL_PHOTO_OBSERVATION_ISLAND_BLOCK_BOOTSTRAP",
+    "n_species_ge10_islands": 380,
+    "autonomous": 290,
+    "absent": 90,
+    "n_source_islands": 100,
+    "n_draws_requested": 400,
+    "n_valid": 400,
+    "conditional_ALAN_slope_group_diff_pp": -0.25958098299885374,
+    "conditional_population_group_diff_pp": 0.020061842367155275,
+    "ALAN_group_diff_95percentile_ci_pp": [
+      -0.7584731392855091,
+      0.30235034494425445
+    ],
+    "population_group_diff_95percentile_ci_pp": [
+      -0.28879355850395805,
+      0.2973022713169527
+    ],
+    "global_island_resampling_conditional_on_nonrandom_population_coverage": true
+  },
+  "limitations": {
+    "population_matched_only_original_photo_subset": true,
+    "relative_photographic_record_not_plant_absence": true,
+    "population_isnot_complete_urban_landuse": true,
+    "worldclim_climate_not_yet_adjusted": true,
+    "historical_PCNLLight_not_measured_lamp_exposure": true,
+    "multiple_exploratory_specs_not_causal_confirmation": true
+  }
+}
