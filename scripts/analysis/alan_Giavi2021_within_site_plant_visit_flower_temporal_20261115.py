@@ -34,6 +34,25 @@ def normalized_event_overlap(flower,visits):
     if f.sum()<=0 or v.sum()<=0:return None
     return float(np.minimum(f/f.sum(),v/v.sum()).sum())
 
+def flower_proportional_null_expected_overlap(flower,visits,seed=20261115,B=2000):
+    """Finite-visitation-count null: allocate total recorded visits across
+    actual common events in proportion to the same arm's observed flower cover.
+    This only subtracts a count/cover-dependent expected chance overlap:
+    it does NOT randomize ALAN, test biological pollen mismatch, or restore
+    unobserved plant × treatment rows.
+    """
+    f=np.asarray(flower,float); v=np.asarray(visits,float)
+    if len(f)!=len(v) or len(f)<2 or not np.isfinite(f).all() or not np.isfinite(v).all():
+        raise ValueError("Source event-count mismatch or nonfinite")
+    if (f<0).any() or (v<0).any() or B<=0:
+        raise ValueError("Bad original positive floral or visit counts")
+    if f.sum()<=0 or v.sum()<=0:return None
+    if not np.allclose(v,np.round(v),atol=1e-8):
+        raise ValueError("Cannot multinomial-model source visit records with non-integer visit units")
+    n=int(round(float(v.sum())));p=f/f.sum()
+    draw=np.random.default_rng(seed).multinomial(n,p,size=B)
+    return float(np.minimum(p,draw/n).sum(axis=1).mean())
+
 def site_bootstrap(delta,seed=20261115,iterations=10000):
     """Only six original experiment paired sites; never resample plant rows."""
     s=np.asarray(delta,float)
@@ -110,16 +129,26 @@ def pair_plants(common,visit_col,support):
         if len(q)<support:continue
         if q.pair.nunique()<support:continue
         t={}
+        tnull={}
         for arm in ("C","T"):
             cov=q[f"floral_cover_{arm}"].to_numpy(float)
             visits=q[f"{visit_col}_{arm}"].to_numpy(float)
             score=normalized_event_overlap(cov,visits)
             if score is None:break
+            # Deterministic, source-specific independent draw streams:
+            # retained only as aggregate, never serialize plant/site keys.
+            stream=int.from_bytes(__import__("hashlib").sha256(
+                f"{site}/{plant}/{visit_col}/{support}/{arm}".encode()).digest()[:4],"big")
+            null=flower_proportional_null_expected_overlap(cov,visits,seed=stream)
             t[arm]=score
+            tnull[arm]=null
         if len(t)!=2:continue
         source.append({"source_site":site,"plant":plant,"source_common_occasion_n":len(q),
                        "lit_overlap":t["T"],"dark_overlap":t["C"],
                        "lit_minus_dark_temporal_overlap":t["T"]-t["C"],
+                       "lit_minus_dark_null_expected_temporal_overlap":tnull["T"]-tnull["C"],
+                       "lit_minus_dark_excess_overlap_beyond_visit_count_null":
+                           (t["T"]-tnull["T"])-(t["C"]-tnull["C"]),
                        "lit_total_visits_same_support":float(q[f"{visit_col}_T"].sum()),
                        "dark_total_visits_same_support":float(q[f"{visit_col}_C"].sum())})
     return source
@@ -129,6 +158,9 @@ def summarize_paired(source,seed):
     z=pd.DataFrame(source)
     bysite=z.groupby("source_site").lit_minus_dark_temporal_overlap.median().sort_index()
     d=bysite.to_numpy(float)
+    adj=z.groupby("source_site").lit_minus_dark_excess_overlap_beyond_visit_count_null.median().sort_index()
+    d_adj=adj.to_numpy(float)
+    sample_bias=z.groupby("source_site").lit_minus_dark_null_expected_temporal_overlap.median().sort_index().to_numpy(float)
     # Output no source site or rare plant identity.
     return {
       "supported_plant_site_series":len(z),
@@ -144,6 +176,19 @@ def summarize_paired(source,seed):
       "source_sites_positive_site_median_n":int((d>0).sum()),
       "source_sites_negative_site_median_n":int((d<0).sum()),
       "source_site_level_effects_anonymized":[float(v) for v in d],
+      "observed_site_equal_overlaps":{
+          "lit_site_median_mean":float(z.groupby("source_site").lit_overlap.median().mean()),
+          "dark_site_median_mean":float(z.groupby("source_site").dark_overlap.median().mean())
+      },
+      "visit_count_and_cover_proportional_null_expected_delta_site_equal":float(sample_bias.mean()),
+      "lit_minus_dark_null_excess_event_overlap_site_equal":float(d_adj.mean()),
+      "lit_minus_dark_null_excess_site_bootstrap95_DESCRIPTIVE":site_bootstrap(d_adj,seed+40000),
+      "site_median_null_excess_positive_n":int((d_adj>0).sum()),
+      "site_median_null_excess_negative_n":int((d_adj<0).sum()),
+      "null_excess_site_level_anonymized":[float(v) for v in d_adj],
+      "null_assumption":"Conditional on original visit total and observed same-arm flower cover across shared events, assign visits by independent multinomial proportional to cover. 2000 draws per original site-plant-arm. NOT a randomized lighting test.",
+      "null_mc_draws_each_arm":2000,
+      "no_effective_pollen_or_original_causal_randomization_recovered":True,
       "coverage_conditional_on_visitor_records_in_both_arms":True,
       "source_missing_excluded_not_zero":True,
       "not_a_pollinator_efficacy_or_true_phenological_mismatch":True
