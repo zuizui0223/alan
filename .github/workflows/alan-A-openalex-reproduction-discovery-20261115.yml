@@ -1,0 +1,30 @@
+name: ALAN A OpenAlex first-page reproductive evidence discovery
+on:
+  push:
+    branches:
+      - analysis/alan-floral-timing-dependence-20261115
+    paths:
+      - scripts/analysis/alan_A_openalex_discovery_20261115.py
+      - config/alan_A_reproductive_screen_20261115.json
+      - .github/workflows/alan-A-openalex-reproduction-discovery-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Query OpenAlex with bounded first-page searches
+        run: python scripts/analysis/alan_A_openalex_discovery_20261115.py --output openalex_a_discovery
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-a-openalex-firstpage-metadata
+          path: openalex_a_discovery/
+          if-no-files-found: ignore
+          retention-days: 30
