@@ -69,7 +69,15 @@ def matched(raw):
         rec["seed_per_bud_diff"]=rec["lit_seed_per_bud"]-rec["dark_seed_per_bud"]
         rec["fruit_per_bud_diff"]=rec["lit_fruit_per_bud"]-rec["dark_fruit_per_bud"]
         pairs.append(rec)
-    return pairs,{"author_observations":len(x),"known_seed_observations":int(x.Seeds.notna().sum()),
+    return pairs,{"source_missing_seeds_by_original_treatment":
+                    {str(k):int(v) for k,v in x[x.Seeds.isna()].Treatment.value_counts().items()},
+                  "matched_strata_dark_seed_zero":
+                    sum(p["dark_seeds"]==0 for p in pairs),
+                  "matched_strata_n_ge_2_plants_both_arms":
+                    sum(p["dark_n_plants"]>=2 and p["lit_n_plants"]>=2 for p in pairs),
+                  "matched_strata_one_plant_either_arm":
+                    sum(p["dark_n_plants"]==1 or p["lit_n_plants"]==1 for p in pairs),
+                  "author_observations":len(x),"known_seed_observations":int(x.Seeds.notna().sum()),
                   "eligible_with_start_buds":len(elig),"source_fields":3,"matched_strata":len(pairs),
                   "unmatched_or_missing_not_zero":True}
 def sign_p(nplus,nminus):
@@ -117,10 +125,14 @@ def stats(pairs):
     return out
 def main():
     pairs,audit=matched(fetch())
-    out={"schema":"ALAN_Li2026_true_field_x_species_x_round_common_support_v1",
+    supported2=[p for p in pairs if p["dark_n_plants"]>=2 and p["lit_n_plants"]>=2]
+    out={"schema":"ALAN_Li2026_true_field_x_species_x_round_common_support_v2",
          "original_author_git_blob":BLOB,"original_doi":"10.64898/2026.07.10.737511",
          "source_audit":audit,"matched_strata":pairs,
          "stats":stats(pairs),
+         "minimum_two_plants_per_arm_matched_strata":
+              {"n":len(supported2),"results":stats(supported2),
+               "descriptive_sensitivity_NOT_independent_field_replications":True},
          "limits":["Only three independently manipulated fields; plant rows are not experimental light replicates",
                    "Equal-stratum difference is within-field descriptive and is not a field-randomization estimate",
                    "Round/species support is incomplete and can restrict the sample; unmatched plant rows excluded",
