@@ -50,7 +50,7 @@ jobs:
           assert math.isclose(e["lit_distance_per_1m"]["exponentiated_coefficient"],math.exp(.24))
           assert a["lit_distance_per_1m"]["original_published_table_p"] in ["<0.001","< 0.001","< 0.001"]
           assert e["lit_distance_per_1m"]["Wald95_from_rounded_published_SE"][0]>0.99
-          assert z["source_inference_limits"]["lab_field_sequential_link_NOT_actual_mediation_estimation"]
+          assert z["source_inference_limits"]["but_lab_field_sequential_link_NOT_actual_mediation_estimation"]
           assert z["source_inference_limits"]["Table1_spillover_Beta_OR_was_ALREADY_IN_repo_20261114"]
           assert z["source_inference_limits"]["no_island_mainland_comparison_or_global_pooled_coefficient"]
           print("GIAVI2020_REAL_PUBLISHED_TABLE2_LIT_MOTH_SPATIAL_GRADIENT_WITH_TABLE1_FIELD_SPILLOVER_PASS")
