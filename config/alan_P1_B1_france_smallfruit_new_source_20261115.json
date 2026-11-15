@@ -96,5 +96,76 @@
     "reuse_2025_340_exclusion_meta_data": false,
     "is_new_publication_to_Kendall_Nicholson_2025": "first online 2025, Kendall search literature through 2022; need confirm explicit duplicate registry DOI exclusion"
   },
-  "status": "ORIGINAL_PAPER_REVIEWED_DATASET_PROBE_NOT_YET_COMPLETE"
+  "status": "AUTHENTIC_SOURCE_REPRODUCTION_REPLAY_SUCCESS_AND_QUALITY_JOIN_BLOCKED",
+  "original_source_reanalysis": {
+    "run_id": 43695780795,
+    "run_url": "https://github.com/zuizui0223/alan/actions/runs/43695780795",
+    "original_files": {
+      "Fruit_set.csv": {
+        "rows": 80,
+        "sha256": "c5c4a169b345cccafa6d555cfa1726ae5f6606bb83312c2602bee3626cc2dd0f"
+      },
+      "Fruit_quality.csv": {
+        "rows": 223,
+        "sha256": "b988588bf14b73ca2f619845e09eedc92ef464b77e64417431fbb2b725334fd5"
+      }
+    },
+    "n_original_inflorescences": 80,
+    "n_original_flowers": 850,
+    "n_fruit_success": 258,
+    "original_taxon_code_mapping_checked_against_published_flower_counts": {
+      "BC": "Ribes nigrum",
+      "RB": "Rubus idaeus",
+      "RD": "Ribes rubrum"
+    },
+    "species_flower_counts": {
+      "BC": 375,
+      "RB": 54,
+      "RD": 421
+    },
+    "functional_night_access_records": [
+      {
+        "code": "BC",
+        "year": 2020,
+        "p_day_only": 0.15151515151515152,
+        "p_day_night": 0.3181818181818182,
+        "V": 0.5238095238095237
+      },
+      {
+        "code": "BC",
+        "year": 2024,
+        "p_day_only": 0.0847457627118644,
+        "p_day_night": 0.3488372093023256,
+        "V": 0.7570621468926554
+      },
+      {
+        "code": "RB",
+        "year": 2020,
+        "p_day_only": 1,
+        "p_day_night": 1,
+        "V": 0
+      },
+      {
+        "code": "RD",
+        "year": 2020,
+        "p_day_only": 0.5370370370370371,
+        "p_day_night": 0.7741935483870968,
+        "V": 0.306327160493827
+      },
+      {
+        "code": "RD",
+        "year": 2024,
+        "p_day_only": 0.30120481927710846,
+        "p_day_night": 0.38,
+        "V": 0.20735573874445146
+      }
+    ],
+    "outcome": "fruit success divided by originally assigned flowers, not mature seed number",
+    "evidence": "Descriptive original outcome comparison from one study, 2 geographically different sites in 2 years; SE and plant IDs not in author files.",
+    "qctreatment_mismatch": "Fruit_quality.csv contains 2020 BC closed 12 measured fruits vs Fruit_set.csv only 3 successes; 2020 BC open has 3 quality rows vs 14 fruit successes. Thus quality table cannot be treated as exactly one row per formed fruit with the same arm labels.",
+    "author_data_join_confirmed": false,
+    "independent_ALAN_effects": 0,
+    "plant_species_year_rows": 5,
+    "caution": "No ALAN manipulation; no inference about actual moth contribution, future ALAN losses or island×ALAN; prevent animal visits from being inferred from pollination time access."
+  }
 }
