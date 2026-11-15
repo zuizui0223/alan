@@ -14,8 +14,9 @@ class TestP1Scope(unittest.TestCase):
         p=classify(pd.DataFrame([
           row('McMullen_2009','Ecuador','Galapagos',lat='0.554473'),
           row('Wolff_2003','Ecuador','Podocarpus National Park',lat='-3.97'),
-          row('Macgregor_2019','United Kingdom','Yorkshire',lat='53.84')]))
-        self.assertEqual(list(p.geo_class),['oceanic','continent','large_island'])
+          row('Macgregor_2019','United Kingdom','Yorkshire',lat='53.84'),
+          row('Chapurlat_2015','Sweden','Skane',lat='56.75027778')]))
+        self.assertEqual(list(p.geo_class),['oceanic','continent','large_island','shelf_small'])
 
     def test_geocoding_warning_fails_closed(self):
         with self.assertRaises(ValueError):
