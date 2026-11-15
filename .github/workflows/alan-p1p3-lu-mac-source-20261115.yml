@@ -41,6 +41,14 @@ jobs:
           b=z['papers'][1]
           assert math.isclose(b['reported_Pedicularis_seed_set_log_ratio_from_percent'],math.log(.44))
           assert b['same_species_light_x_diel_numeric_cell_means_retrieved']==False
+          stage=b['published_stage_log_light_over_dark_FROM_ROUNDED_ABSTRACT_ONLY']
+          assert math.isclose(stage['nocturnal_lepidoptera_visitation'],math.log(.509))
+          assert math.isclose(stage['nocturnal_conspecific_stigma_pollen'],math.log(.462))
+          assert math.isclose(stage['seed_set_Pedicularis'],math.log(.44))
+          assert z['published_primary_light_x_diel_interaction_tests_identified']==1
+          paper=next(x for x in z['sources'] if x['id']=='mac_original_openaccess_pdf')
+          assert paper['retrieval_status']=='VERIFIED_BYTES' and paper['bytes']==1202971
+          assert paper['sha256']=='e0f83cc2086f2f494f175b0d1eee8495cf9153dd62f9ca7f35338ff9e5f1ad1c'
           print('P1_P3_PUBLISHED_FACTORIAL_SOURCE_COVERAGE_GATES_PASS')
           PY
       - name: Inspect source PDFs if actually downloaded, no fabricated supplement tables
