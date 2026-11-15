@@ -1,0 +1,246 @@
+{
+  "schema": "ALAN_species_slope_source_support_aggregate_signed_actions_v1",
+  "source_run": "https://github.com/zuizui0223/alan/actions/runs/43721794592",
+  "artifact_id": 14164513648,
+  "artifact_zip_sha256": "2208921b0875c7b1df0c8e124aa756b0b6dd48e7c45314aa0f75f8daac67145a",
+  "status": "SOURCE_AUTHENTICATED_AGGREGATE_CONFIRMED_CI_SUCCESS_NOT_SPECIES_BETA",
+  "base_source": {
+    "islands": 562,
+    "site_years": 77647,
+    "source_species_site_years": 2012925,
+    "accepted_species": 14330,
+    "direct_selfing_global_high_medium": 2168,
+    "direct_selfing_photographed_high_medium": 1322,
+    "direct_selfing_photographed_high_only": 1131,
+    "direct_selfing_photographed_excluding_diel_experimental_species": 1299,
+    "daynight_experiment_species_photographed": 52,
+    "matched_selfing_and_diel": 23
+  },
+  "exposure_gate_counts": {
+    "0.02": {
+      "islands": 243,
+      "site_years": 72472,
+      "trait_counts": {
+        "all_observed": {
+          "matched_species": 14330,
+          "screen": 7917,
+          "core": 5082,
+          "two_halves": 4919,
+          "holdout": 3787,
+          "core_holdout": 3681,
+          "strict": 3614
+        },
+        "selfing_known_high_medium": {
+          "matched_species": 1322,
+          "screen": 1007,
+          "core": 826,
+          "two_halves": 815,
+          "holdout": 711,
+          "core_holdout": 706,
+          "strict": 703
+        },
+        "selfing_autonomous": {
+          "matched_species": 881,
+          "screen": 683,
+          "core": 560,
+          "two_halves": 552,
+          "holdout": 495,
+          "core_holdout": 491,
+          "strict": 489
+        },
+        "selfing_absent": {
+          "matched_species": 441,
+          "screen": 324,
+          "core": 266,
+          "two_halves": 263,
+          "holdout": 216,
+          "core_holdout": 215,
+          "strict": 214
+        },
+        "selfing_known_high_only": {
+          "matched_species": 1131,
+          "screen": 883,
+          "core": 733,
+          "two_halves": 724,
+          "holdout": 631,
+          "core_holdout": 627,
+          "strict": 624
+        },
+        "experimental_diel": {
+          "matched_species": 52,
+          "screen": 41,
+          "core": 36,
+          "two_halves": 36,
+          "holdout": 27,
+          "core_holdout": 27,
+          "strict": 27
+        },
+        "experimental_night_stronger": {
+          "matched_species": 27,
+          "screen": 22,
+          "core": 18,
+          "two_halves": 18,
+          "holdout": 11,
+          "core_holdout": 11,
+          "strict": 11
+        },
+        "experimental_day_stronger": {
+          "matched_species": 25,
+          "screen": 19,
+          "core": 18,
+          "two_halves": 18,
+          "holdout": 16,
+          "core_holdout": 16,
+          "strict": 16
+        },
+        "selfing_and_experimental_diel": {
+          "matched_species": 23,
+          "screen": 15,
+          "core": 13,
+          "two_halves": 13,
+          "holdout": 9,
+          "core_holdout": 9,
+          "strict": 9
+        },
+        "selfing_absent_and_night_stronger": {
+          "matched_species": 5,
+          "screen": 4,
+          "core": 3,
+          "two_halves": 3,
+          "holdout": 2,
+          "core_holdout": 2,
+          "strict": 2
+        },
+        "selfing_autonomous_and_night_stronger": {
+          "matched_species": 6,
+          "screen": 4,
+          "core": 3,
+          "two_halves": 3,
+          "holdout": 0,
+          "core_holdout": 0,
+          "strict": 0
+        }
+      }
+    },
+    "0.1": {
+      "islands": 243,
+      "site_years": 72472,
+      "trait_counts": {
+        "all_observed": {
+          "matched_species": 14330,
+          "screen": 7917,
+          "core": 5082,
+          "two_halves": 4919,
+          "holdout": 3787,
+          "core_holdout": 3681,
+          "strict": 3614
+        },
+        "selfing_known_high_medium": {
+          "matched_species": 1322,
+          "screen": 1007,
+          "core": 826,
+          "two_halves": 815,
+          "holdout": 711,
+          "core_holdout": 706,
+          "strict": 703
+        },
+        "selfing_autonomous": {
+          "matched_species": 881,
+          "screen": 683,
+          "core": 560,
+          "two_halves": 552,
+          "holdout": 495,
+          "core_holdout": 491,
+          "strict": 489
+        },
+        "selfing_absent": {
+          "matched_species": 441,
+          "screen": 324,
+          "core": 266,
+          "two_halves": 263,
+          "holdout": 216,
+          "core_holdout": 215,
+          "strict": 214
+        },
+        "selfing_known_high_only": {
+          "matched_species": 1131,
+          "screen": 883,
+          "core": 733,
+          "two_halves": 724,
+          "holdout": 631,
+          "core_holdout": 627,
+          "strict": 624
+        },
+        "experimental_diel": {
+          "matched_species": 52,
+          "screen": 41,
+          "core": 36,
+          "two_halves": 36,
+          "holdout": 27,
+          "core_holdout": 27,
+          "strict": 27
+        },
+        "experimental_night_stronger": {
+          "matched_species": 27,
+          "screen": 22,
+          "core": 18,
+          "two_halves": 18,
+          "holdout": 11,
+          "core_holdout": 11,
+          "strict": 11
+        },
+        "experimental_day_stronger": {
+          "matched_species": 25,
+          "screen": 19,
+          "core": 18,
+          "two_halves": 18,
+          "holdout": 16,
+          "core_holdout": 16,
+          "strict": 16
+        },
+        "selfing_and_experimental_diel": {
+          "matched_species": 23,
+          "screen": 15,
+          "core": 13,
+          "two_halves": 13,
+          "holdout": 9,
+          "core_holdout": 9,
+          "strict": 9
+        },
+        "selfing_absent_and_night_stronger": {
+          "matched_species": 5,
+          "screen": 4,
+          "core": 3,
+          "two_halves": 3,
+          "holdout": 2,
+          "core_holdout": 2,
+          "strict": 2
+        },
+        "selfing_autonomous_and_night_stronger": {
+          "matched_species": 6,
+          "screen": 4,
+          "core": 3,
+          "two_halves": 3,
+          "holdout": 0,
+          "core_holdout": 0,
+          "strict": 0
+        }
+      }
+    }
+  },
+  "count_definitions": {
+    "core": "30 positive photographed cell-years, 6 island-year strata with both photographic presence and nonrecord, 2 islands, 2 years",
+    "core_holdout": "core plus 2 geographically disjoint island-ID folds each >=10 positive photo cells and >=2 informative island-years",
+    "strict": "core_holdout plus >=5 positive photo cells in each exposure half (not independent source validation)",
+    "exposure_gates": "0.02 and 0.1 in preceding-year mean log1p PCNL yielded identical *reported* counts; no two independent replications"
+  },
+  "warnings": [
+    "One 93m photo-ID archive, not 93m observed flowers",
+    "Each species is documented vs not photographed in survey cells; no verified ecological absence",
+    "All outcomes observational occurrence opportunity, not pollen transport, seed set, population trends or biological evolution",
+    "Current source covers islands only; not all-global GBIF or continental data",
+    "Trait/source ascertainment, native status, population/climate/observer confounding, species beta and SE, phylogenetic dependence not assessed",
+    "Nighttime reproductive experiment evidence is not proof of effective moth pollination",
+    "Selfing × nighttime higher reproduction cannot be estimated robustly with strict 2x2 support"
+  ]
+}
