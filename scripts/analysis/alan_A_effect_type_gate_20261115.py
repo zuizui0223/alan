@@ -45,13 +45,15 @@ def publication_compatible_examples() -> dict:
                 "id": "lu2026jpe_pedicularis",
                 "doi": "10.1093/jpe/rtag160",
                 "species": "Pedicularis kansuensis",
-                "outcome": "author-reported seed formation reduction, exact denominator and SE not yet recovered",
-                "exposure": "ALAN versus natural dark",
+                "outcome": "developed seeds / total ovules among formed fruits under NIGHT-ONLY pollinator access",
+                "exposure": "ALAN versus natural dark, matched NIGHT-ONLY access arm",
+                "access_arm": "night_only",
                 "light_dark_factor_from_author_percent": lu_seed_factor,
                 "ln_ratio_of_author_percent": math.log(lu_seed_factor),
+                "lit_dark_open_seed_ratio": None,
                 "ln_RR_SE": None,
-                "primary_initial_flower_endpoint": None,
-                "limitations": "The published 56% decrease is reported without recoverable cell n, SE or independently paired night-dependence coefficient."
+                "primary_initial_flower_endpoint": False,
+                "limitations": "CRITICAL: reported 56% seed-set decrease was for night-only insect access (IWE original accepted manuscript Results p14/Discussion p16), not open/unrestricted reproduction. Seed set is seed/ovule in formed fruit, not seeds per original flower. The open seed outcome was nonsignificant with numeric point estimate UNKNOWN. Original arm SE/covariance and night dependence unavailable."
             },
             {
                 "id": "giavi2020_epilobium",
