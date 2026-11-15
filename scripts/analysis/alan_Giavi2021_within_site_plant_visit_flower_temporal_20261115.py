@@ -53,6 +53,37 @@ def flower_proportional_null_expected_overlap(flower,visits,seed=20261115,B=2000
     draw=np.random.default_rng(seed).multinomial(n,p,size=B)
     return float(np.minimum(p,draw/n).sum(axis=1).mean())
 
+def exact_site_sign_flip(site_deltas):
+    """Exhaust all 2^n flips of true independently paired site summaries.
+    Randomization schedule is unknown: diagnostic symmetry, NOT a formal
+    randomized-assignment test and NOT multiple-test corrected.
+    """
+    import itertools
+    v=np.asarray(site_deltas,float)
+    if not len(v) or len(v)>12 or not np.isfinite(v).all():
+        raise ValueError("Requires 1–12 finite site effects")
+    obs=abs(v.mean())
+    null=np.array([abs(np.mean(v*np.asarray(s)))
+                   for s in itertools.product((-1.,1.),repeat=len(v))])
+    return {
+        "independent_site_count":int(len(v)),
+        "two_sided_site_signflip_fraction_DESCRIPTIVE":
+            float((null>=obs-1e-12).mean()),
+        "NOT_formal_randomization_under_field_assigned_light":True,
+        "nominal_sample_size_not_plant_site_time_rows":True,
+    }
+
+def holm_by_family(pvalues):
+    """Monotone Holm adjustment across FOUR source guilds at k>=3 events."""
+    order=sorted(pvalues,key=lambda k:pvalues[k])
+    m=len(order);result={};last=0
+    for i,k in enumerate(order):
+        raw=float(pvalues[k])
+        if not 0<=raw<=1:raise ValueError("P must be a valid probability")
+        last=max(last,min(1.0,(m-i)*raw))
+        result[k]=last
+    return result
+
 def site_bootstrap(delta,seed=20261115,iterations=10000):
     """Only six original experiment paired sites; never resample plant rows."""
     s=np.asarray(delta,float)
@@ -176,6 +207,7 @@ def summarize_paired(source,seed):
       "source_sites_positive_site_median_n":int((d>0).sum()),
       "source_sites_negative_site_median_n":int((d<0).sum()),
       "source_site_level_effects_anonymized":[float(v) for v in d],
+      "observed_raw_overlap_site_signflip_diagnostic":exact_site_sign_flip(d),
       "observed_site_equal_overlaps":{
           "lit_site_median_mean":float(z.groupby("source_site").lit_overlap.median().mean()),
           "dark_site_median_mean":float(z.groupby("source_site").dark_overlap.median().mean())
@@ -186,6 +218,7 @@ def summarize_paired(source,seed):
       "site_median_null_excess_positive_n":int((d_adj>0).sum()),
       "site_median_null_excess_negative_n":int((d_adj<0).sum()),
       "null_excess_site_level_anonymized":[float(v) for v in d_adj],
+      "null_excess_site_signflip_diagnostic":exact_site_sign_flip(d_adj),
       "null_assumption":"Conditional on original visit total and observed same-arm flower cover across shared events, assign visits by independent multinomial proportional to cover. 2000 draws per original site-plant-arm. NOT a randomized lighting test.",
       "null_mc_draws_each_arm":2000,
       "no_effective_pollen_or_original_causal_randomization_recovered":True,
@@ -216,7 +249,16 @@ def run():
         for k in SUPPORT:
             series=pair_plants(common,c,k)
             compare[name][str(k)]=summarize_paired(series,20261115+i*100+k)
+    # Four source groups are an explicit exploratory multiplicity family.
+    primary={k:v["3"].get("null_excess_site_signflip_diagnostic",{})
+             .get("two_sided_site_signflip_fraction_DESCRIPTIVE")
+             for k,v in compare.items()
+             if v["3"].get("supported_independent_sites",0)>=3}
+    family_adjusted=holm_by_family(primary)
     return {
+      "four_guild_primary_threshold3_exact_site_signflip_Holm_exploratory":family_adjusted,
+      "study_family_k":4,
+      "multiple_thresholds_2_3_4_not_formally_adjusted":True,
       "schema":"ALAN_Swiss_Giavi2021_original_same_plant_event_diurnal_flower_visitor_overlap_v1",
       "study_DOI":SOURCE_DOI,"original_data_DOI":DATA_DOI,
       "source_Rdata_md5":receipt["original_md5"],
