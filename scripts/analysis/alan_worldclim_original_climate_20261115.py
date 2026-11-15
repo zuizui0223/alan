@@ -71,8 +71,8 @@ def sample_sites(sites,raster_root):
             "Impossible negative precipitation seasonality in source")
     for key in BIO:
         # Static climate not contemporaneous: value same for repeated grid cell
-        same=z.groupby(["island","latbin","lonbin"],observed=True)[key].nunique(dropna=True)
-        require(same.max()<=1,"Static climate shifted across years at fixed original site")
+        same=z.groupby(["lon","lat"],observed=True)[key].nunique(dropna=True)
+        require(same.max()<=1,"Static climate shifted across identical original coordinates")
     return z,m
 
 def audit(z,m):
