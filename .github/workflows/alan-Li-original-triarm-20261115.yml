@@ -1,0 +1,32 @@
+name: ALAN Li original triarm dark-floor source audit
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - scripts/analysis/alan_Li2026_original_triple_arm_20261115.py
+      - tests/test_alan_Li2026_original_triple_arm_20261115.py
+      - .github/workflows/alan-Li-original-triarm-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: python -m pip install numpy==2.1.3 pandas==2.2.3
+      - name: Unit tests
+        run: python -m unittest discover -s tests -p 'test_alan_Li2026_original_triple_arm_20261115.py' -v
+      - name: Re-fetch original author Git blob and compute triarm matched contrasts
+        run: python -m scripts.analysis.alan_Li2026_original_triple_arm_20261115
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-Li-original-triarm-source-check
+          path: results/alan_Li2026_original_triple_arm_light_geometry_and_dark_floor_20261115.json
+          retention-days: 30
