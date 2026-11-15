@@ -117,12 +117,11 @@ def summarize_source(g):
     site_effect={}
     for site,w in v.groupby("site",observed=True):
         q=totals(w)
-        if set(q)!={"arm_only_observed","both_arms_observed"}:
-            raise ValueError("Original single-site opportunity supports drifted")
-        both=q["both_arms_observed"];armonly=q["arm_only_observed"]
+        require("both_arms_observed" in q,"site has no co-recorded flower sample")
+        both=q["both_arms_observed"];armonly=q.get("arm_only_observed",{})
         allsite={arm:{
-            "source_flower_cover_proxy":both[arm]["source_flower_cover_proxy"]+armonly[arm]["source_flower_cover_proxy"],
-            "source_visit_events":both[arm]["source_visit_events"]+armonly[arm]["source_visit_events"]
+            "source_flower_cover_proxy":both[arm]["source_flower_cover_proxy"]+armonly.get(arm,{}).get("source_flower_cover_proxy",0.),
+            "source_visit_events":both[arm]["source_visit_events"]+armonly.get(arm,{}).get("source_visit_events",0.)
         } for arm in ARMS}
         if min(allsite[a]["source_visit_events"] for a in ARMS)==0 or min(both[a]["source_visit_events"] for a in ARMS)==0:
             continue
