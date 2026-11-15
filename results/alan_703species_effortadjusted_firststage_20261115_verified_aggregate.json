@@ -1,0 +1,129 @@
+{
+  "provenance": {
+    "github_actions_run_url": "https://github.com/zuizui0223/alan/actions/runs/43723807336",
+    "artifact_id": 14165981549,
+    "artifact_zip_sha256": "sha256:9c0ad5671cf7de3bf9c06eefdd20a2e175c2a0b2db804723d9f1122c1be7332e",
+    "source_sha_verified": true,
+    "stage1_output_schema": "ALAN_genuine_island_species_LPM_firststage_effort_and_islandyear_v1",
+    "bootstrap_output_schema": "ALAN_autonomous_selfing_30island_original_species_slopes_island_bootstrap_v1",
+    "status": "AUTHENTIC_SOURCE_BOTH_STAGE1_AND_ISLAND_BOOTSTRAP_CI_SUCCESS",
+    "no_restricted_taxon_site_rows": true
+  },
+  "support": {
+    "gradient_span_min_log1p": 0.02,
+    "eligible_islands": 243,
+    "eligible_photo_site_years": 72472,
+    "island_years": 829,
+    "source_photographic_plant_species": 13374,
+    "strict_selfing_species": 703,
+    "strict_selfing_autonomous": 489,
+    "strict_selfing_absent": 214
+  },
+  "fitting": {
+    "n_selected": 703,
+    "n_successful": 703,
+    "n_nonfit": 0,
+    "n_with_ge10_island_cluster_SE": 570,
+    "n_with_ge30_islands": 224,
+    "unfittable_reason_counts": {},
+    "all": {
+      "n_total_tagged": 489,
+      "n_slope_fitted": 489,
+      "n_with_ge10_island_cluster_se": 407,
+      "n_with_ge30_islands": 170,
+      "unweighted_slope_pp": {
+        "n": 489,
+        "mean": 0.3782568543173064,
+        "median": 0.44334831757202825,
+        "q025": -2.5857714941198586,
+        "q25": -0.3592194385324461,
+        "q75": 1.158837246062278,
+        "q975": 2.8936206369934516
+      },
+      "ge30_islands_slope_pp": {
+        "n": 170,
+        "mean": 0.6600646913763487,
+        "median": 0.7258160220071562,
+        "q025": -1.9745883987123478,
+        "q25": 0.0021760725135782505,
+        "q75": 1.4854668959116908,
+        "q975": 2.5384278298289233
+      },
+      "n_nominal_ci_below_0_ge30_islands": 7,
+      "n_nominal_ci_above_0_ge30_islands": 34
+    },
+    "absent": {
+      "n_total_tagged": 214,
+      "n_slope_fitted": 214,
+      "n_with_ge10_island_cluster_se": 163,
+      "n_with_ge30_islands": 54,
+      "unweighted_slope_pp": {
+        "n": 214,
+        "mean": 0.25009090264978706,
+        "median": 0.26476482360780285,
+        "q025": -3.063649510000688,
+        "q25": -0.7611728750931994,
+        "q75": 1.0094441969969459,
+        "q975": 3.94796426920144
+      },
+      "ge30_islands_slope_pp": {
+        "n": 54,
+        "mean": 0.6714059365470156,
+        "median": 0.5016720974865102,
+        "q025": -1.9675228681746706,
+        "q25": -0.0822304779756393,
+        "q75": 1.4504071433672159,
+        "q975": 3.6823889893251205
+      },
+      "n_nominal_ci_below_0_ge30_islands": 1,
+      "n_nominal_ci_above_0_ge30_islands": 10
+    },
+    "high_quality_successes": 624,
+    "all_species_slope_pp": {
+      "n": 703,
+      "mean": 0.3392418989021583,
+      "median": 0.3770198091975975,
+      "q025": -2.688589633396034,
+      "q25": -0.5095588670976026,
+      "q75": 1.1500499204167267,
+      "q975": 3.247759415877242
+    }
+  },
+  "descriptive_second_stage": {
+    "n_valid_fold_beta": 703,
+    "fold_slope_sign_agreement_fraction": 0.5704125177809388,
+    "fold_slope_rank_spearman": 0.18919968919968919,
+    "autonomous_full_unweighted_mean_pp": 0.3782568543173064,
+    "absent_full_unweighted_mean_pp": 0.25009090264978706,
+    "autonomous_minus_absent_unweighted_mean_pp": 0.12816595166751932,
+    "autonomous_minus_absent_fold0_mean_pp": 0.27930708716794395,
+    "autonomous_minus_absent_fold1_mean_pp": -0.1860398054816541,
+    "genus_FE_all": {
+      "status": "EXPLORATORY_DESCRIPTIVE_GENUS_FIXED_EFFECT",
+      "beta_autonomous_minus_absent_pp": 0.22171855554288772,
+      "n_mixed_genera": 58,
+      "n_species": 190,
+      "no_valid_causal_or_clustered_inference": true
+    },
+    "genus_FE_30plus_islands": {
+      "status": "EXPLORATORY_DESCRIPTIVE_GENUS_FIXED_EFFECT",
+      "beta_autonomous_minus_absent_pp": 0.30952826470145545,
+      "n_mixed_genera": 9,
+      "n_species": 24,
+      "no_valid_causal_or_clustered_inference": true
+    },
+    "independent_beta_meta_se_NOT_computed": true,
+    "country_geography_block_bootstrap_NOT_computed": true,
+    "high_quality_autonomous_minus_absent_unweighted_pp": 0.1890993587177339
+  },
+  "covariate": {
+    "pcnl_effort_within_island_year_correlation": 0.2544267276141341,
+    "pcnl_effort_partial_r2": 0.06473295972443678,
+    "population_density_covariate": "NOT_PRESENT_IN_AUTHENTIC_SOURCE",
+    "climate_covariates": "NOT_PRESENT_IN_AUTHENTIC_SOURCE",
+    "response": "photographically_observed_species_vs_photographic_nonrecord",
+    "light": "rolling_mean_previous_calendar_year_log1p_PCNL",
+    "effort": "log1p_accepted_photographic_observation_UUIDs",
+    "island_year_fixed_effects": true
+  }
+}
