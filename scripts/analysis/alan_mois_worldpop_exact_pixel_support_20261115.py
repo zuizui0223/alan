@@ -26,15 +26,15 @@ def digest(path):
     return h.hexdigest()
 
 def bins(lon,lat):
-    lon=pd.to_numeric(lon,errors="coerce").to_numpy(float)
-    lat=pd.to_numeric(lat,errors="coerce").to_numpy(float)
+    lon=np.asarray(pd.to_numeric(lon,errors="coerce"),dtype=float)
+    lat=np.asarray(pd.to_numeric(lat,errors="coerce"),dtype=float)
     # Exact same WGS84 grid as MOIS original photographed-source cell creator.
     return (np.floor((np.minimum(lon,np.nextafter(180.,-np.inf))+180.)/.05+1e-8).astype(int),
             np.floor((np.minimum(lat,np.nextafter(90.,-np.inf))+90.)/.05+1e-8).astype(int))
 
 def pixels(lon,lat):
-    lon=pd.to_numeric(lon,errors="coerce").to_numpy(float)
-    lat=pd.to_numeric(lat,errors="coerce").to_numpy(float)
+    lon=np.asarray(pd.to_numeric(lon,errors="coerce"),dtype=float)
+    lat=np.asarray(pd.to_numeric(lat,errors="coerce"),dtype=float)
     # Official 30-arcsecond WGS84 Global2 mosaics 43200×17280, bounds lat [-54,90].
     # Actual latitude index must start at 90° north; source ds height is 17280.
     return (np.floor((np.minimum(lon,np.nextafter(180.,-np.inf))+180)*120+1e-8).astype(int),
