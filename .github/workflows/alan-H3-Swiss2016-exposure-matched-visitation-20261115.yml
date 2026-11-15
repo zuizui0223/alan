@@ -1,0 +1,66 @@
+name: ALAN original Swiss 2016 exact plant-event matched resource-standardized visitors
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - scripts/analysis/alan_Giavi2021_cover_conditioned_within_event_20261115.py
+      - tests/test_alan_Giavi2021_cover_conditioned_within_event_20261115.py
+      - docs/ALAN_H3_SWISS_RESOURCE_STANDARDIZED_VISITS_20261115.md
+      - .github/workflows/alan-H3-Swiss2016-exposure-matched-visitation-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  true-site-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install source Rdata reader and run matched-plant causal-grain tests
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 pyreadr==0.5.3
+          python -m py_compile scripts/analysis/alan_Giavi2021_cover_conditioned_within_event_20261115.py
+          python -m unittest discover -s tests -p 'test_alan_Giavi2021_cover_conditioned_within_event_20261115.py' -v
+      - name: Reacquire author exact MD5 Rdata and recompute 6 paired-site allocation and four-guild Holm
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          mkdir -p H3_swiss2016_conditional
+          python -m scripts.analysis.alan_Giavi2021_cover_conditioned_within_event_20261115 \
+            --out H3_swiss2016_conditional/ALAN_Giavi2021_matched_plants_flowercover_conditioned_visitation.json
+          python - <<'PY'
+          import json,math
+          from pathlib import Path
+          z=json.loads(Path('H3_swiss2016_conditional/ALAN_Giavi2021_matched_plants_flowercover_conditioned_visitation.json').read_text())
+          d=z['study_design']
+          assert z['source_author_original_MD5']=='f60b21d82c163cbb53520fda0bc61985'
+          assert d['source_interaction_rows']==1884
+          assert d['original_source_plant_cover_event_rows']==628
+          assert d['both_treatment_same_plant_same_survey_matched_plant_occasions']==193
+          assert d['independent_lit_dark_true_site_pairs']==6
+          assert d['paired_survey_occasions']==37
+          assert len(z['conditional_visit_share_exposure_adjustment'])==4
+          assert z['no_seed_or_effective_conspecific_pollen_measured'] is True
+          for guild,entry in z['conditional_visit_share_exposure_adjustment'].items():
+            for threshold,s in entry.items():
+              assert s['sites']<=6
+              if s['sites']:
+                assert abs(s['site_equal_mean_excess_lit_visitor_share_over_flower_cover'])<=1
+                assert s['visitor_count_conditions_on_recorded_matched_plant_events']
+                assert s['flower_cover_is_post_treatment_proxy_and_may_mediate_total_ALAN_effect']
+          print('GIAVI2021_CONDITIONAL_PLANT_EVENT_SITE_SOURCE_GATES_PASSED')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-Swiss2016-paired-plant-event-cover-standardized-visitor-share
+          path: H3_swiss2016_conditional/*.json
+          retention-days: 90
+          if-no-files-found: warn
