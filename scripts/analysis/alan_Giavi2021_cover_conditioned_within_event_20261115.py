@@ -84,6 +84,10 @@ def summarize(rows,matched,seed):
         "no_lighting_inference_fitted":True}
     series=pd.DataFrame(rows)
     d=series.observed_minus_expected_lit_visit_fraction.to_numpy(float)
+    loocv=[float(np.delete(d,i).mean()) for i in range(len(d))] if len(d)>=2 else []
+    overall_visits=float(series.n_recorded_visits_over_both_arms.sum())
+    observed_pooled=float(series.n_observed_lit_visits.sum())
+    expected_pooled=float(series.n_expected_lit_visits_from_flower_cover.sum())
     return {
       "sites":len(series),
       "source_matched_plant_opportunity_rows":len(matched),
@@ -95,6 +99,13 @@ def summarize(rows,matched,seed):
       "source_true_dark_visits":float(matched.actual_dark_visits.sum()),
       "site_equal_mean_excess_lit_visitor_share_over_flower_cover":float(d.mean()),
       "site_equal_median_excess_lit_visitor_share":float(np.median(d)),
+      "leave_one_true_site_out_site_equal_means":loocv,
+      "leave_one_out_changes_mean_effect_sign":bool(
+            loocv and min(loocv)<0<max(loocv)),
+      "pooled_matched_event_expected_lit_share":float(expected_pooled/overall_visits),
+      "pooled_matched_event_observed_lit_share":float(observed_pooled/overall_visits),
+      "pooled_matched_event_excess_lit_visit_fraction":float(
+            (observed_pooled-expected_pooled)/overall_visits),
       "sites_with_excess_lit_visits_positive":int(np.sum(d>0)),
       "sites_with_excess_lit_visits_negative":int(np.sum(d<0)),
       "site_equal_bootstrap95_descriptive":site_bootstrap(d,seed),
@@ -119,6 +130,16 @@ def analyze():
          "visits_all_three_orders":float(common[f"all3_visits_{arm}"].sum()),
          "floral_cover_proxy_sum":float(common[f"floral_cover_{arm}"].sum())}
         for arm in ["C","T"]}
+    # A pooled ratio of visit counts / sum of floral cover is an intentionally
+    # different estimand from the within plant×pair conditional expected share.
+    def pooled_rate_ratio(ar,controls):
+        if min(float(ar["T"]["floral_cover_proxy_sum"]),float(ar["C"]["floral_cover_proxy_sum"]))<=0:
+            raise ValueError("original flower cover proxy cannot have nonpositive totals")
+        return float(
+            (ar["T"]["visits_all_three_orders"]/ar["T"]["floral_cover_proxy_sum"])/
+            (ar["C"]["visits_all_three_orders"]/ar["C"]["floral_cover_proxy_sum"]))
+    pooled_matched=pooled_rate_ratio(matched_arms,common)
+    pooled_all=(float(count_by_arm["T"]["observed_visits"])/float(count_by_arm["T"]["floral_cover"])) / (float(count_by_arm["C"]["observed_visits"])/float(count_by_arm["C"]["floral_cover"]))
     summary={}
     for i,(name,col) in enumerate(GUILDS.items()):
         v=conditional_exposure_rows(common,col)
@@ -146,6 +167,19 @@ def analyze():
         "source_observed_all_plant_opportunity_by_arm":count_by_arm,
         "source_matched_plant_opportunity_by_arm":matched_arms,
         "mismatched_plant_event_opportunities_not_true_absence":True},
+      "visitation_rate_per_measured_flower_cover_pooled_diagnostic":{
+         "all_628_plant_opportunity_records_lit_over_dark":pooled_all,
+         "matched_193_plant_opportunities_lit_over_dark":pooled_matched,
+         "both_are_aggregate_count_per_cover_not_within_event_conditional_effect":True,
+         "pooled_matched_excess_lit_share_vs_6site_equal_excess_lit_share_sign_mismatch":
+           bool((pooled_matched>1 and summary["all_three_documented_diurnal_orders"]["1"]["site_equal_mean_excess_lit_visitor_share_over_flower_cover"]<0) or
+                (pooled_matched<1 and summary["all_three_documented_diurnal_orders"]["1"]["site_equal_mean_excess_lit_visitor_share_over_flower_cover"]>0)),
+         "source_matched_fraction_by_treatment_of_observed_visit_counts":{
+            arm:matched_arms[arm]["visits_all_three_orders"]/float(count_by_arm[arm]["observed_visits"]) for arm in ["C","T"]},
+         "source_matched_fraction_by_treatment_of_observed_flower_cover":{
+            arm:matched_arms[arm]["floral_cover_proxy_sum"]/float(count_by_arm[arm]["floral_cover"]) for arm in ["C","T"]},
+         "observed_lit_dark_rates_not_causal_total_ALAN_effect":True
+      },
       "conditional_visit_share_exposure_adjustment":summary,
       "four_guild_primary_threshold1_Holm_exploratory":holm_by_family(primary),
       "four_matched_occasion_thresholds_exploratory_not_multiplicity_corrected":True,
@@ -170,5 +204,8 @@ def main():
       "matched_arms":z["study_design"]["source_matched_plant_opportunity_by_arm"],
       "estimates":{k:{j:{key:x.get(key) for key in ["sites","source_matched_plant_opportunity_rows","source_matched_zero_visitation_rows","site_equal_mean_excess_lit_visitor_share_over_flower_cover","site_equal_bootstrap95_descriptive","sites_with_excess_lit_visits_positive"]}
                        for j,x in v.items()} for k,v in z["conditional_visit_share_exposure_adjustment"].items()},
-      "Holm":z["four_guild_primary_threshold1_Holm_exploratory"]},ensure_ascii=False))
+      "Holm":z["four_guild_primary_threshold1_Holm_exploratory"],
+      "pooled_and_site_estimates":z["visitation_rate_per_measured_flower_cover_pooled_diagnostic"],
+      "site_L1_leaveout":z["conditional_visit_share_exposure_adjustment"]["all_three_documented_diurnal_orders"]["1"]["leave_one_true_site_out_site_equal_means"]
+      },ensure_ascii=False))
 if __name__=="__main__":main()
