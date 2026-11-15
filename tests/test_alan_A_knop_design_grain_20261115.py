@@ -23,8 +23,16 @@ class TestKnopRealSourceDesign(unittest.TestCase):
         self.assertFalse(KNOP["full_day_night_exclusion"])
         self.assertTrue(KNOP["bagging_does_not_separate_diel_guilds"])
         self.assertFalse(KNOP["original_model_variance_available_to_meta"])
-        self.assertFalse(KNOP["full_interaction_numeric_beta_se_recovered"])
-    def test_author_p_values_are_not_interaction(self):
+        self.assertTrue(KNOP["full_interaction_numeric_beta_se_recovered"])
+        self.assertIsNone(next(x for x in REG["entries"] if x["id"]=="knop2017").get("verified_joint_effect_moderator_se") or None)
+    def test_source_reported_interaction_is_on_bagging_not_night_only(self):
+        a=KNOP["direct_light_by_bagging_original_mixed_effect_report"]
+        self.assertAlmostEqual(a["outcome_percent_developed_achenes"]["light_x_bagging_open_beta_logit"],-1.40)
+        self.assertAlmostEqual(a["outcome_percent_developed_achenes"]["se"],0.592)
+        self.assertAlmostEqual(a["outcome_percent_developed_achenes"]["p"],0.018)
+        self.assertFalse(a["outcome_count_developed_achenes"]["sign_verified"])
+        self.assertTrue(KNOP["bagging_does_not_separate_diel_guilds"])
+    def test_simple_effect_p_values_alone_not_interaction(self):
         self.assertAlmostEqual(KNOP["light_negative_open_fruits_p"],.014)
         self.assertAlmostEqual(KNOP["light_effect_on_bagged_fruits_p"],.140)
         self.assertFalse(next(x for x in REG["entries"] if x["id"]=="knop2017")["verified_joint_effect_moderator_se"])
