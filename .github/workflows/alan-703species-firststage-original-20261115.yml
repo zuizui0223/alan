@@ -4,6 +4,7 @@ on:
     branches: [analysis/alan-species-slopes-firststage-20261115]
     paths:
       - scripts/analysis/alan_species_effortadjusted_firststage_20261115.py
+      - scripts/analysis/alan_species_island_bootstrap_20261115.py
       - .github/workflows/alan-703species-firststage-original-20261115.yml
   workflow_dispatch:
 permissions:
@@ -22,7 +23,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
-          python -m py_compile scripts/analysis/alan_species_effortadjusted_firststage_20261115.py
+          python -m py_compile scripts/analysis/alan_species_effortadjusted_firststage_20261115.py scripts/analysis/alan_species_island_bootstrap_20261115.py
           python - <<'PY'
           import numpy as np
           import pandas as pd
@@ -98,6 +99,27 @@ jobs:
           assert a['site_covariate_audit']['population_density_covariate'].startswith('NOT_PRESENT')
           assert a['limits']['no_true_species_absence']
           print('ALAN_AUTHENTIC_FIRSTSTAGE_SOURCE_QUALITY_PASS')
+          PY
+      - name: Whole-island bootstrap refitting species slopes and autonomy contrasts
+        timeout-minutes: 65
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_species_island_bootstrap_20261115 \
+            --sites source/pcnl/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --globi source/globi/GloBI_stage2_signed_extension.csv.gz \
+            --groups groups \
+            --ledger direct_traits/direct_species_trait_ledger.csv.gz \
+            --out verified/alan_224species_ge30_islands_600draw_blockbootstrap_20261115.json
+          python - <<'PY'
+          import json
+          d=json.load(open('verified/alan_224species_ge30_islands_600draw_blockbootstrap_20261115.json'))
+          q=d['block_bootstrap']
+          assert q['n_species_in_fixed_30island_cohort']==224
+          assert q['n_draws_requested']==600
+          assert q['n_valid_draws']>=540
+          assert abs(q['original_ge30_island_autonomous_minus_absent_pp']+.01134124517066686)<1e-7
+          assert d['limits']['no_independent_population_and_climate_controls']
+          print('ALAN_AUTHENTIC_ISLAND_BOOTSTRAP_PASS')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
