@@ -1,0 +1,52 @@
+{
+  "schema": "ALAN_A_five_abstract_priority_manual_secondary_source_check_v1",
+  "date": "2026-11-15",
+  "source": "OpenAlex 20-query 307-record abstract lexical gate; run 43693399281",
+  "source_artifact_id": 14153241262,
+  "records_unique": 307,
+  "abstract_indexed": 262,
+  "abstract_keyword_priority_total": 9,
+  "new_unregistered_priority_checked": 5,
+  "confirmed_new_independent_A_reproductive_experiments_among_five": 0,
+  "complete_fulltext_PRISMA_screen": false,
+  "zero_five_interpretation": "5 candidates manually checked in primary pages; no newly certified ALAN fruit/seed field experiment. This does not establish zero undiscovered studies globally.",
+  "records": [
+    {
+      "doi": "10.1016/j.scitotenv.2019.133833",
+      "year": 2019,
+      "decision": "SECONDARY_REVIEW_NO_NEW_EXPERIMENT",
+      "reason": "Discussion/review of ALAN and radiofrequency EMR impacts, no original new lit-vs-dark flower/seed allocation.",
+      "source": "https://www.sciencedirect.com/science/article/pii/S0048969719337805"
+    },
+    {
+      "doi": "10.15368/theses.2020.139",
+      "year": 2020,
+      "decision": "LINKED_DUPLICATE_SOURCE_NOT_NEW_EXPERIMENT",
+      "reason": "Wilson MS thesis chapter 2 reports Hesperoyucca whipplei x Tegeticula system and field light towers corresponding to published Wilson et al. 2021, DOI 10.1093/icb/icab010. Treat thesis as source enrichment, not a second independent published experiment.",
+      "source": "https://digitalcommons.calpoly.edu/theses/2224/",
+      "linked_paper_doi": "10.1093/icb/icab010",
+      "metadata_same_study_confidence": "high"
+    },
+    {
+      "doi": "10.1038/s41467-021-22011-8",
+      "year": 2021,
+      "decision": "MECHANISM_VISITS_NO_SEED_FRUIT",
+      "reason": "Original Swiss manipulated community paper models diurnal plant-pollinator visitation, not plant seed/fruit reproductive outcome. Cannot add as reproduction effect even though field manipulated ALAN.",
+      "source": "https://www.nature.com/articles/s41467-021-22011-8"
+    },
+    {
+      "doi": "10.1186/s12862-024-02200-x",
+      "year": 2024,
+      "decision": "PLANT_GERMINATION_GROWTH_NOT_REPRODUCTIVE_OUTPUT",
+      "reason": "Original 5-lux vs dark x earthworm factorial measures germination of pre-sown seeds, seedling emergence and plant height/biomass. Authors explicitly discuss future/conditional seed production; no flowering fruit or produced seed outcome.",
+      "source": "https://link.springer.com/article/10.1186/s12862-024-02200-x"
+    },
+    {
+      "doi": "10.9734/ajee/2025/v24i12830",
+      "year": 2025,
+      "decision": "SECONDARY_REVIEW_NO_NEW_EXPERIMENT",
+      "reason": "Authors explicitly describe structured literature review, no new assigned ALAN lit-dark fecundity data.",
+      "source": "https://journalajee.com/index.php/AJEE/article/view/830"
+    }
+  ]
+}
