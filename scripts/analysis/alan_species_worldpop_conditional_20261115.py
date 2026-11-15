@@ -266,7 +266,7 @@ def run(site_file,globi,groups,ledger,pop_sources,out):
     names=pd.DataFrame({"species":flora.species.drop_duplicates()})
     names["autonomy"]=names.species.map(trait.autonomous_selfing_capacity)
     # Exact original eligible 703 before any second-source population selection.
-    _,_,_,original703,support=prepare_support(sites,flora,names,.02)
+    _,_,_,original703,support=prepare_support(sites,flora,names,span=.02)
     require((len(original703),support["eligible_islands"])==(703,243),
             "Original 703 species denominator drift")
     original_aut=names.set_index("species").autonomy.loc[sorted(original703)]
