@@ -2,7 +2,7 @@
 import unittest
 import pandas as pd
 from scripts.analysis.alan_Giavi2021_within_site_plant_visit_flower_temporal_20261115 import (
-    normalized_event_overlap, pair_plants, summarize_paired, site_bootstrap
+    normalized_event_overlap, pair_plants, summarize_paired, site_bootstrap, flower_proportional_null_expected_overlap
 )
 class TemporalFunctionalTests(unittest.TestCase):
     def test_same_temporal_profiles_overlap_one_and_shift_zero(self):
@@ -26,6 +26,19 @@ class TemporalFunctionalTests(unittest.TestCase):
         self.assertLess(r[0]["lit_overlap"],1)
         self.assertEqual(pair_plants(q,"all3_visits",4),[])
         self.assertAlmostEqual(normalized_event_overlap([1,4,1],[2,4,0]),5/6)
+    def test_resource_proportional_null_controls_visit_count_bias(self):
+        p=[1,1,1]
+        a=flower_proportional_null_expected_overlap(p,[3,0,0],seed=7,B=2000)
+        b=flower_proportional_null_expected_overlap(p,[0,0,3],seed=7,B=2000)
+        self.assertAlmostEqual(a,b)
+        self.assertLess(a,1.0)
+        many=flower_proportional_null_expected_overlap(p,[100,100,100],seed=7,B=2000)
+        self.assertGreater(many,a)
+        self.assertAlmostEqual(flower_proportional_null_expected_overlap([0,2,0],[0,3,0],seed=7,B=500),1.0)
+        self.assertIsNone(flower_proportional_null_expected_overlap([1,1],[0,0],seed=7,B=100))
+        with self.assertRaises(ValueError):
+            flower_proportional_null_expected_overlap([1,1],[2.5,0],seed=7,B=100)
+
     def test_only_site_resampling_and_small_n_gate(self):
         self.assertIsNone(site_bootstrap([1,2]))
         a=site_bootstrap([.1,.1,.1,.1,.1,.1],iterations=100)
