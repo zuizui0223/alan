@@ -2,7 +2,7 @@
 import unittest
 import pandas as pd
 from scripts.analysis.alan_Giavi2021_within_site_plant_visit_flower_temporal_20261115 import (
-    normalized_event_overlap, pair_plants, summarize_paired, site_bootstrap, flower_proportional_null_expected_overlap
+    normalized_event_overlap, pair_plants, summarize_paired, site_bootstrap, flower_proportional_null_expected_overlap, exact_site_sign_flip, holm_by_family
 )
 class TemporalFunctionalTests(unittest.TestCase):
     def test_same_temporal_profiles_overlap_one_and_shift_zero(self):
@@ -38,6 +38,15 @@ class TemporalFunctionalTests(unittest.TestCase):
         self.assertIsNone(flower_proportional_null_expected_overlap([1,1],[0,0],seed=7,B=100))
         with self.assertRaises(ValueError):
             flower_proportional_null_expected_overlap([1,1],[2.5,0],seed=7,B=100)
+
+    def test_site_exact_signflip_and_four_family_holm(self):
+        z=exact_site_sign_flip([-.1]*6)
+        self.assertAlmostEqual(z["two_sided_site_signflip_fraction_DESCRIPTIVE"],2/64)
+        self.assertEqual(z["independent_site_count"],6)
+        self.assertTrue(z["NOT_formal_randomization_under_field_assigned_light"])
+        self.assertAlmostEqual(exact_site_sign_flip([.2]*5)["two_sided_site_signflip_fraction_DESCRIPTIVE"],2/32)
+        self.assertEqual(holm_by_family({"hymenoptera":2/64,"coleoptera":2/32,"overall":.5625,"diptera":.96875}),
+            {"hymenoptera":.125,"coleoptera":.1875,"overall":1.0,"diptera":1.0})
 
     def test_only_site_resampling_and_small_n_gate(self):
         self.assertIsNone(site_bootstrap([1,2]))
