@@ -7,9 +7,9 @@
   "additional_reproductive_papers": 3,
   "reviewed_reproductive_papers": 12,
   "design_counts_among_reproductive": {
-    "manipulated": 8,
+    "manipulated": 9,
     "observational": 3,
-    "mixed_unresolved": 1
+    "mixed_unresolved": 0
   },
   "extra_nonreproductive_exclusion_controls": 2,
   "fully_joint_effect_variance_independent_external_night_dependence": 0,
@@ -96,15 +96,36 @@
       "doi": "10.1093/icb/icab010",
       "year": 2021,
       "short_title": "Wilson yucca direct lights and skyglow recruitment",
-      "light_design": "mixed_unresolved",
+      "light_design": "manipulated_direct_light_plus_observational_skyglow",
       "outcome": "fruit_and_larvae_recruitment",
-      "a_primary_stage": "design_and_endpoint_review",
-      "screening_reason": "must separate tower light from observational skyglow and larval recruitment",
+      "a_primary_stage": "manipulated_plant_reproductive_outcome_but_endpoint_denominator_and_se_unresolved",
+      "screening_reason": "2019 California 5 original sites x 3 transects each, randomly assigned 8 directly lit and 7 control transects. 60 chosen yucca plants, 2 without blooms excluded, fruit set analysis n=58 plants. Adult-moth light trap is a separate 6th site/crossover experiment. Ambient skyglow is an observational gradient. Original fruit model has positive illuminance coefficient but 85-percent CI only, treatment coefficient not robust; effect scale, fruit denominator and transect-level covariance unverified.",
       "external_night_dependence": "none_proven",
       "screen_status": "source_recovery",
-      "note": "No guessed denominators",
+      "note": "This is ONE published study with a directly manipulated fecundity component; published Wilson 2020 thesis chapter 2 is source overlap not second experiment. Original species Hesperoyucca whipplei pollinated by diurnal Tegeticula maculata maculata, not observed nocturnal moth dependence; do NOT code V=0 without day/night exclusion.",
       "verified_joint_effect_moderator_se": false,
-      "source_url": "https://doi.org/10.1093/icb/icab010"
+      "source_url": "https://doi.org/10.1093/icb/icab010",
+      "source_audit": {
+        "journal_original": "https://doi.org/10.1093/icb/icab010",
+        "original_author_thesis": "https://doi.org/10.15368/theses.2020.139",
+        "treatment_assignment": "3 transects per original 5 field sites; 8 lit 7 dark; selected 60 plants, final 58",
+        "n_manipulated_transects": 15,
+        "n_lit_transects": 8,
+        "n_dark_transects": 7,
+        "n_field_sites": 5,
+        "n_fruit_response_plants": 58,
+        "published_illuminance_beta": 0.326,
+        "published_illuminance_CI85": [
+          0.019,
+          0.657
+        ],
+        "author_model_predictor_standardized": true,
+        "reported_direct_treatment_binary_reproduction_result": "weak/not strong in the original paper; do not manufacture logRR or SE",
+        "genuine_light_randomization": true,
+        "skyglow_randomized": false,
+        "fruit_outcome_unit": "mature fruits per plant, original flower denominator not certified",
+        "exclude_light_trap_data_from_repro_effect": true
+      }
     },
     {
       "id": "dzul2022",
@@ -226,5 +247,14 @@
       "verified_joint_effect_moderator_se": false,
       "source_url": "https://doi.org/10.1016/j.biocon.2025.111650"
     }
-  ]
+  ],
+  "source_evidence_reclassification": {
+    "date": "2026-11-15",
+    "change": "Wilson 2021 from mixed-unresolved to confirmed direct-light manipulated fecundity component, observational skyglow retained separately",
+    "publication_count_unchanged": 12,
+    "manipulated_publication_candidates": 9,
+    "not_independent_effectsize_ready_count": true,
+    "paper_study_duplicate": "Wilson 2020 thesis ch2 overlaps Wilson et al 2021 publication",
+    "reason": "Primary original Methods states independent randomized 8 treatment + 7 control transects, 5 sites and 58 plants; fruit model co-adjusts skyglow, but source means/SE and V unavailable"
+  }
 }
