@@ -72,33 +72,35 @@ def get(name,url):
  return entry
 
 def strict_night_only_channel_loss_bound(night_share=.3571,alan_seed_loss=.56):
-    """Conditional identity check, NOT inferred mediation or same-cell data.
+    """Retired cross-treatment bound: original effects have DIFFERENT targets.
 
-    Requires BOTH percentages to have the SAME dark treatment baseline
-    and a genuinely additive daytime/nighttime seed contribution. Under a
-    "night only removed, everything else fixed" null the maximum attainable
-    decline equals the baseline night marginal fraction.
+    The 35.71% paper figure is a share of total seed formation ascribed
+    to night pollination. The -56.0% ALAN effect, established by full-text
+    Results p14 / Discussion p16, is the NIGHT-ONLY access treatment,
+    not an unrestricted/open-access whole-plant effect. Thus a proposed
+    35.71%-versus-56% "additional daytime loss" calculation is not
+    empirically defined. Preserve source fractions but fail closed.
     """
-    import math
     if not (0<=night_share<=1 and 0<=alan_seed_loss<=1):
         raise ValueError("valid 0..1 proportions required")
     return {
-      "hypothesis":"ALAN removes a fraction q∈[0,1] of the nocturnal incremental contribution with other contributions unchanged",
-      "conditional_on_same_dark_reference_and_same_seedset_denominator":True,
-      "same_reference_verified_by_abstract":False,
-      "assumes_additive_nonoverlapping_night_day_seed_contributions":True,
-      "reported_dark_nocturnal_seed_share":night_share,
-      "reported_overall_seed_decline_under_ALAN":alan_seed_loss,
-      "maximum_possible_decline_if_only_dark_night_contribution_removed":night_share,
-      "minimum_possible_lit_over_dark_seed_ratio_night_only":1-night_share,
-      "reported_lit_over_dark_seed_ratio_from_reduction":1-alan_seed_loss,
-      "excess_total_loss_beyond_night_only_upper_bound":alan_seed_loss-night_share,
-      "fraction_observed_decline_not_coverable_by_night_only_maximum":
-          (alan_seed_loss-night_share)/alan_seed_loss if alan_seed_loss>0 else None,
-      "conditional_night_only_null_incompatible_if_common_reference":
-          bool(alan_seed_loss>night_share),
+      "status":"INCOMPARABLE_ACCESS_TREATMENTS_NO_EMPIRICAL_BOUND",
+      "source":"Lu JPE 2026 DOI 10.1093/jpe/rtag160",
+      "published_night_access_share_of_total_seed_set":night_share,
+      "published_ALAN_seed_decline_under_night_only_access":alan_seed_loss,
+      "reported_night_only_lit_over_dark_fraction_from_decline":1-alan_seed_loss,
+      "published_ALAN_seed_decline_under_open_access":None,
+      "same_dark_reference_AND_same_access_arm_verified":False,
+      "distinct_seedset_exposure_denominators":True,
+      "original_56_percent_is_night_only_not_open":True,
+      "night_channel_upper_bound_applicable_to_reported_56_percent":False,
+      "empirical_excess_total_loss_beyond_night_only":None,
+      "fraction_of_seed_loss_due_to_daytime_or_predator":None,
+      "conditional_night_only_null_empirically_rejected":False,
+      "source_complete_same_population_fourarm_seed_cells":False,
       "does_not_prove_daytime_disruption_or_predator_mediation":True,
-      "treatment_cells_and_n_SE_needed_before_real_test":True
+      "treatment_cells_and_cluster_covariance_needed_before_real_test":True,
+      "new_cross_access_effect_estimates":0
     }
 
 def main(out):
@@ -126,12 +128,12 @@ def main(out):
    "published_abstract_alpine_manipulation":{
      "reported_Lepidoptera_visit_reduction_fraction":0.491,
      "reported_night_pollen_reduction_fraction":0.538,
-     "reported_seed_set_reduction_fraction_Pedicularis":0.56,
+     "reported_seed_set_reduction_fraction_Pedicularis_NIGHT_ONLY":0.56,
      "reported_autonomous_selfing_seed_share_Euphrasia":0.65},
    "published_stage_log_light_over_dark_FROM_ROUNDED_ABSTRACT_ONLY":{
      "nocturnal_lepidoptera_visitation":__import__("math").log(1-.491),
      "nocturnal_conspecific_stigma_pollen":__import__("math").log(1-.538),
-     "seed_set_Pedicularis":__import__("math").log(1-.56)},
+     "seed_set_NIGHT_ONLY_Pedicularis":__import__("math").log(1-.56)},
    "published_abstract_reported_reduction_not_joint_medation_effect":True,
    "reported_Pedicularis_seed_set_lit_dark_ratio_from_percent":0.44,
    "reported_Pedicularis_seed_set_log_ratio_from_percent":__import__("math").log(.44),
