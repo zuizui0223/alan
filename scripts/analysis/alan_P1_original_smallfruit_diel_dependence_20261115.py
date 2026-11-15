@@ -126,7 +126,9 @@ def reduce_source(fruit_rows: list[dict], quality_rows: list[dict]) -> dict:
           "taxon_original":key[0],"year":key[1],"treatment":key[2],
           **raw, "initial_flowers":initial,
           "fruit_set_probability_raw":None if initial==0 else raw["fruit_success"]/initial,
-          **q, "fraction_successful_fruits_in_quality_file":None if raw["fruit_success"]==0 else q["measured_fruit_rows"]/raw["fruit_success"],
+          **q, "quality_rows_to_fruit_success_ratio_NOT_a_coverage_fraction":None if raw["fruit_success"]==0 else q["measured_fruit_rows"]/raw["fruit_success"],
+          "quality_vs_fruit_count_status":("MATCH" if q["measured_fruit_rows"]==raw["fruit_success"] else ("QUALITY_ROWS_EXCEED_FRUIT_SET_SUCCESS" if q["measured_fruit_rows"]>raw["fruit_success"] else "QUALITY_ROWS_FEWER_THAN_FRUIT_SET_SUCCESS")),
+          "safe_to_join_quality_to_initial_flowers":False,
           "seed_count_per_measured_fruit":None if not q["nonmissing_seed_rows"] else q["seed_count_sum_measured"]/q["nonmissing_seed_rows"]
         }
         row["se_and_ci_cluster_adjusted"]=None
@@ -149,8 +151,18 @@ def reduce_source(fruit_rows: list[dict], quality_rows: list[dict]) -> dict:
             "nocturnal_insect_ever_observed":False,
             "cannot_assign_moth_effectiveness":True
         })
+    species_code_mapping={"BC":"Ribes nigrum","RB":"Rubus idaeus","RD":"Ribes rubrum"}
+    expected_flower_counts={"BC":375,"RB":54,"RD":421}
+    observed_flower_counts={code:sum(r["initial_flowers"] for r in group_rows if r["taxon_original"]==code) for code in species_code_mapping}
+    if observed_flower_counts != expected_flower_counts:
+        raise AssertionError("Original paper flower totals disagree: "+repr(observed_flower_counts))
+    flagged=[{"taxon_original":x["taxon_original"],"year":x["year"],"treatment":x["treatment"],"fruit_set_success":x["fruit_success"],"quality_rows":x["measured_fruit_rows"],"status":x["quality_vs_fruit_count_status"]} for x in group_rows if x["quality_vs_fruit_count_status"]!="MATCH"]
     return {
-      "schema":"ALAN_P1_B1_2025_original_fruit_crop_diel_gate_v1",
+      "schema":"ALAN_P1_B1_2025_original_fruit_crop_diel_gate_v2",
+      "species_original_code_mapping_confirmed_by_published_flower_totals":species_code_mapping,
+      "source_paper_species_flower_totals_verified":observed_flower_counts,
+      "source_quality_join_mismatch_group_count":len(flagged),
+      "source_quality_join_mismatch_groups":flagged,
       "source_article":"10.1111/jen.70019","source_dataset":"10.6084/m9.figshare.29930195.v1",
       "source_sha256":{k:x["sha256"] for k,x in FILES.items()},
       "original_rows":{k:x["expected_rows"] for k,x in FILES.items()},
@@ -162,7 +174,7 @@ def reduce_source(fruit_rows: list[dict], quality_rows: list[dict]) -> dict:
       "sample_counts_by_taxon_year_treatment":group_rows,
       "new_night_access_V_by_taxon_year":estimands,
       "source_contains_individual_plant_id":False,
-      "conditional_seed_coverage_issue":"Seed/fruit quality is measured on selected formed fruits. All originally assigned flowers have fruit outcomes, but one cannot infer total seeds per original flower from an incomplete or non-matched fruit-quality file.",
+      "conditional_seed_coverage_issue":"Quality file is conditioned on formed fruit but multiple taxon-year-treatment counts disagree with fruit-set success, some quality rows exceed fruit successes. Never call 223/258 coverage probability nor combine quality seed sums into total per originally assigned flower without source row links.",
       "ALAN_risk_ratio_estimated":False,
       "night_pollinator_guild_confirmed":False,
       "meta_reproductive_beta_V":None,
@@ -179,6 +191,7 @@ def main():
     path.write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({
       "source_rows":out["original_rows"],"inflorescences":out["n_inflorescences"],
+      "quality_group_mismatches":out["source_quality_join_mismatch_group_count"],
       "initial_flowers":out["n_initial_flowers"],
       "formed_fruits":out["n_original_fruits_success"],
       "quality_rows":out["n_measured_fruit_quality_rows"],
