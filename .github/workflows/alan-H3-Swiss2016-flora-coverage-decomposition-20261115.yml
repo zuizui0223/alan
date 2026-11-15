@@ -1,0 +1,64 @@
+name: ALAN Swiss source flora-coverage Simpson rate decomposition
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - scripts/analysis/alan_Giavi2021_coobserved_portfolio_decomposition_20261115.py
+      - tests/test_alan_Giavi2021_coobserved_portfolio_decomposition_20261115.py
+      - docs/ALAN_H3_SWISS_FLORA_SUPPORT_DECOMPOSITION_20261115.md
+      - .github/workflows/alan-H3-Swiss2016-flora-coverage-decomposition-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  authentic-six-site-support:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Validate source row keys and algebraic ratio decomposition
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 pyreadr==0.5.3
+          python -m py_compile scripts/analysis/alan_Giavi2021_coobserved_portfolio_decomposition_20261115.py
+          python -m unittest discover -s tests -p 'test_alan_Giavi2021_coobserved_portfolio_decomposition_20261115.py' -v
+      - name: Reacquire original 2016 Zenodo Rdata with signed MD5 and fit source-observation support decomposition
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          mkdir -p verified_swiss_support
+          python -m scripts.analysis.alan_Giavi2021_coobserved_portfolio_decomposition_20261115 \
+            --out verified_swiss_support/ALAN_Swiss_flora_same_survey_matched_singlearm_2016_results.json
+          python - <<'PY'
+          from pathlib import Path
+          import json,math
+          z=json.loads(Path('verified_swiss_support/ALAN_Swiss_flora_same_survey_matched_singlearm_2016_results.json').read_text())
+          d=z['source_reproduction'];x=z['source_support'];r=z['visit_density_ratios']
+          assert d['source_data_Rdata_expected_md5']=='f60b21d82c163cbb53520fda0bc61985'
+          assert d['source_plant_event_arm_rows']==628
+          assert (d['real_plant_species_count'],d['actual_paired_source_sampling_sessions'],d['actual_independent_light_dark_site_pairs'])==(21,37,6)
+          assert (x['both_arms_source_plant_survey_keys'],x['dark_only_observed_plant_survey_keys'],x['lit_only_observed_plant_survey_keys'])==(193,102,140)
+          assert x['exact_site_survey_plant_union']==435
+          assert math.isclose(x['co_recorded_keys_over_union'],193/435,rel_tol=1e-12)
+          assert math.isclose(r['all_source_observed']['lit_over_control_visitation_per_cover_proxy'],1.043426271471346,rel_tol=1e-11)
+          assert math.isclose(r['matched_both_arm_observed']['lit_over_control_visitation_per_cover_proxy'],1.151341740856315,rel_tol=1e-11)
+          assert math.isclose(r['arm_only_NOT_paired']['lit_over_control_visitation_per_cover_proxy'],0.818544488367572,rel_tol=1e-11)
+          assert math.isclose(r['exact_multiplicative_source_selection_factor'],r['all_over_matched_visitation_density_ratio_multiplier'],rel_tol=1e-13)
+          assert math.isclose(r['all_ratio_reconstruction_error'],0.0,abs_tol=1e-12)
+          assert z['biological_inference_gates']['arm_only_observations_HAVE_NO_matched_treatment_counterfactual']
+          assert z['biological_inference_gates']['co_recording_jaccard_NOT_flora_true_occurrence_similarity']
+          print('ALAN_AUTHENTIC_SWISS_PLANT_SUPPORT_SELECTION_DECOMP_SUM_AND_JACCARD_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-sixsite-flora-coverage-selection-decomposition
+          path: verified_swiss_support/*.json
+          retention-days: 90
+          if-no-files-found: warn

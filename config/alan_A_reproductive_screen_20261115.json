@@ -1,0 +1,461 @@
+{
+  "schema": "ALAN_A_reproductive_primary_candidate_registry_v1",
+  "audit_date": "2026-11-15",
+  "mode": "targeted_open_web_plus_existing_ALAN_primary_source_registry_NOT_PRISMA",
+  "cutoff": "2026-11-15",
+  "existing_reproductive_registry_publications": 9,
+  "additional_reproductive_papers": 3,
+  "reviewed_reproductive_papers": 12,
+  "design_counts_among_reproductive": {
+    "manipulated": 9,
+    "observational": 3,
+    "mixed_unresolved": 0
+  },
+  "extra_nonreproductive_exclusion_controls": 2,
+  "fully_joint_effect_variance_independent_external_night_dependence": 0,
+  "strict_plant_reproduction_k_meta_eligible": "NOT_CERTIFIED",
+  "critical_note": "Publication number is neither independent experiment count nor effect-size-ready count; unknown values are never set to zero. New additional: Xiao, Grognuz seed preprint, Soteras observational urbanization.",
+  "entries": [
+    {
+      "id": "knop2017",
+      "doi": "10.1038/nature23288",
+      "year": 2017,
+      "short_title": "Knop ALAN pollination networks and focal fruit set",
+      "light_design": "manipulated",
+      "outcome": "mature_achenes_count_and_fraction_per_cirsium_capitulum_2x2",
+      "a_primary_stage": "qualifies_manipulated_reproductive_outcome_but_common_scale_and_variance_not_yet_recovered",
+      "screening_reason": "Directly manipulated overnight LEDs, true fruit experiment 5 lit vs 5 dark meadows matched in 5 pairs; 2x2 light × bagging, 100 plants ×2 capitula; mature achene number and % per capitulum, not one flower binary per independently assigned unit. Original study reports open fruit-count lighting z=-2.5 p=.014, bagged p=.140; site/plant clustered SE for common A response not yet recovered.",
+      "external_night_dependence": "night_pollinator_visits_2014_2015_but_no_night_only_reproductive_exclosure",
+      "screen_status": "source_recovery",
+      "note": "Source model reports statistically resolved ALAN x bagging interaction for percentage of developed fruits (logit beta=-1.40, SE=.592, p=.018) and count p=.014, but this compares exclusion of ALL animal visitors, not nocturnal-only dependence. Count interaction sign in mirrored text conflicts with figure and remains unverified; never pool as logRR.",
+      "verified_joint_effect_moderator_se": false,
+      "source_url": "https://doi.org/10.1038/nature23288",
+      "source_audit": {
+        "audited_date": "2026-11-15",
+        "primary_article_doi": "10.1038/nature23288",
+        "evidence": "Knop et al. 2017 original main-body and Methods (author-uploaded manuscript; full Methods and Figure 4)",
+        "night_network_sites_total": 14,
+        "night_network_lit_sites": 7,
+        "night_network_dark_sites": 7,
+        "fruit_field_sites_total": 10,
+        "fruit_lit_sites": 5,
+        "fruit_dark_sites": 5,
+        "matched_site_pairs": 5,
+        "plants_per_site": 10,
+        "plant_pairs_per_site": 5,
+        "total_fruit_plants": 100,
+        "plants_per_lit_x_bagging_cell": 25,
+        "capitula_per_plant": 2,
+        "total_measured_capitula": 200,
+        "capitula_per_lit_x_bagging_cell": 50,
+        "light_x_bagged_four_cells": [
+          "dark_open",
+          "dark_bagged",
+          "lit_open",
+          "lit_bagged"
+        ],
+        "original_flower_unit": "Cirsium capitulum, count and fraction developed fruits (achenes) per capitulum",
+        "original_model": "Poisson count or binomial percentage per flower head; plant pair nested in site nested in 5 matched site pairs, plus herbivory, biomass, overdispersion",
+        "full_day_night_exclusion": false,
+        "bagging_does_not_separate_diel_guilds": true,
+        "light_negative_open_fruits_original_z": -2.5,
+        "light_negative_open_fruits_p": 0.014,
+        "light_effect_on_bagged_fruits_original_z": 1.47,
+        "light_effect_on_bagged_fruits_p": 0.14,
+        "full_interaction_numeric_beta_se_recovered": true,
+        "source_data_access": "On request from corresponding author; not newly acquired",
+        "original_model_variance_available_to_meta": false,
+        "note": "14 sites is the night visitation network, NOT the subset of 10 sites used for fruit success. 50 capitula per cell are observations clustered in 25 plants and 5 lit or 5 dark meadows.",
+        "direct_light_by_bagging_original_mixed_effect_report": {
+          "table": "Knop et al 2017 Nature Extended Data Table 3",
+          "source_page": "https://planesynormas.mma.gob.cl/archivos/2021/proyectos/ANTECEDENTES_ENTREGADOS_POR_ROC-OIKONOS.pdf",
+          "source_doi": "10.1038/nature23288",
+          "retrieved_in_original_published_pdf_compilation": true,
+          "primary_authored_mirror_table_text": true,
+          "secondary_mirror_extract_verified_source_layout": false,
+          "outcome_percent_developed_achenes": {
+            "light_x_bagging_open_beta_logit": -1.4,
+            "se": 0.592,
+            "p": 0.018,
+            "interpretation": "Conditional odds-scale interaction, NOT log response ratio, and NOT nocturnal-only dependence; check full original factor coding and source image"
+          },
+          "outcome_count_developed_achenes": {
+            "extracted_interaction_beta_text": 0.76,
+            "extracted_interaction_se": 0.309,
+            "extracted_p": 0.014,
+            "sign_verified": false,
+            "warning": "Text layer extracts positive count interaction but original direction of lit open fruit count is negative. Factor orientation or OCR/text sign mismatch unresolved; no derived RR."
+          },
+          "source_caveat": "The government archived compilation is publicly accessible and contains copied Nature 2017 Extended Data Table 3; the independent small-PDF table layout and sample-level covariance remain unavailable. The source archive HTML text gives reported values but PyMuPDF finds no table text layer."
+        }
+      }
+    },
+    {
+      "id": "macgregor2019",
+      "doi": "10.1002/ecs2.2550",
+      "year": 2019,
+      "short_title": "Macgregor Silene female plant pollination success",
+      "light_design": "manipulated",
+      "outcome": "seed_positive_flower",
+      "a_primary_stage": "definition_alignment_needed",
+      "screening_reason": "light x day/night non-significant original test, no raw 3 CSV, 5 locations 4 rounds",
+      "external_night_dependence": "same_study_exclosure_not_external",
+      "screen_status": "source_recovery",
+      "note": "Positive full-night effect; no inferred beta/SE",
+      "verified_joint_effect_moderator_se": false,
+      "source_url": "https://doi.org/10.1002/ecs2.2550"
+    },
+    {
+      "id": "boom2020",
+      "doi": "10.1038/s41598-020-75471-1",
+      "year": 2020,
+      "short_title": "Boom Silene Hadena artificial spectra",
+      "light_design": "manipulated",
+      "outcome": "fruit_set_and_estimated_seeds",
+      "a_primary_stage": "A_endpoint_candidate",
+      "screening_reason": "4 field locations, original aggregate fruit set, net seeds estimated",
+      "external_night_dependence": "none_proven",
+      "screen_status": "source_recovery",
+      "note": "Net seeds p=0.63; no cherry-picking colour",
+      "verified_joint_effect_moderator_se": false,
+      "source_url": "https://doi.org/10.1038/s41598-020-75471-1"
+    },
+    {
+      "id": "giavi2020",
+      "doi": "10.1038/s41598-020-68667-y",
+      "year": 2020,
+      "short_title": "Giavi Silene nursery pollinator lit dark spillover",
+      "light_design": "manipulated",
+      "outcome": "capsule_seed_and_infestation",
+      "a_primary_stage": "denominator_review",
+      "screening_reason": "four lit and four controls, adjacent dark shares meadow cluster",
+      "external_night_dependence": "none_proven",
+      "screen_status": "source_recovery",
+      "note": "Original models available; exact fruit denominator unclear",
+      "verified_joint_effect_moderator_se": false,
+      "source_url": "https://doi.org/10.1038/s41598-020-68667-y"
+    },
+    {
+      "id": "bariles2021",
+      "doi": "10.1093/biolinnean/blab114",
+      "year": 2021,
+      "short_title": "Bariles hawkmoth plant sky radiance fruit seeds",
+      "light_design": "observational",
+      "outcome": "fruit_seed",
+      "a_primary_stage": "exclude_A_not_manipulated",
+      "screening_reason": "ambient sky radiance and tree cover 6 sites; no assigned light",
+      "external_night_dependence": "none_proven",
+      "screen_status": "excluded",
+      "note": "Observational mechanism only",
+      "verified_joint_effect_moderator_se": false,
+      "source_url": "https://doi.org/10.1093/biolinnean/blab114"
+    },
+    {
+      "id": "wilson2021",
+      "doi": "10.1093/icb/icab010",
+      "year": 2021,
+      "short_title": "Wilson yucca direct lights and skyglow recruitment",
+      "light_design": "manipulated_direct_light_plus_observational_skyglow",
+      "outcome": "fruit_and_larvae_recruitment",
+      "a_primary_stage": "manipulated_plant_reproductive_outcome_but_endpoint_denominator_and_se_unresolved",
+      "screening_reason": "2019 California 5 original sites x 3 transects each, randomly assigned 8 directly lit and 7 control transects. 60 chosen yucca plants, 2 without blooms excluded, fruit set analysis n=58 plants. Adult-moth light trap is a separate 6th site/crossover experiment. Ambient skyglow is an observational gradient. Original fruit model has positive illuminance coefficient but 85-percent CI only, treatment coefficient not robust; effect scale, fruit denominator and transect-level covariance unverified.",
+      "external_night_dependence": "none_proven",
+      "screen_status": "source_recovery",
+      "note": "This is ONE published study with a directly manipulated fecundity component; published Wilson 2020 thesis chapter 2 is source overlap not second experiment. Original species Hesperoyucca whipplei pollinated by diurnal Tegeticula maculata maculata, not observed nocturnal moth dependence; do NOT code V=0 without day/night exclusion.",
+      "verified_joint_effect_moderator_se": false,
+      "source_url": "https://doi.org/10.1093/icb/icab010",
+      "source_audit": {
+        "journal_original": "https://doi.org/10.1093/icb/icab010",
+        "original_author_thesis": "https://doi.org/10.15368/theses.2020.139",
+        "treatment_assignment": "3 transects per original 5 field sites; 8 lit 7 dark; selected 60 plants, final 58",
+        "n_manipulated_transects": 15,
+        "n_lit_transects": 8,
+        "n_dark_transects": 7,
+        "n_field_sites": 5,
+        "n_fruit_response_plants": 58,
+        "published_illuminance_beta": 0.326,
+        "published_illuminance_CI85": [
+          0.019,
+          0.657
+        ],
+        "author_model_predictor_standardized": true,
+        "reported_direct_treatment_binary_reproduction_result": "weak/not strong in the original paper; do not manufacture logRR or SE",
+        "genuine_light_randomization": true,
+        "skyglow_randomized": false,
+        "fruit_outcome_unit": "mature fruits per plant, original flower denominator not certified",
+        "exclude_light_trap_data_from_repro_effect": true
+      }
+    },
+    {
+      "id": "dzul2022",
+      "doi": "10.1007/s00114-021-01783-5",
+      "year": 2022,
+      "short_title": "Dzul bat pollination light and noise gradient",
+      "light_design": "observational",
+      "outcome": "fruit_seed_and_pollen",
+      "a_primary_stage": "exclude_A_not_manipulated",
+      "screening_reason": "observational joint light noise gradient, not assigned lighting",
+      "external_night_dependence": "none_proven",
+      "screen_status": "excluded",
+      "note": "Keep in vertebrate B context",
+      "verified_joint_effect_moderator_se": false,
+      "source_url": "https://doi.org/10.1007/s00114-021-01783-5"
+    },
+    {
+      "id": "li2026",
+      "doi": "10.64898/2026.07.10.737511",
+      "year": 2026,
+      "short_title": "Li lighting point arrays 3 moth flowers",
+      "light_design": "manipulated",
+      "outcome": "seed_positive_plant_fruits_per_bud_seeds_per_bud",
+      "a_primary_stage": "flower_denominator_review",
+      "screening_reason": "3 independent fields, 79 plants, 3 species, preprint",
+      "external_night_dependence": "cross_population_S_nutans_only",
+      "screen_status": "source_recovery",
+      "note": "Raw source exists; positive lit array; buds not flowers",
+      "verified_joint_effect_moderator_se": false,
+      "source_url": "https://doi.org/10.64898/2026.07.10.737511"
+    },
+    {
+      "id": "lu2026jpe",
+      "doi": "10.1093/jpe/rtag160",
+      "year": 2026,
+      "short_title": "Lu light x pollinator exclusion 2 plants",
+      "light_design": "manipulated",
+      "outcome": "conspecific_pollen_grains_per_stigma_and_seed_per_ovule_in_formed_fruit",
+      "a_primary_stage": "direct_manipulated_light_x_access_but_night_only_seed_loss_not_open_initial_flower_endpoint",
+      "screening_reason": "CRITICAL scope correction: source -56% in Pedicularis kansuensis applies exclusively to ALAN vs dark within NIGHT-ONLY pollinator access; endpoint developed seeds/total ovules among formed fruits, NOT open day+night seed production. Source pollen open -23.09%, night-only -53.80%, giving descriptive ratio-of-response ratios 1.665 (log +0.510), with no original SE/covariance or open seed numeric effect.",
+      "external_night_dependence": "same_study_dark_day_vs_dark_open_possible_in_design_but_dark_access_cells_not_recovered",
+      "screen_status": "source_recovery",
+      "note": "IWE accepted-manuscript Results p14 + Discussion p16 crossrepo audit: -56% seed belongs NIGHT-ONLY, not open! Open seed nonsignificant with point estimate UNKNOWN, not zero. Five paired lit/dark plots; original 16 cells and Table S4b unavailable. Regression β_V unestimable.",
+      "verified_joint_effect_moderator_se": false,
+      "source_url": "https://doi.org/10.1093/jpe/rtag160",
+      "source_audit": {
+        "scope_checked_at": "2026-11-15",
+        "primary_doi": "10.1093/jpe/rtag160",
+        "IWE_source_repository": "zuizui0223/iwe",
+        "IWE_frozen_commit": "cd0130b4730735f0ec90b1162780ad67b19a222a",
+        "IWE_registry_path": "data/registry/lu2026_access_scoped_contrasts_v01.csv",
+        "IWE_transcription_blob_sha": "73a04ebd962a3113ebfae410c1720468094ab60a",
+        "IWE_transcription_sha256": "b8f18e68f3efcbdc108b59fcd79df9551fd6651cea6a34a0f6ae9fdf5d7b6b43",
+        "accepted_source_evidence": "Results page 14 (three access outcomes), Discussion page 16; source PDF cached parsed text in IWE, original PDF binary hash unavailable",
+        "lighting_plot_pairs": 5,
+        "original_four_access_categories": [
+          "full_exclusion",
+          "day_only",
+          "night_only",
+          "open"
+        ],
+        "seed_endpoint": "developed seeds / total ovules per formed fruit",
+        "Pedicularis_pollen_lit_dark_open": 0.7691,
+        "Pedicularis_pollen_lit_dark_night_only": 0.462,
+        "Pedicularis_pollen_open_vs_night_log_RR_response": 0.5096561089812692,
+        "Pedicularis_seed_lit_dark_night_only": 0.44,
+        "Pedicularis_seed_lit_dark_open": null,
+        "open_seed_significance": "not statistically significant in source, numeric coefficient and SE unavailable",
+        "non_significant_does_not_mean_zero": true,
+        "shared_block_sampling_covariance_available": false,
+        "final_seed_yield_per_original_flower_estimated": false,
+        "excludes_from_main_A_when_open_y_and_V_required": true,
+        "invalid_former_bound": "35.71% nighttime contribution vs -56% night-only ALAN decrease is not same open-access reference, so no 20.29-point unassigned loss inference"
+      }
+    },
+    {
+      "id": "xiao2025",
+      "doi": "10.1016/j.biocon.2025.111472",
+      "year": 2025,
+      "short_title": "Xiao Elsholtzia field ALAN phenology fruiting inflorescences",
+      "light_design": "manipulated",
+      "outcome": "number_of_fruiting_inflorescences_and_budding_bloom_fruit_seed_maturity_days_per_plant",
+      "a_primary_stage": "manipulated_plant_reproductive_capacity_secondary_fruiting_inflorescence_count_primary_initial_flower_binary_denominator_absent",
+      "screening_reason": "2025 Biological Conservation ORIGINAL field ALAN × animal-exclusion 40 plots (4m2 each). Reproduction measured fruiting INFLORESCENCE COUNT, not initially tagged flowers with mature seeded fruit; budding/flowering/fruit/seed maturation earlier 3.4–6.2 d; fruiting inflorescences lower under ALAN. Animal exclusion is NOT established to be diurnal/nocturnal pollinator exclusion; independent ALAN installation unit and treatment-cell means/SE not recovered. Authentic official Elsevier supplementary DOCX 315350 bytes SHA256 verified, but contains THREE supplementary figures, ZERO numeric tables.",
+      "external_night_dependence": "no_matched_dark_day_vs_open_reproductive_exclusion",
+      "screen_status": "endpoint_recheck",
+      "note": "Genuine light manipulation with negative reproductive-capacity direction, but original source has no day-only/open night dependency V. Published phenology is competing direct physiological/temporal mechanism, not proven moth pollen loss. Do not conflate 40 plots with 40 independent lamp units.",
+      "verified_joint_effect_moderator_se": false,
+      "source_url": "https://doi.org/10.1016/j.biocon.2025.111472",
+      "source_audit": {
+        "source_doi": "10.1016/j.biocon.2025.111472",
+        "original_publisher": "Biological Conservation 311 111472, 2025",
+        "experimental_plot_count": 40,
+        "plot_area_m2": 4,
+        "factorial": "ALAN/night dark x animal exclusion/open",
+        "light_assignment_unit": "40 original plots; number of independently randomized light installations unverified",
+        "animal_exclusion_mechanism": "not authenticated as insect or diel pollinator access exclusion",
+        "plant_taxon": "Elsholtzia densa",
+        "original_outcomes": [
+          "fruiting inflorescence count",
+          "specific leaf area",
+          "branch number",
+          "flower maturation phenology"
+        ],
+        "source_reported_direction": {
+          "fruiting_inflorescence_count": "negative ALAN effect in author-reported abstract",
+          "budding_blooming_fruiting_seed_maturity": "advanced by 3.4–6.2 days under ALAN",
+          "secondary_branches": "-44.3% under ALAN",
+          "specific_leaf_area": "+9.2% under ALAN"
+        },
+        "official_supplement_url": "https://ars.els-cdn.com/content/image/1-s2.0-S0006320725005099-mmc1.docx",
+        "official_supplement_http": 200,
+        "supplementary_file_size_bytes": 315350,
+        "supplementary_file_sha256": "127950cecd9ac78c0927b89df06b307e92a7a9445b0c054aa40a2e9d272e8a9f",
+        "supplementary_docx_table_count": 0,
+        "supplementary_embedded_image_count": 3,
+        "supplementary_contains_original_reproductive_treatment_cells": false,
+        "source_reproduction_point_estimate_and_se_available": false,
+        "fulltext_original_plot_assignment_verified": false,
+        "night_insect_pollination_dependency_V_available": false,
+        "source_download_and_structure_workflow_run": 43708383911,
+        "related_wilson_supplement_access": "Publisher original Wilson 2021 supplement remains HTTP403; no extra field effect estimate."
+      }
+    },
+    {
+      "id": "grognuz2026pre",
+      "doi": "10.13140/RG.2.2.36822.10563",
+      "year": 2026,
+      "short_title": "Grognuz Knop light slug factorial seed set",
+      "light_design": "manipulated",
+      "outcome": "seed_set_model",
+      "a_primary_stage": "manipulated_reproductive_seed_per_target_inflorescence_secondary_endpoint_not_initial_flower_fruit_rate",
+      "screening_reason": "Direct experimental 3-night light pre-exposure plus herbivory factorial; one daylight 90-min pollination observation per target inflorescence. Preprint Table S3 provides 448 pot target frames, 425 recorded seed counts and 28 choice blocks; derived block-balanced light/dark seed ratios ~0.714 in two species, but independent lamp treatment unit is not 28, plants reused, 23 missing seed outcomes, and nocturnal access dependence V unmeasured.",
+      "external_night_dependence": "none_proven",
+      "screen_status": "source_recovery",
+      "note": "Original source author model beta -0.40 p=.014; new block-balanced mean ratios are descriptive not model reanalysis. This study isolates nighttime exposure carryover to daytime pollination. Cannot be used as nocturnal pollinator channel loss. Block-derived CSV not raw author data.",
+      "verified_joint_effect_moderator_se": false,
+      "source_url": "https://doi.org/10.13140/RG.2.2.36822.10563",
+      "source_audit": {
+        "audit_date": "2026-11-15",
+        "original_published_full_preprint": "https://www.researchgate.net/publication/401424487_Artificial_light_at_night_restructures_daytime_plant-pollinator_interactions_through_direct_and_herbivore-mediated_pathways",
+        "study_doi": "10.13140/RG.2.2.36822.10563",
+        "original_author_data_doi": "10.17632/drhzznh4ps.1",
+        "source_stage": "Public author supplementary Table S3 visible as PDF-reproduced HTML. Derived 28x4 block-level mean and count data were manually transcribed from original Table S3, and reproduced source published treatment means. Original public author Mendeley raw files still inaccessible.",
+        "response": "seed count per standardized target flower/inflorescence after 90 min daytime visitation; target flowers bagged during preceding three illuminated nights",
+        "treatment": "2x2 ALAN / dark (3 nights) x slug / no slug; pots shuffled into 28 choice blocks each 16 pots (4 each treatment)",
+        "species_and_block_counts": {
+          "Trifolium pratense": 20,
+          "Centaurea jacea": 8
+        },
+        "total_target_pots": 448,
+        "original_seed_counts_available": 425,
+        "original_missing_seed_counts": 23,
+        "repeated_pot_exposures_in_original": {
+          "Trifolium pratense": "mean 1.52 uses",
+          "Centaurea jacea": "mean 1.22 uses"
+        },
+        "independent_lamp_assignment_units": "Not reconstructable from published block table; field lights shared across cages and repeated calendar weeks. Twenty-eight daytime choice blocks are not independent installations.",
+        "original_author_seed_model": {
+          "beta": -0.4,
+          "CI95": [
+            -0.73,
+            -0.08
+          ],
+          "p": 0.014,
+          "scale": "author link-scale model β; not pooled simple logRR"
+        },
+        "reanalyzed_block_balanced_source_values": {
+          "Trifolium pratense": {
+            "dark": 4.925,
+            "lit": 3.51875,
+            "ratio": 0.714467005076142
+          },
+          "Centaurea jacea": {
+            "dark": 1.4791666666666667,
+            "lit": 1.0572916666666667,
+            "ratio": 0.7147887364114263
+          }
+        },
+        "slug_separated_descriptive": {
+          "Trifolium pratense": {
+            "no_slug": 0.80517,
+            "slug": 0.63778
+          },
+          "Centaurea jacea": {
+            "no_slug": 0.27083,
+            "slug": 1.17143
+          }
+        },
+        "missing_by_light": {
+          "Trifolium": {
+            "dark": 2,
+            "lit": 7
+          },
+          "Centaurea": {
+            "dark": 6,
+            "lit": 8
+          }
+        },
+        "all_missing_dark_assumed_zero_tipping_missing_lit_pot_seeds_each": {
+          "Trifolium": 34.714285714285715,
+          "Centaurea": 4
+        },
+        "source_derived_block_csv": "results/alan_Grognuz2026_tableS3_block_derived_20261115.csv",
+        "source_model_not_reproduced": true,
+        "main_A_primary_result_qualified": false,
+        "interpretive_counterexample": "Observed ALAN-associated decline in reproduction after all night pollinators were excluded from target flowers during pre-exposure; subsequent pollination only daytime. Challenges 'only nighttime insect-dependent plants suffer ALAN' necessity statement, not evidence that species cannot use nocturnal pollination in nature."
+      }
+    },
+    {
+      "id": "soteras2025",
+      "doi": "10.1016/j.ufug.2025.129070",
+      "year": 2025,
+      "short_title": "Soteras Nicotiana urbanization nocturnal hawkmoth",
+      "light_design": "observational",
+      "outcome": "fruit_set",
+      "a_primary_stage": "exclude_A_not_manipulated",
+      "screening_reason": "29 population urbanization gradient; fruit set tracks impervious cover not necessarily light specifically",
+      "external_night_dependence": "none_proven",
+      "screen_status": "excluded",
+      "note": "New observed-urban gradient literature, B only",
+      "verified_joint_effect_moderator_se": false,
+      "source_url": "https://doi.org/10.1016/j.ufug.2025.129070"
+    },
+    {
+      "id": "lu2026evo",
+      "doi": "10.1002/ece3.74368",
+      "year": 2026,
+      "short_title": "Lu alpine ALAN diel visit networks",
+      "light_design": "manipulated",
+      "outcome": "visits_only",
+      "a_primary_stage": "exclude_A_no_reproduction",
+      "screening_reason": "night and day visit counts not flower/seed response; project overlap JPE unknown",
+      "external_night_dependence": "none_proven",
+      "screen_status": "excluded",
+      "note": "Mechanism secondary only, no double counting Lu experiment",
+      "verified_joint_effect_moderator_se": false,
+      "source_url": "https://doi.org/10.1002/ece3.74368"
+    },
+    {
+      "id": "grognuz2026pheno",
+      "doi": "10.1016/j.biocon.2025.111650",
+      "year": 2026,
+      "short_title": "Grognuz floral resource phenology ALAN",
+      "light_design": "manipulated",
+      "outcome": "phenology_only",
+      "a_primary_stage": "exclude_A_no_reproduction",
+      "screening_reason": "flower timing, no fruit/seed outcome",
+      "external_night_dependence": "none_proven",
+      "screen_status": "excluded",
+      "note": "Mechanism secondary only",
+      "verified_joint_effect_moderator_se": false,
+      "source_url": "https://doi.org/10.1016/j.biocon.2025.111650"
+    }
+  ],
+  "source_evidence_reclassification": {
+    "date": "2026-11-15",
+    "change": "Wilson 2021 from mixed-unresolved to confirmed direct-light manipulated fecundity component, observational skyglow retained separately",
+    "publication_count_unchanged": 12,
+    "manipulated_publication_candidates": 9,
+    "not_independent_effectsize_ready_count": true,
+    "paper_study_duplicate": "Wilson 2020 thesis ch2 overlaps Wilson et al 2021 publication",
+    "reason": "Primary original Methods states independent randomized 8 treatment + 7 control transects, 5 sites and 58 plants; fruit model co-adjusts skyglow, but source means/SE and V unavailable"
+  },
+  "knop_fruit_original_unit_audit": {
+    "date": "2026-11-15",
+    "study": "Knop 2017",
+    "issue": "Visit/fruit pseudo-replication and capitulum outcome",
+    "changed": "Source-authenticated 14 network meadows vs 10 fruit-meadows and original 5 matched site pairs, 4 factorial groups with 25 plants × 2 capitula",
+    "not_five_independent_effects": true,
+    "new_find_20261115": "Extended Data Table 3 interaction published: proportion outcome β -1.40 SE .592 p .018, count-interaction p .014; original factor codes and count sign require source image check",
+    "not_ALAN_by_nocturnal_access": true
+  }
+}

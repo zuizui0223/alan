@@ -1,0 +1,34 @@
+name: ALAN A source-based 12-publication effect-modification feasibility audit
+on:
+  push:
+    branches:
+      - analysis/alan-floral-timing-dependence-20261115
+    paths:
+      - config/alan_A_reproductive_screen_20261115.json
+      - scripts/analysis/alan_A_strict_readiness_20261115.py
+      - tests/test_alan_A_strict_readiness_20261115.py
+      - .github/workflows/alan-A-meta-readiness-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-eligibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test study-grain, source-scope and no invented coefficient
+        run: python -m unittest discover -s tests -p 'test_alan_A_strict_readiness_20261115.py' -v
+      - name: Build evidence-based 12-publication effect readiness census
+        run: python scripts/analysis/alan_A_strict_readiness_20261115.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-A-12-publication-source-eligibility
+          path: |
+            results/alan_A_endpoint_independence_readiness_20261115.json
+            results/alan_A_endpoint_independence_readiness_20261115.csv
+          retention-days: 30

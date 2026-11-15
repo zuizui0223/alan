@@ -1,0 +1,42 @@
+name: ALAN A paginated reproductive discovery and source-outcome guard
+on:
+  push:
+    branches:
+      - analysis/alan-floral-timing-dependence-20261115
+    # Full OpenAlex retrieval is a source-discovery workload. Never re-run
+    # expensive API searches for ordinary evidence-ledger or unit-test edits.
+    # A 2026-11-15 workflow ran into HTTP 429 after repeated registry updates.
+    paths:
+      - scripts/analysis/alan_A_openalex_discovery_20261115.py
+      - scripts/analysis/alan_A_title_triage_20261115.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate reproductive endpoint guard
+        run: |
+          python -m unittest discover -s tests -p 'test_alan_A_effect_type_gate_20261115.py' -v
+          python scripts/analysis/alan_A_effect_type_gate_20261115.py
+      - name: Validate published randomized yucca experimental units
+        run: python -m unittest discover -s tests -p 'test_alan_A_wilson_direct_light_grain_20261115.py' -v
+      - name: Query OpenAlex with audited pagination
+        run: python scripts/analysis/alan_A_openalex_discovery_20261115.py --output openalex_a_discovery
+      - name: Retain all titles and triage without auto-exclusion
+        run: python scripts/analysis/alan_A_title_triage_20261115.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-a-openalex-paged-triage
+          path: |
+            openalex_a_discovery/
+            results/alan_A_source_effect_type_gate_20261115.json
+          if-no-files-found: ignore
+          retention-days: 30

@@ -1,0 +1,334 @@
+{
+  "schema": "ALAN_Li2026_true_field_x_species_x_round_common_support_v3",
+  "doi": "10.64898/2026.07.10.737511",
+  "source_author_git_blob": "b616aca5beeba1457549841477d61ca4f796a147",
+  "source_run_url": "https://github.com/zuizui0223/alan/actions/runs/43720758472",
+  "run_tests_passed": 5,
+  "source_audit": {
+    "source_missing_seeds_by_original_treatment": {
+      "P": 1
+    },
+    "matched_strata_dark_seed_zero": 6,
+    "matched_strata_n_ge_2_plants_both_arms": 9,
+    "matched_strata_one_plant_either_arm": 3,
+    "author_observations": 79,
+    "known_seed_observations": 78,
+    "eligible_with_start_buds": 78,
+    "source_fields": 3,
+    "matched_strata": 12,
+    "unmatched_or_missing_not_zero": true
+  },
+  "unfiltered": {
+    "seed_per_bud_diff": {
+      "equal_stratum_mean_difference": 5.805089408279533,
+      "strata_positive_negative_zero": [
+        10,
+        2,
+        0
+      ],
+      "true_field_equal_mean_difference": 5.1021130483066,
+      "field_equal_differences": {
+        "1": 2.411126039226494,
+        "2": 2.0483707467916243,
+        "3": 10.84684235890168
+      },
+      "field_signs_positive_negative_zero": [
+        3,
+        0,
+        0
+      ],
+      "exact_3_field_two_sided_sign_probability_ONLY_if_exchangeable": 0.25,
+      "not_a_confirmed_randomization_pvalue": true
+    },
+    "fruit_per_bud_diff": {
+      "equal_stratum_mean_difference": 0.22782452657445573,
+      "strata_positive_negative_zero": [
+        11,
+        1,
+        0
+      ],
+      "true_field_equal_mean_difference": 0.2088891610089905,
+      "field_equal_differences": {
+        "1": 0.10957318713622971,
+        "2": 0.1802967219689294,
+        "3": 0.3367975739218124
+      },
+      "field_signs_positive_negative_zero": [
+        3,
+        0,
+        0
+      ],
+      "exact_3_field_two_sided_sign_probability_ONLY_if_exchangeable": 0.25,
+      "not_a_confirmed_randomization_pvalue": true
+    },
+    "by_species": {
+      "ML": {
+        "matched_strata": 7,
+        "equal_stratum_mean_seed_per_bud_difference": 3.223517499104905
+      },
+      "SN": {
+        "matched_strata": 3,
+        "equal_stratum_mean_seed_per_bud_difference": 11.677535118468283
+      },
+      "ZC": {
+        "matched_strata": 2,
+        "equal_stratum_mean_seed_per_bud_difference": 6.031922525107603
+      }
+    },
+    "leave_one_species_out_ML": {
+      "n_strata": 5,
+      "equal_stratum_mean_seed_per_bud_difference": 9.41929008112401
+    },
+    "leave_one_species_out_SN": {
+      "n_strata": 9,
+      "equal_stratum_mean_seed_per_bud_difference": 3.8476075048832823
+    },
+    "leave_one_species_out_ZC": {
+      "n_strata": 10,
+      "equal_stratum_mean_seed_per_bud_difference": 5.759722784913918
+    },
+    "seeds_matched_strata_pooled_rate_ratio": 3.607985175202156,
+    "fruits_matched_strata_pooled_rate_ratio": 3.424528301886792,
+    "not_a_model_based_ALAN_meta_effect": true
+  },
+  "two_or_more_plants_each_arm": {
+    "n": 9,
+    "results": {
+      "seed_per_bud_diff": {
+        "equal_stratum_mean_difference": 6.674995754249253,
+        "strata_positive_negative_zero": [
+          7,
+          2,
+          0
+        ],
+        "true_field_equal_mean_difference": 5.570652852914854,
+        "field_equal_differences": {
+          "1": 2.7208557255064076,
+          "2": 1.331160995722166,
+          "3": 12.65994183751599
+        },
+        "field_signs_positive_negative_zero": [
+          3,
+          0,
+          0
+        ],
+        "exact_3_field_two_sided_sign_probability_ONLY_if_exchangeable": 0.25,
+        "not_a_confirmed_randomization_pvalue": true
+      },
+      "fruit_per_bud_diff": {
+        "equal_stratum_mean_difference": 0.22074134407458298,
+        "strata_positive_negative_zero": [
+          8,
+          1,
+          0
+        ],
+        "true_field_equal_mean_difference": 0.1900656072809868,
+        "field_equal_differences": {
+          "1": 0.06019311403767791,
+          "2": 0.1737289626252392,
+          "3": 0.3362747451800433
+        },
+        "field_signs_positive_negative_zero": [
+          3,
+          0,
+          0
+        ],
+        "exact_3_field_two_sided_sign_probability_ONLY_if_exchangeable": 0.25,
+        "not_a_confirmed_randomization_pvalue": true
+      },
+      "by_species": {
+        "ML": {
+          "matched_strata": 4,
+          "equal_stratum_mean_seed_per_bud_difference": 3.244627845655806
+        },
+        "SN": {
+          "matched_strata": 3,
+          "equal_stratum_mean_seed_per_bud_difference": 11.677535118468283
+        },
+        "ZC": {
+          "matched_strata": 2,
+          "equal_stratum_mean_seed_per_bud_difference": 6.031922525107603
+        }
+      },
+      "leave_one_species_out_ML": {
+        "n_strata": 5,
+        "equal_stratum_mean_seed_per_bud_difference": 9.41929008112401
+      },
+      "leave_one_species_out_SN": {
+        "n_strata": 6,
+        "equal_stratum_mean_seed_per_bud_difference": 4.173726072139739
+      },
+      "leave_one_species_out_ZC": {
+        "n_strata": 7,
+        "equal_stratum_mean_seed_per_bud_difference": 6.858730962575438
+      },
+      "seeds_matched_strata_pooled_rate_ratio": 3.6330006852082857,
+      "fruits_matched_strata_pooled_rate_ratio": 3.1722916278202495,
+      "not_a_model_based_ALAN_meta_effect": true
+    },
+    "descriptive_sensitivity_NOT_independent_field_replications": true
+  },
+  "dark_seeds_positive_only": {
+    "n": 6,
+    "results": {
+      "seed_per_bud_diff": {
+        "equal_stratum_mean_difference": 6.363622651720249,
+        "strata_positive_negative_zero": [
+          4,
+          2,
+          0
+        ],
+        "true_field_equal_mean_difference": 4.181077435122206,
+        "field_equal_differences": {
+          "1": 0.47560975609756095,
+          "2": -1.5032585064167512,
+          "3": 13.57088105568581
+        },
+        "field_signs_positive_negative_zero": [
+          2,
+          1,
+          0
+        ],
+        "exact_3_field_two_sided_sign_probability_ONLY_if_exchangeable": 1,
+        "not_a_confirmed_randomization_pvalue": true
+      },
+      "fruit_per_bud_diff": {
+        "equal_stratum_mean_difference": 0.25082602224163336,
+        "strata_positive_negative_zero": [
+          5,
+          1,
+          0
+        ],
+        "true_field_equal_mean_difference": 0.17804080347538706,
+        "field_equal_differences": {
+          "1": 0.0017421602787456442,
+          "2": 0.09392677727119216,
+          "3": 0.4384534728762233
+        },
+        "field_signs_positive_negative_zero": [
+          3,
+          0,
+          0
+        ],
+        "exact_3_field_two_sided_sign_probability_ONLY_if_exchangeable": 0.25,
+        "not_a_confirmed_randomization_pvalue": true
+      },
+      "by_species": {
+        "ML": {
+          "matched_strata": 3,
+          "equal_stratum_mean_seed_per_bud_difference": 2.5465408312447786
+        },
+        "SN": {
+          "matched_strata": 2,
+          "equal_stratum_mean_seed_per_bud_difference": 15.033251830244795
+        },
+        "ZC": {
+          "matched_strata": 1,
+          "equal_stratum_mean_seed_per_bud_difference": 0.47560975609756095
+        }
+      },
+      "leave_one_species_out_ML": {
+        "n_strata": 3,
+        "equal_stratum_mean_seed_per_bud_difference": 10.180704472195718
+      },
+      "leave_one_species_out_SN": {
+        "n_strata": 4,
+        "equal_stratum_mean_seed_per_bud_difference": 2.0288080624579745
+      },
+      "leave_one_species_out_ZC": {
+        "n_strata": 5,
+        "equal_stratum_mean_seed_per_bud_difference": 7.541225230844785
+      },
+      "seeds_matched_strata_pooled_rate_ratio": 2.7897310239885424,
+      "fruits_matched_strata_pooled_rate_ratio": 2.7608082706766917,
+      "not_a_model_based_ALAN_meta_effect": true
+    },
+    "selection_on_observed_control_outcome_not_a_preregistered_analysis": true
+  },
+  "two_or_more_plants_and_dark_seeds_positive": {
+    "n": 5,
+    "results": {
+      "seed_per_bud_diff": {
+        "equal_stratum_mean_difference": 6.917458293175409,
+        "strata_positive_negative_zero": [
+          3,
+          2,
+          0
+        ],
+        "true_field_equal_mean_difference": 5.843816870329101,
+        "field_equal_differences": {
+          "1": 0.47560975609756095,
+          "2": -1.5032585064167512,
+          "3": 18.559099361306494
+        },
+        "field_signs_positive_negative_zero": [
+          2,
+          1,
+          0
+        ],
+        "exact_3_field_two_sided_sign_probability_ONLY_if_exchangeable": 1,
+        "not_a_confirmed_randomization_pvalue": true
+      },
+      "fruit_per_bud_diff": {
+        "equal_stratum_mean_difference": 0.2332134489121822,
+        "strata_positive_negative_zero": [
+          4,
+          1,
+          0
+        ],
+        "true_field_equal_mean_difference": 0.19463490080660947,
+        "field_equal_differences": {
+          "1": 0.0017421602787456442,
+          "2": 0.09392677727119216,
+          "3": 0.48823576486989056
+        },
+        "field_signs_positive_negative_zero": [
+          3,
+          0,
+          0
+        ],
+        "exact_3_field_two_sided_sign_probability_ONLY_if_exchangeable": 0.25,
+        "not_a_confirmed_randomization_pvalue": true
+      },
+      "by_species": {
+        "ML": {
+          "matched_strata": 2,
+          "equal_stratum_mean_seed_per_bud_difference": 2.0225890246449456
+        },
+        "SN": {
+          "matched_strata": 2,
+          "equal_stratum_mean_seed_per_bud_difference": 15.033251830244795
+        },
+        "ZC": {
+          "matched_strata": 1,
+          "equal_stratum_mean_seed_per_bud_difference": 0.47560975609756095
+        }
+      },
+      "leave_one_species_out_ML": {
+        "n_strata": 3,
+        "equal_stratum_mean_seed_per_bud_difference": 10.180704472195718
+      },
+      "leave_one_species_out_SN": {
+        "n_strata": 3,
+        "equal_stratum_mean_seed_per_bud_difference": 1.506929268462484
+      },
+      "leave_one_species_out_ZC": {
+        "n_strata": 4,
+        "equal_stratum_mean_seed_per_bud_difference": 8.52792042744487
+      },
+      "seeds_matched_strata_pooled_rate_ratio": 2.818926532730373,
+      "fruits_matched_strata_pooled_rate_ratio": 2.696826645685812,
+      "not_a_model_based_ALAN_meta_effect": true
+    },
+    "selection_on_observed_control_outcome_not_a_preregistered_analysis": true
+  },
+  "interpretation_status": "posthoc observational sub-stratum descriptive; NOT meta effect, not causal proof, 3 independent manipulated fields",
+  "primary_drawbacks": [
+    "6 dark-zero matched strata create a lower bound in contrasts",
+    "Conditioning on original observed dark seed>0 is outcome-selected and not a causal adjustment",
+    "Field-level sign 3/3 in all stratum data changes to 2/3 when dark-zero strata removed",
+    "Same site x plant x flowering round is a matching stratum, NOT a new light assignment replicate",
+    "1 missing seed measurement from point-light arm P, not imputed zero",
+    "No original field randomization p-value; 0.25 is simple 3-field sign diagnostic only"
+  ]
+}

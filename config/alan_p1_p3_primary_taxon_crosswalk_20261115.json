@@ -1,0 +1,116 @@
+{
+  "schema": "ALAN_P1_P3_primary_publication_taxon_crosswalk_20261115_v1",
+  "source_registry": "config/alan_reproductive_evidence_expansion_20261114.json",
+  "prior_experiment_count_not_independent": 9,
+  "publications": [
+    {
+      "id": "knop2017",
+      "doi": "10.1038/nature23288",
+      "taxa": [
+        "Cirsium oleraceum"
+      ],
+      "endpoint": "fruit set",
+      "design": "manipulated light",
+      "notes": "Swiss focal plant fruit set; source study not re-fitted here"
+    },
+    {
+      "id": "macgregor2019",
+      "doi": "10.1002/ecs2.2550",
+      "taxa": [
+        "Silene latifolia"
+      ],
+      "endpoint": "per-flower pollination success",
+      "design": "manipulated light x access",
+      "p1_study_id": "Macgregor_2019",
+      "notes": "same paper in P1 original table but P1 arms collapse exposure; original response CSV inaccessible"
+    },
+    {
+      "id": "boom2020",
+      "doi": "10.1038/s41598-020-75471-1",
+      "taxa": [
+        "Silene latifolia"
+      ],
+      "endpoint": "fruit set; estimated seeds per flower; larval fruit infestation",
+      "design": "manipulated light spectrum",
+      "notes": "aggregate source Table; no plant-specific P1 population match"
+    },
+    {
+      "id": "giavi2020",
+      "doi": "10.1038/s41598-020-68667-y",
+      "taxa": [
+        "Silene latifolia",
+        "Epilobium angustifolium"
+      ],
+      "endpoint": "seed success in selected capsules; larval infestation; relative reproduction",
+      "design": "manipulated light with adjacent dark",
+      "notes": "one study, 8 meadows; source-level untreated plant records unavailable"
+    },
+    {
+      "id": "bariles2021",
+      "doi": "10.1093/biolinnean/blab114",
+      "taxa": [
+        "Erythrostemon gilliesii"
+      ],
+      "endpoint": "stigma pollen; fruit and seed outcome",
+      "design": "observational skyglow and canopy gradient",
+      "notes": "not randomized ALAN illumination"
+    },
+    {
+      "id": "wilson2021",
+      "doi": "10.1093/icb/icab010",
+      "taxa": [
+        "Hesperoyucca whipplei"
+      ],
+      "endpoint": "fruit recruitment",
+      "design": "tower and skyglow study",
+      "notes": "Yucca spp. in P1 are NOT this species; obligate diurnal yucca moth Tegeticula maculata"
+    },
+    {
+      "id": "dzul2022",
+      "doi": "10.1007/s00114-021-01783-5",
+      "taxa": [
+        "Ceiba pentandra"
+      ],
+      "endpoint": "fruit set; seed/ovule; stigma pollen",
+      "design": "observational light/noise gradient",
+      "notes": "43 source records do not establish unique independently randomized plots"
+    },
+    {
+      "id": "li2026",
+      "doi": "10.64898/2026.07.10.737511",
+      "taxa": [
+        "Matthiola longipetala",
+        "Silene nutans",
+        "Zaluzianskya capensis"
+      ],
+      "endpoint": "any-seed per plant; fruit count; seed count",
+      "design": "manipulated compound linear array/point/dark; preprint",
+      "notes": "verified author source 79 plants, three field blocks; 26 bulbs in array vs four at point"
+    },
+    {
+      "id": "lu2026jpe",
+      "doi": "10.1093/jpe/rtag160",
+      "taxa": [
+        "Pedicularis kansuensis",
+        "Euphrasia regelii"
+      ],
+      "endpoint": "seed set; conspecific stigma pollen",
+      "design": "manipulated ALAN x daytime/nighttime access",
+      "notes": "important internal P1 x P3 factorial in one study, but original numerical rows and variance not verified; not in 2025 P1 meta source"
+    }
+  ],
+  "validated_alias_candidates": [
+    {
+      "source_name": "Silene alba",
+      "target_name": "Silene latifolia",
+      "taxonomic_authority": "Silene alba (Mill.) E.H.L.Krause",
+      "accepted_name": "Silene latifolia subsp. alba",
+      "source": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:921549-1",
+      "match_tier": "POSSIBLE_TAXON_SYNONYM_NOT_PRIMARY_EXACT_JOIN",
+      "reason": "P1 table omits botanical authority; retain as sensitivity only"
+    }
+  ],
+  "primary_join_key": "EXACT_SPECIES_BINOMIAL_ONLY",
+  "independence_gate": "same species in two studies is NOT same site or same measured treatment",
+  "prespecified_hypothesis_note": "crosswalk conducted after historical results; taxonomic matching is not a confirmatory pre-registered analysis"
+}

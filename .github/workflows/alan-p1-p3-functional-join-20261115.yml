@@ -1,0 +1,87 @@
+name: ALAN P1 x P3 original taxon functional crosswalk
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - config/alan_p1_p3_primary_taxon_crosswalk_20261115.json
+      - scripts/analysis/alan_p1_p3_source_taxon_join_20261115.py
+      - tests/test_alan_p1_p3_source_taxon_join_20261115.py
+      - docs/ALAN_P1_P3_EXACT_TAXON_CROSSWALK_20261115.md
+      - .github/workflows/alan-p1-p3-functional-join-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  true-source-functional-crosswalk:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install numerical dependencies, run independent guards
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3
+          python -m py_compile scripts/analysis/alan_p1_p3_source_taxon_join_20261115.py
+          python -m unittest discover -s tests -p test_alan_p1_p3_source_taxon_join_20261115.py -v
+      - name: Download genuine SHA-verified 1652-row P1 + 79-row P3 originals
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p original_functional_join
+          python - <<'PY'
+          import hashlib,urllib.request
+          from pathlib import Path
+          from scripts.analysis.alan_p1_p3_source_taxon_join_20261115 import (
+              li_blob_verify, SOURCE_SHA
+          )
+          urls={
+            'original_P1.csv':'https://raw.githubusercontent.com/liamkendall/bumble-bat/1945b7c114ad87000608ce6018d0280001c04ef1/data/DvN_LiteratureDataClean_2024-09-13.csv',
+            'original_Li2026.csv':'https://raw.githubusercontent.com/Dongboli/experimental-data/main/Artificial%20lights%20at%20night/seedset.csv'}
+          for fname,url in urls.items():
+            req=urllib.request.Request(url,headers={'User-Agent':'ALAN-P1P3-authentic-non-pseudoreplicate/1.0'})
+            with urllib.request.urlopen(req,timeout=55) as response:raw=response.read(2200001)
+            assert len(raw)<2200001
+            if fname=='original_P1.csv':assert hashlib.sha256(raw).hexdigest()==SOURCE_SHA
+            else:li_blob_verify(raw)
+            Path('original_functional_join',fname).write_bytes(raw)
+            print('P1_P3_AUTHENTIC_SOURCE',fname,len(raw),hashlib.sha256(raw).hexdigest())
+          PY
+      - name: Recompute evidence overlap and same species P1/P3 positive counterexample
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_p1_p3_source_taxon_join_20261115 \
+             --p1-source original_functional_join/original_P1.csv \
+             --li-source original_functional_join/original_Li2026.csv \
+             --catalog config/alan_p1_p3_primary_taxon_crosswalk_20261115.json \
+             --out original_functional_join/ALAN_P1_P3_exact_taxon_coverage_and_SN_result.json
+          python - <<'PY'
+          import json,math
+          from pathlib import Path
+          p=Path('original_functional_join/ALAN_P1_P3_exact_taxon_coverage_and_SN_result.json')
+          z=json.loads(p.read_text())
+          assert z["P1_reproductive_panels"]==340 and z["P1_reproductive_papers"]==113
+          assert z["P3_catalog_publications"]==9 and z["P3_catalog_species_unique"]==11
+          assert z["P1_P3_exact_shared_species"]==["Silene latifolia","Silene nutans"]
+          assert z["P1_exact_overlap_panels"]==9
+          assert z["n_P3_publications_with_any_exact_P1_species"]==4
+          assert z["same_plant_population_ALAN_response_and_P1_diel_effect_independently_estimated"]==0
+          assert z["main_P1xP3_interaction_estimated"] is False
+          li=z["true_source_species_crosspaper_contrast_example"]["P3_UK_2022_Silene_nutans"]
+          assert math.isclose(li["linear_vs_dark_seed_presence_risk_difference"],.5)
+          assert math.isclose(li["linear_vs_point_seed_presence_risk_difference"],0)
+          assert (li["n_fields_linear_positive"],li["n_fields_linear_equal"])==(2,1)
+          print('REAL_P1P3_EQUIVOCAL_SPECIES_LINK_NOT_CAUSAL_INTERACTION_GATES_PASS')
+          PY
+          # Never publish original individual plant/light observations or
+          # exact original source observation locations.
+          rm original_functional_join/original_P1.csv original_functional_join/original_Li2026.csv
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-P1P3-original-exact-species-coverage-Li-Silene-20261115
+          path: original_functional_join/*.json
+          retention-days: 90
+          if-no-files-found: warn

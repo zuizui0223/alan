@@ -1,0 +1,101 @@
+{
+  "schema": "ALAN_A_20261115_two_experiment_source_signed_baseline_floor_gate_v1",
+  "study_publications": 2,
+  "distinct_designs": 2,
+  "confirmed_manipulated_reproduction_census_unchanged": 9,
+  "Li2026": {
+    "source_git_blob": "b616aca5beeba1457549841477d61ca4f796a147",
+    "original_plant_rows": 79,
+    "original_seed_outcomes_known": 78,
+    "true_independent_fields": 3,
+    "field_taxon_round_triplets": 11,
+    "control_seed_zero_triplets": 5,
+    "seeds_per_initial_bud_ratios": {
+      "linear_over_dark": 3.4255055938037864,
+      "point_over_dark": 1.0521175986842106,
+      "linear_over_point": 3.255820070007155
+    },
+    "stratum_signs_L_over_P": {
+      "positive": 8,
+      "negative": 3,
+      "zero": 0
+    },
+    "true_field_signs_L_over_P": {
+      "positive": 2,
+      "negative": 1,
+      "zero": 0
+    },
+    "minimum_two_plants_each_treatment": {
+      "source_strata": 6,
+      "L_over_P_seed_stratum_signs": {
+        "positive": 3,
+        "negative": 3,
+        "zero": 0
+      }
+    },
+    "interpretation": "linear lamp arrays vs point lights differ also in lamp number/footprint, not a geometry-only causal contrast",
+    "original_lit_dark_joint_variance_on_randomized_field_scale": null
+  },
+  "Grognuz2026": {
+    "source_type": "supplementary Table S3 derived block means (NOT original 425 per-pot observed seed rows)",
+    "daytime_90min_pollen_access_only_after_night_bagging": true,
+    "Trifolium": {
+      "choice_blocks": 20,
+      "dark_zero_blocks": 1,
+      "positive": 8,
+      "negative": 12,
+      "mean_lit_minus_dark_seeds": -1.40625,
+      "excluding_dark_zero_posthoc": {
+        "n_blocks": 19,
+        "lit_positive": 7,
+        "lit_negative": 12,
+        "zero": 0,
+        "mean_lit_minus_dark_seed_per_target": -1.5635964999999998
+      }
+    },
+    "Centaurea": {
+      "choice_blocks": 8,
+      "dark_zero_blocks": 1,
+      "positive": 3,
+      "negative": 5,
+      "mean_lit_minus_dark_seeds": -0.421875,
+      "excluding_dark_zero_posthoc": {
+        "n_blocks": 7,
+        "lit_positive": 2,
+        "lit_negative": 5,
+        "zero": 0,
+        "mean_lit_minus_dark_seed_per_target": -0.5178571428571429
+      }
+    },
+    "original_independent_lighting_sites_recovered": false
+  },
+  "mathematical_control_outcome_coupling": {
+    "identity": "Cov(C, L-C) = Cov(C,L) - Var(C)",
+    "under_independent_equal_null": "Cov(C,L-C) = -Var(C)",
+    "strict_dark_zero_and_nonnegative_seed_count": "L-C >= 0 necessarily",
+    "not_evidence_for_ALAN_rescue": true,
+    "condition_on_dark_nonzero_is_post_treatment_observed_selection": true
+  },
+  "meta_inference": {
+    "ALAN_overall_open_seed_lnRR": null,
+    "ALAN_x_local_dark_night_dependence_V": null,
+    "island_x_ALAN_reproduction_effect": null,
+    "not_a_pooled_meta_analysis": true,
+    "cross_study_signs_cannot_be_pooled_across_exposure_access_and_seed_denominators": true,
+    "true_independent_lighting_sites_not_11_plus_28": true,
+    "reasons": [
+      "different species, lighting regimes and original seed opportunity denominators",
+      "daytime-only after night bagging in Grognuz vs unbagged night exposure in Li",
+      "Li uses 3 true fields; Grognuz choice blocks share installations and pot reuse",
+      "selection on observed zero dark outcomes forces nonnegative comparisons",
+      "insufficient source covariance and same-population V for meta regression"
+    ]
+  },
+  "verification": {
+    "github_actions_run": 43722481561,
+    "tests_passed": 4,
+    "source_commit_github_blob": "b616aca5beeba1457549841477d61ca4f796a147",
+    "source_experiment_table": "results/alan_Grognuz2026_tableS3_block_derived_20261115.csv",
+    "source_scope": "Li original author original row source, Grognuz source-transcribed public supplement block means"
+  }
+}

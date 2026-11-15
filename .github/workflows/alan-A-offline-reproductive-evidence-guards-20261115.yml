@@ -1,0 +1,38 @@
+name: ALAN A offline reproductive evidence guards (no OpenAlex API)
+on:
+  push:
+    branches:
+      - analysis/alan-floral-timing-dependence-20261115
+    paths:
+      - config/alan_A_reproductive_screen_20261115.json
+      - scripts/analysis/alan_A_effect_type_gate_20261115.py
+      - tests/test_alan_A_effect_type_gate_20261115.py
+      - tests/test_alan_A_wilson_direct_light_grain_20261115.py
+      - tests/test_alan_A_knop_design_grain_20261115.py
+      - .github/workflows/alan-A-offline-reproductive-evidence-guards-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline-evidence-guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check outcome definitions and Lu night-only scope
+        run: python -m unittest discover -s tests -p 'test_alan_A_effect_type_gate_20261115.py' -v
+      - name: Check randomized Wilson light units
+        run: python -m unittest discover -s tests -p 'test_alan_A_wilson_direct_light_grain_20261115.py' -v
+      - name: Check Knop all-visitor interaction and 5+5 site design
+        run: python -m unittest discover -s tests -p 'test_alan_A_knop_design_grain_20261115.py' -v
+      - name: Write outcome-scale source receipt without external API
+        run: python scripts/analysis/alan_A_effect_type_gate_20261115.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-A-offline-source-effect-guards
+          path: results/alan_A_source_effect_type_gate_20261115.json
+          if-no-files-found: error
+          retention-days: 30

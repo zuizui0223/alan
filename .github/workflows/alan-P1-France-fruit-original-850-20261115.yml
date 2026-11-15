@@ -1,0 +1,32 @@
+name: ALAN P1 new France original 850-flower night-dependence source replay
+on:
+  push:
+    branches:
+      - analysis/alan-floral-timing-dependence-20261115
+    paths:
+      - scripts/analysis/alan_P1_original_smallfruit_diel_dependence_20261115.py
+      - tests/test_alan_P1_original_smallfruit_diel_dependence_20261115.py
+      - .github/workflows/alan-P1-France-fruit-original-850-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  genuine-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test source checksum and functional-contrast definitions
+        run: python -m unittest discover -s tests -p 'test_alan_P1_original_smallfruit_diel_dependence_20261115.py' -v
+      - name: Fetch hash-pinned original Figshare CSV and summarize by source species-year-arm
+        run: python scripts/analysis/alan_P1_original_smallfruit_diel_dependence_20261115.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-P1-France-850-original-fruit-gate
+          path: results/alan_P1_B1_smallfruit_genuine_diel_V_20261115.json
+          if-no-files-found: ignore
+          retention-days: 30

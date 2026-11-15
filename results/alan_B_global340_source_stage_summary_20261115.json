@@ -1,0 +1,132 @@
+{
+  "schema": "alan_B_global340_original_exact_fruit_seed_stage_v1",
+  "provenance": {
+    "workflow_run": 43712772688,
+    "source_doi": "10.1111/ele.70036",
+    "source_sha256": "1d9c4c778206584130308b99ba21d902b0ccf1047118dfcf52abaec9d652e2aa",
+    "source_commit": "1945b7c114ad87000608ce6018d0280001c04ef1",
+    "CI_tests_passed": 7
+  },
+  "source_scope": {
+    "original_rows": 1652,
+    "all_reproductive_pairs": 340,
+    "original_papers": 113,
+    "exact_stage_pairs": 54,
+    "coarse_pairs_not_used": 26
+  },
+  "source_endpoint_summaries": {
+    "seed_per_fruit": {
+      "pairs": 49,
+      "papers": 18,
+      "study_median_deltas": {
+        "Aguilar-Rodriguez_2016": 0.022058095804109445,
+        "Alonso-Pedano_2012": -0.39215686274509876,
+        "Arizaga_2000": 0.07482993197278898,
+        "Borbon-Palomares_2018": -0.812839937839939,
+        "Bustamente_2010": 0.03825136612021873,
+        "Casas_1999": 0,
+        "Cruz-Neto_2015": -0.5568181818181817,
+        "Dar_2006": -1.497149520601192,
+        "Hove_2007": -0.42356165298653586,
+        "Larrea-Alcázar_2011": -0.03358282728428186,
+        "Lemaitre_2014": 0.3316679531260963,
+        "Luo_2011": -0.02377146808173136,
+        "McMullen_2009": 0.1641683636753405,
+        "Molina-Freaner_2003": 0.1318551716004256,
+        "Molina-Freaner_2004": 0.18319366093846812,
+        "Morse_1983": 0.5262111703987923,
+        "Payne_2016": 0.05909090909090908,
+        "de Avila_2011": -0.4332777645471144
+      },
+      "study_equal_median": 0.011029047902054723,
+      "study_equal_mean": -0.14676842184316255,
+      "papers_positive": 9,
+      "papers_negative": 8,
+      "descriptive_paper_bootstrap95": [
+        -0.3925494226231164,
+        0.10120986489777961
+      ],
+      "posthoc_two_sided_sign_probability": 1,
+      "no_original_within_paper_sampling_covariance": true
+    },
+    "seed_per_ovule": {
+      "pairs": 1,
+      "papers": 1,
+      "study_median_deltas": {
+        "Nakajima_2018": 0.35785953177257535
+      },
+      "study_equal_median": 0.35785953177257535,
+      "study_equal_mean": 0.35785953177257535,
+      "papers_positive": 1,
+      "papers_negative": 0,
+      "descriptive_paper_bootstrap95": null,
+      "posthoc_two_sided_sign_probability": 1,
+      "no_original_within_paper_sampling_covariance": true
+    },
+    "seed_per_flower": {
+      "pairs": 0,
+      "papers": 0,
+      "study_median_deltas": {},
+      "study_equal_median": null,
+      "study_equal_mean": null,
+      "papers_positive": 0,
+      "papers_negative": 0,
+      "descriptive_paper_bootstrap95": null,
+      "posthoc_two_sided_sign_probability": null,
+      "no_original_within_paper_sampling_covariance": true
+    },
+    "seed_per_plant": {
+      "pairs": 4,
+      "papers": 3,
+      "study_median_deltas": {
+        "Groman_1999": 0.2908269240909636,
+        "Payne_2019": 0.028064229083416325,
+        "Vanderplank_2020": 0.07038224337477983
+      },
+      "study_equal_median": 0.07038224337477983,
+      "study_equal_mean": 0.1297577988497199,
+      "papers_positive": 3,
+      "papers_negative": 0,
+      "descriptive_paper_bootstrap95": [
+        0.028064229083416325,
+        0.2908269240909636
+      ],
+      "posthoc_two_sided_sign_probability": 0.25,
+      "no_original_within_paper_sampling_covariance": true
+    },
+    "seed_formation_probability": {
+      "pairs": 0,
+      "papers": 0,
+      "study_median_deltas": {},
+      "study_equal_median": null,
+      "study_equal_mean": null,
+      "papers_positive": 0,
+      "papers_negative": 0,
+      "descriptive_paper_bootstrap95": null,
+      "posthoc_two_sided_sign_probability": null,
+      "no_original_within_paper_sampling_covariance": true
+    }
+  },
+  "historical_six_papers": [
+    "Stone_2018",
+    "Morse_1983",
+    "Robertson_2021",
+    "Jabbari_2013",
+    "Vanderplank_2020",
+    "Noone_2022"
+  ],
+  "historical_shared_with_original_global_dataset": [
+    "Morse_1983",
+    "Vanderplank_2020"
+  ],
+  "historical_cohort_is_not_nested": true,
+  "ALAN_light_moderator_beta_V": null,
+  "limitations": [
+    "Endpoint pairing by metadata does not prove identical initial flower or individual plants",
+    "Seed/formed fruit is conditioned on fruit set; no reconstructed total seed per original flower",
+    "Some comparisons can be observational or dark/illumination pooled",
+    "No valid plant/experiment-level covariance or meta-analysis SE",
+    "Study equal bootstrap and sign probability are posthoc descriptive, not confirmatory",
+    "No light manipulation in this pooled diel access source; ALAN beta_V not fitted"
+  ]
+}

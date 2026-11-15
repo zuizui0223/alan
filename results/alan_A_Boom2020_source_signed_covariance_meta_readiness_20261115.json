@@ -1,0 +1,101 @@
+{
+  "schema": "ALAN_A_Boom2020_original_estimated_seeds_per_flower_covariance_identifiability_v1",
+  "doi": "10.1038/s41598-020-75471-1",
+  "source_JATS": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7591485/fullTextXML",
+  "source_jats_sha256": "182dafe1e99fef5453ecf0d1d1401361fe949fd8d8617ae040588fd19795154f",
+  "source_field_sites": 4,
+  "original_source_arms": {
+    "Dark": {
+      "estimated_seed_mean": 117,
+      "source_arm_SE": 40,
+      "original_source_estimated_not_observed_seed_count": true
+    },
+    "White": {
+      "estimated_seed_mean": 86,
+      "source_arm_SE": 28,
+      "original_source_estimated_not_observed_seed_count": true
+    },
+    "Green": {
+      "estimated_seed_mean": 61,
+      "source_arm_SE": 20,
+      "original_source_estimated_not_observed_seed_count": true
+    },
+    "Red": {
+      "estimated_seed_mean": 90,
+      "source_arm_SE": 28,
+      "original_source_estimated_not_observed_seed_count": true
+    }
+  },
+  "source_4arm_estimated_seed_output_ANOVA_p": 0.63,
+  "contrasts_vs_shared_dark": {
+    "White": {
+      "reported_mean_treatment_minus_dark": -31,
+      "hypothetical_best_case_abs_t_if_four_independent_matched_sites": 2.5833333333333335,
+      "hypothetical_4site_df3_critical_t_95_two_sided": 3.182446,
+      "hypothetical_best_case_t_exceeds_df3_threshold": false,
+      "site_t_computation_is_not_original_paper_test": true,
+      "reported_mean_treatment_to_dark": 0.7350427350427351,
+      "possible_pair_difference_SE_min_if_rho_plus1": 12,
+      "possible_pair_difference_SE_max_if_rho_minus1": 68,
+      "illustrative_independent_arm_SE_if_rho_zero": 48.82622246293481,
+      "published_covariance_rho_not_available": true,
+      "not_a_computed_meta_lnRR_sampling_variance": true,
+      "original_full_4_treatment_ANOVA_p": 0.63,
+      "ratio_from_rounded_fruit_infestation_ovule_stage_means": 0.7271689497716896,
+      "stage_product_and_published_seed_mean_differ_by_rounding": true,
+      "source_shares_dark_plant_sites": true
+    },
+    "Green": {
+      "reported_mean_treatment_minus_dark": -56,
+      "hypothetical_best_case_abs_t_if_four_independent_matched_sites": 2.8,
+      "hypothetical_4site_df3_critical_t_95_two_sided": 3.182446,
+      "hypothetical_best_case_t_exceeds_df3_threshold": false,
+      "site_t_computation_is_not_original_paper_test": true,
+      "reported_mean_treatment_to_dark": 0.5213675213675214,
+      "possible_pair_difference_SE_min_if_rho_plus1": 20,
+      "possible_pair_difference_SE_max_if_rho_minus1": 60,
+      "illustrative_independent_arm_SE_if_rho_zero": 44.721359549995796,
+      "published_covariance_rho_not_available": true,
+      "not_a_computed_meta_lnRR_sampling_variance": true,
+      "original_full_4_treatment_ANOVA_p": 0.63,
+      "ratio_from_rounded_fruit_infestation_ovule_stage_means": 0.5149726842791911,
+      "stage_product_and_published_seed_mean_differ_by_rounding": true,
+      "source_shares_dark_plant_sites": true
+    },
+    "Red": {
+      "reported_mean_treatment_minus_dark": -27,
+      "hypothetical_best_case_abs_t_if_four_independent_matched_sites": 2.25,
+      "hypothetical_4site_df3_critical_t_95_two_sided": 3.182446,
+      "hypothetical_best_case_t_exceeds_df3_threshold": false,
+      "site_t_computation_is_not_original_paper_test": true,
+      "reported_mean_treatment_to_dark": 0.7692307692307693,
+      "possible_pair_difference_SE_min_if_rho_plus1": 12,
+      "possible_pair_difference_SE_max_if_rho_minus1": 68,
+      "illustrative_independent_arm_SE_if_rho_zero": 48.82622246293481,
+      "published_covariance_rho_not_available": true,
+      "not_a_computed_meta_lnRR_sampling_variance": true,
+      "original_full_4_treatment_ANOVA_p": 0.63,
+      "ratio_from_rounded_fruit_infestation_ovule_stage_means": 0.7596046694933679,
+      "stage_product_and_published_seed_mean_differ_by_rounding": true,
+      "source_shares_dark_plant_sites": true
+    }
+  },
+  "limits": [
+    "Paper's per-arm seed output is a formula product, not a measured original-flower individual seed count",
+    "Published ±SE per arm does not provide covariance of repeated site-level treatments",
+    "Four-field site paired covariance unknown; SE bounds are arithmetic, not confidence intervals or estimates",
+    "All three spectrum contrasts reuse the same original dark control: one paper, not three experiments",
+    "Original author 4-treatment estimated-seed-output ANOVA p=0.63, not a significant global effect",
+    "Seed/ovule fertilization measured conditional on uninfested fruit, selected after pollinator-larval damage",
+    "No common light/dark open total seed lnRR cluster variance or independent dark-night V recovered",
+    "Never convert individual 600+ flower counts to independent 600+ light installations"
+  ],
+  "global_ALAN_night_dependence_beta_V": null,
+  "run": {
+    "id": 43724951283,
+    "url": "https://github.com/zuizui0223/alan/actions/runs/43724951283",
+    "passed_tests": 5,
+    "conclusion": "success"
+  },
+  "cross_study_meta_readiness": "NOT_READY: original seed-per-initial-flower + light-site covariance unavailable"
+}

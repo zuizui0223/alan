@@ -1,0 +1,96 @@
+name: ALAN P1 P3 source primary factorial publication audit
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - scripts/analysis/alan_p1p3_lu_mac_primary_source_probe_20261115.py
+      - tests/test_alan_p1p3_lu_mac_source_probe_20261115.py
+      - .github/workflows/alan-p1p3-lu-mac-source-20261115.yml
+      - docs/ALAN_P1P3_DIRECT_INTERACTION_PRIMARY_STATUS_20261115.md
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-primary-factorial-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Guard published percentage and original experiment interpretation
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/analysis/alan_p1p3_lu_mac_primary_source_probe_20261115.py
+          python -m unittest discover -s tests -p 'test_alan_p1p3_lu_mac_source_probe_20261115.py' -v
+      - name: Probe original JPE 2026, Ecosphere 2019 articles, official supplement and archival source
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p source_probe
+          python -m scripts.analysis.alan_p1p3_lu_mac_primary_source_probe_20261115 \
+             --out source_probe/ALAN_Lu2026_Macgregor2019_official_primary_provenance.json
+          python - <<'PY'
+          import json,math
+          from pathlib import Path
+          z=json.loads(Path('source_probe/ALAN_Lu2026_Macgregor2019_official_primary_provenance.json').read_text())
+          assert len(z['papers'])==2 and len(z['sources'])==10
+          assert z['direct_P1xP3_interaction_coefficients_newly_estimated']==0
+          a=z['papers'][0]['published_results']
+          assert a['LIGHT_X_CAGING_pollination_success']=='NON_SIGNIFICANT_REPORTED_NO_P_SE'
+          b=z['papers'][1]
+          assert math.isclose(b['reported_Pedicularis_seed_set_log_ratio_from_percent'],math.log(.44))
+          assert b['same_species_light_x_diel_numeric_cell_means_retrieved']==False
+          stage=b['published_stage_log_light_over_dark_FROM_ROUNDED_ABSTRACT_ONLY']
+          assert math.isclose(stage['nocturnal_lepidoptera_visitation'],math.log(.509))
+          assert math.isclose(stage['nocturnal_conspecific_stigma_pollen'],math.log(.462))
+          assert math.isclose(stage['seed_set_NIGHT_ONLY_Pedicularis'],math.log(.44))
+          bound=z['Lu_2026_conditional_night_only_seed_loss_bound']
+          assert bound['status']=='INCOMPARABLE_ACCESS_TREATMENTS_NO_EMPIRICAL_BOUND'
+          assert math.isclose(bound['published_night_access_share_of_total_seed_set'],.3571)
+          assert math.isclose(bound['published_ALAN_seed_decline_under_night_only_access'],.56)
+          assert bound['published_ALAN_seed_decline_under_open_access'] is None
+          assert bound['empirical_excess_total_loss_beyond_night_only'] is None
+          assert bound['fraction_of_seed_loss_due_to_daytime_or_predator'] is None
+          assert bound['original_56_percent_is_night_only_not_open'] is True
+          assert bound['conditional_night_only_null_empirically_rejected'] is False
+          assert bound['does_not_prove_daytime_disruption_or_predator_mediation'] is True
+          assert z['published_primary_light_x_diel_interaction_tests_identified']==1
+          paper=next(x for x in z['sources'] if x['id']=='mac_original_openaccess_pdf')
+          assert paper['retrieval_status']=='VERIFIED_BYTES' and paper['bytes']==1202971
+          assert paper['sha256']=='e0f83cc2086f2f494f175b0d1eee8495cf9153dd62f9ca7f35338ff9e5f1ad1c'
+          print('P1_P3_PUBLISHED_FACTORIAL_SOURCE_COVERAGE_GATES_PASS')
+          PY
+      - name: Inspect source PDFs if actually downloaded, no fabricated supplement tables
+        if: always()
+        run: |
+          python -m pip install -q pymupdf==1.26.5
+          python - <<'PY'
+          from pathlib import Path
+          import json,re
+          import fitz
+          files=list(Path("source_probe").glob("*.pdf"))
+          texts=[]
+          for f in files:
+            doc=fitz.open(str(f))
+            t="\n".join(page.get_text() for page in doc)
+            page_count=len(doc)
+            doc.close()
+            anchors=[]
+            for m in list(re.finditer(r"(?:non.significant interaction|lighting treatment and caging|interaction between.*caging|supplementary table|Table S4)",t,re.I))[:25]:
+              anchors.append(re.sub(r"\s+"," ",t[max(0,m.start()-160):m.end()+180]).strip())
+            texts.append({"original_pdf":f.name,"pdf_bytes":f.stat().st_size,
+                          "pdf_pages":page_count,
+                          "anchors":anchors,"note":"This is text receipt, not a refit of raw article treatments."})
+            f.unlink()
+          Path("source_probe/primary_pdf_treatment_excerpt_receipt.json").write_text(
+              json.dumps(texts,ensure_ascii=False,indent=2))
+          print("P1_P3_ORIGINAL_PDF_EXCERPTS",json.dumps(texts,ensure_ascii=False)[:5000])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-Lu2026-Macgregor2019-factorial-source-status-20261115
+          path: source_probe/*.json
+          retention-days: 90
+          if-no-files-found: warn

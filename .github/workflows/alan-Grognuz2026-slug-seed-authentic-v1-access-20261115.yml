@@ -1,0 +1,49 @@
+name: ALAN 2026 authentic factorial ALAN x slug 2026 Mendeley original source access
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - scripts/analysis/alan_Grognuz2026_slug_2x2_public_raw_probe_20261115.py
+      - tests/test_alan_Grognuz2026_slug_2x2_public_raw_probe_20261115.py
+      - .github/workflows/alan-Grognuz2026-slug-seed-authentic-v1-access-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-public-raw-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify 2026 experimental Mendeley dataset identity and no invented rows
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/analysis/alan_Grognuz2026_slug_2x2_public_raw_probe_20261115.py
+          python -m unittest discover -s tests -p 'test_alan_Grognuz2026_slug_2x2_public_raw_probe_20261115.py' -v
+      - name: Try official public API metadata and dataset direct files, archive only genuine manifest
+        timeout-minutes: 9
+        run: |
+          set -euo pipefail
+          mkdir -p original_Grognuz2026
+          python -m scripts.analysis.alan_Grognuz2026_slug_2x2_public_raw_probe_20261115 \
+            --out original_Grognuz2026/ALAN_2x2_slug_nightlight_dayvisit_seed_Mendeley_v1_access.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          z=json.loads(Path("original_Grognuz2026/ALAN_2x2_slug_nightlight_dayvisit_seed_Mendeley_v1_access.json").read_text())
+          assert z["dataset_DOI"]=="10.17632/drhzznh4ps.1"
+          assert z["published_dataset_version"]==1
+          assert z["preprint_peerreview_status"]=="NOT_CONFIRMED"
+          assert not z["raw_plantlevel_seeds_and_pollen_data_refitted_here"]
+          assert z["null_source_api_access_is_NOT_ecological_result"]
+          print("GROGNUZ2026_DIRECT_REPRO_SOURCE_DISCOVERY_PROVENANCE_PASSED",z["confirmed_public_authentic_raw_files"])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-Grognuz2026-authentic-ALAN-slug-visit-seed-public-original-source-manifest
+          path: original_Grognuz2026/*.json
+          retention-days: 90
+          if-no-files-found: warn

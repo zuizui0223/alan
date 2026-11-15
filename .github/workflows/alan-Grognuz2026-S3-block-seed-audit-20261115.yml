@@ -1,0 +1,33 @@
+name: ALAN Grognuz2026 public Table S3 derived seed block source audit
+on:
+  push:
+    branches:
+      - analysis/alan-floral-timing-dependence-20261115
+    paths:
+      - results/alan_Grognuz2026_tableS3_block_derived_20261115.csv
+      - scripts/analysis/alan_Grognuz2026_TableS3_block_diagnostics_20261115.py
+      - tests/test_alan_Grognuz2026_TableS3_block_diagnostics_20261115.py
+      - .github/workflows/alan-Grognuz2026-S3-block-seed-audit-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test original published mean integrity, missingness and species split
+        run: python -m unittest discover -s tests -p 'test_alan_Grognuz2026_TableS3_block_diagnostics_20261115.py' -v
+      - name: Compute 30k block-level descriptive resamples and tipping diagnostics
+        run: python scripts/analysis/alan_Grognuz2026_TableS3_block_diagnostics_20261115.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-Grognuz2026-original-S3-derived-block-metrics
+          path: results/alan_Grognuz2026_tableS3_block_derived_diagnostics_20261115.json
+          if-no-files-found: ignore
+          retention-days: 30

@@ -1,0 +1,60 @@
+name: ALAN P3 two original independent flower fruit larval seed stages
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - scripts/analysis/alan_P3_LiBoom_original_reproductive_pathway_accounting_20261115.py
+      - tests/test_alan_P3_LiBoom_original_reproductive_pathway_accounting_20261115.py
+      - docs/ALAN_P3_TWO_STUDY_ORIGINAL_REPRODUCTION_STAGE_PATH_20261115.md
+      - .github/workflows/alan-P3-two-original-LiBoom-reproductive-stage-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-pinned-stage-identity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Test authentic published four spectra and fruit/seed component identities
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/analysis/alan_P3_LiBoom_original_reproductive_pathway_accounting_20261115.py
+          python -m unittest discover -s tests -p 'test_alan_P3_LiBoom_original_reproductive_pathway_accounting_20261115.py' -v
+      - name: Reacquire Li Git-blob source and Boom 2020 DOI-confirmed EuropePMC primary source table
+        timeout-minutes: 9
+        run: |
+          set -euo pipefail
+          mkdir -p original_independent_repro
+          python -m scripts.analysis.alan_P3_LiBoom_original_reproductive_pathway_accounting_20261115 \
+            --out original_independent_repro/ALAN_two_independent_LiBoom_source_repro_stage_accounting.json
+          python - <<'PY'
+          import math,json
+          from pathlib import Path
+          p=Path('original_independent_repro/ALAN_two_independent_LiBoom_source_repro_stage_accounting.json')
+          z=json.loads(p.read_text())
+          assert z['source_independent_publications']==2
+          assert z['source_Li2026_reproductive_stages']['author_original_sha1_git_blob']=='b616aca5beeba1457549841477d61ca4f796a147'
+          assert z['source_Boom2020_reproductive_stages']['source']['DOI']=='10.1038/s41598-020-75471-1'
+          assert z['source_independent_field_sites_per_paper']=={'Li2026':3,'Boom2020':4}
+          li=z['source_Li2026_reproductive_stages']['observed_array_vs_dark_seed_per_initial_bud_stage_accounting']
+          assert math.isclose(li['product_stage_ratio'],(3729/483)/(672/369))
+          assert math.isclose(li['stage_ratio']['seed_count_per_recorded_fruit'],(3729/149)/(672/32))
+          b=z['source_Boom2020_reproductive_stages']['source_treatment_contrasts']
+          assert set(b)=={'White','Green','Red'}
+          assert all(.4 < v['stage_accounting']['product_stage_ratio'] < 1 for v in b.values())
+          assert b['Green']['stage_accounting']['stage_ratio']['fertilized_flower_factor']>1
+          assert b['Green']['stage_accounting']['stage_ratio']['escape_seed_predation_factor']<1
+          assert b['Green']['stage_accounting']['stage_ratio']['fertilized_ovule_factor']<1
+          assert z['cross_study_stage_logic']['no_meta_analytic_summary_effect_estimated']
+          print('TWO_TRUE_INDEPENDENT_SOURCE_STUDIES_STAGE_ACCOUNTS_VERIFIED_NO_CAUSAL_META')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-Li2026-Boom2020-two-author-original-independent-seed-stage-accounting
+          path: original_independent_repro/*.json
+          retention-days: 90
+          if-no-files-found: warn

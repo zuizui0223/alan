@@ -1,0 +1,85 @@
+name: ALAN original Swiss 2016 flower cover × diurnal visits temporal overlap
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - scripts/analysis/alan_Giavi2021_within_site_plant_visit_flower_temporal_20261115.py
+      - tests/test_alan_Giavi2021_within_site_plant_visit_flower_temporal_20261115.py
+      - docs/ALAN_GIAVI2021_H3_SEASONAL_COVER_VISIT_ALIGNMENT_20261115.md
+      - .github/workflows/alan-H3-Swiss2016-plant-visitor-temporal-overlap-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-real-flower-visitor-timing:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 13
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deterministic original Rdata readers and check source-grain guards
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 pyreadr==0.5.3
+          python -m py_compile scripts/analysis/alan_Giavi2021_within_site_plant_visit_flower_temporal_20261115.py
+          python -m unittest discover -s tests -p 'test_alan_Giavi2021_within_site_plant_visit_flower_temporal_20261115.py' -v
+      - name: Reacquire author original Zenodo Rdata with MD5 and measure within-study temporal overlap
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p H3_swiss2016
+          python -m scripts.analysis.alan_Giavi2021_within_site_plant_visit_flower_temporal_20261115 \
+            --out H3_swiss2016/ALAN_Giavi2021_original_sixsite_diurnal_flower_visit_event_alignment.json
+          python - <<'PY'
+          from pathlib import Path
+          import json,math
+          p=Path('H3_swiss2016/ALAN_Giavi2021_original_sixsite_diurnal_flower_visit_event_alignment.json')
+          z=json.loads(p.read_text())
+          source=z['original_data_support']
+          assert z['source_Rdata_md5']=='f60b21d82c163cbb53520fda0bc61985'
+          assert source['source_interaction_rows']==1884
+          assert source['original_source_plant_cover_event_rows']==628
+          assert source['true_site_pairs']==6
+          assert source['true_paired_sampling_occasions']==37
+          assert source['original_plant_species_labels']==21
+          assert z['no_hourly_open_flower_vs_nocturnal_moth_profile_available']
+          assert z['no_fruit_seed_or_effective_pollen_measured']
+          assert source['plant_observations_both_treatments_on_same_site_pair']==193
+          assert source['source_zero_visits_at_observed_cover_records']==363
+          a=z['plant_flower_cover_vs_visits_matched_temporal_overlap']
+          all3=a['all_three_documented_diurnal_orders']['3']
+          bee=a['Hymenoptera']['3']
+          beetle=a['Coleoptera']['3']
+          assert (all3['supported_plant_site_series'],all3['supported_independent_sites'])==(23,6)
+          assert math.isclose(all3['mean_of_site_medians_lit_minus_dark_overlap'],-0.06074392501051351,abs_tol=1e-10)
+          assert math.isclose(all3['lit_minus_dark_null_excess_event_overlap_site_equal'],-0.036898933186131445,abs_tol=.005)
+          assert (bee['supported_plant_site_series'],bee['supported_independent_sites'])==(17,6)
+          assert bee['site_median_null_excess_negative_n']==6
+          assert math.isclose(bee['lit_minus_dark_null_excess_event_overlap_site_equal'],-0.0612297963110158,abs_tol=.005)
+          assert (beetle['supported_plant_site_series'],beetle['supported_independent_sites'])==(7,5)
+          assert beetle['site_median_null_excess_positive_n']==5
+          assert math.isclose(beetle['lit_minus_dark_null_excess_event_overlap_site_equal'],0.285223982589907,abs_tol=.005)
+          holm=z['four_guild_primary_threshold3_exact_site_signflip_Holm_exploratory']
+          assert holm['Hymenoptera']==0.125 and holm['Coleoptera']==0.1875
+          assert holm['all_three_documented_diurnal_orders']==1 and holm['Diptera']==1
+          for guild,v in z['plant_flower_cover_vs_visits_matched_temporal_overlap'].items():
+            for threshold,q in v.items():
+              assert q['supported_independent_sites']<=6
+              if q['supported_independent_sites']:
+                assert abs(q['mean_of_site_medians_lit_minus_dark_overlap'])<=1
+                assert q['source_missing_excluded_not_zero']
+          print('GIAVI2021_H3_SOURCE_ACTUAL_SAME_EVENT_FLORAL_COVER_VISITOR_ALIGNMENT_PASSED')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-2016-swiss-real-plant-floral-cover-visitor-seasonal-alignment
+          path: H3_swiss2016/*.json
+          retention-days: 90
+          if-no-files-found: warn

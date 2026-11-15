@@ -1,0 +1,64 @@
+name: ALAN genuine Giavi2020 seed predation spillover and moth behavior distance
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - scripts/analysis/alan_Giavi2020_field_spillover_lab_distance_20261115.py
+      - tests/test_alan_Giavi2020_field_spillover_lab_distance_20261115.py
+      - docs/ALAN_P3_GIAVI2020_HADENA_DARK_REFUGE_FIELD_LAB_20261115.md
+      - .github/workflows/alan-P3-Giavi2020-original-field-lab-distance-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  true-jats-Table1-Table2:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Test source Table1/2 independent experimental unit and effect scale guards
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/analysis/alan_Giavi2020_field_spillover_lab_distance_20261115.py
+          python -m unittest discover -s tests -p 'test_alan_Giavi2020_field_spillover_lab_distance_20261115.py' -v
+      - name: Reacquire true EuropePMC primary JATS, verify DOI and both original tables
+        timeout-minutes: 9
+        run: |
+          set -euo pipefail
+          mkdir -p original_giavi2020_field_lab
+          python -m scripts.analysis.alan_Giavi2020_field_spillover_lab_distance_20261115 \
+            --out original_giavi2020_field_lab/ALAN_real_Giavi2020_field_dark_spillover_Hadena_moth_distance.json
+          python - <<'PY'
+          from pathlib import Path
+          import json,math
+          z=json.loads(Path("original_giavi2020_field_lab/ALAN_real_Giavi2020_field_dark_spillover_Hadena_moth_distance.json").read_text())
+          assert z["original_paper_DOI"]=="10.1038/s41598-020-68667-y"
+          assert z["published_field_design"]["true_original_meadow_clusters"]==8
+          assert z["published_field_design"]["adjacent_dark_and_direct_light_share_same_four_meadows"]
+          assert z["published_lab_design"]["independent_moth_individuals"]==22
+          assert z["published_lab_design"]["true_release_sessions"]==27
+          assert z["published_lab_design"]["flowers_checked_for_eggs"]==216
+          f=z["original_field_stage_coefficients"]
+          b=f["adjacent_dark_vs_far_dark_infected_fruit_odds"]
+          assert math.isclose(b["exponentiated_coefficient"],math.exp(1.90),rel_tol=1e-12)
+          assert b["Wald95_from_rounded_published_SE"][0]>2.1
+          a=z["original_lab_Table2_visitation_response"]
+          e=z["original_lab_Table2_oviposition_response"]
+          assert math.isclose(a["lit_distance_per_1m"]["exponentiated_coefficient"],math.exp(.37))
+          assert math.isclose(e["lit_distance_per_1m"]["exponentiated_coefficient"],math.exp(.24))
+          assert a["lit_distance_per_1m"]["original_published_p"] in ["<0.001","< 0.001","< 0.001"]
+          assert e["lit_distance_per_1m"]["Wald95_from_rounded_published_SE"][0]>0.99
+          assert z["source_inference_limits"]["but_lab_field_sequential_link_NOT_actual_mediation_estimation"]
+          assert z["source_inference_limits"]["Table1_spillover_Beta_OR_was_ALREADY_IN_repo_20261114"]
+          assert z["source_inference_limits"]["no_island_mainland_comparison_or_global_pooled_coefficient"]
+          print("GIAVI2020_REAL_PUBLISHED_TABLE2_LIT_MOTH_SPATIAL_GRADIENT_WITH_TABLE1_FIELD_SPILLOVER_PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-Giavi2020-field-dark-halo-Hadena-lab-distance-source-receipt
+          path: original_giavi2020_field_lab/*.json
+          retention-days: 90
+          if-no-files-found: warn

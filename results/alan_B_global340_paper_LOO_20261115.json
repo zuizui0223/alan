@@ -1,0 +1,86 @@
+{
+  "studies": 18,
+  "all_median": 0.011029047902054723,
+  "LOO_median_min": 0,
+  "LOO_median_max": 0.022058095804109445,
+  "LOO_positive_medians": 9,
+  "LOO_negative_medians": 0,
+  "LOO_zero_medians": 9,
+  "exclude_abs_gt1_studies": 17,
+  "exclude_abs_gt1_median": 0.022058095804109445,
+  "study_group_loo": [
+    {
+      "study": "Aguilar-Rodriguez_2016",
+      "median": 0
+    },
+    {
+      "study": "Alonso-Pedano_2012",
+      "median": 0.022058095804109445
+    },
+    {
+      "study": "Arizaga_2000",
+      "median": 0
+    },
+    {
+      "study": "Borbon-Palomares_2018",
+      "median": 0.022058095804109445
+    },
+    {
+      "study": "Bustamente_2010",
+      "median": 0
+    },
+    {
+      "study": "Casas_1999",
+      "median": 0.022058095804109445
+    },
+    {
+      "study": "Cruz-Neto_2015",
+      "median": 0.022058095804109445
+    },
+    {
+      "study": "Dar_2006",
+      "median": 0.022058095804109445
+    },
+    {
+      "study": "Hove_2007",
+      "median": 0.022058095804109445
+    },
+    {
+      "study": "Larrea-Alcázar_2011",
+      "median": 0.022058095804109445
+    },
+    {
+      "study": "Lemaitre_2014",
+      "median": 0
+    },
+    {
+      "study": "Luo_2011",
+      "median": 0.022058095804109445
+    },
+    {
+      "study": "McMullen_2009",
+      "median": 0
+    },
+    {
+      "study": "Molina-Freaner_2003",
+      "median": 0
+    },
+    {
+      "study": "Molina-Freaner_2004",
+      "median": 0
+    },
+    {
+      "study": "Morse_1983",
+      "median": 0
+    },
+    {
+      "study": "Payne_2016",
+      "median": 0
+    },
+    {
+      "study": "de Avila_2011",
+      "median": 0.022058095804109445
+    }
+  ],
+  "comment": "posthoc single-paper leave-out of original descriptive paper medians; not confidence limits"
+}
