@@ -1,0 +1,75 @@
+name: ALAN cross-repository WorldPop source schema and grid-alignment audit
+on:
+  push:
+    branches: [analysis/alan-population-source-join-20261115]
+    paths:
+      - .github/workflows/alan-mois-worldpop-source-audit-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  worldpop-source-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 32
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install -q pandas==2.2.3 numpy==2.1.3
+      - name: Restore ALAN original site and MOIS authentic annual population photo source cohorts
+        run: |
+          set -euo pipefail
+          mkdir -p src/alan src/mois_sites src/mois2024 src/mois2024pop src/mois2025 verified
+          gh run download 42624285048 --repo zuizui0223/alan --name alan-full93m-actual-PCNL1992-2024-moth-positive-macro --dir src/alan
+          echo '440a8313d71168e0a4dfd2f41a7bef45623abb068b07e3282026f1c35dccbd2c  src/alan/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz' | sha256sum -c -
+          gh run download 42337911536 --repo zuizui0223/mois --pattern 'mois-original-*-global-mainland-island-monthly-VIIRS-source-SHA' --dir src/mois_sites
+          for yr in 2019 2021 2023; do
+            mkdir -p src/year"$yr"
+            gh run download 42338121269 --repo zuizui0223/mois --name "mois-original-${yr}-R2024B-UC-global-popdensity-photo-source" --dir src/year"$yr"
+          done
+          gh run download 42328567038 --repo zuizui0223/mois --name mois-global2024-rest62360-original-VIIRS-G2-all66456-source --dir src/mois2024
+          echo '6e0a077d496e90848d05d043bffae57e4772519f4572a457221c5ef4da0fb813  src/mois2024/result_rest2024/all2024_known_land_combined_values.csv' | sha256sum -c -
+          gh run download 42333953557 --repo zuizui0223/mois --name mois-2024-WorldPop-UC-R2024B-full-original-66456-population-source --dir src/mois2024pop
+          echo 'a07af611836d215fb7997c7f574729df10787f5a7cc9bfa1b67bf5a831d613dc  src/mois2024pop/2024_66k_UC_R2024B_fullcohort_values.csv' | sha256sum -c -
+          gh run download 42362981035 --repo zuizui0223/mois --name mois-2025-original73463-mainland-island-full-VIIRS-and-R2024B-UC-source --dir src/mois2025
+      - name: Original columns and cross-source geography/identifier support (no source rows exported)
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json, pandas as pd, numpy as np
+          from collections import defaultdict
+          audit={'schema':'ALAN_verified_MOIS_population_source_alignment_v1',
+                 'source':'ALAN original 85318 site years and MOIS annual published-source WorldPop R2024B UC values',
+                 'files':[],'no_source_location_rows_exported':True}
+          for root in ['src/mois_sites','src/year2019','src/year2021','src/year2023','src/mois2024','src/mois2024pop','src/mois2025']:
+              for f in sorted(Path(root).rglob('*')):
+                  if not f.is_file() or not (str(f).endswith('.csv') or str(f).endswith('.csv.gz')):
+                      continue
+                  sample=pd.read_csv(f,nrows=3,dtype=str)
+                  item={'path':str(f),'size':f.stat().st_size,'columns':sample.columns.tolist(),
+                        'first_target_id_example':sample['target_id'].iloc[0] if 'target_id' in sample and len(sample) else None}
+                  if len(audit['files'])<100:audit['files'].append(item)
+          # ALAN coordinates are needed only to check grid-key provenance, not exported
+          path='src/alan/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz'
+          d=pd.read_csv(path)
+          audit['alan_columns']=d.columns.tolist()
+          audit['alan_rows']=len(d)
+          audit['alan_years']={str(k):int(v) for k,v in d.year.value_counts().sort_index().items()}
+          audit['alan_xlon_expected_005_bin_match']=float(
+              (np.floor((d.lon+180)/.05+1e-9)==d.lonbin).mean())
+          audit['alan_ylat_expected_005_bin_match']=float(
+              (np.floor((d.lat+90)/.05+1e-9)==d.latbin).mean())
+          print('ALAN_WORLDPOP_SCHEMA_AUDIT',json.dumps(audit,sort_keys=True),flush=True)
+          Path('verified/source_schema_and_grid_audit.json').write_text(json.dumps(audit,indent=2,sort_keys=True)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-mois-population-source-join-audit-20261115
+          path: verified/
+          if-no-files-found: warn
+          retention-days: 90
