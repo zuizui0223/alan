@@ -14,8 +14,7 @@ class TestTwoStudyGate(unittest.TestCase):
         self.assertEqual(d["Trifolium_pratense"]["dark_zero_blocks"],["T03"])
         self.assertEqual(d["Centaurea_jacea"]["dark_zero_blocks"],["C01"])
     def test_crossstudy_never_claims_k39(self):
-        self.assertIn("true_independent_lighting_sites_not_11_plus_28",m.result.__code__.co_consts)
-        # The substring above is nested in dict constant? check source itself
+        self.assertIn("true_independent_lighting_sites_not_11_plus_28",__import__("pathlib").Path(m.__file__).read_text(encoding="utf-8"))
     def test_covariance_identity(self):
         import numpy as np
         a=np.asarray([0.,1.,2.,3.]);b=np.asarray([2.,3.,1.,5.])
