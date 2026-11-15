@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """ALAN A: source-visible OpenAlex title/abstract discovery, not automatic eligibility.
 
-Each query retrieves only the first 100 hits without an API key. If OpenAlex
-reports more, mark as truncated; do not claim a systematic census or PRISMA.
+Each query retrieves all pages of title/abstract results up to a 20-page bound.
+Report incomplete pages or any API errors; title-level discovery is NOT PRISMA.
 The known-study registry is independent of discovery, and DOI/title matches do
 not automatically qualify a study for meta-regression.
 """
@@ -94,23 +94,37 @@ def run_query(text: str) -> dict:
         "per_page": 100,
         "page": 1,
     }
-    url = "https://api.openalex.org/works?" + urllib.parse.urlencode(params)
     headers = {"User-Agent": "ALAN-evidence-screen/2026-11-15 (+https://github.com/zuizui0223/alan)"}
     if os.environ.get("OPENALEX_API_KEY"):
         params["api_key"] = os.environ["OPENALEX_API_KEY"]
+    all_rows = []
+    count = None
+    pages = 0
+    for page in range(1, 21):
+        params["page"] = page
         url = "https://api.openalex.org/works?" + urllib.parse.urlencode(params)
-    last_error = None
-    for attempt in range(3):
-        try:
-            with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=35) as response:
-                data = json.load(response)
-            if not isinstance(data.get("results"), list) or not isinstance(data.get("meta"), dict):
-                raise ValueError("Malformed OpenAlex response")
-            return data
-        except (urllib.error.URLError, ValueError, TimeoutError) as exc:
-            last_error = exc
-            time.sleep(2 + 3 * attempt)
-    raise RuntimeError("OpenAlex query failed: " + repr(last_error))
+        last_error = None
+        data = None
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=35) as response:
+                    data = json.load(response)
+                if not isinstance(data.get("results"), list) or not isinstance(data.get("meta"), dict):
+                    raise ValueError("Malformed OpenAlex response")
+                break
+            except (urllib.error.URLError, ValueError, TimeoutError) as exc:
+                last_error = exc
+                time.sleep(2 + 3 * attempt)
+        if data is None:
+            raise RuntimeError("OpenAlex page " + str(page) + " failed: " + repr(last_error))
+        pages += 1
+        if count is None:
+            count = int(data["meta"].get("count", 0))
+        batch = data["results"]
+        all_rows.extend(batch)
+        if not batch or len(all_rows) >= count:
+            break
+    return {"meta": {"count": count or 0, "pages_fetched": pages}, "results": all_rows}
 
 
 def discover(out_dir: pathlib.Path) -> dict:
@@ -124,11 +138,11 @@ def discover(out_dir: pathlib.Path) -> dict:
             total = int(meta.get("count", 0))
             payloads.append((i, payload))
             per_query.append({"query_id": i, "query": query, "total_reported": total,
-                              "returned_page_one": n, "truncated_after_first_page": total > n})
+                              "returned_all_pages": n, "pages_fetched": meta["pages_fetched"], "truncated_after_page_bound": total > n})
         except RuntimeError as exc:
             errors.append({"query_id": i, "query": query, "error": str(exc)})
     rows = merge_rows(payloads)
-    with (out_dir / "openalex_firstpage_metadata.csv").open("w", newline="", encoding="utf-8") as handle:
+    with (out_dir / "openalex_paged_metadata.csv").open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=FIELDS)
         writer.writeheader()
         writer.writerows(rows)
@@ -137,7 +151,7 @@ def discover(out_dir: pathlib.Path) -> dict:
     known_dois = {normalize_doi(x["doi"]): x["id"] for x in registry["entries"]}
     matched = {x["doi"]: known_dois[x["doi"]] for x in rows if x["doi"] in known_dois}
     result = {
-        "schema": "ALAN_A_OpenAlex_first_page_discovery_v1",
+        "schema": "ALAN_A_OpenAlex_paginated_discovery_v2",
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "cutoff": CUTOFF,
         "record_status": "SEARCH_DISCOVERY_ONLY_NOT_ELIGIBILITY_OR_PRISMA",
@@ -145,16 +159,17 @@ def discover(out_dir: pathlib.Path) -> dict:
         "queries_succeeded": len(payloads),
         "query_details": per_query,
         "errors": errors,
-        "records_unique_within_pages": len(rows),
-        "truncated_any": any(x["truncated_after_first_page"] for x in per_query),
+        "records_unique": len(rows),
+        "raw_search_hits_across_queries": sum(len(p["results"]) for _, p in payloads),
+        "truncated_any": any(x["truncated_after_page_bound"] for x in per_query),
         "known_registry_doi_matches": matched,
         "eligible_independent_ALAN_experiments": None,
         "eligible_reproductive_effects_with_se": None,
         "eligible_external_night_dependence": None,
         "full_eligibility_inference_allowed": False,
-        "limitation": "Title and abstract retrieval only, first page per query. No systematic full-text, WoS/Scopus, or citation chasing; no automatic causal eligibility."
+        "limitation": "Title/abstract retrieval only with bounded pagination. No systematic full-text, WoS/Scopus, or citation chasing; no automatic causal eligibility."
     }
-    (out_dir / "openalex_firstpage_receipt.json").write_text(
+    (out_dir / "openalex_paged_receipt.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     return result
@@ -166,7 +181,7 @@ def main() -> None:
     args = parser.parse_args()
     report = discover(pathlib.Path(args.output))
     print(json.dumps({k: report[k] for k in (
-        "query_count", "queries_succeeded", "records_unique_within_pages", "truncated_any",
+        "query_count", "queries_succeeded", "records_unique", "raw_search_hits_across_queries", "truncated_any",
         "eligible_independent_ALAN_experiments", "errors")}, ensure_ascii=False))
     if not report["queries_succeeded"]:
         raise SystemExit("All OpenAlex queries failed; no source scan performed.")
