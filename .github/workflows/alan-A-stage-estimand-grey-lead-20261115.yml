@@ -1,0 +1,31 @@
+name: ALAN A stage-estimand evidence guard 2026-11-15
+on:
+  push:
+    branches:
+      - analysis/alan-floral-timing-dependence-20261115
+    paths:
+      - config/alan_A_stage_estimand_evidence_map_20261115_v2.json
+      - config/alan_A_reproductive_screen_20261115.json
+      - scripts/analysis/alan_A_stage_estimand_evidence_guard_20261115.py
+      - tests/test_alan_A_stage_estimand_evidence_guard_20261115.py
+      - .github/workflows/alan-A-stage-estimand-grey-lead-20261115.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage-source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: python -m pip install pytest
+      - name: Validate exact stage and source identity
+        run: |
+          python -m pytest -q tests/test_alan_A_stage_estimand_evidence_guard_20261115.py
+          python scripts/analysis/alan_A_stage_estimand_evidence_guard_20261115.py
