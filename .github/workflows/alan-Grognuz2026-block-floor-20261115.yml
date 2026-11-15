@@ -1,0 +1,30 @@
+name: ALAN Grognuz supplementary S3 zero-floor sign audit
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - scripts/analysis/alan_Grognuz2026_block_floor_signs_20261115.py
+      - tests/test_alan_Grognuz2026_block_floor_signs_20261115.py
+      - .github/workflows/alan-Grognuz2026-block-floor-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Tests and original-derived table reanalysis
+        run: |
+          python -m unittest discover -s tests -p 'test_alan_Grognuz2026_block_floor_signs_20261115.py' -v
+          python -m scripts.analysis.alan_Grognuz2026_block_floor_signs_20261115
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-Grognuz2026-28block-floor-signs
+          path: results/alan_Grognuz2026_block_floor_and_signs_20261115.json
+          retention-days: 30
