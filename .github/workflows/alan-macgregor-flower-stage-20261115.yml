@@ -1,0 +1,55 @@
+name: ALAN source-original flower success -> larval parasitism stages
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - scripts/analysis/alan_macgregor2019_flower_outcome_stage_source_20261115.py
+      - tests/test_alan_macgregor2019_flower_outcome_stage_source_20261115.py
+      - docs/ALAN_MAC2019_STAGED_REPRO_ORIGINAL_20261115.md
+      - .github/workflows/alan-macgregor-flower-stage-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-pdf-stage-not-ALAN-interaction:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test original stage denominator and no-fabricated interaction guards
+        run: |
+          set -euo pipefail
+          python -m pip install -q pymupdf==1.26.5
+          python -m py_compile scripts/analysis/alan_macgregor2019_flower_outcome_stage_source_20261115.py
+          python -m unittest discover -s tests -p 'test_alan_macgregor2019_flower_outcome_stage_source_20261115.py' -v
+      - name: Fetch original author PDF with exact SHA and reconstruct published stages
+        timeout-minutes: 6
+        run: |
+          set -euo pipefail
+          mkdir -p real_mac_stage
+          python -m scripts.analysis.alan_macgregor2019_flower_outcome_stage_source_20261115 \
+             --out real_mac_stage/ALAN_real_2019_flower_outcomes_and_nocturnal_complementarity.json
+          python - <<'PY'
+          import json,math
+          from pathlib import Path
+          z=json.loads(Path("real_mac_stage/ALAN_real_2019_flower_outcomes_and_nocturnal_complementarity.json").read_text())
+          assert z["original_pdf_integrity"]["true_published_paper_retrieved"]
+          assert all(z["original_pdf_integrity"]["semantic_anchors"].values())
+          assert z["published_primary_counts"]["flower_observed"]==417
+          assert z["published_primary_counts"]["seed_present_flowers"]==194
+          assert z["published_primary_counts"]["larval_infested_seed_present_flowers"]==46
+          assert z["published_primary_counts"]["uninfested_seed_capsules_quantified"]==148
+          assert math.isclose(z["published_original_diel_pollination_success"]["model_independent_union_from_day_and_night"],.705472)
+          assert z["P1_x_P3_new_original_interaction_estimates"]==0
+          print("GENUINE_MACGREGOR_POLLINATION_QUALITY_SELECTION_AND_COMPLEMENTARITY_STAGE_PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-Macgregor-original-flow-stage-and-no-interaction-20261115
+          path: real_mac_stage/*.json
+          retention-days: 90
+          if-no-files-found: warn
