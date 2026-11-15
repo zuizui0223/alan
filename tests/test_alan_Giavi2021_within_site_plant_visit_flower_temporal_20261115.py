@@ -50,6 +50,8 @@ class TemporalFunctionalTests(unittest.TestCase):
            "lit_overlap":.5,
            "dark_overlap":.3,
            "lit_minus_dark_temporal_overlap":.2,
+           "lit_minus_dark_null_expected_temporal_overlap":.05,
+           "lit_minus_dark_excess_overlap_beyond_visit_count_null":.15,
            "lit_total_visits_same_support":4,
            "dark_total_visits_same_support":3}
           for i in range(6)],11)
