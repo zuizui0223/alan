@@ -35,6 +35,9 @@ class PairedOriginalExposureChecks(unittest.TestCase):
         self.assertEqual(s["source_matched_zero_visitation_rows"],1)
         self.assertTrue(s["flower_cover_is_post_treatment_proxy_and_may_mediate_total_ALAN_effect"])
         self.assertTrue(s["visitor_count_conditions_on_recorded_matched_plant_events"])
+        self.assertEqual(len(s["leave_one_true_site_out_site_equal_means"]),6)
+        self.assertFalse(s["leave_one_out_changes_mean_effect_sign"])
+        self.assertAlmostEqual(s["pooled_matched_event_excess_lit_visit_fraction"],s["site_equal_mean_excess_lit_visitor_share_over_flower_cover"],places=2)
     def test_eligibility_requires_matched_plant_occasions(self):
         a=conditional_exposure_rows(sample(),"all3_visits")
         r,q=per_site(a,4)
