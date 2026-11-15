@@ -50,6 +50,16 @@ jobs:
           assert math.isclose(x["observed_seeds_per_initial_bud_ratio"],(3729/483)/(672/369))
           assert math.isclose(x["observed_fruits_per_initial_bud_ratio"],(149/483)/(32/369))
           assert math.isclose(x["observed_seeds_per_fruit_ratio"],(3729/149)/(672/32))
+          taxa=z["within_taxon_actual_reproductive_stage_ratios"]
+          assert set(taxa)=={"ML","SN","ZC"}
+          assert taxa["ML"]["linear_vs_dark_source_stage_ratios"]["observed_seeds_per_fruit_ratio"]<1
+          assert taxa["SN"]["linear_vs_dark_source_stage_ratios"]["observed_seeds_per_fruit_ratio"]<1
+          assert taxa["ZC"]["linear_vs_dark_source_stage_ratios"]["observed_seeds_per_fruit_ratio"]>1
+          assert all(x["linear_vs_dark_source_stage_ratios"]["observed_fruits_per_initial_bud_ratio"]>1 for x in taxa.values())
+          leave=z["leave_one_taxon_out_composition_sensitivity"]
+          assert leave["ZC"]["seed_per_fruit_ratio_without_species"]<1
+          assert all(x["seed_per_initial_bud_ratio_without_species"]>1 for x in leave.values())
+          assert z["pooled_seed_per_fruit_increase_not_consistent_within_all_species"] is True
           assert len(z["three_true_hayfield_reproductive_stages"])==3
           assert all(v["linear_vs_dark_reproductive_stage"]["observed_seeds_per_initial_bud_ratio"]>1 for v in z["three_true_hayfield_reproductive_stages"].values())
           assert all(v["linear_vs_dark_reproductive_stage"]["observed_fruits_per_initial_bud_ratio"]>1 for v in z["three_true_hayfield_reproductive_stages"].values())
