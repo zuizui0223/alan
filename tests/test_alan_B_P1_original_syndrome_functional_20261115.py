@@ -32,6 +32,26 @@ class TestP1Syndrome(unittest.TestCase):
         self.assertIsNone(c["paper_bootstrap_95_descriptive"])
         self.assertEqual(c["a"]["study_IDs"],1)
         self.assertIsNotNone(c["median_study_equal_difference"])
+    def test_source_paper_loo_not_individual_panel(self):
+        src=[]
+        for study,value,group in (
+          ("N1",.9,"night_tube"),("N2",.8,"night_tube"),("N3",.5,"night_tube"),
+          ("D1",.2,"day_non_tube"),("D2",.3,"day_non_tube"),("D3",.4,"day_non_tube"),
+        ):
+            src.append({"study_ID":study,"plant_species":"plant "+study,
+                        "night_loss":value,"trait_profile":group})
+        # Extra within-study source panels must not become new paper replicates
+        src.append({"study_ID":"N1","plant_species":"plant N1",
+                    "night_loss":.95,"trait_profile":"night_tube"})
+        c=m.contrast(pd.DataFrame(src),"night_tube","day_non_tube")
+        self.assertEqual(c["a"]["study_IDs"],3)
+        self.assertEqual(c["b"]["study_IDs"],3)
+        self.assertEqual(c["leave_one_paper_n_total"],6)
+        self.assertEqual(c["leave_one_paper_n_positive"],6)
+        self.assertTrue(c["leave_one_paper_not_proof_independence"])
+    def test_original_light_pooled_study_exclusion_label(self):
+        self.assertTrue("Macgregor_2019" in SRC.read_text(encoding="utf-8"))
+        self.assertTrue("source_removed_panels" in SRC.read_text(encoding="utf-8"))
     def test_strict_source_endpoints(self):
         self.assertIn("seed_per_fruit",m.ENDPOINTS)
         self.assertIn("fruit_proportion",m.ENDPOINTS)
