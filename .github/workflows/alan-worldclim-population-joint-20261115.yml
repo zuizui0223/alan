@@ -183,7 +183,7 @@ jobs:
           assert a['source_is_10arcmin_static_1970_2000_normal_not_2019_2025_actual_weather']
           print('ALAN_WORLDCLIM_ORIGINAL_SOURCE_QA_PASS')
           PY
-      - name: Method test: five-variable photo-source model must preserve population-only baseline
+      - name: Method test for five-variable photo-source model preserving population-only baseline
         run: |
           set -euo pipefail
           python -m py_compile scripts/analysis/alan_species_worldclim_population_20261115.py
