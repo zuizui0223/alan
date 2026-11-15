@@ -1,0 +1,31 @@
+name: ALAN Wilson2021 and Xiao2025 original publisher supplement source probe
+on:
+  push:
+    branches:
+      - analysis/alan-floral-timing-dependence-20261115
+    paths:
+      - scripts/analysis/alan_Wilson_Xiao_primary_supplement_probe_20261115.py
+      - tests/test_alan_Wilson_Xiao_primary_supplement_probe_20261115.py
+      - .github/workflows/alan-A-Wilson-Xiao-original-repro-supp-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public-supplement:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify source signatures and no invented reproductive effects
+        run: python -m unittest discover -s tests -p 'test_alan_Wilson_Xiao_primary_supplement_probe_20261115.py' -v
+      - name: Probe official public article supplemental files and archive signatures
+        run: python scripts/analysis/alan_Wilson_Xiao_primary_supplement_probe_20261115.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-A-Wilson2021-Xiao2025-supplement-source-manifest
+          path: results/alan_Wilson_Xiao_official_supplement_source_probe_20261115.json
+          retention-days: 30
