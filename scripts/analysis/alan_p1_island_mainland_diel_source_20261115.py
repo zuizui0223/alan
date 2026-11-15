@@ -20,6 +20,8 @@ LOOKUP={
 'McMullen_2011':('Ecuador','Santa Cruz Island','oceanic','McMullen'),
 'McMullen_2012':('Ecuador','Galapagos (Santa Cruz)','oceanic','McMullen'),
 'Nakajima_2018':('Japan','Izu islands','oceanic','Nakajima'),
+'Chapurlat_2015':('Sweden','Skane','shelf_small','Chapurlat'),
+'Chapurlat_2019':('Sweden','Skane','shelf_small','Chapurlat'),
 'Noone_2022':('Canada','Kent Island','shelf_small','Noone'),
 'Suetsugu_2018':('Japan','Yakushima Island','shelf_small','Suetsugu'),
 'Yumoto_2000':('Malaysia','Lambir Hills National Park','large_island','Yumoto'),
@@ -98,7 +100,7 @@ def analyze(raw):
                     'n_species':d.plant_species.nunique(),
                     'n_author_families':d.source_family.nunique(),
                     'n_geocoding_warning':int(d.geo_warning.sum())}
-    expected={'oceanic':6,'caribbean':2,'shelf_small':2,'large_island':5,'continent':98}
+    expected={'oceanic':6,'caribbean':2,'shelf_small':4,'large_island':5,'continent':96}
     if {k:v['n_studies'] for k,v in count.items()}!=expected:
         raise ValueError('Source geography classification drift')
     overlap=p.groupby('study_ID').geo_class.nunique()
@@ -122,6 +124,7 @@ def analyze(raw):
       'source_rows':len(raw),'source_reproductive_panels':len(p),'source_studies':p.study_ID.nunique(),
       'geographic_groups':count,'small_sea_island_n_panels':int(p.geo_class.isin(SMALL).sum()),
       'small_sea_island_n_studies':p[p.geo_class.isin(SMALL)].study_ID.nunique(),
+      'source_locality_mislabeled_as_Skane_but_primary_Oland':['Chapurlat_2015','Chapurlat_2019'],
       'within_study_island_mainland_overlap':int((overlap>1).sum()),
       'oceanic_versus_continent':{ep:compare(p,ep) for ep in ('fruit_proportion','seed_per_fruit','seed_per_ovule')},
       'all_small_islands_sensitivity':{ep:compare(p,ep,tuple(sorted(SMALL))) for ep in ('fruit_proportion','seed_per_fruit')},
