@@ -1,0 +1,34 @@
+name: ALAN B original diel reproductive stage contrast and source denominator gate
+on:
+  push:
+    branches:
+      - analysis/alan-floral-timing-dependence-20261115
+    paths:
+      - scripts/analysis/alan_B_original_DvN_stage_contrasts_20261115.py
+      - tests/test_alan_B_original_DvN_stage_contrasts_20261115.py
+      - .github/workflows/alan-B-original-stage-contrast-source-20261115.yml
+      - results/night_exclusion/experiments.csv
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  stage-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify source-reproductive-pair gates
+        run: python -m unittest discover -s tests -p 'test_alan_B_original_DvN_stage_contrasts_20261115.py' -v
+      - name: Build exact 14-pair source observations and restricted 10
+        run: python scripts/analysis/alan_B_original_DvN_stage_contrasts_20261115.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-B-stage-contrast-original-source
+          path: |
+            results/night_exclusion/stage_marginal_diel_pairs_20261115.json
+            results/night_exclusion/stage_marginal_strict_pairs_20261115.csv
+          retention-days: 30
