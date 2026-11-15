@@ -1,0 +1,35 @@
+name: ALAN B source scope Silene latifolia dark-only night dependence correction
+on:
+  push:
+    branches:
+      - analysis/alan-floral-timing-dependence-20261115
+    paths:
+      - scripts/analysis/alan_Silene_lat_dark_only_V_gate_20261115.py
+      - tests/test_alan_Silene_lat_dark_only_V_gate_20261115.py
+      - .github/workflows/alan-B-Silene-darkonly-source-correction-20261115.yml
+      - results/night_exclusion/experiments.csv
+      - results/night_exclusion/species.csv
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-eligibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate original study-mean reproduction and scope
+        run: python -m unittest discover -s tests -p 'test_alan_Silene_lat_dark_only_V_gate_20261115.py' -v
+      - name: Reproduce original and remove light-pooled Macgregor from dark-only V
+        run: python scripts/analysis/alan_Silene_lat_dark_only_V_gate_20261115.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-B-Silene-night-dependence-darkonly-12-species
+          path: |
+            results/night_exclusion/S_latifolia_dark_only_source_gate_20261115.json
+            results/night_exclusion/strict_night_V_by_species_20261115.csv
+          retention-days: 30
