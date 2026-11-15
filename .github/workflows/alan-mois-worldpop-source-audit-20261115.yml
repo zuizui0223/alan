@@ -4,6 +4,7 @@ on:
     branches: [analysis/alan-population-source-join-20261115]
     paths:
       - .github/workflows/alan-mois-worldpop-source-audit-20261115.yml
+      - scripts/analysis/alan_mois_worldpop_exact_pixel_support_20261115.py
   workflow_dispatch:
 permissions:
   contents: read
@@ -65,6 +66,34 @@ jobs:
               (np.floor((d.lat+90)/.05+1e-9)==d.latbin).mean())
           print('ALAN_WORLDPOP_SCHEMA_AUDIT',json.dumps(audit,sort_keys=True),flush=True)
           Path('verified/source_schema_and_grid_audit.json').write_text(json.dumps(audit,indent=2,sort_keys=True)+'\n')
+          PY
+      - name: Source-authentic same-year and exact original WorldPop 1km pixel join
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/analysis/alan_mois_worldpop_exact_pixel_support_20261115.py
+          python - <<'PY'
+          import numpy as np
+          from scripts.analysis.alan_mois_worldpop_exact_pixel_support_20261115 import bins,pixels
+          x,y=bins([139.725],[35.725])
+          assert len(x)==len(y)==1
+          c,r=pixels([139.725,139.725],[35.725,35.725])
+          assert c[0]==c[1] and r[0]==r[1]
+          # Same 0.05-degree photo cell does NOT mean the same 1km pixel.
+          u,v=pixels([139.701,139.73],[35.701,35.73])
+          assert u[0]!=u[1] and v[0]!=v[1]
+          print('WORLDPOP_GRID_ALIGNMENT_METHOD_TEST_PASS')
+          PY
+          python -m scripts.analysis.alan_mois_worldpop_exact_pixel_support_20261115 \
+            --sites src/alan/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --sources src \
+            --out verified/alan_mois_worldpop_exact_year_pixel_source_20261115.json
+          python - <<'PY'
+          import json
+          x=json.load(open('verified/alan_mois_worldpop_exact_year_pixel_source_20261115.json'))
+          assert x['original_ALAN_island_photo_sites']==77647
+          assert x['same_worldpop_pixel_required'] and x['same_year_required']
+          assert x['bin_only_nonpixel_matching_rejected']
+          print('ALAN_MOIS_WORLDPOP_PIXEL_AUDIT_PASS')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
