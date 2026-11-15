@@ -1,0 +1,30 @@
+name: ALAN Boom primary JATS conditional seed covariance audit
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - scripts/analysis/alan_A_Boom2020_original_SE_covariance_20261115.py
+      - tests/test_alan_A_Boom2020_original_SE_covariance_20261115.py
+      - .github/workflows/alan-A-Boom-original-SE-covariance-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-covariance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Original source guards and covariance algebra tests
+        run: python -m unittest discover -s tests -p 'test_alan_A_Boom2020_original_SE_covariance_20261115.py' -v
+      - name: Re-fetch DOI-matched EuropePMC original Boom JATS and original treatment SE
+        run: python -m scripts.analysis.alan_A_Boom2020_original_SE_covariance_20261115
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-A-Boom-2020-primary-JATS-covariance-bounds
+          path: results/alan_A_Boom2020_estimated_seed_output_pairwise_SE_covariance_bounds_20261115.json
+          retention-days: 30
