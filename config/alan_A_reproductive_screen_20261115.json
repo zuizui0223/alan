@@ -22,14 +22,51 @@
       "year": 2017,
       "short_title": "Knop ALAN pollination networks and focal fruit set",
       "light_design": "manipulated",
-      "outcome": "fruit_set",
-      "a_primary_stage": "A_endpoint_candidate",
-      "screening_reason": "fruit set -13% reported; light units and SE need source",
-      "external_night_dependence": "none_proven",
+      "outcome": "mature_achenes_count_and_fraction_per_cirsium_capitulum_2x2",
+      "a_primary_stage": "qualifies_manipulated_reproductive_outcome_but_common_scale_and_variance_not_yet_recovered",
+      "screening_reason": "Directly manipulated overnight LEDs, true fruit experiment 5 lit vs 5 dark meadows matched in 5 pairs; 2x2 light × bagging, 100 plants ×2 capitula; mature achene number and % per capitulum, not one flower binary per independently assigned unit. Original study reports open fruit-count lighting z=-2.5 p=.014, bagged p=.140; site/plant clustered SE for common A response not yet recovered.",
+      "external_night_dependence": "night_pollinator_visits_2014_2015_but_no_night_only_reproductive_exclosure",
       "screen_status": "source_recovery",
-      "note": "Existing nine; one Swiss experiment",
+      "note": "Genuine 5 lit + 5 dark reproductive meadow clusters, NOT 7+7 network meadows; 25 plants and 50 capitula per factorial cell; bagged/open contrast does not quantify night-only pollination; do not assume interaction supported because one simple effect p<.05 and another p>.05.",
       "verified_joint_effect_moderator_se": false,
-      "source_url": "https://doi.org/10.1038/nature23288"
+      "source_url": "https://doi.org/10.1038/nature23288",
+      "source_audit": {
+        "audited_date": "2026-11-15",
+        "primary_article_doi": "10.1038/nature23288",
+        "evidence": "Knop et al. 2017 original main-body and Methods (author-uploaded manuscript; full Methods and Figure 4)",
+        "night_network_sites_total": 14,
+        "night_network_lit_sites": 7,
+        "night_network_dark_sites": 7,
+        "fruit_field_sites_total": 10,
+        "fruit_lit_sites": 5,
+        "fruit_dark_sites": 5,
+        "matched_site_pairs": 5,
+        "plants_per_site": 10,
+        "plant_pairs_per_site": 5,
+        "total_fruit_plants": 100,
+        "plants_per_lit_x_bagging_cell": 25,
+        "capitula_per_plant": 2,
+        "total_measured_capitula": 200,
+        "capitula_per_lit_x_bagging_cell": 50,
+        "light_x_bagged_four_cells": [
+          "dark_open",
+          "dark_bagged",
+          "lit_open",
+          "lit_bagged"
+        ],
+        "original_flower_unit": "Cirsium capitulum, count and fraction developed fruits (achenes) per capitulum",
+        "original_model": "Poisson count or binomial percentage per flower head; plant pair nested in site nested in 5 matched site pairs, plus herbivory, biomass, overdispersion",
+        "full_day_night_exclusion": false,
+        "bagging_does_not_separate_diel_guilds": true,
+        "light_negative_open_fruits_original_z": -2.5,
+        "light_negative_open_fruits_p": 0.014,
+        "light_effect_on_bagged_fruits_original_z": 1.47,
+        "light_effect_on_bagged_fruits_p": 0.14,
+        "full_interaction_numeric_beta_se_recovered": false,
+        "source_data_access": "On request from corresponding author; not newly acquired",
+        "original_model_variance_available_to_meta": false,
+        "note": "14 sites is the night visitation network, NOT the subset of 10 sites used for fruit success. 50 capitula per cell are observations clustered in 25 plants and 5 lit or 5 dark meadows."
+      }
     },
     {
       "id": "macgregor2019",
@@ -256,5 +293,12 @@
     "not_independent_effectsize_ready_count": true,
     "paper_study_duplicate": "Wilson 2020 thesis ch2 overlaps Wilson et al 2021 publication",
     "reason": "Primary original Methods states independent randomized 8 treatment + 7 control transects, 5 sites and 58 plants; fruit model co-adjusts skyglow, but source means/SE and V unavailable"
+  },
+  "knop_fruit_original_unit_audit": {
+    "date": "2026-11-15",
+    "study": "Knop 2017",
+    "issue": "Visit/fruit pseudo-replication and capitulum outcome",
+    "changed": "Source-authenticated 14 network meadows vs 10 fruit-meadows and original 5 matched site pairs, 4 factorial groups with 25 plants × 2 capitula",
+    "not_five_independent_effects": true
   }
 }
