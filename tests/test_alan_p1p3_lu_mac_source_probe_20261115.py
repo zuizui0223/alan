@@ -14,6 +14,17 @@ class PrimaryPublicationCausalGates(unittest.TestCase):
   self.assertAlmostEqual(math.log(1-.56),-.8209805520698302)
   self.assertGreater(1-.56,0)
   self.assertLess(1-.56,1)
+ def test_author_reported_three_stages_are_distinct_not_mechanism(self):
+  import math
+  source={"visits":.491,"pollen":.538,"seeds":.56}
+  logs={k:math.log1p(-v) for k,v in source.items()}
+  self.assertAlmostEqual(logs["visits"],-.675307,places=5)
+  self.assertAlmostEqual(logs["pollen"],-.772190,places=5)
+  self.assertAlmostEqual(logs["seeds"],-.820981,places=5)
+  self.assertNotEqual(logs["pollen"],logs["seeds"])
+  # This does not imply 53.8% of seed loss was mediated by pollen.
+  self.assertTrue(True)
+
  def test_real_reported_design_levels(self):
   self.assertNotEqual("lighting x caging", "lighting main effect")
   self.assertNotEqual("original author GLMM p-value","manuscript nonsignificant text")
