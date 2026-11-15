@@ -1,0 +1,84 @@
+{
+  "provenance": {
+    "source_run": "https://github.com/zuizui0223/alan/actions/runs/43727065353",
+    "artifact_id": 14166513282,
+    "artifact_zip_sha256": "41af84b9272e53b50a4eb8276037f1ab786f6ccef20fc83150122fcef5d99764",
+    "data_and_checks_passed": true,
+    "no_restricted_raw_source_rows_exported": true
+  },
+  "schema": "ALAN_MOIS_WorldPop_exact_pixel_overlap_audit_20261115_v1",
+  "status": "ORIGINAL_YEAR_AND_ORIGINAL_1KM_PIXEL_MATCHED_COVERAGE_ONLY",
+  "source_population": "MOIS original annual 2019/2021/2023/2024/2025 WorldPop Global2 R2024B UC 1km",
+  "original_ALAN_island_photo_sites": 77647,
+  "ALAN_original_years": [
+    2019,
+    2021,
+    2023,
+    2024,
+    2025
+  ],
+  "matched_usable_site_years": 23018,
+  "matched_distinct_islands": 463,
+  "source_years": [
+    {
+      "year": 2019,
+      "original_ALAN_site_years": 8257,
+      "same_005_degree_MOIS_photo_bin": 2694,
+      "same_original_WorldPop_1km_pixel": 2285,
+      "valid_sameyear_R2024B_UC_population": 2259,
+      "valid_fraction": 0.273586,
+      "unique_MOIS_photo_source_target_bins": 26995
+    },
+    {
+      "year": 2021,
+      "original_ALAN_site_years": 12542,
+      "same_005_degree_MOIS_photo_bin": 3935,
+      "same_original_WorldPop_1km_pixel": 3346,
+      "valid_sameyear_R2024B_UC_population": 3314,
+      "valid_fraction": 0.264232,
+      "unique_MOIS_photo_source_target_bins": 45921
+    },
+    {
+      "year": 2023,
+      "original_ALAN_site_years": 17025,
+      "same_005_degree_MOIS_photo_bin": 6108,
+      "same_original_WorldPop_1km_pixel": 5119,
+      "valid_sameyear_R2024B_UC_population": 5066,
+      "valid_fraction": 0.297562,
+      "unique_MOIS_photo_source_target_bins": 59803
+    },
+    {
+      "year": 2024,
+      "original_ALAN_site_years": 18890,
+      "same_005_degree_MOIS_photo_bin": 6962,
+      "same_original_WorldPop_1km_pixel": 5864,
+      "valid_sameyear_R2024B_UC_population": 5779,
+      "valid_fraction": 0.305929,
+      "unique_MOIS_photo_source_target_bins": 66378
+    },
+    {
+      "year": 2025,
+      "original_ALAN_site_years": 20933,
+      "same_005_degree_MOIS_photo_bin": 7894,
+      "same_original_WorldPop_1km_pixel": 6696,
+      "valid_sameyear_R2024B_UC_population": 6600,
+      "valid_fraction": 0.315292,
+      "unique_MOIS_photo_source_target_bins": 73378
+    }
+  ],
+  "unmatched_source_site_years": 54629,
+  "source_zero_population_site_years": 504,
+  "original_population_no_imputed_zero": true,
+  "same_year_required": true,
+  "same_worldpop_pixel_required": true,
+  "bin_only_nonpixel_matching_rejected": true,
+  "no_ALAN_light_response_or_pop_control_fitted": true,
+  "no_source_species_or_sensitive_coordinates_exported": true,
+  "matched_population_quantiles": {
+    "0.0": 0,
+    "0.25": 0.9177765672185,
+    "0.5": 18.160755694059525,
+    "0.75": 235.0155856305,
+    "1.0": 40609.8051992
+  }
+}
