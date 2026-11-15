@@ -44,12 +44,16 @@ jobs:
           stage=b['published_stage_log_light_over_dark_FROM_ROUNDED_ABSTRACT_ONLY']
           assert math.isclose(stage['nocturnal_lepidoptera_visitation'],math.log(.509))
           assert math.isclose(stage['nocturnal_conspecific_stigma_pollen'],math.log(.462))
-          assert math.isclose(stage['seed_set_Pedicularis'],math.log(.44))
+          assert math.isclose(stage['seed_set_NIGHT_ONLY_Pedicularis'],math.log(.44))
           bound=z['Lu_2026_conditional_night_only_seed_loss_bound']
-          assert math.isclose(bound['maximum_possible_decline_if_only_dark_night_contribution_removed'],.3571)
-          assert math.isclose(bound['excess_total_loss_beyond_night_only_upper_bound'],.2029)
-          assert bound['conditional_night_only_null_incompatible_if_common_reference'] is True
-          assert bound['same_reference_verified_by_abstract'] is False
+          assert bound['status']=='INCOMPARABLE_ACCESS_TREATMENTS_NO_EMPIRICAL_BOUND'
+          assert math.isclose(bound['published_night_access_share_of_total_seed_set'],.3571)
+          assert math.isclose(bound['published_ALAN_seed_decline_under_night_only_access'],.56)
+          assert bound['published_ALAN_seed_decline_under_open_access'] is None
+          assert bound['empirical_excess_total_loss_beyond_night_only'] is None
+          assert bound['fraction_of_seed_loss_due_to_daytime_or_predator'] is None
+          assert bound['original_56_percent_is_night_only_not_open'] is True
+          assert bound['conditional_night_only_null_empirically_rejected'] is False
           assert bound['does_not_prove_daytime_disruption_or_predator_mediation'] is True
           assert z['published_primary_light_x_diel_interaction_tests_identified']==1
           paper=next(x for x in z['sources'] if x['id']=='mac_original_openaccess_pdf')
