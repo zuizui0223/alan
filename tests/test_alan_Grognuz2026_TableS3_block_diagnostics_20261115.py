@@ -32,6 +32,14 @@ class TestTableS3Derived(unittest.TestCase):
     def test_boot_resample_deterministic(self):
         group=m.load_source()["Centaurea"]
         self.assertEqual(m.block_boot(group,42,90),m.block_boot(group,42,90))
+    def test_missingness_tipping_from_exact_pot_totals(self):
+        groups=m.load_source()
+        t=m.one_species("Trifolium",groups["Trifolium"],100)
+        c=m.one_species("Centaurea",groups["Centaurea"],100)
+        self.assertAlmostEqual(t["tipping_impute_missing_lit_pots_seeds_each_if_dark_missing_assumed_zero"],243/7,places=5)
+        self.assertAlmostEqual(c["tipping_impute_missing_lit_pots_seeds_each_if_dark_missing_assumed_zero"],4.0,places=5)
+        self.assertEqual(sum(t["missing_seeds_by_cell"].values()),9)
+        self.assertEqual(sum(c["missing_seeds_by_cell"].values()),14)
     def test_exploratory_only_cluster_limits(self):
         groups=m.load_source()
         for name,g in groups.items():
