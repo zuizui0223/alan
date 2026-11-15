@@ -8,6 +8,7 @@ on:
       - scripts/analysis/alan_A_title_triage_20261115.py
       - scripts/analysis/alan_A_effect_type_gate_20261115.py
       - tests/test_alan_A_effect_type_gate_20261115.py
+      - tests/test_alan_A_wilson_direct_light_grain_20261115.py
       - config/alan_A_reproductive_screen_20261115.json
       - .github/workflows/alan-A-openalex-reproduction-discovery-20261115.yml
   workflow_dispatch:
@@ -26,6 +27,8 @@ jobs:
         run: |
           python -m unittest discover -s tests -p 'test_alan_A_effect_type_gate_20261115.py' -v
           python scripts/analysis/alan_A_effect_type_gate_20261115.py
+      - name: Validate published randomized yucca experimental units
+        run: python -m unittest discover -s tests -p 'test_alan_A_wilson_direct_light_grain_20261115.py' -v
       - name: Query OpenAlex with audited pagination
         run: python scripts/analysis/alan_A_openalex_discovery_20261115.py --output openalex_a_discovery
       - name: Retain all titles and triage without auto-exclusion
