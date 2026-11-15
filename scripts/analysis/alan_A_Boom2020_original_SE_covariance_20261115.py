@@ -55,8 +55,16 @@ def covariance_bounds(mean_dark,se_dark,mean_treat,se_treat):
     """
     if se_dark<0 or se_treat<0 or mean_dark<=0 or mean_treat<=0:
         raise ValueError("Source mean/SE invalid")
+    delta=mean_treat-mean_dark
+    min_se=abs(se_dark-se_treat)
+    hypothetical_max_abs_t_4site=(abs(delta)/min_se if min_se>0 else None)
     return {
         "reported_mean_treatment_minus_dark":mean_treat-mean_dark,
+        "hypothetical_best_case_abs_t_if_four_independent_matched_sites":hypothetical_max_abs_t_4site,
+        "hypothetical_4site_df3_critical_t_95_two_sided":3.182446,
+        "hypothetical_best_case_t_exceeds_df3_threshold":
+             hypothetical_max_abs_t_4site>3.182446 if hypothetical_max_abs_t_4site is not None else None,
+        "site_t_computation_is_not_original_paper_test":True,
         "reported_mean_treatment_to_dark":mean_treat/mean_dark,
         "possible_pair_difference_SE_min_if_rho_plus1":abs(se_dark-se_treat),
         "possible_pair_difference_SE_max_if_rho_minus1":se_dark+se_treat,
