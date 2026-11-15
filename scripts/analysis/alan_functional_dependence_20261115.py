@@ -79,9 +79,9 @@ def cluster_summary(df:pd.DataFrame,iterations:int=4000,seed:int=15, value:str='
     draws=rng.choice(v,(iterations,len(v)),replace=True)
     return {'panels':int(df[value].notna().sum()),'studies':int(len(v)),
             'median_study_median':float(np.median(v)),
-            'bootstrap95_median':np.quantile(np.median(draws,axis=1),[.025,.975]).tolist(),
+            'bootstrap95_median':np.quantile(np.median(draws,axis=1),[.025,.975]).tolist() if len(v)>1 else None,
             'mean_study_median':float(np.mean(v)),
-            'bootstrap95_mean':np.quantile(np.mean(draws,axis=1),[.025,.975]).tolist(),
+            'bootstrap95_mean':np.quantile(np.mean(draws,axis=1),[.025,.975]).tolist() if len(v)>1 else None,
             'method':'publication-equal, median within each paper; percentile paper bootstrap',
             'not_inverse_variance_meta_or_measurement_error_CI':True}
 
