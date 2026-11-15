@@ -1,0 +1,48 @@
+name: ALAN original public floral timing version one
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths: [.github/workflows/alan-phenology-v1-source-20261115.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-public-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify public dataset version license and actual file hashes
+        run: |
+          python - <<'PY'
+          import urllib.request, json, hashlib
+          from pathlib import Path
+          out=Path('timing_v1');out.mkdir()
+          def get(url,limit=60000000):
+              req=urllib.request.Request(url,headers={'User-Agent':'ALAN-floral-source-reanalysis/1.0'})
+              with urllib.request.urlopen(req,timeout=90) as r: b=r.read(limit+1)
+              if len(b)>limit: raise ValueError('source-size-bound')
+              return b
+          m=json.loads(get('https://data.mendeley.com/public-api/datasets/xjmn5jhxyn'))
+          assert m['version']==1 and m['available'] is True and m['data_licence']['short_name']=='CC BY 4.0'
+          expected={'23-02_OUTPUTPHENOLOGY.xlsx':'eee83024e8511c74e4981ed865a9a812c34cff7520d6751d2ac6ef420403ffea','231102_CircadianCycle_DATA.csv':'bdf1f8a47f6176a1723dd8325ce4cc926ea756207e52f2b720e1fd4b7b4eac1b','240820_CICY_RESULTS.csv':'887d6f4b2a22216a9f08988c0eb30f03ed6a3d3476c1e5f6e7192a06579505a0','BLOOMING.TABLE.22.241202.csv':'30b857acb6538a08298c039118cd54fd65e669af41a2c5bfcf4de75547c29f15'}
+          receipt={'doi':'10.17632/xjmn5jhxyn.1','version':1,'article_doi':'10.1016/j.biocon.2025.111650','article_reserved_version_2_not_publicly_obtained':True,'attribution':'Vincent Grognuz; Mendeley Data, version 1, published 29 May 2025; CC BY 4.0','files':[],'original_final_paper_model_reproduced':False}
+          for f in m['files']:
+              name=f['filename'];info=f['content_details']
+              assert name in expected
+              raw=get(info['download_url']);h=hashlib.sha256(raw).hexdigest()
+              assert h==expected[name]==info['sha256_hash'],(name,h)
+              assert len(raw)==info['size']
+              out.joinpath(name).write_bytes(raw)
+              receipt['files'].append({'name':name,'sha256':h,'bytes':len(raw),'source_url':info['download_url']})
+          assert len(receipt['files'])==4
+          out.joinpath('source_receipt.json').write_text(json.dumps(receipt,indent=2))
+          print('AUTHENTIC_PUBLIC_V1_TIMING_DATA_ACQUIRED',json.dumps(receipt))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-original-floral-timing-v1-20261115
+          path: timing_v1/
+          retention-days: 90
+          if-no-files-found: error
