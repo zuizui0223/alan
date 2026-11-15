@@ -3,14 +3,12 @@ on:
   push:
     branches:
       - analysis/alan-floral-timing-dependence-20261115
+    # Full OpenAlex retrieval is a source-discovery workload. Never re-run
+    # expensive API searches for ordinary evidence-ledger or unit-test edits.
+    # A 2026-11-15 workflow ran into HTTP 429 after repeated registry updates.
     paths:
       - scripts/analysis/alan_A_openalex_discovery_20261115.py
       - scripts/analysis/alan_A_title_triage_20261115.py
-      - scripts/analysis/alan_A_effect_type_gate_20261115.py
-      - tests/test_alan_A_effect_type_gate_20261115.py
-      - tests/test_alan_A_wilson_direct_light_grain_20261115.py
-      - config/alan_A_reproductive_screen_20261115.json
-      - .github/workflows/alan-A-openalex-reproduction-discovery-20261115.yml
   workflow_dispatch:
 permissions:
   contents: read
