@@ -1,0 +1,98 @@
+name: ALAN Grognuz 2026 real site-level diel and seasonal phenology
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - scripts/analysis/alan_Grognuz2026_original_site_diel_seasonal_20261115.py
+      - tests/test_alan_Grognuz2026_original_site_diel_seasonal_20261115.py
+      - docs/ALAN_GROGNUZ2026_REAL_SITE_DIURNAL_SEASONAL_20261115.md
+      - .github/workflows/alan-Grognuz2026-original-site-diel-seasonal-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-original-12site-and-16site-phenology:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned numeric dependencies and test site-level inference guards
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3
+          python -m py_compile scripts/analysis/alan_Grognuz2026_original_site_diel_seasonal_20261115.py
+          python -m unittest discover -s tests -p test_alan_Grognuz2026_original_site_diel_seasonal_20261115.py -v
+      - name: Retrieve and SHA-verify original Mendeley v1 circadian and 55MB seasonal records
+        timeout-minutes: 9
+        run: |
+          set -euo pipefail
+          mkdir -p original_phenology
+          python - <<'PY'
+          import hashlib,urllib.request
+          from pathlib import Path
+          urls={
+             "240820_CICY_RESULTS.csv":("1a9786c3-4471-4cad-87d9-dba823747cbe",
+                "887d6f4b2a22216a9f08988c0eb30f03ed6a3d3476c1e5f6e7192a06579505a0",54773),
+             "BLOOMING.TABLE.22.241202.csv":("3a960f17-e55e-4cfb-a463-fafee3083e74",
+                "30b857acb6538a08298c039118cd54fd65e669af41a2c5bfcf4de75547c29f15",55181665)
+          }
+          for filename,(id,sha,expected_bytes) in urls.items():
+              url="https://data.mendeley.com/public-files/datasets/xjmn5jhxyn/files/"+id+"/file_downloaded"
+              req=urllib.request.Request(url,headers={"User-Agent":"ALAN-true-original-phenology-site-study/1.0"})
+              with urllib.request.urlopen(req,timeout=90) as response:
+                  raw=response.read(expected_bytes+1)
+              assert len(raw)==expected_bytes,(filename,len(raw),"official source size drift")
+              assert hashlib.sha256(raw).hexdigest()==sha,(filename,"official source sha drift")
+              Path("original_phenology",filename).write_bytes(raw)
+              print("GROGNUZ2026_AUTHENTIC_AUTHOR_SOURCE",filename,sha,expected_bytes)
+          PY
+      - name: Recompute true site-equal diel and seasonal original data effects, with guards
+        timeout-minutes: 6
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_Grognuz2026_original_site_diel_seasonal_20261115 \
+            --diel original_phenology/240820_CICY_RESULTS.csv \
+            --seasonal original_phenology/BLOOMING.TABLE.22.241202.csv \
+            --iterations 10000 \
+            --out original_phenology/ALAN_Grognuz2026_original_site_level_clock_and_season_results.json
+          python - <<'PY'
+          import json,math
+          from pathlib import Path
+          z=json.loads(Path("original_phenology/ALAN_Grognuz2026_original_site_level_clock_and_season_results.json").read_text())
+          d=z["diel"];s=z["seasonal"]
+          assert d["n_true_light_assignment_sites"]==12
+          assert s["year_site_counts"]["2023_LIT"]==8
+          assert s["year_site_counts"]["2023_DARK"]==8
+          assert s["source_keep1_plot_species_cohorts"]==850
+          assert s["source_keep0_plot_species_cohorts"]==2066
+          assert s["positive_flower_count_row_n"]==4381
+          assert s["n_source_2023_site_species_positive"]==206
+          assert s["onset_positive_at_first_observed_n"]==22
+          assert s["site_support_threshold_sensitivities"]["4"]=={"species":12,"onset_earlier_n":7,"peak_earlier_n":10}
+          assert s["site_support_threshold_sensitivities"]["5"]=={"species":6,"onset_earlier_n":5,"peak_earlier_n":5}
+          results=d["event_specific_results"]
+          assert len(results)==4
+          assert (results[0]["event_records"],results[1]["event_records"])==(137,82)
+          assert math.isclose(results[0]["mean_of_site_medians_lit_minus_dark_minutes"],77.08333333333333)
+          assert math.isclose(results[1]["mean_of_site_medians_lit_minus_dark_minutes"],-24.5)
+          assert (results[0]["week_lit_later"],results[0]["week_lit_earlier"])==(7,0)
+          assert z["no_measured_pollinator_daily_or_seasonal_overlap_in_source"] is True
+          echium=next(x for x in s["species_site_effects"] if x["species"]=="Echium vulgare")
+          assert echium["n_lit_sites_flowering"]==4 and echium["n_dark_sites_flowering"]==5
+          assert math.isclose(echium["first_lit_minus_dark_days"],-35.85)
+          assert math.isclose(echium["peak_lit_minus_dark_days"],-32.2)
+          print("GROGNUZ2026_REAL_SOURCE_NOT_PSEUDOREPLICATED_SITE_EFFECTS_PASS")
+          PY
+          # Author raw photos, site identifiers and original per-plot records
+          # stay ephemeral, never redistributed as GitHub actions artifact.
+          rm original_phenology/240820_CICY_RESULTS.csv original_phenology/BLOOMING.TABLE.22.241202.csv
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-Grognuz2026-original-site-level-diel-season-20261115
+          path: original_phenology/*.json
+          retention-days: 90
+          if-no-files-found: warn
