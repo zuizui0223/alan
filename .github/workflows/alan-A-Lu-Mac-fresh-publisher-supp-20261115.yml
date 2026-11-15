@@ -1,0 +1,31 @@
+name: ALAN A alternate official Lu S4b and Mac Appendix source-access probe
+on:
+  push:
+    branches:
+      - analysis/alan-floral-timing-dependence-20261115
+    paths:
+      - scripts/analysis/alan_A_Lu_Mac_official_supp_probe_20261115.py
+      - tests/test_alan_A_Lu_Mac_official_supp_probe_20261115.py
+      - .github/workflows/alan-A-Lu-Mac-fresh-publisher-supp-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 11
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate source parser and no fabricated original model
+        run: python -m unittest discover -s tests -p 'test_alan_A_Lu_Mac_official_supp_probe_20261115.py' -v
+      - name: Fetch public publisher supplements and record document structure
+        run: python scripts/analysis/alan_A_Lu_Mac_official_supp_probe_20261115.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-A-Lu-Mac-public-supplement-availability-receipt
+          path: results/alan_A_Lu_Mac_fresh_official_supp_gate_20261115.json
+          retention-days: 30
