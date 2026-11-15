@@ -92,6 +92,16 @@ def compute(rows,species_table):
             and math.isclose(s["strict_no_assigned_lights_V"],.7236903716106219,abs_tol=1e-10)
             and s["n_studies_strict"]==4):
         raise AssertionError("Critical source correction not reproduced")
+    # Descriptive species-level OLS only; this is NOT a refit of the prior
+    # 78-region cluster-robust observational spatial model.
+    gaps={r["plant"]:float(r["gap"]) for r in species_table}
+    def descriptive_slope(field):
+        x=[r[field] for r in results]
+        y=[gaps[r["plant"]] for r in results]
+        mx=sum(x)/len(x); my=sum(y)/len(y)
+        return sum((a-mx)*(b-my) for a,b in zip(x,y))/sum((a-mx)**2 for a in x)
+    original_gap_slope=descriptive_slope("original_V_with_all_used_studies")
+    strict_gap_slope=descriptive_slope("strict_no_assigned_lights_V")
     return {
         "schema":"ALAN_B_Silene_latifolia_dark_only_gate_v1",
         "source":"results/night_exclusion/experiments.csv (42 rows); results/night_exclusion/species.csv",
@@ -109,6 +119,10 @@ def compute(rows,species_table):
         "external_species_mean_may_not_transport_to_other_regions":True,
         "new_reproductive_ALAN_effects":0,
         "global_beta_V":None,
+        "exploratory_12species_gap_OLS_per_10pp_V_before":original_gap_slope*0.1,
+        "exploratory_12species_gap_OLS_per_10pp_V_strict":strict_gap_slope*0.1,
+        "full_78region_model_refitted":False,
+        "exploratory_OLS_does_NOT_have_cluster_SE_or_p":True,
         "studies":details,
         "species":results
     }
@@ -122,7 +136,9 @@ def main():
     print(json.dumps({k:r[k] for k in
        ("species_n","s_lat_original_V","s_lat_strict_V",
         "s_lat_absolute_change","s_lat_individual_contrasts_without_mac_range",
-        "global_beta_V","original_species_geographical_model_not_refitted")},ensure_ascii=False))
+        "global_beta_V","original_species_geographical_model_not_refitted",
+        "exploratory_12species_gap_OLS_per_10pp_V_before",
+        "exploratory_12species_gap_OLS_per_10pp_V_strict")},ensure_ascii=False))
 
 if __name__=="__main__":
     main()
