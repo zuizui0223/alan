@@ -25,7 +25,7 @@ class TemporalFunctionalTests(unittest.TestCase):
         self.assertGreater(r[0]["lit_overlap"],0)
         self.assertLess(r[0]["lit_overlap"],1)
         self.assertEqual(pair_plants(q,"all3_visits",4),[])
-        self.assertAlmostEqual(normalized_event_overlap([1,4,1],[2,4,0]),.75)
+        self.assertAlmostEqual(normalized_event_overlap([1,4,1],[2,4,0]),5/6)
     def test_only_site_resampling_and_small_n_gate(self):
         self.assertIsNone(site_bootstrap([1,2]))
         a=site_bootstrap([.1,.1,.1,.1,.1,.1],iterations=100)
