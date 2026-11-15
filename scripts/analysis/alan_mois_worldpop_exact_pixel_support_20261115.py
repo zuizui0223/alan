@@ -90,7 +90,7 @@ def inputs(root,year):
     m["year"]=year
     return m[["year","lonbin","latbin","pop_col","pop_row","pop_status","pop_density","target_id"]]
 
-def join(sites,root):
+def join(sites,root,*,return_data=False):
     require(set(sites.year.unique())==set(YEARS),"Wrong source years")
     source=[]
     for y in YEARS:
@@ -158,7 +158,7 @@ def join(sites,root):
       "no_source_species_or_sensitive_coordinates_exported":True,
       "matched_population_quantiles":relevant.pop_density.dropna().quantile([0,.25,.5,.75,1]).to_dict(),
     }
-    return summ
+    return (summ,relevant) if return_data else summ
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
