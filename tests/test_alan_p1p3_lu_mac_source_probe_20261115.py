@@ -25,17 +25,21 @@ class PrimaryPublicationCausalGates(unittest.TestCase):
   # This does not imply 53.8% of seed loss was mediated by pollen.
   self.assertTrue(True)
 
- def test_night_only_loss_bound_is_conditional_not_mediation(self):
+ def test_original_night_only_seed_effect_cannot_be_compared_to_total_seed_share(self):
   b=strict_night_only_channel_loss_bound()
-  self.assertAlmostEqual(b["maximum_possible_decline_if_only_dark_night_contribution_removed"],.3571)
-  self.assertAlmostEqual(b["minimum_possible_lit_over_dark_seed_ratio_night_only"],.6429)
-  self.assertAlmostEqual(b["reported_lit_over_dark_seed_ratio_from_reduction"],.44)
-  self.assertAlmostEqual(b["excess_total_loss_beyond_night_only_upper_bound"],.2029)
-  self.assertAlmostEqual(b["fraction_observed_decline_not_coverable_by_night_only_maximum"],.2029/.56)
-  self.assertTrue(b["conditional_night_only_null_incompatible_if_common_reference"])
-  self.assertFalse(b["same_reference_verified_by_abstract"])
+  self.assertEqual(b["status"],"INCOMPARABLE_ACCESS_TREATMENTS_NO_EMPIRICAL_BOUND")
+  self.assertAlmostEqual(b["published_night_access_share_of_total_seed_set"],.3571)
+  self.assertAlmostEqual(b["published_ALAN_seed_decline_under_night_only_access"],.56)
+  self.assertAlmostEqual(b["reported_night_only_lit_over_dark_fraction_from_decline"],.44)
+  self.assertIsNone(b["published_ALAN_seed_decline_under_open_access"])
+  self.assertIsNone(b["empirical_excess_total_loss_beyond_night_only"])
+  self.assertIsNone(b["fraction_of_seed_loss_due_to_daytime_or_predator"])
+  self.assertFalse(b["same_dark_reference_AND_same_access_arm_verified"])
+  self.assertFalse(b["night_channel_upper_bound_applicable_to_reported_56_percent"])
+  self.assertFalse(b["conditional_night_only_null_empirically_rejected"])
+  self.assertTrue(b["original_56_percent_is_night_only_not_open"])
   self.assertTrue(b["does_not_prove_daytime_disruption_or_predator_mediation"])
-  self.assertFalse(strict_night_only_channel_loss_bound(.8,.56)["conditional_night_only_null_incompatible_if_common_reference"])
+  self.assertEqual(b["new_cross_access_effect_estimates"],0)
   with self.assertRaises(ValueError):
    strict_night_only_channel_loss_bound(1.1,.2)
 
