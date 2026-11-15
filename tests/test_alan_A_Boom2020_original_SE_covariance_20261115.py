@@ -10,6 +10,8 @@ class TestBoomCovariance(unittest.TestCase):
         self.assertEqual(x["reported_mean_treatment_minus_dark"],-56)
         self.assertEqual(x["possible_pair_difference_SE_min_if_rho_plus1"],20)
         self.assertEqual(x["possible_pair_difference_SE_max_if_rho_minus1"],60)
+        self.assertAlmostEqual(x["hypothetical_best_case_abs_t_if_four_independent_matched_sites"],2.8)
+        self.assertFalse(x["hypothetical_best_case_t_exceeds_df3_threshold"])
         self.assertAlmostEqual(x["illustrative_independent_arm_SE_if_rho_zero"],(40**2+20**2)**.5)
     def test_unknown_covariance_not_meta(self):
         x=m.covariance_bounds(117,40,86,28)
