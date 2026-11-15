@@ -1,0 +1,66 @@
+name: ALAN original Li 2026 three-field true seed hurdle vs fruit stages
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - scripts/analysis/alan_Li2026_real_two_stage_seed_fruit_20261115.py
+      - tests/test_alan_Li2026_real_two_stage_seed_fruit_20261115.py
+      - docs/ALAN_LI2026_REPRODUCTIVE_TWO_STAGE_HURDLE_20261115.md
+      - .github/workflows/alan-Li2026-source-reproductive-stage-hurdle-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  actual-79-source-plant-rows-three-field:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify no pseudoreplication / conditional effect and known source rows
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/analysis/alan_Li2026_real_two_stage_seed_fruit_20261115.py
+          python -m unittest discover -s tests -p test_alan_Li2026_real_two_stage_seed_fruit_20261115.py -v
+      - name: Re-download real author 79 plant seeds and fruit counts, verify Git blob and independent field stages
+        run: |
+          set -euo pipefail
+          mkdir -p original_Li_repro
+          python -m scripts.analysis.alan_Li2026_real_two_stage_seed_fruit_20261115 \
+            --out original_Li_repro/ALAN_Li2026_original_79plants_seed_fruit_stage_hurdle.json
+          python - <<'PY'
+          import json,math
+          from pathlib import Path
+          z=json.loads(Path('original_Li_repro/ALAN_Li2026_original_79plants_seed_fruit_stage_hurdle.json').read_text())
+          assert z["original_author_data_git_blob_SHA1"]=="b616aca5beeba1457549841477d61ca4f796a147"
+          assert z["original_experiment"]["independent_hayfields"]==3
+          assert z["original_experiment"]["actual_source_plant_rows"]==79
+          assert z["original_experiment"]["observed_outcome_plants"]==78
+          t=z["author_source_arm_reproductive_stages"]
+          assert (t["C"]["total_seeds_in_known_plants"],t["P"]["total_seeds_in_known_plants"],t["L"]["total_seeds_in_known_plants"])==(672,967,3729)
+          assert (t["C"]["total_fruits_in_known_plants"],t["P"]["total_fruits_in_known_plants"],t["L"]["total_fruits_in_known_plants"])==(32,33,149)
+          assert math.isclose(t["L"]["mean_seeds_conditional_on_any_seeds"],186.45)
+          assert math.isclose(t["C"]["mean_seeds_conditional_on_any_seeds"],84.)
+          x=z["linear_vs_dark_observed_composite"]
+          assert math.isclose(x["seed_positive_probability_ratio"],(20/27)/(8/26))
+          assert math.isclose(x["conditional_seeds_given_positive_ratio"],186.45/84)
+          assert math.isclose(x["observed_seeds_per_known_plant_ratio"],(3729/27)/(672/26))
+          assert math.isclose(x["observed_seeds_per_initial_bud_ratio"],(3729/483)/(672/369))
+          assert math.isclose(x["observed_fruits_per_initial_bud_ratio"],(149/483)/(32/369))
+          assert math.isclose(x["observed_seeds_per_fruit_ratio"],(3729/149)/(672/32))
+          assert len(z["three_true_hayfield_reproductive_stages"])==3
+          assert all(v["linear_vs_dark_reproductive_stage"]["observed_seeds_per_initial_bud_ratio"]>1 for v in z["three_true_hayfield_reproductive_stages"].values())
+          assert all(v["linear_vs_dark_reproductive_stage"]["observed_fruits_per_initial_bud_ratio"]>1 for v in z["three_true_hayfield_reproductive_stages"].values())
+          assert z["largest_original_plant_and_leave_one_field_out_sensitivity"]["drop_largest_linear_plant_seed_bud_ratio_to_unlit"]>3
+          assert not z["strict_biology_boundaries"]["original_nocturnal_visitors_or_pollen_transfer_measured"]
+          print("REAL_LI2026_3HAYFIELDS_FRUIT_SEEDS_STAGE_POLLEN_UNKNOWN_QA_PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-Li2026-3field-fruit-seeds-hurdle-no-inferred-pollen
+          path: original_Li_repro/*.json
+          retention-days: 90
+          if-no-files-found: warn
