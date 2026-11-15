@@ -1,0 +1,106 @@
+name: ALAN marginal night dependence from genuine source
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - scripts/analysis/alan_functional_dependence_20261115.py
+      - tests/test_alan_functional_dependence*20261115.py
+      - .github/workflows/alan-functional-dependence-20261115.yml
+      - docs/ALAN_MARGINAL_NIGHT_DEPENDENCE_20261115.md
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-and-functional-comparison:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Test exact matching and uncertainty safeguards
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.3.5 pandas==2.2.3
+          mkdir -p functional_results source
+          python -m unittest discover -s tests -p 'test_alan_functional_dependence*20261115.py' -v 2>&1 | tee functional_results/tests.txt
+      - name: Download immutable published diel exclusion source and traits
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json, urllib.request
+          from pathlib import Path
+          base='https://raw.githubusercontent.com/liamkendall/bumble-bat/1945b7c114ad87000608ce6018d0280001c04ef1/data/'
+          pairs=[('DvN_LiteratureDataClean_2024-09-13.csv','diel.csv','1d9c4c778206584130308b99ba21d902b0ccf1047118dfcf52abaec9d652e2aa'),('SppTraitData_clean.csv','traits.csv','9c4a00d74c954eb448330066071ee0c584a9df66d96911c011cef5cd1afc7173')]
+          receipt=[]
+          for remote,name,expected in pairs:
+              request=urllib.request.Request(base+remote,headers={'User-Agent':'ALAN-source-matched-functional-dependence/1.0'})
+              with urllib.request.urlopen(request,timeout=45) as response: raw=response.read(3000001)
+              assert len(raw)<=3000000
+              actual=hashlib.sha256(raw).hexdigest()
+              assert actual==expected,(name,actual)
+              Path('source',name).write_bytes(raw)
+              receipt.append({'url':base+remote,'file':name,'bytes':len(raw),'sha256':actual})
+          Path('functional_results/source_receipt.json').write_text(json.dumps(receipt,indent=2))
+          PY
+      - name: Fit descriptive dependence summaries without ALAN inference
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_functional_dependence_20261115 --source source/diel.csv --traits source/traits.csv --out functional_results > functional_results/calculation_log.json
+      - name: Independently verify counts, paper medians and conditional comparisons
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv,json,math,statistics
+          from pathlib import Path
+          from collections import defaultdict
+          keys=['study_ID','plant_species','plant_cultivar','country','locality','Site_period','coordinates_lat','coordinates_lon','year_start','year_end','month_start','month_end','additional_treatment','treatment_effectiveness_metric','effectiveness_units','treatmenteffectiveness_metric_comments']
+          rows=list(csv.DictReader(Path('source/diel.csv').open()))
+          groups=defaultdict(list)
+          for r in rows:
+              if r['exclude']=='n' and r['treatment_condition'] in ['day pollination','night pollination','open pollination','complete exclusion']:
+                  groups[tuple(r[k].strip() for k in keys)].append(r)
+          comparisons=[]
+          for key,rr in groups.items():
+              arms=[r['treatment_condition'] for r in rr]
+              if len(arms)!=len(set(arms)): continue
+              values={}
+              for r in rr:
+                  try:values[r['treatment_condition']]=float(r['effectiveness_value'])
+                  except ValueError: pass
+              if not {'day pollination','open pollination'}<=values.keys():continue
+              D,O=values['day pollination'],values['open pollination'];N=values.get('night pollination',math.nan)
+              if not (math.isfinite(D) and math.isfinite(O) and D>=0 and O>0):continue
+              comparisons.append({'paper':key[0],'metric':key[13],'D':D,'N':N,'O':O,'loss':1-D/O})
+          z=json.loads(Path('functional_results/functional_dependence_summary.json').read_text())
+          assert len(comparisons)==z['primary_panels_all_endpoints']==369
+          assert z['three_arm_panels']==368
+          assert z['reproductive_coverage']=={'panels':340,'papers':113,'species':113}
+          checks={}
+          for metric,n,k,flag,total in [('fruit set',197,93,25,92),('seed set',143,70,8,50)]:
+              q=[r for r in comparisons if r['metric']==metric];by=defaultdict(list)
+              for r in q:by[r['paper']].append(r['loss'])
+              med=statistics.median([statistics.median(v) for v in by.values()])
+              expected=z['endpoint_results'][metric]
+              assert len(q)==n==expected['overall']['panels']
+              assert len(by)==k==expected['overall']['studies']
+              assert math.isclose(med,expected['overall']['median_study_median'],abs_tol=1e-12)
+              day=[r for r in q if math.isfinite(r['N']) and r['D']+r['N']>0 and r['D']>=r['N']]
+              positives=sum(r['loss']>.2 for r in day)
+              assert (positives,len(day))==(flag,total)
+              checks[metric]={'panels':n,'papers':k,'median_study_median':med,'day_ge_night_with_loss_gt20pct':flag,'day_ge_night_total':total}
+          for subtype,n,k in [('fruit_proportion',79,37),('seed_per_fruit',105,44)]:
+              q=z['denominator_specific_results'][subtype]['summary']
+              assert (q['panels'],q['studies'])==(n,k)
+          assert z['denominator_specific_results']['seed_formation_probability']['summary']['bootstrap95_median'] is None
+          Path('functional_results/independent_verification.json').write_text(json.dumps(checks,indent=2))
+          print('GENUINE_DIEL_FUNCTIONAL_DEPENDENCE_CHECKED',json.dumps(checks))
+          print('NO_ALAN_TREATMENT_EFFECT_OR_GLOBAL_RANDOM_SAMPLE_CLAIM')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-marginal-night-dependence-20261115
+          path: functional_results/
+          retention-days: 90
+          if-no-files-found: error
