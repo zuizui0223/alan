@@ -42,11 +42,29 @@ QUERIES = (
     "\"artificial night lighting\" plant reproductive",
     "\"light pollution\" nocturnal pollination",
 )
-FIELDS = ("openalex_id", "doi", "title", "year", "publication_date", "query_count", "query_ids")
+FIELDS = ("openalex_id", "doi", "title", "year", "publication_date", "query_count", "query_ids", "abstract_lexical_gate", "abstract_indexed")
 
 
 def normalize_doi(s: str | None) -> str:
     return str(s or "").strip().lower().replace("https://doi.org/", "").replace("http://dx.doi.org/", "").removeprefix("doi:")
+
+
+def abstract_lexical_gate(work: dict) -> tuple[str, bool]:
+    """Abstract-keyword queue only: NOT study eligibility. Never reproduce abstracts."""
+    inv = work.get("abstract_inverted_index")
+    if not isinstance(inv, dict) or not inv:
+        return "NO_INDEXED_ABSTRACT", False
+    words = " ".join(inv.keys()).lower()
+    plant = any(t in words for t in ("plant", "flower", "floral", "pollinat", "pollen", "seed", "fruit", "vegetation", "reproduct"))
+    reproduction = any(t in words for t in ("seed", "fruit", "fecund", "reproduct", "pollinat", "fertiliz", "capsule", "ovule"))
+    manipulation = any(t in words for t in ("experiment", "manipulat", "treatment", "illumina", "control", "lit", "light"))
+    if plant and reproduction and manipulation:
+        return "ABSTRACT_POSSIBLE_PLANT_REPRO_EXPERIMENT", True
+    if plant and reproduction:
+        return "ABSTRACT_POSSIBLE_PLANT_REPRO_UNKNOWN_DESIGN", True
+    if plant:
+        return "ABSTRACT_PLANT_OR_POLLINATOR_OTHER", True
+    return "ABSTRACT_OTHER_OR_UNCLEAR", True
 
 
 def normalize_record(work: dict, query_num: int) -> dict | None:
@@ -59,7 +77,9 @@ def normalize_record(work: dict, query_num: int) -> dict | None:
     work_id = str(work.get("id") or "")
     if not doi and not work_id:
         return None
+    abstract_gate, indexed = abstract_lexical_gate(work)
     return {
+        "abstract_lexical_gate": abstract_gate, "abstract_indexed": int(indexed),
         "openalex_id": work_id,
         "doi": doi,
         "title": str(work.get("title") or work.get("display_name") or ""),
@@ -160,6 +180,8 @@ def discover(out_dir: pathlib.Path) -> dict:
         "query_details": per_query,
         "errors": errors,
         "records_unique": len(rows),
+        "records_with_indexed_abstract": sum(int(x["abstract_indexed"]) for x in rows),
+        "abstract_keyword_priority_count": sum(x["abstract_lexical_gate"] == "ABSTRACT_POSSIBLE_PLANT_REPRO_EXPERIMENT" for x in rows),
         "raw_search_hits_across_queries": sum(len(p["results"]) for _, p in payloads),
         "truncated_any": any(x["truncated_after_page_bound"] for x in per_query),
         "known_registry_doi_matches": matched,
