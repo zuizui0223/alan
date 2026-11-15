@@ -220,7 +220,7 @@ def block_bootstrap(fits,universe,nrep=N_BOOT):
     # within-photo-stratum WLS, with exact same per-island equal weighting.
     aa=mats.sum(axis=1)
     bb=vecs.sum(axis=1)
-    recovered=np.linalg.solve(aa,bb)
+    recovered=np.linalg.solve(aa,bb[...,None])[...,0]
     target=np.array([t["fit"]["beta_L_conditional_population_pp"] for t in eligible])
     require(np.max(abs(100*recovered[:,0]-target))<1e-7,
             "Island block sufficient stats do not reconstruct source fit")
@@ -231,7 +231,7 @@ def block_bootstrap(fits,universe,nrep=N_BOOT):
         aa=np.einsum("g,ngjk->njk",mult,mats,optimize=True)
         bb=np.einsum("g,ngj->nj",mult,vecs,optimize=True)
         try:
-            beta=np.linalg.solve(aa,bb)
+            beta=np.linalg.solve(aa,bb[...,None])[...,0]
         except np.linalg.LinAlgError:
             continue
         beta=beta*100
