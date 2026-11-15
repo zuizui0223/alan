@@ -53,11 +53,13 @@ jobs:
           p=Path('original_p1/ALAN_P1_island_mainland_aggregate.json')
           z=json.loads(p.read_text())
           assert (z['source_rows'],z['source_reproductive_panels'],z['source_studies'])==(1652,340,113)
-          assert z['small_sea_island_n_studies']==10
-          assert z['small_sea_island_n_panels']==20
+          assert z['small_sea_island_n_studies']==12
+          assert z['small_sea_island_n_panels']==23
           assert z['within_study_island_mainland_overlap']==0
           assert z['geographic_groups']['oceanic']['n_studies']==6
-          assert z['geographic_groups']['continent']['n_studies']==98
+          assert z['geographic_groups']['continent']['n_studies']==96
+          assert z['geographic_groups']['shelf_small']['n_studies']==4
+          assert len(z['same_species_cross_study_diagnostic'])==2
           f=z['oceanic_versus_continent']['fruit_proportion']
           s=z['oceanic_versus_continent']['seed_per_fruit']
           assert (f['island_studies'],f['mainland_studies'])==(2,33)
