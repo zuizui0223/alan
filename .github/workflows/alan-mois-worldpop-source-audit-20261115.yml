@@ -5,6 +5,7 @@ on:
     paths:
       - .github/workflows/alan-mois-worldpop-source-audit-20261115.yml
       - scripts/analysis/alan_mois_worldpop_exact_pixel_support_20261115.py
+      - scripts/analysis/alan_species_worldpop_conditional_20261115.py
   workflow_dispatch:
 permissions:
   contents: read
@@ -94,6 +95,68 @@ jobs:
           assert x['same_worldpop_pixel_required'] and x['same_year_required']
           assert x['bin_only_nonpixel_matching_rejected']
           print('ALAN_MOIS_WORLDPOP_PIXEL_AUDIT_PASS')
+          PY
+      - name: Restore authenticated original floral species groups and independent measured autonomy
+        run: |
+          set -euo pipefail
+          mkdir -p src/flora_batches src/flora_groups src/globi src/direct_traits
+          gh run download 42616279235 --repo zuizui0223/alan \
+            --pattern 'alan-93m-fullflora-moth-island-group-*' --dir src/flora_batches
+          test "$(find src/flora_batches -name 'allflora-island-group-??.sqlite' | wc -l)" -eq 16
+          test "$(find src/flora_batches -name 'allflora-island-group-??.json' | wc -l)" -eq 16
+          find src/flora_batches -name 'allflora-island-group-??.sqlite' -exec cp {} src/flora_groups/ \;
+          find src/flora_batches -name 'allflora-island-group-??.json' -exec cp {} src/flora_groups/ \;
+          gh run download 41976552977 --repo zuizui0223/mois \
+            --name mois-ALAN-GloBI-stage2-actual-records-2019-2024-supported-source --dir src/globi
+          echo 'a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994  src/globi/GloBI_stage2_signed_extension.csv.gz' | sha256sum -c -
+          gh run download 34191508045 --repo zuizui0223/island \
+            --name source-scale-batch-integration-34191508045 --dir src/direct_traits
+          echo '7e86170218814abe2845da9a0282aecfdc930819b9d0c439bae8df4a0679c577  src/direct_traits/direct_species_trait_ledger.csv.gz' | sha256sum -c -
+      - name: Method test of conditional original-site population and light slopes
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/analysis/alan_species_worldpop_conditional_20261115.py
+          python - <<'PY'
+          import numpy as np,pandas as pd
+          from scripts.analysis.alan_species_worldpop_conditional_20261115 import fit_species
+          rows=[]
+          for island in 'ABCDEF':
+            for year in (2019,2021):
+              for j in range(20):
+                rows.append({'sid':len(rows),'island':island,'year':year,
+                     'iy':str(island)+'-'+str(year),
+                     'loglight':0.04*j+0.08*np.sin(j),
+                     'effort':np.log1p(5+(j%4)),
+                     'logpop':0.06*j+0.8*np.cos(j)})
+          src=pd.DataFrame(rows)
+          positive=src.loc[src.loglight.ge(.39),'sid'].to_numpy()
+          ans,reason=fit_species(src,positive,src.iy.unique())
+          assert reason is None,reason
+          fit,*_=ans
+          assert fit['beta_L_conditional_population_pp']>0,fit
+          assert fit['n_islands']==6 and fit['n_strata']==12,fit
+          print('ALAN_POPULATION_CONDITIONAL_SYNTHETIC_PASS')
+          PY
+      - name: Original 703 species matched-population conditional slopes and whole-island contrasts
+        timeout-minutes: 55
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_species_worldpop_conditional_20261115 \
+            --sites src/alan/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --globi src/globi/GloBI_stage2_signed_extension.csv.gz \
+            --groups src/flora_groups \
+            --ledger src/direct_traits/direct_species_trait_ledger.csv.gz \
+            --pop_sources src \
+            --out verified/alan_703_species_worldpop_conditional_20261115.json
+          python - <<'PY'
+          import json
+          d=json.load(open('verified/alan_703_species_worldpop_conditional_20261115.json'))
+          assert d['sources']['fixed_original703_source_trait_taxa']==703
+          assert d['population_source_join']['matched_usable_site_years']==23018
+          assert d['population_source_join']['same_worldpop_pixel_required']
+          assert d['sources']['MoIS_annual_WorldPop_G2_sameyear_samepixel_R2024B_UC']
+          assert d['limitations']['MOIS_photo_cohort_selection_bias_unresolved']
+          print('ALAN_ORIGINAL_WORLDPOP_CONDITIONAL_REPRODUCTION_PASS')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
