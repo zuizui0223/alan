@@ -12,7 +12,7 @@ not results; preserve raw data only on ephemeral Actions runners. Files are
 never stored or copied into repository/artifacts. Public URLs only; no auth.
 """
 from __future__ import annotations
-import argparse,hashlib,io,json,re,time,urllib.error,urllib.request,zipfile
+import argparse,concurrent.futures,hashlib,io,json,re,time,urllib.error,urllib.request,urllib.parse,zipfile
 from pathlib import Path
 from html.parser import HTMLParser
 
@@ -53,8 +53,12 @@ def retrieve_api():
     output=[]
     files={}
     candidate_id_urls=[]
-    for k,url in ENDPOINTS.items():
-        blob,receipt=request(url,38_000_000 if "zip" in k.lower() else 5_000_000)
+    def fetch_one(item):
+        k,url=item
+        return k,url,*request(url,38_000_000 if "zip" in k.lower() else 5_000_000)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex:
+        items=list(ex.map(fetch_one,ENDPOINTS.items()))
+    for k,url,blob,receipt in items:
         meta={"source":k,"requested_public_url":url,**receipt}
         if blob:
             if zipfile.is_zipfile(io.BytesIO(blob)):
