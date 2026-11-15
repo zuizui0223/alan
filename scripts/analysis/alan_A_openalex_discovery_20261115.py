@@ -13,6 +13,7 @@ import csv
 import json
 import os
 import pathlib
+import re
 import time
 import urllib.error
 import urllib.parse
@@ -50,17 +51,35 @@ def normalize_doi(s: str | None) -> str:
 
 
 def abstract_lexical_gate(work: dict) -> tuple[str, bool]:
-    """Abstract-keyword queue only: NOT study eligibility. Never reproduce abstracts."""
+    """Conservative abstract priority, no eligibility or reprint of abstracts."""
     inv = work.get("abstract_inverted_index")
     if not isinstance(inv, dict) or not inv:
         return "NO_INDEXED_ABSTRACT", False
-    words = " ".join(inv.keys()).lower()
-    plant = any(t in words for t in ("plant", "flower", "floral", "pollinat", "pollen", "seed", "fruit", "vegetation", "reproduct"))
-    reproduction = any(t in words for t in ("seed", "fruit", "fecund", "reproduct", "pollinat", "fertiliz", "capsule", "ovule"))
-    manipulation = any(t in words for t in ("experiment", "manipulat", "treatment", "illumina", "control", "lit", "light"))
-    if plant and reproduction and manipulation:
+    positions = [i for v in inv.values() if isinstance(v, list) for i in v if isinstance(i, int) and i >= 0]
+    if not positions:
+        return "NO_INDEXED_ABSTRACT", False
+    ordered = [""] * (max(positions) + 1)
+    for word, places in inv.items():
+        if isinstance(places, list):
+            for i in places:
+                if isinstance(i, int) and 0 <= i < len(ordered):
+                    ordered[i] = str(word).lower()
+    abstract = " ".join(ordered)
+    plant = bool(re.search(r"\b(?:plant|flower|floral|pollinat|pollen|ovule|capsule|inflorescen)\w*", abstract))
+    concrete_fitness = bool(re.search(
+        r"\b(?:fruit|seed)[ -]+(?:set|production|number|count|yield|output|formation)\b|"
+        r"\b(?:fruit|seed)s?[ -]+per[ -]+(?:flower|plant|capsule|individual)\b|"
+        r"\b(?:plant|floral|flower)[ -]+(?:reproduction|reproductive|fitness)\b|"
+        r"\b(?:pollination|fertilization)[ -]+(?:success|rate)\b|"
+        r"\b(?:fertilized|fertilised)[ -]+(?:flower|ovule)s?\b|"
+        r"\bfruit(?:y|ing)?[ -]+inflorescen\w*|"
+        r"\breproductive[ -]+(?:success|output)[ -]+(?:of|in)[ -]+(?:the[ -]+)?plants?\b",
+        abstract
+    ))
+    manipulation = bool(re.search(r"\b(?:experiment|manipulat|treatment|illuminat|control[ -]+site|lit[ -]+plot)\w*", abstract))
+    if plant and concrete_fitness and manipulation:
         return "ABSTRACT_POSSIBLE_PLANT_REPRO_EXPERIMENT", True
-    if plant and reproduction:
+    if plant and concrete_fitness:
         return "ABSTRACT_POSSIBLE_PLANT_REPRO_UNKNOWN_DESIGN", True
     if plant:
         return "ABSTRACT_PLANT_OR_POLLINATOR_OTHER", True
