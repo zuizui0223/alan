@@ -111,8 +111,11 @@ def one_species(name,group,reps):
     point=effects(means)
     loo=[effects(extract([g for j,g in enumerate(group) if i!=j])[0])["delta_lit_minus_dark"] for i in range(len(group))]
     missing=[len(group)*4-x for x in nobs]
-    dark_total=sum(means[a]*nobs[a] for a in (0,1))
-    lit_total=sum(means[a]*nobs[a] for a in (2,3))
+    # Exact pot totals require multiplying each BLOCK cell mean by that
+    # cell's observed n first. Grand block-mean * grand n is WRONG when
+    # missingness causes heterogeneous n across blocks.
+    dark_total=sum(r["means"][a]*r["n"][a] for r in group for a in (0,1))
+    lit_total=sum(r["means"][a]*r["n"][a] for r in group for a in (2,3))
     n_dark_miss=sum(missing[a] for a in (0,1))
     n_lit_miss=sum(missing[a] for a in (2,3))
     # All missing dark seeds=0, missing lit seeds=x:
