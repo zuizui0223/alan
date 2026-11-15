@@ -17,7 +17,7 @@ SOURCE = "openalex_paged_metadata.csv"
 OUTPUT = "openalex_title_triage.csv"
 FIELDS = (
     "openalex_id", "doi", "year", "title", "query_ids",
-    "screen_queue", "document_type_hint", "registered_id",
+    "screen_queue", "document_type_hint", "abstract_lexical_gate", "abstract_indexed", "registered_id",
     "registered_design", "registered_A_stage", "source_work_url",
     "fulltext_reviewed", "effect_variance_verified",
     "independent_dependence_verified", "eligibility_confirmed",
@@ -74,10 +74,14 @@ def screen_rows(rows: list[dict], known: dict) -> list[dict]:
         doi = str(row["doi"]).lower()
         entry = known.get(doi)
         queue, kind = queue_for(row["title"], entry)
+        abstract_gate = row.get("abstract_lexical_gate", "NO_INDEXED_ABSTRACT")
+        if entry is None and queue not in ("SECONDARY_RECORD_CHECK_PARENT",) and abstract_gate == "ABSTRACT_POSSIBLE_PLANT_REPRO_EXPERIMENT":
+            queue = "ABSTRACT_POSSIBLE_REPRO_PRIORITY_NEW"
         out.append({
             "openalex_id": row["openalex_id"], "doi": doi, "year": row["year"],
             "title": row["title"], "query_ids": row["query_ids"],
             "screen_queue": queue, "document_type_hint": kind,
+            "abstract_lexical_gate": abstract_gate, "abstract_indexed": row.get("abstract_indexed", "0"),
             "registered_id": "" if entry is None else entry["id"],
             "registered_design": "" if entry is None else entry["light_design"],
             "registered_A_stage": "" if entry is None else entry["a_primary_stage"],
@@ -117,6 +121,10 @@ def triage(input_dir: pathlib.Path, registry_path: pathlib.Path) -> dict:
         ],
         "non_auto_exclusion": True,
         "fulltext_screened": 0,
+        "new_abstract_keyword_priority": [
+            {"doi": r["doi"], "title": r["title"], "source_work_url": r["source_work_url"]}
+            for r in rows if r["screen_queue"] == "ABSTRACT_POSSIBLE_REPRO_PRIORITY_NEW"
+        ],
         "effect_variance_extracted": 0,
         "meta_regression_beta_V": None,
         "caveat": "Queues use titles only, never establish experimental design or suitability. Every record remains available for full-text assessment."
