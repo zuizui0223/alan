@@ -1,0 +1,46 @@
+{
+  "provenance": {
+    "github_actions_run_url": "https://github.com/zuizui0223/alan/actions/runs/43723807336",
+    "artifact_id": 14165981549,
+    "artifact_zip_sha256": "sha256:9c0ad5671cf7de3bf9c06eefdd20a2e175c2a0b2db804723d9f1122c1be7332e",
+    "source_sha_verified": true,
+    "stage1_output_schema": "ALAN_genuine_island_species_LPM_firststage_effort_and_islandyear_v1",
+    "bootstrap_output_schema": "ALAN_autonomous_selfing_30island_original_species_slopes_island_bootstrap_v1",
+    "status": "AUTHENTIC_SOURCE_BOTH_STAGE1_AND_ISLAND_BOOTSTRAP_CI_SUCCESS",
+    "no_restricted_taxon_site_rows": true
+  },
+  "block_bootstrap": {
+    "n_species_in_fixed_30island_cohort": 224,
+    "n_islands_in_common_gradient_universe": 243,
+    "autonomous_species": 170,
+    "absent_species": 54,
+    "high_only_species": 199,
+    "original_ge30_island_autonomous_minus_absent_pp": -0.011341245170677916,
+    "fold0_same_species_cohort_diff_pp": 0.22396687958176265,
+    "fold1_same_species_cohort_diff_pp": -0.1632513961021934,
+    "bootstrap_unit": "entire genuine GSHHG island from the common 243-island source",
+    "bootstrap_method": "Refit both species-stage light and effort coefficients from weighted original island score blocks, then compare equal-species-mean slopes",
+    "n_draws_requested": 600,
+    "n_valid_draws": 600,
+    "bootstrap_diff_95percentile_ci_pp": [
+      -0.2848683634324107,
+      0.26798604549347704
+    ],
+    "bootstrap_diff_median_pp": -0.020363704028035057,
+    "bootstrap_draw_negative_fraction": 0.5566666666666666,
+    "high_quality_original_diff_pp": -0.05665170945213782,
+    "high_quality_bootstrap_n_valid": 600,
+    "high_quality_bootstrap_diff_95percentile_ci_pp": [
+      -0.3372199827506016,
+      0.23379724966902557
+    ],
+    "island_bootstrap_not_independent_geographic_region_or_climate_control": true
+  },
+  "limits": {
+    "nonrecord_not_absence": true,
+    "population_climate_not_adjusted": true,
+    "not_plant_reproduction": true,
+    "not_full_meta_causal": true,
+    "phylogeny_and_nearby_island_dependent": true
+  }
+}
