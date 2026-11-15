@@ -24,7 +24,7 @@ jobs:
       - name: Verify source matching and stage-comparison guards
         run: python -m unittest discover -s tests -p 'test_alan_B_P1_original_syndrome_functional_20261115.py' -v
       - name: Reanalyse author SHA-pinned 1652 treatment rows with source floral traits
-        run: python scripts/analysis/alan_B_P1_original_syndrome_functional_20261115.py
+        run: python -m scripts.analysis.alan_B_P1_original_syndrome_functional_20261115
       - uses: actions/upload-artifact@v4
         if: always()
         with:
