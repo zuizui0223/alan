@@ -19,6 +19,9 @@ class TestALANEffectTypeGate(unittest.TestCase):
         e=MODULE.publication_compatible_examples()["studies"][1]
         self.assertAlmostEqual(e["ln_ratio_of_author_percent"],math.log(.44))
         self.assertIsNone(e["ln_RR_SE"])
+        self.assertEqual(e["access_arm"],"night_only")
+        self.assertIsNone(e["lit_dark_open_seed_ratio"])
+        self.assertFalse(e["primary_initial_flower_endpoint"])
     def test_giavi_or_not_rr(self):
         e=MODULE.publication_compatible_examples()["studies"][2]
         self.assertAlmostEqual(e["derived_odds_ratio"],math.exp(-1.37))
