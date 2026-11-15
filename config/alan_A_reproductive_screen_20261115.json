@@ -253,13 +253,83 @@
       "short_title": "Grognuz Knop light slug factorial seed set",
       "light_design": "manipulated",
       "outcome": "seed_set_model",
-      "a_primary_stage": "exclude_A_endpoint_unverified",
-      "screening_reason": "2x2 nightlight x slug potted plant, reported seed beta -0.40; model link unknown",
+      "a_primary_stage": "manipulated_reproductive_seed_per_target_inflorescence_secondary_endpoint_not_initial_flower_fruit_rate",
+      "screening_reason": "Direct experimental 3-night light pre-exposure plus herbivory factorial; one daylight 90-min pollination observation per target inflorescence. Preprint Table S3 provides 448 pot target frames, 425 recorded seed counts and 28 choice blocks; derived block-balanced light/dark seed ratios ~0.714 in two species, but independent lamp treatment unit is not 28, plants reused, 23 missing seed outcomes, and nocturnal access dependence V unmeasured.",
       "external_night_dependence": "none_proven",
       "screen_status": "source_recovery",
-      "note": "New preprint; public raw Mendeley metadata but raw files inaccessible",
+      "note": "Original source author model beta -0.40 p=.014; new block-balanced mean ratios are descriptive not model reanalysis. This study isolates nighttime exposure carryover to daytime pollination. Cannot be used as nocturnal pollinator channel loss. Block-derived CSV not raw author data.",
       "verified_joint_effect_moderator_se": false,
-      "source_url": "https://doi.org/10.13140/RG.2.2.36822.10563"
+      "source_url": "https://doi.org/10.13140/RG.2.2.36822.10563",
+      "source_audit": {
+        "audit_date": "2026-11-15",
+        "original_published_full_preprint": "https://www.researchgate.net/publication/401424487_Artificial_light_at_night_restructures_daytime_plant-pollinator_interactions_through_direct_and_herbivore-mediated_pathways",
+        "study_doi": "10.13140/RG.2.2.36822.10563",
+        "original_author_data_doi": "10.17632/drhzznh4ps.1",
+        "source_stage": "Public author supplementary Table S3 visible as PDF-reproduced HTML. Derived 28x4 block-level mean and count data were manually transcribed from original Table S3, and reproduced source published treatment means. Original public author Mendeley raw files still inaccessible.",
+        "response": "seed count per standardized target flower/inflorescence after 90 min daytime visitation; target flowers bagged during preceding three illuminated nights",
+        "treatment": "2x2 ALAN / dark (3 nights) x slug / no slug; pots shuffled into 28 choice blocks each 16 pots (4 each treatment)",
+        "species_and_block_counts": {
+          "Trifolium pratense": 20,
+          "Centaurea jacea": 8
+        },
+        "total_target_pots": 448,
+        "original_seed_counts_available": 425,
+        "original_missing_seed_counts": 23,
+        "repeated_pot_exposures_in_original": {
+          "Trifolium pratense": "mean 1.52 uses",
+          "Centaurea jacea": "mean 1.22 uses"
+        },
+        "independent_lamp_assignment_units": "Not reconstructable from published block table; field lights shared across cages and repeated calendar weeks. Twenty-eight daytime choice blocks are not independent installations.",
+        "original_author_seed_model": {
+          "beta": -0.4,
+          "CI95": [
+            -0.73,
+            -0.08
+          ],
+          "p": 0.014,
+          "scale": "author link-scale model β; not pooled simple logRR"
+        },
+        "reanalyzed_block_balanced_source_values": {
+          "Trifolium pratense": {
+            "dark": 4.925,
+            "lit": 3.51875,
+            "ratio": 0.714467005076142
+          },
+          "Centaurea jacea": {
+            "dark": 1.4791666666666667,
+            "lit": 1.0572916666666667,
+            "ratio": 0.7147887364114263
+          }
+        },
+        "slug_separated_descriptive": {
+          "Trifolium pratense": {
+            "no_slug": 0.80517,
+            "slug": 0.63778
+          },
+          "Centaurea jacea": {
+            "no_slug": 0.27083,
+            "slug": 1.17143
+          }
+        },
+        "missing_by_light": {
+          "Trifolium": {
+            "dark": 2,
+            "lit": 7
+          },
+          "Centaurea": {
+            "dark": 6,
+            "lit": 8
+          }
+        },
+        "all_missing_dark_assumed_zero_tipping_missing_lit_pot_seeds_each": {
+          "Trifolium": 34.714285714285715,
+          "Centaurea": 4
+        },
+        "source_derived_block_csv": "results/alan_Grognuz2026_tableS3_block_derived_20261115.csv",
+        "source_model_not_reproduced": true,
+        "main_A_primary_result_qualified": false,
+        "interpretive_counterexample": "Observed ALAN-associated decline in reproduction after all night pollinators were excluded from target flowers during pre-exposure; subsequent pollination only daytime. Challenges 'only nighttime insect-dependent plants suffer ALAN' necessity statement, not evidence that species cannot use nocturnal pollination in nature."
+      }
     },
     {
       "id": "soteras2025",
