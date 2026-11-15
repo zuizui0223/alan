@@ -36,3 +36,17 @@ Audit outputs:
 Unchanged historical inputs: results/night_exclusion/experiments.csv; results/night_exclusion/species.csv.
 
 A genuinely independent local dark-only V (with source variance/covariance), an open-lit/open-dark seed/fruit rate and its true treatment installation cluster remain unavailable for meta-regression. Confirmatory beta_V and island×ALAN reproductive interaction remain **unestimated**.
+
+
+## 12-species observational light-gap sensitivity (post hoc diagnostic only)
+
+This pipeline additionally re-evaluates the **simple species-level ordinary least-squares descriptive slope** of the old 12 species' reported island-minus-mainland photographic night-light association gap (the old species.csv gap column) versus the source-derived nighttime dependence V. It is a **different dependent variable from plant reproduction** and is not an experimental ALAN response.
+
+| All 12 species, gap OLS coefficient per +10 percentage points in V | Estimated point slope |
+|---|---:|
+| Original V (including the mixed-light Macgregor source) | **+0.002326** |
+| Strict source-based V (remove Macgregor source from S. latifolia) | **+0.002230** |
+
+The point slope changes by roughly **−4.1%**, retaining a positive sign, rather than the proposed negative relationship. This is NOT a new source-backed robust significance verdict: the original 78-region clustered uncertainty, spatial sampling, species-composition changes and original photographic data were not refitted and the original reported p-value **may not be reused as a p-value for the corrected slope**. It is only a sensitivity of the 12-species coefficient conditional on the original frozen species gap values.
+
+Again: an observational species-composition photographic coefficient cannot be called an ALAN-caused change in seeds/fruit or an ALAN×nighttime dependence plant reproductive meta-effect.
