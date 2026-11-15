@@ -48,6 +48,16 @@ jobs:
           assert d['paired_survey_occasions']==37
           assert len(z['conditional_visit_share_exposure_adjustment'])==4
           assert z['no_seed_or_effective_conspecific_pollen_measured'] is True
+          pooled=z['visitation_rate_per_measured_flower_cover_pooled_diagnostic']
+          assert math.isclose(pooled['all_628_plant_opportunity_records_lit_over_dark'],1.0434262714683946,rel_tol=1e-10)
+          assert math.isclose(pooled['matched_193_plant_opportunities_lit_over_dark'],1.1513417408563147,rel_tol=1e-10)
+          assert pooled['pooled_matched_excess_lit_share_vs_6site_equal_excess_lit_share_sign_mismatch']
+          a=z['conditional_visit_share_exposure_adjustment']['all_three_documented_diurnal_orders']['1']
+          assert math.isclose(a['site_equal_mean_excess_lit_visitor_share_over_flower_cover'],-0.02372876607965707,abs_tol=1e-12)
+          assert a['sites_with_excess_lit_visits_positive']==4
+          assert a['leave_one_out_changes_mean_effect_sign'] is True
+          assert sum(v>0 for v in a['leave_one_true_site_out_site_equal_means'])==1
+          assert len(a['leave_one_true_site_out_site_equal_means'])==6
           for guild,entry in z['conditional_visit_share_exposure_adjustment'].items():
             for threshold,s in entry.items():
               assert s['sites']<=6
