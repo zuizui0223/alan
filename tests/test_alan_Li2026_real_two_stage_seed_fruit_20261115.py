@@ -29,6 +29,17 @@ class LiTrueReproductiveStageTests(unittest.TestCase):
         self.assertAlmostEqual(q["probability_and_conditional_seed_identity_error"],0.)
         self.assertAlmostEqual(q["fruit_and_seeds_per_fruit_identity_error"],0.)
         self.assertTrue(q["noncausal_arithmetic_not_statistical_mediation"])
+    def test_fruit_per_bud_gains_can_coexist_with_seeds_per_fruit_declines(self):
+        dark=records([sample(12,1,10)])
+        light=records([sample(16,4,10)])
+        c=two_stage(light,dark)
+        self.assertAlmostEqual(c["observed_fruits_per_initial_bud_ratio"],4.)
+        self.assertAlmostEqual(c["observed_seeds_per_fruit_ratio"],1/3)
+        self.assertAlmostEqual(c["observed_seeds_per_initial_bud_ratio"],4/3)
+        self.assertLess(c["observed_seeds_per_fruit_ratio"],1.)
+        self.assertGreater(c["observed_seeds_per_initial_bud_ratio"],1.)
+        self.assertTrue(c["noncausal_arithmetic_not_statistical_mediation"])
+
     def test_does_not_convert_unknown_seed_to_failure(self):
         q=[sample(1,1,1),{**sample(0,0,5),"pollinated":"NA","Seeds":"NA","Fruit":"NA"}]
         x=records(q)
