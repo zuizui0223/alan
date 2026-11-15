@@ -65,7 +65,7 @@ def analyze(data):
     assert set(data.Species)=={"Silene noctiflora","Malva moschata"}
     q=data[data.Exp_Night.between(1,3)].copy()
     assert q["Study.site"].nunique()==12
-    outs={};counts={}
+    outs={};outs_restricted={};counts={}
     for species,source_field,key in STAGES:
         t=q[q.Species.eq(species)].copy()
         offset=circadian_offset(minutes(t[source_field]),minutes(t["Time.of.sunrise"]))
@@ -79,6 +79,8 @@ def analyze(data):
            treatment:int((t.loc[t.LIGHT_TRMT.eq(treatment),key].abs()>360).sum())
            for treatment in ["LIGHT","DARK"]}}
         outs[key]=t.groupby(["Study.site","LIGHT_TRMT","Date"],as_index=False)[key].median()
+        outs_restricted[key]=(t[t[key].between(-360,360)]
+                              .groupby(["Study.site","LIGHT_TRMT","Date"],as_index=False)[key].median())
     key=["Study.site","LIGHT_TRMT","Date"]
     z=outs["silene_begin_close"]
     for stage in [x[2] for x in STAGES[1:]]:
@@ -93,8 +95,10 @@ def analyze(data):
                   for w in WINDOWS}
     # A gate for analytical selection: discarding flowers that start closing
     # >6h before sunrise preferentially excludes dark-site early closures.
-    filtered=z[z.silene_begin_close.between(-360,360)&
-               z.malva_begin_open.between(-360,360)]
+    # RESTRICT SOURCE EVENTS *BEFORE* site-date aggregation. Filtering
+    # after site-date medians is different and would obscure early closures.
+    filtered=outs_restricted["silene_begin_close"].merge(
+        outs_restricted["malva_begin_open"],on=key,validate="one_to_one")
     assert len(filtered)==42 and filtered.LIGHT_TRMT.value_counts().to_dict()=={"DARK":21,"LIGHT":21}
     strict_selected=site_effect(filtered,"silene_begin_close","malva_begin_open",150)
     result={
