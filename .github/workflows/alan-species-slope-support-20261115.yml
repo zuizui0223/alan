@@ -102,7 +102,15 @@ jobs:
           assert x['source']['source_species_site_years']==2012925
           assert x['status']=='SOURCE_CENSUS_ONLY_SPECIES_SLOPES_NOT_YET_FITTED'
           assert x['light_gradient_gates']['0.02']['eligible_islands'] <= 562
-          assert x['light_gradient_gates']['0.10']['eligible_island_year_strata'] <= x['light_gradient_gates']['0.02']['eligible_island_year_strata']
+          assert x['light_gradient_gates']['0.1']['eligible_island_year_strata'] <= x['light_gradient_gates']['0.02']['eligible_island_year_strata']
+          assert x['source']['direct_selfing_photographed_high_medium']==1322
+          assert x['source']['direct_selfing_photographed_excluding_diel_experimental_species']==1299
+          assert x['source']['matched_selfing_and_diel']==23
+          a=x['light_gradient_gates']['0.02']['by_trait_evidence']
+          assert a['selfing_known_high_medium']['core_holdout']==706
+          assert a['selfing_known_high_medium']['strict']==703
+          assert a['experimental_diel']['strict']==27
+          assert a['selfing_and_experimental_diel']['strict']==9
           print('ALAN_AUTHENTIC_SOURCE_SPECIES_COUNT_PASS')
           PY
       - uses: actions/upload-artifact@v4
