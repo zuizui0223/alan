@@ -6,7 +6,7 @@ NO light-by-cage treatment arm cell counts, no inferred larval ALAN effects,
 no fake joint correlation or pseudo-independent 417 randomized light plots.
 """
 from __future__ import annotations
-import argparse,hashlib,io,json,math,re,urllib.request
+import argparse,hashlib,io,json,math,re,urllib.request,unicodedata
 from pathlib import Path
 
 URL="https://eprints.whiterose.ac.uk/id/eprint/149121/1/Macgregor_et_al_2019_Ecosphere.pdf"
@@ -86,15 +86,19 @@ def acquire_and_verify():
     pages=len(pdf);t="\n".join(p.get_text() for p in pdf)
     pdf.close()
     ensure(pages==17,"original PDF pagination changed")
-    norm=" ".join(t.split()).lower()
+    # The CC-BY original PDF uses Unicode ligatures (e.g. \uFB02owers),
+    # and column-wrapped / hyphenated lines. Normalize typography before
+    # checking exact, SHA-gated source anchor text.
+    norm=" ".join(unicodedata.normalize("NFKC",t).lower().split())
+    norm=re.sub(r"(?<=\\w)-\\s+(?=\\w)","",norm)
     checks={
-      "417_flower_sample":bool(re.search(r"\b417\b.{0,50}\bflowers\b|\b417 flowers\b",norm)),
+      "417_flower_sample":bool(re.search(r"\b417\b.{0,100}\bflowers\b",norm)),
       "169_female_plants":bool(re.search(r"\b169\b.{0,55}\bplants\b",norm)),
-      "194_pollinated_flowers":bool(re.search(r"\b194\b.{0,65}\bflowers\b",norm)),
+      "194_pollinated_flowers":bool(re.search(r"\b194\b.{0,120}\bflowers\b",norm)),
       "46_infestations":bool(re.search(r"\b46\b.{0,60}(?:flowers|parasitized)\b|\b46 out of 194\b",norm)),
-      "148_seeds_counted":bool(re.search(r"\b148\b.{0,55}\bflowers\b",norm)),
-      "caging_light_interaction_non_significant":bool(re.search(r"no significant interaction between the two",norm)),
-      "post_greenhouse_larval_cross_flower_movement":("move between flowers" in norm),
+      "148_seeds_counted":bool(re.search(r"\b148\b.{0,100}\bflowers\b",norm)),
+      "caging_light_interaction_non_significant":bool(re.search(r"no significant interaction.{0,80}between the two",norm)),
+      "post_greenhouse_larval_cross_flower_movement":bool(re.search(r"move between.{0,50}flowers",norm)),
       "author_reported_pooled_diel_percentages":("52.8%" in norm and "37.6%" in norm and "72.0%" in norm)
     }
     ensure(all(checks.values()),"original PDF semantic anchors missing "+json.dumps(checks))
