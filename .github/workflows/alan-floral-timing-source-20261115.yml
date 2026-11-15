@@ -1,0 +1,60 @@
+name: ALAN floral timing public source intake
+on:
+  push:
+    branches: [analysis/alan-floral-timing-dependence-20261115]
+    paths:
+      - .github/workflows/alan-floral-timing-source-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-intake:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Retrieve public versioned data and original papers without guessed observations
+        run: |
+          python - <<'PY'
+          import urllib.request, urllib.error, json, hashlib, re
+          from pathlib import Path
+          from concurrent.futures import ThreadPoolExecutor
+          out=Path('floral_source'); out.mkdir(exist_ok=True)
+          urls={}
+          for version in (1,2):
+              urls[f'mendeley_v{version}.json']=f'https://data.mendeley.com/public-api/datasets/xjmn5jhxyn/versions/{version}'
+              urls[f'mendeley_v{version}_files.json']=f'https://data.mendeley.com/public-api/datasets/xjmn5jhxyn/versions/{version}/files'
+          urls['macgregor2019.pdf']='https://eprints.whiterose.ac.uk/id/eprint/149121/1/Macgregor_et_al_2019_Ecosphere.pdf'
+          urls['grognuz2026.pdf']='https://ira.agroscope.ch/it-CH/Page/Einzelpublikation/Download?einzelpublikationId=68011'
+          urls['macgregor2019_supplement.pdf']='https://esajournals.onlinelibrary.wiley.com/doi/suppl/10.1002/ecs2.2550/supinfo/ecs22550-sup-0001-appendixs1.pdf'
+          def fetch(item):
+              name,url=item
+              result={'name':name,'url':url}
+              try:
+                  req=urllib.request.Request(url,headers={'User-Agent':'ALAN-primary-floral-source/1.0','Accept':'*/*'})
+                  with urllib.request.urlopen(req,timeout=35) as r:
+                      raw=r.read(15000001); result.update(http_status=r.status,content_type=r.headers.get('Content-Type'),final_url=r.url)
+                  if len(raw)>15000000: raise ValueError('source_exceeds_15MB_bound')
+                  if name.endswith('.json'):
+                      data=json.loads(raw)
+                      result['top_keys']=list(data)[:30] if isinstance(data,dict) else {'list_length':len(data)}
+                  if name.endswith('.pdf') and not raw.startswith(b'%PDF'): raise ValueError('not_PDF')
+                  out.joinpath(name).write_bytes(raw)
+                  result.update(status='ACQUIRED',bytes=len(raw),sha256=hashlib.sha256(raw).hexdigest())
+              except Exception as e:
+                  result.update(status='UNAVAILABLE',error=type(e).__name__,detail=str(e)[:200])
+              return result
+          with ThreadPoolExecutor(max_workers=4) as pool: receipt=list(pool.map(fetch,urls.items()))
+          for x in receipt: print('SOURCE_RECEIPT',json.dumps(x))
+          out.joinpath('source_receipts.json').write_text(json.dumps(receipt,indent=2))
+          print('SOURCE_INTAKE_ONLY_NO_BIOLOGICAL_MODEL_FITTED')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-floral-timing-public-source-20261115
+          path: floral_source/
+          retention-days: 90
+          if-no-files-found: error
