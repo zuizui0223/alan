@@ -18,7 +18,6 @@ field-level aggregates in the artifact. Never impute missing plant observations.
 from __future__ import annotations
 import argparse, math, json
 from pathlib import Path
-import numpy as np
 from scripts.analysis.alan_Li2026_real_geometry_seed_hayfield_source_20261114 import (
     source_bytes,parse,require,GIT_BLOB_SHA1,TREATMENTS,SPECIES
 )
