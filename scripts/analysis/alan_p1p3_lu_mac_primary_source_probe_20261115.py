@@ -13,7 +13,7 @@ SOURCES={
  "lu_JPE_publisher":"https://academic.oup.com/jpe/advance-article/doi/10.1093/jpe/rtag160/8731923",
  "lu_JPE_chinese_journal":"https://www.jpe.ac.cn/EN/10.1093/jpe/rtag160",
  "lu_JPE_DOI":"https://doi.org/10.1093/jpe/rtag160",
- "lu_JPE_accepted_pdf":"https://academic.oup.com/jpe/advance-article-pdf/doi/10.1093/jpe/rtag160/8731923/rtag160.pdf",
+ "lu_JPE_accepted_pdf":"https://academic.oup.com/jpe/advance-article-pdf/doi/10.1093/jpe/rtag160/68754751/rtag160.pdf",
  "lu_JPE_crossref":"https://api.crossref.org/works/10.1093/jpe/rtag160",
  "lu_JPE_openalex":"https://api.openalex.org/works/https://doi.org/10.1093/jpe/rtag160",
  "mac_original_openaccess_pdf":"https://eprints.whiterose.ac.uk/id/eprint/149121/1/Macgregor_et_al_2019_Ecosphere.pdf",
