@@ -124,6 +124,35 @@ def analyze(rows):
                 for f in ("1","2","3")),
             "Positive L/C fruit:initialbud real source not present in all 3 fields")
 
+    # Observed within-species reproductive stage contrasts, a descriptive
+    # taxon stratification, not three independent lighting manipulations.
+    species={}
+    for sp,name in SPECIES.items():
+        matched={t:records([r for r in rows if r["Treatment"]==t and r["species"]==sp])
+                 for t in ("C","P","L")}
+        species[sp]={"species":name,
+                     "source_arms":matched,
+                     "linear_vs_dark_source_stage_ratios":two_stage(matched["L"],matched["C"]),
+                     "point_vs_dark_source_stage_ratios":two_stage(matched["P"],matched["C"]),
+                     "species_source_disjoint_plants_but_share_three_lighted_hayfields":True}
+    require(len(species)==3,"Original three pollination-associated taxa missing")
+    leave_species_out={}
+    for sp in SPECIES:
+        pool={t:records([r for r in rows if r["Treatment"]==t and r["species"]!=sp])
+              for t in ("C","L")}
+        c=two_stage(pool["L"],pool["C"])
+        leave_species_out[sp]={
+          "seed_per_fruit_ratio_without_species":c["observed_seeds_per_fruit_ratio"],
+          "fruit_per_initial_bud_ratio_without_species":c["observed_fruits_per_initial_bud_ratio"],
+          "seed_per_initial_bud_ratio_without_species":c["observed_seeds_per_initial_bud_ratio"]}
+    require(species["ML"]["linear_vs_dark_source_stage_ratios"]["observed_seeds_per_fruit_ratio"]<1,
+            "ML original seeds/fruit L-C reversed")
+    require(species["SN"]["linear_vs_dark_source_stage_ratios"]["observed_seeds_per_fruit_ratio"]<1,
+            "SN original seeds/fruit L-C reversed")
+    require(species["ZC"]["linear_vs_dark_source_stage_ratios"]["observed_seeds_per_fruit_ratio"]>1,
+            "ZC original seeds/fruit L-C reversed")
+    require(leave_species_out["ZC"]["seed_per_fruit_ratio_without_species"]<1,
+            "Withhold ZC source-stratum pooled contrast would no longer be positive")
     # The L sample extreme plant is the highest seed yield of a true
     # originally observed author row, no duplicate-ID-imputation.
     array=[r for r in known if r["Treatment"]=="L"]
@@ -164,6 +193,10 @@ def analyze(rows):
        "no_evidence_11_potential_plants_were_actually_measured":True},
       "author_source_arm_reproductive_stages":full,
       "three_true_hayfield_reproductive_stages":fields,
+      "within_taxon_actual_reproductive_stage_ratios":species,
+      "leave_one_taxon_out_composition_sensitivity":leave_species_out,
+      "pooled_seed_per_fruit_increase_not_consistent_within_all_species":True,
+      "self_compatibility_from_paper_not_an_observed_same_genotype_selfing_experiment":True,
       "linear_vs_dark_observed_composite":compare,
       "point_vs_dark_observed_composite":two_stage(full["P"],full["C"]),
       "largest_original_plant_and_leave_one_field_out_sensitivity":sample_outlier,
@@ -198,5 +231,9 @@ def main():
       "linear_over_dark":result["linear_vs_dark_observed_composite"],
       "three_field_ratio":{k:z["linear_vs_dark_reproductive_stage"]["observed_seeds_per_initial_bud_ratio"]
           for k,z in result["three_true_hayfield_reproductive_stages"].items()},
+      "within_species":{sp:{f:stage["linear_vs_dark_source_stage_ratios"][f]
+            for f in ("observed_fruits_per_initial_bud_ratio","observed_seeds_per_fruit_ratio","observed_seeds_per_initial_bud_ratio")}
+            for sp,stage in result["within_taxon_actual_reproductive_stage_ratios"].items()},
+      "leave_one_species_out_seed_per_fruit":{sp:z["seed_per_fruit_ratio_without_species"] for sp,z in result["leave_one_taxon_out_composition_sensitivity"].items()},
       "outlier":result["largest_original_plant_and_leave_one_field_out_sensitivity"]},ensure_ascii=False))
 if __name__=="__main__":main()
