@@ -27,7 +27,7 @@
       "screening_reason": "Directly manipulated overnight LEDs, true fruit experiment 5 lit vs 5 dark meadows matched in 5 pairs; 2x2 light × bagging, 100 plants ×2 capitula; mature achene number and % per capitulum, not one flower binary per independently assigned unit. Original study reports open fruit-count lighting z=-2.5 p=.014, bagged p=.140; site/plant clustered SE for common A response not yet recovered.",
       "external_night_dependence": "night_pollinator_visits_2014_2015_but_no_night_only_reproductive_exclosure",
       "screen_status": "source_recovery",
-      "note": "Genuine 5 lit + 5 dark reproductive meadow clusters, NOT 7+7 network meadows; 25 plants and 50 capitula per factorial cell; bagged/open contrast does not quantify night-only pollination; do not assume interaction supported because one simple effect p<.05 and another p>.05.",
+      "note": "Source model reports statistically resolved ALAN x bagging interaction for percentage of developed fruits (logit beta=-1.40, SE=.592, p=.018) and count p=.014, but this compares exclusion of ALL animal visitors, not nocturnal-only dependence. Count interaction sign in mirrored text conflicts with figure and remains unverified; never pool as logRR.",
       "verified_joint_effect_moderator_se": false,
       "source_url": "https://doi.org/10.1038/nature23288",
       "source_audit": {
@@ -62,10 +62,32 @@
         "light_negative_open_fruits_p": 0.014,
         "light_effect_on_bagged_fruits_original_z": 1.47,
         "light_effect_on_bagged_fruits_p": 0.14,
-        "full_interaction_numeric_beta_se_recovered": false,
+        "full_interaction_numeric_beta_se_recovered": true,
         "source_data_access": "On request from corresponding author; not newly acquired",
         "original_model_variance_available_to_meta": false,
-        "note": "14 sites is the night visitation network, NOT the subset of 10 sites used for fruit success. 50 capitula per cell are observations clustered in 25 plants and 5 lit or 5 dark meadows."
+        "note": "14 sites is the night visitation network, NOT the subset of 10 sites used for fruit success. 50 capitula per cell are observations clustered in 25 plants and 5 lit or 5 dark meadows.",
+        "direct_light_by_bagging_original_mixed_effect_report": {
+          "table": "Knop et al 2017 Nature Extended Data Table 3",
+          "source_page": "https://planesynormas.mma.gob.cl/archivos/2021/proyectos/ANTECEDENTES_ENTREGADOS_POR_ROC-OIKONOS.pdf",
+          "source_doi": "10.1038/nature23288",
+          "retrieved_in_original_published_pdf_compilation": true,
+          "primary_authored_mirror_table_text": true,
+          "secondary_mirror_extract_verified_source_layout": false,
+          "outcome_percent_developed_achenes": {
+            "light_x_bagging_open_beta_logit": -1.4,
+            "se": 0.592,
+            "p": 0.018,
+            "interpretation": "Conditional odds-scale interaction, NOT log response ratio, and NOT nocturnal-only dependence; check full original factor coding and source image"
+          },
+          "outcome_count_developed_achenes": {
+            "extracted_interaction_beta_text": 0.76,
+            "extracted_interaction_se": 0.309,
+            "extracted_p": 0.014,
+            "sign_verified": false,
+            "warning": "Text layer extracts positive count interaction but original direction of lit open fruit count is negative. Factor orientation or OCR/text sign mismatch unresolved; no derived RR."
+          },
+          "source_caveat": "The government archived compilation is publicly accessible and contains copied Nature 2017 Extended Data Table 3; the independent small-PDF table layout and sample-level covariance remain unavailable. The source archive HTML text gives reported values but PyMuPDF finds no table text layer."
+        }
       }
     },
     {
@@ -299,6 +321,8 @@
     "study": "Knop 2017",
     "issue": "Visit/fruit pseudo-replication and capitulum outcome",
     "changed": "Source-authenticated 14 network meadows vs 10 fruit-meadows and original 5 matched site pairs, 4 factorial groups with 25 plants × 2 capitula",
-    "not_five_independent_effects": true
+    "not_five_independent_effects": true,
+    "new_find_20261115": "Extended Data Table 3 interaction published: proportion outcome β -1.40 SE .592 p .018, count-interaction p .014; original factor codes and count sign require source image check",
+    "not_ALAN_by_nocturnal_access": true
   }
 }
