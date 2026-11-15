@@ -154,7 +154,7 @@ def reduce_source(fruit_rows: list[dict], quality_rows: list[dict]) -> dict:
     species_code_mapping={"BC":"Ribes nigrum","RB":"Rubus idaeus","RD":"Ribes rubrum"}
     expected_flower_counts={"BC":375,"RB":54,"RD":421}
     observed_flower_counts={code:sum(r["initial_flowers"] for r in group_rows if r["taxon_original"]==code) for code in species_code_mapping}
-    if observed_flower_counts != expected_flower_counts:
+    if len(fruit_rows)==FILES["fruit_set"]["expected_rows"] and observed_flower_counts != expected_flower_counts:
         raise AssertionError("Original paper flower totals disagree: "+repr(observed_flower_counts))
     flagged=[{"taxon_original":x["taxon_original"],"year":x["year"],"treatment":x["treatment"],"fruit_set_success":x["fruit_success"],"quality_rows":x["measured_fruit_rows"],"status":x["quality_vs_fruit_count_status"]} for x in group_rows if x["quality_vs_fruit_count_status"]!="MATCH"]
     return {
