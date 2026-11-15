@@ -21,16 +21,26 @@ from datetime import datetime, timezone
 
 CUTOFF = "2026-11-15"
 QUERIES = (
-    '"artificial light at night" "fruit set"',
-    '"artificial light at night" "seed set"',
-    '"artificial light at night" pollination reproduction',
-    '"artificial light at night" plant reproduction',
-    '"light pollution" "fruit set" pollination',
-    '"light pollution" "seed set" plant',
-    '"street lighting" pollination fruit',
-    'streetlights moth pollination seed',
-    '"nocturnal lighting" plant fecundity',
-    '"artificial light at night" reproductive success',
+    "\"artificial light at night\" \"fruit set\"",
+    "\"artificial light at night\" \"seed set\"",
+    "\"artificial light at night\" pollination reproduction",
+    "\"artificial light at night\" plant reproduction",
+    "\"light pollution\" \"fruit set\" pollination",
+    "\"light pollution\" \"seed set\" plant",
+    "\"street lighting\" pollination fruit",
+    "streetlights moth pollination seed",
+    "\"nocturnal lighting\" plant fecundity",
+    "\"artificial light at night\" reproductive success",
+    "\"artificial light at night\" pollination",
+    "\"artificial light at night\" seed",
+    "\"artificial light at night\" fruit",
+    "\"artificial light at night\" flowering",
+    "\"artificial light at night\" ecosystem functioning",
+    "\"artificial light at night\" reproductive capacity",
+    "\"artificial light at night\" plant-pollinator",
+    "\"light pollution\" hawkmoth",
+    "\"artificial night lighting\" plant reproductive",
+    "\"light pollution\" nocturnal pollination",
 )
 FIELDS = ("openalex_id", "doi", "title", "year", "publication_date", "query_count", "query_ids")
 
