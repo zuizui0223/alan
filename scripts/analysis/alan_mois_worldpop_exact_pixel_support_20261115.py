@@ -100,10 +100,11 @@ def join(sites,root):
     require(vals.target_id.is_unique,"Repeated MOIS target across years")
     a=sites.copy()
     a["site_id"]=np.arange(len(a))
+    require(a.site_id.is_unique,"Source site IDs must stay distinct even across overlapping 0.05-degree multi-island cells")
     a["pop_col"],a["pop_row"]=pixels(a.lon,a.lat)
     common=["year","lonbin","latbin"]
     matched=a[["site_id","island","year","lonbin","latbin","pop_col","pop_row",LIGHT]].merge(
-        vals,on=common,how="left",validate="one_to_many",suffixes=("_alan","_mois"))
+        vals,on=common,how="left",validate="many_to_many",suffixes=("_alan","_mois"))
     matched["photo_bin_match"]=matched.target_id.notna()
     matched["same_pop_pixel"]=(matched.photo_bin_match &
         matched.pop_col_alan.eq(matched.pop_col_mois) &
