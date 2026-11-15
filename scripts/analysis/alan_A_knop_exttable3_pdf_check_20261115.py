@@ -61,9 +61,11 @@ def extract_table_text(pdf_bytes:bytes)->dict:
             for i,line in enumerate(lines):
                 if re.search(r"treatLamp|baggingOpen|developed fruits|^Intercept$",line,re.I):
                     hits.append((i,line))
+            # Avoid redistributing the page, even as text; keep only concise
+            # numeric table-row names and a bounded original coefficient subset.
             found.append({"page_index_zero_based":page_index,
-                          "first_relevant_lines":[{"line":j,"wording":v} for j,v in hits[:20]],
-                          "local_cropped_source_text":" ".join(lines[min((x[0] for x in hits),default=0):min((x[0] for x in hits),default=0)+90])[:2200]})
+                          "first_relevant_lines":[{"line":j,"wording":v[:110]} for j,v in hits[:12]],
+                          "full_page_text_preserved":False})
     return {"pdf_pages":len(doc),"pages_matching_terms":len(found),"relevant_page_metadata":found[:3]}
 
 
