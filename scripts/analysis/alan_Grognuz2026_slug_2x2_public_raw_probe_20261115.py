@@ -32,6 +32,8 @@ UA="ALAN-independent-public-2x2-reproduction-source-audit/1.0"
 MAX_BYTES=38_000_000
 
 def request(url,limit=MAX_BYTES):
+    if not isinstance(url,str) or not url.startswith(("https://","http://")):
+        return None,{"status":"URL_ERROR","http_code":None,"error_kind":"ValueError"}
     req=urllib.request.Request(url,headers={
         "User-Agent":UA,
         "Accept":"application/vnd.mendeley-public-dataset.1+json,application/json,text/html,application/zip,*/*",
