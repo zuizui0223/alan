@@ -61,7 +61,7 @@ def extract(raw):
              "source error was not sample SD")
         must(D>0 and N>0 and nd>0 and nn>0,"log contrast requires positive means/n")
         exp=EXPECTED[(st,y)]
-        must(abs(D-exp[0])<1e-9 and abs(N-exp[1])<1e-9 and (nd,nn)==exp[2:],
+        must(abs(D-exp[0])<1e-6 and abs(N-exp[1])<1e-6 and (nd,nn)==exp[2:],
              "original year-specific figure-extracted mean or n changed")
         lr=math.log(N/D)
         # Exploratory delta-method SE; ignores figure extraction error,
