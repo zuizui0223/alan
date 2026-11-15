@@ -1,0 +1,31 @@
+name: ALAN Xiao2025 true official Elsevier reproductive supplement numeric audit
+on:
+  push:
+    branches:
+      - analysis/alan-floral-timing-dependence-20261115
+    paths:
+      - scripts/analysis/alan_Xiao2025_true_supplement_table_20261115.py
+      - tests/test_alan_Xiao2025_true_supplement_table_20261115.py
+      - .github/workflows/alan-A-Xiao2025-official-supplement-tables-20261115.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-table:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify DOCX original factor table parser and source-only guard
+        run: python -m unittest discover -s tests -p 'test_alan_Xiao2025_true_supplement_table_20261115.py' -v
+      - name: Download hash-pinned true Elsevier supplement and extract compact parameter table receipt
+        run: python scripts/analysis/alan_Xiao2025_true_supplement_table_20261115.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-A-Xiao2025-Elsevier-verified-table-receipt
+          path: results/alan_Xiao2025_true_supplement_model_source_audit_20261115.json
+          retention-days: 30
