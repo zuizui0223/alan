@@ -48,7 +48,7 @@ jobs:
           e=z["original_lab_Table2_oviposition_response"]
           assert math.isclose(a["lit_distance_per_1m"]["exponentiated_coefficient"],math.exp(.37))
           assert math.isclose(e["lit_distance_per_1m"]["exponentiated_coefficient"],math.exp(.24))
-          assert a["lit_distance_per_1m"]["original_published_table_p"] in ["<0.001","< 0.001","< 0.001"]
+          assert a["lit_distance_per_1m"]["original_published_p"] in ["<0.001","< 0.001","< 0.001"]
           assert e["lit_distance_per_1m"]["Wald95_from_rounded_published_SE"][0]>0.99
           assert z["source_inference_limits"]["but_lab_field_sequential_link_NOT_actual_mediation_estimation"]
           assert z["source_inference_limits"]["Table1_spillover_Beta_OR_was_ALREADY_IN_repo_20261114"]
