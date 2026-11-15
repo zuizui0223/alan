@@ -1,0 +1,93 @@
+{
+  "provenance": {
+    "run_url": "https://github.com/zuizui0223/alan/actions/runs/43727666678",
+    "zip_artifact_id": 14167201675,
+    "zip_SHA256": "d61fd82adc73914669d3babe0373d2427f76e6915fbe5fd884eb554f06ad71a1",
+    "verified_worldclim_source_zip_SHA256": "00513224583665ec0f2f955a4ec252730c4deb2004cce9e793492a3f26df4dcf",
+    "authentic_source_schema_and_raster_sampling_CI_SUCCESS": true
+  },
+  "schema": "ALAN_WorldClim2p1_original10arcminute_spatial_normal_coverage_v1",
+  "status": "TRUE_ORIGINAL_RASTER_SOURCE_SAMPLE_NOT_A_TEMPORAL_CLIMATE_MODEL",
+  "source": "WorldClim v2.1 10m BIO1/BIO12/BIO15, static baseline normals 1970–2000",
+  "original_alan_site_years": 77647,
+  "original_alan_islands": 562,
+  "climate_complete_site_years": 77508,
+  "climate_complete_islands": 561,
+  "climate_missing_site_years": 139,
+  "annual_photo_year_source_coverage": [
+    {
+      "year": 2019,
+      "total": 8257,
+      "complete": 8247
+    },
+    {
+      "year": 2021,
+      "total": 12542,
+      "complete": 12523
+    },
+    {
+      "year": 2023,
+      "total": 17025,
+      "complete": 16995
+    },
+    {
+      "year": 2024,
+      "total": 18890,
+      "complete": 18856
+    },
+    {
+      "year": 2025,
+      "total": 20933,
+      "complete": 20887
+    }
+  ],
+  "site_climate_within_island_year_support": {
+    "groups_with_two_sites": 1895,
+    "groups_with_temperature_range_at_least_0p1C": 1350,
+    "groups_with_precipitation_range_at_least_10mm": 1389,
+    "groups_with_both_temp_and_precip_variation": 1272,
+    "islands_with_two_site_climate_gradient": 559
+  },
+  "bioclimatic_variable_grid_metadata": {
+    "bio1": {
+      "crs": "EPSG:4326",
+      "width": 2160,
+      "height": 1080,
+      "resolution": [
+        0.16666666666666666,
+        0.16666666666666666
+      ],
+      "nodata": "-3.3999999521443642e+38",
+      "valid": 77508,
+      "missing": 139
+    },
+    "bio12": {
+      "crs": "EPSG:4326",
+      "width": 2160,
+      "height": 1080,
+      "resolution": [
+        0.16666666666666666,
+        0.16666666666666666
+      ],
+      "nodata": "-3.3999999521443642e+38",
+      "valid": 77508,
+      "missing": 139
+    },
+    "bio15": {
+      "crs": "EPSG:4326",
+      "width": 2160,
+      "height": 1080,
+      "resolution": [
+        0.16666666666666666,
+        0.16666666666666666
+      ],
+      "nodata": "-3.3999999521443642e+38",
+      "valid": 77508,
+      "missing": 139
+    }
+  },
+  "climate_NODATA_retained": true,
+  "source_is_10arcmin_static_1970_2000_normal_not_2019_2025_actual_weather": true,
+  "no_raw_species_or_location_export": true,
+  "not_locally_measured_flower_temperature": true
+}
