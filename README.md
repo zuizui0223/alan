@@ -1,12 +1,14 @@
-# ALAN — artificial light at night × island floral colour
+# ALAN — wet-habitat plants and long-term changes in night light
 
-**Research home for the ALAN × island/mainland floral-colour project, migrated from [MOIS](https://github.com/zuizui0223/mois) on 2026-11-08.** MOIS is reserved for global floral colour × moisture.
+## Main finding
 
-## Central question
+Plants associated with wetter habitats were overrepresented among the 283 species whose recording rates declined at brightening sites and for which adding night-light change improved spatial prediction. Among 158 candidates with matched comparisons, the mean habitat moisture indicator was 6.09 versus 5.50 in the reference assemblage (difference +0.59, BH q = 0.030 over 17 traits). The contrast with other declining plants was smaller (+0.35, nominal p = 0.083). This is a discovery from a global GBIF screen with predominantly European long-term sites.
 
-Does the spatial association of artificial light at night (ALAN; VIIRS upward radiance) with the *photographed flower-region white-colour fraction* differ between island and mainland sites?
+[Current manuscript results and discussion](manuscript/ALAN_WET_HABITAT_ja.md) · [Matched trait contrasts](results/all_species_forest/decline_traits/traits.csv) · [Open-water interaction test](results/all_species_forest/wet_water/open_water_light_interaction.csv)
 
-## Source-verified result carried forward
+## Historical project record: island and mainland floral colour
+
+The following sections document the original MOIS migration and subsequent source audits. The photographic island coefficient and the 64-species pollen-limitation analysis belong to the earlier research question. The active manuscript centres on wet-habitat enrichment.
 
 - Five observation years: **2019, 2021, 2023, 2024, 2025**.
 - **7,982** source-backed 0.05° photo-cell × year records, including **710** island cell-years.

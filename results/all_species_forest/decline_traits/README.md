@@ -8,4 +8,4 @@ WCVPで受容名が一意の種のみを接続。ヨーロッパの環境指標�
 
 traits.csv は主解析と2種類の参照群、moisture_checks.csv は湿潤性についての追加探索（別の学名照合、初期光量区分追加、島座標割合別）。追加解析のp値は未補正。moisture_region_influence.csv は主解析で各地域を一つ除いた差。moisture_evidence.csv.gz と moisture_distribution.csv は公開環境指標の種別照合と重み付き分布。cohort.csv は未照合・未測定種を含む全283種。
 
-scripts/analysis/alan_rf_decline_traits.py に work と results のパスを渡す。EIV_Europe.csv は work/gbif_annual に置く。主要結果−1.902と64種の花粉制限の副次解析はこのRF候補の形質比較とは別である。
+scripts/analysis/alan_rf_decline_traits.py に work と results のパスを渡す。EIV_Europe.csv は work/gbif_annual に置く。本研究の主結果は283種の減少候補における湿潤環境の種の過剰である。
