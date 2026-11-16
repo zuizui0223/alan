@@ -1,0 +1,45 @@
+group,side,outcome,predictors,term,estimate,low,high
+wood,island,woody_tonnes,light10,light10,-888.3658919340728,-3939.0539069047645,2162.322123036619
+wood,island,woody_tonnes,green10,green10,-270.78424908756085,-916.2702397462278,374.70174157110614
+wood,island,woody_tonnes,light10 + green10,light10,-913.4897644121145,-3937.3787563240267,2110.3992274997972
+wood,island,woody_tonnes,light10 + green10,green10,-286.9599022884081,-909.5133569400333,335.5935523632171
+wood,mainland,woody_tonnes,light10,light10,817.6205120791365,-2807.382423137216,4442.623447295489
+wood,mainland,woody_tonnes,green10,green10,-6987.850384352355,-20720.36877381589,6744.6680051111825
+wood,mainland,woody_tonnes,light10 + green10,light10,829.7901604925792,-2809.8472576524005,4469.427578637558
+wood,mainland,woody_tonnes,light10 + green10,green10,-6989.337082714379,-20749.17069341395,6770.496527985191
+bird_flower,mainland,absolute_gap,light10,light10,-12.062631952656014,-30.613595439806957,6.488331534494927
+bird_flower,mainland,absolute_gap,green10,green10,6.0123027159375555,-40.79004703161898,52.8146524634941
+bird_flower,mainland,absolute_gap,light10 + green10,light10,-12.784700296294448,-34.601182247734435,9.031781655145538
+bird_flower,mainland,absolute_gap,light10 + green10,green10,6.9844725948804225,-39.23127479641051,53.200219986171355
+bird_flower,mainland,animal_minus_plant_median_observed_day,light10,light10,9.584137195417599,-15.478264472472132,34.64653886330733
+bird_flower,mainland,animal_minus_plant_median_observed_day,green10,green10,-14.683457141492996,-33.69870269019355,4.33178840720756
+bird_flower,mainland,animal_minus_plant_median_observed_day,light10 + green10,light10,11.190110723960606,-15.339465638018241,37.719687085939455
+bird_flower,mainland,animal_minus_plant_median_observed_day,light10 + green10,green10,-15.534371776623084,-33.48121325640121,2.4124697031550415
+bird_flower_green,mainland,green_mcd,light10,light10,1.0338194242005505,-1.5868650856708797,3.6545039340719807
+bird_food_ripe_fruit_proxy,mainland,absolute_gap,light10,light10,-38.70774263904015,-60.23725037564273,-17.178234902437566
+bird_food_ripe_fruit_proxy,mainland,absolute_gap,green10,green10,-9.216123151711622,-180.4424638807374,162.01021757731414
+bird_food_ripe_fruit_proxy,mainland,absolute_gap,light10 + green10,light10,-42.068636857928766,-123.27591071977551,39.13863700391798
+bird_food_ripe_fruit_proxy,mainland,absolute_gap,light10 + green10,green10,-11.499776114629523,-196.93656344993013,173.93701122067108
+bird_food_ripe_fruit_proxy,mainland,animal_minus_plant_median_observed_day,light10,light10,46.450381679386666,-33.035049852442256,125.93581321121559
+bird_food_ripe_fruit_proxy,mainland,animal_minus_plant_median_observed_day,green10,green10,63.289447032611115,-327.92165901206124,454.5005530772835
+bird_food_ripe_fruit_proxy,mainland,animal_minus_plant_median_observed_day,light10 + green10,light10,65.99417898036221,-169.184478933982,301.1728368947064
+bird_food_ripe_fruit_proxy,mainland,animal_minus_plant_median_observed_day,light10 + green10,green10,66.87187360071677,-366.9560042556294,500.6997514570629
+bird_food_ripe_fruit_proxy_green,mainland,green_mcd,light10,light10,-2.9225736095971797,-5.668527037197411,-0.1766201819969493
+butterfly_family_visit,mainland,absolute_gap,light10,light10,19.32439564212232,-7.822838292315851,46.47162957656049
+butterfly_family_visit,mainland,absolute_gap,green10,green10,11.111942936562368,-28.735388494091023,50.959274367215755
+butterfly_family_visit,mainland,absolute_gap,light10 + green10,light10,17.441951730033722,-8.281794832963097,43.165698293030545
+butterfly_family_visit,mainland,absolute_gap,light10 + green10,green10,9.221431136896822,-30.3171305576944,48.75999283148805
+butterfly_family_visit,mainland,animal_minus_plant_median_observed_day,light10,light10,38.417812122071204,-1.5637881323323697,78.39941237647477
+butterfly_family_visit,mainland,animal_minus_plant_median_observed_day,green10,green10,15.501817530935451,-23.497143609731456,54.50077867160236
+butterfly_family_visit,mainland,animal_minus_plant_median_observed_day,light10 + green10,light10,36.05097641033226,-4.984026879311635,77.08597969997615
+butterfly_family_visit,mainland,animal_minus_plant_median_observed_day,light10 + green10,green10,11.594296322982293,-27.74374217414602,50.93233482011061
+butterfly_family_visit_green,mainland,green_mcd,light10,light10,2.04137935223141,0.17061989675430622,3.9121388077085135
+moth_family_visit,mainland,absolute_gap,light10,light10,13.446084362125541,-14.041981025795243,40.93414975004632
+moth_family_visit,mainland,absolute_gap,green10,green10,8.399925361648046,-19.732132447356634,36.53198317065272
+moth_family_visit,mainland,absolute_gap,light10 + green10,light10,15.180678511936774,-14.430862980660487,44.79222000453404
+moth_family_visit,mainland,absolute_gap,light10 + green10,green10,9.172744959778758,-19.756953724934654,38.10244364449217
+moth_family_visit,mainland,animal_minus_plant_median_observed_day,light10,light10,36.66660737960963,-17.286820608352407,90.62003536757166
+moth_family_visit,mainland,animal_minus_plant_median_observed_day,green10,green10,9.676286195985297,-21.000729230891054,40.35330162286164
+moth_family_visit,mainland,animal_minus_plant_median_observed_day,light10 + green10,light10,38.870625517953485,-18.2744858483768,96.01573688428377
+moth_family_visit,mainland,animal_minus_plant_median_observed_day,light10 + green10,green10,11.655116138813867,-21.486570445887097,44.79680272351483
+moth_family_visit_green,mainland,green_mcd,light10,light10,-1.8910306101576058,-7.80247773200265,4.020416511687438

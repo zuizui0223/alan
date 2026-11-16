@@ -1,0 +1,13 @@
+group,side,matched,matched_stations,repeated,clusters,years
+wood,island,198,12,198,12,17
+wood,mainland,816,48,816,48,17
+bird_flower,mainland,34,5,33,4,12
+bird_flower_green,mainland,34,5,33,4,12
+bird_food_ripe_fruit_proxy,mainland,21,5,19,3,11
+bird_food_ripe_fruit_proxy_green,mainland,21,5,19,3,11
+butterfly_family_visit,mainland,72,14,69,12,12
+butterfly_family_visit_green,mainland,72,14,69,12,12
+moth_family_visit,island,30,11,2,1,2
+moth_family_visit,mainland,243,30,85,15,9
+moth_family_visit_green,island,30,11,2,1,2
+moth_family_visit_green,mainland,243,30,85,15,9
