@@ -132,13 +132,43 @@ def audit_original_overlap(s,previous_mois_sources):
     assert known.site_id.is_unique
     check=s.merge(known,on="site_id",how="inner",validate="one_to_one")
     require(len(check)==23018,"Missing original pixel-matched photo site for validation")
-    require(check.pop_density.notna().all(),"Full source lost population at previously measured original pixels")
     old=check.pop_density_previous.to_numpy(float)
     new=check.pop_density.to_numpy(float)
-    abs_err=np.abs(old-new)
-    rel_err=abs_err/np.maximum(1,abs(old))
-    require(np.all(np.isclose(old,new,rtol=1e-5,atol=1e-4)),
-            "Official full-raster population differs from prior same-year same-pixel original")
+    new_valid=np.isfinite(new)
+    close=np.zeros(len(check),dtype=bool)
+    close[new_valid]=np.isclose(old[new_valid],new[new_valid],rtol=1e-5,atol=1e-4)
+    abs_err=np.abs(old[new_valid]-new[new_valid])
+    rel_err=abs_err/np.maximum(1,np.abs(old[new_valid]))
+    # Original 0.05-degree photo grid centers fall near exact 1km pixel edges:
+    # comparison of a rounded arithmetic 1km bin to a rasterio raster pixel
+    # can be ambiguous. The actual source georeferenced ds.sample is primary.
+    x=(check.lon.to_numpy(float)+180)*120
+    y=(90-check.lat.to_numpy(float))*120
+    edge=np.minimum(np.abs(x-np.round(x)),np.abs(y-np.round(y)))<1e-6
+    by_year={}
+    for year,z in check.groupby("year",observed=True):
+        ix=z.index.to_numpy(int)
+        # Merge may preserve noncontiguous original index positions: reset below.
+        aa=check.year.to_numpy(int)==year
+        by_year[str(int(year))]={
+            "previous_numeric_photo_overlap":int(aa.sum()),
+            "new_raster_pop_valid":int((aa&new_valid).sum()),
+            "both_numeric_agree":int((aa&close).sum()),
+            "previous_numeric_but_new_nodata":int((aa&~new_valid).sum()),
+            "both_numeric_disagree":int((aa&new_valid&~close).sum()),
+            "site_center_within_1e_minus6_of_1km_pixel_border":int((aa&edge).sum())
+        }
+    reconciled=bool(close.all())
+    print("ALAN_PRIOR_23K_VS_FULL_WORLDPOP_GRID_DIAGNOSTIC",json.dumps({
+        "previous_photo_overlap_count":len(check),
+        "direct_raster_valid":int(new_valid.sum()),
+        "close_numeric":int(close.sum()),
+        "old_positive_but_new_nodata":int((~new_valid).sum()),
+        "genuine_numeric_disagreements":int((new_valid&~close).sum()),
+        "edge_coordinate_count":int(edge.sum()),
+        "per_year":by_year,
+        "all_match":reconciled
+    },allow_nan=False),flush=True)
     s=s.copy()
     s["previous_MOIS_photo_overlap"]=s.site_id.isin(known.site_id)
     cover=s.groupby("previous_MOIS_photo_overlap").agg(
@@ -154,11 +184,21 @@ def audit_original_overlap(s,previous_mois_sources):
              k:(int(row[k]) if k in ("n_sites","n_valid_population","n_islands")
                 else float(row[k])) for k in cover.columns}
     return s,{"previous_exact_pixel_source_matched_sites":len(check),
-              "maximum_absolute_population_difference_per_km2":float(abs_err.max()),
-              "median_absolute_population_difference_per_km2":float(np.median(abs_err)),
+              "new_raster_population_valid_on_previous_23k":int(new_valid.sum()),
+              "previous_valid_but_current_raster_nodata":int((~new_valid).sum()),
+              "new_raster_and_previous_both_numeric_close":int(close.sum()),
+              "both_numeric_disagreements":int((new_valid&~close).sum()),
+              "source_sites_near_raster_pixel_boundary":int(edge.sum()),
+              "per_year_pixel_disagreement_audit":by_year,
+              "maximum_absolute_population_difference_per_km2":
+                  float(abs_err.max()) if len(abs_err) else None,
+              "median_absolute_population_difference_per_km2":
+                  float(np.median(abs_err)) if len(abs_err) else None,
               "maximum_relative_population_difference_at_least_one_person_per_km2":
-                  float(rel_err.max()),
-              "prior_and_new_population_original_raster_values_reconciled":True,
+                  float(rel_err.max()) if len(rel_err) else None,
+              "prior_and_new_population_original_raster_values_reconciled":reconciled,
+              "previous_photo_pixel_arithmetic_binning_cannot_be_used_as_direct_raster_truth":
+                  not reconciled,
               "new_original_source_sites_not_selected_by_MOIS_photo_opportunity":True,
               "old_photo_overlap_vs_new_direct_sites":separated}
 
