@@ -1,0 +1,21 @@
+{
+  "snapshot_objects": 10346,
+  "snapshot_rows": 3887364403,
+  "vascular_rows": 621820608,
+  "eligible_rows": 67105132,
+  "names": 126930,
+  "early_places": 1147705,
+  "repeat_places": 18588,
+  "events": 1608322,
+  "repeat_taxa": 156894,
+  "visits": 33416,
+  "strata": 64,
+  "eligible_visits": 351,
+  "hits": 6073,
+  "repeated": 2041,
+  "denominators": 128,
+  "pairs": 2041,
+  "species_in_raw_repeats": 2966,
+  "species_in_survey_repeats": 650,
+  "distinct_sampled_coordinates": 58
+}

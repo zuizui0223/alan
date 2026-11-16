@@ -1,0 +1,4 @@
+species,studysite,years,start,end,dn_min,dn_max,mean_gap,min_gap,max_gap,exact_gbif
+Plantago lanceolata,Bryanskiy Les_Plant_Loc-17,8,2004,2012,0.0,0.0,37.375,21.0,61.0,False
+Plantago lanceolata,Bryanskiy Les_Plant_Loc-25,7,2005,2011,0.0,0.0,38.857142857142854,24.0,61.0,False
+Plantago lanceolata,Sary-Chelekskij,6,2009,2014,0.0,0.0,28.666666666666668,9.0,56.0,False
