@@ -1,0 +1,132 @@
+name: ALAN full WorldPop annual source 703-species selfing climate replay
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-verified-full-worldpop-species:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 105
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Test full source and model import invariants
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 rasterio==1.4.3 pyproj==3.7.2
+          python -m py_compile scripts/analysis/alan_worldpop_full_77647_sites_20261116.py scripts/analysis/alan_species_full_worldpop_climate_20261116.py
+          python - <<'PY'
+          from scripts.analysis.alan_worldpop_full_77647_sites_20261116 import RASTERS
+          from scripts.analysis.alan_species_full_worldpop_climate_20261116 import ORIGINAL_N
+          assert ORIGINAL_N==77647==sum(v[2] for v in RASTERS.values())
+          assert sorted(RASTERS)==[2019,2021,2023,2024,2025]
+          print('ALAN_FULL_WORLDPOP_SPECIES_SOURCE_STATIC_TEST_PASS')
+          PY
+      - name: Restore annual original WorldPop population extracted directly at all photo sites
+        run: |
+          set -euo pipefail
+          mkdir -p fullannual verified
+          for yr in 2019 2021 2023 2024 2025; do
+            mkdir -p "fullannual/year${yr}"
+            gh run download 43788135191 --repo zuizui0223/alan \
+              --name "alan-original-full-photo-sites-WorldPop-UC-R2024B-${yr}-20261116" \
+              --dir "fullannual/year${yr}"
+            test -s "fullannual/year${yr}/source_receipt.json"
+            test -s "fullannual/year${yr}/worldpop_R2024B_UC_${yr}_original_ALAN_photo_sites.csv.gz"
+          done
+      - name: Restore source SHA-verified original 562-island PCNL photo cells and botanical flora
+        run: |
+          set -euo pipefail
+          mkdir -p original/pcnl original/globi original/flora_batches original/groups original/direct_traits
+          gh run download 42624285048 --repo zuizui0223/alan \
+            --name alan-full93m-actual-PCNL1992-2024-moth-positive-macro \
+            --dir original/pcnl
+          echo '440a8313d71168e0a4dfd2f41a7bef45623abb068b07e3282026f1c35dccbd2c  original/pcnl/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz' | sha256sum -c -
+          gh run download 41976552977 --repo zuizui0223/mois \
+            --name mois-ALAN-GloBI-stage2-actual-records-2019-2024-supported-source \
+            --dir original/globi
+          echo 'a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994  original/globi/GloBI_stage2_signed_extension.csv.gz' | sha256sum -c -
+          gh run download 42616279235 --repo zuizui0223/alan \
+            --pattern 'alan-93m-fullflora-moth-island-group-*' \
+            --dir original/flora_batches
+          test "$(find original/flora_batches -name 'allflora-island-group-??.sqlite' | wc -l)" -eq 16
+          test "$(find original/flora_batches -name 'allflora-island-group-??.json' | wc -l)" -eq 16
+          find original/flora_batches -name 'allflora-island-group-??.sqlite' -exec cp {} original/groups/ \;
+          find original/flora_batches -name 'allflora-island-group-??.json' -exec cp {} original/groups/ \;
+          gh run download 34191508045 --repo zuizui0223/island \
+            --name source-scale-batch-integration-34191508045 \
+            --dir original/direct_traits
+          echo '7e86170218814abe2845da9a0282aecfdc930819b9d0c439bae8df4a0679c577  original/direct_traits/direct_species_trait_ledger.csv.gz' | sha256sum -c -
+      - name: Recover original MOIS photographic overlap source ONLY for independent exact-pixel validation
+        run: |
+          set -euo pipefail
+          mkdir -p prior/mois_sites prior/mois2024 prior/mois2024pop prior/mois2025
+          gh run download 42337911536 --repo zuizui0223/mois \
+            --pattern 'mois-original-*-global-mainland-island-monthly-VIIRS-source-SHA' \
+            --dir prior/mois_sites
+          for yr in 2019 2021 2023; do
+            mkdir -p "prior/year${yr}"
+            gh run download 42338121269 --repo zuizui0223/mois \
+              --name "mois-original-${yr}-R2024B-UC-global-popdensity-photo-source" \
+              --dir "prior/year${yr}"
+          done
+          gh run download 42328567038 --repo zuizui0223/mois \
+            --name mois-global2024-rest62360-original-VIIRS-G2-all66456-source \
+            --dir prior/mois2024
+          echo '6e0a077d496e90848d05d043bffae57e4772519f4572a457221c5ef4da0fb813  prior/mois2024/result_rest2024/all2024_known_land_combined_values.csv' | sha256sum -c -
+          gh run download 42333953557 --repo zuizui0223/mois \
+            --name mois-2024-WorldPop-UC-R2024B-full-original-66456-population-source \
+            --dir prior/mois2024pop
+          echo 'a07af611836d215fb7997c7f574729df10787f5a7cc9bfa1b67bf5a831d613dc  prior/mois2024pop/2024_66k_UC_R2024B_fullcohort_values.csv' | sha256sum -c -
+          gh run download 42362981035 --repo zuizui0223/mois \
+            --name mois-2025-original73463-mainland-island-full-VIIRS-and-R2024B-UC-source \
+            --dir prior/mois2025
+      - name: Restore frozen original WorldClim 2.1 baseline climate without reinferring photo traits
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          mkdir -p climate
+          curl --fail --location --retry 3 --connect-timeout 20 --max-time 820 \
+            https://github.com/zuizui0223/fcp/releases/download/fcp-worldclim-2.1-10m-20260925/wc2.1_10m_bio.zip \
+            --output climate/wc2.1_10m_bio.zip
+          echo '00513224583665ec0f2f955a4ec252730c4deb2004cce9e793492a3f26df4dcf  climate/wc2.1_10m_bio.zip' | sha256sum -c -
+          unzip -q climate/wc2.1_10m_bio.zip \
+            wc2.1_10m_bio_1.tif wc2.1_10m_bio_12.tif wc2.1_10m_bio_15.tif -d climate/
+      - name: Verified direct original WorldPop rejoin and independently re-fitted 703 species light/pop/climate slopes
+        timeout-minutes: 62
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_species_full_worldpop_climate_20261116 \
+            --sites original/pcnl/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --globi original/globi/GloBI_stage2_signed_extension.csv.gz \
+            --groups original/groups \
+            --ledger original/direct_traits/direct_species_trait_ledger.csv.gz \
+            --annual_worldpop fullannual \
+            --prior_mois_sources prior \
+            --climate_root climate \
+            --out verified/alan_703_species_full_annual_worldpop_original_20261116.json
+          python - <<'PY'
+          import json
+          a=json.load(open('verified/alan_703_species_full_annual_worldpop_original_20261116.json'))
+          assert a['source']['original_alan_source_sites']==77647
+          assert a['worldpop_full_direct_source']['original_alan_source_photo_site_years']==77647
+          assert a['independent_prior_23k_pixel_original_replay']['previous_exact_pixel_source_matched_sites']==23018
+          assert a['independent_prior_23k_pixel_original_replay']['prior_and_new_population_original_raster_values_reconciled']
+          assert a['species_support']['original_fixed703']==703
+          assert a['limitations']['photo_species_nonrecord_not_true_species_absence']
+          print('ALAN_FULL_ORIGINAL_WORLDPOP_SPECIES_SOURCE_VERIFIED')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-full-original-worldpop-703species-popclim-20261116
+          path: verified/
+          if-no-files-found: warn
+          retention-days: 90
