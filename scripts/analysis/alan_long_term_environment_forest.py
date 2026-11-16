@@ -14,9 +14,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import GroupKFold
 
 
-def exposures(db,cache):
-    dates=db.sql("""select s.site,s.m,s.y,s.unit_id,g.longitude,g.latitude
-          from supported s join trend_months using(site,m) join geo g on g.site=s.site""").df()
+def environmental_months(dates,cache,built_end=2020):
     sites=dates.drop_duplicates("unit_id").set_index("unit_id")
     for var in ["air","prate"]:
         with xr.open_dataset(next(cache.glob(var+"*.nc"))) as dataset:
@@ -32,7 +30,7 @@ def exposures(db,cache):
             point_index=lookup.index.get_indexer(dates.unit_id)
             assert min(month_index)>=0 and min(point_index)>=0 and len(set(month_index))>200
             dates[var]=lookup.to_numpy()[point_index,month_index]
-    for yr in [1990,2020]:
+    for yr in [1990,built_end]:
         path=next(cache.glob(f"*E{yr}*.zip"))
         with ZipFile(path) as z:
             member=next(n for n in z.namelist() if n.lower().endswith(".tif"))
@@ -45,9 +43,16 @@ def exposures(db,cache):
         with rasterio.open(target) as src:
             x,y=Transformer.from_crs(4326,src.crs,always_xy=True).transform(sites.longitude,sites.latitude)
             sites[f"built{yr}"]=[float(v[0]) if not np.ma.is_masked(v[0]) else np.nan for v in src.sample(zip(x,y),masked=True)]
-    sites["built_change"]=(sites.built2020-sites.built1990)/3/1e4
+    sites["built_change"]=(sites[f"built{built_end}"]-sites.built1990)/((built_end-1990)/10)/1e4
     dates["built0"]=dates.unit_id.map(sites.built1990)/1e4
     dates["built_change"]=dates.unit_id.map(sites.built_change)
+    return dates
+
+
+def exposures(db,cache):
+    dates=db.sql("""select s.site,s.m,s.y,s.unit_id,g.longitude,g.latitude
+          from supported s join trend_months using(site,m) join geo g on g.site=s.site""").df()
+    dates=environmental_months(dates,cache)
     db.register("months_env",dates)
     return db.sql("""with mm as (select site,m,unit_id,10*regr_slope(air,y) as temp,
          864000*regr_slope(prate,y) as rain, avg(air) as temp0,86400*avg(prate) as rain0,

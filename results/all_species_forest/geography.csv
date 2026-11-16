@@ -1,0 +1,31 @@
+CONTINENT,ADMIN,island,coordinates
+Africa,South Africa,0,1
+Asia,Cyprus,1,1
+Europe,Austria,0,36
+Europe,Belgium,0,1379
+Europe,Denmark,0,368
+Europe,Denmark,1,215
+Europe,Finland,0,166
+Europe,Finland,1,5
+Europe,France,0,47
+Europe,France,1,1
+Europe,Germany,0,72
+Europe,Greece,1,4
+Europe,Isle of Man,1,13
+Europe,Italy,0,6
+Europe,Italy,1,4
+Europe,Netherlands,0,108
+Europe,Norway,0,6
+Europe,Portugal,0,4
+Europe,Spain,0,223
+Europe,Spain,1,2
+Europe,Sweden,0,38
+Europe,United Kingdom,1,2128
+North America,Costa Rica,0,1
+North America,United States of America,0,3
+Oceania,Australia,0,62
+Oceania,Australia,1,4
+Oceania,New Caledonia,1,1
+South America,Ecuador,0,1
+unassigned,unassigned,0,81
+unassigned,unassigned,1,380
