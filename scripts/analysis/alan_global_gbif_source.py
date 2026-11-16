@@ -14,7 +14,7 @@ SNAPSHOT="gbif-open-data-eu-central-1/occurrence/2026-11-01/occurrence.parquet"
 COLUMNS=["specieskey","species","datasetkey","basisofrecord","occurrencestatus","decimallatitude","decimallongitude",
          "coordinateuncertaintyinmeters","year","month","day","issue"]
 ACCEPT=["HUMAN_OBSERVATION","OBSERVATION","PRESERVED_SPECIMEN"]
-def scan(folder,workers,start,end):
+def scan(folder,workers,start,end,annual=False):
     folder.mkdir(exist_ok=True,parents=True)
     s3=fs.S3FileSystem(anonymous=True,region="eu-central-1",request_timeout=120,connect_timeout=20)
     objects=sorted(x.base_name for x in s3.get_file_info(fs.FileSelector(SNAPSHOT)) if x.base_name.isdigit())
@@ -36,6 +36,8 @@ def scan(folder,workers,start,end):
                         y=tab["year"]
                         mask=pc.or_(pc.and_(pc.greater_equal(y,1992),pc.less_equal(y,1999)),
                                     pc.and_(pc.greater_equal(y,2020),pc.less_equal(y,2024)))
+                        if annual:
+                            mask=pc.and_(pc.greater_equal(y,1992),pc.less_equal(y,2024))
                         def add(v):
                             nonlocal mask
                             mask=pc.and_(mask,v)
@@ -77,5 +79,6 @@ if __name__=="__main__":
     parser=argparse.ArgumentParser()
     parser.add_argument("folder",type=Path);parser.add_argument("--workers",type=int,default=12)
     parser.add_argument("--start",type=int,default=0);parser.add_argument("--end",type=int,default=None)
-    args=parser.parse_args();scan(args.folder,args.workers,args.start,args.end)
+    parser.add_argument("--annual", action="store_true")
+    args=parser.parse_args();scan(args.folder,args.workers,args.start,args.end,args.annual)
 
