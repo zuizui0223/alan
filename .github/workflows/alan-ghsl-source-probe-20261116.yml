@@ -1,0 +1,49 @@
+name: ALAN independent GHSL built-up surface source probe
+on:
+  push:
+    branches: [analysis/alan-builtup-negative-control-20261116]
+    paths:
+      - .github/workflows/alan-ghsl-source-probe-20261116.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ghsl-builtsource:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Discover European Commission GHSL original built-up 2015 and 2020 raster COG
+        run: |
+          set -euo pipefail
+          mkdir -p verified
+          aws --version
+          python - <<'PY'
+          import json,subprocess
+          prefix="s3://jrc-ghsl/ghs-built-s/"
+          commands=[
+            ["aws","s3","ls","--no-sign-request",prefix],
+            ["aws","s3","ls","--no-sign-request",prefix+"r2023a/"],
+          ]
+          result=[]
+          for args in commands:
+              z=subprocess.run(args,capture_output=True,text=True,timeout=90)
+              obj={"command":" ".join(args),"returncode":z.returncode,
+                   "stdout_last250":z.stdout[:16000],"stderr":z.stderr[:600]}
+              print("GHSL_SOURCE_DIRECTORY",json.dumps(obj),flush=True)
+              result.append(obj)
+          open("verified/ghsl_builtup_source_directory_probe.json","w").write(
+              json.dumps({"schema":"ALAN_GHSL_BUILT_S_AWS_open_public_source_probe_v1",
+                "source_arn":"arn:aws:s3:::jrc-ghsl/ghs-built-s",
+                "source_license":"CC BY 4.0; European Commission JRC",
+                "goal":"GHS-BUILT-S R2023A static 2015 and 2020 epoch built-up fraction, never plant light treatment",
+                "probes":result},indent=2)+"\n")
+          assert result[0]["returncode"]==0,"Official GHSL open AWS bucket list unavailable"
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-ghsl-r2023a-builtup-official-source-probe-20261116
+          path: verified/
+          if-no-files-found: warn
+          retention-days: 90
