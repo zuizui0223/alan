@@ -1,0 +1,3 @@
+plant,visitor,predator,guild,lat,lon,day,floral_dataset,diet_dataset,prey_stage,wet_site
+Allium schoenoprasum,Apis mellifera,Misumena vatia,spiders,42.89168721,-73.28794003,2023-05-31,globalbioticinteractions/inaturalist,globalbioticinteractions/inaturalist,,
+Allium schoenoprasum,Apis mellifera,Misumena vatia,spiders,42.89168721,-73.28794003,2023-05-31,globalbioticinteractions/inaturalist,globalbioticinteractions/inaturalist,adult,

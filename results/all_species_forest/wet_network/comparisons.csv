@@ -1,0 +1,17 @@
+metric,known,matched,strata,candidate_mean,reference_mean,difference,p
+wet_flower,25,22,10,0.4090909090909091,0.3554112554112554,0.05367965367965369,0.68625
+wet_aquatic_hoverfly,9,8,3,0.5,0.625,-0.125,0.9835
+bats,32,29,12,0.7586206896551724,0.7409090909090909,0.017711598746081567,0.85575
+amphibians,32,29,12,0.5517241379310345,0.5962904911180773,-0.044566353187042856,0.69375
+reptiles,32,29,12,0.5172413793103449,0.5992163009404388,-0.08197492163009397,0.42075
+dragonflies_damselflies,32,29,12,0.6896551724137931,0.8427899686520376,-0.15313479623824452,0.19125
+spiders,32,29,12,0.9655172413793104,0.9882445141065831,-0.02272727272727276,0.824
+wet_degree_adjusted_amphibians,9,5,3,0.4,0.6,-0.2,1.0
+wet_degree_adjusted_bats,9,5,3,1.0,0.8,0.2,1.0
+wet_degree_adjusted_birds,9,5,3,0.8,1.0,-0.2,1.0
+wet_degree_adjusted_dragonflies_damselflies,9,5,3,0.4,0.8,-0.4,0.50625
+wet_degree_adjusted_mantises,9,5,3,0.4,0.6,-0.2,1.0
+wet_degree_adjusted_other_animals,9,5,3,0.6,0.8,-0.2,1.0
+wet_degree_adjusted_other_insects,9,5,3,1.0,1.0,0.0,1.0
+wet_degree_adjusted_reptiles,9,5,3,0.4,0.6,-0.2,1.0
+wet_degree_adjusted_spiders,9,5,3,0.6,1.0,-0.4,0.32725
