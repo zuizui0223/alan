@@ -197,6 +197,8 @@ def audit_original_overlap(s,previous_mois_sources):
               "maximum_relative_population_difference_at_least_one_person_per_km2":
                   float(rel_err.max()) if len(rel_err) else None,
               "prior_and_new_population_original_raster_values_reconciled":reconciled,
+              "all_dual_valid_original_population_values_numerically_reconciled":
+                  bool(not (new_valid&~close).any()),
               "previous_photo_pixel_arithmetic_binning_cannot_be_used_as_direct_raster_truth":
                   not reconciled,
               "new_original_source_sites_not_selected_by_MOIS_photo_opportunity":True,
@@ -249,6 +251,12 @@ def run(site_file,globi,groups,ledger,annual_worldpop,
     primary_islands=20
     blocks_for_boot=[r for r in blocks if r["q"]["n_islands"]>=primary_islands]
     bootstrap=boot_islands(blocks_for_boot,climate.island.unique())
+    # The generic old helper names a photo-overlap condition that is FALSE
+    # for the newly sampled full ALAN source; correct metadata in final output.
+    bootstrap["island_resampling_conditional_on_MOIS_photo_pop_coverage"]=False
+    bootstrap["island_resampling_on_full_direct_WorldPop_ALAN_sites"]=True
+    if "ge10_species" in bootstrap:
+        bootstrap["ge20_species"]=bootstrap.pop("ge10_species")
     bootstrap["predeclared_min_independent_islands_for_bootstrap"]=primary_islands
     combined=output_summary(fits)
     groups=pd.DataFrame(fits)
