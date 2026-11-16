@@ -1,0 +1,232 @@
+{
+  "schema": "ALAN_true_published_day_night_reproductive_function_vs_urban_adjusted_species_photo_slope_20261116_v1",
+  "status": "SOURCE_AUTHENTIC_INDEPENDENT_DAYNIGHT_BOTANICAL_FUNCTION_GATED_SLOPE_DIAGNOSTIC",
+  "provenance": {
+    "original_author_source_repo": "https://github.com/liamkendall/bumble-bat",
+    "original_author_treatment_git_blob": "39a82d966afcdde670603add1c881ace8791ffe9",
+    "original_author_trait_git_blob": "18381e550a7e405fe4f198909f0bb381bbecf1e0",
+    "source_execution_run": "https://github.com/zuizui0223/alan/actions/runs/43793520159",
+    "source_artifact_id": 14192614324,
+    "source_artifact_zip_sha256": "f76e784276e28f38933658c8552699fbf21a2eecf7597aef502647078f1b92a6",
+    "GHSL_2015_source_SHA256": "149aa0fd8544922d904106a1acc52b9a1af213ce6671317beb8dda0fc479a3b6",
+    "all_original_source_and_result_validation_passed": true
+  },
+  "diel": {
+    "original_independent_daynight_original_reproductive_species": 134,
+    "exact_botanical_photo_species_matched": 52,
+    "night_higher_species": 27,
+    "day_higher_species": 25,
+    "observed_original_study_families": 30,
+    "observed_original_genera": 42,
+    "families_with_both_night_higher_and_day_higher": 6,
+    "genera_with_both_night_higher_and_day_higher": 3,
+    "source_species_with_available_perhour_exclusion": 39,
+    "perhour_source_class_discordant_from_unadjusted": 6,
+    "reproductive_published_source_not_ALAN_light_treatment": true,
+    "no_local_species_population_pollinator_identity": true
+  },
+  "support": {
+    "population_eligible_original_species_positive_rows": 17431,
+    "documented_candidates_with_at_least_one_photo": 49,
+    "documented_candidates_with_at_least_one_informative_island_year": 49,
+    "source_direct_diel_documented_plants": 52,
+    "estimated_plants": 39,
+    "night_higher_estimated": 20,
+    "day_higher_estimated": 19,
+    "nonestimable_source_reasons": {
+      "NO_INFORMATIVE_ISLAND_YEAR_FOR_PHOTOGRAPHED_PLANT": 3,
+      "INSUFFICIENT_SOURCE_POSITIVE_ISLAND_SUPPORT": 7,
+      "INSUFFICIENT_SOURCE_SITE_YEARS": 3
+    }
+  },
+  "groups": {
+    "all": {
+      "n_plants": 39,
+      "source_island_ge10": 22,
+      "source_island_ge20": 9,
+      "source_island_ge30": 4,
+      "published_source_families": 27,
+      "L_baseline_pp": {
+        "n": 39,
+        "mean": -0.20146936123777295,
+        "median": -0.425559376609977,
+        "q025": -5.3184690470936395,
+        "q25": -1.4651879503601668,
+        "q75": 1.0059011449757178,
+        "q975": 5.615910724726747
+      },
+      "L_built2015_pp": {
+        "n": 39,
+        "mean": -0.2618937359042142,
+        "median": -0.7815349875277137,
+        "q025": -5.813847850014676,
+        "q25": -1.570042990291653,
+        "q75": 0.835335262574673,
+        "q975": 6.435035676038634
+      },
+      "L_built2020_pp": {
+        "n": 39,
+        "mean": -0.2758485150139819,
+        "median": -0.7809195954806006,
+        "q025": -5.805494319416387,
+        "q25": -1.5722681405634504,
+        "q75": 0.8479075577849013,
+        "q975": 6.445200667357205
+      },
+      "built2015_pp_per_log_percent_built": {
+        "n": 39,
+        "mean": 0.3270780666335944,
+        "median": 0.36837090629358693,
+        "q025": -5.801203318413178,
+        "q25": -1.3710666747916274,
+        "q75": 2.21934836720136,
+        "q975": 6.290063758040923
+      },
+      "built2020_pp_per_log_percent_built": {
+        "n": 39,
+        "mean": 0.3513317951985493,
+        "median": 0.18351555728076854,
+        "q025": -5.812638442622677,
+        "q25": -1.4903309109868947,
+        "q75": 2.2011465570834177,
+        "q975": 6.7835257755468445
+      }
+    },
+    "published_night_repro_higher": {
+      "n_plants": 20,
+      "source_island_ge10": 9,
+      "source_island_ge20": 4,
+      "source_island_ge30": 2,
+      "published_source_families": 14,
+      "L_baseline_pp": {
+        "n": 20,
+        "mean": -0.8253323397016723,
+        "median": -0.7255956608481815,
+        "q025": -5.641847916694142,
+        "q25": -1.632967575810125,
+        "q75": 0.3023943098095499,
+        "q975": 2.981348272685382
+      },
+      "L_built2015_pp": {
+        "n": 20,
+        "mean": -1.0638334825586029,
+        "median": -0.861244281343384,
+        "q025": -5.825251820483367,
+        "q25": -2.060019502493568,
+        "q75": 0.3284767960968942,
+        "q975": 3.0924153542782844
+      },
+      "L_built2020_pp": {
+        "n": 20,
+        "mean": -1.1002677531403846,
+        "median": -0.8618944031931659,
+        "q025": -5.828841174500768,
+        "q25": -2.1277250796242924,
+        "q75": 0.34734470002873025,
+        "q975": 3.1582151980553466
+      },
+      "built2015_pp_per_log_percent_built": {
+        "n": 20,
+        "mean": 0.667680350619761,
+        "median": 0.6140212726352795,
+        "q025": -4.731224261113775,
+        "q25": -0.8681283858827803,
+        "q75": 2.5185081270310903,
+        "q975": 5.735793105125706
+      },
+      "built2020_pp_per_log_percent_built": {
+        "n": 20,
+        "mean": 0.7232438048919704,
+        "median": 0.7341724083716011,
+        "q025": -4.923218292359088,
+        "q25": -0.9408194416867335,
+        "q75": 2.48916433374792,
+        "q975": 6.48713878529983
+      }
+    },
+    "published_day_repro_higher": {
+      "n_plants": 19,
+      "source_island_ge10": 13,
+      "source_island_ge20": 5,
+      "source_island_ge30": 2,
+      "published_source_families": 17,
+      "L_baseline_pp": {
+        "n": 19,
+        "mean": 0.4552285108294896,
+        "median": -0.24048876895591265,
+        "q025": -4.142334088641048,
+        "q25": -0.9812322053915303,
+        "q75": 2.133581958592966,
+        "q975": 6.056218024438639
+      },
+      "L_built2015_pp": {
+        "n": 19,
+        "mean": 0.5822533658372476,
+        "median": -0.5527152091798039,
+        "q025": -4.107331240569762,
+        "q25": -1.4046443909987358,
+        "q75": 3.00062320418639,
+        "q975": 6.853508728629768
+      },
+      "L_built2020_pp": {
+        "n": 19,
+        "mean": 0.5919612093296001,
+        "median": -0.5449096363563352,
+        "q025": -4.149005664773476,
+        "q25": -1.3479716938643251,
+        "q75": 3.059871674922242,
+        "q975": 6.880538429735518
+      },
+      "built2015_pp_per_log_percent_built": {
+        "n": 19,
+        "mean": -0.03145065335184416,
+        "median": 0.1269762376376336,
+        "q025": -5.766865672481417,
+        "q25": -1.9448567972732955,
+        "q75": 1.823335651985894,
+        "q975": 6.248969782659385
+      },
+      "built2020_pp_per_log_percent_built": {
+        "n": 19,
+        "mean": -0.0401545307945253,
+        "median": 0.12932142165860738,
+        "q025": -5.743292661626183,
+        "q25": -1.9224979455974007,
+        "q75": 1.8920772884418342,
+        "q975": 6.303228993862035
+      }
+    },
+    "L_baseline_pp_night_minus_day": -1.2805608505311619,
+    "L_built2015_pp_night_minus_day": -1.6460868483958504,
+    "L_built2020_pp_night_minus_day": -1.6922289624699847,
+    "built2015_pp_per_log_percent_built_night_minus_day": 0.6991310039716052,
+    "built2020_pp_per_log_percent_built_night_minus_day": 0.7633983356864957
+  },
+  "bootstrap": {
+    "strict_source_support": "AT_LEAST_10_ISLANDS_PER_SPECIES",
+    "n_source_eligible": 22,
+    "n_night_higher": 9,
+    "n_day_higher": 13,
+    "bootstrap_species_per_guild_minimum": 8,
+    "status": "EXPLORATORY_SOURCE_DIEL_REPRO_FUNCTION_LIGHT_SLOPE_COMPARATOR",
+    "n_islands_resampled": 202,
+    "observed_night_minus_day_light_slope_pp": -0.36767167282612323,
+    "n_bootstrap_valid": 400,
+    "n_bootstrap_requested": 400,
+    "ci95_island_percentile_pp": [
+      -2.024990764711216,
+      1.3019368010302883
+    ],
+    "original_published_study_group_not_local_pollinator_service": true,
+    "no_causal_ALAN_or_moth_function_claim": true
+  },
+  "biological_limitations": {
+    "true_biological_night_moth_pollination_NOT_measured_at_photo_cells": true,
+    "no_ALAN_manipulated_source_fruit_seed_outcome": true,
+    "source_published_diel_function_studies_vs_photo_site_effects_nonmatched": true,
+    "smaller_nocturnal_species_could_be_confounded_by_taxonomic_group": true,
+    "no_robust_island_bootstrap_reproductive_syndrome_moderation": true,
+    "photorecord_not_biological_absence": true,
+    "no_restricted_species_x_location_data_exported": true
+  }
+}
