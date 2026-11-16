@@ -1,0 +1,91 @@
+name: ALAN JRC GHSL built-up 2015 and 2020 authentic source
+on:
+  push:
+    branches: [analysis/alan-builtup-negative-control-20261116]
+    paths:
+      - scripts/analysis/alan_ghsl_builtup_source_20261116.py
+      - .github/workflows/alan-ghsl-builtup-original-source-20261116.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  authentic-builtup:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    env:
+      GH_TOKEN: \${{ github.token }}
+      GDAL_CACHEMAX: '256'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install and validate independently sourced GHSL raster sampler
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 rasterio==1.4.3 pyproj==3.7.2
+          python -m py_compile scripts/analysis/alan_ghsl_builtup_source_20261116.py
+          python - <<'PY'
+          from scripts.analysis.alan_ghsl_builtup_source_20261116 import SOURCE,S3_PREFIX
+          assert sorted(SOURCE)==[2015,2020]
+          assert SOURCE[2015][1]==170932198 and SOURCE[2020][1]==173085842
+          assert S3_PREFIX.startswith("s3://jrc-ghsl/ghs-built-s/r2023a/")
+          print("ALAN_GHSL_OFFICIAL_SOURCE_SCHEMA_PASS")
+          PY
+      - name: Restore original authentic signed 77,647 ALAN photo-cell prior-PCNL sites
+        run: |
+          set -euo pipefail
+          mkdir -p original/pcnl original/ghsl verified
+          gh run download 42624285048 --repo zuizui0223/alan \
+            --name alan-full93m-actual-PCNL1992-2024-moth-positive-macro \
+            --dir original/pcnl
+          echo '440a8313d71168e0a4dfd2f41a7bef45623abb068b07e3282026f1c35dccbd2c  original/pcnl/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz' | sha256sum -c -
+      - name: Download authentic European Commission GHSL GHS-BUILT-S WGS84 30asec 2015 and 2020 via anonymous public S3
+        timeout-minutes: 34
+        run: |
+          set -euo pipefail
+          aws --version
+          for yr in 2015 2020; do
+            src="s3://jrc-ghsl/ghs-built-s/r2023a/4326/30asec/$yr/GHS_BUILT_S_E"$yr"_GLOBE_R2023A_4326_30ss_V1_0.tif"
+            dest="original/ghsl/GHS_BUILT_S_E"$yr"_GLOBE_R2023A_4326_30ss_V1_0.tif"
+            aws s3 cp --no-sign-request --only-show-errors "$src" "$dest"
+            test -s "$dest"
+          done
+          test "$(stat -c%s original/ghsl/GHS_BUILT_S_E2015_GLOBE_R2023A_4326_30ss_V1_0.tif)" -eq 170932198
+          test "$(stat -c%s original/ghsl/GHS_BUILT_S_E2020_GLOBE_R2023A_4326_30ss_V1_0.tif)" -eq 173085842
+          sha256sum original/ghsl/*.tif
+      - name: Sample official GHSL built-up at all original ALAN sites
+        timeout-minutes: 23
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_ghsl_builtup_source_20261116 \
+            --sites original/pcnl/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --ghsl_root original/ghsl --out verified/ghsl2015_2020
+          python - <<'PY'
+          import json,hashlib,pandas as pd
+          from pathlib import Path
+          p=Path("verified/ghsl2015_2020")
+          a=json.loads((p/"source_receipt.json").read_text())
+          f=p/"alan_77647_original_ghsl_build_2015_2020_source_sitevalues.csv.gz"
+          d=pd.read_csv(f)
+          assert a["original_ALAN_photo_site_years"]==len(d)==77647
+          assert d.site_id.is_unique
+          assert a["source_2015_independent_prior_urban_builtup"]
+          assert a["source_2020_sensitivity_only"]
+          assert hashlib.sha256(f.read_bytes()).hexdigest()==a["output_site_values_sha256"]
+          for yr in (2015,2020):
+            name=f"ghsl_built_{yr}_fraction"
+            assert a["source"][str(yr)]["status"]["valid"]==d[name].notna().sum()
+            assert d[name].dropna().between(0,1.1).all()
+          print("ALAN_AUTHENTIC_GHSL_PRIOR_BUILTUP_ORIGINAL_PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-ghsl-builtup-2015-2020-77647-original-20261116
+          path: verified/
+          if-no-files-found: warn
+          retention-days: 90
