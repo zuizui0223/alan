@@ -1,0 +1,17 @@
+radius_km,plant,site_years,sites,visit_years,sites_with_repeated_years,visitors,maintained_water_site_years,islands
+1,Crepis paludosa,1,1,1,0,1,0,1
+1,Epilobium hirsutum,16,7,6,4,6,5,7
+1,Erica tetralix,1,1,1,0,1,1,1
+1,Lythrum salicaria,1,1,1,0,1,0,1
+1,Solanum dulcamara,4,4,3,0,2,3,4
+1,Stachys palustris,17,6,7,3,6,3,6
+1,Succisa pratensis,16,6,5,5,7,2,6
+10,Crepis paludosa,1,1,1,0,1,0,1
+10,Epilobium hirsutum,101,69,7,16,12,27,69
+10,Erica tetralix,13,7,6,4,9,4,7
+10,Iris pseudacorus,2,2,1,0,1,0,2
+10,Lythrum salicaria,18,14,4,4,10,8,14
+10,Solanum dulcamara,21,13,5,5,3,9,13
+10,Stachys palustris,29,15,8,4,6,5,15
+10,Succisa pratensis,34,17,9,7,9,7,16
+10,Thalictrum flavum,5,3,2,2,2,1,3

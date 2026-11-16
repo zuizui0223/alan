@@ -8,6 +8,8 @@ from pathlib import Path
 from zipfile import ZipFile
 from io import BytesIO
 import hashlib
+import sys
+from tempfile import TemporaryDirectory
 
 import duckdb
 import numpy as np
@@ -19,8 +21,13 @@ repo = Path(__file__).resolve().parents[2]
 work = repo.parent
 cache = work / "gbif_annual"
 out = repo / "results/all_species_forest/wet_network"
+site_year_mode = "--site-years" in sys.argv
+if site_year_mode:
+    temporary = TemporaryDirectory()
+    output_root = out.parent
+    out = Path(temporary.name)
 out.mkdir(exist_ok=True)
-plants = pd.read_csv(out.parent / "wet_pollination/species.csv").set_index("sp")
+plants = pd.read_csv(repo / "results/all_species_forest" / "wet_pollination/species.csv").set_index("sp")
 assert len(plants) == 363 and plants.candidate.sum() == 58
 with ZipFile(work / "v011/wcvp.zip") as z:
     fields = ["taxon_name", "taxon_rank", "taxon_status", "plant_name_id", "accepted_plant_name_id"]
@@ -160,9 +167,14 @@ d["event_date"] = pd.to_datetime(dict(year=d.Year,month=d.Month,day=d.Date),erro
 e["event_date"] = e.Date
 keys = ["plant","visitor","Latitude","Longitude","event_date","archive","wet_site"]
 events = pd.concat([d[keys],e[keys]]).dropna(subset=["plant","visitor","Latitude","Longitude","event_date"]).drop_duplicates()
+db.register("events",events)
 db.execute("""create temp view dated_visits as select plant,partner,lat,lon,event_date,dataset,
     null::boolean as wet_site from floral union all select plant,visitor,Latitude,Longitude,event_date,
     archive,wet_site from events""")
+if site_year_mode:
+    from alan_wet_site_years import run
+    run(db,d,plants,work,output_root/"wet_site_years")
+    sys.exit(0)
 # Exact dated/located records from GloBI only. Identical georeferences can be shared study centroids.
 same = db.sql("""select distinct f.plant,f.partner as visitor,p.predator,p.guild,f.lat,f.lon,
     substr(f.event_date,1,10) as day,f.dataset as floral_dataset,p.dataset as diet_dataset,p.prey_stage,f.wet_site

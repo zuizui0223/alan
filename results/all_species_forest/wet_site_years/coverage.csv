@@ -1,0 +1,9 @@
+radius_km,scope,candidate,visit_species,visit_site_years,shared_site_years_any_prey,chain_species,chain_site_years
+1,any_habitat,True,7,32,0,0,0
+1,any_habitat,False,8,31,0,0,0
+1,confirmed_wet,True,0,0,0,0,0
+1,confirmed_wet,False,0,0,0,0,0
+10,any_habitat,True,9,145,0,0,0
+10,any_habitat,False,15,238,0,0,0
+10,confirmed_wet,True,0,0,0,0,0
+10,confirmed_wet,False,0,0,0,0,0
