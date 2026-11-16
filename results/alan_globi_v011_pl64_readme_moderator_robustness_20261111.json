@@ -1,0 +1,213 @@
+{
+  "schema": "ALAN_2019_2025_GloBI_v011_README_PL64_moderator_same_original_sites_v1",
+  "status": "actually_executed_on_original_SHA_verified_photo_WCVP_VIIRS_population_and_GloBI_legacy_source; independent_GitHub_replay_workflow_added",
+  "provenance": {
+    "source_branch_parent_commit": "ff069a160400588b8d6134c48b5481729d75eb9a",
+    "original_canonical_photo_SHA256": "f033661d76e07898a5c13199a55c5d0ce6e55353daa48b0058c456979e90644c",
+    "original_WCVP_resolution_SHA256": "dc5bb0e3686fde0cfd327e4336245d0ceae3c7657b3bd12841bb814cc94d1eb2",
+    "original_WCVP_accepted_sha256": "9cd6aa7ca29f00c64283bcc08dcb778e212b644b837e64070051339b11d8b7b3",
+    "legacy_GloBI_61967_SHA256": "a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994",
+    "full_GloBI_v011_interpreted_source_sha256": "670c34b667f0a13d2bfd99edf7a3aa1518b92fa5493614f9dbbcaa0c6821e0c3",
+    "original_PL64_traits_Git_blob_sha": "453b6d78d9898ec655c1a995851b29bbd0c5f055",
+    "updated_v011_taxon_flag_Git_blob_sha": "9c57eca4c2b7685a3cacf255e20f057998c10cfc",
+    "original_trait_source": "results/moth_pollen_evidence/shared_544_evidence.csv",
+    "updated_flag_source": "results/globi_v011_fiveyear/source_moth_species.csv",
+    "original_result": "results/mating_light_contrasts/contrasts.csv",
+    "analysis_code": "scripts/analysis/alan_globi_v011_pl64_evidence_robustness.py"
+  },
+  "design": {
+    "years": [
+      2019,
+      2021,
+      2023,
+      2024,
+      2025
+    ],
+    "all_shared_geographic_sites_years": 10698,
+    "island_site_years": 933,
+    "mainland_site_years": 9765,
+    "distinct_5degree_geographic_blocks": 78,
+    "observed_year_by_region_blocks": 195,
+    "satellite": "original same-year VIIRS January April July October sampled radiance, at least three valid months",
+    "predictor": "published experimental GloPL plant-median log reproductive-output ratio",
+    "response": "percent source-photographed accepted plant species in original photo 0.05degree cell×year, species-specifically weighted using centered GloPL trait; NOT local effective moth pollination",
+    "nuisance": "population, photograph effort, observed distinct accepted plant species, BIO5 temperature, rainfall, elevation, original observation year×5degree geography fixed effects",
+    "WLS": "equal total island and mainland source weight within each observed year and 5degree geographic block; 5degree geographic clustered CR1 nominal tCI"
+  },
+  "exact_old_model_reproduction": {
+    "moth_positive_legacy_v0_broad_beta": -1.9017206220555924,
+    "CI95": [
+      -3.7058390326110366,
+      -0.09760221150014825
+    ],
+    "nominal_p": 0.03909606216003155,
+    "original_README_PL64_beta": -0.01938004575601668,
+    "original_README_PL64_CI95": [
+      -0.03822531653210296,
+      -0.0005347749799303955
+    ],
+    "original_README_PL64_p": 0.043993409104236464,
+    "identity_verified_tolerance": 1e-9
+  },
+  "population_support": {
+    "full_original_PL64": {
+      "species": 64,
+      "island_positive_site_years": 125,
+      "mainland_positive_site_years": 778,
+      "blocks_with_positive_both_classes": 25
+    },
+    "v011_moth_documented_PL30": {
+      "species": 30,
+      "island_positive_site_years": 72,
+      "mainland_positive_site_years": 318,
+      "blocks_with_positive_both_classes": 19
+    },
+    "v011_moth_not_documented_PL34": {
+      "species": 34,
+      "island_positive_site_years": 60,
+      "mainland_positive_site_years": 499,
+      "blocks_with_positive_both_classes": 15
+    },
+    "original_reviewed_pollen_carriage_PL17": {
+      "species": 17,
+      "island_positive_site_years": 43,
+      "mainland_positive_site_years": 290,
+      "blocks_with_positive_both_classes": 14
+    }
+  },
+  "actual_model_estimates": [
+    {
+      "cohort": "PL64 original all",
+      "n_species": 64,
+      "beta": -0.01938004575601668,
+      "CI95": [
+        -0.03822531653210296,
+        -0.0005347749799303955
+      ],
+      "p_nominal": 0.043993409104236464
+    },
+    {
+      "cohort": "GloBI v0.11 moth positive",
+      "n_species": 30,
+      "beta": -0.009164462003417938,
+      "CI95": [
+        -0.034874346700498104,
+        0.016545422693662232
+      ],
+      "p_nominal": 0.4799746115289204
+    },
+    {
+      "cohort": "GloBI v0.11 no positive record NOT biologically moth-absent",
+      "n_species": 34,
+      "beta": -0.01940099934220656,
+      "CI95": [
+        -0.042895676131509734,
+        0.004093677447096614
+      ],
+      "p_nominal": 0.10419099881550134
+    },
+    {
+      "cohort": "DIRECT 30 documented minus 34 undocumented PL moderation slopes",
+      "n_species": 64,
+      "beta": 0.01023653733878865,
+      "CI95": [
+        -0.02565752117580278,
+        0.046130595853380085
+      ],
+      "p_nominal": 0.5717680766333565
+    },
+    {
+      "cohort": "legacy old 54 with unique WCVP accepted name",
+      "n_species": 54,
+      "beta": -0.022039980825380955,
+      "CI95": [
+        -0.04327997760983335,
+        -0.0007999840409285593
+      ],
+      "p_nominal": 0.04216751156726354
+    },
+    {
+      "cohort": "independently reviewed moth pollen carriage positive",
+      "n_species": 17,
+      "beta": -0.02290808724361611,
+      "CI95": [
+        -0.06612652295682274,
+        0.020310348469590515
+      ],
+      "p_nominal": 0.2945101877678498
+    },
+    {
+      "cohort": "v0.11 documented AND reviewed moth pollen carriage positive",
+      "n_species": 8,
+      "beta": -0.013447923153175844,
+      "CI95": [
+        -0.043134032832909036,
+        0.01623818652655735
+      ],
+      "p_nominal": 0.3698454876960135
+    },
+    {
+      "cohort": "original PL64 exclude 5 taxa with absolute PL log-response >2",
+      "n_species": 59,
+      "beta": 0.0064347520469580175,
+      "CI95": [
+        -0.0227513307675883,
+        0.03562083486150433
+      ],
+      "p_nominal": 0.6618776740036513
+    },
+    {
+      "cohort": "v0.11 PL30 exclude 1 taxon with absolute PL log-response >2",
+      "n_species": 29,
+      "beta": 0.004811847750143006,
+      "CI95": [
+        -0.04673330068358408,
+        0.056356996183870085
+      ],
+      "p_nominal": 0.8530215964983966
+    }
+  ],
+  "leave_one_species_out": {
+    "original64": {
+      "n_deletions": 64,
+      "negative_beta_in_all": 64,
+      "range_beta": [
+        -0.022921436891422817,
+        -0.009675521644241618
+      ],
+      "nominal_CIs_excluding_zero": 56,
+      "least_negative_after_omit": "Asclepias syriaca"
+    },
+    "updated30": {
+      "n_deletions": 30,
+      "all_negative": false,
+      "range_beta": [
+        -0.018027106286483883,
+        0.004811847750143006
+      ],
+      "nominal_CIs_excluding_zero": 0,
+      "least_negative_after_omit": "Lotus corniculatus"
+    },
+    "reviewed17": {
+      "n_deletions": 17,
+      "negative_beta_in_all": 17,
+      "range_beta": [
+        -0.02974240374448937,
+        -0.003596024821021709
+      ],
+      "nominal_CIs_excluding_zero": 0
+    }
+  },
+  "scientific_limitations": {
+    "updated_moth_positive_label_is_worldwide_documented_not_local_effective_moth_pollination": true,
+    "no_positive_record_is_not_verified_local_or_biological_absence": true,
+    "GloPL_species_median_from_published_external_experiment_not_current_photo_site": true,
+    "nonrandom_photo_platform_recording_and_horticulture_remain": true,
+    "multiple_overlapping_exploratory_tests_uncorrected": true,
+    "no_demonstrated_moth_specific_ALAN_effect": true,
+    "no_verified_local_pollen_limitation_ALAN_causality": true,
+    "old_primary_PL_Holm_two_tests_p": 0.08798681820847415,
+    "updated30_absent_outcomes_should_not_be_interpreted_as_proven_zero": true,
+    "data_processing_released_without_individual_georeferenced_photo_source": true
+  }
+}

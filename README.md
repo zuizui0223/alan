@@ -2,6 +2,9 @@
 
 **Research home for the ALAN × island/mainland floral-colour project, migrated from [MOIS](https://github.com/zuizui0223/mois) on 2026-11-08.** MOIS is reserved for global floral colour × moisture.
 
+**GloBI v0.11での花粉制限感度検証（2026-11-11、再解析完了）**　上記64種の元結果β=−0.01938［−0.03823,−0.00053］を、署名済み元写真・WCVP・VIIRSから元の10,698地点年で正確に再現した。その64種のうち完全版v0.11でも蛾の訪花陽性記録が確認できるのは30種であり、この30種の花粉制限による島−本土の夜間光勾配差は **β=−0.00916［−0.03487,+0.01655］、名目p=0.480**。陽性記録がない34種との直接的な勾配係数差は **+0.01024［−0.02566,+0.04613］、p=0.572**。旧64種で花粉制限絶対値2超の5種を外すとβ=+0.00643（p=0.662）。既存の肯定的結果は**元データで実在するが、訪花記録源と植物の選択に敏感な探索的関連**であり、蛾特異的な光害の花粉制限・有効送粉の因果機構は未確認。[本結果と機構上の限界](docs/ALAN_GLOBI_V011_README_PL64_REANALYSIS_20261111.md)・[集計と全感度検証](results/alan_globi_v011_pl64_readme_moderator_robustness_20261111.json)・[元データGitHub Actions再現成功](https://github.com/zuizui0223/alan/actions/runs/43035011697)。
+
+
 ## Central question
 
 Does the spatial association of artificial light at night (ALAN; VIIRS upward radiance) with the *photographed flower-region white-colour fraction* differ between island and mainland sites?
