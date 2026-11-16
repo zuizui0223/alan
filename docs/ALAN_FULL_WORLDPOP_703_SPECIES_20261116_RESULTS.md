@@ -87,6 +87,7 @@
 - 全5年WorldPopの再連結、旧23,018との点照合、703種全体の人口＋気候条件モデル：`scripts/analysis/alan_species_full_worldpop_climate_20261116.py`
 - 元写真・分類／自殖原本・独立人口源：前PR #79–82の元ファイルSHAを引き継ぐ
 - [オリジナル各年GeoTIFF抽出 SUCCESS #43788135191](https://github.com/zuizui0223/alan/actions/runs/43788135191)
-- [703種の再推定と400回島ブートストラップ成功 #43789652392](https://github.com/zuizui0223/alan/actions/runs/43789652392)（修正前の汎用ブートストラップ関数の出力欄に「MOIS写真に条件づけられる」と残る表記のみ不適切。全地点直接抽出であることを後続で明示訂正）
+- **[最終703種の再推定と400回島ブートストラップ SUCCESS #43789998623](https://github.com/zuizui0223/alan/actions/runs/43789998623)**。Artifact **14192440159**、ZIP SHA256 **b5fad9720a8e53d078e5f11c3dc932e24278a26c285b4344cc17bc444a9c8cd5**。元の汎用コード由来の「MOIS写真重複に条件づけた島サンプリング」という不適切なメタ情報を **false** に訂正し、全ALAN地点からの独立直接WorldPop抽出を **true** として原本から再実行成功。
+- [元データ検証済み集計JSON](../results/alan_full_worldpop_703species_population_climate_20261116_verified_aggregate.json)。数値・取得率・元ラスタSHA・源人口のNoDataと真0・703種傾き・305種島再標本化の区間と制限を一括保存。
 
 解析数値は実行ログと署名済みActions artifactから取得。属・種の制限付き原資料や位置付き形質値はリポに再配布せず、集計値だけを公開。
