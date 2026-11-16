@@ -95,7 +95,21 @@ def source_annual_population(all_sites,annual_dir):
     require(s.population_status.notna().all(),"Raw year extraction failed to cover one or more source sites")
     s["pop_density"]=s.population_density_per_km2
     status=s.population_status.value_counts().to_dict()
+    status_by_selection=s.groupby("population_status").agg(
+        source_site_years=("site_id","size"),
+        distinct_islands=("island","nunique"),
+        median_preexisting_light=("pcnl_1992_to_previous_year_mean_log1p","median"),
+        median_plant_observation_effort=("all_accepted_observation_uuids","median"),
+    )
+    strata={
+      str(k):{"site_years":int(v.source_site_years),
+              "islands":int(v.distinct_islands),
+              "median_historical_logPCNL":float(v.median_preexisting_light),
+              "median_original_plant_photo_effort":float(v.median_plant_observation_effort)}
+      for k,v in status_by_selection.iterrows()
+    }
     return s,{"annual_original_worldpop_source":annual,
+              "WorldPop_original_NODATA_selection_bias_source_diagnostic":strata,
               "original_alan_source_photo_site_years":len(s),
               "original_alan_islands":int(s.island.nunique()),
               "source_population_status_counts":{k:int(v) for k,v in status.items()},
