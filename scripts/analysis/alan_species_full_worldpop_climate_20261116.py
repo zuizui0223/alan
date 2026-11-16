@@ -28,7 +28,7 @@ from scripts.analysis.alan_real_genus_prevalence_bias_20261110 import (
 from scripts.analysis.alan_direct_selfing_portfolio_mothstudy_ALAN_20261113 import direct_plant_traits
 from scripts.analysis.alan_species_effortadjusted_firststage_20261115 import prepare_support, percentile
 from scripts.analysis.alan_species_worldpop_conditional_20261115 import (
-    within_year_island_photo_design, candidate_species_photo_support
+    within_year_island_photo_design, candidate_species_photo_support, fit_species
 )
 from scripts.analysis.alan_species_worldclim_population_20261115 import (
     matching_climate_gradient, fit_five, output_summary, boot_islands
@@ -177,6 +177,10 @@ def run(site_file,globi,groups,ledger,annual_worldpop,
             fail[why]=fail.get(why,0)+1
             continue
         q,islands,aa,bb=res
+        old,old_reason=fit_species(climate,ids[sp],strata[sp])
+        require(old_reason is None,"Previously supported light+effort same-source baseline became unavailable")
+        oldfit,*_=old
+        q["beta_L_effort_only_pp"]=oldfit["beta_L_without_population_pp"]
         aut=str(original_labels[sp])
         fits.append({**q,"autonomy":aut})
         blocks.append({"q":q,"autonomy":aut,"islands":islands,
@@ -192,6 +196,13 @@ def run(site_file,globi,groups,ledger,annual_worldpop,
     blocks_for_boot=[r for r in blocks if r["q"]["n_islands"]>=primary_islands]
     bootstrap=boot_islands(blocks_for_boot,climate.island.unique())
     bootstrap["predeclared_min_independent_islands_for_bootstrap"]=primary_islands
+    combined=output_summary(fits)
+    groups=pd.DataFrame(fits)
+    combined["same_sample_light_effort_only_autonomous_minus_absent_pp"]=float(
+         groups.loc[groups.autonomy.eq("autonomous"),"beta_L_effort_only_pp"].mean()-
+         groups.loc[groups.autonomy.eq("absent"),"beta_L_effort_only_pp"].mean())
+    combined["same_sample_light_effort_only_species_slope_pp"]=percentile(
+         groups.beta_L_effort_only_pp)
     report={
        "schema":"ALAN_703_autonomy_species_FULL_annual_WorldPop_WorldClim_original_sites_v1",
        "status":"ORIGINAL_SOURCE_FULL_SITE_WORLDPOP_PLUS_STATIC_WORLDCLIM_EXPLORATORY",
@@ -218,7 +229,7 @@ def run(site_file,globi,groups,ledger,annual_worldpop,
           "20plus_autonomous":int(sum(x["autonomy"]=="autonomous" for x in blocks_for_boot)),
           "20plus_absent":int(sum(x["autonomy"]=="absent" for x in blocks_for_boot))
        },
-       "same_cohort_model_comparison":output_summary(fits),
+       "same_cohort_model_comparison":combined,
        "whole_island_bootstrap":bootstrap,
        "limitations":{
           "source_population_direct_not_MOIS_photo_overlap":True,
