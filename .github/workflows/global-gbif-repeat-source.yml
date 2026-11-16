@@ -1,0 +1,62 @@
+name: Global GBIF vascular plant repeat-site source
+on:
+  push:
+    branches: [analysis/global-gbif-repeat-light-20261116]
+    paths: ['.github/workflows/global-gbif-repeat-source.yml']
+permissions:
+  contents: read
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 16
+      matrix:
+        shard: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip -q install pyarrow numpy
+      - name: Read disjoint source objects and encrypt private research cache
+        env:
+          SHARD: ${{ matrix.shard }}
+        run: |
+          set -euo pipefail
+          python scripts/analysis/alan_global_gbif_source.py cache --workers 6 --start "$((SHARD * 324))" --end "$(((SHARD + 1) * 324))"
+          cat > receiver.pem <<'PEM'
+          -----BEGIN CERTIFICATE-----
+          MIIEITCCAomgAwIBAgIUF+XWcj4rEkZ8DMW8ejE7FWw9TDwwDQYJKoZIhvcNAQEL
+          BQAwIDEeMBwGA1UEAwwVQUxBTiBsb2NhbCBHQklGIGNhY2hlMB4XDTI2MTExNjA1
+          MTExMFoXDTI3MDExNTA1MTExMFowIDEeMBwGA1UEAwwVQUxBTiBsb2NhbCBHQklG
+          IGNhY2hlMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA1qvCNj4TXVgI
+          t0AQOlfgyhDbMt27ItBO6bjU+fY2XOsU2GdUqXLf3bztFiYFGXgJ2tyZLOvYbuZk
+          R4ENKyOMzSUg4WdtM2+hJKePZe0xnJuEzZCZsZvOthGKskZSYjvtzl2AoOW+vU4f
+          jt9ZT93BRW7Rb6CL6xixsgSQw92DNz3Bdb2woj+R8xJwiYGheuAW4rJSVJiwqyyN
+          /pSsCDf6KP5ILmIv1FDlcj1G5vN6rG8aKlTjnkpCgJEH6yBXP/CAAaIfgEy6kokc
+          +MA6eWH8+PmNtj6ySalRCaOuxVbhgMsRCeBLg2R7pL6scvekCpmMjA5+QdKdM9KC
+          p8Rpo8y5qcOZff2RUvmiBkIqAFsfcsvSRi6YOLFBGIc9aZBxt7Ckq4f9tfO2RRq5
+          Gg8fjmNdv5kupylyVlClOmpdW2dVTwbr4F40mbio1wtoXxXb66SdlZfQshC8u1hx
+          5AHtUA6P0X+lDB6i1vYBmVEPjEIDtL7lFaH2apq3mSJzgqdigufhAgMBAAGjUzBR
+          MB0GA1UdDgQWBBR3mdqOWCjhrpLedODTof1CmN1UrDAfBgNVHSMEGDAWgBR3mdqO
+          WCjhrpLedODTof1CmN1UrDAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUA
+          A4IBgQBtjLhj3DHmrlW56Cin4ZBKosyjw4/AoV7I0m+k0ONZG4J/NA/vSaHyR2dl
+          3qCpr9usVDWLft9BJRe6QS1m102dPedzoW15BDeqIcsDs23PXrdcUrCM1PuRmYzY
+          GOVI47+Vdmmy6nCqdcGN+M6Mz3c9VM0f9ojPanYBvrJZcVZ1Dx//XvDUFulbpKUw
+          ZlLKQAuWSTfOn0M2cKrZYiSHjWS74nu8xGx6v+aBtHGvzXWhg5F/pOnk5w1Ky3d1
+          xykdl/Lc9dr/vWa9BoJr4QzeIAlbjH2LnPKW05Yh5waBORyP5AGi4/8FXfFen+At
+          aPiup469EkSw8MCr+pKLDmD2z9GnN3OU/Hd3qpuGh9lHC2nH5WKmoCoFw9TkSZ4u
+          ONs/VkX9Vi0dYGf3d9Lw4nroC8rY+Z95fYqANa1MvgENlnHvH01zV8JfnMHCDzLM
+          TYLtFB6QHLZKuI9lkwQ8Vfq1QmFvfCdTCvxgUbZ16sBSQyxDUWoB8SzsC3YnXQbT
+          3FY06no=
+          -----END CERTIFICATE-----
+          PEM
+          tar -C cache -cf - . | openssl cms -encrypt -binary -aes-256-cbc -stream -outform DER -out "part-${SHARD}.cms" receiver.pem
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gbif-source-${{ matrix.shard }}
+          path: part-*.cms
+          retention-days: 3
+          compression-level: 0
