@@ -108,4 +108,3 @@ def run(cache,out):
     if len(hits):print(hits.nsmallest(10,"q_joint")[["species","slope","bright_change","q_joint"]].to_string(index=False))
 
 if __name__=="__main__":run(*map(Path,sys.argv[1:3]))
-

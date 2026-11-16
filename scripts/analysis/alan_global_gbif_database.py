@@ -50,4 +50,3 @@ totals["species_in_survey_repeats"]=int(taxa.survey_sites.gt(0).sum())
 totals["distinct_sampled_coordinates"]=db.execute("select count(*) from (select distinct decimallatitude,decimallongitude from repeat_places semi join repeated using(site))").fetchone()[0]
 (out/"coverage.json").write_text(json.dumps(totals,indent=2))
 db.execute("checkpoint")
-
