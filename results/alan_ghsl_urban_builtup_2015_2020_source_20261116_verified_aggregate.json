@@ -1,0 +1,79 @@
+{
+  "schema": "ALAN_GHSL_2015_2020_original_source_77k_aggregate_v1",
+  "status": "SIGNED_DIRECT_JRC_SOURCE_VERIFIED_SUCCESS",
+  "actions_run": "https://github.com/zuizui0223/alan/actions/runs/43792162862",
+  "artifact_id": 14192987595,
+  "artifact_zip_sha256": "7fd0310f98018727a82174981d113493ecf6620847edc7c5b4ad77d80370ec86",
+  "source": {
+    "2015": {
+      "official_s3_key": "s3://jrc-ghsl/ghs-built-s/r2023a/4326/30asec/2015/GHS_BUILT_S_E2015_GLOBE_R2023A_4326_30ss_V1_0.tif",
+      "original_source_byte_count": 170932198,
+      "sha256_original_unmodified_tif": "149aa0fd8544922d904106a1acc52b9a1af213ce6671317beb8dda0fc479a3b6",
+      "native_units": "square metres built-up surface per WGS84 30arcsec pixel",
+      "fraction_calculation": "built area m² / exact native 30arcsec WGS84 geodesic pixel m²",
+      "status": {
+        "valid": 77647,
+        "zero_built_area": 29238,
+        "nodata": 0,
+        "outside": 0,
+        "invalid": 0,
+        "fraction_over_1": 0,
+        "max_native_fraction": 0.65314228526882,
+        "raster_block_shape": [
+          512,
+          512
+        ]
+      },
+      "raster": {
+        "crs": "EPSG:4326",
+        "width": 43201,
+        "height": 21384,
+        "resolution": [
+          0.00833333330032682,
+          0.008333333299795073
+        ],
+        "nodata": null
+      },
+      "epoch_2020_is_future_for_2019_photo_year": false
+    },
+    "2020": {
+      "official_s3_key": "s3://jrc-ghsl/ghs-built-s/r2023a/4326/30asec/2020/GHS_BUILT_S_E2020_GLOBE_R2023A_4326_30ss_V1_0.tif",
+      "original_source_byte_count": 173085842,
+      "sha256_original_unmodified_tif": "c622f77878056a29f41496a0d8412bf381f4501c546ef07e7d5a76696cefbc5b",
+      "native_units": "square metres built-up surface per WGS84 30arcsec pixel",
+      "fraction_calculation": "built area m² / exact native 30arcsec WGS84 geodesic pixel m²",
+      "status": {
+        "valid": 77647,
+        "zero_built_area": 29117,
+        "nodata": 0,
+        "outside": 0,
+        "invalid": 0,
+        "fraction_over_1": 0,
+        "max_native_fraction": 0.6590721712808881,
+        "raster_block_shape": [
+          512,
+          512
+        ]
+      },
+      "raster": {
+        "crs": "EPSG:4326",
+        "width": 43201,
+        "height": 21384,
+        "resolution": [
+          0.00833333330032682,
+          0.008333333299795073
+        ],
+        "nodata": null
+      },
+      "epoch_2020_is_future_for_2019_photo_year": true
+    },
+    "ALAN_sites": 77647,
+    "combined_epochs": {
+      "site_years_with_both_epochs": 77647,
+      "2020_lower_built_fraction_than_2015": 0,
+      "2015_and_2020_source_values_do_not_imply_actual_light_year": true
+    },
+    "output_SHA": "9850bbfc8d3902c3722a7e8c9104a4aeffe9d77436aa105e675d3a60d74fceb2"
+  },
+  "no_species_location_rows_in_repo": true
+}
