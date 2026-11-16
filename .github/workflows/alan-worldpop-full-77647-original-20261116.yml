@@ -1,0 +1,109 @@
+name: ALAN original full 77647 photo sites WorldPop annual pixels
+on:
+  push:
+    branches: [analysis/alan-worldpop-full-island-photo-sites-20261116]
+    paths:
+      - scripts/analysis/alan_worldpop_full_77647_sites_20261116.py
+      - .github/workflows/alan-worldpop-full-77647-original-20261116.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  annual-worldpop:
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        year: [2019, 2021, 2023, 2024, 2025]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 48
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Validate known source raster identities and numerical methods
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 rasterio==1.4.3 pyproj==3.7.2
+          python -m py_compile scripts/analysis/alan_worldpop_full_77647_sites_20261116.py
+          python - <<'PY'
+          from scripts.analysis.alan_worldpop_full_77647_sites_20261116 import RASTERS
+          assert sorted(RASTERS)==[2019,2021,2023,2024,2025]
+          assert sum(v[2] for v in RASTERS.values())==77647
+          assert all(len(v[0])==64 and v[1]>800000000 for v in RASTERS.values())
+          print('ALAN_WORLDPOP_ORIGINAL_YEAR_SOURCE_FREEZE_PASS')
+          PY
+      - name: Restore original source-verified ALAN 1992 to previous-year light photo sites
+        run: |
+          set -euo pipefail
+          mkdir -p original raster verified
+          gh run download 42624285048 --repo zuizui0223/alan \
+            --name alan-full93m-actual-PCNL1992-2024-moth-positive-macro \
+            --dir original
+          echo '440a8313d71168e0a4dfd2f41a7bef45623abb068b07e3282026f1c35dccbd2c  original/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz' | sha256sum -c -
+      - name: Restore official entire WorldPop Global2 R2024B unconstrained observation-year grid
+        timeout-minutes: 29
+        run: |
+          set -euo pipefail
+          yr=${{ matrix.year }}
+          dest=raster/global_pop_${yr}_UC_1km_R2024B_v1.tif
+          curl --fail --location --show-error --silent --retry 2 --retry-delay 4 \
+             --connect-timeout 25 --speed-time 120 --speed-limit 1024 \
+             --max-time 1660 \
+             "https://worldpop-public-data.soton.ac.uk/GIS/Population/Global_2015_2030/R2024B/${yr}/0_Mosaicked/v1/1km/unconstrained/global_pop_${yr}_UC_1km_R2024B_v1.tif" \
+             --output "$dest"
+          python - <<'PY'
+          import os,hashlib
+          from pathlib import Path
+          from scripts.analysis.alan_worldpop_full_77647_sites_20261116 import RASTERS,file_sha256
+          year=int(os.environ["YEAR"])
+          f=Path(f"raster/global_pop_{year}_UC_1km_R2024B_v1.tif")
+          expected=RASTERS[year]
+          assert f.stat().st_size==expected[1],(f.stat().st_size,expected[1])
+          assert file_sha256(f)==expected[0],"WorldPop original raster SHA mismatch"
+          print("ALAN_WORLDPOP_R2024B_OFFICIAL_SOURCE_SHA_PASS",year,expected[0],flush=True)
+          PY
+        env:
+          YEAR: ${{ matrix.year }}
+      - name: Extract every frozen ALAN site in original observation year with no MOIS photo matching
+        timeout-minutes: 14
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_worldpop_full_77647_sites_20261116 \
+            --sites original/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --raster raster/global_pop_${{ matrix.year }}_UC_1km_R2024B_v1.tif \
+            --year ${{ matrix.year }} \
+            --out verified/year_${{ matrix.year }}
+          python - <<'PY'
+          import os,json,pandas as pd,hashlib
+          from pathlib import Path
+          from scripts.analysis.alan_worldpop_full_77647_sites_20261116 import RASTERS,file_sha256
+          y=int(os.environ["YEAR"])
+          p=Path(f"verified/year_{y}")
+          r=json.loads((p/"source_receipt.json").read_text())
+          d=pd.read_csv(p/f"worldpop_R2024B_UC_{y}_original_ALAN_photo_sites.csv.gz")
+          assert r["photo_site_source_SHA256"]=="440a8313d71168e0a4dfd2f41a7bef45623abb068b07e3282026f1c35dccbd2c"
+          assert r["original_raster_bytes"]==RASTERS[y][1]
+          assert r["original_alansites"]==len(d)==RASTERS[y][2]
+          assert d.site_id.is_unique
+          assert d.original_observation_year.eq(y).all() and d.worldpop_year.eq(y).all()
+          assert d.loc[d.population_status.ne("OK"),"population_density_per_km2"].isna().all()
+          assert d.loc[d.population_status.eq("OK"),"population_density_per_km2"].ge(0).all()
+          assert file_sha256(p/f"worldpop_R2024B_UC_{y}_original_ALAN_photo_sites.csv.gz")==r["new_population_source_values_sha256"]
+          print("ALAN_FULL_77647_WORLDPOP_YEAR_REPLAY_PASS",y,len(d),r["sampled_valid_population"])
+          PY
+        env:
+          YEAR: ${{ matrix.year }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-full-photo-sites-WorldPop-UC-R2024B-${{ matrix.year }}-20261116
+          path: verified/year_${{ matrix.year }}/
+          if-no-files-found: warn
+          retention-days: 90
