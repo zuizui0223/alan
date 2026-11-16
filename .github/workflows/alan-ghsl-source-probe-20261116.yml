@@ -28,6 +28,10 @@ jobs:
             ["aws","s3","ls","--no-sign-request",prefix+"r2023a/54009/"],
             ["aws","s3","ls","--no-sign-request",prefix+"r2023a/4326/30asec/"],
             ["aws","s3","ls","--no-sign-request",prefix+"r2023a/54009/1000m/"],
+            ["aws","s3","ls","--no-sign-request",prefix+"r2023a/4326/30asec/2015/"],
+            ["aws","s3","ls","--no-sign-request",prefix+"r2023a/4326/30asec/2020/"],
+            ["aws","s3","ls","--no-sign-request",prefix+"r2023a/54009/1000m/2015/"],
+            ["aws","s3","ls","--no-sign-request",prefix+"r2023a/54009/1000m/2020/"],
           ]
           result=[]
           for args in commands:
