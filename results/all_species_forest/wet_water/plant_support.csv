@@ -1,0 +1,11 @@
+state,candidate,species,species_coordinates
+expanding,True,33,164
+expanding,False,109,358
+little_initial_open_water,False,284,23589
+shrinking,False,189,707
+lost_low_cover,False,102,302
+little_initial_open_water,True,58,9955
+shrinking,True,45,269
+lost_low_cover,True,35,151
+maintained,True,54,4552
+maintained,False,271,11431
