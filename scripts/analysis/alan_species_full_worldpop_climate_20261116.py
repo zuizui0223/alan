@@ -108,7 +108,8 @@ def source_annual_population(all_sites,annual_dir):
               "population_not_interpolated_from_MOIS_photo_sites":True}
 
 def audit_original_overlap(s,previous_mois_sources):
-    ref, subset=prior_mois_pixel_join(s,previous_mois_sources,return_data=True)
+    ref, subset=prior_mois_pixel_join(
+        s.drop(columns=["pop_density"]),previous_mois_sources,return_data=True)
     require(ref["matched_usable_site_years"]==23018,
             "Previous WorldPop-MOIS photographic overlap changed")
     known=subset.loc[subset.pop_density.notna(),
