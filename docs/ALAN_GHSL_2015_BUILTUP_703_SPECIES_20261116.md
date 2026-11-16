@@ -64,7 +64,7 @@ JRCの公開ソース：[公式GHS-BUILT-S](https://human-settlement.emergency.c
 ## 署名付き実行とリポ成果物
 
 - 原GHSL国際公開原本抽出 [Actions #43792162862 SUCCESS](https://github.com/zuizui0223/alan/actions/runs/43792162862)、site-based artifact **#14192987595**、ZIP SHA256 `7fd0310f98018727a82174981d113493ecf6620847edc7c5b4ad77d80370ec86`。
-- 元203?ではなく**202島・703種**の完全人口気候GHSL再解析 [Actions #43792585199 SUCCESS](https://github.com/zuizui0223/alan/actions/runs/43792585199)、aggregate artifact **#14192218734**、ZIP SHA256 `9d8b0b1fe6bc44801fd17c9f63490b05ae6ad75b4eee0076df1fb08963b12bb9`。
+- **202島・703種**の完全人口気候GHSL再解析 [Actions #43792585199 SUCCESS](https://github.com/zuizui0223/alan/actions/runs/43792585199)、aggregate artifact **#14192218734**、ZIP SHA256 `9d8b0b1fe6bc44801fd17c9f63490b05ae6ad75b4eee0076df1fb08963b12bb9`。
 - コード `scripts/analysis/alan_ghsl_builtup_source_20261116.py` と `scripts/analysis/alan_species_ghsl_builtup_urban_control_20261116.py`。
 - 集計結果 `results/alan_ghsl_urban_builtup_2015_2020_source_20261116_verified_aggregate.json` および `results/alan_703species_ghsl_priorbuiltup_20261116_verified_aggregate.json`。
 
