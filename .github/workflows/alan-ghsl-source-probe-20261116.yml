@@ -24,6 +24,10 @@ jobs:
           commands=[
             ["aws","s3","ls","--no-sign-request",prefix],
             ["aws","s3","ls","--no-sign-request",prefix+"r2023a/"],
+            ["aws","s3","ls","--no-sign-request",prefix+"r2023a/4326/"],
+            ["aws","s3","ls","--no-sign-request",prefix+"r2023a/54009/"],
+            ["aws","s3","ls","--no-sign-request",prefix+"r2023a/4326/30ss/"],
+            ["aws","s3","ls","--no-sign-request",prefix+"r2023a/54009/1000/"],
           ]
           result=[]
           for args in commands:
