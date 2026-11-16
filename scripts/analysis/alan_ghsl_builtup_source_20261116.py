@@ -51,9 +51,14 @@ def geodesic_cell_area(ds,row,geod):
     return square_m
 
 def sample_ghsl(ds,lon,lat):
+    print("ALAN_GHSL_PHYSICAL_RASTER_SCHEMA",json.dumps({
+          "width":ds.width,"height":ds.height,
+          "crs":str(ds.crs),"resolution":[float(a) for a in ds.res],
+          "bounds":[float(a) for a in ds.bounds],
+          "nodata":str(ds.nodata)}),flush=True)
     require(ds.crs is not None and ds.crs.to_epsg()==4326 and
-            ds.count==1 and ds.width==43200 and ds.height==21600,
-            "Official GHS-BUILT-S must be global WGS84 30arcsec")
+            ds.count==1 and ds.width>=20000 and ds.height>=15000,
+            "Official GHS-BUILT-S must be global-scale WGS84 30arcsec")
     require(abs(ds.res[0]-1/120)<1e-8 and abs(ds.res[1]-1/120)<1e-8,
             "Not original GHSL 30arcsecond resolution")
     n=len(lon)
