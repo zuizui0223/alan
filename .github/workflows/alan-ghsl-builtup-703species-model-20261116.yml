@@ -1,0 +1,161 @@
+name: ALAN original GHSL 2015 built-up urban proxy on 703 plant species
+on:
+  push:
+    branches: [analysis/alan-builtup-negative-control-20261116]
+    paths:
+      - scripts/analysis/alan_species_ghsl_builtup_urban_control_20261116.py
+      - .github/workflows/alan-ghsl-builtup-703species-model-20261116.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-verified-full-worldpop-species:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Test full source and model import invariants
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2 rasterio==1.4.3 pyproj==3.7.2
+          python -m py_compile scripts/analysis/alan_worldpop_full_77647_sites_20261116.py scripts/analysis/alan_species_full_worldpop_climate_20261116.py
+          python - <<'PY'
+          from scripts.analysis.alan_worldpop_full_77647_sites_20261116 import RASTERS
+          from scripts.analysis.alan_species_full_worldpop_climate_20261116 import ORIGINAL_N
+          assert ORIGINAL_N==77647==sum(v[2] for v in RASTERS.values())
+          assert sorted(RASTERS)==[2019,2021,2023,2024,2025]
+          print('ALAN_FULL_WORLDPOP_SPECIES_SOURCE_STATIC_TEST_PASS')
+          PY
+      - name: Restore annual original WorldPop population extracted directly at all photo sites
+        run: |
+          set -euo pipefail
+          mkdir -p fullannual verified
+          for yr in 2019 2021 2023 2024 2025; do
+            mkdir -p "fullannual/year${yr}"
+            gh run download 43788135191 --repo zuizui0223/alan \
+              --name "alan-original-full-photo-sites-WorldPop-UC-R2024B-${yr}-20261116" \
+              --dir "fullannual/year${yr}"
+            test -s "fullannual/year${yr}/source_receipt.json"
+            test -s "fullannual/year${yr}/worldpop_R2024B_UC_${yr}_original_ALAN_photo_sites.csv.gz"
+          done
+      - name: Restore source SHA-verified original 562-island PCNL photo cells and botanical flora
+        run: |
+          set -euo pipefail
+          mkdir -p original/pcnl original/globi original/flora_batches original/groups original/direct_traits
+          gh run download 42624285048 --repo zuizui0223/alan \
+            --name alan-full93m-actual-PCNL1992-2024-moth-positive-macro \
+            --dir original/pcnl
+          echo '440a8313d71168e0a4dfd2f41a7bef45623abb068b07e3282026f1c35dccbd2c  original/pcnl/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz' | sha256sum -c -
+          gh run download 41976552977 --repo zuizui0223/mois \
+            --name mois-ALAN-GloBI-stage2-actual-records-2019-2024-supported-source \
+            --dir original/globi
+          echo 'a6b97aa0941215d2f645e4c4fbf19490492b93680a7d7c0502814c7a66902994  original/globi/GloBI_stage2_signed_extension.csv.gz' | sha256sum -c -
+          gh run download 42616279235 --repo zuizui0223/alan \
+            --pattern 'alan-93m-fullflora-moth-island-group-*' \
+            --dir original/flora_batches
+          test "$(find original/flora_batches -name 'allflora-island-group-??.sqlite' | wc -l)" -eq 16
+          test "$(find original/flora_batches -name 'allflora-island-group-??.json' | wc -l)" -eq 16
+          find original/flora_batches -name 'allflora-island-group-??.sqlite' -exec cp {} original/groups/ \;
+          find original/flora_batches -name 'allflora-island-group-??.json' -exec cp {} original/groups/ \;
+          gh run download 34191508045 --repo zuizui0223/island \
+            --name source-scale-batch-integration-34191508045 \
+            --dir original/direct_traits
+          echo '7e86170218814abe2845da9a0282aecfdc930819b9d0c439bae8df4a0679c577  original/direct_traits/direct_species_trait_ledger.csv.gz' | sha256sum -c -
+      - name: Restore frozen original WorldClim 2.1 baseline climate without reinferring photo traits
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          mkdir -p climate
+          curl --fail --location --retry 3 --connect-timeout 20 --max-time 820 \
+            https://github.com/zuizui0223/fcp/releases/download/fcp-worldclim-2.1-10m-20260925/wc2.1_10m_bio.zip \
+            --output climate/wc2.1_10m_bio.zip
+          echo '00513224583665ec0f2f955a4ec252730c4deb2004cce9e793492a3f26df4dcf  climate/wc2.1_10m_bio.zip' | sha256sum -c -
+          unzip -q climate/wc2.1_10m_bio.zip \
+            wc2.1_10m_bio_1.tif wc2.1_10m_bio_12.tif wc2.1_10m_bio_15.tif -d climate/
+      - name: Restore authentic JRC GHSL 2015 and 2020 independent built-up surface at 77,647 ALAN sites
+        run: |
+          set -euo pipefail
+          mkdir -p original/ghsl_source
+          gh run download 43792162862 --repo zuizui0223/alan \
+            --name alan-ghsl-builtup-2015-2020-77647-original-20261116 \
+            --dir original/ghsl_source
+          python - <<'PY'
+          import json,hashlib,pandas as pd
+          from pathlib import Path
+          p=Path("original/ghsl_source/ghsl2015_2020")
+          d=json.loads((p/"source_receipt.json").read_text())
+          f=p/"alan_77647_original_ghsl_build_2015_2020_source_sitevalues.csv.gz"
+          assert f.exists() and hashlib.sha256(f.read_bytes()).hexdigest()==d["output_site_values_sha256"]
+          assert d["original_ALAN_photo_site_years"]==77647
+          assert d["source"]["2015"]["sha256_original_unmodified_tif"]=="149aa0fd8544922d904106a1acc52b9a1af213ce6671317beb8dda0fc479a3b6"
+          assert d["source"]["2020"]["sha256_original_unmodified_tif"]=="c622f77878056a29f41496a0d8412bf381f4501c546ef07e7d5a76696cefbc5b"
+          print("ALAN_GHSL_INDEPENDENT_SOURCE_SHA_PASS",d["output_site_values_sha256"])
+          PY
+      - name: Synthetic original survey model check for build-up 2015 and sensitivity 2020
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/analysis/alan_species_ghsl_builtup_urban_control_20261116.py
+          python - <<'PY'
+          import numpy as np,pandas as pd
+          from scripts.analysis.alan_species_ghsl_builtup_urban_control_20261116 import fit_source_species
+          rows=[]
+          for island in 'ABCDEF':
+            for year in (2019,2021):
+              for j in range(24):
+                rows.append({'sid':len(rows),'island':island,'year':year,
+                 'iy':island+'-'+str(year),'loglight':.045*j+.07*np.sin(j),
+                 'effort':np.log1p(5+j%4),
+                 'logpop':.06*j+.6*np.cos(j),
+                 'bio1':8+.2*j+np.cos(j/3),
+                 'logprec':np.log1p(1000+10*j+40*np.sin(j/5)),
+                 'logbuilt2015':np.log1p(1+1.5*j+2*np.sin(j/4)),
+                 'logbuilt2020':np.log1p(1+1.8*j+3*np.cos(j/4))})
+          s=pd.DataFrame(rows)
+          positive=s.loc[s.loglight.ge(.48),'sid'].to_numpy()
+          fit,why=fit_source_species(s,positive,s.iy.unique())
+          assert why is None,why
+          obj,*_=fit
+          assert all(np.isfinite(obj[k]) for k in
+             ("L_baseline_pp","L_built2015_pp","L_built2020_pp",
+              "built2015_pp_per_log_percent_built","built2020_pp_per_log_percent_built")),obj
+          assert obj["n_islands"]==6 and obj["n_island_year_strata"]==12
+          print("ALAN_GHSL_URBAN_PROXY_SYNTHETIC_SOURCE_PASS")
+          PY
+      - name: Refit original 703 plant photographic ALAN slopes after independent built-up + population + climate
+        timeout-minutes: 58
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_species_ghsl_builtup_urban_control_20261116 \
+            --sites original/pcnl/joined/ALAN_real_93m_flora_island_2019_2025_PCNLPrior1992_2024.csv.gz \
+            --globi original/globi/GloBI_stage2_signed_extension.csv.gz \
+            --groups original/groups \
+            --ledger original/direct_traits/direct_species_trait_ledger.csv.gz \
+            --annual_worldpop fullannual \
+            --climate_root climate \
+            --ghsl_source original/ghsl_source/ghsl2015_2020 \
+            --out verified/alan_703_species_jrcGHSL_builtup_2015_2020_original_20261116.json
+          python - <<'PY'
+          import json
+          x=json.load(open('verified/alan_703_species_jrcGHSL_builtup_2015_2020_original_20261116.json'))
+          assert x["original_source"]["source_703_independent_direct_autonomous_selfing_species"]==703
+          assert x["worldpop_complete_source"]["source_population_valid_sites"]==69525
+          assert x["builtup_source_metadata"]["original_prior_builtup_2015_source"]
+          assert x["builtup_source_metadata"]["source_ghsl_2015_raster_sha256"]=="149aa0fd8544922d904106a1acc52b9a1af213ce6671317beb8dda0fc479a3b6"
+          assert x["limits"]["photo_nonrecord_is_not_true_absence"]
+          print("ALAN_GHSL_ORIGINAL_703_SPECIES_SOURCE_AUTHENTICATED")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-full-703GHSLurban-control-original-20261116
+          path: verified/
+          if-no-files-found: warn
+          retention-days: 90

@@ -1,0 +1,354 @@
+{
+  "schema": "ALAN_703_source_species_prior_2015_builtup_urban_comparator_reanalysis_v1",
+  "status": "AUTHENTIC_GHSL_WORLDPOP_WORLDCLIM_SOURCE_AND_ISLAND_BOOTSTRAP_SUCCESS",
+  "actions_run": "https://github.com/zuizui0223/alan/actions/runs/43792585199",
+  "artifact_id": 14192218734,
+  "artifact_zip_sha256": "9d8b0b1fe6bc44801fd17c9f63490b05ae6ad75b4eee0076df1fb08963b12bb9",
+  "model": {
+    "build": {
+      "source_ghsl_2015_raster_sha256": "149aa0fd8544922d904106a1acc52b9a1af213ce6671317beb8dda0fc479a3b6",
+      "source_ghsl_2020_raster_sha256": "c622f77878056a29f41496a0d8412bf381f4501c546ef07e7d5a76696cefbc5b",
+      "original_population_climate_source_siteyears_before_build_control": 64944,
+      "source_2015_and_2020_builtup_numeric_complete": 64944,
+      "eligible_same_site_years_after_builtin_source_and_light_support": 64944,
+      "source_islands": 202,
+      "source_island_years": 690,
+      "original_prior_builtup_2015_source": true,
+      "epoch2020_future_exposure_for_observations2019_sensitivity_only": true,
+      "median_built2015_fraction_source": 0.0023912811805,
+      "median_built2020_fraction_source": 0.002650127259,
+      "built2015_zero_source_siteyears": 20425,
+      "built2020_zero_source_siteyears": 20321,
+      "global_within_islandyear_residual_corr": {
+        "loglight": {
+          "loglight": 1,
+          "effort": 0.25945171197715483,
+          "logpop": 0.7065056359643777,
+          "bio1": 0.2852072373337364,
+          "logprec": -0.24581707258039437,
+          "logbuilt2015": 0.7062378158922317,
+          "logbuilt2020": 0.7097583813817903
+        },
+        "effort": {
+          "loglight": 0.2594517119771549,
+          "effort": 1,
+          "logpop": 0.2651455968760846,
+          "bio1": 0.08580052561908558,
+          "logprec": -0.09557478760164138,
+          "logbuilt2015": 0.259503728348415,
+          "logbuilt2020": 0.25876790876299766
+        },
+        "logpop": {
+          "loglight": 0.7065056359643777,
+          "effort": 0.2651455968760846,
+          "logpop": 0.9999999999999998,
+          "bio1": 0.3151569248057168,
+          "logprec": -0.24225718837491275,
+          "logbuilt2015": 0.7221481560525453,
+          "logbuilt2020": 0.7255785554084837
+        },
+        "bio1": {
+          "loglight": 0.28520723733373643,
+          "effort": 0.08580052561908558,
+          "logpop": 0.3151569248057168,
+          "bio1": 0.9999999999999999,
+          "logprec": -0.3738133869350714,
+          "logbuilt2015": 0.27428630070237364,
+          "logbuilt2020": 0.27878843733898123
+        },
+        "logprec": {
+          "loglight": -0.24581707258039437,
+          "effort": -0.09557478760164137,
+          "logpop": -0.2422571883749128,
+          "bio1": -0.37381338693507143,
+          "logprec": 1,
+          "logbuilt2015": -0.19891026498378098,
+          "logbuilt2020": -0.20237239695238296
+        },
+        "logbuilt2015": {
+          "loglight": 0.7062378158922317,
+          "effort": 0.25950372834841495,
+          "logpop": 0.7221481560525453,
+          "bio1": 0.27428630070237364,
+          "logprec": -0.19891026498378095,
+          "logbuilt2015": 1,
+          "logbuilt2020": 0.9971292327396858
+        },
+        "logbuilt2020": {
+          "loglight": 0.7097583813817903,
+          "effort": 0.25876790876299766,
+          "logpop": 0.7255785554084838,
+          "bio1": 0.27878843733898123,
+          "logprec": -0.20237239695238296,
+          "logbuilt2015": 0.9971292327396858,
+          "logbuilt2020": 1
+        }
+      },
+      "global_within_islandyear_residual_sd": {
+        "loglight": 1.3681758753807964,
+        "effort": 1.0048466096525634,
+        "logpop": 2.283890450296553,
+        "bio1": 1.7505598250542775,
+        "logprec": 0.28517718214810284,
+        "logbuilt2015": 0.9614111703613454,
+        "logbuilt2020": 0.9736801998111971
+      },
+      "original_landcover_not_plant_natural_habitat": true
+    },
+    "species": {
+      "population_eligible_original_species_positive_rows": 436634,
+      "documented_candidates_with_at_least_one_photo": 703,
+      "documented_candidates_with_at_least_one_informative_island_year": 703,
+      "fixed_original_703_species": 703,
+      "source_GHSL_builtup_species_model_fitted": 703,
+      "autonomous_fitted": 489,
+      "absent_fitted": 214,
+      "excluded_source_reasons": {}
+    },
+    "traits": {
+      "n_model_fitted": 703,
+      "all": {
+        "n_species": 703,
+        "n_with_ge10_independent_islands": 539,
+        "n_with_ge20_independent_islands": 305,
+        "n_with_ge30_independent_islands": 175,
+        "L_baseline_pp": {
+          "n": 703,
+          "mean": 0.2122710235753349,
+          "median": 0.14223314076863278,
+          "q025": -3.17888644215097,
+          "q25": -0.8191140199382839,
+          "q75": 1.2853597981683738,
+          "q975": 4.049434523544894
+        },
+        "L_built2015_pp": {
+          "n": 703,
+          "mean": 0.2025801705794372,
+          "median": 0.13280153019361143,
+          "q025": -3.542186299419959,
+          "q25": -0.8515500698088538,
+          "q75": 1.2371155338814008,
+          "q975": 4.171830361455668
+        },
+        "L_built2020_pp": {
+          "n": 703,
+          "mean": 0.20397647063964358,
+          "median": 0.12037339723460667,
+          "q025": -3.548368555650591,
+          "q25": -0.8551071989006597,
+          "q75": 1.244386728573521,
+          "q975": 4.260602578976987
+        },
+        "built2015_pp_per_log_percent_built": {
+          "n": 703,
+          "mean": 0.013083740149121777,
+          "median": 0.02265434720970251,
+          "q025": -6.363163556257239,
+          "q25": -1.7327495506181627,
+          "q75": 1.7770651200368883,
+          "q975": 6.408016371508994
+        },
+        "built2020_pp_per_log_percent_built": {
+          "n": 703,
+          "mean": 0.014051586037201535,
+          "median": 0.03385868075141292,
+          "q025": -6.319123698952717,
+          "q25": -1.7384883573655958,
+          "q75": 1.783697813300509,
+          "q975": 6.367898115424239
+        },
+        "L_delta_post_build2015_pp": {
+          "n": 703,
+          "mean": -0.009690852995897663,
+          "median": -0.004615025041154698,
+          "q025": -1.7303570751832755,
+          "q25": -0.47846140058973796,
+          "q75": 0.4262519973203408,
+          "q975": 1.7543394737612426
+        }
+      },
+      "selfing_autonomous": {
+        "n_species": 489,
+        "n_with_ge10_independent_islands": 392,
+        "n_with_ge20_independent_islands": 235,
+        "n_with_ge30_independent_islands": 133,
+        "L_baseline_pp": {
+          "n": 489,
+          "mean": 0.19486910774680896,
+          "median": 0.1901331638554419,
+          "q025": -3.1342690408853136,
+          "q25": -0.6404695370272723,
+          "q75": 1.2981667171476072,
+          "q975": 3.5276002764348378
+        },
+        "L_built2015_pp": {
+          "n": 489,
+          "mean": 0.17690470006749745,
+          "median": 0.21008485116895181,
+          "q025": -3.52667708057375,
+          "q25": -0.7776288564682419,
+          "q75": 1.1323989866581687,
+          "q975": 3.6265136643125047
+        },
+        "L_built2020_pp": {
+          "n": 489,
+          "mean": 0.1778530510567528,
+          "median": 0.1844761047092108,
+          "q025": -3.532556602896854,
+          "q25": -0.7491449336234953,
+          "q75": 1.1513546140854902,
+          "q975": 3.6740807170828442
+        },
+        "built2015_pp_per_log_percent_built": {
+          "n": 489,
+          "mean": 0.03875426934442475,
+          "median": 0.1383434179322904,
+          "q025": -5.9505904118206425,
+          "q25": -1.4936179521469586,
+          "q75": 1.7045634786736332,
+          "q975": 5.314005748131219
+        },
+        "built2020_pp_per_log_percent_built": {
+          "n": 489,
+          "mean": 0.03988118551382049,
+          "median": 0.0937529529305665,
+          "q025": -5.866485268617044,
+          "q25": -1.6089888560896628,
+          "q75": 1.7364082344278133,
+          "q975": 5.211717464557004
+        },
+        "L_delta_post_build2015_pp": {
+          "n": 489,
+          "mean": -0.017964407679311477,
+          "median": -0.030327419877818333,
+          "q025": -1.5932872370053497,
+          "q25": -0.47153523834910704,
+          "q75": 0.38920366880002416,
+          "q975": 1.4926970066061245
+        }
+      },
+      "selfing_absent": {
+        "n_species": 214,
+        "n_with_ge10_independent_islands": 147,
+        "n_with_ge20_independent_islands": 70,
+        "n_with_ge30_independent_islands": 42,
+        "L_baseline_pp": {
+          "n": 214,
+          "mean": 0.2520352144171534,
+          "median": -0.0024495654419467265,
+          "q025": -3.1470867272905494,
+          "q25": -1.071954069744702,
+          "q75": 1.2350863947720376,
+          "q975": 5.664393688067436
+        },
+        "L_built2015_pp": {
+          "n": 214,
+          "mean": 0.2612498204875611,
+          "median": -0.07604207092934212,
+          "q025": -3.5048122085138016,
+          "q25": -1.0741998216279973,
+          "q75": 1.3393895156201172,
+          "q975": 6.0094903057049525
+        },
+        "L_built2020_pp": {
+          "n": 214,
+          "mean": 0.2636697051070902,
+          "median": -0.07103606005888241,
+          "q025": -3.5199047911373054,
+          "q25": -1.102926115851569,
+          "q75": 1.327378510094221,
+          "q975": 6.012556678304859
+        },
+        "built2015_pp_per_log_percent_built": {
+          "n": 214,
+          "mean": -0.04557461861958449,
+          "median": -0.11493133291451106,
+          "q025": -6.551547501042979,
+          "q25": -2.240468169573281,
+          "q75": 1.8705607844717609,
+          "q975": 7.038449863228538
+        },
+        "built2020_pp_per_log_percent_built": {
+          "n": 214,
+          "mean": -0.04497025575750259,
+          "median": -0.09104433496888684,
+          "q025": -6.522629135673278,
+          "q25": -2.169583894729074,
+          "q75": 1.9156768163513016,
+          "q975": 6.930713899014846
+        },
+        "L_delta_post_build2015_pp": {
+          "n": 214,
+          "mean": 0.009214606070407765,
+          "median": 0.02550584390178268,
+          "q025": -2.081143949984462,
+          "q25": -0.4938237581160284,
+          "q75": 0.5277998926357119,
+          "q975": 1.8963427082948763
+        }
+      },
+      "L_baseline_pp_autonomous_minus_absent": -0.05716610667034441,
+      "L_built2015_pp_autonomous_minus_absent": -0.08434512042006367,
+      "L_built2020_pp_autonomous_minus_absent": -0.0858166540503374,
+      "built2015_pp_per_log_percent_built_autonomous_minus_absent": 0.08432888796400924,
+      "built2020_pp_per_log_percent_built_autonomous_minus_absent": 0.08485144127132307,
+      "L_delta_post_build2015_pp_autonomous_minus_absent": -0.02717901374971924
+    },
+    "boot2015": {
+      "status": "ORIGINAL_SOURCE_2015_PREPHOTO_BUILTUP_ISLAND_BOOTSTRAP",
+      "n_species_with_ge20_islands": 305,
+      "autonomous": 235,
+      "absent": 70,
+      "n_sampling_islands": 202,
+      "source_epoch": 2015,
+      "n_valid": 400,
+      "n_requested": 400,
+      "L_autonomous_minus_absent_pp": -0.1381879159433734,
+      "L_island_bootstrap_95percentile_ci_pp": [
+        -0.602089813209295,
+        0.29881575374421826
+      ],
+      "builtup_autonomous_minus_absent_pp": 0.49232292081185275,
+      "builtup_island_bootstrap_95percentile_ci_pp": [
+        -0.16199229835276563,
+        1.144825809940979
+      ],
+      "ALAN_and_builtup_have_different_predictor_units_no_direct_numeric_comparison": true,
+      "conditioned_on_unmeasured_biological_survey_detection_and_urban_habitat": true,
+      "same_source_islands_resampled_jointly_across_species": true
+    },
+    "boot2020": {
+      "status": "EPOCH_2020_BUILTUP_SENSITIVITY_BOOTSTRAP",
+      "n_species_with_ge20_islands": 305,
+      "autonomous": 235,
+      "absent": 70,
+      "n_sampling_islands": 202,
+      "source_epoch": 2020,
+      "n_valid": 400,
+      "n_requested": 400,
+      "L_autonomous_minus_absent_pp": -0.11860555564726288,
+      "L_island_bootstrap_95percentile_ci_pp": [
+        -0.5785637217269232,
+        0.31598170192501146
+      ],
+      "builtup_autonomous_minus_absent_pp": 0.43094925187791383,
+      "builtup_island_bootstrap_95percentile_ci_pp": [
+        -0.2058605987073971,
+        1.05177181554285
+      ],
+      "ALAN_and_builtup_have_different_predictor_units_no_direct_numeric_comparison": true,
+      "conditioned_on_unmeasured_biological_survey_detection_and_urban_habitat": true,
+      "same_source_islands_resampled_jointly_across_species": true
+    }
+  },
+  "limitations": {
+    "source_2015_building_epoch_precedes_all_original_observations": true,
+    "source_2020_building_epoch_is_not_prior_to_2019_observation": true,
+    "source_photo_nonrecord_not_biological_absence": true,
+    "building_fraction_not_lamp_light_nor_complete_habitat": true,
+    "no_effective_nocturnal_pollination_or_seed_outcome": true,
+    "no_causal_light_claim": true,
+    "species_phylogeny_not_adjusted": true,
+    "observer_preference_not_adjusted": true
+  }
+}
