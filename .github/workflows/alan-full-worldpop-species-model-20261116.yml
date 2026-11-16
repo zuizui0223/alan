@@ -1,5 +1,10 @@
 name: ALAN full WorldPop annual source 703-species selfing climate replay
 on:
+  push:
+    branches: [analysis/alan-worldpop-full-island-photo-sites-20261116]
+    paths:
+      - scripts/analysis/alan_species_full_worldpop_climate_20261116.py
+      - .github/workflows/alan-full-worldpop-species-model-20261116.yml
   workflow_dispatch:
 permissions:
   contents: read
