@@ -1,0 +1,43 @@
+CONTINENT,ADMIN,land_class,source_stations,coordinates,survey_years
+Africa,South Africa,mainland,3,3,14
+Asia,Cyprus,island,4,4,17
+Asia,Northern Cyprus,island,1,1,4
+Asia,Singapore,island,1,1,2
+Asia,Taiwan,island,1,1,3
+Europe,Aland,island,5,5,13
+Europe,Austria,mainland,150,150,482
+Europe,Belgium,mainland,3113,3112,15300
+Europe,Czechia,mainland,1,1,2
+Europe,Denmark,island,485,485,2726
+Europe,Denmark,mainland,623,623,4332
+Europe,Finland,island,31,31,95
+Europe,Finland,mainland,1800,1800,5347
+Europe,France,island,3,3,11
+Europe,France,mainland,132,132,552
+Europe,Germany,mainland,167,167,958
+Europe,Greece,island,9,9,42
+Europe,Ireland,island,2,2,4
+Europe,Isle of Man,island,14,14,262
+Europe,Italy,island,8,8,39
+Europe,Italy,mainland,7,7,48
+Europe,Netherlands,island,19,19,44
+Europe,Netherlands,mainland,138,138,1124
+Europe,Norway,mainland,52,52,165
+Europe,Portugal,mainland,8,7,49
+Europe,Russia,mainland,1,1,3
+Europe,Spain,island,2,2,17
+Europe,Spain,mainland,694,691,2941
+Europe,Sweden,island,3,3,8
+Europe,Sweden,mainland,319,319,911
+Europe,United Kingdom,island,5614,5559,25894
+North America,Costa Rica,mainland,1,1,5
+North America,United States of America,mainland,12,12,63
+Oceania,Australia,island,6,6,25
+Oceania,Australia,mainland,96,96,810
+Oceania,New Caledonia,island,1,1,5
+Oceania,New Zealand,island,1,1,4
+South America,Chile,mainland,1,1,2
+South America,Ecuador,mainland,4,4,17
+South America,Peru,mainland,1,1,2
+unassigned,unassigned,island,702,698,4025
+unassigned,unassigned,mainland,158,157,968

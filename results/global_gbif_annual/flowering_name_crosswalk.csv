@@ -1,0 +1,1446 @@
+field_name,match,matched_key,accepted_name,sp
+Abies concolor,EXACT,8KBM,Abies concolor,8KBM
+Abies sibirica,EXACT,8KG5,Abies sibirica,8KG5
+Acer campestre,EXACT,946Z,Acer campestre,946Z
+Acer campreste,VARIANT,,,
+Acer circinatum,EXACT,947R,Acer circinatum,947R
+Acer grandidentatum,EXACT,64FGV,Acer grandidentatum,64FGV
+Acer negundo,EXACT,94F5,Acer negundo,94F5
+Acer pensylvanicum,EXACT,94GR,Acer pensylvanicum,94GR
+Acer pictum,EXACT,94GW,Acer pictum,94GW
+Acer platanoides,EXACT,94H3,Acer platanoides,94H3
+Acer pseudoplatanus,EXACT,94HF,Acer pseudoplatanus,94HF
+Acer rubrum,EXACT,94JD,Acer rubrum,94JD
+Acer saccharinum,EXACT,94JH,Acer saccharinum,94JH
+Acer saccharum,EXACT,94JK,Acer saccharum,94JK
+Acer tataricum,EXACT,94L9,Acer tataricum,94L9
+Achillea,EXACT,,,
+Achillea asiatica,EXACT,64GS7,Achillea asiatica,64GS7
+Achillea micrantha,EXACT,97GX,Achillea micrantha,97GX
+Achillea millefolium,EXACT,97H4,Achillea millefolium,97H4
+Achillea millefolium ssp. mill,HIGHERRANK,,,
+Achillea nobilis,EXACT,64H53,Achillea nobilis,64H53
+Achillea ptarmica,EXACT,97JY,Achillea ptarmica,97JY
+Aconitum lycoctonum ssp. septe,HIGHERRANK,,,
+Aconitum paniculigerum,EXACT,,,
+Aconitum septentrionale,EXACT,9GPB,Aconitum septentrionale,9GPB
+Aconitum volubile,EXACT,9GTG,Aconitum volubile,9GTG
+Aconitum x stoerkianum,EXACT,9G6Q,Aconitum cammarum,9G6Q
+Actaea simplex,EXACT,9S5F,Actaea simplex,9S5F
+Actaea spicata,EXACT,9S5G,Actaea spicata,9S5G
+Adenocaulon himalaicum,EXACT,9ZGC,Adenocaulon himalaicum,9ZGC
+Adenophora lilifolia,VARIANT,,,
+Adenophora triphylla,EXACT,9ZVG,Adenophora triphylla,9ZVG
+Adonis amurensis,EXACT,64SKB,Adonis amurensis,64SKB
+Adonis vernalis,EXACT,654N4,Adonis vernalis,654N4
+Adoxa moschatellina,EXACT,655WH,Adoxa moschatellina,655WH
+Aegopodium alpestre,EXACT,658TW,Aegopodium alpestre,658TW
+Aegopodium podagraria,EXACT,6594Z,Aegopodium podagraria,6594Z
+Aesculus flava,EXACT,9XFMX,Aesculus flava,9XFMX
+Aesculus glabra,EXACT,65BZW,Aesculus glabra,65BZW
+Aesculus hippocastanum,EXACT,65BKZ,Aesculus hippocastanum,65BKZ
+Aesculus pavia,EXACT,65BL2,Aesculus pavia,65BL2
+Aflatunia,EXACT,,,
+Agastache rugosa,EXACT,5TQ6J,Agastache rugosa,5TQ6J
+Agrimonia eupatoria,EXACT,B7GN,Agrimonia eupatoria,B7GN
+Agrimonia pilosa,EXACT,B7HJ,Agrimonia pilosa,B7HJ
+Agrostis canina,EXACT,B9FZ,Agrostis canina,B9FZ
+Agrostis capillaris,EXACT,B9G6,Agrostis capillaris,B9G6
+Ajuga genevensis,EXACT,BDNP,Ajuga genevensis,BDNP
+Ajuga pyramidalis,EXACT,BDR4,Ajuga pyramidalis,BDR4
+Ajuga reptans,EXACT,65V5Y,Ajuga reptans,65V5Y
+Alcea rosea,EXACT,BH8Y,Alcea rosea,BH8Y
+Alchemilla,EXACT,,,
+Alchemilla micans,EXACT,BHWG,Alchemilla micans,BHWG
+Alchemilla mollis,EXACT,BHWZ,Alchemilla mollis,BHWZ
+Alchemilla monticola,EXACT,BHX6,Alchemilla monticola,BHX6
+Alchemilla sibirica,EXACT,BJ6R,Alchemilla sibirica,BJ6R
+Alchemilla subcrenata,EXACT,BJ7Y,Alchemilla subcrenata,BJ7Y
+Alchemilla vulgaris,EXACT,667VK,Alchemilla vulgaris,667VK
+Alisma plantago-aquatica,EXACT,BSH4,Alisma plantago-aquatica,BSH4
+Alliaria petiolata,EXACT,BTPF,Alliaria petiolata,BTPF
+Allium caesium,EXACT,65VHV,Allium caesium,65VHV
+Allium hollandicum,EXACT,669D2,Allium hollandicum,669D2
+Allium oleraceum,EXACT,65X6Z,Allium oleraceum,65X6Z
+Allium rubens,EXACT,9JRCJ,Allium rubens,9JRCJ
+Allium schoenoprasum,EXACT,5TX7G,Allium schoenoprasum,5TX7G
+Allium ursinum,EXACT,65X8C,Allium ursinum,65X8C
+Alnus,EXACT,,,
+Alnus alnobetula,EXACT,C2NF,Alnus alnobetula,C2NF
+Alnus glutinosa,EXACT,C2Q2,Alnus glutinosa,C2Q2
+Alnus hirsuta,EXACT,C2Q9,Alnus hirsuta,C2Q9
+Alnus incana,EXACT,5TWTV,Alnus incana,5TWTV
+Alnus rubra,EXACT,C2SR,Alnus rubra,C2SR
+Alopecurus pratensis,EXACT,C52K,Alopecurus arundinaceus,C52K
+Alpinia,EXACT,,,
+Alyssum lenense,EXACT,CCPM,Alyssum lenense,CCPM
+Amelanchier alnifolia,EXACT,CQMS,Amelanchier alnifolia,CQMS
+Amelanchier canadensis,EXACT,CQN6,Amelanchier canadensis,CQN6
+Amelanchier grandiflora-autumnbrilliance,HIGHERRANK,,,
+Amelanchier laevis,EXACT,CQNY,Amelanchier laevis,CQNY
+Amelanchier lamarckii,EXACT,92SRN,Amelanchier lamarckii,92SRN
+Amelanchier spicata,EXACT,92SRR,Amelanchier spicata,92SRR
+Amelanchier utahensis,EXACT,CQQ7,Amelanchier utahensis,CQQ7
+Amorpha fruticosa,EXACT,CX4J,Amorpha fruticosa,CX4J
+Anacamptis morio,EXACT,66JCN,Anacamptis morio,66JCN
+Anacamptis palustris,EXACT,66JCT,Anacamptis palustris,66JCT
+Anacamptis pyramidalis,EXACT,66JD2,Anacamptis pyramidalis,66JD2
+Anchusa officinalis,EXACT,DLZL,Anchusa officinalis,DLZL
+Andromeda polifolia,EXACT,66NRN,Andromeda polifolia,66NRN
+Androsace septentrionalis,EXACT,672P3,Androsace septentrionalis,672P3
+Anemone,EXACT,,,
+Anemone acutiloba,EXACT,3KVY7,Hepatica acutiloba,3KVY7
+Anemone altaica,EXACT,DX68,Anemone altaica,DX68
+Anemone amurensis,EXACT,9JRV9,Anemone amurensis,9JRV9
+Anemone baicalensis,EXACT,DX45,Anemonastrum baicalense,DX45
+Anemone blanda,EXACT,DX7F,Anemone blanda,DX7F
+Anemone coerulea,VARIANT,,,
+Anemone hepatica,EXACT,6LPZR,Hepatica nobilis,6LPZR
+Anemone nemorosa,EXACT,67343,Anemone nemorosa,67343
+Anemone patens,EXACT,,,
+Anemone ranunculoides,EXACT,DXGQ,Anemone ranunculoides,DXGQ
+Anemone reflexa,EXACT,DXGV,Anemone reflexa,DXGV
+Anemone sylvestris,EXACT,DXJP,Anemone sylvestris,DXJP
+Anemone udensis,EXACT,DXKR,Anemone udensis,DXKR
+Anemonidium narcissiflorum,EXACT,,,
+Anethum graveolens,EXACT,DY93,Anethum graveolens,DY93
+Angelica archangelica,EXACT,DYRP,Angelica archangelica,DYRP
+Angelica sylvestris,EXACT,DYYQ,Angelica sylvestris,DYYQ
+Antennaria,EXACT,,,
+Antennaria dioica,EXACT,66XCZ,Antennaria dioica,66XCZ
+Anthemis tinctoria,EXACT,,,
+Anthericum ramosum,EXACT,67D2C,Anthericum ramosum,67D2C
+Anthoxanthum,EXACT,,,
+Anthoxanthum odoratum,EXACT,67GRD,Anthoxanthum odoratum,67GRD
+Anthriscus,EXACT,,,
+Anthriscus sylvestris,EXACT,67HWS,Anthriscus sylvestris,67HWS
+Anthyllis vulneraria,EXACT,5VK74,Anthyllis vulneraria,5VK74
+Aquilegia canadensis,EXACT,67QDX,Aquilegia canadensis,67QDX
+Aquilegia formosa,EXACT,9JT63,Aquilegia formosa,9JT63
+Aquilegia oxysepala,EXACT,682FF,Aquilegia oxysepala,682FF
+Aquilegia sibirica,EXACT,5VQFP,Aquilegia sibirica,5VQFP
+Aquilegia vulgaris,EXACT,FZVW,Aquilegia vulgaris,FZVW
+Arabidopsis arenosa,EXACT,G25C,Arabidopsis arenosa,G25C
+Arabidopsis thaliana,EXACT,G26R,Arabidopsis thaliana,G26R
+Aralia nudicaulis,EXACT,G4VY,Aralia nudicaulis,G4VY
+Arctium tomentosum,EXACT,683PD,Arctium tomentosum,683PD
+Arctostaphylos,EXACT,,,
+Arctostaphylos uva-ursi,EXACT,GBQG,Arctostaphylos uva-ursi,GBQG
+Argentina anserina,EXACT,5W2SS,Argentina anserina,5W2SS
+Aristolochia clematitis,EXACT,GPQJ,Aristolochia clematitis,GPQJ
+Armeria maritima,EXACT,GS9T,Armeria maritima,GS9T
+Armeria maritima ssp. maritima,EXACT,,,
+Armoracia rusticana,EXACT,VJT6M,Armoracia rusticana,GSV4
+Arnica alpina,EXACT,,,
+Arnica montana,EXACT,GT52,Arnica montana,GT52
+Arrhenatherum elatius,EXACT,6857G,Arrhenatherum elatius,6857G
+Artemisia absinthium,EXACT,GVZC,Artemisia absinthium,GVZC
+Artemisia vulgaris,EXACT,GX3X,Artemisia vulgaris,GX3X
+Arum alpinum,EXACT,,,
+Arum korolkowii,EXACT,H2PV,Arum korolkowii,H2PV
+Aruncus dioicus,EXACT,683V9,Aruncus dioicus,683V9
+Asarum canadense,EXACT,H4PS,Asarum canadense,H4PS
+Asarum europaeum,EXACT,H4QT,Asarum europaeum,H4QT
+Asarum sieboldii,EXACT,5W498,Asarum sieboldii,5W498
+Asclepias asperula,EXACT,67S9W,Asclepias asperula,67S9W
+Asclepias incarnata,EXACT,H6FQ,Asclepias incarnata,H6FQ
+Asclepias speciosa,EXACT,H6PX,Asclepias speciosa,H6PX
+Asclepias syriaca,EXACT,H6QS,Asclepias syriaca,H6QS
+Asclepias tuberosa,EXACT,H6RF,Asclepias tuberosa,H6RF
+Asimina triloba,EXACT,67TV7,Asimina triloba,67TV7
+Asparagus officinalis,EXACT,HBJ4,Asparagus officinalis,HBJ4
+Asparagus schoberioides,EXACT,HBL2,Asparagus schoberioides,HBL2
+Asplenium ceterach,EXACT,HK2X,Asplenium ceterach,HK2X
+Aster alpinus,EXACT,HPKJ,Aster alpinus,HPKJ
+Aster scaber,EXACT,HQW8,Aster scaber,HQW8
+Astilbe rubra,EXACT,HV9B,Astilbe rubra,HV9B
+Astragalus Astragalus testiculatus,HIGHERRANK,,,
+Astragalus glycyphyllos,EXACT,HXYM,Astragalus glycyphyllos,HXYM
+Astragalus zingeri,EXACT,9CPTT,Astragalus zingeri,9CPTT
+Astrantia major,EXACT,J3K6,Astrantia major,J3K6
+Asyneuma japonicum,EXACT,J73N,Asyneuma japonicum,J73N
+Atocion rupestre,EXACT,JH88,Atocion rupestre,JH88
+Atractylodes lancea,EXACT,JK7Q,Atractylodes lancea,JK7Q
+Atropa bella-donna,VARIANT,,,VJTGV
+Avenella flexuosa,EXACT,K2W4,Avenella flexuosa,K2W4
+Avenula pubescens,EXACT,K2Z3,Avenula pubescens,K2Z3
+Balsamorhiza sagittata,EXACT,7Z73X,Wyethia sagittata,7Z73X
+Barbarea,EXACT,,,
+Barbarea vulgaris,EXACT,VK7HT,Barbarea vulgaris,KM6S
+Barbarea vulgaris var. arcuata,EXACT,MQ2X3,Barbarea arcuata,MQ2X3
+Bellis perennis,EXACT,5WH44,Bellis perennis,5WH44
+Berberis amurensis,EXACT,LJFK,Berberis amurensis,LJFK
+Berberis integerrima,EXACT,LJTV,Berberis integerrima,LJTV
+Berberis vulgaris,EXACT,LKBJ,Berberis vulgaris,LKBJ
+Bergenia cordifolia,EXACT,LKQK,Bergenia crassifolia,LKQK
+Bergenia crassifolia,EXACT,LKQK,Bergenia crassifolia,LKQK
+Berteroa incana,EXACT,5WJWB,Berteroa incana,5WJWB
+Betula,EXACT,,,
+Betula alba,EXACT,,,
+Betula alleghaniensis,EXACT,LP4J,Betula alleghaniensis,LP4J
+Betula dahurica,EXACT,9L569,Betula davurica,9L569
+Betula lenta,EXACT,68K9V,Betula lenta,68K9V
+Betula nana,EXACT,LPBR,Betula nana,LPBR
+Betula papyrifera,EXACT,LPCK,Betula papyrifera,LPCK
+Betula pendula,EXACT,LPCQ,Betula pendula,LPCQ
+Betula pendula/pubescens,EXACT,LPCQ,Betula pendula,LPCQ
+Betula pubescens,EXACT,LPDF,Betula pubescens,LPDF
+Betula tianschanica,EXACT,LPFD,Betula tianschanica,LPFD
+Bidens tripartita,EXACT,LSLN,Bidens tripartita,LSLN
+Bistorta vivipara,EXACT,LX7C,Bistorta vivipara,LX7C
+Brachypodium sylvaticum,EXACT,MYNK,Brachypodium sylvaticum,MYNK
+Brassica napus ssp. napus,EXACT,,,
+Briza,EXACT,,,
+Briza media,EXACT,NBY8,Briza media,NBY8
+Bromopsis inermis,EXACT,ND3L,Bromus inermis,ND3L
+Bromus hordeaceus,EXACT,ND36,Bromus hordeaceus,ND36
+Bromus riparius,EXACT,NDC4,Bromus riparius,NDC4
+Brunnera macrophylla,EXACT,NFXS,Brunnera macrophylla,NFXS
+Brunnera sibirica,EXACT,VLK6N,Brunnera sibirica,NFXV
+Bryonia alba,EXACT,NJ97,Bryonia alba,NJ97
+Bunias orientalis,EXACT,695NB,Bunias orientalis,695NB
+Bupleurum aureum,EXACT,B3GY8,Bupleurum aureum,B3GY8
+Bupleurum longifolium ssp. aureum,EXACT,B3GY8,Bupleurum aureum,B3GY8
+Bupleurum longiradiatum,EXACT,NVS2,Bupleurum longeradiatum,NVS2
+Butomus umbellatus,EXACT,NZ5R,Butomus umbellatus,NZ5R
+Cacalia hastate,VARIANT,,,
+Calamagrostis,EXACT,,,
+Calamagrostis arundinacea,EXACT,PCBM,Calamagrostis arundinacea,PCBM
+Calamagrostis canescens,EXACT,PCDG,Calamagrostis canescens,PCDG
+Calamagrostis epigejos,EXACT,PCG7,Calamagrostis epigejos,PCG7
+Calamagrostis purpurea,EXACT,PCTN,Calamagrostis purpurea,PCTN
+Calendula officinalis,EXACT,PJDZ,Calendula officinalis,PJDZ
+Calla palustris,EXACT,PKWB,Calla palustris,PKWB
+Calluna vulgaris,EXACT,PWBL,Calluna vulgaris,PWBL
+Caltha palustris,EXACT,Q4PM,Caltha palustris,Q4PM
+Calypso bulbosa,EXACT,Q6ND,Calypso bulbosa,Q6ND
+Calystegia inflata,EXACT,,,
+Calystegia sepium,EXACT,,,
+Calystegia sepium ssp. sepium,EXACT,,,
+Camassia quamash,EXACT,Q93P,Camassia quamash,Q93P
+Campanula carpatica,EXACT,5X8SY,Campanula carpatica,5X8SY
+Campanula cervicaria,EXACT,6994X,Campanula cervicaria,6994X
+Campanula glomerata,EXACT,QB9W,Campanula glomerata,QB9W
+Campanula glomerata ssp. glome,HIGHERRANK,,,
+Campanula latifolia,EXACT,QBG5,Campanula latifolia,QBG5
+Campanula patula,EXACT,QBPG,Campanula patula,QBPG
+Campanula persicifolia,EXACT,QBQB,Campanula persicifolia,QBQB
+Campanula punctata,EXACT,QBSR,Campanula punctata,QBSR
+Campanula rapunculoides,EXACT,QBTT,Campanula rapunculoides,QBTT
+Campanula rotundifolia,EXACT,QBVH,Campanula rotundifolia,QBVH
+Campanula rotundifolia ssp. rotundifolia,EXACT,,,
+Campanula trachelium,EXACT,QC4G,Campanula trachelium,QC4G
+Campsis radicans,EXACT,B3FXV,Campsis radicans,B3FXV
+Capsella bursa-pastoris,EXACT,QT37,Capsella bursa-pastoris,QT37
+Caragana arborescens,EXACT,QZWK,Caragana arborescens,QZWK
+Caragana frutex,EXACT,QZY2,Caragana frutex,QZY2
+Caragana turkestanica,EXACT,R22Q,Caragana turkestanica,R22Q
+Cardamine amara,EXACT,R497,Cardamine amara,R497
+Cardamine bulbifera,EXACT,5WZMF,Cardamine bulbifera,5WZMF
+Cardamine concatenata,EXACT,R4BZ,Cardamine concatenata,R4BZ
+Cardamine hirsuta,EXACT,R4F5,Cardamine hirsuta,R4F5
+Cardamine leucantha,EXACT,R4GS,Cardamine leucantha,R4GS
+Cardamine macrophylla,EXACT,R4HG,Cardamine macrophylla,R4HG
+Cardamine pratensis,EXACT,R4LD,Cardamine pratensis,R4LD
+Cardamine pratensis ssp. paludosa,EXACT,,,
+Cardamine quinquefolia,EXACT,68ZNG,Cardamine quinquefolia,68ZNG
+Carduus acanthoides,EXACT,R6M5,Carduus acanthoides,R6M5
+Carduus crispus,EXACT,R6RS,Carduus crispus,R6RS
+Carex acuta,EXACT,R7WG,Carex acuta,R7WG
+Carex caryophyllea,EXACT,R8JM,Carex caryophyllea,R8JM
+Carex cespitosa,EXACT,5XBLJ,Carex cespitosa,5XBLJ
+Carex digitata,EXACT,R8XV,Carex digitata,R8XV
+Carex dioica,EXACT,R8Y7,Carex dioica,R8Y7
+Carex elata,EXACT,R947,Carex elata,R947
+Carex elongata,EXACT,R94N,Carex elongata,R94N
+Carex ericetorum,EXACT,5XBM2,Carex ericetorum,5XBM2
+Carex humilis,EXACT,R9QY,Carex humilis,R9QY
+Carex montana,EXACT,69B6M,Carex montana,69B6M
+Carex nigra,EXACT,5XCKN,Carex nigra,5XCKN
+Carex nigra var. recta,EXACT,,,
+Carex ornithopoda,EXACT,5XCN7,Carex ornithopoda,5XCN7
+Carex panicea,EXACT,5XCQB,Carex panicea,5XCQB
+Carex pediformis,EXACT,RB2V,Carex pediformis,RB2V
+Carex pediformis ssp. rhizodes,HIGHERRANK,,,
+Carex pilosa,EXACT,RB69,Carex pilosa,RB69
+Carex vaginata,EXACT,RCG6,Carex vaginata,RCG6
+Carpinus betulus,EXACT,RG23,Carpinus betulus,RG23
+Carpinus caroliniana,EXACT,RG24,Carpinus caroliniana,RG24
+Carum carvi,EXACT,RHGC,Carum carvi,RHGC
+Carya cordiformis,EXACT,99H5P,Carya cordiformis,99H5P
+Carya glabra,EXACT,RHS8,Carya glabra,RHS8
+Carya ovata,EXACT,RHSS,Carya ovata,RHSS
+Carya tomentosa,EXACT,RHRN,Carya alba,RHRN
+Castanea sativa,EXACT,5XCVW,Castanea sativa,5XCVW
+Caulophyllum thalictroides,EXACT,RXG6,Caulophyllum thalictroides,RXG6
+Ceanothus americanus,EXACT,RYP3,Ceanothus americanus,RYP3
+Celtis caucasica,EXACT,MHS2Y,Celtis caucasica,MHS2Y
+Celtis occidentalis,EXACT,S4SV,Celtis occidentalis,S4SV
+Cenolophium denudatum,EXACT,S5SY,Cenolophium fischeri,S5SY
+Centaurea Centaurea ruthenica,HIGHERRANK,,,
+Centaurea cyanus,EXACT,69GPL,Centaurea cyanus,69GPL
+Centaurea jacea,EXACT,S6S6,Centaurea jacea,S6S6
+Centaurea montana,EXACT,S6ZL,Centaurea montana,S6ZL
+Centaurea scabiosa,EXACT,5XGCN,Centaurea scabiosa,5XGCN
+Centaurea solstitialis,EXACT,S7GJ,Centaurea solstitialis,S7GJ
+Centaurea stoebe,EXACT,S7J3,Centaurea stoebe,S7J3
+Cephalanthera rubra,EXACT,69HBK,Cephalanthera rubra,69HBK
+Cephalanthus occidentalis,EXACT,SCBY,Cephalanthus occidentalis,SCBY
+Cerastium arvense,EXACT,SK3M,Cerastium arvense,SK3M
+Cerastium davuricum,EXACT,9XWKR,Dichodon davuricum,9XWKR
+Cerastium fontanum,EXACT,SK8H,Cerastium fontanum,SK8H
+Cerastium fontanum ssp. vulgar,VARIANT,,,
+Cerastium fontanum var. vulgar,VARIANT,,,
+Cerastium pauciflorum,EXACT,SKF4,Cerastium pauciflorum,SKF4
+Cerastium semidecandrum,EXACT,5XKYV,Cerastium semidecandrum,5XKYV
+Cerasus,EXACT,,,
+Cerasus fruticosa,EXACT,6VZYQ,Prunus fruticosa,6VZYQ
+Cercis canadensis,EXACT,SSQS,Cercis canadensis,SSQS
+Chaenorhinum minus,EXACT,T9NL,Chaenorhinum minus,T9NL
+Chamaecytisus,EXACT,,,
+Chamaedaphne calyculata,EXACT,TJLJ,Chamaedaphne calyculata,TJLJ
+Chamerion,EXACT,,,
+Chamerion angustifolium,EXACT,,,
+Chelidonium majus,EXACT,5XQW8,Chelidonium majus,5XQW8
+Chenopodium album,EXACT,TX8H,Chenopodium album,TX8H
+Chimaphila umbellata,EXACT,69RX6,Chimaphila umbellata,69RX6
+Chloranthus japonicus,EXACT,5XX8J,Chloranthus serratus,5XX8J
+Chosenia arbutifolia,EXACT,5YG53,Chosenia arbutifolia,5YG53
+Chrysosplenium alternifolium,EXACT,5Z5N5,Chrysosplenium alternifolium,5Z5N5
+Chrysosplenium pilosum,EXACT,5YTNJ,Chrysosplenium pilosum,5YTNJ
+Cichorium intybus,EXACT,V857,Cichorium intybus,V857
+Cichorium intybus var. intybus,EXACT,V857,Cichorium intybus,V857
+Cicuta virosa,EXACT,VB5S,Cicuta virosa,VB5S
+Cimicifuga foetida,HIGHERRANK,,,
+Cirsium arvense,EXACT,VHPB,Cirsium arvense,VHPB
+Cirsium helenioides,EXACT,VHZ5,Cirsium helenioides,VHZ5
+Cirsium heterophyllum,EXACT,VHZF,Cirsium heterophyllum,VHZF
+Cirsium palustre,EXACT,VJ9F,Cirsium palustre,VJ9F
+Cirsium serratuloides,EXACT,VJDX,Cirsium serratuloides,VJDX
+Cirsium vulgare,EXACT,VJJT,Cirsium vulgare,VJJT
+Cladrastis kentukea,EXACT,VQL2,Cladrastis kentukea,VQL2
+Clausia aprica,EXACT,VLKLK,Clausia aprica,VTP4
+Claytonia virginica,EXACT,VWQF,Claytonia virginica,VWQF
+Clematis Clematis mandschurica,HIGHERRANK,,,
+Clematis alpina ssp. sibirica,EXACT,5YZ5L,Clematis sibirica,5YZ5L
+Clematis fusca,EXACT,5YZ4W,Clematis fusca,5YZ4W
+Clematis recta,EXACT,VYCS,Clematis recta,VYCS
+Clematis sibirica,EXACT,5YZ5L,Clematis sibirica,5YZ5L
+Clintonia borealis,EXACT,W78H,Clintonia borealis,W78H
+Colchicum autumnale,EXACT,WX9R,Colchicum autumnale,WX9R
+Comarostaphylis polifolia,EXACT,XDQM,Comarostaphylis polifolia,XDQM
+Comarum palustre,EXACT,XDR2,Comarum palustre,XDR2
+Conium maculatum,EXACT,XP6T,Conium maculatum,XP6T
+Convallaria keiskei,EXACT,XYLR,Convallaria keiskei,XYLR
+Convallaria majalis,EXACT,XYLW,Convallaria majalis,XYLW
+Convolvulus arvensis,EXACT,5ZXFY,Convolvulus arvensis,5ZXFY
+Corallorhiza trifida,EXACT,5ZZCS,Corallorhiza trifida,5ZZCS
+Cornus canadensis,EXACT,YGHD,Cornus canadensis,YGHD
+Cornus florida,EXACT,YGJT,Cornus florida,YGJT
+Cornus florida-appalachianspring,HIGHERRANK,,,
+Cornus mas,EXACT,YGL2,Cornus mas,YGL2
+Cornus sanguinea,EXACT,YGMF,Cornus sanguinea,YGMF
+Cornus sericea,EXACT,YGMJ,Cornus sericea,YGMJ
+Cornus suecica,EXACT,YGMW,Cornus suecica,YGMW
+Corydalis ambigua,EXACT,YNXN,Corydalis ambigua,YNXN
+Corydalis bracteata,EXACT,YNZK,Corydalis bracteata,YNZK
+Corydalis cava,EXACT,YP2S,Corydalis cava,YP2S
+Corydalis intermedia,EXACT,YP9G,Corydalis intermedia,YP9G
+Corydalis ledebouriana,EXACT,6B5JR,Corydalis ledebouriana,6B5JR
+Corydalis nobilis,EXACT,6B5JM,Corydalis nobilis,6B5JM
+Corydalis pallida,EXACT,YPF4,Corydalis pallida,YPF4
+Corydalis pumila,EXACT,YPHQ,Corydalis pumila,YPHQ
+Corydalis repens,EXACT,YPJB,Corydalis repens,YPJB
+Corydalis solida,EXACT,YPL4,Corydalis solida,YPL4
+Corydalis solida ssp. solida,EXACT,,,
+Corydalis turtschaninovii,EXACT,YPNN,Corydalis turtschaninovii,YPNN
+Corylus,EXACT,,,
+Corylus americana,EXACT,V58QV,Corylus americana,V58QV
+Corylus avellana,EXACT,YQ55,Corylus avellana,YQ55
+Corylus cornuta,EXACT,YQ5H,Corylus cornuta,YQ5H
+Corylus heterophylla,EXACT,YQ5V,Corylus heterophylla,YQ5V
+Cotoneaster,EXACT,,,
+Cotoneaster tjuliniae,EXACT,YXZM,Cotoneaster integerrimus,YXZM
+Crambe maritima,EXACT,Z4GL,Crambe maritima,Z4GL
+Craniospermum subvillosum,EXACT,Z535,Craniospermum subvillosum,Z535
+Crataegus Crataegus ambigua,HIGHERRANK,,,
+Crataegus azarolus,EXACT,Z7SB,Crataegus azarolus,Z7SB
+Crataegus douglasii,EXACT,Z7XB,Crataegus douglasii,Z7XB
+Crataegus laevigata,EXACT,Z859,Crataegus laevigata,Z859
+Crataegus maximowiczii,EXACT,6BB5P,Crataegus maximowiczii,6BB5P
+Crataegus monogyna,EXACT,6BB5X,Crataegus monogyna,6BB5X
+Crataegus pseudoheterophylla,EXACT,Z8C9,Crataegus pseudoheterophylla,Z8C9
+Crataegus rhipidophylla,EXACT,Z8DC,Crataegus rhipidophylla,Z8DC
+Crataegus sanguinea,EXACT,6BB7Z,Crataegus sanguinea,6BB7Z
+Crepis lyrata,EXACT,6BFFF,Crepis lyrata,6BFFF
+Crepis paludosa,EXACT,6BFH5,Crepis paludosa,6BFH5
+Crepis praemorsa,EXACT,6BFJ7,Crepis praemorsa,6BFJ7
+Crepis sibirica,EXACT,6BFBP,Crepis sibirica,6BFBP
+Crepis tectorum,EXACT,6BGX6,Crepis tectorum,6BGX6
+Crocus alatavicus,EXACT,ZKRP,Crocus alatavicus,ZKRP
+Crocus chrysanthus,EXACT,ZKTS,Crocus chrysanthus,ZKTS
+Crocus etruscus,EXACT,6BHRF,Crocus etruscus,6BHRF
+Crocus heuffelianus,EXACT,ZKVR,Crocus heuffelianus,ZKVR
+Crocus spp.,HIGHERRANK,,,
+Crocus tommasinianus,EXACT,ZL48,Crocus tommasinianus,ZL48
+Crocus vernus,EXACT,ZL4L,Crocus vernus,ZL4L
+Crocus x stellaris,EXACT,ZKX7,Crocus luteus,ZKX7
+Cruciata glabra,EXACT,ZRRR,Cruciata verna,ZRRR
+Cyclamen purpurascens,EXACT,32SMF,Cyclamen purpurascens,32SMF
+Cydonia oblonga,EXACT,32ZLZ,Cydonia oblonga,32ZLZ
+Cynoglossum officinale,EXACT,6C6DN,Cynoglossum officinale,6C6DN
+Cypripedium acaule,EXACT,33J3M,Cypripedium acaule,33J3M
+Cypripedium calceolus,EXACT,33J4F,Cypripedium calceolus,33J4F
+Cypripedium guttatum,EXACT,33J5Y,Cypripedium guttatum,33J5Y
+Cypripedium macranthos,EXACT,33J6P,Cypripedium macranthos,33J6P
+Cytisus,EXACT,,,
+Cytisus ruthenicus,EXACT,TJL4,Chamaecytisus ruthenicus,TJL4
+Cytisus scoparius,EXACT,33S3C,Cytisus scoparius,33S3C
+Dactylis glomerata,EXACT,6BYZW,Dactylis glomerata,6BYZW
+Dactylis glomerata ssp. glomer,VARIANT,,,
+Dactylorhiza incarnata,EXACT,33WLL,Dactylorhiza incarnata,33WLL
+Dactylorhiza incarnata var. in,HIGHERRANK,,,
+Dactylorhiza maculata,EXACT,33WM5,Dactylorhiza maculata,33WM5
+Dactylorhiza maculata ssp. mac,HIGHERRANK,,,
+Dactylorhiza majalis,EXACT,33WM7,Dactylorhiza majalis,33WM7
+Dactylorhiza sambucina,EXACT,33WMV,Dactylorhiza sambucina,33WMV
+Dactylorhiza traunsteineri,EXACT,,,VK6RT
+Dactylorhiza viridis,EXACT,33WNH,Dactylorhiza viridis,33WNH
+Dalea purpurea,EXACT,33ZQK,Dalea purpurea,33ZQK
+Daphne mezereum,EXACT,344W3,Daphne mezereum,344W3
+Dasiphora fruticosa,EXACT,3475B,Dasiphora fruticosa,3475B
+Daucus carota,EXACT,6CFRZ,Daucus carota,6CFRZ
+Delphinium cuneatum s.l.,EXACT,34J6Z,Delphinium cuneatum,34J6Z
+Deschampsia cespitosa,EXACT,34Z5J,Deschampsia cespitosa,34Z5J
+Dianthus barbatus,EXACT,6CPY4,Dianthus barbatus,6CPY4
+Dianthus capitatus,EXACT,9XWG3,Dianthus capitatus,9XWG3
+Dianthus chinensis,EXACT,6CPYB,Dianthus chinensis,6CPYB
+Dianthus deltoides,EXACT,6CPNG,Dianthus deltoides,6CPNG
+Dianthus versicolor,EXACT,6CPYB,Dianthus chinensis,6CPYB
+Diapensia lapponica,EXACT,6CRJG,Diapensia lapponica,6CRJG
+Dicentra cucullaria,EXACT,35J86,Dicentra cucullaria,35J86
+Dictamnus dasycarpus,EXACT,6D65L,Dictamnus dasycarpus,6D65L
+Digitalis grandiflora,EXACT,3638J,Digitalis grandiflora,3638J
+Digitalis purpurea,EXACT,3639Z,Digitalis purpurea,3639Z
+Digitaria borbonica,EXACT,363NJ,Digitaria nuda,363NJ
+Diospyros kaki,EXACT,6CWZ5,Diospyros kaki,6CWZ5
+Draba nemorosa,EXACT,37JB9,Draba nemorosa,37JB9
+Draba sibirica,EXACT,37JGF,Draba sibirica,37JGF
+Draba verna,EXACT,37JKJ,Draba verna,37JKJ
+Dracocephalum ruyschiana,EXACT,37KCJ,Dracocephalum ruyschiana,37KCJ
+Drosera anglica,EXACT,6DKF9,Drosera anglica,6DKF9
+Drosera rotundifolia,EXACT,37QVY,Drosera rotundifolia,37QVY
+Dryas octopetala,EXACT,37TXV,Dryas octopetala,37TXV
+Drymocallis rupestris,EXACT,6DMWS,Drymocallis rupestris,6DMWS
+Echinacea purpurea,EXACT,6DW3C,Echinacea purpurea,6DW3C
+Echinops ruthenicus,HIGHERRANK,,,
+Echinops sphaerocephalus,EXACT,38K8R,Echinops sphaerocephalus,38K8R
+Echium vulgare,EXACT,38MH4,Echium vulgare,38MH4
+Eleutherococcus senticosus,EXACT,398XR,Eleutherococcus senticosus,398XR
+Eleutherococcus sessiliflorus,EXACT,398XT,Eleutherococcus sessiliflorus,398XT
+Elymus Elymus lolioides,EXACT,,,
+Elymus repens,EXACT,6F6PV,Elymus repens,6F6PV
+Elytrigia repens,EXACT,6F6PV,Elymus repens,6F6PV
+Empetrum nigrum,EXACT,39HL9,Empetrum nigrum,39HL9
+Ephedra distachya,EXACT,6FNF9,Ephedra distachya,6FNF9
+Epigaea repens,EXACT,6FTGV,Epigaea repens,6FTGV
+Epilobium Epilobium tianshanicum,HIGHERRANK,,,
+Epilobium adenocaulon,EXACT,,,
+Epilobium angustifolium,EXACT,,,
+Epilobium hirsutum,EXACT,6G4YN,Epilobium hirsutum,6G4YN
+Epilobium lactiflorum,EXACT,6G4Y9,Epilobium lactiflorum,6G4Y9
+Epilobium montanum,EXACT,6FSKF,Epilobium montanum,6FSKF
+Epilobium palustre,EXACT,6G4LF,Epilobium palustre,6G4LF
+Epipactis atrorubens,EXACT,6G7KR,Epipactis microphylla,6G7KR
+Epipactis helleborine,EXACT,6FVKS,Epipactis helleborine,6FVKS
+Epipactis palustris,EXACT,66JCT,Anacamptis palustris,66JCT
+Equisetum arvense,EXACT,6FYFR,Equisetum arvense,6FYFR
+Eranthis hyemalis,EXACT,6GB7B,Eranthis hyemalis,6GB7B
+Eranthis stellata,EXACT,6GB6Y,Eranthis stellata,6GB6Y
+Eremogone micradenia,EXACT,6GGCV,Eremogone saxatilis,6GGCV
+Eremurus fuscus,EXACT,6GH9L,Eremurus fuscus,6GH9L
+Eremurus robustus,EXACT,6GGZ5,Eremurus robustus,6GGZ5
+Erica tetralix,EXACT,6GLHZ,Erica tetralix,6GLHZ
+Erigeron acer,EXACT,,,NJKYV
+Eriophorum,EXACT,,,
+Eriophorum angustifolium,EXACT,6GR5N,Eriophorum angustifolium,6GR5N
+Eriophorum vaginatum,EXACT,3B5DB,Eriophorum vaginatum,3B5DB
+Erodium cicutarium,EXACT,3B8Z3,Erodium cicutarium,3B8Z3
+Eryngium planum,EXACT,3BB2Y,Eryngium planum,3BB2Y
+Erysimum cheiranthoides ssp. c,HIGHERRANK,,,
+Erythronium albidum,EXACT,6H5F3,Erythronium albidum,6H5F3
+Erythronium americanum,EXACT,6H5F4,Erythronium americanum,6H5F4
+Erythronium dens-canis,EXACT,3BFFB,Erythronium dens-canis,3BFFB
+Erythronium sibiricum,EXACT,3BFGT,Erythronium sibiricum,3BFGT
+Eschscholzia californica,EXACT,3BH52,Eschscholzia californica,3BH52
+Euonymus europaea,VARIANT,,,
+Euonymus europaeus,EXACT,3CGVN,Euonymus europaeus,3CGVN
+Euonymus verrucosa,VARIANT,,,
+Euonymus verrucosus,EXACT,3CH7B,Euonymus verrucosus,3CH7B
+Euphorbia Euphorbia zhiguliensis,HIGHERRANK,,,
+Euphorbia palustris,EXACT,3CQ4B,Euphorbia palustris,3CQ4B
+Euphorbia pilosa,EXACT,3CQ93,Euphorbia pilosa,3CQ93
+Euphorbia semivillosa,EXACT,3CQQ4,Euphorbia semivillosa,3CQQ4
+Euphrasia,EXACT,,,
+Euphrasia pectinata,EXACT,6HCB4,Euphrasia pectinata,6HCB4
+Euphrasia stricta,EXACT,L247M,Euphrasia stricta,L247M
+Euphrasia stricta var. brevipi,VARIANT,,,
+Eurybia divaricata,EXACT,3D389,Eurybia divaricata,3D389
+Exochorda tianshanica,VARIANT,,,
+Fagus grandifolia,EXACT,3DSHT,Fagus grandifolia,3DSHT
+Fagus sylvatica,EXACT,3DSK5,Fagus sylvatica,3DSK5
+Falcaria vulgaris,EXACT,3DT58,Falcaria vulgaris,3DT58
+Fallopia convolvulus,EXACT,3DTR4,Fallopia convolvulus,3DTR4
+Fallopia japonica,EXACT,793ZB,Reynoutria japonica,793ZB
+Ferula tatarica,EXACT,6HRXT,Ferula tatarica,6HRXT
+Ferula tenuisecta,EXACT,6HRY6,Ferula tenuisecta,6HRY6
+Festuca,EXACT,,,
+Festuca arundinacea,HIGHERRANK,,,VL7PS
+Festuca ovina,EXACT,6HST6,Festuca ovina,6HST6
+Festuca pratensis,HIGHERRANK,,,
+Festuca rubra,EXACT,6HTXG,Festuca rubra,6HTXG
+Festuca valesiaca,EXACT,6HTG5,Festuca valesiaca,6HTG5
+Festuca valesiaca s.l.,EXACT,6HTG5,Festuca valesiaca,6HTG5
+Filipendula,EXACT,,,
+Filipendula palmata,EXACT,9XQJ7,Filipendula digitata,9XQJ7
+Filipendula ulmaria,EXACT,6J2MQ,Filipendula ulmaria,6J2MQ
+Filipendula vulgaris,EXACT,6J2MP,Filipendula vulgaris,6J2MP
+Flaveria bidentis,EXACT,6J7JN,Flaveria bidentis,6J7JN
+Forsythia spp.,HIGHERRANK,,,
+Forsythia suspensa,EXACT,6JJ2R,Forsythia suspensa,6JJ2R
+Forsythia x intermedia,EXACT,6JJ2V,Forsythia intermedia,6JJ2V
+Fragaria moschata,EXACT,6JJSZ,Fragaria moschata,6JJSZ
+Fragaria orientalis,EXACT,6JJT3,Fragaria orientalis,6JJT3
+Fragaria vesca,EXACT,6JK5R,Fragaria vesca,6JK5R
+Fragaria virginiana,EXACT,6JK63,Fragaria virginiana,6JK63
+Fragaria viridis,EXACT,6JK5H,Fragaria viridis,6JK5H
+Frangula alnus,EXACT,6JLFV,Frangula alnus,6JLFV
+Fraxinus americana,EXACT,6JN3T,Fraxinus americana,6JN3T
+Fraxinus excelsior,EXACT,6JMBM,Fraxinus excelsior,6JMBM
+Fraxinus nigra,EXACT,6JMHJ,Fraxinus nigra,6JMHJ
+Fraxinus pennsylvanica,EXACT,6JMHT,Fraxinus pennsylvanica,6JMHT
+Fritillaria imperialis,EXACT,6JPVK,Fritillaria imperialis,6JPVK
+Fritillaria meleagris,EXACT,6JQ94,Fritillaria meleagris,6JQ94
+Fritillaria ruthenica,EXACT,6K29N,Fritillaria ruthenica,6K29N
+Fritillaria usuriensis,EXACT,6JPHP,Fritillaria usuriensis,6JPHP
+Fumaria officinalis,EXACT,6JS2P,Fumaria officinalis,6JS2P
+Gagea Gagea hiensis,HIGHERRANK,,,
+Gagea capusii,EXACT,6K87Q,Gagea capusii,6K87Q
+Gagea fragifera,EXACT,6JW6Y,Gagea fragifera,6JW6Y
+Gagea lutea,EXACT,6K88F,Gagea lutea,6K88F
+Gagea minima,EXACT,6K7WD,Gagea minima,6K7WD
+Gagea nakaiana,EXACT,6JW7W,Gagea nakaiana,6JW7W
+Gagea podolica,EXACT,6JW7Y,Gagea podolica,6JW7Y
+Gagea spathacea,EXACT,6JW9M,Gagea spathacea,6JW9M
+Gagea triflora,EXACT,6JW98,Gagea triflora,6JW98
+Galanthus elwesii,EXACT,6JW4N,Galanthus elwesii,6JW4N
+Galanthus nivalis,EXACT,6JVSD,Galanthus nivalis,6JVSD
+Galanthus plicatus,EXACT,6JVSC,Galanthus plicatus,6JVSC
+Galanthus woronowii,EXACT,3F2F7,Galanthus woronowii,3F2F7
+Galatella angustissima,EXACT,3F2NF,Galatella angustissima,3F2NF
+Galatella villosa,EXACT,3F2QN,Galatella villosa,3F2QN
+Galeopsis speciosa,EXACT,3F3ZW,Galeopsis speciosa,3F3ZW
+Galeopsis tetrahit,EXACT,3F425,Galeopsis tetrahit,3F425
+Galium album,EXACT,6JVJQ,Galium album,6JVJQ
+Galium aparine,EXACT,3F5B8,Galium aparine,3F5B8
+Galium boreale,HIGHERRANK,,,
+Galium mollugo,EXACT,3F644,Galium mollugo,3F644
+Galium odoratum,EXACT,3F66X,Galium odoratum,3F66X
+Galium palustre,EXACT,VFPJC,Hydrogalium elongatum,VFPJC
+Galium saxatile,EXACT,3F6FF,Galium saxatile,3F6FF
+Galium uliginosum,EXACT,3F6NQ,Galium uliginosum,3F6NQ
+Galium verum,EXACT,3F6PX,Galium verum,3F6PX
+Galium verum s.l.,EXACT,3F6PX,Galium verum,3F6PX
+Galium verum ssp. verum,EXACT,,,
+Genista tinctoria,EXACT,3FLDY,Genista tinctoria,3FLDY
+Gentiana,EXACT,,,
+Gentiana pneumonanthe,EXACT,3FMM8,Gentiana pneumonanthe,3FMM8
+Gentiana triflora,EXACT,3FMYL,Gentiana triflora,3FMYL
+Gentiana zollingeri,EXACT,3FN3G,Gentiana zollingeri,3FN3G
+Gentianella amarella,EXACT,3FN45,Gentianella amarella,3FN45
+Gentianella campestris,EXACT,3FN69,Gentianella campestris,3FN69
+Gentianella campestris var. is,HIGHERRANK,,,
+Gentianella campestris var. su,HIGHERRANK,,,
+Geranium Geranium pseudosibiricum,HIGHERRANK,,,
+Geranium albiflorum,EXACT,6KCDJ,Geranium albiflorum,6KCDJ
+Geranium dissectum,EXACT,6KCC8,Geranium dissectum,6KCC8
+Geranium erianthum,EXACT,6KDXF,Geranium erianthum,6KDXF
+Geranium lucidum,EXACT,6KDTW,Geranium lucidum,6KDTW
+Geranium maculatum,EXACT,6KDTP,Geranium maculatum,6KDTP
+Geranium palustre,EXACT,6KDL7,Geranium palustre,6KDL7
+Geranium pusillum,EXACT,3FV3T,Geranium pusillum,3FV3T
+Geranium pyrenaicum,EXACT,3FV3V,Geranium pyrenaicum,3FV3V
+Geranium robertianum,EXACT,3FV57,Geranium robertianum,3FV57
+Geranium sanguineum,EXACT,3FV5W,Geranium sanguineum,3FV5W
+Geranium sylvaticum,EXACT,3FV8Q,Geranium sylvaticum,3FV8Q
+Geum aleppicum,EXACT,3FY8K,Geum aleppicum,3FY8K
+Geum peckii,EXACT,6KG6R,Geum peckii,6KG6R
+Geum rivale,EXACT,3FYD8,Geum rivale,3FYD8
+Geum rivale var. rivale,EXACT,,,
+Geum urbanum,EXACT,6KFWB,Geum urbanum,6KFWB
+Ginkgo biloba,EXACT,3G3B3,Ginkgo biloba,3G3B3
+Glaux maritima,EXACT,6R32Y,Lysimachia maritima,6R32Y
+Glebionis segetum,EXACT,6KGR2,Glebionis segetum,6KGR2
+Glechoma hederacea,EXACT,3G6WF,Glechoma hederacea,3G6WF
+Globularia vulgaris,EXACT,6KJ84,Globularia vulgaris,6KJ84
+Gnaphalium uliginosum,EXACT,3GKTL,Gnaphalium uliginosum,3GKTL
+Goodyera,EXACT,,,
+Goodyera repens,EXACT,3H2JG,Goodyera repens,3H2JG
+Grasses,HIGHERRANK,,,
+Guaiacum sanctum,EXACT,3HHVJ,Guaiacum sanctum,3HHVJ
+Gymnadenia conopsea,EXACT,3HP3H,Gymnadenia conopsea,3HP3H
+Gymnospermium albertii,VARIANT,,,
+Gypsophila Gypsophila zhegulensis,HIGHERRANK,,,
+Gypsophila altissima,EXACT,3HXSR,Gypsophila altissima,3HXSR
+Halesia carolina,EXACT,6L9TV,Halesia carolina,6L9TV
+Hamamelis virginiana,EXACT,3JH4V,Hamamelis virginiana,3JH4V
+Hammarbya paludosa,EXACT,6LC3Q,Hammarbya paludosa,6LC3Q
+Hedysarum grandiflorum,EXACT,3K2XR,Hedysarum grandiflorum,3K2XR
+Helianthemum nummularium,EXACT,6LHN7,Helianthemum nummularium,6LHN7
+Helianthemum oelandicum,EXACT,3K5JS,Helianthemum oelandicum,3K5JS
+Helianthus annuus,EXACT,3K5TS,Helianthus annuus,3K5TS
+Helichrysum arenarium,EXACT,3K6DC,Helichrysum arenarium,3K6DC
+Helictotrichon pratense,EXACT,3K9S6,Helictochloa pratensis,3K9S6
+Helictotrichon pubescens,EXACT,K2Z3,Avenula pubescens,K2Z3
+Helleborus niger,EXACT,6LNKM,Helleborus niger,6LNKM
+Helleborus orientalis,EXACT,6LNKC,Helleborus orientalis,6LNKC
+Helleborus orientalis ssp. abc,HIGHERRANK,,,
+Helleborus spp.,HIGHERRANK,,,
+Hemerocallis fulva,EXACT,3KKX8,Hemerocallis fulva,3KKX8
+Hemerocallis lilioasphodelus,EXACT,3KKXG,Hemerocallis lilioasphodelus,3KKXG
+Hemerocallis middendorffii,EXACT,3KKXL,Hemerocallis middendorffii,3KKXL
+Hepatica,HIGHERRANK,,,
+Hepatica nobilis,EXACT,6LPZR,Hepatica nobilis,6LPZR
+Hepatica transsilvanica,EXACT,3KVYY,Hepatica transsilvanica,3KVYY
+Heracleum,EXACT,,,
+Heracleum dissectum,EXACT,3KXBZ,Heracleum dissectum,3KXBZ
+Heracleum sphondylium ssp. sib,HIGHERRANK,,,
+Herniaria glabra,EXACT,3L2KC,Herniaria glabra,3L2KC
+Hesperis matronalis,EXACT,3L53Y,Hesperis matronalis,3L53Y
+Hieracium,EXACT,,,
+Hieracium caespitosum,EXACT,77K6R,Pilosella caespitosa,77K6R
+Hieracium umbellatum,EXACT,6M8YX,Hieracium umbellatum,6M8YX
+Hieracium virosum,EXACT,3LVCB,Hieracium virosum,3LVCB
+Hierochloe,EXACT,,,
+Hierochloë odorata ssp. baltic,VARIANT,,,
+Hippophae,EXACT,,,
+Hippophaë rhamnoides,EXACT,3M2F8,Hippophae rhamnoides,3M2F8
+Holcus lanatus,EXACT,3M7ZD,Holcus lanatus,3M7ZD
+Hordeum bulbosum,EXACT,3MNVH,Hordeum bulbosum,3MNVH
+Hornungia petraea,EXACT,3MQ3V,Hornungia petraea,3MQ3V
+Hosta japonica,EXACT,8WWMT,Hosta lancifolia,8WWMT
+Hyacinthella leucophaea,EXACT,6MGQK,Hyacinthella leucophaea,6MGQK
+Hyacinthus orientalis,EXACT,6MH3S,Hyacinthus orientalis,6MH3S
+Hylomecon japonicum,EXACT,3NGCG,Hylomecon japonicum,3NGCG
+Hylotelephium ewersii,EXACT,3NGRG,Hylotelephium ewersii,3NGRG
+Hylotelephium telephium,EXACT,3NGSL,Hylotelephium telephium,3NGSL
+Hylotelephium telephium ssp. t,HIGHERRANK,,,
+Hypericum,EXACT,,,
+Hypericum ascyron,EXACT,3NPB5,Hypericum ascyron,3NPB5
+Hypericum elegans,EXACT,3NPJR,Hypericum elegans,3NPJR
+Hypericum maculatum,EXACT,3NPTQ,Hypericum maculatum,3NPTQ
+Hypericum maculatum ssp. maculatum,EXACT,,,
+Hypericum perforatum,EXACT,3NPZ3,Hypericum perforatum,3NPZ3
+Hypericum scabrum,EXACT,3NQ5S,Hypericum scabrum,3NQ5S
+Hypochoeris maculata,EXACT,3NTNL,Hypochaeris maculata,3NTNL
+Ilex aquifolium,EXACT,6N77K,Ilex aquifolium,6N77K
+Ilex verticillata,EXACT,3PG33,Ilex verticillata,3PG33
+Impatiens balsamina,EXACT,3PJG3,Impatiens balsamina,3PJG3
+Impatiens capensis,EXACT,3PJJK,Impatiens capensis,3PJJK
+Impatiens noli-tangere,EXACT,3PK7K,Impatiens noli-tangere,3PK7K
+Impatiens parviflora,EXACT,3PK9K,Impatiens parviflora,3PK9K
+Inula grandis,EXACT,WPTW,Codonocephalum grande,WPTW
+Inula helenium,EXACT,3PT6J,Inula helenium,3PT6J
+Inula hirta,HIGHERRANK,,,
+Inula japonica,EXACT,6MVGD,Inula japonica,6MVGD
+Inula salicina,HIGHERRANK,,,
+Iris,EXACT,,,
+Iris aphylla,EXACT,3PZHB,Iris aphylla,3PZHB
+Iris pseudacorus,EXACT,3PZZR,Iris pseudacorus,3PZZR
+Iris pumila,EXACT,3Q225,Iris pumila,3Q225
+Iris ruthenica,EXACT,3Q23M,Iris ruthenica,3Q23M
+Iris setosa,EXACT,3Q24F,Iris setosa,3Q24F
+Iris sibirica,EXACT,3Q24K,Iris sibirica,3Q24K
+Iris uniflora,EXACT,3Q27H,Iris uniflora,3Q27H
+Isodon excisus,EXACT,6N9BW,Isodon excisus,6N9BW
+Isodon japonicus,EXACT,6N9BT,Isodon japonicus,6N9BT
+Jasione montana,EXACT,3QM87,Jasione montana,3QM87
+Jonopsidium acaule,EXACT,L2D4H,Ionopsidium acaule,L2D4H
+Juglans mandshurica,EXACT,3QRTV,Juglans mandshurica,3QRTV
+Juglans nigra,EXACT,6NFM9,Juglans nigra,6NFM9
+Juglans regia,EXACT,6NFN8,Juglans regia,6NFN8
+Juncus conglomeratus,EXACT,3QTLR,Juncus conglomeratus,3QTLR
+Juncus gerardii,VARIANT,,,
+Juniperus communis,EXACT,6NGH4,Juniperus communis,6NGH4
+Jurinea arachnoidea,EXACT,3QV6N,Jurinea arachnoidea,3QV6N
+Kalmia angustifolia,EXACT,6NK44,Kalmia angustifolia,6NK44
+Kalmia latifolia,EXACT,3QZB6,Kalmia latifolia,3QZB6
+Kerria japonica,EXACT,3R6JN,Kerria japonica,3R6JN
+Kitagawia terebinthacea,EXACT,3R8S5,Kitagawia terebinthacea,3R8S5
+Knautia,EXACT,,,
+Knautia arvensis,EXACT,3R9V9,Knautia arvensis,3R9V9
+Koeleria cristata,HIGHERRANK,,,
+Kolkwitzia amabilis,EXACT,3RCFL,Kolkwitzia amabilis,3RCFL
+Krascheninnikovia ceratoides,EXACT,6NMH5,Krascheninnikovia ceratoides,6NMH5
+Laburnum x watereri,EXACT,3RL8N,Laburnum watereri,3RL8N
+Lactuca serriola,EXACT,3RTCK,Lactuca serriola,3RTCK
+Lagerstroemia indica,EXACT,3RWZL,Lagerstroemia indica,3RWZL
+Lamiaceae,EXACT,,,
+Lamiastrum galeobdolon,EXACT,6NVWR,Lamium galeobdolon,6NVWR
+Lamium album,EXACT,3S28Q,Lamium album,3S28Q
+Lamium amplexicaule,EXACT,6NW79,Lamium amplexicaule,6NW79
+Lamium galeobdolon,EXACT,6NVWR,Lamium galeobdolon,6NVWR
+Lamium hybridum,EXACT,3S2B7,Lamium hybridum,3S2B7
+Lamium maculatum,EXACT,6NVWM,Lamium maculatum,6NVWM
+Lamium purpureum,EXACT,3S2DF,Lamium purpureum,3S2DF
+Lapsana communis,EXACT,6NY5X,Lapsana communis,6NY5X
+Larix,EXACT,,,
+Larix czekanowskii,EXACT,6NYWG,Larix czekanowskii,6NYWG
+Larix decidua,EXACT,6NYWF,Larix decidua,6NYWF
+Larix sibirica,EXACT,6NZ9P,Larix sibirica,6NZ9P
+Laser trilobum,EXACT,3SBZY,Laser trilobum,3SBZY
+Laserpitium latifolium,EXACT,3SC3Z,Laserpitium latifolium,3SC3Z
+Lathraea squamaria,EXACT,3SJ5T,Lathraea squamaria,3SJ5T
+Lathyrus frolovii,EXACT,L2BCV,Lathyrus frolovii,L2BCV
+Lathyrus gmelinii,EXACT,3SKV2,Lathyrus gmelinii,3SKV2
+Lathyrus humilis,EXACT,L2BCX,Lathyrus humilis,L2BCX
+Lathyrus linifolius,EXACT,3SKWT,Lathyrus linifolius,3SKWT
+Lathyrus niger,EXACT,3SKXX,Lathyrus niger,3SKXX
+Lathyrus palustris,EXACT,3SKYR,Lathyrus palustris,3SKYR
+Lathyrus pisiformis,EXACT,3SKZC,Lathyrus pisiformis,3SKZC
+Lathyrus pratensis,EXACT,3SKZJ,Lathyrus pratensis,3SKZJ
+Lathyrus quinquenervius,EXACT,6P345,Lathyrus quinquenervius,6P345
+Lathyrus sylvestris,EXACT,6P346,Lathyrus sylvestris,6P346
+Lathyrus tuberosus,EXACT,3SL39,Lathyrus tuberosus,3SL39
+Lathyrus vernus,EXACT,3SL3K,Lathyrus vernus,3SL3K
+Lavatera thuringiaca,EXACT,,,
+Ledum,EXACT,,,
+Ledum palustre,HIGHERRANK,,,
+Leibnitzia anandria,EXACT,3SXRL,Leibnitzia anandria,3SXRL
+Leontodon autumnalis,EXACT,,,
+Leontodon hispidus,EXACT,6P8JN,Leontodon hispidus,6P8JN
+Leonurus japonicus,HIGHERRANK,,,
+Lepidium campestre,EXACT,6P99B,Lepidium campestre,6P99B
+Lespedeza bicolor,EXACT,6PRGN,Lespedeza bicolor,6PRGN
+Leucanthemum,EXACT,,,
+Leucanthemum ircutianum,EXACT,6Q3VM,Leucanthemum ircutianum,6Q3VM
+Leucanthemum vulgare,EXACT,723WW,Leucanthemum vulgare,723WW
+Leucojum vernum,EXACT,724ZT,Leucojum vernum,724ZT
+Liatris aspera,EXACT,6Q6XH,Liatris aspera,6Q6XH
+Liatris spicata,EXACT,728LS,Liatris spicata,728LS
+Ligularia sibirica,EXACT,7298R,Ligularia sibirica,7298R
+Ligularia thomsonii,EXACT,7Z6XB,Vickifunkia thomsonii,7Z6XB
+Ligustrum vulgare,EXACT,6PYTF,Ligustrum vulgare,6PYTF
+Lilium bulbiferum,EXACT,6PYB5,Lilium bulbiferum,6PYB5
+Lilium bulbiferum var. bulbife,VARIANT,,,
+Lilium distichum,EXACT,6PYD3,Lilium distichum,6PYD3
+Lilium lancifolium,EXACT,6PYFG,Lilium lancifolium,6PYFG
+Lilium martagon,EXACT,6PXWW,Lilium martagon,6PXWW
+Lilium pensylvanicum,EXACT,6PY8R,Lilium pensylvanicum,6PY8R
+Linaria,EXACT,,,
+Linaria genistifolia,EXACT,6QGKP,Linaria genistifolia,6QGKP
+Linaria repens,EXACT,6QGPD,Linaria repens,6QGPD
+Linaria vulgaris,EXACT,6QGBG,Linaria vulgaris,6QGBG
+Lindera benzoin,EXACT,9KFLH,Lindera benzoin,9KFLH
+Linnaea borealis,EXACT,72HMH,Linnaea borealis,72HMH
+Linum catharticum,EXACT,3V4PH,Linum catharticum,3V4PH
+Linum perenne,EXACT,3V4WB,Linum perenne,3V4WB
+Liparis loeselii,EXACT,3V9PK,Liparis loeselii,3V9PK
+Liquidambar styraciflua,EXACT,6QJRL,Liquidambar styraciflua,6QJRL
+Liriodendron tulipifera,EXACT,3VCGS,Liriodendron tulipifera,3VCGS
+Listera ovata,EXACT,CDR5G,Neottia ovata,CDR5G
+Lobelia cardinalis,EXACT,3VRHJ,Lobelia cardinalis,3VRHJ
+Loiseleuria procumbens,EXACT,3QZBD,Kalmia procumbens,3QZBD
+Lomelosia isetensis,EXACT,3VXB9,Lomelosia isetensis,3VXB9
+Lonicera,EXACT,,,
+Lonicera caerulea,EXACT,6QMR8,Lonicera caerulea,6QMR8
+Lonicera caprifolium,EXACT,3VZ56,Lonicera caprifolium,3VZ56
+Lonicera kamtschatica,HIGHERRANK,,,
+Lonicera maackii,EXACT,3VZBF,Lonicera maackii,3VZBF
+Lonicera periclymenum,EXACT,6QMQP,Lonicera periclymenum,6QMQP
+Lonicera ruprechtiana,EXACT,3VZFJ,Lonicera ruprechtiana,3VZFJ
+Lonicera sempervirens,EXACT,3VZFS,Lonicera sempervirens,3VZFS
+Lonicera tatarica,EXACT,3VZH4,Lonicera tatarica,3VZH4
+Lonicera xylosteum,EXACT,3VZJR,Lonicera xylosteum,3VZJR
+Lotus corniculatus,EXACT,3W7ZK,Lotus corniculatus,3W7ZK
+Lupinus,EXACT,,,
+Lupinus arcticus,EXACT,6QPNV,Lupinus arcticus,6QPNV
+Lupinus polyphyllus,EXACT,3WFL5,Lupinus polyphyllus,3WFL5
+Luzula campestris,EXACT,3WHDQ,Luzula campestris,3WHDQ
+Luzula multiflora,EXACT,VJS5F,Luzula multiflora,3WHHD
+Luzula pilosa,EXACT,3WHJG,Luzula pilosa,3WHJG
+Luzula sudetica,EXACT,3WHKF,Luzula sudetica,3WHKF
+Lychnis Lychnis fulgens,HIGHERRANK,,,
+Lychnis flos-cuculi,EXACT,4XC6F,Silene flos-cuculi,4XC6F
+Lychnis flos-cuculi ssp. flos-,HIGHERRANK,,,
+Lycopus europaeus,EXACT,3WN59,Lycopus europaeus,3WN59
+Lycoris radiata,EXACT,3WND8,Lycoris radiata,3WND8
+Lysimachia,EXACT,,,
+Lysimachia davurica,EXACT,72QP2,Lysimachia davurica,72QP2
+Lysimachia nemorum,EXACT,72R2W,Lysimachia nemorum,72R2W
+Lysimachia nummularia,EXACT,73338,Lysimachia nummularia,73338
+Lysimachia punctata,EXACT,6QQR3,Lysimachia punctata,6QQR3
+Lysimachia thyrsiflora,EXACT,732QD,Lysimachia thyrsiflora,732QD
+Lysimachia vulgaris,EXACT,72QRY,Lysimachia vulgaris,72QRY
+Lythrum,EXACT,,,
+Lythrum salicaria,EXACT,3WVHJ,Lythrum salicaria,3WVHJ
+Magnolia fraseri,EXACT,6R5KF,Magnolia fraseri,6R5KF
+Magnolia grandiflora,EXACT,3XHB5,Magnolia grandiflora,3XHB5
+Magnolia tripetala,EXACT,3XHKR,Magnolia tripetala,3XHKR
+Mahonia aquifolium,EXACT,3XJ3H,Mahonia aquifolium,3XJ3H
+Maianthemum bifolium,EXACT,72TBG,Maianthemum bifolium,72TBG
+Maianthemum canadense,EXACT,3XJ9V,Maianthemum canadense,3XJ9V
+Maianthemum japonicum,EXACT,6QTBB,Maianthemum japonicum,6QTBB
+Malus,EXACT,,,
+Malus baccata,EXACT,7358Y,Malus baccata,7358Y
+Malus domestica,EXACT,VK8LK,Malus domestica,VK8LK
+Malus mandshurica,EXACT,3XQWT,Malus mandshurica,3XQWT
+Malus pumila,EXACT,VK8LK,Malus domestica,VK8LK
+Malus sieversii,EXACT,VK8LK,Malus domestica,VK8LK
+Malus sylvestris,EXACT,3XQYH,Malus sylvestris,3XQYH
+Malus sylvestris s.l.,EXACT,3XQYH,Malus sylvestris,3XQYH
+Malva alcea,EXACT,3XQZY,Malva alcea,3XQZY
+Malva moschata,EXACT,6R4X7,Malva moschata,6R4X7
+Malva neglecta,EXACT,3XR9F,Malva neglecta,3XR9F
+Malva sylvestris,EXACT,3XRCL,Malva sylvestris,3XRCL
+Matricaria,EXACT,,,
+Matricaria matricarioides,EXACT,736RP,Matricaria discoidea,736RP
+Matricaria recutita,EXACT,72V3R,Matricaria chamomilla,72V3R
+Medicago falcata,EXACT,3YNKJ,Medicago falcata,3YNKJ
+Medicago lupulina,EXACT,3YNM2,Medicago lupulina,3YNM2
+Medicago sativa,EXACT,3YNPB,Medicago sativa,3YNPB
+Melampyrum Melampyrum setaceum,HIGHERRANK,,,
+Melampyrum nemorosum,EXACT,3Z5CT,Melampyrum nemorosum,3Z5CT
+Melampyrum pratense,EXACT,3Z5D4,Melampyrum pratense,3Z5D4
+Melampyrum sylvaticum,EXACT,3Z5DR,Melampyrum sylvaticum,3Z5DR
+Melica nutans,EXACT,72Z3M,Melica nutans,72Z3M
+Melilotus albus,EXACT,3ZFBQ,Melilotus albus,3ZFBQ
+Melilotus officinalis,EXACT,9CTBZ,Melilotus officinalis,9CTBZ
+Melissa officinalis,EXACT,3ZJGV,Melissa officinalis,3ZJGV
+Mentha,EXACT,,,
+Mentha aquatica,EXACT,3ZRLS,Mentha aquatica,3ZRLS
+Mentha arvensis,EXACT,3ZRM7,Mentha arvensis,3ZRM7
+Mentha canadensis,EXACT,,,
+Mentha dahurica,EXACT,3ZRRM,Mentha dahurica,
+Menyanthes trifoliata,EXACT,3ZSPG,Menyanthes trifoliata,3ZSPG
+Mercurialis perennis,EXACT,3ZTK4,Mercurialis perennis,3ZTK4
+Mertensia virginica,EXACT,3ZWWW,Mertensia virginica,3ZWWW
+Milium effusum,EXACT,43CS9,Milium effusum,43CS9
+Miscanthus sinensis,EXACT,43MQZ,Miscanthus sinensis,43MQZ
+Moehringia trinervia,EXACT,6RN99,Moehringia trinervia,6RN99
+Molinia caerulea,EXACT,43VQT,Molinia caerulea,43VQT
+Monarda didyma,EXACT,4428D,Monarda didyma,4428D
+Monarda fistulosa,EXACT,4428K,Monarda fistulosa,4428K
+Moneses uniflora,EXACT,443GM,Moneses uniflora,443GM
+Monotropa hypopitys,EXACT,3NXVS,Hypopitys monotropa,3NXVS
+Muscari armeniacum,EXACT,44PWL,Muscari armeniacum,44PWL
+Muscari botryoides,EXACT,44PWX,Muscari botryoides,44PWX
+Mycelis muralis,EXACT,44SKH,Mycelis muralis,44SKH
+Myosotis Myosotis suaveolens,HIGHERRANK,,,
+Myosotis alpestris,EXACT,455SL,Myosotis alpestris,455SL
+Myosotis arvensis,EXACT,455T6,Myosotis arvensis,455T6
+Myosotis discolor,EXACT,455VK,Myosotis discolor,455VK
+Myosotis palustris,EXACT,4564N,Myosotis scorpioides,4564N
+Myosotis popovii,EXACT,45637,Myosotis popovii,45637
+Myosotis ramosissima,EXACT,6S43S,Myosotis ramosissima,6S43S
+Myosotis scorpioides,EXACT,4564N,Myosotis scorpioides,4564N
+Myosotis scorpioides ssp. scorpioides,EXACT,,,
+Myosotis stricta,EXACT,4565J,Myosotis stricta,4565J
+Myosotis sylvatica,EXACT,743RS,Myosotis sylvatica,743RS
+Myrica gale,EXACT,458DN,Myrica gale,458DN
+Myricaria dahurica,EXACT,458GY,Myricaria longifolia,458GY
+Myrrhis odorata,EXACT,45DGC,Myrrhis odorata,45DGC
+Narcissus asturiensis,EXACT,45PCT,Narcissus cuneiflorus,45PCT
+Narcissus poeticus,EXACT,6RSNC,Narcissus poeticus,6RSNC
+Narcissus poëticus,EXACT,6RSNC,Narcissus poeticus,6RSNC
+Narcissus pseudonarcissus,EXACT,73SNC,Narcissus pseudonarcissus,73SNC
+Narthecium ossifragum,EXACT,746DD,Narthecium ossifragum,746DD
+Neotinea ustulata,EXACT,46VB5,Neotinea ustulata,46VB5
+Neottia cordata,EXACT,46W3R,Neottia cordata,46W3R
+Neottia nidus-avis,EXACT,46W4T,Neottia nidus-avis,46W4T
+Neottia ovata,EXACT,CDR5G,Neottia ovata,CDR5G
+Nepeta cataria,EXACT,46XJB,Nepeta cataria,46XJB
+Nuphar lutea,EXACT,4846S,Nuphar lutea,4846S
+Nymphaea,EXACT,,,
+Nymphaea alba,EXACT,48696,Nymphaea alba,48696
+Nymphaea alba ssp. candida,EXACT,4869Y,Nymphaea candida,4869Y
+Nymphaea candida,EXACT,4869Y,Nymphaea candida,4869Y
+Nyphar lutea,VARIANT,,,
+Nyssa sylvatica,EXACT,487MQ,Nyssa sylvatica,487MQ
+Odontites vulgaris,EXACT,48P4V,Odontites vulgaris,48P4V
+Oenothera,EXACT,,,
+Oenothera biennis,EXACT,48XQP,Oenothera biennis,48XQP
+Oenothera rubricaulis,EXACT,48Y6K,Oenothera rubricaulis,48Y6K
+Omalotheca norvegica,EXACT,6SJT7,Omalotheca norvegica,6SJT7
+Omphalodes verna,EXACT,74KWQ,Omphalodes verna,74KWQ
+Onobrychis arenaria,EXACT,49KWL,Onobrychis arenaria,49KWL
+Onosma simplicissima,EXACT,6SMK7,Onosma simplicissima,6SMK7
+Opuntia humifusa,EXACT,6T3LD,Opuntia humifusa,6T3LD
+Orchis mascula,EXACT,6T4WH,Orchis mascula,6T4WH
+Orchis militaris,EXACT,6SSWH,Orchis militaris,6SSWH
+Origanum vulgare,EXACT,6T7B5,Origanum vulgare,6T7B5
+Ornithogalum nutans,EXACT,758GT,Ornithogalum nutans,758GT
+Orobanche picridis,EXACT,6SW5L,Orobanche picridis,6SW5L
+Orostachys malacophylla,EXACT,74VLQ,Orostachys malacophylla,74VLQ
+Orthilia secunda,EXACT,6T9CN,Orthilia secunda,6T9CN
+Oxalis,EXACT,,,
+Oxalis acetosella,EXACT,6TFBM,Oxalis acetosella,6TFBM
+Oxycoccus,EXACT,,,
+Oxycoccus palustris,EXACT,7F6VG,Vaccinium oxycoccos,7F6VG
+Paeonia anomala,EXACT,4BY9H,Paeonia anomala,4BY9H
+Paeonia lactiflora,EXACT,6TKNH,Paeonia lactiflora,6TKNH
+Paeonia tenuifolia,EXACT,4BYDL,Paeonia tenuifolia,4BYDL
+Paeonia x festiva,EXACT,,,
+Papaver atlanticum,EXACT,4CJ8J,Papaver atlanticum,4CJ8J
+Papaver dubium,EXACT,6TM7X,Papaver dubium,6TM7X
+Papaver dubium ssp. dubium,EXACT,,,
+Papaver orientale,EXACT,4CJFV,Papaver orientale,4CJFV
+Papaver pseudoorientale,EXACT,4CJGW,Papaver pseudoorientale,4CJGW
+Parasenecio hastatus,EXACT,6TQHB,Parasenecio hastatus,6TQHB
+Paris quadrifolia,EXACT,4DMQM,Paris quadrifolia,4DMQM
+Paris verticillata,EXACT,4DMQX,Paris verticillata,4DMQX
+Parnassia palustris,EXACT,4DQ82,Parnassia palustris,4DQ82
+Passiflora incarnata,EXACT,4DYHZ,Passiflora incarnata,4DYHZ
+Pastinaca sativa,EXACT,764GT,Pastinaca sativa,764GT
+Patrinia scabiosifolia,EXACT,6TTM9,Patrinia scabiosifolia,6TTM9
+Pedicularis kaufmannii,EXACT,75WXF,Pedicularis kaufmannii,75WXF
+Pedicularis palustris,EXACT,6TX94,Pedicularis palustris,6TX94
+Pedicularis sceptrum-carolinum,EXACT,75WHY,Pedicularis sceptrum-carolinum,75WHY
+Pedicularis sylvatica,EXACT,768LJ,Pedicularis sylvatica,768LJ
+Persicaria lapathifolia,EXACT,4F9TP,Persicaria lapathifolia,4F9TP
+Petasites albus,EXACT,4FCYP,Petasites albus,4FCYP
+Petasites frigidus,EXACT,4FCZ7,Petasites frigidus,4FCZ7
+Petasites hybridus,EXACT,4FCZK,Petasites hybridus,4FCZK
+Peucedanum oreoselinum,EXACT,8S7VV,Oreoselinum nigrum,8S7VV
+Phalaris arundinacea,EXACT,4FRDZ,Phalaris arundinacea,4FRDZ
+Phellodendron amurense,EXACT,4FZL9,Phellodendron amurense,4FZL9
+Philadelphus tenuifolius,EXACT,4G4PJ,Philadelphus tenuifolius,4G4PJ
+Phleum phleoides,EXACT,4GFZN,Phleum phleoides,4GFZN
+Phleum pratense,EXACT,4GFZQ,Phleum pratense,4GFZQ
+Phlox paniculata,EXACT,6VC83,Phlox paniculata,6VC83
+Phragmites,EXACT,,,
+Phryma leptostachya,EXACT,4GVQH,Phryma leptostachya,4GVQH
+Phyllodoce caerulea,EXACT,4H6SZ,Phyllodoce caerulea,4H6SZ
+Phytolacca americana,EXACT,4HM9F,Phytolacca americana,4HM9F
+Picea,EXACT,,,
+Picea abies,EXACT,4HPZF,Picea abies,4HPZF
+Picea obovata,EXACT,4HQ46,Picea obovata,4HQ46
+Picea schrenkiana,EXACT,6VJ2C,Picea schrenkiana,6VJ2C
+Picris hieracioides,EXACT,4HQQ2,Picris hieracioides,4HQQ2
+Pilosella aurantiaca,EXACT,77JWC,Pilosella aurantiaca,77JWC
+Pilosella aurantiaca ssp. aura,HIGHERRANK,,,
+Pilosella aurantiaca var. aura,HIGHERRANK,,,
+Pilosella cymosa ssp. cymosa,EXACT,,,
+Pilosella officinarum,EXACT,4HV2W,Pilosella officinarum,4HV2W
+Pilosella officinarum ssp. pel,HIGHERRANK,,,
+Pimpinella saxifraga,EXACT,4HX85,Pimpinella saxifraga,4HX85
+Pimpinella tragium,EXACT,6VLFJ,Pimpinella tragium,6VLFJ
+Pinguicula vulgaris,EXACT,77LM6,Pinguicula vulgaris,77LM6
+Pinus pumila,EXACT,4J2FH,Pinus pumila,4J2FH
+Pinus sibirica,EXACT,4J2HD,Pinus sibirica,4J2HD
+Pinus sylvestris,EXACT,4J2J5,Pinus sylvestris,4J2J5
+Pistacia vera,EXACT,77MJ8,Pistacia vera,77MJ8
+Plagiorhegma dubium,EXACT,4JH3L,Plagiorhegma dubium,4JH3L
+Plantago lanceolata,EXACT,4JLMM,Plantago lanceolata,4JLMM
+Plantago lanceolata s.l.,EXACT,4JLMM,Plantago lanceolata,4JLMM
+Plantago major,EXACT,4JLPC,Plantago major,4JLPC
+Plantago major ssp. major,EXACT,,,
+Plantago media,EXACT,4JLPV,Plantago media,4JLPV
+Plantago media s.l.,EXACT,4JLPV,Plantago media,4JLPV
+Platanthera bifolia,EXACT,4JMVK,Platanthera bifolia,4JMVK
+Platanthera bifolia ssp. latif,HIGHERRANK,,,
+Platanthera chlorantha,EXACT,4JMW3,Platanthera chlorantha,4JMW3
+Platanus occidentalis,EXACT,4JN3N,Platanus occidentalis,4JN3N
+Platycodon grandiflorus,EXACT,4JPWP,Platycodon grandiflorus,4JPWP
+Pleurospermum uralense,EXACT,4KCMN,Pleurospermum uralense,4KCMN
+Poa,EXACT,,,
+Poa alpina,EXACT,4KL8Z,Poa alpina,4KL8Z
+Poa angustifolia,EXACT,4KL9Z,Poa angustifolia,4KL9Z
+Poa annua,EXACT,6W3C4,Poa annua,6W3C4
+Poa bulbosa,EXACT,4KLFK,Poa bulbosa,4KLFK
+Poa nemoralis,EXACT,4KMBQ,Poa nemoralis,4KMBQ
+Poa pratensis,EXACT,4KMJZ,Poa pratensis,4KMJZ
+Poa supina,EXACT,4KMWP,Poa supina,4KMWP
+Poa trivialis,EXACT,4KMZW,Poa trivialis,4KMZW
+Podophyllum peltatum,EXACT,4KR3V,Podophyllum peltatum,4KR3V
+Podospermum purpureum,EXACT,,,
+Polemonium,EXACT,,,
+Polemonium caeruleum,EXACT,4KXG7,Polemonium caeruleum,4KXG7
+Polemonium pulcherrimum,EXACT,4KXJT,Polemonium pulcherrimum,4KXJT
+Polygala amarella,EXACT,4L75F,Polygala amarella,4L75F
+Polygala vulgaris,EXACT,4L8K5,Polygala vulgaris,4L8K5
+Polygonatum multiflorum,EXACT,6VTVC,Polygonatum multiflorum,6VTVC
+Polygonatum odoratum,EXACT,6VTVB,Polygonatum odoratum,6VTVB
+Polygonatum verticillatum,EXACT,4L8W5,Polygonatum verticillatum,4L8W5
+Polygonum aviculare,EXACT,4L94H,Polygonum aviculare,4L94H
+Polygonum bistorta,EXACT,,,
+Polygonum viviparum,EXACT,LX7C,Bistorta vivipara,LX7C
+Poncirus trifoliata,EXACT,VMMG,Citrus trifoliata,VMMG
+Ponerorchis cucullata,EXACT,9V5NX,Hemipilia cucullata,9V5NX
+Pontechium maculatum,EXACT,4LTVT,Pontechium maculatum,4LTVT
+Populus alba,EXACT,4LVJ5,Populus alba,4LVJ5
+Populus balsamifera,EXACT,4LVJS,Populus balsamifera,4LVJS
+Populus balsamifera 'Elongata',EXACT,4LVJS,Populus balsamifera,4LVJS
+Populus deltoides,EXACT,4LVKV,Populus deltoides,4LVKV
+Populus fremontii,EXACT,6W7W3,Populus fremontii,6W7W3
+Populus grandidentata,EXACT,4LVLR,Populus grandidentata,4LVLR
+Populus nigra,EXACT,4LVNQ,Populus nigra,4LVNQ
+Populus suaveolens,EXACT,4LVQL,Populus suaveolens,4LVQL
+Populus tremula,EXACT,4LVQY,Populus tremula,4LVQY
+Populus tremuloides,EXACT,4LVR2,Populus tremuloides,4LVR2
+Potentilla,EXACT,,,
+Potentilla alba,EXACT,4M4X5,Potentilla alba,4M4X5
+Potentilla argentea,EXACT,4M4YZ,Potentilla argentea,4M4YZ
+Potentilla argentea var. argen,VARIANT,,,
+Potentilla crantzii,EXACT,9YC7N,Potentilla crantzii,9YC7N
+Potentilla erecta,EXACT,6VVPW,Potentilla erecta,6VVPW
+Potentilla fragarioides,EXACT,4M5CB,Potentilla fragarioides,4M5CB
+Potentilla incana,EXACT,4M5GP,Potentilla incana,
+Potentilla reptans,EXACT,4M5X2,Potentilla reptans,4M5X2
+Potentilla simplex,EXACT,4M635,Potentilla simplex,4M635
+Potentilla tabernaemontani,EXACT,6W7CR,Potentilla verna,6W7CR
+Prangos pabularia,EXACT,4M8WL,Prangos pabularia,4M8WL
+Primula acaulis,EXACT,,,
+Primula elatior,EXACT,6VWWT,Primula elatior,6VWWT
+Primula farinosa,EXACT,4MCSM,Primula farinosa,4MCSM
+Primula pauciflora,EXACT,373K9,Dodecatheon pulchellum,373K9
+Primula stricta,EXACT,4MDGJ,Primula stricta,4MDGJ
+Primula veris,EXACT,4MDK3,Primula veris,4MDK3
+Primula vulgaris,EXACT,4MDKW,Primula vulgaris,4MDKW
+Prunella vulgaris,EXACT,4N8DF,Prunella vulgaris,4N8DF
+Prunus,EXACT,,,
+Prunus americana,EXACT,77ZYD,Prunus americana,77ZYD
+Prunus armeniaca,EXACT,4N8NW,Prunus armeniaca,4N8NW
+Prunus avium,EXACT,4N8P4,Prunus avium,4N8P4
+Prunus cerasifera,EXACT,4N8QW,Prunus cerasifera,4N8QW
+Prunus cerasus,EXACT,4N8QS,Prunus cerasus,4N8QS
+Prunus domestica,EXACT,4N8SY,Prunus domestica,4N8SY
+Prunus domestica ssp. domestica,EXACT,,,
+Prunus dulcis,HIGHERRANK,,,
+Prunus laurocerasus,EXACT,4N8Y3,Prunus laurocerasus,4N8Y3
+Prunus mahaleb,EXACT,77ZQW,Prunus mahaleb,77ZQW
+Prunus padus,EXACT,4N93X,Prunus padus,4N93X
+Prunus pensylvanica,EXACT,77ZRD,Prunus pensylvanica,77ZRD
+Prunus persica,EXACT,4N94F,Prunus persica,4N94F
+Prunus serotina,EXACT,4N97Q,Prunus serotina,4N97Q
+Prunus serrulata,EXACT,4N97T,Prunus serrulata,4N97T
+Prunus spinosa,EXACT,4N98J,Prunus spinosa,4N98J
+Prunus tenella,EXACT,4N99L,Prunus tenella,4N99L
+Prunus virginiana,EXACT,4N9B5,Prunus virginiana,4N9B5
+Prunus yedoensis,EXACT,4N9DD,Prunus yedoensis,4N9DD
+Psephellus Psephellus carbonatus,HIGHERRANK,,,
+Pseudofumaria lutea,EXACT,6WFYW,Pseudofumaria lutea,6WFYW
+Pseudotsuga menziesii,EXACT,6WHCL,Pseudotsuga menziesii,6WHCL
+Pulmonaria,EXACT,,,
+Pulmonaria angustifolia,EXACT,4QGNW,Pulmonaria angustifolia,4QGNW
+Pulmonaria mollis,EXACT,4QGQ7,Pulmonaria mollis,99SSJ
+Pulmonaria obscura,EXACT,78PBT,Pulmonaria obscura,78PBT
+Pulmonaria officinalis,EXACT,4QGQF,Pulmonaria officinalis,4QGQF
+Pulsatilla,EXACT,,,
+Pulsatilla dahurica,EXACT,4QGTD,Pulsatilla dahurica,4QGTD
+Pulsatilla patens,EXACT,78PCJ,Pulsatilla patens,78PCJ
+Pulsatilla pratensis,EXACT,6WPCM,Pulsatilla pratensis,6WPCM
+Pulsatilla turczaninovii,EXACT,4QGVW,Pulsatilla turczaninovii,4QGVW
+Pulsatilla vernalis,EXACT,4QGW3,Pulsatilla vernalis,4QGW3
+Pulsatilla vulgaris ssp. vulgaris,EXACT,,,
+Puschkinia scilloides,EXACT,4QKT4,Puschkinia scilloides,4QKT4
+Pyrethrum corumbosum,HIGHERRANK,,,
+Pyrola,EXACT,,,
+Pyrola chlorantha,EXACT,6WQC2,Pyrola chlorantha,6WQC2
+Pyrola minor,EXACT,6X24M,Pyrola minor,6X24M
+Pyrola rotundifolia,EXACT,78Q52,Pyrola rotundifolia,78Q52
+Pyrus communis,EXACT,4QWMZ,Pyrus communis,4QWMZ
+Pyrus ussuriensis,EXACT,4QXM5,Pyrus ussuriensis,4QXM5
+Quercus alba,EXACT,4R47Z,Quercus alba,4R47Z
+Quercus imbricaria,EXACT,4R57Q,Quercus imbricaria,4R57Q
+Quercus macrocarpa,EXACT,4R5FS,Quercus macrocarpa,4R5FS
+Quercus mongolica,EXACT,4R5KF,Quercus mongolica,4R5KF
+Quercus montana,EXACT,4R5KM,Quercus montana,4R5KM
+Quercus palustris,EXACT,4R5QY,Quercus palustris,4R5QY
+Quercus petraea,EXACT,4R5SK,Quercus petraea,4R5SK
+Quercus robur,EXACT,4R5YN,Quercus robur,4R5YN
+Quercus rubra,EXACT,4R5Z8,Quercus rubra,4R5Z8
+Quercus velutina,EXACT,6X452,Quercus velutina,6X452
+Ranunculus acris,EXACT,4RFJN,Ranunculus acris,4RFJN
+Ranunculus acris ssp. acris,EXACT,,,
+Ranunculus auricomus,EXACT,4RFR9,Ranunculus auricomus,4RFR9
+Ranunculus bulbosus,EXACT,6X4PR,Ranunculus bulbosus,6X4PR
+Ranunculus cassubicus,EXACT,78SQ3,Ranunculus cassubicus,78SQ3
+Ranunculus ficaria,EXACT,,,
+Ranunculus ficaria ssp. ficaria,EXACT,,,
+Ranunculus franchetii,EXACT,4RGCY,Ranunculus franchetii,4RGCY
+Ranunculus grandifolius,EXACT,4RGGB,Ranunculus grandifolius,4RGGB
+Ranunculus lingua,EXACT,4RGTM,Ranunculus lingua,4RGTM
+Ranunculus monophyllus,EXACT,4RH25,Ranunculus monophyllus,4RH25
+Ranunculus polyanthemos s.l.,EXACT,79559,Ranunculus polyanthemos,79559
+Ranunculus polyrhizos,EXACT,78T58,Ranunculus polyrhizos,78T58
+Ranunculus propinquus,EXACT,78T4Z,Ranunculus propinquus,78T4Z
+Ranunculus repens,EXACT,4RHKY,Ranunculus repens,4RHKY
+Ranunculus sceleratus,EXACT,4RHPH,Ranunculus sceleratus,4RHPH
+Rhamnus cathartica,EXACT,4RZYQ,Rhamnus cathartica,4RZYQ
+Rhamnus davurica,VARIANT,,,
+Rheum rhabarbarum,EXACT,4S6BX,Rheum rhabarbarum,4S6BX
+Rhinanthus angustifolius,HIGHERRANK,,,
+Rhinanthus minor,EXACT,795LB,Rhinanthus minor,795LB
+Rhinanthus minor ssp. minor,EXACT,,,
+Rhinanthus serotinus,EXACT,4S7BP,Rhinanthus serotinus,4S7BP
+Rhinanthus serotinus ssp. vern,VARIANT,,,
+Rhodiola rosea,EXACT,6X6NN,Rhodiola rosea,6X6NN
+Rhodococcum minor,HIGHERRANK,,,
+Rhododendron catawbiense,EXACT,4SFL9,Rhododendron catawbiense,4SFL9
+Rhododendron dahuricum,EXACT,,,
+Rhododendron groenlandicum,EXACT,78V3Y,Rhododendron groenlandicum,78V3Y
+Rhododendron ledebourii,EXACT,,,
+Rhododendron mucronulatum,EXACT,6X6DK,Rhododendron mucronulatum,6X6DK
+Rhododendron tomentosum,EXACT,796FF,Rhododendron tomentosum,796FF
+Rhus glabra,EXACT,4SN3S,Rhus glabra,4SN3S
+Rhus typhina,EXACT,4SND6,Rhus typhina,4SND6
+Rhynchospora alba,EXACT,6WW4M,Rhynchospora alba,6WW4M
+Ribes aciculare,EXACT,4SY6K,Ribes aciculare,4SY6K
+Ribes acidum,EXACT,4SYB7,Ribes glabellum,4SYB7
+Ribes alpinum,EXACT,4SY77,Ribes alpinum,4SY77
+Ribes aureum,EXACT,4SY7V,Ribes aureum,4SY7V
+Ribes hispidulum,EXACT,,,
+Ribes janczewskii,EXACT,4SYDG,Ribes janczewskii,4SYDG
+Ribes mandshuricum,EXACT,6X7D9,Ribes mandshuricum,6X7D9
+Ribes nigrum,EXACT,4SYG6,Ribes nigrum,4SYG6
+Ribes pallidiflorum,EXACT,4SYGW,Ribes pallidiflorum,4SYGW
+Ribes petraeum,EXACT,4SYHB,Ribes petraeum,4SYHB
+Ribes rubrum,EXACT,4SYJD,Ribes rubrum,4SYJD
+Ribes sanguineum,EXACT,4SYJN,Ribes sanguineum,4SYJN
+Ribes scandicum,HIGHERRANK,,,
+Ribes spicatum,EXACT,78VDD,Ribes spicatum,78VDD
+Ribes uva-crispa,EXACT,4SYLV,Ribes uva-crispa,4SYLV
+Robinia pseudoacacia,EXACT,4T7YV,Robinia pseudoacacia,4T7YV
+Rorippa palustris,EXACT,4TCR2,Rorippa palustris,4TCR2
+Rosa,EXACT,,,
+Rosa acicularis,EXACT,4TCSZ,Rosa acicularis,4TCSZ
+Rosa canina,EXACT,4TCZM,Rosa canina,4TCZM
+Rosa canina ssp. dumetorum,EXACT,4TD4C,Rosa corymbifera,4TD4C
+Rosa davurica,EXACT,4TD59,Rosa davurica,4TD59
+Rosa dumalis,EXACT,4TD6Q,Rosa dumalis,4TD6Q
+Rosa dumalis ssp. coriifolia,EXACT,4TCZ5,Rosa caesia,4TCZ5
+Rosa majalis,EXACT,4TDL3,Rosa majalis,4TDL3
+Rosa pendulina,EXACT,4TDS2,Rosa pendulina,4TDS2
+Rosa rubiginosa,EXACT,4TDX3,Rosa rubiginosa,4TDX3
+Rosa rugosa,EXACT,4TDX9,Rosa rugosa,4TDX9
+Rosa villosa ssp. mollis,EXACT,,,
+Rosa webbiana,EXACT,78YBP,Rosa webbiana,78YBP
+Rosa woodsii,EXACT,6WYC8,Rosa woodsii,6WYC8
+Rosa x alba,EXACT,9YFT7,Rosa alba,9YFT7
+Rosa x kamtchatica,EXACT,4TDX9,Rosa rugosa,4TDX9
+Rubus arcticus,EXACT,6X9JK,Rubus arcticus,6X9JK
+Rubus caesius,EXACT,4TJNN,Rubus caesius,4TJNN
+Rubus chamaemorus,EXACT,4TJR6,Rubus chamaemorus,4TJR6
+Rubus crataegifolius,EXACT,4TJV7,Rubus crataegifolius,4TJV7
+Rubus fruticosus,HIGHERRANK,,,
+Rubus idaeus,EXACT,4TKGB,Rubus idaeus,4TKGB
+Rubus idaeus/matsumuranus,EXACT,4TKGB,Rubus idaeus,4TKGB
+Rubus laciniatus,EXACT,4TKMN,Rubus laciniatus,4TKMN
+Rubus nessensis,EXACT,4TKZH,Rubus nessensis,4TKZH
+Rubus parviflorus,EXACT,4TL6T,Rubus parviflorus,4TL6T
+Rubus plicatus,EXACT,78XP7,Rubus plicatus,78XP7
+Rubus sachalinensis,EXACT,4TLKR,Rubus sachalinensis,4TLKR
+Rubus saxatilis,EXACT,4TLLM,Rubus saxatilis,4TLLM
+Rubus spectabilis,EXACT,4TLR5,Rubus spectabilis,4TLR5
+Rubus vestitus,EXACT,BYPVJ,Rubus vestitus,BYPVJ
+Rumex,EXACT,,,
+Rumex acetosa,EXACT,4TPGJ,Rumex acetosa,4TPGJ
+Rumex acetosa var. acetosa,EXACT,,,
+Rumex acetosella,EXACT,4TPGK,Rumex acetosella,4TPGK
+Rumex acetosella ssp. tenuifol,VARIANT,,,
+Rumex confertus,EXACT,4TPL9,Rumex confertus,4TPL9
+Rumex crispus,EXACT,4TPLP,Rumex crispus,4TPLP
+Rumex longifolius,EXACT,4TPRJ,Rumex longifolius,4TPRJ
+Rumex obtusifolius,EXACT,4TPTF,Rumex obtusifolius,4TPTF
+Salix,EXACT,,,
+Salix acutifolia,EXACT,6XCGS,Salix acutifolia,6XCGS
+Salix arctica,EXACT,79CJ8,Salix arctica,79CJ8
+Salix caprea,EXACT,6XCBJ,Salix caprea,6XCBJ
+Salix caprea ssp. caprea,EXACT,,,
+Salix daphnoides,EXACT,6XCD2,Salix daphnoides,6XCD2
+Salix discolor,EXACT,6XCD9,Salix discolor,6XCD9
+Salix fragilis,EXACT,79C4X,Salix fragilis,79C4X
+Salix glauca,EXACT,79C5K,Salix glauca,79C5K
+Salix gracilistyla,EXACT,79C5P,Salix gracilistyla,79C5P
+Salix holosericea,EXACT,79C8J,Salix holosericea,79C8J
+Salix parallelinervis,EXACT,,,
+Salix pentandra,EXACT,6XDRT,Salix pentandra,6XDRT
+Salix phylicifolia,EXACT,79DSC,Salix phylicifolia,79DSC
+Salix planifolia,EXACT,79DSK,Salix planifolia,79DSK
+Salix purpurea,EXACT,79DST,Salix purpurea,79DST
+Salix repens,EXACT,79DTH,Salix repens,79DTH
+Salix rorida,EXACT,6XDVY,Salix rorida,6XDVY
+Salix udensis,EXACT,79DJG,Salix udensis,79DJG
+Salix x sepulcralis,EXACT,79DC9,Salix sepulcralis,79DC9
+Salvia deserta,EXACT,79GW9,Salvia deserta,79GW9
+Salvia officinalis,EXACT,6XH46,Salvia officinalis,6XH46
+Salvia pratensis,EXACT,79H3H,Salvia pratensis,79H3H
+Sambucus nigra,EXACT,79HX3,Sambucus nigra,79HX3
+Sambucus nigra-cerulea,HIGHERRANK,,,
+Sambucus racemosa,EXACT,6XHX7,Sambucus racemosa,6XHX7
+Sambucus williamsii,EXACT,79HXK,Sambucus williamsii,79HXK
+Sanguinaria canadensis,EXACT,79HDB,Sanguinaria canadensis,79HDB
+Sanguisorba minor,EXACT,,,
+Sanguisorba officinalis,EXACT,6XJBC,Sanguisorba officinalis,6XJBC
+Sanicula Sanicula giraldii,HIGHERRANK,,,
+Sanicula europaea,EXACT,6XJ3Q,Sanicula europaea,6XJ3Q
+Sanicula rubriflora,EXACT,6XJ4D,Sanicula rubriflora,6XJ4D
+Saponaria officinalis,EXACT,6XL6Y,Saponaria officinalis,6XL6Y
+Sarracenia purpurea,EXACT,6XPLH,Sarracenia purpurea,6XPLH
+Sassafras albidum,EXACT,79QLB,Sassafras albidum,79QLB
+Saxifraga granulata,EXACT,79QSR,Saxifraga granulata,79QSR
+Scabiosa ochroleuca,EXACT,6Y4QY,Scabiosa ochroleuca,6Y4QY
+Schisandra chinensis,EXACT,4V8HZ,Schisandra chinensis,4V8HZ
+Scilla bifolia,EXACT,4VJCF,Scilla bifolia,4VJCF
+Scilla forbesii,EXACT,4VJFC,Scilla forbesii,4VJFC
+Scilla mischtschenkoana,EXACT,4VJK2,Scilla mischtschenkoana,4VJK2
+Scilla sardensis,EXACT,VJRX3,Scilla sardensis,6XXY5
+Scilla siberica,EXACT,4VJN6,Scilla siberica,4VJN6
+Scirpus sylvaticus,EXACT,4VMQS,Scirpus sylvaticus,4VMQS
+Scolochloa festucacea,EXACT,4VS2Q,Scolochloa festucacea,4VS2Q
+Scopolia carniolica,EXACT,4VVP9,Scopolia carniolica,4VVP9
+Scorzonera hispanica,EXACT,,,
+Scorzonera humilis,EXACT,4VXB4,Scorzonera humilis,4VXB4
+Scrophularia nodosa,EXACT,6XYQ3,Scrophularia nodosa,6XYQ3
+Scutellaria galericulata,EXACT,4W283,Scutellaria galericulata,4W283
+Securigera varia,EXACT,6B4B7,Coronilla varia,6B4B7
+Sedum,EXACT,,,
+Sedum acre,EXACT,79ZFK,Sedum acre,79ZFK
+Sedum annuum,EXACT,4W8WP,Sedum annuum,4W8WP
+Sedum hybridum,EXACT,4FXPT,Phedimus middendorffianus,4FXPT
+Senecio jacobaea ssp. jacobaea,EXACT,3QJJ5,Jacobaea vulgaris,3QJJ5
+Senecio nemorensis,EXACT,4WM5F,Senecio nemorensis,4WM5F
+Senecio vernalis,EXACT,4WNPH,Senecio vernalis,4WNPH
+Senecio vulgaris,EXACT,4WNRF,Senecio vulgaris,4WNRF
+Serratula coronata,EXACT,4WXM4,Serratula coronata,4WXM4
+Serratula tinctoria,EXACT,4WXSY,Serratula tinctoria,4WXSY
+Sesleria uliginosa,EXACT,6YKBD,Sesleria uliginosa,6YKBD
+Sibbaldianthe bifurca,EXACT,4X5SV,Sibbaldianthe bifurca,4X5SV
+Silene borysthenica,EXACT,4XBRY,Silene borysthenica,4XBRY
+Silene dioica,EXACT,4XC2G,Silene dioica,4XC2G
+Silene flos-cuculi,EXACT,4XC6F,Silene flos-cuculi,4XC6F
+Silene latifolia,EXACT,4XCGC,Silene latifolia,4XCGC
+Silene latifolia ssp. alba,EXACT,,,
+Silene nutans,EXACT,4XCR2,Silene nutans,4XCR2
+Silene vulgaris,EXACT,4XDFW,Silene vulgaris,4XDFW
+Silene vulgaris var. vulgaris,EXACT,,,
+Sinapis arvensis,HIGHERRANK,,,VJT6H
+Sium latifolium,EXACT,4XTXJ,Sium latifolium,4XTXJ
+Solanum dulcamara,EXACT,4Y2BH,Solanum dulcamara,4Y2BH
+Solanum tuberosum,EXACT,4Y4K6,Solanum tuberosum,4Y4K6
+Solidago canadensis,EXACT,4Y76S,Solidago canadensis,4Y76S
+Solidago decurrens,EXACT,6Z4WL,Solidago decurrens,6Z4WL
+Solidago missouriensis,EXACT,4Y7DX,Solidago missouriensis,4Y7DX
+Solidago rigida,EXACT,4Y7H9,Solidago rigida,4Y7H9
+Solidago rugosa,EXACT,4Y7HH,Solidago rugosa,4Y7HH
+Solidago sempervirens,EXACT,4Y7J2,Solidago sempervirens,4Y7J2
+Solidago virgaurea,EXACT,4Y7L3,Solidago virgaurea,4Y7L3
+Solidago virgaurea ssp. virgau,VARIANT,,,
+Sonchus asper,EXACT,4Y96B,Sonchus asper,4Y96B
+Sorbaria sorbifolia,EXACT,4YB6Z,Sorbaria sorbifolia,4YB6Z
+Sorbus,EXACT,,,
+Sorbus americana,EXACT,VK8NX,Sorbus americana,4YB88
+Sorbus aria,EXACT,5VR7S,Aria edulis,5VR7S
+Sorbus aucuparia,EXACT,4YB93,Sorbus aucuparia,4YB93
+Sorbus aucuparia ssp. aucuparia,EXACT,,,
+Sorbus intermedia,EXACT,V56MN,Hedlundia intermedia,V56MN
+Sorbus turkestanica,EXACT,3JZDP,Hedlundia turkestanica,
+Spergula morisonii,EXACT,4YJCG,Spergula morisonii,4YJCG
+Spergularia rubra,EXACT,4YJJ6,Spergularia rubra,4YJJ6
+Sphaeralcea coccinea,EXACT,4YL7R,Sphaeralcea coccinea,4YL7R
+Spigelia marilandica,EXACT,4Z364,Spigelia marilandica,4Z364
+Spiraea alba,EXACT,4Z6DK,Spiraea alba,4Z6DK
+Spiraea chamaedryfolia,EXACT,4Z6FX,Spiraea chamaedryfolia,4Z6FX
+Spiraea hypericifolia,EXACT,4Z6K6,Spiraea hypericifolia,4Z6K6
+Spiraea media,EXACT,VJSZZ,Spiraea media,4Z6LQ
+Spiraea trilobata,EXACT,4Z6S5,Spiraea trilobata,4Z6S5
+Spiraea vanhouttei,EXACT,7NMFH,Spiraea vanhouttei,7NMFH
+Spiraea x arguta,EXACT,93MPX,Spiraea arguta,93MPX
+Spiraea x cinerea,EXACT,93MQC,Spiraea cinerea,93MQC
+Stachys officinalis,EXACT,,,
+Stachys palustris,EXACT,6ZH4J,Stachys palustris,6ZH4J
+Stachys recta,EXACT,4ZFVT,Stachys recta,4ZFVT
+Stachys sylvatica,EXACT,4ZFZC,Stachys sylvatica,4ZFZC
+Staphylea pinnata,EXACT,6ZGB5,Staphylea pinnata,6ZGB5
+Stellaria bungeana,EXACT,6ZJ4H,Stellaria bungeana,6ZJ4H
+Stellaria bungeana s. str.,EXACT,6ZJ4H,Stellaria bungeana,6ZJ4H
+Stellaria graminea,EXACT,6ZJ3L,Stellaria graminea,6ZJ3L
+Stellaria holostea,EXACT,7WQVF,Rabelera holostea,7WQVF
+Stellaria longifolia,EXACT,4ZRGR,Stellaria longifolia,4ZRGR
+Stellaria media,EXACT,4ZRH7,Stellaria media,4ZRH7
+Stellaria palustris,EXACT,93LWV,Stellaria palustris,93LWV
+Stipa pennata,EXACT,6ZVPW,Stipa pennata,6ZVPW
+Succisa pratensis,EXACT,7B3N5,Succisa pratensis,7B3N5
+Symphoricarpos albus,EXACT,99TB4,Symphoricarpos albus,99TB4
+Symphoricarpos albus var. laevigatus,EXACT,,,
+Symphyotrichum novae-angliae,EXACT,53Q8K,Symphyotrichum novae-angliae,53Q8K
+Symphyotrichum novi-belgii,EXACT,53Q8L,Symphyotrichum novi-belgii,53Q8L
+Symphyotrichum x salignum,EXACT,7B6K2,Symphyotrichum salignum,7B6K2
+Symphytum asperum,EXACT,7B6KN,Symphytum asperum,7B6KN
+Symphytum officinale,EXACT,53QG6,Symphytum officinale,53QG6
+Symphytum x uplandicum,EXACT,53QH5,Symphytum uplandicum,53QH5
+Synurus deltoides,EXACT,53ZYJ,Synurus deltoides,53ZYJ
+Syringa,EXACT,,,
+Syringa reticulata,EXACT,542G3,Syringa reticulata,542G3
+Syringa vulgaris,EXACT,542H2,Syringa vulgaris,542H2
+Tanacetum kittaryanum,EXACT,54NB2,Tanacetum kittaryanum,54NB2
+Tanacetum vulgare,EXACT,54NJ4,Tanacetum vulgare,54NJ4
+Taraxacum,EXACT,,,
+Taraxacum ceratophorum,EXACT,7BKPK,Taraxacum ceratophorum,7BKPK
+Taraxacum officinale,EXACT,54VX8,Taraxacum officinale,54VX8
+Teesdalia nudicaulis,EXACT,7BN59,Teesdalia nudicaulis,7BN59
+Thalictrum aquilegifolium,VARIANT,,,
+Thalictrum flavum,EXACT,7BTKQ,Thalictrum flavum,7BTKQ
+Thalictrum minus,EXACT,562CN,Thalictrum minus,562CN
+Thalictrum thalictroides,EXACT,562K5,Thalictrum thalictroides,562K5
+Thermopsis montana,EXACT,9DM7C,Thermopsis montana,9DM7C
+Thesium repens,EXACT,56FN2,Thesium repens,56FN2
+Thlaspi arvense,EXACT,56HZF,Thlaspi arvense,56HZF
+Thlaspi caerulescens,EXACT,,,
+Thlaspi caerulescens ssp. brac,HIGHERRANK,,,
+Thlaspi caerulescens ssp. caer,HIGHERRANK,,,
+Thymus guberlinensis,EXACT,56QYX,Thymus guberlinensis,56QYX
+Thymus pulegioides,EXACT,7C9DT,Thymus pulegioides,7C9DT
+Thymus serpyllum ssp. serpyllum,EXACT,,,
+Tilia,EXACT,,,
+Tilia americana,EXACT,56WNF,Tilia americana,56WNF
+Tilia amurensis,EXACT,56WNG,Tilia amurensis,56WNG
+Tilia cordata,EXACT,56WPP,Tilia cordata,56WPP
+Tilia dasystyla,EXACT,56WPX,Tilia dasystyla,56WPX
+Tilia platyphyllos,EXACT,7CC2T,Tilia platyphyllos,7CC2T
+Tilia platyphyllos ssp. cordifolia,EXACT,,,
+Torilis japonica,EXACT,7CHDC,Torilis japonica,7CHDC
+Toxicodendron radicans,EXACT,57LHS,Toxicodendron radicans,57LHS
+Tradescantia ohiensis,EXACT,7CM72,Tradescantia ohiensis,7CM72
+Tragopogon orientalis,EXACT,57WK6,Tragopogon orientalis,57WK6
+Tragopogon pratensis,EXACT,57WKN,Tragopogon pratensis,57WKN
+Trichophorum cespitosum,EXACT,58GZS,Trichophorum cespitosum,58GZS
+Trientalis,EXACT,,,
+Trientalis borealis,EXACT,6R2MY,Lysimachia borealis,6R2MY
+Trientalis europaea,HIGHERRANK,,,
+Trifolium alpestre,EXACT,58PMZ,Trifolium alpestre,58PMZ
+Trifolium arvense,EXACT,58PNW,Trifolium arvense,58PNW
+Trifolium aureum,EXACT,58PP5,Trifolium aureum,58PP5
+Trifolium campestre,EXACT,7CSFT,Trifolium campestre,7CSFT
+Trifolium hybridum,EXACT,58PVM,Trifolium hybridum,58PVM
+Trifolium lupinaster,EXACT,58PXH,Trifolium lupinaster,58PXH
+Trifolium medium,EXACT,58PY4,Trifolium medium,58PY4
+Trifolium montanum,EXACT,58PYX,Trifolium montanum,58PYX
+Trifolium pratense,EXACT,58Q42,Trifolium pratense,58Q42
+Trifolium repens,EXACT,58Q4Y,Trifolium repens,58Q4Y
+Triglochin maritima,EXACT,58QLV,Triglochin maritima,58QLV
+Triglochin palustris,EXACT,7CS6S,Triglochin palustris,7CS6S
+Trillium erectum,EXACT,58TXL,Trillium erectum,58TXL
+Trillium grandiflorum,EXACT,58TXY,Trillium grandiflorum,58TXY
+Trillium undulatum,EXACT,58TZY,Trillium undulatum,58TZY
+Trinia multicaulis,EXACT,58VKD,Trinia multicaulis,58VKD
+Tripleurospermum inodorum,EXACT,58YGZ,Tripleurospermum inodorum,58YGZ
+Tripleurospermum perforatum,EXACT,58YGZ,Tripleurospermum inodorum,58YGZ
+Trollius,EXACT,,,
+Trollius altaicus,EXACT,7D83C,Trollius altaicus,7D83C
+Trollius asiaticus,EXACT,7CVTQ,Trollius asiaticus,7CVTQ
+Trollius chinensis,EXACT,7CVTL,Trollius chinensis,7CVTL
+Trollius europaeus,EXACT,7CVTJ,Trollius europaeus,7CVTJ
+Tulipa gesneriana,EXACT,59KYV,Tulipa gesneriana,59KYV
+Tulipa kaufmanniana,EXACT,59L29,Tulipa kaufmanniana,59L29
+Tulipa sylvestris,EXACT,59L6K,Tulipa sylvestris,59L6K
+Turritis glabra,EXACT,59R3R,Turritis glabra,59R3R
+Tussilago farfara,EXACT,59R86,Tussilago farfara,59R86
+Tussilago officinalis,HIGHERRANK,,,
+Ulmus,EXACT,,,
+Ulmus alata,EXACT,7DFYH,Ulmus alata,7DFYH
+Ulmus americana,EXACT,7DFZ6,Ulmus americana,7DFZ6
+Ulmus androssowii,EXACT,7DFYT,Ulmus androssowii,7DFYT
+Ulmus davidiana,EXACT,7DFLP,Ulmus davidiana,7DFLP
+Ulmus glabra,EXACT,7DFJZ,Ulmus glabra,7DFJZ
+Ulmus glabra ssp. glabra,EXACT,,,
+Ulmus laevis,EXACT,7DFN8,Ulmus laevis,7DFN8
+Ulmus minor,EXACT,7DFNR,Ulmus minor,7DFNR
+Urtica,EXACT,,,
+Urtica dioica,EXACT,7F2CH,Urtica dioica,7F2CH
+Urtica dioica var. dioica,EXACT,,,
+Utricularia vulgaris,EXACT,7F59F,Utricularia vulgaris,7F59F
+Vaccinium corymbosum,EXACT,7F7GJ,Vaccinium corymbosum,7F7GJ
+Vaccinium myrtillus,EXACT,7F76T,Vaccinium myrtillus,7F76T
+Vaccinium oxycoccos,EXACT,7F6VG,Vaccinium oxycoccos,7F6VG
+Vaccinium uliginosum,EXACT,7F93C,Vaccinium uliginosum,7F93C
+Vaccinium virgatum,HIGHERRANK,,,
+Vaccinium vitis-idaea,EXACT,7F8TT,Vaccinium vitis-idaea,7F8TT
+Valeriana dioica,EXACT,7FB97,Valeriana dioica,7FB97
+Valeriana officinalis,EXACT,7FCMV,Valeriana officinalis,7FCMV
+Valeriana rossica,EXACT,7FCDY,Valeriana rossica,7FCDY
+Valeriana sambucifolia,EXACT,,,VK7V5
+Valeriana sambucifolia ssp. sa,HIGHERRANK,,,
+Valeriana tuberosa,EXACT,7FC9Y,Valeriana tuberosa,7FC9Y
+Valeriana wolgensis,EXACT,7FC8L,Valeriana wolgensis,7FC8L
+Veratrum lobelianum,EXACT,7FNKS,Veratrum lobelianum,7FNKS
+Veratrum maackii,EXACT,7FNLG,Veratrum maackii,7FNLG
+Veratrum nigrum,EXACT,7FNJT,Veratrum nigrum,7FNJT
+Verbascum lychnitis,EXACT,7G2BG,Verbascum lychnitis,7G2BG
+Verbascum nigrum,EXACT,7G2DQ,Verbascum nigrum,7G2DQ
+Verbascum thapsus,EXACT,7FQFT,Verbascum thapsus,7FQFT
+Verbesina alternifolia,EXACT,5B32W,Verbesina alternifolia,5B32W
+Vernonia noveboracensis,EXACT,5B5JC,Vernonia noveboracensis,5B5JC
+Veronica,EXACT,,,
+Veronica agrestis,EXACT,5B6DT,Veronica agrestis,5B6DT
+Veronica arvensis,EXACT,5B6FX,Veronica arvensis,5B6FX
+Veronica chamaedrys,EXACT,5B6L3,Veronica chamaedrys,5B6L3
+Veronica filiformis,EXACT,5B6R7,Veronica filiformis,5B6R7
+Veronica hederifolia,EXACT,5B6TZ,Veronica hederifolia,5B6TZ
+Veronica hederifolia ssp. luco,VARIANT,,,
+Veronica longifolia,EXACT,5B6YK,Veronica longifolia,5B6YK
+Veronica montana,EXACT,5B734,Veronica montana,5B734
+Veronica officinalis,EXACT,5B756,Veronica officinalis,5B756
+Veronica praecox,EXACT,5B78K,Veronica praecox,5B78K
+Veronica serpyllifolia ssp. serphyllifolia,VARIANT,,,
+Veronicastrum sibiricum,EXACT,5B7LF,Veronicastrum sibiricum,5B7LF
+Viburnum,EXACT,,,
+Viburnum lantana,EXACT,5BC9Y,Viburnum lantana,5BC9Y
+Viburnum lantanoides,EXACT,5BC9Z,Viburnum lantanoides,5BC9Z
+Viburnum opulus,EXACT,5BCCB,Viburnum opulus,5BCCB
+Viburnum sargentii,EXACT,5BCDY,Viburnum sargentii,5BCDY
+Vicia cracca,EXACT,5BCMF,Vicia cracca,5BCMF
+Vicia hirsuta,EXACT,5BCQ7,Vicia hirsuta,5BCQ7
+Vicia lutea,EXACT,5BCS7,Vicia lutea,5BCS7
+Vicia sativa ssp. nigra,EXACT,,,
+Vicia sepium,EXACT,5BCWQ,Vicia sepium,5BCWQ
+Vicia sepium ssp. sepium,EXACT,,,
+Vicia sylvatica,EXACT,5BCX6,Vicia sylvatica,5BCX6
+Vicia tenuifolia,EXACT,5BCY5,Vicia tenuifolia,5BCY5
+Vinca minor,EXACT,5BFGJ,Vinca minor,5BFGJ
+Vincetoxicum hirundinaria,EXACT,7FRQX,Vincetoxicum hirundinaria,7FRQX
+Vincetoxicum hirundinaria s.l.,EXACT,7FRQX,Vincetoxicum hirundinaria,7FRQX
+Viola arvensis,EXACT,5BGDQ,Viola arvensis,5BGDQ
+Viola biflora,EXACT,7G3Q4,Viola biflora,7G3Q4
+Viola canina,EXACT,5BGHP,Viola canina,5BGHP
+Viola canina ssp. canina,EXACT,,,
+Viola collina,EXACT,5BGKP,Viola collina,5BGKP
+Viola epipsila,EXACT,5BGQ2,Viola epipsila,5BGQ2
+Viola hirta,EXACT,5BGV7,Viola hirta,5BGV7
+Viola mirabilis,EXACT,7G3ST,Viola mirabilis,7G3ST
+Viola odorata,EXACT,5BH9J,Viola odorata,5BH9J
+Viola palustris,EXACT,7G3TN,Viola palustris,7G3TN
+Viola reichenbachiana,EXACT,5BHG3,Viola reichenbachiana,5BHG3
+Viola riviniana,EXACT,5BHGS,Viola riviniana,5BHGS
+Viola rupestris,EXACT,5BHHM,Viola rupestris,5BHHM
+Viola rupestris ssp. rupestris,EXACT,,,
+Viola rupestris var. rupestris,EXACT,,,
+Viola saxatilis,EXACT,,,
+Viola selkirkii,EXACT,5BHK7,Viola selkirkii,5BHK7
+Viola sororia,EXACT,5BHLM,Viola sororia,5BHLM
+Viola tricolor,EXACT,5BHQ6,Viola tricolor,5BHQ6
+Viola tricolor ssp. tricolor,EXACT,,,
+Viola uniflora,EXACT,5BHR7,Viola uniflora,5BHR7
+Viola x wittrockiana,EXACT,7G44D,Viola wittrockiana,7G44D
+Viscaria alpina,EXACT,5BK97,Viscaria alpina,5BK97
+Viscaria vulgaris,EXACT,5BK9V,Viscaria vulgaris,5BK9V
+Viscaria vulgaris ssp. vulgari,VARIANT,,,
+Vitis amurensis,EXACT,5BLHW,Vitis amurensis,5BLHW
+Vitis labrusca,EXACT,5BLTW,Vitis labrusca,5BLTW
+Vitis vinifera,EXACT,5BM7B,Vitis vinifera,5BM7B
+Wisteria floribunda,EXACT,5C2HC,Wisteria floribunda,5C2HC
+Zabelia corymbosa,EXACT,5CTT8,Zabelia corymbosa,5CTT8
+ficaria verna,EXACT,6HWGR,Ficaria verna,6HWGR
+libanotis pyrenaica,EXACT,,,
+pilosella officinarum,EXACT,4HV2W,Pilosella officinarum,4HV2W
