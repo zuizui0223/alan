@@ -123,3 +123,5 @@ After joining geographically overlapping source sites *without double counting*,
 湿潤な58候補と305比較種を対象に、GloBIの出典をそろえて訪花者とその捕食者の組成を比較した。[全種名簿・生育地をまたぐ相互作用の比較・NMDS](results/all_species_forest/wet_partner_composition/README.md)
 
 ホソヒラタアブとカニグモを含む、湿潤な両群に共通する成虫訪花者・捕食者の組合せを照合し、同地点での記録率と水面距離を比較した。[共通する相互作用候補と水辺の距離効果](results/all_species_forest/wet_shore/README.md)
+
+湿潤な両群について植物の34項目と地点環境の12項目を比較し、別地域での候補種の識別も検証した。[撹乱・遷移・塩分・繁殖・開花期を含む要因探索](results/all_species_forest/wet_drivers/README.md)
