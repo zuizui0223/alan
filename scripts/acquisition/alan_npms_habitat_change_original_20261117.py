@@ -117,6 +117,76 @@ def inspect(habitat_zip,npms_zip):
                             "distinct_nonempty_habitat_keys":int(nonempty.nunique())
                         }
                 entry["exact_NPMS_record_identifier_overlap"]=exact_identifiers
+                entry["coded_habitat_fields"]={}
+                for col in ("NPMS_broad_habitat","NPMS_hab_type","surveyorHabitat","mutipleHabs"):
+                    if col in table.columns:
+                        entry["coded_habitat_fields"][col]=safe_values(table[col],40)
+                if {"location_id","NPMS_broad_habitat"}.issubset(table.columns):
+                    valid=table[table.location_id.ne("")].copy()
+                    grouped=valid.groupby("location_id").agg(
+                        n_samples=("NPMS_broad_habitat","size"),
+                        n_distinct_source_habitat=(
+                             "NPMS_broad_habitat",
+                             lambda x:x[x.ne("")].nunique()))
+                    entry["plotwise_original_broad_habitat_varies"]={
+                        "original_source_plots":len(grouped),
+                        "plots_with_two_or_more_distinct_reported_broad_habitats":
+                            int((grouped.n_distinct_source_habitat>=2).sum()),
+                        "plots_with_one_reported_broad_habitat":
+                            int((grouped.n_distinct_source_habitat==1).sum()),
+                        "plots_with_no_reported_broad_habitat":
+                            int((grouped.n_distinct_source_habitat==0).sum()),
+                    }
+                    if "mutipleHabs" in valid:
+                        bysite=valid.groupby("location_id").agg(
+                            num_codes=("mutipleHabs","nunique"),
+                            raw_first=("mutipleHabs","first"),
+                            n_different=("NPMS_broad_habitat",
+                                 lambda x:x[x.ne("")].nunique()))
+                        flag_counts=valid.mutipleHabs.astype(str).str.strip().value_counts()
+                        entry["multiple_habs_report"]={
+                            "original_raw_codes":{str(k):int(v) for k,v in flag_counts.items()
+                                if len(str(k))<45},
+                            "plot_ids_with_inconsistent_flag_value":
+                                int((bysite.num_codes>1).sum()),
+                            "source_reported_flag_by_true_multi_broad_habitats":{}
+                        }
+                        for k,g in bysite.groupby("raw_first"):
+                            if len(str(k))<=45:
+                                entry["multiple_habs_report"][
+                                    "source_reported_flag_by_true_multi_broad_habitats"
+                                ][str(k)]={
+                                    "source_plots":len(g),
+                                    "source_plots_with_2plus_broad_categories":
+                                        int((g.n_different>=2).sum()),
+                                    "source_plots_with_only_1_broad_category":
+                                        int((g.n_different==1).sum()),
+                                    "source_plots_without_observed_category":
+                                        int((g.n_different==0).sum())
+                                }
+                if {"sample_id","location_id","survey_id","date_start"}.issubset(table.columns):
+                    p=table.merge(
+                        source[["id","location_id","survey_id","date_start"]],
+                        left_on="sample_id",right_on="id",suffixes=("_hab","_old"),
+                        how="left",validate="many_to_one",indicator=True)
+                    matched=p.loc[p["_merge"].eq("both")].copy()
+                    if not matched.empty:
+                        dt_h=pd.to_datetime(matched.date_start_hab,utc=True,errors="coerce")
+                        dt_o=pd.to_datetime(matched.date_start_old,utc=True,errors="coerce")
+                        entry["original_2025_sample_key_cross_version"]={
+                            "habitat_source_rows_with_actual_sample_id_join":len(matched),
+                            "same_original_plot_id":int((matched.location_id_hab==
+                                                        matched.location_id_old).sum()),
+                            "same_original_survey_id":int((matched.survey_id_hab==
+                                                          matched.survey_id_old).sum()),
+                            "same_original_survey_date":int((dt_h==dt_o).sum()),
+                            "strict_same_plot_survey_date":int((
+                                (matched.location_id_hab==matched.location_id_old)&
+                                (matched.survey_id_hab==matched.survey_id_old)&
+                                (dt_h==dt_o)).sum()),
+                            "source_sample_ids_unmatched_to_2025":
+                                int(table.sample_id.nunique()-matched.sample_id.nunique()),
+                        }
                 entry["candidate_change_flags"]={}
                 for c in table.columns:
                     if is_coded_change(c):
@@ -126,6 +196,25 @@ def inspect(habitat_zip,npms_zip):
                 entry["date_columns"]=datecols
                 result["source_files"].append(entry)
             else:
+                if (member.filename.lower().endswith(".docx") and
+                    "metadata" in member.filename.lower()):
+                    # Extract public source *field descriptions*; never read
+                    # personal field rows or volunteer identities.
+                    try:
+                        import xml.etree.ElementTree as ET
+                        with zipfile.ZipFile(io.BytesIO(z.read(member))) as doc:
+                            root=ET.fromstring(doc.read("word/document.xml"))
+                        ns={"w":"http://schemas.openxmlformats.org/wordprocessingml/2006/main"}
+                        paras=[]
+                        for p in root.findall(".//w:p",ns):
+                            part="".join(t.text or "" for t in p.findall(".//w:t",ns)).strip()
+                            if any(w in part.lower() for w in (
+                                "multiplehab","mutiplehab","habitat change",
+                                "habitat type","habitat has changed","multiple habitats")):
+                                paras.append(part[:240])
+                        entry["official_source_field_definition_clues"]=paras[:12]
+                    except Exception as e:
+                        entry["source_docx_parse_status"]=type(e).__name__
                 result["source_files"].append(entry)
     result["potentially_joinable_files"]=[
         r["name"] for r in result["source_files"] if
