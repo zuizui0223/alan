@@ -254,6 +254,9 @@ def execute(npms,cover,receipt,eiv):
     report["shared_identical_species_across_actual_habitats"]=len(shared)
     run_subset("identical_species_documented_in_both_habitats",
                site.location_id,shared)
+    # Restore original published site coordinates transiently for the
+    # 1-degree/2-degree spatial sensitivity; no coordinates are exported.
+    common=source_spatial_blocks(npms,common)
     # Stronger ecological control: do not assume the *same species* follows
     # one national annual trajectory across wetland and other habitats.
     # Source taxon × habitat × year FE isolates between-plot exposure effects
