@@ -1,18 +1,31 @@
-# ALAN — artificial light at night × island floral colour
+# ALAN — 夜間光の増加と湿潤な生育地の植物
 
-**Research home for the ALAN × island/mainland floral-colour project, migrated from [MOIS](https://github.com/zuizui0223/mois) on 2026-11-08.** MOIS is reserved for global floral colour × moisture.
+## 主要結果（2026年11月17日固定）
 
-## 蛾の訪花記録を持つ植物と夜間光
+増光した地点で記録率が低下した候補283種には、湿潤な生育地を好む植物が多かった。1992–2024年の長期記録で評価した3,901種のうち、湿潤性指標が得られた候補は160種。調査地域、地点数、島の地点割合をそろえて比較できた158種では、平均湿潤性指標は候補6.09、参照群5.50（差＋0.59、17指標のBH補正後 q=0.030）だった。湿潤性指標が7を超える割合は35.4%対22.3%だった。長期調査地点は欧州に偏り、参照群を増光地点で減少した他種に限ると平均差は＋0.35（名目 p=0.083）だった。これを本研究で唯一の主要結果とする。[原稿](manuscript/ALAN_WET_HABITAT_ja.md)・[固定した283種](results/all_species_forest/decline_traits/cohort.csv)・[形質別の推定値](results/all_species_forest/decline_traits/traits.csv)
 
-**主要結果（探索的）**　2019・2021・2023・2024・2025年の78地域、10,698地点年で、観察された植物種に占める蛾の訪花記録を持つ種の割合について、夜間光に対する島−本土の傾き差は **−1.902** パーセントポイント／log(1＋VIIRS) だった（地域クラスタ名目95%信頼区間 −3.706～−0.098、未補正 p=0.039）。各種を地点年ごとに一度数えた群集構成の推定である。GloBI v0.11で種名と訪花記録を更新した同地点比較では負の差が維持されず、結果は使用する記録集合に依存した。[主要結果と固定条件](https://github.com/zuizui0223/alan/blob/ff069a160400588b8d6134c48b5481729d75eb9a/docs/ALAN_GLOBI_PRIMARY_RESULT_FREEZE_20261111.md)・[記録更新後の比較](https://github.com/zuizui0223/alan/blob/ff069a160400588b8d6134c48b5481729d75eb9a/docs/ALAN_GLOBI_V011_SAME_FIVEYEAR_20261111.md)
+## 副次的な探索結果
 
-**副次結果（花粉制限）**　島と本土に共通する544種のうち、補助授粉実験がある64種では、花粉制限が強い種ほど、同じ78地域で夜間光に対する種別の島−本土の傾き差が負に大きくなる傾向があった。花粉制限指標（手授粉／自然授粉の繁殖成績の対数比の種別中央値）が1高いと、傾き差は **−0.0194** ポイント変化した（地域クラスタ95%信頼区間 −0.0382～−0.0005、未補正 p=0.044、2仮説のHolm補正後 p=0.088）。花粉制限は文献の実験値であり、撮影地点での送粉不足や照明の因果効果は未検証である。[推定値](https://github.com/zuizui0223/alan/blob/ff069a160400588b8d6134c48b5481729d75eb9a/results/mating_light_contrasts/contrasts.csv)・[生態学的考察](https://github.com/zuizui0223/alan/blob/ff069a160400588b8d6134c48b5481729d75eb9a/manuscript/ALAN_GLOBI_ISLAND_POLLINATOR_SHIFT_DISCUSSION_ja.md)
+**島と本土の比較（旧主要結果）**　2019・2021・2023・2024・2025年の78地域、10,698地点年で、観察された植物種に占める蛾の訪花記録を持つ種の割合について、夜間光に対する島−本土の傾き差は **−1.902** パーセントポイント／log(1＋VIIRS) だった（地域クラスタ名目95%信頼区間 −3.706～−0.098、未補正 p=0.039）。各種を地点年ごとに一度数えた群集構成の推定である。GloBI v0.11で種名と訪花記録を更新した同地点比較では負の差が維持されず、結果は使用する記録集合に依存した。[元の推定と固定条件](https://github.com/zuizui0223/alan/blob/ff069a160400588b8d6134c48b5481729d75eb9a/docs/ALAN_GLOBI_PRIMARY_RESULT_FREEZE_20261111.md)・[記録更新後の比較](https://github.com/zuizui0223/alan/blob/ff069a160400588b8d6134c48b5481729d75eb9a/docs/ALAN_GLOBI_V011_SAME_FIVEYEAR_20261111.md)
 
-## Central question
+**花粉制限（副次結果）**　島と本土に共通する544種のうち、補助授粉実験がある64種では、花粉制限が強い種ほど、同じ78地域で夜間光に対する種別の島−本土の傾き差が負に大きくなる傾向があった。花粉制限指標（手授粉／自然授粉の繁殖成績の対数比の種別中央値）が1高いと、傾き差は **−0.0194** ポイント変化した（地域クラスタ95%信頼区間 −0.0382～−0.0005、未補正 p=0.044、2仮説のHolm補正後 p=0.088）。花粉制限は文献の実験値であり、撮影地点での送粉不足や照明の因果効果は未検証である。[推定値](https://github.com/zuizui0223/alan/blob/ff069a160400588b8d6134c48b5481729d75eb9a/results/mating_light_contrasts/contrasts.csv)・[生態学的考察](https://github.com/zuizui0223/alan/blob/ff069a160400588b8d6134c48b5481729d75eb9a/manuscript/ALAN_GLOBI_ISLAND_POLLINATOR_SHIFT_DISCUSSION_ja.md)
+
+## 機構仮説
+
+水面反射、訪花・送粉の変化、捕食を介した波及は、湿潤種の偏りを説明しうる仮説として扱う。既存の照合では同じ地点年の捕食と訪花を結べず、これらの寄与は未推定である。[検証範囲と出典](manuscript/ALAN_WET_HABITAT_ja.md)
+
+## 旧研究の探索結果・解析履歴
+
+以下に花色・島面積・写真資料に関する過去の解析と再現情報を保存する。
+
+<details>
+<summary>旧研究の問い、結果、再現手順を表示</summary>
+
+### Historical floral-colour question
 
 Does the spatial association of artificial light at night (ALAN; VIIRS upward radiance) with the *photographed flower-region white-colour fraction* differ between island and mainland sites?
 
-## Source-verified result carried forward
+### Historical floral-colour estimate
 
 - Five observation years: **2019, 2021, 2023, 2024, 2025**.
 - **7,982** source-backed 0.05° photo-cell × year records, including **710** island cell-years.
@@ -98,3 +111,5 @@ The **fully measured tier06 (8,942 original photos)** and **tier07 (27,507 origi
 After joining geographically overlapping source sites *without double counting*, **1,137 site×years across 75 islands** actually meet ≥5 source photo attempts, ≥3 numerical nine-palette original ROI9 successes and ≥3 distinct successfully photographed accepted WCVP taxa. The 156 tier06 strict sites and 769 tier07 strict sites overlap at 132 locations/year; **344 additional strict sites became measurable only because genuine photo measurements from both tiers complement each other at exactly the same source island/site/year**. [Source evidence & scientific limits](docs/ALAN_ORIGINAL_ROI9_36449_CROSS_TIER_UNIQUE_STRICT_ISLAND_CELLS_20261109.md) · [inspectable numeric result](results/alan_36449_original_ROI9_unique_strict_island_cells_20261109_verified.json).
 
 **This is additional measurement coverage**, not a causal ALAN response or a native flowering-plant census. Both photo acquisitions were targeted by island and site/year; never append their strict sites unweighted to the previously published historical-main original 710 island site×years. MOIS remains moisture-only.
+
+</details>
