@@ -141,7 +141,7 @@ def within_residualize(z,y,terms,fe_groups,w,eps=2e-7):
                       "weighted_residual_l2":float(np.linalg.norm(out[:,i]*s))})
     return out,{"levels":dict(zip(fe_groups,ns)),"solver":diags}
 
-def fit(z,terms,fe_names,weight_mode="plot_equal"):
+def fit(z,terms,fe_names,weight_mode="plot_equal",two_way=False):
     z=z.copy()
     n=len(z);nplot=z.location_id.nunique()
     assert_source(n>500 and nplot>=35, "too few original observed plants/plots for model")
@@ -167,7 +167,46 @@ def fit(z,terms,fe_names,weight_mode="plot_equal"):
     if not np.isfinite(se).all() or (se<=0).any():
         return {"status":"plot_cluster_SE_unidentified","rows":n,"plots":int(nplot),"fe":fe}
     crt=t.ppf(.975,nplot-1)
+    # Two-way clustering by physical NPMS plot and source plant species
+    # explicitly addresses repeated taxa across geographic plots. The
+    # inclusion-exclusion intersection is physical plot × species.
+    two_way_report=None
+    if two_way:
+        keys=(z.location_id.astype(str)+"||"+z.species.astype(str))
+        def group_meat(labels):
+            codes=pd.factorize(labels)[0]
+            g=int(codes.max()+1)
+            if g<3:return None,g
+            scores=np.zeros((g,len(terms)),float)
+            np.add.at(scores,codes,X*(w*u)[:,None])
+            return (scores.T@scores)*(g/(g-1))*(n/(n-len(terms))),g
+        mp,gp=group_meat(z.location_id)
+        ms,gs=group_meat(z.species)
+        mi,gi=group_meat(keys)
+        if mp is not None and ms is not None and mi is not None:
+            v2=B@(mp+ms-mi)@B
+            d=np.diag(v2)
+            if np.isfinite(d).all() and (d>0).all():
+                se2=np.sqrt(d)
+                q2=t.ppf(.975,min(gp,gs)-1)
+                two_way_report={
+                    "status":"valid_two_way_plot_species_cluster_sandwich",
+                    "physical_plot_clusters":gp,"plant_species_clusters":gs,
+                    "plot_species_intersection_clusters":gi,
+                    "degrees_of_freedom_conservative":min(gp,gs)-1,
+                    "coefficients":{key:{
+                        "beta":float(beta[j]),"SE_two_way":float(se2[j]),
+                        "two_way_nominal_95CI":[float(beta[j]-q2*se2[j]),float(beta[j]+q2*se2[j])],
+                        "nominal_two_sided_p":float(2*t.sf(abs(beta[j]/se2[j]),min(gp,gs)-1))}
+                        for j,key in enumerate(terms)}
+                }
+            else:
+                two_way_report={"status":"two_way_covariance_non_positive_or_nonfinite_stop",
+                                "physical_plot_clusters":gp,"plant_species_clusters":gs}
+        else:
+            two_way_report={"status":"too_few_two_way_clusters_stop"}
     return {"status":"observational_positive_cover_only", "rows":n,"plots":int(nplot),
+        "two_way_plot_species_robustness":two_way_report,
         "taxa":int(z.species.nunique()),"original_years":int(z.year.nunique()),
         "FE":fe_names,"weight":weight_mode,"condition_number":cond,"fe":fe,
         "coefficients":{key:{"beta":float(beta[i]),"SE_real_plot_cluster":float(se[i]),
