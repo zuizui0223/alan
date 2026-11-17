@@ -208,6 +208,26 @@ def execute(original,receipt,eiv):
     result["strict_wet7"]=fit(
          keep,["light_wet7","doy30"],
          ["panel_key","species_year","plotyear_method_season"])
+    # Source-driven light-variation thresholds used in the earlier verified
+    # NPMS model. Do not choose a threshold after inspecting beta signs.
+    result["light_range_sensitivity"]={}
+    panel_range=z.groupby("panel_key").prior_light.agg(["min","max"])
+    for threshold in (.1,.3):
+        allow=panel_range.loc[
+            (panel_range["max"]-panel_range["min"])>=threshold].index
+        sub=z.loc[z.panel_key.isin(allow)].copy()
+        block={"source_min_true_previous_annual_PCNL_range":threshold,
+               "rows":len(sub),"plots":int(sub.location_id.nunique()),
+               "taxa":int(sub.species.nunique()),
+               "wet_taxa":int(sub.loc[sub.wet7.eq(1),"species"].nunique()),
+               "drier_taxa":int(sub.loc[sub.wet7.eq(0),"species"].nunique())}
+        if (block["plots"]<60 or block["taxa"]<35 or
+            block["wet_taxa"]<10 or block["drier_taxa"]<20 or
+            block["rows"]<1000):
+            block["model"]={"status":"source_support_stop_no_refit"}
+        else:
+            block["model"]=fit(sub,terms,F)
+        result["light_range_sensitivity"][str(threshold)]=block
     return result
 
 def cli():
