@@ -1,0 +1,31 @@
+name: ALAN wet-mechanism candidate evidence gate
+
+on:
+  push:
+    branches:
+      - analysis/alan-wet-mechanism-candidate-triage-20261117
+  pull_request:
+    paths:
+      - 'scripts/analysis/alan_wet_candidate_triage_20261117.py'
+      - 'tests/test_alan_wet_candidate_triage_20261117.py'
+      - 'results/all_species_forest/**'
+      - 'docs/ALAN_WET_MECHANISM_CANDIDATE_TRIAGE_20261117.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-source-derived-mechanism-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recompute exact fixed-source summaries
+        run: python scripts/analysis/alan_wet_candidate_triage_20261117.py
+      - name: Check source guards and nonpromotion
+        run: python -m unittest discover -s tests -p 'test_alan_wet_candidate_triage_20261117.py' -v
