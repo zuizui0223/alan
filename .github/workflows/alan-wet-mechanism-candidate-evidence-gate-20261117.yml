@@ -164,7 +164,7 @@ jobs:
 
   npms-habitat-source:
     runs-on: ubuntu-latest
-    timeout-minutes: 55
+    timeout-minutes: 85
     permissions:
       contents: read
       actions: read
@@ -249,6 +249,33 @@ jobs:
           assert d['original_coobserved_habitat_gate']['other']['plots']==279
           assert d['true_plant_local_absence'] is False
           print('ALAN_NPMS_FALSIFICATION_SOURCE_VERIFIED',len(d['robustness']))
+          PY
+      - name: Test stable source management and grazing labels without treating missing as none
+        run: python -m unittest discover -s tests -p test_alan_npms_management_protocol_20261117.py -v
+      - name: Audit observed management/grazing and botanical record-process changes under original NPMS wetland source
+        timeout-minutes: 35
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_npms_management_protocol_20261117 \
+            --npms /tmp/alan_habitat/NPMS_original_2015_2025.zip \
+            --cover /tmp/alan_habitat/NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz \
+            --receipt /tmp/alan_habitat/NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json \
+            --eiv /tmp/alan_habitat/EIV_Europe.csv \
+            --out /tmp/alan_habitat/npms_observation_management_source_gate_20261117.json
+      - name: Verify direct original management data does not fabricate species absence
+        run: |
+          python - <<'PY'
+          import json
+          p='/tmp/alan_habitat/npms_observation_management_source_gate_20261117.json'
+          x=json.load(open(p))
+          assert x['schema']=='alan_npms_true_observer_management_and_checklist_gate_v1'
+          assert x['source_original_internal_CRC_verified']
+          assert x['source_plant_positive_cover_rows']==11902
+          assert x['wetland_source_eligible_plots']==47
+          assert x['no_biological_zero_imputation']
+          assert x['no_assigned_causal_light_or_management_effect']
+          print('NPMS_TRUE_MANAGEMENT_AND_SURVEY_PROCESS_PASS',
+                {k:v.get('model',v).get('status') for k,v in x['robustness'].items()})
           PY
       - name: Verify original field habitat source and no fabricated species-zero effect
         run: |
