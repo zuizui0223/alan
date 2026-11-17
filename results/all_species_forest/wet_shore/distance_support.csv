@@ -1,0 +1,5 @@
+distance_band,sites,brightened
+within_100m,148,42
+100_500m,417,113
+500_1000m,306,67
+capped_1km,835,109

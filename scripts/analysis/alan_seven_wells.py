@@ -9,7 +9,11 @@ import pandas as pd
 from sklearn.neighbors import BallTree
 repo=Path(__file__).resolve().parents[2]
 cache=repo.parent/"gbif_annual"
-out=repo/"results/all_species_forest/seven_moth"
+import argparse
+parser=argparse.ArgumentParser()
+parser.add_argument("--wet-shore",action="store_true")
+args=parser.parse_args()
+out=repo/"results/all_species_forest"/("wet_shore" if args.wet_shore else "seven_moth")
 url="https://environment.data.gov.uk/hydrology/id/stations.json"
 catalog=cache/"ea_groundwater_stations.json"
 if not catalog.exists():
@@ -20,7 +24,11 @@ g=pd.DataFrame(json.loads(catalog.read_bytes())["items"]).dropna(subset=["lat","
 assert len(g)<10000
 plants=pd.read_csv(out.parent/"wet_reproduction/species.csv")
 ids=pd.read_parquet(cache/"all_species_rf_sites.parquet",columns=["sp","unit_id"])
-ids=ids[ids.sp.isin(plants[plants.candidate & plants.documented_transport].sp)].unit_id.unique()
+if args.wet_shore:
+    from alan_wet_shore import frozen
+    ids=frozen("coordinate_trends.csv.gz").unit_id
+else:
+    ids=ids[ids.sp.isin(plants[plants.candidate & plants.documented_transport].sp)].unit_id.unique()
 db=duckdb.connect(str(cache/"annual.duckdb"),read_only=True)
 xy=db.sql("select distinct unit_id,latitude,longitude from geo").df()
 xy=xy[xy.unit_id.isin(ids)].copy()
