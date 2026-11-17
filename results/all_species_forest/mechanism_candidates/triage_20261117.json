@@ -1,0 +1,90 @@
+{
+  "schema": "alan_wet_mechanism_candidate_triage_v1",
+  "based_on_main_commit": "52ff636fa8ffc56e08fce5f7a47795af90099da9",
+  "source_git_blobs": {
+    "wet_environment/environment.csv": "a3a04598ec97240991d4a4248bce11b4a7506757",
+    "wet_environment/regions.csv": "27f2d657515e2f5876ff1a244a6b7331254e8a6b",
+    "wet_environment/giavi_diurnal.csv": "b54cadf945edf2eac129d1b45ce9d5edcbda78cf",
+    "wet_drivers/traits.csv": "9f1995345ea4187ecfed8669771fb3487d5a5ca8",
+    "wet_drivers/site_interactions.csv": "340c8509b237478034353b58b43dbba96d1750ea",
+    "wet_drivers/regional_prediction.csv": "f77af6a0ac16e56a7d036a01b7daa2a2e3d3b8b8",
+    "wet_annual/contrasts.csv": "6b0b779074d8270a69ef7f1eb36c3ea620941add"
+  },
+  "primary_moisture": {
+    "candidates": 158,
+    "references": 1419,
+    "regions": 12,
+    "raw_difference": 0.5922104455502863,
+    "adjusted_difference": 0.5338399813053877,
+    "adjusted_95_interval": [
+      0.15805883312583707,
+      0.9096211294849383
+    ]
+  },
+  "regional_check": {
+    "positive": 7,
+    "negative": 5,
+    "top2_candidate_count": 94,
+    "candidate_total": 158,
+    "major_region_count": 6,
+    "major_region_positive": 5
+  },
+  "macro_candidate_gates": {
+    "n_other_traits": 34,
+    "lowest_q_other_traits": 0.964,
+    "regional_auc_baseline": 0.6508233532934131,
+    "regional_auc_with_extra_traits": 0.5767215568862275,
+    "n_site_modifiers": 12,
+    "lowest_q_site": 0.2221429579800191,
+    "lowest_q_brightening_only": 0.9870308701290051,
+    "water_proximity_interaction": 3.8953320748238567,
+    "water_proximity_q": 0.2221429579800191,
+    "wetland_study_sites": 16,
+    "annual_water_frequency_candidate_minus_reference": -1.9732398009176928,
+    "annual_water_frequency_ci": [
+      -4.683498376990186,
+      0.7370187751548005
+    ]
+  },
+  "swiss_daytime_visitation_pilot": {
+    "original_experiment_count": 1,
+    "all_taxa": 21,
+    "independent_moisture_scored_taxa": 4,
+    "wet7_count": 2,
+    "drier_count": 2,
+    "linear_slope_per_moisture_unit": -0.2113282141575983,
+    "pearson_r_descriptive": -0.9411435839176782,
+    "spearman_rho": -1,
+    "spearman_exact_two_sided_p": 0.08333333333333333,
+    "wet7_minus_drier_average_log1p_visits": -0.5172364039117133,
+    "taxa_with_at_least_2_shared_meadow_pairs": 2,
+    "drier_taxa_with_2plus_pairs": 0,
+    "species": [
+      {
+        "name": "Cirsium oleraceum",
+        "moisture": 7.2,
+        "light_day_visit_log1p_effect": -0.260779482153515,
+        "shared_meadow_pairs": 6
+      },
+      {
+        "name": "Daucus carota",
+        "moisture": 4.1,
+        "light_day_visit_log1p_effect": 0.519143340560315,
+        "shared_meadow_pairs": 1
+      },
+      {
+        "name": "Filipendula ulmaria",
+        "moisture": 7.9,
+        "light_day_visit_log1p_effect": -0.324480039134201,
+        "shared_meadow_pairs": 2
+      },
+      {
+        "name": "Heracleum sphondylium",
+        "moisture": 5.5,
+        "light_day_visit_log1p_effect": -0.0699300540246043,
+        "shared_meadow_pairs": 1
+      }
+    ]
+  },
+  "inferential_boundary": "Posthoc descriptive cross-source diagnostics. The 4 taxa share one illumination experiment; the 2-pair gate retains zero dry comparators. Not a robust wetness×ALAN experimental slope or multi-study meta effect."
+}
