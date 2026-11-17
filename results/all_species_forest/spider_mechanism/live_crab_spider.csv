@@ -1,0 +1,15 @@
+source,visitor_family,visitor_order,log_ratio,variance
+"Brechbühl et al. 2010a, fig. 1",Colletidae,Hym,-0.2245,0.1124
+"Brechbühl et al. 2010a, fig. 1",Halictidae,Hym,-0.1835,0.1284
+"Brechbühl et al. 2010a, fig. 1",Apidae,Hym,-0.0445,0.1958
+"Brechbühl et al. 2010a, fig. 1",Syrphidae,Dip,-0.1922,0.2416
+Dukas & Morse 2003; fig. 2,Apidae,Hym,-0.0857,0.1243
+Dukas & Morse 2005; fig. 1,Apidae,Hym,-0.3081,0.0516
+Robertson & Maguire 2005; table 2b,Halictidae,Hym,-0.2412,0.1203
+Robertson & Maguire 2005; table 2b,Sphecidae,Hym,-1.1872,0.4884
+Robertson & Maguire 2005; table 2b,Vespidae,Hym,-0.3254,0.7892
+Robertson & Maguire 2005; table 2b,Gelechiidae,Lep,-0.8575,0.8775
+Robertson & Maguire 2005; table 2b,Merylidae,Col,-0.3836,0.2124
+Robertson & Maguire 2005; table 2b,Bombyliidae,Dip,-0.4055,0.5775
+Robertson & Maguire 2005; table 2b,Several,Several,0.494,0.5254
+"Suttle 2003; fig 2, text",Several,Several,-0.4726,0.0417

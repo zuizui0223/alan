@@ -1,0 +1,9 @@
+group,candidate,plants,visitors,wet_flower_plants
+all_spiders,True,7,23,9
+all_spiders,False,14,22,17
+Misumena_vatia,True,7,18,9
+Misumena_vatia,False,14,20,17
+Tetragnatha_genus,True,0,0,9
+Tetragnatha_genus,False,0,0,17
+aquatic_hoverfly_Misumena,True,4,4,9
+aquatic_hoverfly_Misumena,False,5,3,17
