@@ -1,0 +1,138 @@
+{
+  "schema": "alan_true_npms_habitat_wetness_alan_aggregate_verified_20261117",
+  "status": "observational_repeated_positive_cover_exploratory",
+  "source_run": "https://github.com/zuizui0223/alan/actions/runs/44078528434",
+  "source_original_artifact": "https://github.com/zuizui0223/alan/actions/runs/44078528434/artifacts/14326630360",
+  "original_NPMS_DOI": "10.5285/64caeed0-160f-48f1-b182-cd24a1d7dca8",
+  "original_CRC_verified": true,
+  "original_cover_positive_rows_before_habitat": 61555,
+  "original_EIV_SHA256": "ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba",
+  "original_cover_SHA256": "4e8bb59f3704d0c6140194fdbf0a3d1f50e11235da243b894833b21824d3a165",
+  "inland_wetland_categories": [
+    "Freshwater",
+    "Marsh and fen",
+    "Bog and wet heath"
+  ],
+  "source_stable_sites": 1030,
+  "source_accepted_category_sites": 975,
+  "primary_common_support": {
+    "wetland": {
+      "physical_plots": 47,
+      "coobserved_plotyear_method_season": 256,
+      "positive_cover_rows": 1872,
+      "wet_species": 86,
+      "drier_species": 62
+    },
+    "other": {
+      "physical_plots": 279,
+      "coobserved_plotyear_method_season": 1525,
+      "positive_cover_rows": 10030,
+      "wet_species": 82,
+      "drier_species": 197
+    }
+  },
+  "original_model": {
+    "estimand": "MOIST x log1p(previous-year PCNL) x original in-situ inland wetland category on recorded positive cover pp",
+    "fe": [
+      "plot x botanical species x survey method x season",
+      "plant species x year",
+      "plot x survey method x season x year"
+    ],
+    "weights": "equal physical plot",
+    "source_plots": 326,
+    "positive_cover_rows": 11902,
+    "wetland_slope_separate": {
+      "beta": -0.6791699996225619,
+      "CI95": [
+        -1.6845361746682719,
+        0.32619617542314805
+      ],
+      "p": 0.1805208160232582
+    },
+    "other_habitat_slope_separate": {
+      "beta": 0.4645059540620641,
+      "CI95": [
+        0.029700871546076313,
+        0.8993110365780519
+      ],
+      "p": 0.03636447223722424
+    },
+    "joint_wetland_interaction": {
+      "beta": -1.5129270418346314,
+      "plot_cluster_se": 0.4411915027495874,
+      "CI95": [
+        -2.380878707298993,
+        -0.6449753763702696
+      ],
+      "p": 0.0006834009668675811
+    },
+    "joint_two_way_plot_species": {
+      "beta": -1.5129270418346314,
+      "SE": 0.49661062280619306,
+      "CI95": [
+        -2.4899963537235728,
+        -0.5358577299456904
+      ],
+      "p": 0.0025096562788259036,
+      "plot_clusters": 326,
+      "species_clusters": 318
+    }
+  },
+  "posthoc_stress": {
+    "record_equal": {
+      "beta": -1.3304291545606877,
+      "CI95": [
+        -2.143971573243626,
+        -0.5168867358777495
+      ],
+      "p": 0.0014247798226706058
+    },
+    "light_span_ge_0p1": {
+      "status": "STOP_insufficient_wetland_independent_plots",
+      "wetland_plots": 25,
+      "wetland_plotyears": 168,
+      "reference_plots": 168
+    },
+    "light_span_ge_0p3": {
+      "status": "STOP_insufficient_wetland_independent_plots",
+      "wetland_plots": 5,
+      "wetland_plotyears": 34,
+      "reference_plots": 66
+    },
+    "omit_bog_heath": {
+      "beta": -1.3101925532697374,
+      "CI95": [
+        -2.183280491985607,
+        -0.43710461455386795
+      ],
+      "p": 0.0033877681903640754,
+      "remaining_wetland_plots": 39
+    },
+    "omit_freshwater": {
+      "status": "STOP_insufficient_wetland_plots",
+      "remaining_wetland_plots": 23
+    },
+    "omit_marsh_fen": {
+      "beta": -2.284164415917259,
+      "CI95": [
+        -3.9533233167515256,
+        -0.6150055150829921
+      ],
+      "p": 0.007474521119967761,
+      "remaining_wetland_plots": 32
+    }
+  },
+  "source_survey_no_species_flag": {
+    "yes_1": 335,
+    "no_0": 11109,
+    "interpretation": "survey attribute only, never species-specific absence"
+  },
+  "interpretation": [
+    "New environment-conditional candidate association, not light-specific causality",
+    "Source uses only positively recorded vegetation cover and volunteer habitat labels",
+    "Strong light-change support fails at 0.1 and 0.3 for wetland plots",
+    "Geographic/phylogenetic/measurement confounding remains",
+    "No artificial lighting treatment, no pollination, fecundity or seed-setting outcome"
+  ],
+  "independent_meta_effect": null
+}
