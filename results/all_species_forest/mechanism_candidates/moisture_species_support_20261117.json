@@ -1,0 +1,200 @@
+{
+  "coverage": {
+    "all_species": 3901,
+    "candidate_count": 283,
+    "candidate_coverage": 0.5653710247349824,
+    "candidate_indicator_known": 160,
+    "case_coverage_in_matched_strata": 0.6147859922178989,
+    "matched_strata_case_all": 257,
+    "matched_strata_case_known": 158,
+    "matched_strata_count": 49,
+    "matched_strata_ref_all": 2797,
+    "matched_strata_ref_known": 1419,
+    "reference_count": 3618,
+    "reference_coverage": 0.4886677722498618,
+    "reference_coverage_in_matched_strata": 0.5073292813728996,
+    "reference_indicator_known": 1768
+  },
+  "frozen_primary_moisture_difference": 0.5922104455502853,
+  "geographic_sensitivity": {
+    "12_region_resampling_descriptive_interval": [
+      0.09213776853130728,
+      0.8564082699300859
+    ],
+    "by_region": [
+      {
+        "candidates": 52,
+        "difference": 0.869689657645232,
+        "region": "3528"
+      },
+      {
+        "candidates": 42,
+        "difference": 0.6411080938313078,
+        "region": "3628"
+      },
+      {
+        "candidates": 13,
+        "difference": -0.4523929123144444,
+        "region": "3525"
+      },
+      {
+        "candidates": 13,
+        "difference": 0.4147221595608691,
+        "region": "3827"
+      },
+      {
+        "candidates": 12,
+        "difference": 0.2536458333333326,
+        "region": "3626"
+      },
+      {
+        "candidates": 12,
+        "difference": 1.4793796782927213,
+        "region": "4030"
+      },
+      {
+        "candidates": 5,
+        "difference": -0.2569523809523814,
+        "region": "3728"
+      },
+      {
+        "candidates": 3,
+        "difference": -0.2708333333333339,
+        "region": "3429"
+      },
+      {
+        "candidates": 2,
+        "difference": -0.5666666666666664,
+        "region": "3529"
+      },
+      {
+        "candidates": 2,
+        "difference": 0.4214285714285715,
+        "region": "4125"
+      },
+      {
+        "candidates": 1,
+        "difference": -1.9000000000000004,
+        "region": "1525"
+      },
+      {
+        "candidates": 1,
+        "difference": 5.4,
+        "region": "3829"
+      }
+    ],
+    "excluding_largest_two_cases": 64,
+    "excluding_largest_two_difference": 0.33466950403871987,
+    "largest_two_case_count": 94,
+    "largest_two_region_ids": [
+      "3528",
+      "3628"
+    ],
+    "leave_one": [
+      {
+        "difference": 0.4560885679188018,
+        "omitted": "3528",
+        "remaining_cases": 106
+      },
+      {
+        "difference": 0.5745061246209494,
+        "omitted": "3628",
+        "remaining_cases": 116
+      },
+      {
+        "difference": 0.6858645397036747,
+        "omitted": "3525",
+        "remaining_cases": 145
+      },
+      {
+        "difference": 0.6081231884320951,
+        "omitted": "3827",
+        "remaining_cases": 145
+      },
+      {
+        "difference": 0.6200376739516789,
+        "omitted": "3626",
+        "remaining_cases": 146
+      },
+      {
+        "difference": 0.5192924264207701,
+        "omitted": "4030",
+        "remaining_cases": 146
+      },
+      {
+        "difference": 0.619960864717039,
+        "omitted": "3728",
+        "remaining_cases": 153
+      },
+      {
+        "difference": 0.6089145186899683,
+        "omitted": "3429",
+        "remaining_cases": 155
+      },
+      {
+        "difference": 0.6070678444248616,
+        "omitted": "3529",
+        "remaining_cases": 156
+      },
+      {
+        "difference": 0.594399956756974,
+        "omitted": "4125",
+        "remaining_cases": 156
+      },
+      {
+        "difference": 0.6080843974327712,
+        "omitted": "1525",
+        "remaining_cases": 157
+      },
+      {
+        "difference": 0.561587582146147,
+        "omitted": "3829",
+        "remaining_cases": 157
+      }
+    ],
+    "n_regions": 12,
+    "negative": 5,
+    "positive": 7,
+    "region_equal_mean_difference": 0.5027607250687673,
+    "region_sign_test_descriptive_two_sided_p": 0.7744140625,
+    "single_region_leave_out_max": 0.6858645397036747,
+    "single_region_leave_out_min": 0.4560885679188018
+  },
+  "interpretation": "previously selected candidates; descriptive within-stratum species trait audit, NOT full 3901 continuous light response",
+  "main_source_commit": "52ff636fa8ffc56e08fce5f7a47795af90099da9",
+  "moisture_bins_and_odds": {
+    "bins": {
+      "low_le7": {
+        "candidate_n": 102,
+        "candidate_percent": 64.55696202531645,
+        "matched_ref_expected_n": 122.83088742329515,
+        "matched_reference_percent": 77.74106798942731,
+        "percentage_point_difference": -13.184105964110856
+      },
+      "mid_7to9": {
+        "candidate_n": 36,
+        "candidate_percent": 22.78481012658228,
+        "matched_ref_expected_n": 20.279078697721417,
+        "matched_reference_percent": 12.834859935266719,
+        "percentage_point_difference": 9.94995019131556
+      },
+      "verywet_gt9": {
+        "candidate_n": 20,
+        "candidate_percent": 12.658227848101266,
+        "matched_ref_expected_n": 14.890033878983413,
+        "matched_reference_percent": 9.424072075305958,
+        "percentage_point_difference": 3.234155772795308
+      }
+    },
+    "matched_case_count": 158,
+    "wet_gt7_conditional_MH_odds_ratio": 2.0160833062286048
+  },
+  "not_estimated": [
+    "continuous_3901_species_ALAN_slope",
+    "wetness_x_ALAN_causal_effect",
+    "independent_reproduction_meta_effect"
+  ],
+  "schema": "alan_wet_moisture_species_support_v1",
+  "source_file": "results/all_species_forest/decline_traits/moisture_evidence.csv.gz",
+  "source_gzip_sha256": "f50c1d28447ab44f13e19269c1521a1ba0feafa69a081e3c2bc448c26640bac9"
+}
