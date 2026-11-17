@@ -254,7 +254,56 @@ def execute(npms,cover,receipt,eiv):
     report["shared_identical_species_across_actual_habitats"]=len(shared)
     run_subset("identical_species_documented_in_both_habitats",
                site.location_id,shared)
-    common=source_spatial_blocks(npms,common)
+    # Stronger ecological control: do not assume the *same species* follows
+    # one national annual trajectory across wetland and other habitats.
+    # Source taxon × habitat × year FE isolates between-plot exposure effects
+    # within each habitat and is a posthoc falsifier, never a primary result.
+    common["species_habitat_year"]=(
+         common.species.astype(str)+"|"+common.inland_wetland.astype(int).astype(str)
+         +"|"+common.year.astype(str))
+    report["robustness"]["species_by_habitat_by_year_FE"]={
+        "status":"posthoc_extra_year_FE",
+        "source_support":common_support(common),
+        "fit":core.fit(common,TERMS,
+           ["panel_key","species_habitat_year","plotyear_method_season"],
+           two_way=True)
+    }
+    # Negative temporal-order check: a PCNL value from the observation year
+    # AFTER the botanical survey is only available when the physical plot
+    # is genuinely visited again two calendar years later. This future-year
+    # predictor is NOT an imputed or forward-filled satellite measurement.
+    # If the future-light association is similar, we cannot interpret the
+    # old prior-light association as temporally causal.
+    exposure=eligible[["location_id","year","prior_light"]].drop_duplicates()
+    require(not exposure.duplicated(["location_id","year"]).any(),
+            "source repeated plot-year PCNL has two values")
+    future=exposure.rename(columns={"prior_light":"future_year_light"}).copy()
+    future["year"]=future["year"]-2
+    lead=common.merge(future,on=["location_id","year"],how="left",
+                      validate="many_to_one")
+    lead=lead[lead.future_year_light.notna()].copy()
+    lead=mixed_reselect(lead)
+    report["robustness"]["future_illumination_year_placebo"]={
+        "status":"source_future_year_exposure_support",
+        "support":common_support(lead),
+        "source_logic":"observed at botanical year t+2 maps to PCNL observed year t+1; no future value is imputed"
+    }
+    if report["robustness"]["future_illumination_year_placebo"]["support"]["pass"]:
+        lead["future_light_moist"]=lead.future_year_light*lead.moist_centered
+        lead["future_light_moist_wetland"]=(
+            lead.future_light_moist*lead.inland_wetland.astype(float))
+        pmodel=core.fit(lead,
+            ["future_light_moist","future_light_moist_wetland","doy30"],FE,two_way=True)
+        report["robustness"]["future_illumination_year_placebo"]["fit"]=pmodel
+        # Joint past/future source PCNL contrast may be unidentifiable owing
+        # to strong serial correlation; allow the core rank gate to STOP.
+        jmodel=core.fit(lead,
+            ["light_moist","light_moist_wetland",
+             "future_light_moist","future_light_moist_wetland","doy30"],
+             FE,two_way=True)
+        report["robustness"]["future_illumination_year_placebo"]["joint_old_future_fit"]=jmodel
+    else:
+        report["robustness"]["future_illumination_year_placebo"]["status"]="insufficient_future_exposure_common_support_STOP"
     for grid in ("grid1","grid2"):
         c=common[[grid,"location_id","inland_wetland"]].drop_duplicates()
         count=c.groupby(grid).agg(
