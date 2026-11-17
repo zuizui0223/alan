@@ -33,7 +33,7 @@ for contrast,left,right,mask_left,mask_right in [
     paired=raw.groupby([*keys,"group"]).change.mean().unstack().dropna()
     paired["rate_difference"]=paired[left]-paired[right]
     paired=paired.join(raw.groupby(keys)[env].first()).reset_index()
-    
+
     for label,sites in [("all",paired),("island",paired[paired.island.eq(1)]),("mainland",paired[paired.island.eq(0)])]:
         sites=sites.groupby("block").filter(lambda g:len(g)>1 and g.light.max()-g.light.min()>1e-7).copy()
         members=raw[raw.unit_id.isin(sites.unit_id)].groupby("group").sp.nunique()
