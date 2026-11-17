@@ -54,7 +54,7 @@ def read(z):
           len(out["occ"])==271701,"NPMS row counts differ from locked original")
     return out
 
-def analyze(z,old):
+def analyze(z,old,receipt):
     src=read(z)
     sample=src["sample"]
     att=src["attrs"]
@@ -106,8 +106,27 @@ def analyze(z,old):
     group["broad"]=group.original_classes.map(lambda x:x[0] if len(x)==1 else "")
     # Join only matching observed year, method and broad season; some NPMS
     # plot-year strata have >1 visit, and conflicting habitats stay unresolved.
+    original_receipt=json.loads(Path(receipt).read_text())
+    guard(original_receipt.get("source_original_positive_cover_table_SHA256")==sha(old),
+          "source positive-cover gzip SHA differs from exact author-validated audit")
     orig=pd.read_csv(old,dtype={"location_id":str,"survey_method_id":str,"season":str,"species":str},low_memory=False)
-    guard(len(orig)==61555,"old original positive-cover model cohort changed")
+    # The source-level CSV is broader than the 61,555 source-positive original
+    # outcome rows. Reapply the SAME frozen source panel eligibility used in
+    # the old original 2015-25 positive-cover fixed-effect study.
+    req={"location_id","survey_method_id","season","species","year",
+         "original_annual_priorPCNL","source_domin_encodings"}
+    guard(req.issubset(orig.columns),"missing original published panel columns")
+    keys=["location_id","survey_method_id","season","species"]
+    orig["panel_key"]=orig[keys].agg("|".join,axis=1)
+    g=orig.groupby("panel_key",sort=False).agg(
+        yrs=("year","nunique"),levels=("original_annual_priorPCNL","nunique"),
+        min_light=("original_annual_priorPCNL","min"),
+        max_light=("original_annual_priorPCNL","max"),
+        domin=("source_domin_encodings","nunique"))
+    keep=g.loc[(g.yrs>=2)&(g.levels>=2)&
+               (g.max_light-g.min_light>=.02)&(g.domin==1)].index
+    orig=orig.loc[orig.panel_key.isin(keep)].copy()
+    guard(len(orig)==61555,"old original fixed sample cohort changed after locked panel gate")
     guard(orig.location_id.nunique()==1138 and orig.species.nunique()==686,
           "old NPMS original plot/taxon support changed")
     guard(orig.year.between(2015,2025).all(),"invalid original year")
@@ -151,9 +170,10 @@ def cli():
     p=argparse.ArgumentParser()
     p.add_argument("--npms",required=True)
     p.add_argument("--cover",required=True)
+    p.add_argument("--receipt",required=True)
     p.add_argument("--out",required=True)
     a=p.parse_args()
-    out=analyze(a.npms,a.cover)
+    out=analyze(a.npms,a.cover,a.receipt)
     dest=Path(a.out);dest.parent.mkdir(exist_ok=True,parents=True)
     dest.write_text(json.dumps(out,ensure_ascii=False,indent=2,sort_keys=True)+"\n")
     print("NPMS_OFFICIAL_HABITAT_SOURCE_GATE",json.dumps({
