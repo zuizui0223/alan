@@ -125,3 +125,39 @@ jobs:
           path: /tmp/alan_npms_source/alan_npms_moisture_20261117_aggregate.json
           if-no-files-found: warn
           retention-days: 30
+
+  grognuz-source-metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch original Mendeley dataset metadata and size-limited source files
+        run: |
+          mkdir -p /tmp/alan_grognuz
+          python scripts/acquisition/alan_grognuz2025_original_source_gate.py \
+            --inspect-small-public-files --output /tmp/alan_grognuz/original_source_gate.json
+      - name: Report genuine published source access or fail-closed missingness
+        run: |
+          python - <<'PY'
+          import json
+          p='/tmp/alan_grognuz/original_source_gate.json'
+          d=json.load(open(p))
+          assert d['schema']=='alan_grognuz2025_original_source_gate_v1'
+          assert d['independent_light_installations_are_not_images_or_species']
+          print('GROGNUZ_ORIGINAL_SOURCE_GATES',d['status'])
+          for r in d.get('source_files',[]):
+              print('SOURCE_FILE',r.get('filename'),r.get('source_size_bytes'),
+                    r.get('status'),r.get('layout',{}).get('type'))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-grognuz-2025-original-flowering-public-source-gate
+          path: /tmp/alan_grognuz/original_source_gate.json
+          if-no-files-found: warn
+          retention-days: 45
