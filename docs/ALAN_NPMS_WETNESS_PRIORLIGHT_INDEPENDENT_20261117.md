@@ -44,6 +44,12 @@ All source population thresholds passed and all interval bounds overlap zero. In
 
 The full source re-execution is [Actions #44074659185](https://github.com/zuizui0223/alan/actions/runs/44074659185) SUCCESS with all synthetic coefficient tests and SHA source checks, confirming the original-base betas to numerical tolerance. The aggregate JSON above was refreshed to include both sensitivity fits.
 
+### New independent wetland functional-stage observation (not an ALAN experiment)
+
+[Tóth & Nagy 2026](https://doi.org/10.1038/s41598-026-50177-y) studied Phragmites australis along the northern littoral of Lake Balaton in Hungary (10 source sampling sites in 2023; 14 in 2024; 15 sampled shoots per original site). Their *measured association with satellite ANL* differed sharply by life-history endpoint: **relative reproductive biomass** Spearman rho **−0.634**, p=.001; **fraction of flowering individuals** rho **−0.573**, p=.004; **total above-ground biomass** rho **+0.031**, p=.885; **start of season** rho **+0.454**, p=.026. Each endpoint is a separate published correlation and a site-year is not 15 independent light exposures. Authors explicitly use upward ANL to index *overall urbanisation/hemeroby* (including water quality and thermal stress), **not** to estimate the causal effect of an artificial lighting intervention. Do not add its rho values to lit/dark experimental log-response ratios.
+
+This source is conceptually helpful because it shows a wetland plant with a **reproductive versus vegetative response distinction**, compatible with a genuinely uncertain NPMS *positive-cover* ALAN result. It suggests prioritizing reproduction/flowering/phenology as separate mechanistic response candidates while treating urbanisation/water quality as competing explanations. It does not validate the selection-defined main 283-species observation across unrelated sites.
+
 ### Reproducibility and provenance
 
 - [Original numerical fits and conservative site/trait-coverage gates](../results/all_species_forest/mechanism_candidates/npms_moisture_original_repeated_positive_cover_20261117.json).
