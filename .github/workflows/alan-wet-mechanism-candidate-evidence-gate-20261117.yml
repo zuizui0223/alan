@@ -8,8 +8,10 @@ on:
     paths:
       - 'scripts/analysis/alan_wet_candidate_triage_20261117.py'
       - 'scripts/analysis/alan_wet_species_support_20261117.py'
+      - 'scripts/analysis/alan_wet_moisture_missingness_tipping_20261117.py'
       - 'tests/test_alan_wet_candidate_triage_20261117.py'
       - 'tests/test_alan_wet_species_support_20261117.py'
+      - 'tests/test_alan_wet_missingness_tipping_20261117.py'
       - 'results/all_species_forest/**'
       - 'docs/ALAN_WET_MECHANISM_CANDIDATE_TRIAGE_20261117.md'
   workflow_dispatch:
@@ -33,13 +35,16 @@ jobs:
         run: |
           mkdir -p /tmp/alan_wet_audit
           python scripts/analysis/alan_wet_species_support_20261117.py | tee /tmp/alan_wet_audit/moisture_species_support.json
+      - name: Evaluate hypothetical MOIST-missingness sensitivity
+        run: python scripts/analysis/alan_wet_moisture_missingness_tipping_20261117.py | tee /tmp/alan_wet_audit/moisture_missingness_tipping.json
       - name: Check all preselected-source, grouping and nonpromotion gates
         run: |
           python -m unittest discover -s tests -p 'test_alan_wet_candidate_triage_20261117.py' -v
           python -m unittest discover -s tests -p 'test_alan_wet_species_support_20261117.py' -v
+          python -m unittest discover -s tests -p 'test_alan_wet_missingness_tipping_20261117.py' -v
       - uses: actions/upload-artifact@v4
         with:
           name: alan-wet-all3901-species-support
-          path: /tmp/alan_wet_audit/moisture_species_support.json
+          path: /tmp/alan_wet_audit/*.json
           if-no-files-found: error
           retention-days: 30
