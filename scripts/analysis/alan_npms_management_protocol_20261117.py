@@ -155,6 +155,44 @@ def investigate(npms,cover,receipt,eiv):
               "source_eligible_missing_management_labels":len(grp)-len(valid)
             }
         output["direct_source_management_hydrology_candidates"][label]=body
+    # Falsify a light-specific story against independently observed original
+    # hydrological/vegetation management. A physical plot is excluded if
+    # **any** of its source plotyears explicitly reported that management
+    # code. No report != no management; these are incomplete-notes
+    # sensitivity exclusions, NOT an adjustment for true water status.
+    source_site_ids=set(common.location_id)
+    valid_notes=details[details["Management"].notna()].copy()
+    exclusions={
+        "water_regulation":("Water regime regulation",),
+        "ditch_clearance":("Ditch-clearance",),
+        "either_water_regulation_or_ditch_clearance":
+            ("Water regime regulation","Ditch-clearance"),
+        "cutting_or_mowing":("Cutting / mowing",),
+        "livestock_grazing":("Grazing - livestock",)
+    }
+    output["source_reported_management_exclusion_robustness"]={}
+    for label,names in exclusions.items():
+        source_flag=pd.Series(False,index=valid_notes.index)
+        for term in names:
+            source_flag |= valid_notes["Management"].str.contains(
+                term,regex=False,na=False)
+        flagged=set(valid_notes.loc[source_flag,"location_id"])
+        checked=source_site_ids-flagged
+        wet_sites=set(membership.loc[membership.inland_wetland,"location_id"])
+        other_sites=source_site_ids-wet_sites
+        fitted=choose_fit(common,checked,"exclude_source_reported_"+label)
+        output["source_reported_management_exclusion_robustness"][label]={
+            "source_reported_management_codes":list(names),
+            "flagged_total_plots":len(flagged),
+            "flagged_inland_wetland_plots":len(flagged&wet_sites),
+            "flagged_other_plots":len(flagged&other_sites),
+            "other_plots_with_missing_notes_are_kept_and_NOT_called_unmanaged":True,
+            "status":fitted["status"],
+            "source_support":fitted["source_support"],
+            "beta":fitted.get("beta"),
+            "nominal_95CI":fitted.get("plot_cluster_CI"),
+            "two_way":fitted.get("two_way_plot_species")
+        }
     # Exclude original plot x plant x method x season panels with changes in
     # NPMS record_status (C/V), which are not guaranteed comparable record
     # processes. A status change cannot be overwritten or called plant death.
