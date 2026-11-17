@@ -54,7 +54,7 @@ def read(z):
           len(out["occ"])==271701,"NPMS row counts differ from locked original")
     return out
 
-def analyze(z,old,receipt):
+def analyze(z,old,receipt,return_matched=False):
     src=read(z)
     sample=src["sample"]
     att=src["attrs"]
@@ -164,7 +164,7 @@ def analyze(z,old,receipt):
         "habitat_specific_effect_fitted":False,
         "reason_no_zeros":"A missing species row is not a species-specific absence. 'No species observed' is a survey-level attribute until protocol-specific negative ascertainment is verified.",
         "status":"source_habitat_coverage_audited_no_effect"}
-    return study
+    return (study,good) if return_matched else study
 
 def cli():
     p=argparse.ArgumentParser()
