@@ -164,7 +164,7 @@ jobs:
 
   npms-habitat-source:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 55
     permissions:
       contents: read
       actions: read
@@ -226,6 +226,30 @@ jobs:
             --receipt /tmp/alan_habitat/NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json \
             --eiv /tmp/alan_habitat/EIV_Europe.csv \
             --out /tmp/alan_habitat/npms_true_wetland_moisture_prior_PCNL_20261117.json
+      - name: Test year-paired light-shock, site-trend and species coexistence guards
+        run: python -m unittest discover -s tests -p test_alan_npms_wetland_light_spatial_falsification_20261117.py -v
+      - name: Test published NPMS wetland response against light zero switches, brightening/darkening and coarse geographic groups
+        timeout-minutes: 35
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_npms_wetland_light_spatial_falsification_20261117 \
+            --npms /tmp/alan_habitat/NPMS_original_2015_2025.zip \
+            --cover /tmp/alan_habitat/NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz \
+            --receipt /tmp/alan_habitat/NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json \
+            --eiv /tmp/alan_habitat/EIV_Europe.csv \
+            --out /tmp/alan_habitat/npms_light_spatial_falsification_20261117.json
+      - name: Fail closed if source records, site counts, or fake biological absence change
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_habitat/npms_light_spatial_falsification_20261117.json'))
+          assert d['schema']=='alan_npms_wetland_light_timeseries_spatial_falsification_v1'
+          assert d['source_CRC_and_prior_pcNL_hash_locked']
+          assert d['original_coobserved_habitat_gate']['inland_wetland']['plots']==47
+          assert d['original_coobserved_habitat_gate']['other']['plots']==279
+          assert d['true_plant_local_absence'] is False
+          print('ALAN_NPMS_FALSIFICATION_SOURCE_VERIFIED',len(d['robustness']))
+          PY
       - name: Verify original field habitat source and no fabricated species-zero effect
         run: |
           python - <<'PY'
