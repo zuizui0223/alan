@@ -6,7 +6,10 @@ Unknown values are never written back as observed. Hypothetical shift magnitudes
 illustrate which missing-at-random assumption could reverse the selected-group contrast.
 """
 import json
-from scripts.analysis import alan_wet_species_support_20261117 as base
+if __package__:
+    from . import alan_wet_species_support_20261117 as base
+else:
+    import alan_wet_species_support_20261117 as base
 
 
 def audit():
