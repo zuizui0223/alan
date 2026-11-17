@@ -20,7 +20,7 @@ from scripts.analysis import alan_npms_wetland_light_spatial_falsification_20261
 
 SCHEMA="alan_npms_true_observer_management_and_checklist_gate_v1"
 CAPTIONS=("NPMS Habitat","Management","Grazing","Grazers","Other Management","No species observed")
-CHECKS=("Management","Grazing","Grazers","Other Management")
+CHECKS=("NPMS Habitat","Management","Grazing","Grazers","Other Management")
 def fail(ok,msg):
     if not bool(ok):raise ValueError("ALAN_NPMS_OBSERVER_PROCESS_STOP: "+msg)
 def top(df):
@@ -120,6 +120,41 @@ def investigate(npms,cover,receipt,eiv):
         summary_fit=choose_fit(common,retained,"stable_original_"+c.replace(" ","_"))
         output["robustness"][c]={"stability":stats,"model":summary_fit,
             "note":"conditioned on original nonmissing identical reported labels across surveyed years"}
+    # Independently documented candidate pathways from the source *reported*
+    # management descriptions. A note marked "water regime regulation" may
+    # indicate hydrology/sluice management, not treatment ALAN. Conversely,
+    # missing notes and other management labels are NOT evidence of no water
+    # management. Keep aggregate matched site-year counts, not text or IDs.
+    membership=common[["location_id","inland_wetland"]].drop_duplicates()
+    fail(membership.location_id.is_unique,
+         "same source physical plot has inconsistent wetland category")
+    details=unit.merge(membership,on="location_id",validate="many_to_one")
+    flag_terms={
+        "water_regime_reported":"Water regime regulation",
+        "ditch_clearance_reported":"Ditch-clearance",
+        "cutting_mowing_reported":"Cutting / mowing",
+        "livestock_grazing_reported":"Grazing - livestock",
+        "wild_herbivore_grazing_reported":"Grazing - rabbits",
+        "fenced_grazers_excluded_reported":"Fenced to exclude grazing"
+    }
+    output["direct_source_management_hydrology_candidates"]={}
+    for wetflag,grp in details.groupby("inland_wetland"):
+        label="inland_wetland" if wetflag else "other_habitat"
+        valid=grp[grp["Management"].notna()].copy()
+        body={"physical_plots":int(grp.location_id.nunique()),
+              "all_source_plotyear_units":len(grp),
+              "survey_units_with_observed_management":len(valid),
+              "survey_units_without_management":len(grp)-len(valid)}
+        for key,term in flag_terms.items():
+            q=valid["Management"].str.contains(term,regex=False,na=False)
+            body[key]={
+              "source_survey_units_with_reported_code":int(q.sum()),
+              "source_distinct_plots_with_reported_code":int(
+                  valid.loc[q,"location_id"].nunique()),
+              "source_units_with_other_management_code_not_proof_of_absence":int((~q).sum()),
+              "source_eligible_missing_management_labels":len(grp)-len(valid)
+            }
+        output["direct_source_management_hydrology_candidates"][label]=body
     # Exclude original plot x plant x method x season panels with changes in
     # NPMS record_status (C/V), which are not guaranteed comparable record
     # processes. A status change cannot be overwritten or called plant death.
