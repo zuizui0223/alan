@@ -1,0 +1,169 @@
+{
+  "schema": "alan_npms_2015_22_author_habitat_change_crossversion_20261117_v1",
+  "status": "source_verified_posthoc_noncausal",
+  "publication_sources": {
+    "habitat_change_doi": "10.5285/a12b5c70-c0e2-48cf-b0b7-3e95791feca9",
+    "source_2025_npms_doi": "10.5285/64caeed0-160f-48f1-b182-cd24a1d7dca8",
+    "source_2023_habitat_original_member_crc32": "16b150ac",
+    "source_2023_habitat_original_member_bytes": 4389198,
+    "source_2015to25_recorded_cover_sha256": "4e8bb59f3704d0c6140194fdbf0a3d1f50e11235da243b894833b21824d3a165",
+    "source_EIV_original_sha256": "ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba",
+    "source_workflow": "https://github.com/zuizui0223/alan/actions/runs/44100285413",
+    "source_original_aggregate_artifact": "https://github.com/zuizui0223/alan/actions/runs/44100285413/artifacts/14335802598"
+  },
+  "official_npms_habitat_change": {
+    "original_sample_rows": 21185,
+    "unique_source_samples": 21184,
+    "original_physical_plots": 4712,
+    "author_flag_name_in_csv": "mutipleHabs",
+    "author_Y_changed_broad_habitat_class_plots": 351,
+    "author_N_one_broad_habitat_class_plots": 4361,
+    "source_Y_matches_multiple_distinct_reported_broad_habitats": true,
+    "strict_sample_id_location_id_survey_id_date_match_to_2025_release": 21166,
+    "source_sample_rows_without_strict_crossversion_identity": 18,
+    "physical_plots_all_sample_rows_match_current_2025_release": 4700,
+    "physical_plots_with_any_version_mismatch": 12,
+    "same_monitoring_program_not_independent_experiment": true
+  },
+  "original_ALAN_observational_positive_cover_cohort": {
+    "source_physical_plots": 326,
+    "source_inland_wetland_plots": 47,
+    "source_other_plots": 279,
+    "original_source_positive_cover_rows": 11902,
+    "source_2023_vs_2026_matched_inland_wetland_plots": 45,
+    "source_2023_vs_2026_matched_other_plots": 269,
+    "source_reported_changed_wetland_plots": 5,
+    "source_reported_changed_other_plots": 11,
+    "author_reported_no_broad_change_wetland_plots": 40,
+    "author_reported_no_broad_change_other_plots": 258
+  },
+  "sensitivity_effects": {
+    "baseline_all": {
+      "wetland_plots": 47,
+      "other_plots": 279,
+      "beta": -1.5129270418346314,
+      "plot_cluster_95CI": [
+        -2.380878707298993,
+        -0.6449753763702696
+      ]
+    },
+    "exact_source_crossversion_only": {
+      "wetland_plots": 45,
+      "other_plots": 269,
+      "beta": -1.4542694364169109,
+      "plot_cluster_95CI": [
+        -2.328648415114239,
+        -0.5798904577195828
+      ],
+      "two_way_95CI": [
+        -2.426359699393609,
+        -0.48217917344021266
+      ]
+    },
+    "author_changed_only": {
+      "wetland_plots": 5,
+      "other_plots": 11,
+      "status": "SOURCE_STOP_wetland_plots_insufficient",
+      "beta": null
+    },
+    "exclude_author_reported_broad_change": {
+      "wetland_plots": 40,
+      "other_plots": 258,
+      "positive_cover_rows": 11341,
+      "beta": -1.5798818261726624,
+      "plot_cluster_95CI": [
+        -2.683318554518908,
+        -0.476445097826417
+      ],
+      "two_way_95CI": [
+        -2.934704370735549,
+        -0.22505928160977584
+      ]
+    },
+    "no_reported_change_and_2plus_source_years": {
+      "wetland_plots": 40,
+      "other_plots": 244,
+      "positive_cover_rows": 11148,
+      "beta": -1.4014449860526916,
+      "plot_cluster_95CI": [
+        -2.4943365676345324,
+        -0.3085534044708509
+      ],
+      "two_way_95CI": [
+        -2.7673689394076937,
+        -0.03552103269768958
+      ]
+    },
+    "no_reported_change_and_record_status_constant": {
+      "wetland_plots": 37,
+      "other_plots": 217,
+      "positive_cover_rows": 8470,
+      "beta": 0.20000615764328725,
+      "plot_cluster_95CI": [
+        -1.291473022734131,
+        1.6914853380207053
+      ],
+      "two_way_95CI": [
+        -1.1251866013330405,
+        1.525198916619615
+      ],
+      "source_plot_species_survey_season_panels_before_status_restriction": 3469,
+      "panels_with_status_switch": 464
+    },
+    "no_reported_change_and_outcome_year_2015_2022": {
+      "wetland_plots": 39,
+      "other_plots": 242,
+      "positive_cover_rows": 9314,
+      "beta": -1.2694279801401969,
+      "plot_cluster_95CI": [
+        -2.8157894007264765,
+        0.2769334404460828
+      ],
+      "two_way_95CI": [
+        -3.0982460804353593,
+        0.5593901201549656
+      ]
+    },
+    "no_reported_change_same_species_in_both_habitats": {
+      "wetland_plots": 35,
+      "other_plots": 224,
+      "positive_cover_rows": 7668,
+      "beta": -1.4084488898285454,
+      "plot_cluster_95CI": [
+        -2.8678684268896824,
+        0.05097064723259148
+      ],
+      "two_way_95CI": [
+        -3.091587035273669,
+        0.2746892556165781
+      ]
+    },
+    "no_reported_change_species_by_habitat_by_year_FE": {
+      "beta": -0.2648644616609415,
+      "plot_cluster_95CI": [
+        -2.3437159094830946,
+        1.8139869861612115
+      ],
+      "plot_plus_species_two_way_95CI": [
+        -2.427990573578203,
+        1.8982616502563199
+      ],
+      "p_two_way_nominal": 0.8097149399944904
+    }
+  },
+  "boundaries": {
+    "mechanism_id_confirmed": false,
+    "individual_plant_extinction_confirmed": false,
+    "real_hydrological_drainage_change_confirmed": false,
+    "manipulated_ALAN_experiment": false,
+    "species_positive_cover_not_recording_probability": true,
+    "original_main_ALAN_decline_candidate_moisture_affinity_unchanged": true,
+    "omitted_species_as_true_absence": false,
+    "independent_broad_habitat_report_switches_only": true,
+    "all_sensitivities_posthoc_not_confirmatory": true,
+    "status_code_C_V_biological_interpretation_not_assumed": true,
+    "original_pcnl_light_at_ground_not_measured": true,
+    "source_light_changed_in_only_26_of_47_wetland_plots_as_positive_trend": true,
+    "interpretation": "Official broad-habitat change by itself does not remove negative wetland×plant-moisture×PCNL association; combining stable reported habitat, stable botanical record status, cohort-year restriction, or stronger species×habitat×year controls leaves intervals crossing zero. No confirmed ALAN wetland mechanism."
+  }
+}
