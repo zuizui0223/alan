@@ -119,3 +119,5 @@ After joining geographically overlapping source sites *without double counting*,
 </details>
 
 湿潤な減少候補の生育地・繁殖形質の類似性と、蛾の花粉運搬が確認された7種について、共通訪花者と同一地点での長期記録率を調べた。[湿地利用のNMDS、GloBI、地点別の比較](results/all_species_forest/seven_moth/README.md)
+
+湿潤な58候補と305比較種を対象に、GloBIの出典をそろえて訪花者とその捕食者の組成を比較した。[全種名簿・生育地をまたぐ相互作用の比較・NMDS](results/all_species_forest/wet_partner_composition/README.md)
