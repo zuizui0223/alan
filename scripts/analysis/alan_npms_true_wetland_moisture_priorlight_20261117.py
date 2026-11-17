@@ -26,7 +26,7 @@ MIN_REF_MIXED=200
 MIN_WET_SPECIES=15
 MIN_DRIER_SPECIES=15
 
-def study(npms,cover,receipt,eiv):
+def study(npms,cover,receipt,eiv,return_source_panels=False):
     source,zfull=h.analyze(npms,cover,receipt,return_matched=True)
     data,source_cover=core.load(cover,receipt,eiv)
     # Source original positive-cover row identity is one physical plot ×
@@ -103,6 +103,10 @@ def study(npms,cover,receipt,eiv):
     if not supported:
         sample["status"]="source_insufficient_wetland_or_reference_common_support_stop"
         return sample
+    if return_source_panels:
+        # Internal, in-memory reuse only; source records must never be
+        # committed or uploaded. The original survey IDs remain protected.
+        return sample,common,eligible
     # The common plot-year FE absorbs both site-year light level and any
     # common hydro-climate/observer/season signal. The residual light-MOIST
     # slope is descriptive and not a causal biological ALAN effect.
