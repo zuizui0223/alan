@@ -147,6 +147,76 @@ def execute(habitat_2022,npms_2025,cover,receipt,eiv):
     for name,subset in cases.items():
         out["posthoc_source_version_sensitivities"][name]=model(
             common,set(subset),name)
+
+    # Joint source restrictions: no author-reported broad habitat change,
+    # *and* unchanged original botanical status across the same plot/plant/
+    # survey-method/season panel. Both are retrospective audit restrictions.
+    baseline=set(cases["exclude_change_require_two_source_survey_years"])
+    official_N=common.loc[common.location_id.isin(baseline)].copy()
+    source_status=official_N.groupby("panel_key").source_record_status.nunique(dropna=False)
+    stable_keys=set(source_status.index[source_status==1])
+    jointly=official_N.loc[official_N.panel_key.isin(stable_keys)].copy()
+    jointly=check.mixed_reselect(jointly)
+    out["posthoc_source_version_sensitivities"][
+        "official_unchanged_and_original_record_status_constant"
+    ]=model(jointly,set(jointly.location_id),
+            "official_unchanged_and_original_record_status_constant")
+    out["joint_source_record_status_gates"]={
+        "original_plot_species_survey_season_panels_with_known_official_stable_habitat":
+            len(source_status),
+        "panels_where_source_original_record_status_constant":len(stable_keys),
+        "panels_where_source_original_record_status_changed":
+            int((source_status>1).sum())
+    }
+
+    # The independent official change release ends at 2022. Restrict the
+    # botanical outcome window as a sensitivity to that exact time horizon.
+    strict_2015_22=official_N.loc[official_N.year.le(2022)].copy()
+    strict_2015_22=check.mixed_reselect(strict_2015_22)
+    out["posthoc_source_version_sensitivities"][
+        "official_unchanged_and_outcome_year_le2022"
+    ]=model(strict_2015_22,set(strict_2015_22.location_id),
+            "official_unchanged_and_outcome_year_le2022")
+
+    # Species-composition countercheck within the official stable-source
+    # matched sites, not between differently drawn case/control species.
+    aa=set(official_N.loc[official_N.inland_wetland,"species"])
+    bb=set(official_N.loc[~official_N.inland_wetland,"species"])
+    same_species=aa&bb
+    shared=official_N.loc[official_N.species.isin(same_species)].copy()
+    shared=check.mixed_reselect(shared)
+    out["source_stable_shared_species_count"]=len(same_species)
+    out["posthoc_source_version_sensitivities"][
+        "official_unchanged_same_taxa_in_both_habitats"
+    ]=model(shared,set(shared.location_id),
+            "official_unchanged_same_taxa_in_both_habitats")
+
+    # Stronger habitat-specific temporal control. A species may change
+    # differently in a wetland and a dry habitat in a given calendar year.
+    # This replaces the old species-year FE with species-by-habitat-year.
+    # The resulting coefficient is a falsification test of the interpretation.
+    official_N=check.mixed_reselect(official_N)
+    official_N["species_habitat_year"]=(
+        official_N.species+"|"+official_N.inland_wetland.astype(int).astype(str)
+        +"|"+official_N.year.astype(str))
+    base=check.common_support(official_N)
+    temporal={"source_support":base}
+    if base["pass"]:
+        from scripts.analysis import alan_npms_independent_moisture_priorlight_20261117 as core
+        fitted=core.fit(official_N,["light_moist","light_moist_wetland","doy30"],
+             ["panel_key","species_habitat_year","plotyear_method_season"],
+             two_way=True)
+        temporal["model_status"]=fitted["status"]
+        if fitted["status"]=="observational_positive_cover_only":
+            term=fitted["coefficients"]["light_moist_wetland"]
+            temporal.update(beta=term["beta"],nominal_plot_95CI=term["nominal_95CI"],
+              plot_p=term["nominal_two_sided_p"],
+              two_way=fitted["two_way_plot_species_robustness"])
+        else:
+            temporal["stop_reason"]="original outcome has no remaining within-source variation"
+    else:
+        temporal["model_status"]="original_wetland_common_support_STOP"
+    out["posthoc_falsifier_species_by_habitat_by_year_FE"]=temporal
     out["no_causal_hydrology_or_light_mediation_estimated"]=True
     out["reporting_restrictions"]=[
         "Version-joined sample data from separate 2023/2026 NPMS releases, not distinct field sampling programmes",
