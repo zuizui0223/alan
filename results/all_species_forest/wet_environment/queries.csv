@@ -1,0 +1,4 @@
+theme,query,retrieved
+wetland_light,"((TITLE_ABS:""artificial light at night"" OR TITLE_ABS:""artificial night lighting"" OR TITLE_ABS:""street lighting"" OR TITLE_ABS:""polarized light pollution"") AND (TITLE_ABS:wetland* OR TITLE_ABS:riparian OR TITLE_ABS:freshwater OR TITLE_ABS:aquatic OR TITLE_ABS:shoreline OR TITLE_ABS:pond OR TITLE_ABS:stream OR TITLE_ABS:waterfront)) AND FIRST_PDATE:[1900-01-01 TO 2026-11-17]",81
+plant_reproduction,"((TITLE_ABS:""artificial light at night"" OR TITLE_ABS:""artificial night lighting"" OR TITLE_ABS:""street lighting"" OR TITLE_ABS:""polarized light pollution"") AND (TITLE_ABS:pollinat* OR TITLE_ABS:flowering OR TITLE_ABS:phenolog* OR TITLE_ABS:seedling*)) AND FIRST_PDATE:[1900-01-01 TO 2026-11-17]",69
+wetland_hydrology,"((TITLE_ABS:Ellenberg AND (TITLE_ABS:""water table"" OR TITLE_ABS:""water regime"" OR TITLE_ABS:""soil moisture""))) AND FIRST_PDATE:[1900-01-01 TO 2026-11-17]",43
