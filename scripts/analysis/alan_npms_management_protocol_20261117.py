@@ -114,7 +114,7 @@ def investigate(npms,cover,receipt,eiv):
             "source_units_without_label":int(s.isna().sum())
         }
         # Original values are text tokens, not invented numerical intensity.
-        output["source_aggregate_captions"][c]=top(s) if len(s) else {}
+        output["source_aggregate_captions"][c]=(top(s) if len(s) else {}) if c!="Other Management" else {"potentially_free_text_values_not_exported":int(s.notna().sum())}
     for c in CHECKS:
         retained,stats=stable_plot_labels(unit,c)
         summary_fit=choose_fit(common,retained,"stable_original_"+c.replace(" ","_"))
