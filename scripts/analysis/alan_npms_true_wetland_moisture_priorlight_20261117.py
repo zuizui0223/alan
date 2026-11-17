@@ -114,6 +114,51 @@ def study(npms,cover,receipt,eiv):
         common[~common.inland_wetland],["light_moist","doy30"],F)
     sample["model_three_way_delta"]=core.fit(
         common,["light_moist","light_moist_wetland","doy30"],F)
+    # POSTHOC source-strength and estimator sensitivity, explicitly report
+    # all signs and STOPs. Thresholds .1/.3 are inherited from the older
+    # independent NPMS analysis, not chosen on wetland coefficient signs.
+    sample["posthoc_robustness"]={}
+    sample["posthoc_robustness"]["record_equal"]=core.fit(
+        common,["light_moist","light_moist_wetland","doy30"],F,"record_equal")
+    panel=eligible.groupby("panel_key").prior_light.agg(["min","max"])
+    for cutoff in (.1,.3):
+        keep_ids=panel.index[(panel["max"]-panel["min"])>=cutoff]
+        pool=eligible.loc[eligible.panel_key.isin(keep_ids)]
+        cells=pool.groupby("plotyear_method_season").agg(
+            highest=("wet7","max"),lowest=("wet7","min"),n=("species","nunique"))
+        both=cells.index[(cells.highest==1)&(cells.lowest==0)&(cells.n>=2)]
+        pool=pool.loc[pool.plotyear_method_season.isin(both)].copy()
+        w=support(pool[pool.inland_wetland]);o=support(pool[~pool.inland_wetland])
+        gate=(w["physical_plots"]>=30 and o["physical_plots"]>=100 and
+              w["plotyear_methodseason_with_both_plant_moist_groups"]>=65 and
+              o["plotyear_methodseason_with_both_plant_moist_groups"]>=150 and
+              min(w["plant_moist_gt7_species"],w["plant_moist_le7_species"],
+                  o["plant_moist_gt7_species"],o["plant_moist_le7_species"])>=12)
+        item={"source_threshold":cutoff,"inland_wetland":w,"other_habitat":o,
+              "eligibility_passed":bool(gate),"posthoc":True}
+        if gate:item["fit"]=core.fit(
+            pool,["light_moist","light_moist_wetland","doy30"],F)
+        else:item["fit"]={"status":"not_enough_original_source_common_support_STOP"}
+        sample["posthoc_robustness"][str(cutoff)]=item
+    # Category-leverage: these are mutually overlapping sensitivity fits,
+    # not independent experiments. Any failure to support exclusion is STOP,
+    # never rescue by lowering sample criteria on the effect sign.
+    sample["posthoc_robustness"]["leave_one_inland_class_out"]={}
+    for excluded in INLAND_WET:
+        pool=common.loc[~(
+            common.inland_wetland & common.site_class.eq(excluded))].copy()
+        w=support(pool[pool.inland_wetland])
+        other=support(pool[~pool.inland_wetland])
+        gate=(w["physical_plots"]>=25 and
+              w["plotyear_methodseason_with_both_plant_moist_groups"]>=60 and
+              w["positive_cover_rows"]>=500 and
+              min(w["plant_moist_gt7_species"],w["plant_moist_le7_species"])>=12 and
+              other["physical_plots"]>=100)
+        item={"remaining_wet":w,"source_gate":bool(gate),"posthoc":True}
+        if gate:item["fit"]=core.fit(
+            pool,["light_moist","light_moist_wetland","doy30"],F)
+        else:item["fit"]={"status":"cannot_leave_class_out_with_adequate_source_STOP"}
+        sample["posthoc_robustness"]["leave_one_inland_class_out"][excluded]=item
     sample["status"]="source_supported_exploratory_positive_cover_original_habitat_moderator"
     return sample
 
