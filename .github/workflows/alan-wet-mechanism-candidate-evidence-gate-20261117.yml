@@ -195,6 +195,7 @@ jobs:
           python scripts/acquisition/alan_npms_original_habitat_source_gate_20261117.py \
             --npms /tmp/alan_habitat/NPMS_original_2015_2025.zip \
             --cover /tmp/alan_habitat/NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz \
+            --receipt /tmp/alan_habitat/NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json \
             --out /tmp/alan_habitat/npms_original_habitat_source_support.json
       - name: Verify honest no-absence or light-effect inference
         run: |
