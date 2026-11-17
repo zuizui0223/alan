@@ -1,0 +1,199 @@
+{
+  "schema": "alan_npms_observation_process_management_hydrology_candidate_20261117",
+  "source": "original EIDC NPMS 2015-2025 internally CRC-pinned CSV and exact study cover source",
+  "EIDC_DOI": "10.5285/64caeed0-160f-48f1-b182-cd24a1d7dca8",
+  "source_workflow": "https://github.com/zuizui0223/alan/actions/runs/44088947644",
+  "artifact_url": "https://github.com/zuizui0223/alan/actions/runs/44088947644/artifacts/14330438082",
+  "run_success": true,
+  "original_cover_sha256": "4e8bb59f3704d0c6140194fdbf0a3d1f50e11235da243b894833b21824d3a165",
+  "original_moisture_EIV_sha256": "ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba",
+  "scope": {
+    "original_positive_cover_rows": 11902,
+    "common_original_survey_units": 1781,
+    "wetland_plots": 47,
+    "other_plots": 279,
+    "original_habitat_recording_all_unit_count": 1781,
+    "management_recorded_units": 1094,
+    "management_missing_units": 687,
+    "grazing_recorded_units": 874,
+    "grazing_missing_units": 907
+  },
+  "source_management_present": {
+    "inland_wetland_47plots": {
+      "water_regime_regulation": {
+        "plots_with_reported_code": 9,
+        "source_survey_units_with_code": 28
+      },
+      "ditch_clearance": {
+        "plots_with_reported_code": 5,
+        "source_survey_units_with_code": 16
+      },
+      "cutting_or_mowing": {
+        "plots_with_reported_code": 4,
+        "source_survey_units_with_code": 21
+      },
+      "livestock_grazing": {
+        "plots_with_reported_code": 15,
+        "source_survey_units_with_code": 83
+      }
+    },
+    "other_habitat_279plots": {
+      "water_regime_regulation": {
+        "plots_with_reported_code": 1,
+        "source_survey_units_with_code": 2
+      },
+      "ditch_clearance": {
+        "plots_with_reported_code": 7,
+        "source_survey_units_with_code": 13
+      },
+      "cutting_or_mowing": {
+        "plots_with_reported_code": 89,
+        "source_survey_units_with_code": 280
+      },
+      "livestock_grazing": {
+        "plots_with_reported_code": 78,
+        "source_survey_units_with_code": 300
+      }
+    },
+    "missing_management_is_not_unmanaged": true
+  },
+  "initial_main_wetland_triple": {
+    "beta": -1.5129270418346314,
+    "nominal_plot_95CI": [
+      -2.380878707298993,
+      -0.6449753763702696
+    ]
+  },
+  "strict_source_record_status_same": {
+    "original_plot_species_panels": 3787,
+    "status_switch_panels": 494,
+    "status_stable_panels": 3293,
+    "remaining_wetland_plots": 44,
+    "remaining_other_plots": 250,
+    "beta": -0.8605326617013223,
+    "nominal_plot_95CI": [
+      -1.7784215801033922,
+      0.05735625670074762
+    ],
+    "nominal_two_way_plot_species_95CI": [
+      -1.8088116792081668,
+      0.08774635580552226
+    ]
+  },
+  "strict_fine_habitat_label_same": {
+    "original_plots": 326,
+    "plots_with_identical_fine_habitat_in_all_source_years": 222,
+    "source_plots_with_two_or_more_habitat_labels": 102,
+    "remaining_wetland_plots": 31,
+    "remaining_other_plots": 191,
+    "beta": -1.4702788154977002,
+    "nominal_plot_95CI": [
+      -2.496371836740684,
+      -0.44418579425471627
+    ],
+    "nominal_two_way_plot_species_95CI": [
+      -2.626962778290576,
+      -0.31359485655813946
+    ]
+  },
+  "strict_management_same": {
+    "plots_with_management_reported_every_year_and_same_label": 43,
+    "remaining_wetland_plots": 6,
+    "remaining_other_plots": 37,
+    "status": "SOURCE_STOP insufficient wetland common support"
+  },
+  "strict_grazing_same": {
+    "plots_with_grazing_reported_every_year_and_same_label": 75,
+    "remaining_wetland_plots": 12,
+    "remaining_other_plots": 63,
+    "status": "SOURCE_STOP insufficient wetland common support"
+  },
+  "source_reported_management_exclusion_posthoc": {
+    "water_regulation": {
+      "removed_wet_plots": 9,
+      "removed_other_plots": 1,
+      "remaining_wet_plots": 38,
+      "remaining_other_plots": 278,
+      "beta": -1.8026247313430606,
+      "nominal_plot_95CI": [
+        -3.3480150697303057,
+        -0.2572343929558154
+      ],
+      "two_way_95CI": [
+        -3.457250383502668,
+        -0.14799907918345312
+      ]
+    },
+    "ditch_clearance": {
+      "removed_wet_plots": 5,
+      "removed_other_plots": 7,
+      "remaining_wet_plots": 42,
+      "remaining_other_plots": 272,
+      "beta": -1.2458352020012067,
+      "nominal_plot_95CI": [
+        -2.1157400656074694,
+        -0.3759303383949437
+      ],
+      "two_way_95CI": [
+        -2.2016074952972184,
+        -0.2900629087051947
+      ]
+    },
+    "water_regulation_or_ditch": {
+      "removed_wet_plots": 13,
+      "removed_other_plots": 7,
+      "remaining_wet_plots": 34,
+      "remaining_other_plots": 272,
+      "beta": -1.7975581893422736,
+      "nominal_plot_95CI": [
+        -3.3494650572514924,
+        -0.2456513214330549
+      ],
+      "two_way_95CI": [
+        -3.4510054583628884,
+        -0.14411092032165906
+      ]
+    },
+    "cutting_or_mowing": {
+      "removed_wet_plots": 4,
+      "removed_other_plots": 89,
+      "remaining_wet_plots": 43,
+      "remaining_other_plots": 190,
+      "beta": -0.7234164913161847,
+      "nominal_plot_95CI": [
+        -1.674485573015393,
+        0.22765259038302355
+      ],
+      "two_way_95CI": [
+        -1.8020769639835732,
+        0.35524398135120383
+      ]
+    },
+    "livestock_grazing": {
+      "removed_wet_plots": 15,
+      "removed_other_plots": 78,
+      "remaining_wet_plots": 32,
+      "remaining_other_plots": 201,
+      "beta": -2.1539898175685575,
+      "nominal_plot_95CI": [
+        -3.217535545537869,
+        -1.0904440895992462
+      ],
+      "two_way_95CI": [
+        -3.537194287847008,
+        -0.7707853472901067
+      ]
+    }
+  },
+  "limitations": [
+    "All reported management sensitivity exclusions are observational posthoc and use overlapping source data; no multiple-testing-corrected confirmatory conclusion",
+    "Neither reported management nor non-report measures actual hydrologic regime or mowing intensity; no note != no management",
+    "Cutting/mowing exclusion removes 89 nonwetland controls as well as 4 wetland plots and changes study population",
+    "Stable management notes leave only six wetland plots, so direct stable-management comparison is unidentifiable",
+    "Original plant occurrence and cover conditional on recorded positives; unrecorded species cannot be imputed as 0",
+    "Light is satellite annual corrected PCNL, not leaf/flower lux, and 26 of 47 wetland sites had positive fitted light trend",
+    "Prior stricter species×habitat×year FE with plot×species two-way clustering crossed zero",
+    "Cannot infer effect of ALAN on pollination, seed production or wetland plant loss"
+  ],
+  "inferred_mechanism_effect": null
+}
