@@ -109,17 +109,17 @@ def study(npms,cover,receipt,eiv):
     F=["panel_key","species_year","plotyear_method_season"]
     sample["model_source_rows"]=len(common)
     sample["model_wetland"]=core.fit(
-        common[common.inland_wetland],["light_moist","doy30"],F)
+        common[common.inland_wetland],["light_moist","doy30"],F,two_way=True)
     sample["model_other_habitats"]=core.fit(
-        common[~common.inland_wetland],["light_moist","doy30"],F)
+        common[~common.inland_wetland],["light_moist","doy30"],F,two_way=True)
     sample["model_three_way_delta"]=core.fit(
-        common,["light_moist","light_moist_wetland","doy30"],F)
+        common,["light_moist","light_moist_wetland","doy30"],F,two_way=True)
     # POSTHOC source-strength and estimator sensitivity, explicitly report
     # all signs and STOPs. Thresholds .1/.3 are inherited from the older
     # independent NPMS analysis, not chosen on wetland coefficient signs.
     sample["posthoc_robustness"]={}
     sample["posthoc_robustness"]["record_equal"]=core.fit(
-        common,["light_moist","light_moist_wetland","doy30"],F,"record_equal")
+        common,["light_moist","light_moist_wetland","doy30"],F,"record_equal",two_way=True)
     panel=eligible.groupby("panel_key").prior_light.agg(["min","max"])
     for cutoff in (.1,.3):
         keep_ids=panel.index[(panel["max"]-panel["min"])>=cutoff]
