@@ -295,3 +295,65 @@ jobs:
           path: /tmp/alan_habitat/*.json
           if-no-files-found: warn
           retention-days: 45
+
+  official-2015-2022-habitat-change-schema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions:
+      contents: read
+    env:
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source-schema reader
+        run: python -m pip install -q pandas==2.2.3 numpy==2.1.3
+      - name: Download two separately published NPMS original datasets
+        timeout-minutes: 18
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_npms_change_source
+          curl -L --fail --show-error --retry 3 --max-time 600 \
+            https://data-package.ceh.ac.uk/data/a12b5c70-c0e2-48cf-b0b7-3e95791feca9.zip \
+            -o /tmp/alan_npms_change_source/habitat_2015_2022_original.zip
+          curl -L --fail --show-error --retry 3 --max-time 600 \
+            https://data-package.ceh.ac.uk/data/64caeed0-160f-48f1-b182-cd24a1d7dca8.zip \
+            -o /tmp/alan_npms_change_source/NPMS_2015_2025_original.zip
+          python - <<'PY'
+          import zipfile
+          for q in ('habitat_2015_2022_original.zip','NPMS_2015_2025_original.zip'):
+              p='/tmp/alan_npms_change_source/'+q
+              assert zipfile.is_zipfile(p),p
+              with zipfile.ZipFile(p) as z:assert z.testzip() is None
+              print('OFFICIAL_NPMS_HABITAT_CHANGE_ARCHIVE_AUTHENTIC_ZIP',q,flush=True)
+          PY
+      - name: Verify official habitat-change flag fields and exact identifiers without source data leakage
+        run: |
+          set -euo pipefail
+          python scripts/acquisition/alan_npms_habitat_change_original_20261117.py \
+            --habitat-2022 /tmp/alan_npms_change_source/habitat_2015_2022_original.zip \
+            --npms-2025 /tmp/alan_npms_change_source/NPMS_2015_2025_original.zip \
+            --out /tmp/alan_npms_change_source/habitat_change_source_schema_20261117.json
+      - name: Keep honest join and organism-response gates
+        run: |
+          python - <<'PY'
+          import json
+          p='/tmp/alan_npms_change_source/habitat_change_source_schema_20261117.json'
+          a=json.load(open(p))
+          assert a['schema']=='alan_npms_habitat_change_2015_2022_source_schema_gate_v1'
+          assert a['old_NPMS_source_sample_rows']==27611
+          assert not a['sample_habitat_effect_or_ALAN_moderator_fitted']
+          assert a['source_original_habitat_rows_not_published']
+          print('ORIGINAL_NPMS_CHANGE_DATA_JOIN_STATUS',a['status'])
+          print('EXACT_DATA_SCHEMA',json.dumps(a['source_files'],sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-npms-2015-22-original-habitat-change-source-schema
+          path: /tmp/alan_npms_change_source/habitat_change_source_schema_20261117.json
+          retention-days: 90
+          if-no-files-found: warn
