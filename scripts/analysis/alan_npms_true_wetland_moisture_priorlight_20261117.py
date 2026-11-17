@@ -43,7 +43,10 @@ def study(npms,cover,receipt,eiv):
     joins=data.merge(pairs,on=k,how="left",validate="one_to_one",indicator=True)
     assert len(joins)==source_cover["moisture_source_exact_rows"]
     joins["site_class"]=joins.location_id.map(allowed)
-    eligible=joins.loc[joins.site_class.notna()].copy()
+    # A physical plot may have one stable named habitat among documented years
+    # but some other recorded survey years have UNKNOWN habitat. Never fill
+    # those rows from adjacent years: keep only exact same-year habitat labels.
+    eligible=joins.loc[joins.site_class.notna() & joins.broad.eq(joins.site_class)].copy()
     assert eligible.broad.eq(eligible.site_class).all(),"original survey habitat vs stable site discrepancy"
     eligible["inland_wetland"]=eligible.site_class.isin(INLAND_WET)
     eligible["light_moist_wetland"]=eligible.light_moist*eligible.inland_wetland.astype(int)
