@@ -1,0 +1,309 @@
+{
+  "coefficients_not_causal": true,
+  "eligibility": {
+    "drier_species": 295,
+    "mixed_source_calendar_years": 11,
+    "mixed_source_plots": 389,
+    "mixed_source_plotyear_methodseason_units": 2178,
+    "original_source_same_2015_2025_method_season_light_span_min": 0.02,
+    "pass_primary": true,
+    "pass_strict_same_plotyear": true,
+    "source_scored_plots": 1054,
+    "source_scored_rows": 30056,
+    "source_scored_species": 438,
+    "wet_species": 143
+  },
+  "endpoint": "DOMIN measured positive cover percentage points; non-records not coded zero",
+  "frozen_thresholds": {
+    "drier_species": 20,
+    "mixed_plotyears": 150,
+    "plots": 150,
+    "rows": 2500,
+    "species": 40,
+    "wet_species": 10
+  },
+  "hypothesis": "Prior annual satellite PCNL x independent species MOIST moderation",
+  "interpretation": "independent NPMS 2015-25 positive-only recorded plant cover; exact Europe EIV match",
+  "not_plant_loss_or_extinction": true,
+  "primary_continuous_moisture": {
+    "FE": [
+      "panel_key",
+      "species_year"
+    ],
+    "coefficients": {
+      "doy30": {
+        "SE_real_plot_cluster": 0.29867463140197753,
+        "beta": -0.6895412947851018,
+        "nominal_95CI": [
+          -1.2756064512333627,
+          -0.103476138336841
+        ],
+        "nominal_two_sided_p": 0.021154823144236792
+      },
+      "light_moist": {
+        "SE_real_plot_cluster": 0.16952039130521415,
+        "beta": 0.22665868704473066,
+        "nominal_95CI": [
+          -0.10597751371029249,
+          0.5592948877997538
+        ],
+        "nominal_two_sided_p": 0.18149229513438533
+      },
+      "prior_light": {
+        "SE_real_plot_cluster": 0.376918089434507,
+        "beta": 0.750101675915208,
+        "nominal_95CI": [
+          0.010505688081500986,
+          1.489697663748915
+        ],
+        "nominal_two_sided_p": 0.046839044507593214
+      }
+    },
+    "condition_number": 10.356588495075194,
+    "fe": {
+      "levels": {
+        "panel_key": 8464,
+        "species_year": 3248
+      },
+      "solver": [
+        {
+          "col": 0,
+          "iterations": 312,
+          "termination": 2,
+          "weighted_residual_l2": 195.03710303863292
+        },
+        {
+          "col": 1,
+          "iterations": 411,
+          "termination": 2,
+          "weighted_residual_l2": 9.172559204892165
+        },
+        {
+          "col": 2,
+          "iterations": 398,
+          "termination": 2,
+          "weighted_residual_l2": 17.820513483087137
+        },
+        {
+          "col": 3,
+          "iterations": 385,
+          "termination": 2,
+          "weighted_residual_l2": 11.264474168777587
+        }
+      ]
+    },
+    "original_years": 11,
+    "plots": 1054,
+    "rows": 30056,
+    "status": "observational_positive_cover_only",
+    "taxa": 438,
+    "weight": "plot_equal"
+  },
+  "schema": "alan_npms_moisture_alan_independent_plant_cover_v1",
+  "strict_moisture": {
+    "FE": [
+      "panel_key",
+      "species_year",
+      "plotyear_method_season"
+    ],
+    "coefficients": {
+      "doy30": {
+        "SE_real_plot_cluster": 1.240571824764351,
+        "beta": 1.5979482561465874,
+        "nominal_95CI": [
+          -0.8411361356282552,
+          4.03703264792143
+        ],
+        "nominal_two_sided_p": 0.19848785972092536
+      },
+      "light_moist": {
+        "SE_real_plot_cluster": 0.1939195547347384,
+        "beta": 0.29330239432363975,
+        "nominal_95CI": [
+          -0.08796223685019205,
+          0.6745670254974716
+        ],
+        "nominal_two_sided_p": 0.1312219941284181
+      }
+    },
+    "condition_number": 31.442491875217016,
+    "fe": {
+      "levels": {
+        "panel_key": 4435,
+        "plotyear_method_season": 2178,
+        "species_year": 2392
+      },
+      "solver": [
+        {
+          "col": 0,
+          "iterations": 292,
+          "termination": 2,
+          "weighted_residual_l2": 74.44183737345207
+        },
+        {
+          "col": 1,
+          "iterations": 344,
+          "termination": 2,
+          "weighted_residual_l2": 6.5206975627784605
+        },
+        {
+          "col": 2,
+          "iterations": 334,
+          "termination": 2,
+          "weighted_residual_l2": 1.1629973620577059
+        }
+      ]
+    },
+    "original_years": 11,
+    "plots": 389,
+    "rows": 14116,
+    "status": "observational_positive_cover_only",
+    "taxa": 362,
+    "weight": "plot_equal"
+  },
+  "strict_source_rows": 14116,
+  "strict_wet7": {
+    "FE": [
+      "panel_key",
+      "species_year",
+      "plotyear_method_season"
+    ],
+    "coefficients": {
+      "doy30": {
+        "SE_real_plot_cluster": 1.237748945499454,
+        "beta": 1.6222158721316715,
+        "nominal_95CI": [
+          -0.8113184655330974,
+          4.05575020979644
+        ],
+        "nominal_two_sided_p": 0.19076214668218636
+      },
+      "light_wet7": {
+        "SE_real_plot_cluster": 0.6044911824261545,
+        "beta": 0.500893705034592,
+        "nominal_95CI": [
+          -0.6875945215952678,
+          1.6893819316644518
+        ],
+        "nominal_two_sided_p": 0.40782868529318683
+      }
+    },
+    "condition_number": 4.009272007393996,
+    "fe": {
+      "levels": {
+        "panel_key": 4435,
+        "plotyear_method_season": 2178,
+        "species_year": 2392
+      },
+      "solver": [
+        {
+          "col": 0,
+          "iterations": 292,
+          "termination": 2,
+          "weighted_residual_l2": 74.44183737345207
+        },
+        {
+          "col": 1,
+          "iterations": 338,
+          "termination": 2,
+          "weighted_residual_l2": 2.3286826616116234
+        },
+        {
+          "col": 2,
+          "iterations": 334,
+          "termination": 2,
+          "weighted_residual_l2": 1.1629973620577059
+        }
+      ]
+    },
+    "original_years": 11,
+    "plots": 389,
+    "rows": 14116,
+    "status": "observational_positive_cover_only",
+    "taxa": 362,
+    "weight": "plot_equal"
+  },
+  "wet7_sensitivity": {
+    "FE": [
+      "panel_key",
+      "species_year"
+    ],
+    "coefficients": {
+      "doy30": {
+        "SE_real_plot_cluster": 0.2984581758437656,
+        "beta": -0.6898662418180608,
+        "nominal_95CI": [
+          -1.2755066649704534,
+          -0.10422581866566805
+        ],
+        "nominal_two_sided_p": 0.021001258171297294
+      },
+      "light_wet7": {
+        "SE_real_plot_cluster": 0.6137647259220599,
+        "beta": 0.34469161994317427,
+        "nominal_95CI": [
+          -0.8596494331669506,
+          1.549032673053299
+        ],
+        "nominal_two_sided_p": 0.5745065855165019
+      },
+      "prior_light": {
+        "SE_real_plot_cluster": 0.3829794651168863,
+        "beta": 0.36829710257398857,
+        "nominal_95CI": [
+          -0.38319263422296507,
+          1.1197868393709423
+        ],
+        "nominal_two_sided_p": 0.3364397883238057
+      }
+    },
+    "condition_number": 10.19814089565571,
+    "fe": {
+      "levels": {
+        "panel_key": 8464,
+        "species_year": 3248
+      },
+      "solver": [
+        {
+          "col": 0,
+          "iterations": 312,
+          "termination": 2,
+          "weighted_residual_l2": 195.03710303863292
+        },
+        {
+          "col": 1,
+          "iterations": 411,
+          "termination": 2,
+          "weighted_residual_l2": 9.172559204892165
+        },
+        {
+          "col": 2,
+          "iterations": 294,
+          "termination": 2,
+          "weighted_residual_l2": 4.009662586180077
+        },
+        {
+          "col": 3,
+          "iterations": 385,
+          "termination": 2,
+          "weighted_residual_l2": 11.264474168777587
+        }
+      ]
+    },
+    "original_years": 11,
+    "plots": 1054,
+    "rows": 30056,
+    "status": "observational_positive_cover_only",
+    "taxa": 438,
+    "weight": "plot_equal"
+  },
+  "source": {
+    "eiv_original_sha256": "ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba",
+    "moisture_source_exact_rows": 30056,
+    "moisture_source_exact_taxa": 438,
+    "original_source_plots": 1138,
+    "original_source_rows": 61555,
+    "original_source_species": 686,
+    "source_original_cover_sha256": "4e8bb59f3704d0c6140194fdbf0a3d1f50e11235da243b894833b21824d3a165"
+  }
+}
