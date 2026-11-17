@@ -6,7 +6,7 @@
 
 ### 論文用の結果と考察
 
-[論文草稿の要旨・結果・考察](manuscript/ALAN_WET_HABITAT_ja.md)に、湿潤性の群間差、ホソヒラタアブとカニグモを含む共通経路、蛾の体表花粉、内陸湿地の年次観測を集約した。湿潤な減少候補に含まれる *Cirsium oleraceum* では、独立した照明実験の再解析でも昼の訪花が減る方向を示したが、草地6ペア単位では不確かさが大きかった。[実験の再解析と反例](results/all_species_forest/wet_environment/README.md)
+[論文草稿の要旨・序論・結果・考察](manuscript/ALAN_WET_HABITAT_ja.md)に、湿潤性の群間差、ホソヒラタアブとカニグモを含む共通経路、蛾の体表花粉、内陸湿地の年次観測を集約した。湿潤な減少候補に含まれる *Cirsium oleraceum* では、独立した照明実験の再解析でも昼の訪花が減る方向を示したが、草地6ペア単位では不確かさが大きかった。[実験の再解析と反例](results/all_species_forest/wet_environment/README.md)
 
 ## 副次的な探索結果
 
