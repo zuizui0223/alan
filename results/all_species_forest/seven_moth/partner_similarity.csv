@@ -1,0 +1,22 @@
+first,second,moth_family_bray_curtis,shared_namespaces,shared_visitors,recorded_visitor_union
+Stachys palustris,Solanum dulcamara,0.33333333333333337,1,1.0,6.0
+Stachys palustris,Iris pseudacorus,0.9999999999999999,2,2.0,10.0
+Stachys palustris,Ranunculus sceleratus,0.13333333333333336,0,,
+Stachys palustris,Epilobium hirsutum,0.33333333333333337,1,3.0,10.0
+Stachys palustris,Lythrum salicaria,0.33333333333333337,2,5.0,10.0
+Stachys palustris,Mentha aquatica,0.33333333333333337,0,,
+Solanum dulcamara,Iris pseudacorus,1.0,8,98.0,161.0
+Solanum dulcamara,Ranunculus sceleratus,0.19999999999999998,5,87.0,123.0
+Solanum dulcamara,Epilobium hirsutum,0.07142857142857141,6,98.0,164.0
+Solanum dulcamara,Lythrum salicaria,0.0,1,3.0,6.0
+Solanum dulcamara,Mentha aquatica,0.06666666666666665,0,,
+Iris pseudacorus,Ranunculus sceleratus,1.0,5,87.0,134.0
+Iris pseudacorus,Epilobium hirsutum,0.9285714285714286,8,99.0,185.0
+Iris pseudacorus,Lythrum salicaria,1.0,3,2.0,19.0
+Iris pseudacorus,Mentha aquatica,0.9333333333333333,0,,
+Ranunculus sceleratus,Epilobium hirsutum,0.2,4,87.0,131.0
+Ranunculus sceleratus,Lythrum salicaria,0.19999999999999998,0,,
+Ranunculus sceleratus,Mentha aquatica,0.19999999999999998,0,,
+Epilobium hirsutum,Lythrum salicaria,0.07142857142857141,2,4.0,16.0
+Epilobium hirsutum,Mentha aquatica,0.004761904761904752,0,,
+Lythrum salicaria,Mentha aquatica,0.06666666666666665,0,,

@@ -117,3 +117,5 @@ After joining geographically overlapping source sites *without double counting*,
 **This is additional measurement coverage**, not a causal ALAN response or a native flowering-plant census. Both photo acquisitions were targeted by island and site/year; never append their strict sites unweighted to the previously published historical-main original 710 island site×years. MOIS remains moisture-only.
 
 </details>
+
+湿潤な減少候補の生育地・繁殖形質の類似性と、蛾の花粉運搬が確認された7種について、共通訪花者と同一地点での長期記録率を調べた。[湿地利用のNMDS、GloBI、地点別の比較](results/all_species_forest/seven_moth/README.md)

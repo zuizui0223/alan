@@ -1,0 +1,22 @@
+"first","second","habitat_distance","trait_habitat_distance"
+"Stachys palustris","Solanum dulcamara",1,0.375
+"Stachys palustris","Iris pseudacorus",0.888888888888889,0.597222222222222
+"Stachys palustris","Ranunculus sceleratus",0.666666666666667,0.791666666666667
+"Stachys palustris","Epilobium hirsutum",0.833333333333333,0.458333333333333
+"Stachys palustris","Lythrum salicaria",0.857142857142857,0.714285714285714
+"Stachys palustris","Mentha aquatica",1,0.625
+"Solanum dulcamara","Iris pseudacorus",0.7,0.425
+"Solanum dulcamara","Ranunculus sceleratus",1,0.75
+"Solanum dulcamara","Epilobium hirsutum",1,0.625
+"Solanum dulcamara","Lythrum salicaria",0.882352941176471,0.845588235294118
+"Solanum dulcamara","Mentha aquatica",0.818181818181818,0.454545454545455
+"Iris pseudacorus","Ranunculus sceleratus",1,0.75
+"Iris pseudacorus","Epilobium hirsutum",1,0.625
+"Iris pseudacorus","Lythrum salicaria",0.714285714285714,0.553571428571429
+"Iris pseudacorus","Mentha aquatica",0.666666666666667,0.416666666666667
+"Ranunculus sceleratus","Epilobium hirsutum",0.833333333333333,0.833333333333333
+"Ranunculus sceleratus","Lythrum salicaria",0.769230769230769,0.817307692307692
+"Ranunculus sceleratus","Mentha aquatica",1,0.75
+"Epilobium hirsutum","Lythrum salicaria",0.846153846153846,0.711538461538462
+"Epilobium hirsutum","Mentha aquatica",0.875,0.34375
+"Lythrum salicaria","Mentha aquatica",0.615384615384615,0.778846153846154
