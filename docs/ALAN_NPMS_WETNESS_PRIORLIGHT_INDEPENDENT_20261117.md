@@ -32,7 +32,17 @@ This new result constrains one candidate mechanism: a broad **ALAN × inherent m
 
 Other mechanisms remain plausible without assigned contributions: habitat hydroperiod/drainage and mowing changes correlated with anthropogenic development; ALAN×nutrient competition/plant phenology; visitor behavior and reproductive timing; water-derived insect supply and predator/herbivore response. The wetness proxy is not local water table and the satellite radiance is not leaf lux. Observer season/protocol and shared spatial climate/urban trends remain confounding threats. The study is a geographically UK-weighted survey, not an independent global replicate.
 
-**Next preregistered stress:** original NPMS source light-variation cutoffs **≥0.1** and **≥0.3** log1p prior PCNL to check whether small annual satellite-light changes cause misleading signs. These should be reported regardless of direction, with no coefficient if source common support fails.
+**Completed source-driven high-light-span sensitivity.** We used the same individual panel range of previous-year log1p PCNL, requiring at least 0.1 or 0.3 range across actual repeated-positive years. These gates were already applied in the source NPMS study prior to opening this new moisture interaction.
+
+| Min same-panel prior-PCNL span | Source plots | True positive-cover rows | Source-scored species | Continuous MOIST×PCNL beta (nominal 95% plot-cluster CI) |
+|---|---:|---:|---:|---|
+| ≥0.02 (primary) | 1,054 | 30,056 | 438 | **+0.22666 [−0.10598,+0.55929]** |
+| ≥0.10 | 639 | 20,427 | 365 | **+0.05423 [−0.23350,+0.34195]** |
+| ≥0.30 | 229 | 7,428 | 241 | **+0.12129 [−0.32716,+0.56973]** |
+
+All source population thresholds passed and all interval bounds overlap zero. In particular, positive baseline prior-light main effect at MOIST=7 +0.7501 [0.0105,+1.4897] falls to +0.2575 [−0.3082,+0.8231] and −0.0451 [−0.7362,+0.6459] at the two source range thresholds. These are **overlapping selected positive-cover subcohorts**, not three independent experiments and not a result about true plant extirpation. The simple wet-plant-specific negative cover prediction remains unsupported.
+
+The full source re-execution is [Actions #44074659185](https://github.com/zuizui0223/alan/actions/runs/44074659185) SUCCESS with all synthetic coefficient tests and SHA source checks, confirming the original-base betas to numerical tolerance. The aggregate JSON above was refreshed to include both sensitivity fits.
 
 ### Reproducibility and provenance
 
