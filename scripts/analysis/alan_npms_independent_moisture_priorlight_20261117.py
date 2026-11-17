@@ -69,7 +69,7 @@ def load(original, receipt, eiv):
     ei["MOIST"]=pd.to_numeric(ei["MOIST"],errors="coerce")
     # If the original source has conflicting same-name rows, do not choose one.
     dupl=ei.groupby(level=0).MOIST.agg(["first","nunique"])
-    m=dupl.loc[dupl.nunique<=1,"first"].dropna()
+    m=dupl.loc[dupl["nunique"]<=1,"first"].dropna()
     z["moist"]=z.species.map(m)
     # The lookup is exact published binomial; synonyms remain missing, not guessed.
     source_info={"original_source_rows":len(z),
