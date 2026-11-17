@@ -7,7 +7,9 @@ on:
   pull_request:
     paths:
       - 'scripts/analysis/alan_wet_candidate_triage_20261117.py'
+      - 'scripts/analysis/alan_wet_species_support_20261117.py'
       - 'tests/test_alan_wet_candidate_triage_20261117.py'
+      - 'tests/test_alan_wet_species_support_20261117.py'
       - 'results/all_species_forest/**'
       - 'docs/ALAN_WET_MECHANISM_CANDIDATE_TRIAGE_20261117.md'
   workflow_dispatch:
@@ -25,7 +27,19 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Recompute exact fixed-source summaries
+      - name: Recompute fixed source four-species and region summaries
         run: python scripts/analysis/alan_wet_candidate_triage_20261117.py
-      - name: Check source guards and nonpromotion
-        run: python -m unittest discover -s tests -p 'test_alan_wet_candidate_triage_20261117.py' -v
+      - name: Recompute all-3901 species coverage and stratified wetness sensitivity
+        run: |
+          mkdir -p /tmp/alan_wet_audit
+          python scripts/analysis/alan_wet_species_support_20261117.py | tee /tmp/alan_wet_audit/moisture_species_support.json
+      - name: Check all preselected-source, grouping and nonpromotion gates
+        run: |
+          python -m unittest discover -s tests -p 'test_alan_wet_candidate_triage_20261117.py' -v
+          python -m unittest discover -s tests -p 'test_alan_wet_species_support_20261117.py' -v
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-wet-all3901-species-support
+          path: /tmp/alan_wet_audit/moisture_species_support.json
+          if-no-files-found: error
+          retention-days: 30
