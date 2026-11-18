@@ -6,6 +6,7 @@ caterpillars from the same assigned light plots as independent ALAN studies.
 No source whose original cluster-level variance is unavailable receives an SE.
 """
 import argparse
+import math
 import json
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -82,6 +83,39 @@ def synthesize(registry):
         "not_a_direct_predation_or_plant_damage_effect": True,
         "not_a_control_adjusted_BACI_estimate": True,
     }
+    # Distinct endpoint: surrogate prey risk, NOT predator abundance.
+    # Natural streetlights are already installed; dusk coincides with lamp
+    # switching on. The original model is conditional on random lamp/batch.
+    # No extra lamp clusters or unreported covariance matrix are invented.
+    eck = [r for r in by_ep["surrogate_bait_predation_probability"]
+           if r["programme_id"] == "Eckhartt2022"]
+    if len(eck) != 1:
+        raise ValueError("Eckhartt original published lamppost design missing")
+    e = eck[0]["effect"]
+    if e["kind"] != "published_random_lamp_batch_GLMM" or e["published_baits_total"] != 830:
+        raise ValueError("Eckhartt original Table 1 model/source sample drift")
+    if e["published_before_baits_predated"] + e["published_after_baits_predated"] != 516:
+        raise ValueError("Eckhartt original 516 predations changed")
+    if e["interaction_SE"] <= 0 or abs(e["pre_dusk_distance_interaction"]/e["interaction_SE"]-e["interaction_z"]) > .02:
+        raise ValueError("Eckhartt published z and SE do not reconcile")
+    ek = {
+        "original_study_programme":"Eckhartt2022",
+        "original_n_lamppost_clusters":7,
+        "original_n_bait_events":e["published_baits_total"],
+        "original_n_days":13,
+        "published_model":e,
+        "post_dusk_distance_logit_slope_per_m": e["distance_post_dusk_logit_per_m"],
+        "pre_dusk_distance_logit_slope_per_m": e["distance_post_dusk_logit_per_m"] + e["pre_dusk_distance_interaction"],
+        "post_dusk_distance_odds_ratio_per_m": math.exp(e["distance_post_dusk_logit_per_m"]),
+        "pre_dusk_distance_odds_ratio_per_m": math.exp(e["distance_post_dusk_logit_per_m"] + e["pre_dusk_distance_interaction"]),
+        "interaction_difference_pre_minus_post_odds_ratio_per_m": math.exp(e["pre_dusk_distance_interaction"]),
+        "published_se_only_conditional_model":True,
+        "no_independent_lamppost_refit":True,
+        "not_randomly_assigned_ALAN":True,
+        "pre_dusk_daytime_vs_post_dusk_confounded":True,
+        "neither_live_caterpillar_nor_plant_fitness_measured":True,
+        "cannot_meta_pool_with_predator_abundance":True,
+    }
     boom = next(r for r in by_ep["nursery_seed_predation"] if r["programme_id"] == "Boom2020")["effect"]
     specs = {}
     for treatment in ("dark", "green", "white", "red"):
@@ -106,6 +140,7 @@ def synthesize(registry):
             "no_common_endpoint_random_effects_meta_fitted": True,
             "different_ecological_stages_are_not_interchangeable": sorted(by_ep),
         },
+        "eckhartt2022_original_published_model": ek,
         "brown2023_original_published_period_arithmetic": brown,
         "brown2023_predator_herbivore_source_trophic_capture_reweighting": brown_trophic,
         "boom2020_spectral_nursery_algebra": {
@@ -146,6 +181,7 @@ def main():
     print("PREDATOR_DIRECTIONS",ans["evidence"]["predator_abundance_published_directions"])
     print("BROWN_DESCRIPTIVE_DURING_PRE",round(ans["brown2023_original_published_period_arithmetic"]["during_to_pre_descriptive_ratio"],6))
     print("BROWN_TROPHIC_PREDATOR_HERBIVORE_RATIO_OF_RATIOS",round(ans["brown2023_predator_herbivore_source_trophic_capture_reweighting"]["light_on_to_pre_predator_herbivore_ratio_of_ratios"],6))
+    print("ECKHARTT_ORIGINAL_POST_DUSK_PREDATION_OR_PER_M",round(ans["eckhartt2022_original_published_model"]["post_dusk_distance_odds_ratio_per_m"],6))
     print("BOOM_SPECTRAL_PRODUCT_GREEN_DARK",round(ans["boom2020_spectral_nursery_algebra"]["green_to_dark_product_ratio"],6))
 
 
