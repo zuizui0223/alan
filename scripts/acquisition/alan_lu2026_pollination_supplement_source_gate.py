@@ -96,7 +96,7 @@ def execute():
             http,mime,final,payload=request(url)
             status.update(http_status=http,mime=mime,
                           exact_downloaded_bytes=len(payload),
-                          "redirected_url_if_different":final if final!=url else None)
+                          redirected_url_if_different=final if final!=url else None)
             if len(payload)>MAX:
                 status["status"]="remote_source_too_large_STOP"
             elif zipfile.is_zipfile(io.BytesIO(payload)):
