@@ -274,7 +274,7 @@ def main_alan_wet_cohort_join():
        "source_overlap_does_not_identify_light_to_pollen_mechanism":True
     }
 
-def e_tetralix_selective_visitation_importance(plant):
+def e_tetralix_selective_visitation_importance(plant,source_rows):
     source=plant["original_source_visitor_taxa"]
     a=source["Apis_mellifera"]
     b=source["Bombus_jonellus"]
@@ -310,6 +310,43 @@ def e_tetralix_selective_visitation_importance(plant):
     require(source_bee_rare_effect["rare_total_source_pollen"]==608 and
             source_bee_rare_effect["common_total_source_pollen"]==226,
             "original E. tetralix 2013-14 rare vs common single-visit pollen totals changed")
+    # These 11 rare-Bombus visits occur on only four source field dates.
+    # Sample DAYS of the same observational heath field, not 11 imaginary
+    # independently manipulated ALAN units; inference is purely descriptive
+    # and posthoc selected after observing different visitor quality.
+    records=[x for x in source_rows if x["plant"]=="Erica_tetralix"]
+    dated=defaultdict(list)
+    for x in records:dated[x["date"]].append(x)
+    dates=list(dated)
+    rng=random.Random(SEED+777)
+    qratios=[]
+    for _ in range(B):
+        sample_dates=rng.choices(dates,k=len(dates))
+        be=[];ap=[]
+        for day in sample_dates:
+            for x in dated[day]:
+                if x["taxon"]=="Bombus_jonellus":be.append(x["conspecific_pollen"])
+                elif x["taxon"]=="Apis_mellifera":ap.append(x["conspecific_pollen"])
+        if be and ap and sum(ap)>0:
+            qratios.append(statistics.fmean(be)/statistics.fmean(ap))
+    source_bee_rare_effect["posthoc_source_date_cluster_bootstrap"]={
+        "source_original_all_plant_observation_days":len(dates),
+        "source_original_Bombus_jonellus_days":b["source_days"],
+        "source_original_Apis_mellifera_days":a["source_days"],
+        "source_bootstrap_n":B,
+        "source_bootstrap_valid_Bombus_vs_Apis":len(qratios),
+        "source_all_differences_observational_not_ALAN":True,
+        "posthoc_selected_taxonomic_contrast":True
+    }
+    if len(qratios)>=.95*B:
+        qratios.sort()
+        source_bee_rare_effect["posthoc_source_date_cluster_bootstrap"][
+            "descriptive_Bombus_jonellus_to_Apis_per_visit_SVD_ratio_95CI"
+        ]=[qratios[int(.025*(len(qratios)-1))],
+           qratios[int(.975*(len(qratios)-1))]]
+    else:
+        source_bee_rare_effect["posthoc_source_date_cluster_bootstrap"][
+            "status"]="not_enough_rare_source_dates_STOP"
     return source_bee_rare_effect
 
 def execute():
@@ -318,7 +355,7 @@ def execute():
     for plant in plants:
         plants[plant]["fly_vs_bee_same_plant"]["date_cluster_source_sensitivity"]=date_cluster_bootstrap(r,plant)
     etet_cross_evidence=main_alan_wet_cohort_join()
-    rare_function=e_tetralix_selective_visitation_importance(plants["Erica_tetralix"])
+    rare_function=e_tetralix_selective_visitation_importance(plants["Erica_tetralix"],r)
     return {
         "selected_wet_main_decline_candidate_independent_functional_field_bridge":
             etet_cross_evidence,
