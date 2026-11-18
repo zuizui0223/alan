@@ -23,6 +23,7 @@ import argparse
 import collections
 import json
 import math
+import re
 from pathlib import Path
 
 from scripts.acquisition.alan_lu2026_original_workbook_schema import source_open,sheet_data,ORIGINAL_WORKBOOK_SHA
@@ -134,7 +135,8 @@ def match_plants(source,blocks):
         by_mode[mode]=matched
     return by_mode
 
-def source_results(rows0,blocks):
+def source_results(rows0,blocks,author_taxon_map=None):
+    if author_taxon_map is None:author_taxon_map={}
     from collections import defaultdict
     matched=match_plants(rows0,blocks)
     out={}
@@ -152,7 +154,9 @@ def source_results(rows0,blocks):
         n=[r for r in rows if r["phase"]=="night"]
         strict_positive=[r for r in n if r["moth_delta"]<0 and r["fly_delta"]>0]
         result["night_same_plant_moth_down_fly_up"]={
-            "source_plant_block_pairs":len(strict_positive),
+            "source_plant_block_round_repeat_rows":len(strict_positive),
+            "source_unique_plant_block_pairs":len({
+                (r["plant"],r["block"]) for r in strict_positive}),
             "source_distinct_plant_taxa":len({r["plant"] for r in strict_positive}),
             "source_independent_light_blocks_with_at_least_one_crossover":
                 len({r["block"] for r in strict_positive}),
@@ -178,7 +182,9 @@ def source_results(rows0,blocks):
         for s,x in plant.items():
             if len(x["block_ids"])<2:continue
             contributors.append({
-              "species":s,"source_spatial_block_pairs":len(x["block_ids"]),
+              "original_taxon_code":s,
+              "source_author_R_abbreviated_latin_name":author_taxon_map.get(s),
+              "source_spatial_block_pairs":len(x["block_ids"]),
               "moth_visits_lit_minus_dark":int(x["moth_delta"]),
               "fly_visits_lit_minus_dark":int(x["fly_delta"]),
               "all_visits_lit_minus_dark":int(x["total_delta"]),
@@ -201,8 +207,59 @@ def calculate():
     source,blocks=indexed_original(sheets[RAW_SHEET])
     visitation=rows(sheets["visitation"])
     verify=summarize(source,blocks,visitation)
-    byplant=source_results(source,blocks)
+    # Read short code-name pairs from the actual author R script.
+    author_taxon_map={}
+    for line in rcode.splitlines():
+        match=re.search(r'^\s*"([a-z]{2,8})"\s*=\s*"([A-Z]\.\s+[a-z-]+)"\s*,?\s*
+            "original_source_workbook_SHA256":ORIGINAL_WORKBOOK_SHA,
+            "DOI":"10.1002/ece3.74368",
+            "original_independently_lit_control_spatial_pairs":5,
+            "original_source_verification":verify,
+            "original_same_plant_within_block_subsets":byplant,
+            "source_moth_to_fly_functional_pollen_substitution_measured":False,
+            "plant_specific_seed_set_measured":False,
+            "original_JPE_2026_light_installation_independence_verified":False,
+            "limitations":[
+              "Only plant identities recorded in both original treatment arms and matched spatial blocks considered; unmatched plant not assumed to have zero visits",
+              "Different sampling periods/replicates may remain in the source for each plant arm; strict matched-round control is separate",
+              "Source plant-level visit count is not normalized by flower abundance or actual receptive stigma count",
+              "No actual plant reproductive outcome measured by the ECE network study",
+              "Same five treatment pairs generate all taxa-specific effects; cannot treat plant-by-block comparisons as independent field light experiments",
+              "Species response prioritization is exploratory and must not be used as a separate multiple-testing family without correction"
+            ]}
+
+def main():
+    p=argparse.ArgumentParser()
+    p.add_argument("--out",required=True)
+    a=p.parse_args()
+    result=calculate()
+    dest=Path(a.out);dest.parent.mkdir(exist_ok=True,parents=True)
+    dest.write_text(json.dumps(result,ensure_ascii=False,sort_keys=True,indent=2)+"\n")
+    print("LU2026_ORIGINAL_SAME_FLOWERS_GUILD_REPLACEMENT",json.dumps({
+      "source":result["original_source_verification"],
+      "support":{k:{
+        "matched_source_rowkeys":v["original_source_matched_row_keys"],
+        "night_block_plant_pairs":v["source_plants_same_block_treatment_pairs_by_diel"]["night"],
+        "night_mothdown_flyup":v["night_same_plant_moth_down_fly_up"],
+        "strongest_species":v["night_largest_documented_species_changes_descriptive"][:10],
+      } for k,v in result["original_same_plant_within_block_subsets"].items()}
+    },ensure_ascii=False,sort_keys=True),flush=True)
+
+if __name__=="__main__":
+    main()
+,line)
+        if match:
+            key,value=match.groups()
+            if key in author_taxon_map and author_taxon_map[key]!=value:
+                raise ValueError("Conflicting original Lu R species label mapping")
+            author_taxon_map[key]=value
+    observed_plant_codes={r["plant"] for r in source}
+    byplant=source_results(source,blocks,author_taxon_map)
     return {"schema":SCHEMA,
+            "author_R_source_verified_plant_codes_to_latin_abbreviations":
+                {k:author_taxon_map.get(k) for k in sorted(observed_plant_codes)},
+            "plant_code_mapping_fraction_verified":
+                len(observed_plant_codes & author_taxon_map.keys())/len(observed_plant_codes),
             "original_source_workbook_SHA256":ORIGINAL_WORKBOOK_SHA,
             "DOI":"10.1002/ece3.74368",
             "original_independently_lit_control_spatial_pairs":5,
