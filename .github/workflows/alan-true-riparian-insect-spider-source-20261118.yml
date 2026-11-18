@@ -233,7 +233,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m unittest discover -s tests -p test_alan_lu2026_original_sameplant_guild_replacement.py -v
-      - name: Source-only verify full original 2026 1606-row plant-pollinator network against published visitation
+      - name: Verify original author 1038 focal-plant visit records under matched block/round; do not fill sparse full-network cells
         run: |
           set -euo pipefail
           mkdir -p /tmp/alan_lu2026_sameplant
@@ -246,7 +246,7 @@ jobs:
           r=json.load(open('/tmp/alan_lu2026_sameplant/author_source_matched_flower_guild_substitution.json'))
           assert r['schema']=='alan_lu2026_original_same_plant_guild_replacement_20261118_v1'
           assert r['original_independently_lit_control_spatial_pairs']==5
-          assert r['original_source_verification']['source_plant_network_rows']==1606
+          assert r['original_source_verification']['source_selected_focal_plant_visitation_rows']==1038
           assert r['original_source_verification']['original_visitation_rows']==400
           assert not r['source_moth_to_fly_functional_pollen_substitution_measured']
           assert not r['plant_specific_seed_set_measured']
