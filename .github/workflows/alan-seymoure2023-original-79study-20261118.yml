@@ -1,0 +1,57 @@
+name: ALAN 79 original studies 81 interaction Figshare supplement source audit
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - scripts/acquisition/alan_seymoure2023_original_79paper_figshare.py
+      - tests/test_alan_seymoure2023_original_79paper_figshare.py
+      - .github/workflows/alan-seymoure2023-original-79study-20261118.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-published-review-supplement:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check original 79-paper and 81-investigation nesting and install XLSX reader
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m unittest discover -s tests -p test_alan_seymoure2023_original_79paper_figshare.py -v
+      - name: Fetch official original review Figshare collection and inspect original source workbook
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_seymoure2023_original
+          python -m scripts.acquisition.alan_seymoure2023_original_79paper_figshare \
+            --out /tmp/alan_seymoure2023_original/collection_and_source_verification.json
+      - name: Prevent metadata-only fetch from being interpreted as 79 original independent effects
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_seymoure2023_original/collection_and_source_verification.json'))
+          assert d['schema']=='alan_seymoure2023_79paper_81interaction_figshare_original_audit_v1'
+          assert d['review_published_coverage']['original_papers']==79
+          assert d['review_published_coverage']['original_distinct_interactions']==81
+          assert not d['raw_rows_or_site_IDs_committed']
+          assert not d['author_original_row_effects_fitted']
+          assert not d['cross_study_meta_effect_fitted']
+          assert d['source_status'] in ('SOURCE_STOP','METADATA_ONLY','RAW_SUPPLEMENT_XLSX_SCHEMA_VERIFIED')
+          print('SEYMOURE79_ACTUAL_SOURCE_STATUS', d['source_status'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-2023-79paper-81interaction-figshare-schema-and-SHA
+          path: /tmp/alan_seymoure2023_original/collection_and_source_verification.json
+          if-no-files-found: warn
+          retention-days: 90
