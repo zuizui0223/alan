@@ -1,7 +1,7 @@
 """Test no fake SVE pollen effects, source-study clustering and rare pollination roles."""
 import unittest
 from scripts.analysis.alan_page2021_original_macro_functional_network_mismatch import (
- candidate_groups,boot_study_rate,EFF,UNITS
+ candidate_groups,boot_study_rate,run,EFF,UNITS
 )
 def record(study,plant,taxon,guild,q,visits,metric=EFF,units=UNITS):
     return {"studyID":study,"plant.species":plant,"study.year":"2015",
@@ -41,4 +41,14 @@ class PageMacroFunctionalSourceTests(unittest.TestCase):
     def test_boot_study_when_little_source_support_fails(self):
         x=[{"source_study":"a"}]*3
         self.assertEqual(boot_study_rate(x)["status"],"insufficient_source_independent_studies_STOP")
+    def test_source_zero_effect_can_drive_rank_mismatch_but_report_explicitly(self):
+        rows=[record("a","P","Common","bee",0,100),
+              record("a","P","Rare","fly",10,1)]
+        result,ex,n=candidate_groups(rows)
+        self.assertEqual(len(result),1)
+        self.assertFalse(result[0]["top_visitor_equals_top_functional_pollen"])
+        self.assertTrue(result[0]["top_visitor_source_pollen_efficiency_zero"])
+        self.assertEqual(result[0]["source_zero_single_visit_pollen_taxa_n"],1)
+        self.assertEqual(result[0]["top_visitor_functional_pollen_share"],0)
+
 if __name__=="__main__":unittest.main()
