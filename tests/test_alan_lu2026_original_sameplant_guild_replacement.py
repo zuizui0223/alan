@@ -35,7 +35,7 @@ class TestLuSameFlowerLightBlocks(unittest.TestCase):
            r("night","lit","A","2","t1","r1",1,2),
            r("night","dark","A","2","t1","r1",2,0)]
         out=source_results(q,["1","2"])["same_plant_block_round_repeat"]
-        self.assertEqual(out["night_same_plant_moth_down_fly_up"]["source_plant_block_pairs"],2)
+        self.assertEqual(out["night_same_plant_moth_down_fly_up"]["source_unique_plant_block_pairs"],2)
         self.assertEqual(out["night_source_species_with_at_least_two_independent_block_pairs"],1)
         self.assertTrue(out["all_plant_rows_not_independent_experiments"])
 
