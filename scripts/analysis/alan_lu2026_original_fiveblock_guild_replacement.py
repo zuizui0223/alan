@@ -74,15 +74,15 @@ def validate_diel(table):
         need(day in ("day","night") and light in ("lit","dark"),
              "source diel or original treatment coding unknown")
         block=str(r["block"]).strip()
-        round=str(r["time"]).strip()
+        survey_round=str(r["time"]).strip()
         rep=str(r["repeat"]).strip()
-        need(block and round and rep,"original block/round/replicate key absent")
+        need(block and survey_round and rep,"original block/round/replicate key absent")
         v={k:num(r[col]) for k,col in {**PRIMARY,**DAYTIME}.items()}
         need(all(x is not None and x>=0 and abs(x-round(x))<1e-8
                  for x in v.values()),"visits must be original nonnegative integer counts")
         original[(day,light,block)]+=1
         parsed.append({"day":day,"light":light,"block":block,
-                       "round":round,"repeat":rep,**v})
+                       "round":survey_round,"repeat":rep,**v})
     blocks=sorted({v["block"] for v in parsed})
     need(len(blocks)==5,"exactly five independent original spatial blocks required")
     need(len({(x["day"],x["light"],x["block"],x["round"],x["repeat"])
