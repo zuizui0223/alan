@@ -2,7 +2,7 @@
 import unittest
 
 from scripts.analysis.alan_lu2026_original_fullnetwork_sameflower_20261118 import (
-  parse_source,compare_views,joint_day_night_same_plant_routes,SOURCE_ROWS,COMPLETE_RECORDS
+  parse_source,compare_views,joint_day_night_same_plant_routes,theoretical_same_flower_fly_effectiveness_threshold,SOURCE_ROWS,COMPLETE_RECORDS
 )
 
 class TestOriginalFullNetworkSource(unittest.TestCase):
@@ -63,6 +63,22 @@ class TestOriginalFullNetworkSource(unittest.TestCase):
         self.assertAlmostEqual(r["positive_night_fly_visit_gain_on_those_same_plant_pairs"],2)
         self.assertAlmostEqual(r["positive_day_fly_visit_gain_on_those_same_plant_pairs"],3)
         self.assertTrue(r["same_flower_temporal_visitor_change_not_a_pollen_or_seed_rescue"])
+
+    def test_threshold_is_counterfactual_not_observed_pollen_effectiveness(self):
+        def datum(block,arm,moth,fly):
+            return {"phase":"night","arm":arm,"plant":"focal","block":block,
+                    "round":"t1","repeat":"r1",
+                    "all":moth+fly,"Lepidoptera":moth,"Diptera":fly,
+                    "Hymenoptera":0,"Coleoptera":0,"Others":0}
+        d=[datum("1","dark",4,1),datum("1","lit",1,3),
+           datum("2","dark",4,1),datum("2","lit",1,3)]
+        x=theoretical_same_flower_fly_effectiveness_threshold(d)
+        p=x["source_original_plant_specific_counterfactual_thresholds"]["focal"]
+        self.assertEqual(p["observed_same_lit_dark_spatial_blocks"],2)
+        self.assertAlmostEqual(p["source_moth_visits_lit_minus_dark"],-6)
+        self.assertAlmostEqual(p["source_fly_visits_lit_minus_dark"],4)
+        self.assertAlmostEqual(p["counterfactual_min_q_fly_per_visit_relative_to_q_moth"],1.5)
+        self.assertTrue(x["not_measurement_of_fly_or_moth_pollen_efficiency"])
 
 if __name__=="__main__":
     unittest.main()
