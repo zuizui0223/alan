@@ -11,6 +11,8 @@ on:
       - 'scripts/acquisition/alan_lu2026_pollination_supplement_source_gate.py'
       - 'scripts/acquisition/alan_lu2026_original_workbook_schema.py'
       - 'scripts/analysis/alan_lu2026_original_fiveblock_guild_replacement.py'
+      - 'scripts/analysis/alan_lu2026_original_sameplant_guild_replacement.py'
+      - 'tests/test_alan_lu2026_original_sameplant_guild_replacement.py'
       - 'tests/test_alan_lu2026_original_fiveblock_guild_replacement.py'
       - 'tests/test_alan_wet_biotic_multiguild_source_20261118.py'
       - 'tests/test_alan_true_parkinson2020_aquatic_spider_20261118.py'
@@ -216,5 +218,45 @@ jobs:
         with:
           name: alan-lu2026-fiveblock-original-pollinator-guild-tradeoff-20261118
           path: /tmp/alan_lu2026_guild/source_fiveblock_guild_tradeoff_20261118.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  lu2026-original-same-flower-vs-community-pollinator-redistribution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test same-flower within-block and strict source-round matching
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_lu2026_original_sameplant_guild_replacement.py -v
+      - name: Source-only verify full original 2026 1606-row plant-pollinator network against published visitation
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_lu2026_sameplant
+          python -m scripts.analysis.alan_lu2026_original_sameplant_guild_replacement \
+            --out /tmp/alan_lu2026_sameplant/author_source_matched_flower_guild_substitution.json
+      - name: Check no 5-block pseudo-replicates or fake missing plant absence
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/alan_lu2026_sameplant/author_source_matched_flower_guild_substitution.json'))
+          assert r['schema']=='alan_lu2026_original_same_plant_guild_replacement_20261118_v1'
+          assert r['original_independently_lit_control_spatial_pairs']==5
+          assert r['original_source_verification']['source_plant_network_rows']==1606
+          assert r['original_source_verification']['original_visitation_rows']==400
+          assert not r['source_moth_to_fly_functional_pollen_substitution_measured']
+          assert not r['plant_specific_seed_set_measured']
+          assert r['original_same_plant_within_block_subsets']['same_plant_block_round_repeat']['source_not_listed_plant_never_called_zero']
+          print('LU2026_AUTHENTIC_SAME_FLOWER_REDISTRIBUTION_SOURCE_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-lu2026-source-actual-same-flower-diel-guild-shift
+          path: /tmp/alan_lu2026_sameplant/author_source_matched_flower_guild_substitution.json
           retention-days: 90
           if-no-files-found: warn
