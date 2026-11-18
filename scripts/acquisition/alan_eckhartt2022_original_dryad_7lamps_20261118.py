@@ -113,6 +113,74 @@ def audit():
             result["fetch_attempts"].append({"label":label,"status":"SOURCE_STOP",
                 "error_type":type(exc).__name__,
                 **({"http_status":exc.code} if isinstance(exc,urllib.error.HTTPError) else {})})
+    # The public DOI metadata API is accessible from Actions, while the
+    # static /downloads/file_stream endpoint can return HTTP 403. Query the
+    # official version/file metadata and alternative official API downloads
+    # rather than silently treating availability as data.
+    version_ids = []
+    try:
+        vjson = json.loads(get(f"{API}/datasets/{doi}/versions"))
+        embedded = vjson.get("_embedded", {})
+        result["api_version_embedded_keys"] = list(embedded)
+        for key, arr in embedded.items():
+            if isinstance(arr, list):
+                for entry in arr:
+                    if isinstance(entry, dict) and isinstance(entry.get("id"), int):
+                        version_ids.append(entry["id"])
+        result["api_version_IDs"] = version_ids[:10]
+    except (ValueError,KeyError,urllib.error.HTTPError,urllib.error.URLError,TimeoutError):
+        result["api_version_IDs"] = []
+    possible_urls = [
+        ("fixed_file_1919546_alternative_api", f"{API}/files/1919546/download"),
+        ("original_dataset_api_zip", f"{API}/datasets/{doi}/download"),
+    ]
+    for version_id in version_ids[:3]:
+        try:
+            fj = json.loads(get(f"{API}/versions/{version_id}/files"))
+            embedded = fj.get("_embedded", {})
+            result.setdefault("api_file_metadata", []).append({
+                "version_id":version_id,
+                "embedded_keys":list(embedded),
+                "names_and_IDs": [
+                    {"file_id":x.get("id"), "file_name":str(x.get("path") or x.get("filename") or x.get("name"))[:140]}
+                    for vv in embedded.values() if isinstance(vv,list) for x in vv if isinstance(x,dict)
+                ][:25]})
+            for vv in embedded.values():
+                if not isinstance(vv,list):
+                    continue
+                for x in vv:
+                    if isinstance(x,dict) and isinstance(x.get("id"),int) and str(x.get("path") or x.get("filename") or x.get("name")).lower().endswith(".xlsx"):
+                        possible_urls.insert(0,(f"official_file_{x['id']}_alternative_api",f"{API}/files/{x['id']}/download"))
+        except (ValueError,KeyError,urllib.error.HTTPError,urllib.error.URLError,TimeoutError) as e:
+            result.setdefault("api_file_metadata",[]).append({"version_id":version_id,"status":"SOURCE_STOP","error_class":type(e).__name__})
+    imported_workbook=None
+    for label,url in possible_urls:
+        try:
+            b=get(url)
+            if b.startswith(b"PK\x03\x04"):
+                import zipfile
+                with zipfile.ZipFile(io.BytesIO(b)) as archive:
+                    source_members=[n for n in archive.namelist() if n.lower().endswith(".xlsx")]
+                    if source_members and (label.endswith("zip") or len(source_members) <= 3):
+                        b=archive.read(source_members[0])
+            sheet=workbook_schema(b)
+            imported_workbook=b
+            result["fetch_attempts"].append({"label":label,"status":"SOURCE_XLSX_VERIFIED",
+                "original_workbook_bytes":len(b),"source_SHA256":hashlib.sha256(b).hexdigest(),
+                "source_sheets":len(sheet)})
+            result["source_original_workbook_sheets"]=sheet
+            result["source_original_workbook_bytes"]=len(b)
+            result["source_xlsx_sha256"]=hashlib.sha256(b).hexdigest()
+            result["source_status"]="RAW_XLSX_SCHEMA_VERIFIED"
+            break
+        except (ValueError,KeyError,ImportError,urllib.error.HTTPError,urllib.error.URLError,TimeoutError,zipfile.BadZipFile) as e:
+            result["fetch_attempts"].append({"label":label,"status":"SOURCE_STOP",
+                "error_type":type(e).__name__,
+                **({"http_status":e.code} if isinstance(e,urllib.error.HTTPError) else {})})
+    if imported_workbook is not None:
+        result["raw_7_lamppost_spatiotemporal_model_fitted"]=False
+        result["no_unobserved_precise_effect_estimated"]=True
+        return result
     try:
         original=get(FIXED_SOURCE_FILE)
         result["fetch_attempts"].append({"label":"original_workbook_file_stream_1919546",
