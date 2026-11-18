@@ -15,6 +15,7 @@ on:
       - 'scripts/analysis/alan_lu2026_original_fullnetwork_sameflower_20261118.py'
       - 'tests/test_alan_lu2026_fullnetwork_sameflower_20261118.py'
       - 'scripts/acquisition/alan_lu2026_original_multiview_source_grain.py'
+      - 'scripts/acquisition/alan_foldesi2020_svd_original_dryad.py'
       - 'tests/test_alan_lu2026_original_sameplant_guild_replacement.py'
       - 'tests/test_alan_lu2026_original_fiveblock_guild_replacement.py'
       - 'tests/test_alan_wet_biotic_multiguild_source_20261118.py'
@@ -339,5 +340,41 @@ jobs:
         with:
           name: alan-lu2026-45plants-author-original-fullnetwork-guild-cooccurrence
           path: /tmp/alan_lu2026_full/source_original_45plant_within_block.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  foldesi2020-dryad-single-visit-stigmatic-pollen-source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check published meta's original 127 pollen-effectiveness records and stable SVD provenance
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/acquisition/alan_foldesi2020_svd_original_dryad.py
+          mkdir -p /tmp/alan_foldesi_svd
+          python scripts/acquisition/alan_foldesi2020_svd_original_dryad.py \
+            --out /tmp/alan_foldesi_svd/dryad_source_gate.json
+      - name: Gate fly data versus unavailable moth single-visit delivery
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/alan_foldesi_svd/dryad_source_gate.json'))
+          assert a['schema']=='alan_foldesi2020_original_127_SVD_FlyBee_Dryad_source_gate_v1'
+          assert a['published_meta_obs']==127
+          assert a['published_fly_observations']==33
+          assert not a['relative_pollen_effectiveness_moth_vs_fly_source_support']
+          assert not a['two_guild_plant_specific_deposition_q_moth_vs_q_fly_estimated']
+          print('FOLDESI_ORIGINAL_SVD_SOURCE_STATUS',a['status'])
+          print('FOLDESI_PUBLIC_SOURCE_SCHEMA',a.get('original_source_csvs',[]))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-foldesi2020-pollen-deposition-127-dryad-original-source-gate
+          path: /tmp/alan_foldesi_svd/dryad_source_gate.json
           retention-days: 90
           if-no-files-found: warn
