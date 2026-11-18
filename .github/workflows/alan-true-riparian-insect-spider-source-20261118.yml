@@ -1,0 +1,583 @@
+name: ALAN true riparian aquatic-origin insects and spider interception evidence
+
+on:
+  push:
+    branches:
+      - analysis/alan-biotic-aquatic-spider-original-20261118
+  pull_request:
+    paths:
+      - 'scripts/analysis/alan_true_parkinson2020_aquatic_spider_20261118.py'
+      - 'scripts/analysis/alan_wet_biotic_multiguild_source_20261118.py'
+      - 'scripts/acquisition/alan_lu2026_pollination_supplement_source_gate.py'
+      - 'scripts/acquisition/alan_lu2026_original_workbook_schema.py'
+      - 'scripts/analysis/alan_lu2026_original_fiveblock_guild_replacement.py'
+      - 'scripts/analysis/alan_lu2026_original_sameplant_guild_replacement.py'
+      - 'scripts/analysis/alan_lu2026_original_fullnetwork_sameflower_20261118.py'
+      - 'tests/test_alan_lu2026_fullnetwork_sameflower_20261118.py'
+      - 'scripts/acquisition/alan_lu2026_original_multiview_source_grain.py'
+      - 'scripts/acquisition/alan_foldesi2020_svd_original_dryad.py'
+      - 'scripts/acquisition/alan_ballantyne2015_heathland_pollination_source.py'
+      - 'scripts/analysis/alan_ballantyne2015_heathland_visit_pollen_effectiveness_20261118.py'
+      - 'scripts/analysis/alan_heathland_fiveplant_functional_pollen_network_20261118.py'
+      - 'scripts/acquisition/alan_page2021_original_1564_sve_figshare.py'
+      - 'tests/test_alan_heathland_fiveplant_functional_network_20261118.py'
+      - 'tests/test_alan_ballantyne2015_heathland_pollen_effectiveness.py'
+      - 'scripts/analysis/alan_foldesi2020_original_study_unit_svd.py'
+      - 'tests/test_alan_foldesi2020_original_study_unit_svd.py'
+      - 'tests/test_alan_lu2026_original_sameplant_guild_replacement.py'
+      - 'tests/test_alan_lu2026_original_fiveblock_guild_replacement.py'
+      - 'tests/test_alan_wet_biotic_multiguild_source_20261118.py'
+      - 'tests/test_alan_true_parkinson2020_aquatic_spider_20261118.py'
+      - '.github/workflows/alan-true-riparian-insect-spider-source-20261118.yml'
+      - 'docs/ALAN_BIOTIC_INTERACTION_SOURCE_20261118.md'
+      - 'results/all_species_forest/biotic_interactions/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-twenty-mesocosms-source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify original statistical source guards and install NumPy
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3
+          python -m unittest discover -s tests -p test_alan_true_parkinson2020_aquatic_spider_20261118.py -v
+      - name: Download only original-author source at immutable Git commit
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_original_biotic
+          BASE="https://raw.githubusercontent.com/LizzParkinson/ALAN_Data/6985359fd29dfe321c740691bf97ea9d564db769"
+          curl -fL --retry 3 --max-time 180 "$BASE/Spider%20and%20Prey%20Insect%20Abundance.csv" -o "/tmp/alan_original_biotic/Spider and Prey Insect Abundance.csv"
+          curl -fL --retry 3 --max-time 180 "$BASE/Aquatic%20and%20Terrestrial%20Invertebrate%20Inputs.csv" -o "/tmp/alan_original_biotic/Aquatic and Terrestrial Invertebrate Inputs.csv"
+          curl -fL --retry 3 --max-time 180 "$BASE/Spider%20Body%20Mass.csv" -o "/tmp/alan_original_biotic/Spider Body Mass.csv"
+          test "$(git hash-object '/tmp/alan_original_biotic/Spider and Prey Insect Abundance.csv')" = "63965aaedae5254ea0064b9346a7fc2a8f7b610a"
+          test "$(git hash-object '/tmp/alan_original_biotic/Aquatic and Terrestrial Invertebrate Inputs.csv')" = "4e2b7065d67e0604ca121ea26c96b5db6d64de94"
+          test "$(git hash-object '/tmp/alan_original_biotic/Spider Body Mass.csv')" = "8ff2eefe6ff365e2b0f6eed038ed7b6db74247fc"
+          echo "SOURCE_AUTHENTIC_THREE_ORIGINAL_GIT_BLOBS_OK"
+      - name: Reanalyze aquatic-origin prey, terrestrial-origin prey, spider numbers and spider web captures
+        run: |
+          set -euo pipefail
+          python scripts/analysis/alan_true_parkinson2020_aquatic_spider_20261118.py \
+            --spider-source "/tmp/alan_original_biotic/Spider and Prey Insect Abundance.csv" \
+            --aquatic-source "/tmp/alan_original_biotic/Aquatic and Terrestrial Invertebrate Inputs.csv" \
+            --mass-source "/tmp/alan_original_biotic/Spider Body Mass.csv" \
+            --out /tmp/alan_original_biotic/stage_separated_source_fit_20261118.json
+      - name: Assert no invented treatment replication, moth pollination or plant fitness
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/alan_original_biotic/stage_separated_source_fit_20261118.json').read_text())
+          assert a['schema']=='alan_true_original_parkinson2020_riparian_predators_aquatic_insect_stage_sep_v1'
+          assert a['source_units']['independent_original_mesocosms']==20
+          assert a['source_units']['spider_csv_rows']==60
+          assert a['source_units']['lit_mesocosms']==10
+          assert a['source_units']['control_mesocosms']==10
+          assert a['source_units']['raw_pan_invertebrate_total']==1992
+          assert a['source_units']['spider_body_mass_has_no_mesocosm_ID_so_not_analysed_as_independent_unit']
+          assert a['stage_effects']['Noctuidae_terrestrial_moth_insufficient']['moth_pollination_ALAN_effect']=='NOT ESTIMABLE'
+          assert not a['moth_pollen_to_plant_reproduction_identified']
+          print('ALAN_SOURCE_INTERACTION_STAGES_PASS',list(a['stage_effects']))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-true-original-20mesocosm-aquatic-prey-spider-20261118
+          path: /tmp/alan_original_biotic/stage_separated_source_fit_20261118.json
+          if-no-files-found: warn
+          retention-days: 90
+
+  original-wet-flora-cross-guild-provenance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recompute exact frozen wet plant and source-matched insect-predator guild inventory
+        run: |
+          set -euo pipefail
+          python scripts/analysis/alan_wet_biotic_multiguild_source_20261118.py \
+            --base results/all_species_forest \
+            --out /tmp/alan_wet_biotic_multiguild_source_20261118.json
+      - name: Guard source fidelity and nonpromotion of iNaturalist-linked hypothetical food webs
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_wet_biotic_multiguild_source_20261118.py -v
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/alan_wet_biotic_multiguild_source_20261118.json'))
+          assert a['schema']=='alan_wet_flora_adult_visitor_predator_multiguild_source_audit_20261118_v1'
+          assert a['two_step_biotic_graph_support']['chains_with_at_least_one_non_iNaturalist_source_pair']==2
+          assert a['documented_riparian_moth_adult_spider_chains']['original_moth_to_spider_source_rows']==8
+          print('ALAN_BIOTIC_363_WET_PLANT_SOURCE_PROVENANCE_GATE_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-363-wet-flora-adult-visitor-predator-guild-source-20261118
+          path: /tmp/alan_wet_biotic_multiguild_source_20261118.json
+          retention-days: 90
+          if-no-files-found: error
+
+  lu2026-five-block-pollination-original-source-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile exact published source gate to block invented or malformed data results
+        run: python -m py_compile scripts/acquisition/alan_lu2026_pollination_supplement_source_gate.py
+      - name: Source only actual 2026 Lu et al five paired-block DataS1 from official publication hosts
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_lu2026
+          python scripts/acquisition/alan_lu2026_pollination_supplement_source_gate.py --out /tmp/alan_lu2026/original_data_availability.json
+      - name: Report availability separately from actual biological effects
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_lu2026/original_data_availability.json'))
+          assert d['schema']=='alan_lu2026_alpine_pollination_real_DataS1_source_gate_v1'
+          assert d['source_paper_original_independent_treatment_control_pairs']==5
+          assert not d['meta_pollinator_replacement_coefficient_fitted']
+          print('LU2026_ORIGINAL_DATA_AVAILABILITY_AND_WORKBOOK_STRUCTURE',d['status'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-lu2026-official-fiveblock-original-plant-pollinator-data-gate
+          path: /tmp/alan_lu2026/original_data_availability.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  lu2026-actual-data-excel-readme-source-schema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Source-only parse original five paired-block workbook
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_lu2026_original
+          python scripts/acquisition/alan_lu2026_original_workbook_schema.py \
+            --out /tmp/alan_lu2026_original/source_schema.json
+      - name: Verify original EuropePMC hosted XLSX exact sha and block-aware inference STOP
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/alan_lu2026_original/source_schema.json'))
+          assert a['schema']=='alan_lu2026_original_fiveblock_plant_pollinator_sheet_schema_v1'
+          assert a['source_workbook_sha256']=='ba7e15e66986f64943a38fd294e49d7128cf7719d318578f6b805d29cde8f98f'
+          assert a['original_independent_lit_dark_site_pairs']==5
+          assert not a['source_plant_visitor_effects_fitted']
+          print('LU2026_AUTHENTIC_README_AND_BLOCK_SCHEMA_PASS',[(k,v['source_rows_nonempty']) for k,v in a['raw_original_sheets'].items()])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-lu2026-author-original-DataS1-fiveblock-excel-source-schema
+          path: /tmp/alan_lu2026_original/source_schema.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  lu2026-original-five-block-guild-replacement:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Guard exact five-block label signflips and original source visit-year semantics
+        run: python -m unittest discover -s tests -p test_alan_lu2026_original_fiveblock_guild_replacement.py -v
+      - name: Read author original DataS1 raw visitation and species-visitation data at fixed XLSX SHA
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_lu2026_guild
+          python -m scripts.analysis.alan_lu2026_original_fiveblock_guild_replacement \
+            --out /tmp/alan_lu2026_guild/source_fiveblock_guild_tradeoff_20261118.json
+      - name: Verify true five paired site-level contrasts and observed statistical resolution
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/alan_lu2026_guild/source_fiveblock_guild_tradeoff_20261118.json'))
+          assert a['schema']=='alan_lu2026_2024_original_five_block_diel_pollinator_guild_tradeoff_v1'
+          assert a['source_paper_independent_treatment_control_spatial_pairs']==5
+          assert a['source_design']['n_raw_visits_frame_rows']==400
+          assert a['source_workbook_sha256']=='ba7e15e66986f64943a38fd294e49d7128cf7719d318578f6b805d29cde8f98f'
+          assert len(a['source_fit']['source_5_pair_diel_guilds'])==2
+          assert a['source_fit']['source_5_pair_diel_guilds']['night']['paired_moth_relative_to_fly']['number_of_source_randomization_signflips']==32
+          print('LU2026_ORIGINAL_BLOCK_LIMITED_AUDIT_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-lu2026-fiveblock-original-pollinator-guild-tradeoff-20261118
+          path: /tmp/alan_lu2026_guild/source_fiveblock_guild_tradeoff_20261118.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  lu2026-original-same-flower-vs-community-pollinator-redistribution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test same-flower within-block and strict source-round matching
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_lu2026_original_sameplant_guild_replacement.py -v
+      - name: Verify original author 1038 focal-plant visit records under matched block/round; do not fill sparse full-network cells
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_lu2026_sameplant
+          python -m scripts.analysis.alan_lu2026_original_sameplant_guild_replacement \
+            --out /tmp/alan_lu2026_sameplant/author_source_matched_flower_guild_substitution.json
+      - name: Check no 5-block pseudo-replicates or fake missing plant absence
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/alan_lu2026_sameplant/author_source_matched_flower_guild_substitution.json'))
+          assert r['schema']=='alan_lu2026_original_same_plant_guild_replacement_20261118_v1'
+          assert r['original_independently_lit_control_spatial_pairs']==5
+          assert r['original_source_verification']['source_selected_focal_plant_visitation_rows']==1038
+          assert r['original_source_verification']['original_visitation_rows']==400
+          assert not r['source_moth_to_fly_functional_pollen_substitution_measured']
+          assert not r['plant_specific_seed_set_measured']
+          assert r['original_same_plant_within_block_subsets']['same_plant_block_round_repeat']['source_not_listed_plant_never_called_zero']
+          print('LU2026_AUTHENTIC_SAME_FLOWER_REDISTRIBUTION_SOURCE_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-lu2026-source-actual-same-flower-diel-guild-shift
+          path: /tmp/alan_lu2026_sameplant/author_source_matched_flower_guild_substitution.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  lu2026-author-workbook-multiview-grain-qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Audit original Lu source sheet grain and repeated/missing identifiers
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_lu2026_source
+          python -m scripts.acquisition.alan_lu2026_original_multiview_source_grain \
+            --out /tmp/alan_lu2026_source/three_original_views.json
+      - name: Enforce authored original three sheet sample sizes and provenance
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/alan_lu2026_source/three_original_views.json'))
+          assert r['schema']=='alan_lu2026_source_three_workbook_views_visitor_grain_20261118_v1'
+          assert r['original_paired_light_spatial_blocks']==5
+          assert r['tables']['visitation']['raw_source_data_rows']==400
+          assert r['tables']['species visitation']['raw_source_data_rows']==1038
+          assert r['tables']['plant–pollinator network']['raw_source_data_rows']==1606
+          assert not r['original_source_seed_set_measured']
+          print('LU2026_SOURCE_MULTIVIEW_ABSENCE_AND_DENOMINATOR_GATE_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-lu2026-original-author-three-worksheet-measurement-grain
+          path: /tmp/alan_lu2026_source/three_original_views.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  lu2026-author-fullnetwork-45plant-within-block-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 11
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile repaired Lu 2026 source-only analyses and unit test no-missing-source-fill rules
+        run: |
+          set -euo pipefail
+          python -m py_compile \
+            scripts/analysis/alan_lu2026_original_sameplant_guild_replacement.py \
+            scripts/acquisition/alan_lu2026_original_multiview_source_grain.py \
+            scripts/analysis/alan_lu2026_original_fullnetwork_sameflower_20261118.py
+          python -m unittest discover -s tests -p test_alan_lu2026_fullnetwork_sameflower_20261118.py -v
+      - name: Compute original 1605 fully labelled plant-pollinator network rows with same-plant comparisons
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_lu2026_full
+          python -m scripts.analysis.alan_lu2026_original_fullnetwork_sameflower_20261118 \
+            --out /tmp/alan_lu2026_full/source_original_45plant_within_block.json
+      - name: Verify scope and remove unmapped source row without inventing biology
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/alan_lu2026_full/source_original_45plant_within_block.json'))
+          assert r['schema']=='alan_lu2026_original_45plant_network_same_flower_20261118_v1'
+          assert r['source_spatial_pairs']==5
+          assert r['source_original_measured_table']['original_rows_with_unreported_light_or_diel']==1
+          assert r['source_original_measured_table']['source_valid_plant_visitation_rows']==1605
+          assert not r['moth_loss_fly_gain_is_visitation_not_functional_pollen']==False
+          assert r['undocumented_species_or_missing_light_arm_not_assigned_zero']
+          print('LU2026_ALL45_SOURCE_PAIRS_AND_MEASUREMENT_DENOMINATORS_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-lu2026-45plants-author-original-fullnetwork-guild-cooccurrence
+          path: /tmp/alan_lu2026_full/source_original_45plant_within_block.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  foldesi2020-dryad-single-visit-stigmatic-pollen-source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check published meta's original 127 pollen-effectiveness records and stable SVD provenance
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/acquisition/alan_foldesi2020_svd_original_dryad.py
+          mkdir -p /tmp/alan_foldesi_svd
+          python scripts/acquisition/alan_foldesi2020_svd_original_dryad.py \
+            --out /tmp/alan_foldesi_svd/dryad_source_gate.json
+      - name: Gate fly data versus unavailable moth single-visit delivery
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/alan_foldesi_svd/dryad_source_gate.json'))
+          assert a['schema']=='alan_foldesi2020_original_127_SVD_FlyBee_Dryad_source_gate_v1'
+          assert a['published_meta_obs']==127
+          assert a['published_fly_observations']==33
+          assert not a['relative_pollen_effectiveness_moth_vs_fly_source_support']
+          assert not a['two_guild_plant_specific_deposition_q_moth_vs_q_fly_estimated']
+          print('FOLDESI_ORIGINAL_SVD_SOURCE_STATUS',a['status'])
+          print('FOLDESI_PUBLIC_SOURCE_SCHEMA',a.get('original_source_csvs',[]))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-foldesi2020-pollen-deposition-127-dryad-original-source-gate
+          path: /tmp/alan_foldesi_svd/dryad_source_gate.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  foldesi-original-111-svd-meta-study-unit-reanalysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test true original-study unit meta and no fly-as-moth substitution
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_foldesi2020_original_study_unit_svd.py -v
+      - name: Recover byte-pinned original published Dryad CSV and study-level pollen source contrasts
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_foldesi_study_source
+          python -m scripts.analysis.alan_foldesi2020_original_study_unit_svd \
+            --out /tmp/alan_foldesi_study_source/original_111_observations.json
+      - name: Verify source 111 versus published 127 cannot be hidden and no moth efficacy invented
+        run: |
+          python - <<'PY'
+          import json
+          p='/tmp/alan_foldesi_study_source/original_111_observations.json'
+          d=json.load(open(p))
+          assert d['schema']=='alan_foldesi2020_original_111_svd_study_unit_calibration_gate_v1'
+          assert d['source']['source_observations']==111
+          assert d['source']['source_studies']==27
+          assert d['source']['source_plant_taxa']==29
+          assert d['source']['source_effect_counts_by_guild']['Diptera']==30
+          assert d['source']['source_effect_counts_by_guild']['Hymenoptera']==81
+          assert d['source']['source_minus_published']['n_observations']==-16
+          assert d['fly_moth_direct_efficiency_missing']
+          print('FOLDESI_ORIGINAL_STUDY_CLUSTERED_POLLEN_SOURCE_PASS', d['source'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-foldesi-study-27-plant-29-original-pollen-effectiveness-111
+          path: /tmp/alan_foldesi_study_source/original_111_observations.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  ballantyne2015-original-wet-heath-visit-vs-stigma-pollen-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recover source-authentic one heathland community with real pollen deposition and observed pollinators
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_heath_pollen
+          python -m scripts.acquisition.alan_ballantyne2015_heathland_pollination_source \
+            --out /tmp/alan_heath_pollen/original_heath_source_gate.json
+      - name: Keep non-ALAN observational source distinct from lighting experiment
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_heath_pollen/original_heath_source_gate.json'))
+          assert d['schema']=='alan_ballantyne2015_wet_heath_single_visit_pollen_dryad_original_schema_v1'
+          assert d['source_independent_field_community_count']==1
+          assert d['source_valid_zip_CRC']
+          assert not d['source_ALAN_treatment_manipulated']
+          assert d['source_no_visitor_absence_inferred_from_missing_single_visit_deposition']
+          print('WET_HEATH_ORIGINAL_POLLEN_VS_VISITS_SOURCE_VERIFY',d['source_original_rows'],d['source_original_header'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-ballantyne2015-original-wet-heath-visitor-and-pollen-raw-source-gate
+          path: /tmp/alan_heath_pollen/original_heath_source_gate.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  ballantyne2015-heathland-plant-visitor-functional-importance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prove per-visit stigmatic pollen not equal visitation and source absence cannot be invented
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_ballantyne2015_heathland_pollen_effectiveness.py -v
+      - name: Recompute exact published heathland 1338 original virgin-stigma visits vs pollen deposition
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_heath_original
+          python -m scripts.analysis.alan_ballantyne2015_heathland_visit_pollen_effectiveness_20261118 \
+            --out /tmp/alan_heath_original/source_original_1338_pollen_vs_visits.json
+      - name: Check true single field community five plants and no imaginary moth or light effect
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_heath_original/source_original_1338_pollen_vs_visits.json'))
+          assert d['schema']=='alan_ballantyne2015_original_heathland_visit_vs_pollen_effectiveness_v1'
+          assert d['source_original_plant_x_virgin_stigma_visits']==1338
+          assert d['source_unique_plant_taxa']==5
+          assert d['source_original_field_community_count']==1
+          assert d['source_original_taxonomic_groups']=={'bees':1263,'flies':59,'other':16}
+          assert d['source_original_moth_visits']==0
+          assert d['source_original_non_depositing_visit_events']==281
+          assert not d['source_has_manipulated_ALAN_treatment']
+          assert d['no_plant_specific_moth_fly_effectiveness_ratio_estimated']
+          print('HEATHLAND_TRUE_VISIT_VS_POLLEN_ORIGINAL_SOURCE_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-ballantyne2015-heathland-1338-visit-pollen-functional-group-original
+          path: /tmp/alan_heath_original/source_original_1338_pollen_vs_visits.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  heath-fiveplant-visitation-vs-actual-pollen-function:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test rare but efficient and common ineffective visitor cases
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_heathland_fiveplant_functional_network_20261118.py -v
+      - name: Test real 1338 visit-vs-stigma deposition network functional ranking and date cluster stability
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_heath_function
+          python -m scripts.analysis.alan_heathland_fiveplant_functional_pollen_network_20261118 \
+            --out /tmp/alan_heath_function/source_fiveplant_functional_network.json
+      - name: Verify five plants, source-only functional pollen and no light treatment
+        run: |
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/alan_heath_function/source_fiveplant_functional_network.json'))
+          assert x['schema']=='alan_heathland_2015_original_1338_functional_network_stability_v1'
+          assert x['original_visits_to_virgin_stigmas']==1338
+          assert x['original_five_heath_plant_species']==5
+          assert x['main_alan_moisture_affinity_8p1_candidate_E_tetralix']
+          assert not x['no_ALAN_treatment']==False
+          assert x['no_moth_visit_observed']
+          assert x['do_not_count_n_plant_species_as_independent_field_replicates']
+          print('HEATH_VISIT_VS_FUNCTIONAL_POLLEN_SOURCE_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-five-true-heath-functional-pollen-vs-visit-1338-20261118
+          path: /tmp/alan_heath_function/source_fiveplant_functional_network.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  page2021-168study-single-visit-figshare-original-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 'Official Figshare project 120921 survey: determine available true plant/insect SVD file sources'
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_page_original
+          python -m scripts.acquisition.alan_page2021_original_1564_sve_figshare \
+            --out /tmp/alan_page_original/page_figshare_source_audit.json
+      - name: Do not assume Lepidoptera guild or same-plant Fly/Moth data before original file inspection
+        run: |
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/alan_page_original/page_figshare_source_audit.json'))
+          assert x['schema']=='alan_page2021_single_visit_pollen_1564_figshare_source_gate_v1'
+          assert x['original_abstract_reported_studies']==168
+          assert x['original_abstract_reported_single_visit_effects']==1564
+          assert not x['published_source_is_an_original_effect_meta_not_an_ALAN_treatment']==False
+          assert not x['moth_vs_fly_same_plant_original_contrasts_estimated']
+          print('PAGE2021_FIGSHARE_ORIGINAL_SOURCE_STATUS',x['status'])
+          print('PAGE2021_ORIGINAL_AVAILABLE_FILES',
+                [(a['id'],a['title'],[(f['name'],f.get('source_schema',{}).get('status'))
+                   for f in a['files']]) for a in x.get('source_article_metadata',[])])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-page2021-168studies-1564-stigma-pollen-Figshare-original-source-gate
+          path: /tmp/alan_page_original/page_figshare_source_audit.json
+          retention-days: 90
+          if-no-files-found: warn

@@ -1,0 +1,116 @@
+{
+  "schema": "alan_biotic_original_20_mesocosm_stage_results_v1",
+  "run": "https://github.com/zuizui0223/alan/actions/runs/44214859402",
+  "raw_author_repository": "https://github.com/LizzParkinson/ALAN_Data",
+  "raw_author_fixed_commit": "6985359fd29dfe321c740691bf97ea9d564db769",
+  "source_original_doi": "10.1371/journal.pone.0240138",
+  "source_blobs": {
+    "spider_counts_web_prey": "63965aaedae5254ea0064b9346a7fc2a8f7b610a",
+    "pan_catch_aquatic_terrestrial": "4e2b7065d67e0604ca121ea26c96b5db6d64de94",
+    "spider_individual_mass": "8ff2eefe6ff365e2b0f6eed038ed7b6db74247fc"
+  },
+  "independent_light_mesocosms": 20,
+  "primary_measured_stage_results": {
+    "aquatic_pan": {
+      "dark_mean": 24.7,
+      "descriptive_unblocked_fixed_10_per_arm_permutation_p": 0.00017320141159150447,
+      "four_primary_stage_endpoints_BH_q": 0.00034640282318300895,
+      "lit_dark_mean_ratio": 6.627530364372469,
+      "lit_mean": 163.7,
+      "percentile_95CI": [
+        4.286509491226134,
+        10.111899451366456
+      ]
+    },
+    "prey_in_web_mean_3dates": {
+      "dark_mean": 10.533333333333335,
+      "descriptive_unblocked_fixed_10_per_arm_permutation_p": 0.00028145229383619476,
+      "four_primary_stage_endpoints_BH_q": 0.00037526972511492634,
+      "lit_dark_mean_ratio": 2.3987341772151898,
+      "lit_mean": 25.26666666666667,
+      "percentile_95CI": [
+        1.6666194523135032,
+        3.670793005549103
+      ]
+    },
+    "spider_mean_3dates": {
+      "dark_mean": 7.133333333333335,
+      "descriptive_unblocked_fixed_10_per_arm_permutation_p": 0.00002165017644893806,
+      "four_primary_stage_endpoints_BH_q": 0.00008660070579575224,
+      "lit_dark_mean_ratio": 2.0140186915887845,
+      "lit_mean": 14.366666666666665,
+      "percentile_95CI": [
+        1.660211880498766,
+        2.4361567849888774
+      ]
+    },
+    "terrestrial_pan": {
+      "dark_mean": 4.7,
+      "descriptive_unblocked_fixed_10_per_arm_permutation_p": 0.3452228885665418,
+      "four_primary_stage_endpoints_BH_q": 0.3452228885665418,
+      "lit_dark_mean_ratio": 1.297872340425532,
+      "lit_mean": 6.1,
+      "percentile_95CI": [
+        0.8,
+        2.02945632798574
+      ]
+    }
+  },
+  "prey_per_spider_secondary": {
+    "mesocosm_bootstrap_95CI": [
+      0.806911864851345,
+      1.8154865645369154
+    ],
+    "not_an_attack_rate_or_independently_observed_fitness": true,
+    "observed_ratio_of_pooled_mean_prey_per_spider": 1.1910188258098626
+  },
+  "author_moth_family_original_counts": {
+    "control_moth_records": 2,
+    "lit_moth_records": 0,
+    "moth_pollination_ALAN_effect": "NOT ESTIMABLE",
+    "source_terrestrial_pan_trap_noctuid_moths_all_plots": 2
+  },
+  "repeated_date_not_independent": {
+    "7/23/2016": {
+      "one_mesocosm_reobserved_not_new_study": true,
+      "spider_control_mean": 6.6,
+      "spider_lit_mean": 18,
+      "webprey_control_mean": 8.5,
+      "webprey_lit_mean": 10
+    },
+    "7/8/2016": {
+      "one_mesocosm_reobserved_not_new_study": true,
+      "spider_control_mean": 5.7,
+      "spider_lit_mean": 6.5,
+      "webprey_control_mean": 10.3,
+      "webprey_lit_mean": 28
+    },
+    "8/4/2016": {
+      "one_mesocosm_reobserved_not_new_study": true,
+      "spider_control_mean": 9.1,
+      "spider_lit_mean": 18.6,
+      "webprey_control_mean": 12.8,
+      "webprey_lit_mean": 37.8
+    }
+  },
+  "source_QA": {
+    "one_plot_aquatic_family_sum_exceeds_aquatic_total_by_1": true,
+    "original_pan_catch_CSV_total": 1992,
+    "published_pan_total": 1990,
+    "original_spider_totals": {
+      "lit_all_dates": 431,
+      "control_all_dates": 214
+    },
+    "original_author_prose_51_percent_spider_increase_differs_from_raw_ratio": true
+  },
+  "inference": {
+    "p_method": "Enumerate all 184756 unblocked 10-versus-10 unit-label assignments; original fish-treatment blocking unavailable",
+    "q_method": "Four original source outcome stages BH; aquatic-origin pan, terrestrial-origin pan, spiders, web-prey",
+    "CI_method": "5999 seeded mesocosm-stratified nonparametric bootstrap ratio percentiles",
+    "source_experiment_overwater_light_treatment": true,
+    "source_plant_moth_visitation_or_seed_set_measured": false,
+    "trophic_interaction_mediation_identified": false,
+    "cross_experiment_wetness_moderator_fitted": false,
+    "note": "All outcomes share the same twenty original mesocosms; do not pool as independent field studies."
+  }
+}

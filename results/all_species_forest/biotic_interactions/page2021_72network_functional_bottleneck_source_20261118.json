@@ -1,0 +1,352 @@
+{
+  "schema": "alan_page2021_20261118_true_72_pollen_network_bottlenecks_v1",
+  "provenance": {
+    "original_623_Figshare_DOI": "10.6084/m9.figshare.16160265.v1",
+    "original_2021_paper_DOI": "10.1002/ajb2.1764",
+    "verified_original_source_sha256": "e28ebe99e0dfb27b73fbe6638e568bf98fa95b92c920e1d3d981e8eaea27519a",
+    "source_reviewed_script": "scripts/analysis/alan_page2021_source_functional_bottlenecks_20261118.py",
+    "source_succeeded_GitHub_Actions_run": "https://github.com/zuizui0223/alan/actions/runs/44267584963"
+  },
+  "reviewed_results": {
+    "as_published": {
+      "source_72_network_study_summary": {
+        "TV_fraction_ge0p2": 0.4583333333333333,
+        "distinct_source_plant_labels": 62,
+        "fraction_functional_Hill2_less_than_visitor_Hill2": 0.6944444444444444,
+        "frequent_visitor_proxy_abs_error_fraction_ge0p2": 0.375,
+        "frequent_visitor_proxy_abs_pollen_share_error_mean": 0.16737594834709615,
+        "functional_Hill2_mean": 2.629111795473176,
+        "functional_rare_taxon_group_fraction": 0.05555555555555555,
+        "functional_weight_vs_visitation_weight_TV_mean": 0.20979677734507976,
+        "functional_weight_vs_visitation_weight_TV_median": 0.16944114666062865,
+        "original_source_study_may_contain_multiple_plant_networks": true,
+        "rank_mismatch_fraction": 0.2916666666666667,
+        "source_plant_network_cells": 72,
+        "source_studies": 33,
+        "source_study_balanced_TV_mean": 0.20494097630877423,
+        "source_study_balanced_functionally_narrow_fraction": 0.7172438672438672,
+        "status": "source_descriptive",
+        "top_functional_contributor_over_top_visitor_pollen_share_gap_mean": 0.09118310185467156,
+        "top_functional_share_gap_among_rank_mismatch_only": 0.3126277777874454,
+        "visitor_Hill2_mean": 3.0944051175945178,
+        "within_plant_Hill2_difference_function_minus_visitor_mean": -0.4652933221213419
+      },
+      "study_cluster_bootstrap_descriptive": {
+        "bootstrap_replicates": 4999,
+        "nominal_descriptive_95intervals": {
+          "fraction_functional_Hill2_less_than_visitor_Hill2": [
+            0.5824175824175825,
+            0.8305084745762712
+          ],
+          "frequent_visitor_proxy_abs_pollen_share_error_mean": [
+            0.12281122541854354,
+            0.22907482039196483
+          ],
+          "functional_weight_vs_visitation_weight_TV_mean": [
+            0.16039026426694175,
+            0.2638185894720844
+          ],
+          "rank_mismatch_fraction": [
+            0.15841584158415842,
+            0.5
+          ],
+          "top_functional_contributor_over_top_visitor_pollen_share_gap_mean": [
+            0.02081389011200006,
+            0.22089993354502896
+          ],
+          "within_plant_Hill2_difference_function_minus_visitor_mean": [
+            -0.6151277407513439,
+            -0.24048833572377779
+          ]
+        },
+        "not_an_ALAN_or_pollinator_loss_randomized_test": true,
+        "original_independent_source_studies": 33,
+        "status": "descriptive_bootstrap_resampling_original_study_ID"
+      },
+      "excluding_zero_pollen_efficiency": {
+        "TV_fraction_ge0p2": 0.43103448275862066,
+        "distinct_source_plant_labels": 52,
+        "fraction_functional_Hill2_less_than_visitor_Hill2": 0.6896551724137931,
+        "frequent_visitor_proxy_abs_error_fraction_ge0p2": 0.3620689655172414,
+        "frequent_visitor_proxy_abs_pollen_share_error_mean": 0.1550557732283228,
+        "functional_Hill2_mean": 2.6866030722622334,
+        "functional_rare_taxon_group_fraction": 0.05172413793103448,
+        "functional_weight_vs_visitation_weight_TV_mean": 0.19258371287490803,
+        "functional_weight_vs_visitation_weight_TV_median": 0.16186857494038454,
+        "original_source_study_may_contain_multiple_plant_networks": true,
+        "rank_mismatch_fraction": 0.25862068965517243,
+        "source_plant_network_cells": 58,
+        "source_studies": 30,
+        "source_study_balanced_TV_mean": 0.18471433195266912,
+        "source_study_balanced_functionally_narrow_fraction": 0.7064285714285714,
+        "status": "source_descriptive",
+        "top_functional_contributor_over_top_visitor_pollen_share_gap_mean": 0.06511549671865423,
+        "top_functional_share_gap_among_rank_mismatch_only": 0.25177992064546306,
+        "visitor_Hill2_mean": 3.1484384957230165,
+        "within_plant_Hill2_difference_function_minus_visitor_mean": -0.4618354234607831
+      },
+      "pollinator_richness_at_least_five": {
+        "TV_fraction_ge0p2": 0.46511627906976744,
+        "distinct_source_plant_labels": 38,
+        "fraction_functional_Hill2_less_than_visitor_Hill2": 0.6976744186046512,
+        "frequent_visitor_proxy_abs_error_fraction_ge0p2": 0.32558139534883723,
+        "frequent_visitor_proxy_abs_pollen_share_error_mean": 0.15176846974139827,
+        "functional_Hill2_mean": 3.1339867919633373,
+        "functional_rare_taxon_group_fraction": 0.06976744186046512,
+        "functional_weight_vs_visitation_weight_TV_mean": 0.2148841976095124,
+        "functional_weight_vs_visitation_weight_TV_median": 0.17909297627039908,
+        "original_source_study_may_contain_multiple_plant_networks": true,
+        "rank_mismatch_fraction": 0.23255813953488372,
+        "source_plant_network_cells": 43,
+        "source_studies": 16,
+        "source_study_balanced_TV_mean": 0.24384852077033486,
+        "source_study_balanced_functionally_narrow_fraction": 0.8238486842105264,
+        "status": "source_descriptive",
+        "top_functional_contributor_over_top_visitor_pollen_share_gap_mean": 0.048059957136082986,
+        "top_functional_share_gap_among_rank_mismatch_only": 0.20665781568515684,
+        "visitor_Hill2_mean": 3.8069964976313515,
+        "within_plant_Hill2_difference_function_minus_visitor_mean": -0.6730097056680141
+      },
+      "original_multi_guild": {
+        "TV_fraction_ge0p2": 0.5454545454545454,
+        "distinct_source_plant_labels": 47,
+        "fraction_functional_Hill2_less_than_visitor_Hill2": 0.7636363636363637,
+        "frequent_visitor_proxy_abs_error_fraction_ge0p2": 0.45454545454545453,
+        "frequent_visitor_proxy_abs_pollen_share_error_mean": 0.1895414797038709,
+        "functional_Hill2_mean": 2.676513239433416,
+        "functional_rare_taxon_group_fraction": 0.07272727272727272,
+        "functional_weight_vs_visitation_weight_TV_mean": 0.23705386685170507,
+        "functional_weight_vs_visitation_weight_TV_median": 0.22036906754816898,
+        "original_source_study_may_contain_multiple_plant_networks": true,
+        "rank_mismatch_fraction": 0.32727272727272727,
+        "source_plant_network_cells": 55,
+        "source_studies": 22,
+        "source_study_balanced_TV_mean": 0.24200446386541155,
+        "source_study_balanced_functionally_narrow_fraction": 0.80625,
+        "status": "source_descriptive",
+        "top_functional_contributor_over_top_visitor_pollen_share_gap_mean": 0.11773635337622868,
+        "top_functional_share_gap_among_rank_mismatch_only": 0.35974996864958764,
+        "visitor_Hill2_mean": 3.236564252011068,
+        "within_plant_Hill2_difference_function_minus_visitor_mean": -0.5600510125776519
+      },
+      "original_single_guild": {
+        "TV_fraction_ge0p2": 0.17647058823529413,
+        "distinct_source_plant_labels": 16,
+        "fraction_functional_Hill2_less_than_visitor_Hill2": 0.47058823529411764,
+        "frequent_visitor_proxy_abs_error_fraction_ge0p2": 0.11764705882352941,
+        "frequent_visitor_proxy_abs_pollen_share_error_mean": 0.09566393513400145,
+        "functional_Hill2_mean": 2.4757541826606344,
+        "functional_rare_taxon_group_fraction": 0,
+        "functional_weight_vs_visitation_weight_TV_mean": 0.12161207600011549,
+        "functional_weight_vs_visitation_weight_TV_median": 0.13319086911045866,
+        "original_source_study_may_contain_multiple_plant_networks": true,
+        "rank_mismatch_fraction": 0.17647058823529413,
+        "source_plant_network_cells": 17,
+        "source_studies": 12,
+        "source_study_balanced_TV_mean": 0.1320129417017647,
+        "source_study_balanced_functionally_narrow_fraction": 0.5333333333333333,
+        "status": "source_descriptive",
+        "top_functional_contributor_over_top_visitor_pollen_share_gap_mean": 0.005275523402575051,
+        "top_functional_share_gap_among_rank_mismatch_only": 0.029894632614591955,
+        "visitor_Hill2_mean": 2.6344785062468556,
+        "within_plant_Hill2_difference_function_minus_visitor_mean": -0.15872432358622135
+      },
+      "source_guild_breadth_comparison_FAIL_CLOSED": {
+        "cross_study_mixed_minus_single_TV_not_causal": 0.11544179085158958,
+        "experimental_ALAN_moderation_by_visitor_guild_breadth_estimated": false,
+        "guild_categories_confounded_with_source_study_and_taxon_richness": true,
+        "mixed_guild_original_taxon_count_mean": 6.2727272727272725,
+        "observed_mixed_guild_groups": 55,
+        "observed_single_guild_groups": 17,
+        "one_guild_original_taxon_count_mean": 3.7058823529411766,
+        "source_original_studies_total": 33,
+        "source_original_studies_with_both_guild_categories": {
+          "Cunnold_2018_1": {
+            "source_mixed_guild_plant_networks": 16,
+            "source_one_guild_plant_networks": 5,
+            "within_original_study_mean_total_variation_difference": 0.11402743151148886
+          }
+        },
+        "source_original_studies_with_within_study_both_guild_categories": 1,
+        "status": "within_study_multi_vs_single_guild_common_support_STOP",
+        "within_study_multi_vs_single_guild_comparison_meta_coefficient": null
+      }
+    },
+    "excluding_verified_Vanessa_butterfly": {
+      "source_72_network_study_summary": {
+        "TV_fraction_ge0p2": 0.4583333333333333,
+        "distinct_source_plant_labels": 62,
+        "fraction_functional_Hill2_less_than_visitor_Hill2": 0.6944444444444444,
+        "frequent_visitor_proxy_abs_error_fraction_ge0p2": 0.375,
+        "frequent_visitor_proxy_abs_pollen_share_error_mean": 0.16739353556222528,
+        "functional_Hill2_mean": 2.629111795473176,
+        "functional_rare_taxon_group_fraction": 0.05555555555555555,
+        "functional_weight_vs_visitation_weight_TV_mean": 0.2097799665208366,
+        "functional_weight_vs_visitation_weight_TV_median": 0.16944114666062865,
+        "original_source_study_may_contain_multiple_plant_networks": true,
+        "rank_mismatch_fraction": 0.2916666666666667,
+        "source_plant_network_cells": 72,
+        "source_studies": 33,
+        "source_study_balanced_TV_mean": 0.2049226372277817,
+        "source_study_balanced_functionally_narrow_fraction": 0.7172438672438672,
+        "status": "source_descriptive",
+        "top_functional_contributor_over_top_visitor_pollen_share_gap_mean": 0.09118310185467156,
+        "top_functional_share_gap_among_rank_mismatch_only": 0.3126277777874454,
+        "visitor_Hill2_mean": 3.094234236885449,
+        "within_plant_Hill2_difference_function_minus_visitor_mean": -0.4651224414122729
+      },
+      "study_cluster_bootstrap_descriptive": {
+        "bootstrap_replicates": 4999,
+        "nominal_descriptive_95intervals": {
+          "fraction_functional_Hill2_less_than_visitor_Hill2": [
+            0.5824175824175825,
+            0.8305084745762712
+          ],
+          "frequent_visitor_proxy_abs_pollen_share_error_mean": [
+            0.12283760624123724,
+            0.22912086691884842
+          ],
+          "functional_weight_vs_visitation_weight_TV_mean": [
+            0.16039026426694175,
+            0.2637813470306842
+          ],
+          "rank_mismatch_fraction": [
+            0.15841584158415842,
+            0.5
+          ],
+          "top_functional_contributor_over_top_visitor_pollen_share_gap_mean": [
+            0.02081389011200006,
+            0.22089993354502896
+          ],
+          "within_plant_Hill2_difference_function_minus_visitor_mean": [
+            -0.6151277407513439,
+            -0.24025619589258976
+          ]
+        },
+        "not_an_ALAN_or_pollinator_loss_randomized_test": true,
+        "original_independent_source_studies": 33,
+        "status": "descriptive_bootstrap_resampling_original_study_ID"
+      },
+      "excluding_zero_pollen_efficiency": {
+        "TV_fraction_ge0p2": 0.43333333333333335,
+        "distinct_source_plant_labels": 52,
+        "fraction_functional_Hill2_less_than_visitor_Hill2": 0.6833333333333333,
+        "frequent_visitor_proxy_abs_error_fraction_ge0p2": 0.36666666666666664,
+        "frequent_visitor_proxy_abs_pollen_share_error_mean": 0.15965602092915548,
+        "functional_Hill2_mean": 2.682967477845042,
+        "functional_rare_taxon_group_fraction": 0.05,
+        "functional_weight_vs_visitation_weight_TV_mean": 0.19606157957430595,
+        "functional_weight_vs_visitation_weight_TV_median": 0.16186857494038454,
+        "original_source_study_may_contain_multiple_plant_networks": true,
+        "rank_mismatch_fraction": 0.2833333333333333,
+        "source_plant_network_cells": 60,
+        "source_studies": 31,
+        "source_study_balanced_TV_mean": 0.18833386040119096,
+        "source_study_balanced_functionally_narrow_fraction": 0.6997695852534562,
+        "status": "source_descriptive",
+        "top_functional_contributor_over_top_visitor_pollen_share_gap_mean": 0.07180789264051567,
+        "top_functional_share_gap_among_rank_mismatch_only": 0.25343962108417295,
+        "visitor_Hill2_mean": 3.130036050657976,
+        "within_plant_Hill2_difference_function_minus_visitor_mean": -0.44706857281293394
+      },
+      "pollinator_richness_at_least_five": {
+        "TV_fraction_ge0p2": 0.47619047619047616,
+        "distinct_source_plant_labels": 38,
+        "fraction_functional_Hill2_less_than_visitor_Hill2": 0.7142857142857143,
+        "frequent_visitor_proxy_abs_error_fraction_ge0p2": 0.3333333333333333,
+        "frequent_visitor_proxy_abs_pollen_share_error_mean": 0.15392413548687853,
+        "functional_Hill2_mean": 3.1497771906575722,
+        "functional_rare_taxon_group_fraction": 0.07142857142857142,
+        "functional_weight_vs_visitation_weight_TV_mean": 0.2183354855699565,
+        "functional_weight_vs_visitation_weight_TV_median": 0.1838010308633225,
+        "original_source_study_may_contain_multiple_plant_networks": true,
+        "rank_mismatch_fraction": 0.21428571428571427,
+        "source_plant_network_cells": 42,
+        "source_studies": 16,
+        "source_study_balanced_TV_mean": 0.25807319578650595,
+        "source_study_balanced_functionally_narrow_fraction": 0.8550986842105264,
+        "status": "source_descriptive",
+        "top_functional_contributor_over_top_visitor_pollen_share_gap_mean": 0.048961673745543,
+        "top_functional_share_gap_among_rank_mismatch_only": 0.228487810812534,
+        "visitor_Hill2_mean": 3.841654194797639,
+        "within_plant_Hill2_difference_function_minus_visitor_mean": -0.6918770041400675
+      },
+      "original_multi_guild": {
+        "TV_fraction_ge0p2": 0.5454545454545454,
+        "distinct_source_plant_labels": 47,
+        "fraction_functional_Hill2_less_than_visitor_Hill2": 0.7636363636363637,
+        "frequent_visitor_proxy_abs_error_fraction_ge0p2": 0.45454545454545453,
+        "frequent_visitor_proxy_abs_pollen_share_error_mean": 0.18956450296731264,
+        "functional_Hill2_mean": 2.676513239433416,
+        "functional_rare_taxon_group_fraction": 0.07272727272727272,
+        "functional_weight_vs_visitation_weight_TV_mean": 0.23703185995451406,
+        "functional_weight_vs_visitation_weight_TV_median": 0.22036906754816898,
+        "original_source_study_may_contain_multiple_plant_networks": true,
+        "rank_mismatch_fraction": 0.32727272727272727,
+        "source_plant_network_cells": 55,
+        "source_studies": 22,
+        "source_study_balanced_TV_mean": 0.24197695524392274,
+        "source_study_balanced_functionally_narrow_fraction": 0.80625,
+        "status": "source_descriptive",
+        "top_functional_contributor_over_top_visitor_pollen_share_gap_mean": 0.11773635337622868,
+        "top_functional_share_gap_among_rank_mismatch_only": 0.35974996864958764,
+        "visitor_Hill2_mean": 3.236340553628287,
+        "within_plant_Hill2_difference_function_minus_visitor_mean": -0.5598273141948706
+      },
+      "original_single_guild": {
+        "TV_fraction_ge0p2": 0.17647058823529413,
+        "distinct_source_plant_labels": 16,
+        "fraction_functional_Hill2_less_than_visitor_Hill2": 0.47058823529411764,
+        "frequent_visitor_proxy_abs_error_fraction_ge0p2": 0.11764705882352941,
+        "frequent_visitor_proxy_abs_pollen_share_error_mean": 0.09566393513400145,
+        "functional_Hill2_mean": 2.4757541826606344,
+        "functional_rare_taxon_group_fraction": 0,
+        "functional_weight_vs_visitation_weight_TV_mean": 0.12161207600011549,
+        "functional_weight_vs_visitation_weight_TV_median": 0.13319086911045866,
+        "original_source_study_may_contain_multiple_plant_networks": true,
+        "rank_mismatch_fraction": 0.17647058823529413,
+        "source_plant_network_cells": 17,
+        "source_studies": 12,
+        "source_study_balanced_TV_mean": 0.1320129417017647,
+        "source_study_balanced_functionally_narrow_fraction": 0.5333333333333333,
+        "status": "source_descriptive",
+        "top_functional_contributor_over_top_visitor_pollen_share_gap_mean": 0.005275523402575051,
+        "top_functional_share_gap_among_rank_mismatch_only": 0.029894632614591955,
+        "visitor_Hill2_mean": 2.6344785062468556,
+        "within_plant_Hill2_difference_function_minus_visitor_mean": -0.15872432358622135
+      },
+      "source_guild_breadth_comparison_FAIL_CLOSED": {
+        "cross_study_mixed_minus_single_TV_not_causal": 0.11541978395439857,
+        "experimental_ALAN_moderation_by_visitor_guild_breadth_estimated": false,
+        "guild_categories_confounded_with_source_study_and_taxon_richness": true,
+        "mixed_guild_original_taxon_count_mean": 6.236363636363636,
+        "observed_mixed_guild_groups": 55,
+        "observed_single_guild_groups": 17,
+        "one_guild_original_taxon_count_mean": 3.7058823529411766,
+        "source_original_studies_total": 33,
+        "source_original_studies_with_both_guild_categories": {
+          "Cunnold_2018_1": {
+            "source_mixed_guild_plant_networks": 16,
+            "source_one_guild_plant_networks": 5,
+            "within_original_study_mean_total_variation_difference": 0.11402743151148886
+          }
+        },
+        "source_original_studies_with_within_study_both_guild_categories": 1,
+        "status": "within_study_multi_vs_single_guild_common_support_STOP",
+        "within_study_multi_vs_single_guild_comparison_meta_coefficient": null
+      }
+    }
+  },
+  "research_scope": {
+    "main_ALAN_363_wet_plant_record_rows_361_distinct_species_unchanged": true,
+    "overlap_direct_moth_fly_species_with_58_selected_ALAN_wet_cases": 0,
+    "important_selected_wet_case_with_source_real_pollen": "Erica tetralix; Ballantyne2015 original repeats in Page source",
+    "original_33_studies_not_ALAN_light_manipulations": true,
+    "original_72_source_networks_not_72_independent_field_experiments": true,
+    "source_SVE_times_visit_flux_is_not_measured_actual_plant_fitness": true,
+    "missing_source_pollen_variances_and_across_study_compatible_pollination_rates": true,
+    "source_visitor_guild_breadth_moderation_unidentified": true,
+    "no_moth_fly_functional_effect_assigned_to_other_species": true,
+    "manuscript_position": "secondary mechanism candidate, plant functional network vulnerabilities; main wet-affinity candidate finding untouched"
+  }
+}

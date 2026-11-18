@@ -1,0 +1,120 @@
+{
+  "schema": "alan_macro_wet_flora_predator_guild_original_source_20261118_v1",
+  "run": "https://github.com/zuizui0223/alan/actions/runs/44215675461",
+  "original_main_commit": "52ff636fa8ffc56e08fce5f7a47795af90099da9",
+  "frozen_sources": {
+    "shared_adult_pairs_git_blob": "449a2b9b7af8be7a0d3ba54b2b42758e2212ba6e",
+    "plant_membership_git_blob": "bdca428269614c51e2c592f8757384d60f78438e",
+    "wet_moth_spider_git_blob": "edee32f4cb8afc19bad638b53dcceb4e888fcaab"
+  },
+  "wet_plant_cohort_source_original": {
+    "all_source_pairs_are_evidence_of_global_links_not_same_field_plot": true,
+    "chains_with_at_least_one_non_iNaturalist_source_pair": 2,
+    "chains_with_only_iNaturalist_containing_source_pairs": 270,
+    "distinct_named_adult_visitor_species": 72,
+    "distinct_named_predator_species": 143,
+    "documented_source_matched_adult_visitor_predator_pairs": 272,
+    "non_iNaturalist_source_pairs_present": {
+      "Apis mellifera / Vespa velutina": {
+        "case_plant_species": 10,
+        "independent_paired_sources_without_inaturalist": 5,
+        "other_wet_plant_species": 34,
+        "predator_guild": "other_insects"
+      },
+      "Bombus vagans / Promachus vertebratus": {
+        "case_plant_species": 2,
+        "independent_paired_sources_without_inaturalist": 1,
+        "other_wet_plant_species": 5,
+        "predator_guild": "other_insects"
+      }
+    },
+    "source_candidate_plants": 58,
+    "source_other_wet_plants": 305,
+    "source_wet_flora_species": 363
+  },
+  "predator_guild_source_matched": {
+    "amphibians": {
+      "cross_group_comparisons_with_nonoverlapping_reported_habitat_optima": 9,
+      "distinct_recorded_predators": 2,
+      "distinct_recorded_visitors": 2,
+      "not_independent_study_replicates": true,
+      "pair_types_with_non_iNaturalist_source_pair": 0,
+      "shared_visitor_predator_pair_types": 2
+    },
+    "birds": {
+      "cross_group_comparisons_with_nonoverlapping_reported_habitat_optima": 399,
+      "distinct_recorded_predators": 36,
+      "distinct_recorded_visitors": 18,
+      "not_independent_study_replicates": true,
+      "pair_types_with_non_iNaturalist_source_pair": 0,
+      "shared_visitor_predator_pair_types": 47
+    },
+    "dragonflies_damselflies": {
+      "cross_group_comparisons_with_nonoverlapping_reported_habitat_optima": 98,
+      "distinct_recorded_predators": 11,
+      "distinct_recorded_visitors": 16,
+      "not_independent_study_replicates": true,
+      "pair_types_with_non_iNaturalist_source_pair": 0,
+      "shared_visitor_predator_pair_types": 21
+    },
+    "mantises": {
+      "cross_group_comparisons_with_nonoverlapping_reported_habitat_optima": 488,
+      "distinct_recorded_predators": 14,
+      "distinct_recorded_visitors": 14,
+      "not_independent_study_replicates": true,
+      "pair_types_with_non_iNaturalist_source_pair": 0,
+      "shared_visitor_predator_pair_types": 34
+    },
+    "other_animals": {
+      "cross_group_comparisons_with_nonoverlapping_reported_habitat_optima": 5,
+      "distinct_recorded_predators": 1,
+      "distinct_recorded_visitors": 1,
+      "not_independent_study_replicates": true,
+      "pair_types_with_non_iNaturalist_source_pair": 0,
+      "shared_visitor_predator_pair_types": 1
+    },
+    "other_insects": {
+      "cross_group_comparisons_with_nonoverlapping_reported_habitat_optima": 990,
+      "distinct_recorded_predators": 52,
+      "distinct_recorded_visitors": 32,
+      "not_independent_study_replicates": true,
+      "pair_types_with_non_iNaturalist_source_pair": 2,
+      "shared_visitor_predator_pair_types": 73
+    },
+    "reptiles": {
+      "cross_group_comparisons_with_nonoverlapping_reported_habitat_optima": 29,
+      "distinct_recorded_predators": 3,
+      "distinct_recorded_visitors": 2,
+      "not_independent_study_replicates": true,
+      "pair_types_with_non_iNaturalist_source_pair": 0,
+      "shared_visitor_predator_pair_types": 3
+    },
+    "spiders": {
+      "cross_group_comparisons_with_nonoverlapping_reported_habitat_optima": 886,
+      "distinct_recorded_predators": 24,
+      "distinct_recorded_visitors": 59,
+      "not_independent_study_replicates": true,
+      "pair_types_with_non_iNaturalist_source_pair": 0,
+      "shared_visitor_predator_pair_types": 91
+    }
+  },
+  "original_source_labelled_moth_spiders": {
+    "cannot_infer_functional_pollination_from_flower_visiting_or_moth_body_pollen": true,
+    "original_local_plant_spider_pollen_transfer_same_place_year_verified": false,
+    "original_moth_to_spider_source_rows": 8,
+    "source_candidate_botanical_species": 2,
+    "source_diet_edges_reliant_on_iNaturalist": 8,
+    "source_distinct_botanical_species": 3,
+    "source_distinct_moth_species": 4,
+    "source_distinct_spider_species": 3,
+    "source_other_botanical_species": 1
+  },
+  "interpretation": {
+    "family_guilds_are_documented_link_types_not_an_independent_study_number": true,
+    "source_pair_records_are_not_localized_together_with_lamp_or_flower": true,
+    "indirect_pollination_mediation_unidentified": true,
+    "original_redetector_moth_pollen_carrying_links_not_independent_experimental_reproductive_output": true,
+    "biotic_path_stage_1_direct_alaneffect_for_aquatic_insects_and_spiders": "Parkinson2020, 20 independently lit/control mesocosms",
+    "biotic_path_stage_2_guild_connections": "GloBI wet flora 58+305 species, source matched but independent site/time not available"
+  }
+}

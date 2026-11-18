@@ -1,0 +1,258 @@
+#!/usr/bin/env python3
+"""Page et al (2021) ORIGINAL 623 SVE/visitation taxon source: true moth/fly overlap.
+
+Data Page/Nicholson original Figshare project 120921, article 16160265,
+file id 30155367, byte SHA fixed. A meaningful comparison requires
+SAME study, plant, source year and same SVE measurement metric and units.
+Visit metrics must also match for functional q*V comparisons.
+No source rows are assigned zeros for undocumented moth/fly visits.
+No ALAN lighting treatment; no independent trait-based macro fitness effect.
+"""
+import argparse,csv,hashlib,io,json,math,statistics,urllib.request
+from collections import Counter,defaultdict
+from pathlib import Path
+
+SHA="e28ebe99e0dfb27b73fbe6638e568bf98fa95b92c920e1d3d981e8eaea27519a"
+SCHEMA="alan_page2021_623_original_taxonlevel_moth_fly_comparator_gate_v1"
+HEAD={"studyID","study.year","plant.species","pollinator.group","pollinator.taxon",
+      "effectiveness.average","effectiveness.metric",
+      "effectiveness.average.units","visit.value","visit.metric"}
+QKEY=("studyID","plant.species","study.year",
+      "effectiveness.metric","effectiveness.average.units")
+VKEY=QKEY+("visit.metric",)
+PKEY=("studyID","plant.species","study.year")
+
+def check(cond,msg):
+    if not bool(cond):raise RuntimeError("PAGE_ORIGINAL_SOURCE_STOP: "+msg)
+def get_source():
+    url="https://ndownloader.figshare.com/files/30155367"
+    req=urllib.request.Request(url,headers={"User-Agent":"Original Figshare single visit effectiveness archive audit","Accept":"text/csv,*/*"})
+    with urllib.request.urlopen(req,timeout=70) as r:blob=r.read(2<<20)
+    check(hashlib.sha256(blob).hexdigest()==SHA,"Source 623-row CSV sha changed")
+    records=list(csv.DictReader(io.StringIO(blob.decode("utf-8-sig"))))
+    check(len(records)==623 and HEAD.issubset(records[0]),"Original data rows/field definitions changed")
+    return records
+
+def num(s):
+    try:
+        n=float(str(s).strip())
+        return n if math.isfinite(n) else None
+    except (TypeError,ValueError):return None
+
+def compare(rows,key,include_numeric):
+    groups=defaultdict(list)
+    for r in rows:groups[tuple(r[k].strip() for k in key)].append(r)
+    outcomes=[]
+    for keys,r in groups.items():
+        moth=[a for a in r if a["pollinator.group"].strip()=="moth"]
+        flies=[a for a in r if a["pollinator.group"].strip()=="fly"]
+        if not moth or not flies:continue
+        item={"source_study":keys[0],"source_plant":keys[1],
+              "source_year":keys[2],"source_pair_definition":list(key),
+              "original_moth_taxon_obs":len(moth),
+              "original_fly_taxon_obs":len(flies),
+              "original_metrics":sorted(set(z["effectiveness.metric"] for z in moth+flies)),
+              "original_units":sorted(set(z["effectiveness.average.units"] for z in moth+flies)),
+              "original_visitation_metric":sorted(set(z["visit.metric"] for z in moth+flies)),
+              "same_source_study_plant_not_independent_light_experiment":True}
+        if include_numeric:
+            m=[num(z["effectiveness.average"]) for z in moth]
+            f=[num(z["effectiveness.average"]) for z in flies]
+            m=[z for z in m if z is not None];f=[z for z in f if z is not None]
+            item["source_numeric_moth_n"]=len(m)
+            item["source_numeric_fly_n"]=len(f)
+            item["source_fly_moth_mean_SVE_ratio"]=(
+               statistics.fmean(f)/statistics.fmean(m)
+               if m and f and statistics.fmean(m)>0 else None)
+            item["ratio_is_observed_SVE_measure_not_necessarily_conspecific_stigma_pollen"]=True
+        outcomes.append(item)
+    return {"original_source_plant_study_comparison_cells":len(groups),
+            "original_moth_fly_matched_cells":len(outcomes),
+            "original_studies_with_moth_fly":len(set(z["source_study"] for z in outcomes)),
+            "original_plants_with_moth_fly":len(set(z["source_plant"] for z in outcomes)),
+            "source_comparisons":outcomes,
+            "not_a_valid_precision_weighted_meta_effect":True}
+
+def within_original_sameplant_pollen_flux(rows):
+    """For matching actual source SVE and visit units, calculate q*V.
+
+    Pollination-efficiency q is a measured mean of conspecific pollen grains
+    per visit; V is the reported visit *rate*, often per time and area.
+    Therefore q*V is only a relative, conditional pollen-flux proxy within
+    a study/plant/source sampling unit, not observed seed output or a novel
+    cross-study pooled response. If the visit metric is literally 'other',
+    leave the flux undefined. Zero moth q produces a genuinely undefined
+    positive fly/moth ratio, not an invented arbitrarily large finite value.
+    """
+    mapping=defaultdict(list)
+    for r in rows:
+        mapping[tuple(r[k].strip() for k in VKEY)].append(r)
+    support=[]
+    for key,group in mapping.items():
+        g=defaultdict(list)
+        for r in group:g[r["pollinator.group"].strip()].append(r)
+        if not g["moth"] or not g["fly"]:continue
+        stage={"source_study":key[0],"source_plant":key[1],
+               "source_original_study_year":key[2],
+               "source_effectiveness_metric":key[3],
+               "source_original_effect_unit":key[4],
+               "source_visitation_unit":key[5],
+               "source_moth_taxa_n":len(g["moth"]),
+               "source_fly_taxa_n":len(g["fly"])}
+        stage["source_taxon_details"]={}
+        for name in ("moth","fly"):
+            entries=[]
+            for r in g[name]:
+                q=num(r["effectiveness.average"])
+                visit=num(r["visit.value"])
+                entries.append({"source_original_visitor_taxon":r["pollinator.taxon"],
+                    "source_average_SVE_conspecific_grains_per_visit":q,
+                    "source_visitation_rate":visit,
+                    "source_metric":r["effectiveness.metric"],
+                    "original_taxon_sample_size_not_provided":True})
+            stage["source_taxon_details"][name]=entries
+        can_use=(key[3].lower()=="number of conspecific pollen grains" and
+            key[4].lower()=="mean" and key[5].lower()!="other")
+        for name in ("moth","fly"):
+            values=stage["source_taxon_details"][name]
+            can_use=can_use and all(
+                x["source_average_SVE_conspecific_grains_per_visit"] is not None and
+                x["source_average_SVE_conspecific_grains_per_visit"]>=0 and
+                x["source_visitation_rate"] is not None and
+                x["source_visitation_rate"]>=0 for x in values)
+        stage["source_same_metric_pollen_times_visits_eligible"]=bool(can_use)
+        if can_use:
+            rate={}
+            for name in ("moth","fly"):
+                o=stage["source_taxon_details"][name]
+                rates=sum(x["source_visitation_rate"] for x in o)
+                function=sum(x["source_visitation_rate"]*
+                    x["source_average_SVE_conspecific_grains_per_visit"] for x in o)
+                rate[name]={"original_source_visitor_rate_sum":rates,
+                    "estimated_pollen_delivered_rate_visitor_SVE_times_rate":function,
+                    "source_visit_rate_weighted_mean_SVE":
+                        function/rates if rates>0 else None}
+            moth=rate["moth"]
+            fly=rate["fly"]
+            stage.update({
+               "within_source_original_visitor_rate_and_functional_weights":rate,
+               "visitation_ratio_fly_vs_moth":(
+                 fly["original_source_visitor_rate_sum"]/
+                 moth["original_source_visitor_rate_sum"]
+                 if moth["original_source_visitor_rate_sum"]>0 else None),
+               "estimated_conspecific_pollen_flux_ratio_fly_vs_moth":(
+                 fly["estimated_pollen_delivered_rate_visitor_SVE_times_rate"]/
+                 moth["estimated_pollen_delivered_rate_visitor_SVE_times_rate"]
+                 if moth["estimated_pollen_delivered_rate_visitor_SVE_times_rate"]>0 else None),
+               "source_functional_ratio_is_sve_times_visit_not_observed_fitness":True
+            })
+        else:
+            stage["source_plant_relative_flux_unidentifiable_reason"]=(
+               "original visit.metric is not a standard comparable field rate, "
+               "or SVE metric or missing numeric data not matched")
+        support.append(stage)
+    return {
+       "source_study_plant_year_same_SVE_and_visit_unit_pairs":len(support),
+       "source_paired_original_studies":len({r["source_study"] for r in support}),
+       "source_paired_sameplant_records":support,
+       "source_study_plant_comparisons_with_comparable_visit_rate_and_SVE":
+          sum(x["source_same_metric_pollen_times_visits_eligible"] for x in support),
+       "source_no_moth_fly_light_treatment_in_this_observational_SVE_data":True,
+       "source_no_guild_effectiveness_variances_available":True,
+       "source_unmeasured_reproductive_seed_success":True
+    }
+
+def taxon_verified_source_sensitivity(rows):
+    """Correct one empirically independently taxonomically verified label.
+
+    The published SVE/visit source lists Vanessa carye under 'moth' although
+    Harvard MCZ taxonomy identifies Vanessa carye as Nymphalidae,
+    Papilionoidea (a BUTTERFLY), not a moth. Its source SVE=0 and
+    visit rate 0.01 are not moth q, even though original Page group says moth.
+    Never silently overwrite or recode the original published CSV.
+    Keep original estimate and show separate, justified sensitivity.
+    Source taxonomy: https://mczbase.mcz.harvard.edu/name/Vanessa%20carye .
+    """
+    flagged=[r for r in rows
+             if r["pollinator.group"].strip()=="moth" and
+                r["pollinator.taxon"].strip()=="Vanessa carye"]
+    check(len(flagged)>=1,"Original documented Nymphalidae Vanessa carye mislabel absent from source")
+    excluded_ids={id(r) for r in flagged}
+    without=[r for r in rows if id(r) not in excluded_ids]
+    original=compare(rows,VKEY,True)
+    validated=compare(without,VKEY,True)
+    fixed=within_original_sameplant_pollen_flux(without)
+    return {
+      "original_source_taxon_code":"moth",
+      "confirmed_taxon":"Vanessa carye",
+      "independent_taxonomy_family":"Nymphalidae",
+      "independent_taxonomy_superfamily":"Papilionoidea",
+      "independent_taxonomic_authority":"https://mczbase.mcz.harvard.edu/name/Vanessa%20carye",
+      "original_source_flagged_rows":len(flagged),
+      "original_source_Vanessa_source_records":[{
+          "source_study":r["studyID"],"source_plant":r["plant.species"],
+          "source_original_SVE":num(r["effectiveness.average"]),
+          "source_original_visit_rate":num(r["visit.value"])}
+          for r in flagged],
+      "original_source_taxonomic_mismatch_not_silently_relabelled":True,
+      "unmodified_source_original_moth_fly_pairs":original["original_moth_fly_matched_cells"],
+      "after_excluding_known_misclassified_butterfly_pairs":
+         validated["original_moth_fly_matched_cells"],
+      "corrected_taxon_reference_sensitivity_SVE":validated,
+      "corrected_taxon_reference_sensitivity_pollen_rate":fixed,
+      "other_taxa_not_all_independently_reverified":True,
+      "no_moth_vs_fly_ALAN_exposure_estimated":True
+    }
+
+def run(rows):
+    bygrp=Counter(r["pollinator.group"].strip() for r in rows)
+    bymetric=Counter((r["effectiveness.metric"].strip(),
+                      r["effectiveness.average.units"].strip()) for r in rows)
+    byvisit=Counter(r["visit.metric"].strip() for r in rows)
+    return {
+      "schema":SCHEMA,
+      "source_article_DOI":"10.6084/m9.figshare.16160265.v1",
+      "original_2021_article_DOI":"10.1002/ajb2.1764",
+      "author_original_CSV_SHA256":SHA,
+      "source_taxonlevel_rows":len(rows),
+      "source_study_count":len(set(r["studyID"] for r in rows)),
+      "source_plant_count":len(set(r["plant.species"] for r in rows)),
+      "source_pollinator_group_counts":dict(bygrp),
+      "original_moth_group_taxon_labels":sorted(set(
+          r["pollinator.taxon"] for r in rows
+          if r["pollinator.group"].strip()=="moth")),
+      "original_mixed_butterfly_moth_taxon_labels":sorted(set(
+          r["pollinator.taxon"] for r in rows
+          if r["pollinator.group"].strip()=="butterfly/moth")),
+      "source_original_study_year_field_can_be_range_not_single_year":True,
+      "source_effectiveness_metrics_with_units":{
+        f"{k[0]} | {k[1]}":v for k,v in bymetric.items()},
+      "source_visit_metrics":dict(byvisit),
+      "source_SVE_missing":sum(num(r["effectiveness.average"]) is None for r in rows),
+      "source_visit_value_missing":sum(num(r["visit.value"]) is None for r in rows),
+      "same_study_same_plant_original_measured_SVE_times_visitor_rate":
+          within_original_sameplant_pollen_flux(rows),
+      "original_source_Nymphalidae_record_misclassified_as_moth_sensitivity":
+          taxon_verified_source_sensitivity(rows),
+      "same_plant_study_year_but_unknown_function_metric_comparability":
+          compare(rows,PKEY,False),
+      "same_study_plant_year_and_original_effect_metric_unit":
+          compare(rows,QKEY,True),
+      "STRICT_same_study_plant_year_effect_metric_unit_and_visit_metric":
+          compare(rows,VKEY,True),
+      "moth_or_fly_not_listed_in_study_NOT_natural_absence":True,
+      "source_effect_is_not_always_compatible_stigma_pollen":True,
+      "no_ALAN_lighting_manipulation":True,
+      "source_623_taxon_entries_not_623_independent_research_sites":True,
+      "no_crossstudy_fly_moth_ratio_constructed":True
+    }
+def main():
+    a=argparse.ArgumentParser();a.add_argument("--out",required=True)
+    q=a.parse_args()
+    data=run(get_source());p=Path(q.out);p.parent.mkdir(parents=True,exist_ok=True)
+    p.write_text(json.dumps(data,indent=2,sort_keys=True,ensure_ascii=False)+"\n")
+    print("PAGE2021_TRUE_ORIGINAL_MOTH_FLY_PLANT_SVE_OVERLAP",
+      json.dumps({k:v for k,v in data.items() if k not in (
+        "source_effectiveness_metrics_with_units","source_visit_metrics")},
+      ensure_ascii=False,sort_keys=True),flush=True)
+if __name__=="__main__":main()

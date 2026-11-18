@@ -1,0 +1,914 @@
+{
+  "schema": "alan_original_Page2021_moth_fly_same_plant_SVE_functional_flux_20261118_v1",
+  "provenance": {
+    "original_Figshare_dataset": "10.6084/m9.figshare.16160265.v1",
+    "original_article": "10.1002/ajb2.1764",
+    "verified_source_SHA256": "e28ebe99e0dfb27b73fbe6638e568bf98fa95b92c920e1d3d981e8eaea27519a",
+    "source_623records_69studies_102plants": true,
+    "executed_run": "https://github.com/zuizui0223/alan/actions/runs/44257585927",
+    "original_wetflora_source": "bdca428269614c51e2c592f8757384d60f78438e",
+    "main_unchanged": true
+  },
+  "original_plant_visits_functional_source": {
+    "original_pollinator_group_counts": {
+      "ant": 5,
+      "bee": 407,
+      "beetle": 14,
+      "bird": 32,
+      "bug": 1,
+      "butterfly": 29,
+      "butterfly/moth": 2,
+      "fly": 108,
+      "moth": 12,
+      "other": 1,
+      "wasp": 12
+    },
+    "originally_coded_moth_taxa": [
+      "Hemaris fuciformis",
+      "Hyles annei",
+      "Macroglossum nycteris",
+      "Macroglossum sp.",
+      "Macroglossum stellatarum",
+      "Macroglossum trochilus",
+      "Sphingidae",
+      "Vanessa carye"
+    ],
+    "mixed_butterfly_moth_taxa": [
+      "Lepidoptera"
+    ],
+    "source_direct_moth_fly_pairs": {
+      "not_a_valid_precision_weighted_meta_effect": true,
+      "original_moth_fly_matched_cells": 5,
+      "original_plants_with_moth_fly": 5,
+      "original_source_plant_study_comparison_cells": 119,
+      "original_studies_with_moth_fly": 5,
+      "source_comparisons": [
+        {
+          "original_fly_taxon_obs": 1,
+          "original_metrics": [
+            "number of conspecific pollen grains"
+          ],
+          "original_moth_taxon_obs": 1,
+          "original_units": [
+            "mean"
+          ],
+          "original_visitation_metric": [
+            "number of visits per unit time per unit area"
+          ],
+          "ratio_is_observed_SVE_measure_not_necessarily_conspecific_stigma_pollen": true,
+          "same_source_study_plant_not_independent_light_experiment": true,
+          "source_fly_moth_mean_SVE_ratio": null,
+          "source_numeric_fly_n": 1,
+          "source_numeric_moth_n": 1,
+          "source_pair_definition": [
+            "studyID",
+            "plant.species",
+            "study.year",
+            "effectiveness.metric",
+            "effectiveness.average.units",
+            "visit.metric"
+          ],
+          "source_plant": "Polygaloides_vayredae",
+          "source_study": "Castro_2013_1",
+          "source_year": "2005-2007"
+        },
+        {
+          "original_fly_taxon_obs": 1,
+          "original_metrics": [
+            "number of conspecific pollen grains"
+          ],
+          "original_moth_taxon_obs": 1,
+          "original_units": [
+            "mean"
+          ],
+          "original_visitation_metric": [
+            "number of visits per unit time per unit area"
+          ],
+          "ratio_is_observed_SVE_measure_not_necessarily_conspecific_stigma_pollen": true,
+          "same_source_study_plant_not_independent_light_experiment": true,
+          "source_fly_moth_mean_SVE_ratio": 0.41025641025641024,
+          "source_numeric_fly_n": 1,
+          "source_numeric_moth_n": 1,
+          "source_pair_definition": [
+            "studyID",
+            "plant.species",
+            "study.year",
+            "effectiveness.metric",
+            "effectiveness.average.units",
+            "visit.metric"
+          ],
+          "source_plant": "Amomum_subulatum",
+          "source_study": "Kishore_2012_1",
+          "source_year": "2009-2011"
+        },
+        {
+          "original_fly_taxon_obs": 1,
+          "original_metrics": [
+            "number of conspecific pollen grains"
+          ],
+          "original_moth_taxon_obs": 2,
+          "original_units": [
+            "mean"
+          ],
+          "original_visitation_metric": [
+            "number of flowers visited per unit time per unit area"
+          ],
+          "ratio_is_observed_SVE_measure_not_necessarily_conspecific_stigma_pollen": true,
+          "same_source_study_plant_not_independent_light_experiment": true,
+          "source_fly_moth_mean_SVE_ratio": 6.153846153846153,
+          "source_numeric_fly_n": 1,
+          "source_numeric_moth_n": 2,
+          "source_pair_definition": [
+            "studyID",
+            "plant.species",
+            "study.year",
+            "effectiveness.metric",
+            "effectiveness.average.units",
+            "visit.metric"
+          ],
+          "source_plant": "Erythranthe_lutea",
+          "source_study": "Medel_2018_1",
+          "source_year": "2016"
+        },
+        {
+          "original_fly_taxon_obs": 1,
+          "original_metrics": [
+            "number of conspecific pollen grains"
+          ],
+          "original_moth_taxon_obs": 1,
+          "original_units": [
+            "mean"
+          ],
+          "original_visitation_metric": [
+            "number of flowers visited per unit time per unit area"
+          ],
+          "ratio_is_observed_SVE_measure_not_necessarily_conspecific_stigma_pollen": true,
+          "same_source_study_plant_not_independent_light_experiment": true,
+          "source_fly_moth_mean_SVE_ratio": 0.17389558232931726,
+          "source_numeric_fly_n": 1,
+          "source_numeric_moth_n": 1,
+          "source_pair_definition": [
+            "studyID",
+            "plant.species",
+            "study.year",
+            "effectiveness.metric",
+            "effectiveness.average.units",
+            "visit.metric"
+          ],
+          "source_plant": "Silene_caroliniana",
+          "source_study": "Reynolds_2008_1",
+          "source_year": "2006"
+        },
+        {
+          "original_fly_taxon_obs": 1,
+          "original_metrics": [
+            "number of conspecific pollen grains"
+          ],
+          "original_moth_taxon_obs": 1,
+          "original_units": [
+            "mean"
+          ],
+          "original_visitation_metric": [
+            "other"
+          ],
+          "ratio_is_observed_SVE_measure_not_necessarily_conspecific_stigma_pollen": true,
+          "same_source_study_plant_not_independent_light_experiment": true,
+          "source_fly_moth_mean_SVE_ratio": 3,
+          "source_numeric_fly_n": 1,
+          "source_numeric_moth_n": 1,
+          "source_pair_definition": [
+            "studyID",
+            "plant.species",
+            "study.year",
+            "effectiveness.metric",
+            "effectiveness.average.units",
+            "visit.metric"
+          ],
+          "source_plant": "Syncolostemon_densiflorus",
+          "source_study": "Wester_2017_1",
+          "source_year": "2008-2012"
+        }
+      ]
+    },
+    "actual_visitation_times_single_visit_effectiveness": {
+      "source_no_guild_effectiveness_variances_available": true,
+      "source_no_moth_fly_light_treatment_in_this_observational_SVE_data": true,
+      "source_paired_original_studies": 5,
+      "source_paired_sameplant_records": [
+        {
+          "estimated_conspecific_pollen_flux_ratio_fly_vs_moth": null,
+          "source_effectiveness_metric": "number of conspecific pollen grains",
+          "source_fly_taxa_n": 1,
+          "source_functional_ratio_is_sve_times_visit_not_observed_fitness": true,
+          "source_moth_taxa_n": 1,
+          "source_original_effect_unit": "mean",
+          "source_original_study_year": "2005-2007",
+          "source_plant": "Polygaloides_vayredae",
+          "source_same_metric_pollen_times_visits_eligible": true,
+          "source_study": "Castro_2013_1",
+          "source_taxon_details": {
+            "fly": [
+              {
+                "original_taxon_sample_size_not_provided": true,
+                "source_average_SVE_conspecific_grains_per_visit": 0,
+                "source_metric": "number of conspecific pollen grains",
+                "source_original_visitor_taxon": "Bombylius major",
+                "source_visitation_rate": 91
+              }
+            ],
+            "moth": [
+              {
+                "original_taxon_sample_size_not_provided": true,
+                "source_average_SVE_conspecific_grains_per_visit": 0,
+                "source_metric": "number of conspecific pollen grains",
+                "source_original_visitor_taxon": "Hemaris fuciformis",
+                "source_visitation_rate": 481
+              }
+            ]
+          },
+          "source_visitation_unit": "number of visits per unit time per unit area",
+          "visitation_ratio_fly_vs_moth": 0.1891891891891892,
+          "within_source_original_visitor_rate_and_functional_weights": {
+            "fly": {
+              "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 0,
+              "original_source_visitor_rate_sum": 91,
+              "source_visit_rate_weighted_mean_SVE": 0
+            },
+            "moth": {
+              "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 0,
+              "original_source_visitor_rate_sum": 481,
+              "source_visit_rate_weighted_mean_SVE": 0
+            }
+          }
+        },
+        {
+          "estimated_conspecific_pollen_flux_ratio_fly_vs_moth": 1.009333762471838,
+          "source_effectiveness_metric": "number of conspecific pollen grains",
+          "source_fly_taxa_n": 1,
+          "source_functional_ratio_is_sve_times_visit_not_observed_fitness": true,
+          "source_moth_taxa_n": 1,
+          "source_original_effect_unit": "mean",
+          "source_original_study_year": "2009-2011",
+          "source_plant": "Amomum_subulatum",
+          "source_same_metric_pollen_times_visits_eligible": true,
+          "source_study": "Kishore_2012_1",
+          "source_taxon_details": {
+            "fly": [
+              {
+                "original_taxon_sample_size_not_provided": true,
+                "source_average_SVE_conspecific_grains_per_visit": 32,
+                "source_metric": "number of conspecific pollen grains",
+                "source_original_visitor_taxon": "Episyrphus balteatus",
+                "source_visitation_rate": 117.6
+              }
+            ],
+            "moth": [
+              {
+                "original_taxon_sample_size_not_provided": true,
+                "source_average_SVE_conspecific_grains_per_visit": 78,
+                "source_metric": "number of conspecific pollen grains",
+                "source_original_visitor_taxon": "Macroglossum sp.",
+                "source_visitation_rate": 47.8
+              }
+            ]
+          },
+          "source_visitation_unit": "number of visits per unit time per unit area",
+          "visitation_ratio_fly_vs_moth": 2.4602510460251046,
+          "within_source_original_visitor_rate_and_functional_weights": {
+            "fly": {
+              "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 3763.2,
+              "original_source_visitor_rate_sum": 117.6,
+              "source_visit_rate_weighted_mean_SVE": 32
+            },
+            "moth": {
+              "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 3728.3999999999996,
+              "original_source_visitor_rate_sum": 47.8,
+              "source_visit_rate_weighted_mean_SVE": 78
+            }
+          }
+        },
+        {
+          "estimated_conspecific_pollen_flux_ratio_fly_vs_moth": 0.0071974808816914065,
+          "source_effectiveness_metric": "number of conspecific pollen grains",
+          "source_fly_taxa_n": 1,
+          "source_functional_ratio_is_sve_times_visit_not_observed_fitness": true,
+          "source_moth_taxa_n": 2,
+          "source_original_effect_unit": "mean",
+          "source_original_study_year": "2016",
+          "source_plant": "Erythranthe_lutea",
+          "source_same_metric_pollen_times_visits_eligible": true,
+          "source_study": "Medel_2018_1",
+          "source_taxon_details": {
+            "fly": [
+              {
+                "original_taxon_sample_size_not_provided": true,
+                "source_average_SVE_conspecific_grains_per_visit": 4,
+                "source_metric": "number of conspecific pollen grains",
+                "source_original_visitor_taxon": "Bombylidae sp.",
+                "source_visitation_rate": 0.02
+              }
+            ],
+            "moth": [
+              {
+                "original_taxon_sample_size_not_provided": true,
+                "source_average_SVE_conspecific_grains_per_visit": 1.3,
+                "source_metric": "number of conspecific pollen grains",
+                "source_original_visitor_taxon": "Hyles annei",
+                "source_visitation_rate": 8.55
+              },
+              {
+                "original_taxon_sample_size_not_provided": true,
+                "source_average_SVE_conspecific_grains_per_visit": 0,
+                "source_metric": "number of conspecific pollen grains",
+                "source_original_visitor_taxon": "Vanessa carye",
+                "source_visitation_rate": 0.01
+              }
+            ]
+          },
+          "source_visitation_unit": "number of flowers visited per unit time per unit area",
+          "visitation_ratio_fly_vs_moth": 0.002336448598130841,
+          "within_source_original_visitor_rate_and_functional_weights": {
+            "fly": {
+              "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 0.08,
+              "original_source_visitor_rate_sum": 0.02,
+              "source_visit_rate_weighted_mean_SVE": 4
+            },
+            "moth": {
+              "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 11.115000000000002,
+              "original_source_visitor_rate_sum": 8.56,
+              "source_visit_rate_weighted_mean_SVE": 1.298481308411215
+            }
+          }
+        },
+        {
+          "estimated_conspecific_pollen_flux_ratio_fly_vs_moth": 0.0765140562248996,
+          "source_effectiveness_metric": "number of conspecific pollen grains",
+          "source_fly_taxa_n": 1,
+          "source_functional_ratio_is_sve_times_visit_not_observed_fitness": true,
+          "source_moth_taxa_n": 1,
+          "source_original_effect_unit": "mean",
+          "source_original_study_year": "2006",
+          "source_plant": "Silene_caroliniana",
+          "source_same_metric_pollen_times_visits_eligible": true,
+          "source_study": "Reynolds_2008_1",
+          "source_taxon_details": {
+            "fly": [
+              {
+                "original_taxon_sample_size_not_provided": true,
+                "source_average_SVE_conspecific_grains_per_visit": 43.3,
+                "source_metric": "number of conspecific pollen grains",
+                "source_original_visitor_taxon": "Bombyliidae",
+                "source_visitation_rate": 0.11
+              }
+            ],
+            "moth": [
+              {
+                "original_taxon_sample_size_not_provided": true,
+                "source_average_SVE_conspecific_grains_per_visit": 249,
+                "source_metric": "number of conspecific pollen grains",
+                "source_original_visitor_taxon": "Sphingidae",
+                "source_visitation_rate": 0.25
+              }
+            ]
+          },
+          "source_visitation_unit": "number of flowers visited per unit time per unit area",
+          "visitation_ratio_fly_vs_moth": 0.44,
+          "within_source_original_visitor_rate_and_functional_weights": {
+            "fly": {
+              "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 4.763,
+              "original_source_visitor_rate_sum": 0.11,
+              "source_visit_rate_weighted_mean_SVE": 43.3
+            },
+            "moth": {
+              "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 62.25,
+              "original_source_visitor_rate_sum": 0.25,
+              "source_visit_rate_weighted_mean_SVE": 249
+            }
+          }
+        },
+        {
+          "source_effectiveness_metric": "number of conspecific pollen grains",
+          "source_fly_taxa_n": 1,
+          "source_moth_taxa_n": 1,
+          "source_original_effect_unit": "mean",
+          "source_original_study_year": "2008-2012",
+          "source_plant": "Syncolostemon_densiflorus",
+          "source_plant_relative_flux_unidentifiable_reason": "original visit.metric is not a standard comparable field rate, or SVE metric or missing numeric data not matched",
+          "source_same_metric_pollen_times_visits_eligible": false,
+          "source_study": "Wester_2017_1",
+          "source_taxon_details": {
+            "fly": [
+              {
+                "original_taxon_sample_size_not_provided": true,
+                "source_average_SVE_conspecific_grains_per_visit": 1.8,
+                "source_metric": "number of conspecific pollen grains",
+                "source_original_visitor_taxon": "Philoliche aethiopica",
+                "source_visitation_rate": 0.18
+              }
+            ],
+            "moth": [
+              {
+                "original_taxon_sample_size_not_provided": true,
+                "source_average_SVE_conspecific_grains_per_visit": 0.6,
+                "source_metric": "number of conspecific pollen grains",
+                "source_original_visitor_taxon": "Macroglossum trochilus",
+                "source_visitation_rate": 0.01
+              }
+            ]
+          },
+          "source_visitation_unit": "other"
+        }
+      ],
+      "source_study_plant_comparisons_with_comparable_visit_rate_and_SVE": 4,
+      "source_study_plant_year_same_SVE_and_visit_unit_pairs": 5,
+      "source_unmeasured_reproductive_seed_success": true
+    },
+    "independent_Nymphalidae_taxonomy_revision": {
+      "after_excluding_known_misclassified_butterfly_pairs": 5,
+      "confirmed_taxon": "Vanessa carye",
+      "corrected_taxon_reference_sensitivity_SVE": {
+        "not_a_valid_precision_weighted_meta_effect": true,
+        "original_moth_fly_matched_cells": 5,
+        "original_plants_with_moth_fly": 5,
+        "original_source_plant_study_comparison_cells": 119,
+        "original_studies_with_moth_fly": 5,
+        "source_comparisons": [
+          {
+            "original_fly_taxon_obs": 1,
+            "original_metrics": [
+              "number of conspecific pollen grains"
+            ],
+            "original_moth_taxon_obs": 1,
+            "original_units": [
+              "mean"
+            ],
+            "original_visitation_metric": [
+              "number of visits per unit time per unit area"
+            ],
+            "ratio_is_observed_SVE_measure_not_necessarily_conspecific_stigma_pollen": true,
+            "same_source_study_plant_not_independent_light_experiment": true,
+            "source_fly_moth_mean_SVE_ratio": null,
+            "source_numeric_fly_n": 1,
+            "source_numeric_moth_n": 1,
+            "source_pair_definition": [
+              "studyID",
+              "plant.species",
+              "study.year",
+              "effectiveness.metric",
+              "effectiveness.average.units",
+              "visit.metric"
+            ],
+            "source_plant": "Polygaloides_vayredae",
+            "source_study": "Castro_2013_1",
+            "source_year": "2005-2007"
+          },
+          {
+            "original_fly_taxon_obs": 1,
+            "original_metrics": [
+              "number of conspecific pollen grains"
+            ],
+            "original_moth_taxon_obs": 1,
+            "original_units": [
+              "mean"
+            ],
+            "original_visitation_metric": [
+              "number of visits per unit time per unit area"
+            ],
+            "ratio_is_observed_SVE_measure_not_necessarily_conspecific_stigma_pollen": true,
+            "same_source_study_plant_not_independent_light_experiment": true,
+            "source_fly_moth_mean_SVE_ratio": 0.41025641025641024,
+            "source_numeric_fly_n": 1,
+            "source_numeric_moth_n": 1,
+            "source_pair_definition": [
+              "studyID",
+              "plant.species",
+              "study.year",
+              "effectiveness.metric",
+              "effectiveness.average.units",
+              "visit.metric"
+            ],
+            "source_plant": "Amomum_subulatum",
+            "source_study": "Kishore_2012_1",
+            "source_year": "2009-2011"
+          },
+          {
+            "original_fly_taxon_obs": 1,
+            "original_metrics": [
+              "number of conspecific pollen grains"
+            ],
+            "original_moth_taxon_obs": 1,
+            "original_units": [
+              "mean"
+            ],
+            "original_visitation_metric": [
+              "number of flowers visited per unit time per unit area"
+            ],
+            "ratio_is_observed_SVE_measure_not_necessarily_conspecific_stigma_pollen": true,
+            "same_source_study_plant_not_independent_light_experiment": true,
+            "source_fly_moth_mean_SVE_ratio": 3.0769230769230766,
+            "source_numeric_fly_n": 1,
+            "source_numeric_moth_n": 1,
+            "source_pair_definition": [
+              "studyID",
+              "plant.species",
+              "study.year",
+              "effectiveness.metric",
+              "effectiveness.average.units",
+              "visit.metric"
+            ],
+            "source_plant": "Erythranthe_lutea",
+            "source_study": "Medel_2018_1",
+            "source_year": "2016"
+          },
+          {
+            "original_fly_taxon_obs": 1,
+            "original_metrics": [
+              "number of conspecific pollen grains"
+            ],
+            "original_moth_taxon_obs": 1,
+            "original_units": [
+              "mean"
+            ],
+            "original_visitation_metric": [
+              "number of flowers visited per unit time per unit area"
+            ],
+            "ratio_is_observed_SVE_measure_not_necessarily_conspecific_stigma_pollen": true,
+            "same_source_study_plant_not_independent_light_experiment": true,
+            "source_fly_moth_mean_SVE_ratio": 0.17389558232931726,
+            "source_numeric_fly_n": 1,
+            "source_numeric_moth_n": 1,
+            "source_pair_definition": [
+              "studyID",
+              "plant.species",
+              "study.year",
+              "effectiveness.metric",
+              "effectiveness.average.units",
+              "visit.metric"
+            ],
+            "source_plant": "Silene_caroliniana",
+            "source_study": "Reynolds_2008_1",
+            "source_year": "2006"
+          },
+          {
+            "original_fly_taxon_obs": 1,
+            "original_metrics": [
+              "number of conspecific pollen grains"
+            ],
+            "original_moth_taxon_obs": 1,
+            "original_units": [
+              "mean"
+            ],
+            "original_visitation_metric": [
+              "other"
+            ],
+            "ratio_is_observed_SVE_measure_not_necessarily_conspecific_stigma_pollen": true,
+            "same_source_study_plant_not_independent_light_experiment": true,
+            "source_fly_moth_mean_SVE_ratio": 3,
+            "source_numeric_fly_n": 1,
+            "source_numeric_moth_n": 1,
+            "source_pair_definition": [
+              "studyID",
+              "plant.species",
+              "study.year",
+              "effectiveness.metric",
+              "effectiveness.average.units",
+              "visit.metric"
+            ],
+            "source_plant": "Syncolostemon_densiflorus",
+            "source_study": "Wester_2017_1",
+            "source_year": "2008-2012"
+          }
+        ]
+      },
+      "corrected_taxon_reference_sensitivity_pollen_rate": {
+        "source_no_guild_effectiveness_variances_available": true,
+        "source_no_moth_fly_light_treatment_in_this_observational_SVE_data": true,
+        "source_paired_original_studies": 5,
+        "source_paired_sameplant_records": [
+          {
+            "estimated_conspecific_pollen_flux_ratio_fly_vs_moth": null,
+            "source_effectiveness_metric": "number of conspecific pollen grains",
+            "source_fly_taxa_n": 1,
+            "source_functional_ratio_is_sve_times_visit_not_observed_fitness": true,
+            "source_moth_taxa_n": 1,
+            "source_original_effect_unit": "mean",
+            "source_original_study_year": "2005-2007",
+            "source_plant": "Polygaloides_vayredae",
+            "source_same_metric_pollen_times_visits_eligible": true,
+            "source_study": "Castro_2013_1",
+            "source_taxon_details": {
+              "fly": [
+                {
+                  "original_taxon_sample_size_not_provided": true,
+                  "source_average_SVE_conspecific_grains_per_visit": 0,
+                  "source_metric": "number of conspecific pollen grains",
+                  "source_original_visitor_taxon": "Bombylius major",
+                  "source_visitation_rate": 91
+                }
+              ],
+              "moth": [
+                {
+                  "original_taxon_sample_size_not_provided": true,
+                  "source_average_SVE_conspecific_grains_per_visit": 0,
+                  "source_metric": "number of conspecific pollen grains",
+                  "source_original_visitor_taxon": "Hemaris fuciformis",
+                  "source_visitation_rate": 481
+                }
+              ]
+            },
+            "source_visitation_unit": "number of visits per unit time per unit area",
+            "visitation_ratio_fly_vs_moth": 0.1891891891891892,
+            "within_source_original_visitor_rate_and_functional_weights": {
+              "fly": {
+                "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 0,
+                "original_source_visitor_rate_sum": 91,
+                "source_visit_rate_weighted_mean_SVE": 0
+              },
+              "moth": {
+                "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 0,
+                "original_source_visitor_rate_sum": 481,
+                "source_visit_rate_weighted_mean_SVE": 0
+              }
+            }
+          },
+          {
+            "estimated_conspecific_pollen_flux_ratio_fly_vs_moth": 1.009333762471838,
+            "source_effectiveness_metric": "number of conspecific pollen grains",
+            "source_fly_taxa_n": 1,
+            "source_functional_ratio_is_sve_times_visit_not_observed_fitness": true,
+            "source_moth_taxa_n": 1,
+            "source_original_effect_unit": "mean",
+            "source_original_study_year": "2009-2011",
+            "source_plant": "Amomum_subulatum",
+            "source_same_metric_pollen_times_visits_eligible": true,
+            "source_study": "Kishore_2012_1",
+            "source_taxon_details": {
+              "fly": [
+                {
+                  "original_taxon_sample_size_not_provided": true,
+                  "source_average_SVE_conspecific_grains_per_visit": 32,
+                  "source_metric": "number of conspecific pollen grains",
+                  "source_original_visitor_taxon": "Episyrphus balteatus",
+                  "source_visitation_rate": 117.6
+                }
+              ],
+              "moth": [
+                {
+                  "original_taxon_sample_size_not_provided": true,
+                  "source_average_SVE_conspecific_grains_per_visit": 78,
+                  "source_metric": "number of conspecific pollen grains",
+                  "source_original_visitor_taxon": "Macroglossum sp.",
+                  "source_visitation_rate": 47.8
+                }
+              ]
+            },
+            "source_visitation_unit": "number of visits per unit time per unit area",
+            "visitation_ratio_fly_vs_moth": 2.4602510460251046,
+            "within_source_original_visitor_rate_and_functional_weights": {
+              "fly": {
+                "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 3763.2,
+                "original_source_visitor_rate_sum": 117.6,
+                "source_visit_rate_weighted_mean_SVE": 32
+              },
+              "moth": {
+                "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 3728.3999999999996,
+                "original_source_visitor_rate_sum": 47.8,
+                "source_visit_rate_weighted_mean_SVE": 78
+              }
+            }
+          },
+          {
+            "estimated_conspecific_pollen_flux_ratio_fly_vs_moth": 0.0071974808816914065,
+            "source_effectiveness_metric": "number of conspecific pollen grains",
+            "source_fly_taxa_n": 1,
+            "source_functional_ratio_is_sve_times_visit_not_observed_fitness": true,
+            "source_moth_taxa_n": 1,
+            "source_original_effect_unit": "mean",
+            "source_original_study_year": "2016",
+            "source_plant": "Erythranthe_lutea",
+            "source_same_metric_pollen_times_visits_eligible": true,
+            "source_study": "Medel_2018_1",
+            "source_taxon_details": {
+              "fly": [
+                {
+                  "original_taxon_sample_size_not_provided": true,
+                  "source_average_SVE_conspecific_grains_per_visit": 4,
+                  "source_metric": "number of conspecific pollen grains",
+                  "source_original_visitor_taxon": "Bombylidae sp.",
+                  "source_visitation_rate": 0.02
+                }
+              ],
+              "moth": [
+                {
+                  "original_taxon_sample_size_not_provided": true,
+                  "source_average_SVE_conspecific_grains_per_visit": 1.3,
+                  "source_metric": "number of conspecific pollen grains",
+                  "source_original_visitor_taxon": "Hyles annei",
+                  "source_visitation_rate": 8.55
+                }
+              ]
+            },
+            "source_visitation_unit": "number of flowers visited per unit time per unit area",
+            "visitation_ratio_fly_vs_moth": 0.0023391812865497076,
+            "within_source_original_visitor_rate_and_functional_weights": {
+              "fly": {
+                "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 0.08,
+                "original_source_visitor_rate_sum": 0.02,
+                "source_visit_rate_weighted_mean_SVE": 4
+              },
+              "moth": {
+                "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 11.115000000000002,
+                "original_source_visitor_rate_sum": 8.55,
+                "source_visit_rate_weighted_mean_SVE": 1.3
+              }
+            }
+          },
+          {
+            "estimated_conspecific_pollen_flux_ratio_fly_vs_moth": 0.0765140562248996,
+            "source_effectiveness_metric": "number of conspecific pollen grains",
+            "source_fly_taxa_n": 1,
+            "source_functional_ratio_is_sve_times_visit_not_observed_fitness": true,
+            "source_moth_taxa_n": 1,
+            "source_original_effect_unit": "mean",
+            "source_original_study_year": "2006",
+            "source_plant": "Silene_caroliniana",
+            "source_same_metric_pollen_times_visits_eligible": true,
+            "source_study": "Reynolds_2008_1",
+            "source_taxon_details": {
+              "fly": [
+                {
+                  "original_taxon_sample_size_not_provided": true,
+                  "source_average_SVE_conspecific_grains_per_visit": 43.3,
+                  "source_metric": "number of conspecific pollen grains",
+                  "source_original_visitor_taxon": "Bombyliidae",
+                  "source_visitation_rate": 0.11
+                }
+              ],
+              "moth": [
+                {
+                  "original_taxon_sample_size_not_provided": true,
+                  "source_average_SVE_conspecific_grains_per_visit": 249,
+                  "source_metric": "number of conspecific pollen grains",
+                  "source_original_visitor_taxon": "Sphingidae",
+                  "source_visitation_rate": 0.25
+                }
+              ]
+            },
+            "source_visitation_unit": "number of flowers visited per unit time per unit area",
+            "visitation_ratio_fly_vs_moth": 0.44,
+            "within_source_original_visitor_rate_and_functional_weights": {
+              "fly": {
+                "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 4.763,
+                "original_source_visitor_rate_sum": 0.11,
+                "source_visit_rate_weighted_mean_SVE": 43.3
+              },
+              "moth": {
+                "estimated_pollen_delivered_rate_visitor_SVE_times_rate": 62.25,
+                "original_source_visitor_rate_sum": 0.25,
+                "source_visit_rate_weighted_mean_SVE": 249
+              }
+            }
+          },
+          {
+            "source_effectiveness_metric": "number of conspecific pollen grains",
+            "source_fly_taxa_n": 1,
+            "source_moth_taxa_n": 1,
+            "source_original_effect_unit": "mean",
+            "source_original_study_year": "2008-2012",
+            "source_plant": "Syncolostemon_densiflorus",
+            "source_plant_relative_flux_unidentifiable_reason": "original visit.metric is not a standard comparable field rate, or SVE metric or missing numeric data not matched",
+            "source_same_metric_pollen_times_visits_eligible": false,
+            "source_study": "Wester_2017_1",
+            "source_taxon_details": {
+              "fly": [
+                {
+                  "original_taxon_sample_size_not_provided": true,
+                  "source_average_SVE_conspecific_grains_per_visit": 1.8,
+                  "source_metric": "number of conspecific pollen grains",
+                  "source_original_visitor_taxon": "Philoliche aethiopica",
+                  "source_visitation_rate": 0.18
+                }
+              ],
+              "moth": [
+                {
+                  "original_taxon_sample_size_not_provided": true,
+                  "source_average_SVE_conspecific_grains_per_visit": 0.6,
+                  "source_metric": "number of conspecific pollen grains",
+                  "source_original_visitor_taxon": "Macroglossum trochilus",
+                  "source_visitation_rate": 0.01
+                }
+              ]
+            },
+            "source_visitation_unit": "other"
+          }
+        ],
+        "source_study_plant_comparisons_with_comparable_visit_rate_and_SVE": 4,
+        "source_study_plant_year_same_SVE_and_visit_unit_pairs": 5,
+        "source_unmeasured_reproductive_seed_success": true
+      },
+      "independent_taxonomic_authority": "https://mczbase.mcz.harvard.edu/name/Vanessa%20carye",
+      "independent_taxonomy_family": "Nymphalidae",
+      "independent_taxonomy_superfamily": "Papilionoidea",
+      "no_moth_vs_fly_ALAN_exposure_estimated": true,
+      "original_source_Vanessa_source_records": [
+        {
+          "source_original_SVE": 0,
+          "source_original_visit_rate": 0.01,
+          "source_plant": "Erythranthe_lutea",
+          "source_study": "Medel_2018_1"
+        },
+        {
+          "source_original_SVE": 0,
+          "source_original_visit_rate": 0.01,
+          "source_plant": "Erythranthe_lutea",
+          "source_study": "Medel_2018_1"
+        }
+      ],
+      "original_source_flagged_rows": 2,
+      "original_source_taxon_code": "moth",
+      "original_source_taxonomic_mismatch_not_silently_relabelled": true,
+      "other_taxa_not_all_independently_reverified": true,
+      "unmodified_source_original_moth_fly_pairs": 5
+    }
+  },
+  "transportability_to_ALAN_main_wet_and_Lu": {
+    "Page_original_plant_labels_exact_match_main_wet": 2,
+    "Page_source_distinct_study_plant_labels": 102,
+    "Page_source_wet_candidate_cases_matched": 1,
+    "Page_source_wet_reference_species_matched": 1,
+    "main_wet_flora_source_git_blob_SHA1": "bdca428269614c51e2c592f8757384d60f78438e",
+    "no_ecological_absence_inferred_from_missing_single_visit_data": true,
+    "no_pollen_efficiency_transferred_between_nonidentical_species": true,
+    "no_species_level_ALAN_effect_estimated": true,
+    "original_candidate_case_species_names_with_SVE": [
+      {
+        "original_Page_SVE_effectiveness_metrics": [
+          "number of conspecific pollen grains"
+        ],
+        "original_Page_pollinator_guilds": [
+          "ant",
+          "bee",
+          "fly"
+        ],
+        "original_Page_study_ids": [
+          "Ballantyne_2015_1",
+          "Moquet_2017_1"
+        ],
+        "original_Page_taxonlevel_effect_rows": 13,
+        "source_MOIST": 8.1,
+        "species": "Erica tetralix"
+      }
+    ],
+    "original_main_distinct_accepted_plant_binomials": 361,
+    "original_main_distinct_reference_species": 303,
+    "original_main_distinct_selected_candidate_species": 58,
+    "original_main_other_high_MOIST_species": 305,
+    "original_main_selected_ALAN_recording_rate_decline_cases": 58,
+    "original_main_source_duplicates_not_imputed_as_unique_species": [
+      "Helosciadium nodiflorum",
+      "Nasturtium officinale"
+    ],
+    "original_main_wet_species": 363,
+    "schema": "alan_page2021_original_sve_source_versus_363_wet_plant_coverage_v1",
+    "source_Pagemothfly_pair_plant_names": [
+      "Amomum subulatum",
+      "Erythranthe lutea",
+      "Polygaloides vayredae",
+      "Silene caroliniana",
+      "Syncolostemon densiflorus"
+    ],
+    "source_five_mothfly_plants_in_Lu_alpine_sameflower_seven": [],
+    "source_five_mothfly_plants_in_wetflora": [],
+    "source_is_plant_trait_data_not_illumination_experiment": true,
+    "source_original_Page_taxon_table_sha256": "e28ebe99e0dfb27b73fbe6638e568bf98fa95b92c920e1d3d981e8eaea27519a",
+    "source_other_wet_reference_coverage_fraction": 0.003278688524590164,
+    "source_same_study_plant_moth_and_fly_pairs": 5,
+    "source_unique_reference_binomial_coverage_fraction": 0.0033003300330033004,
+    "source_wet_candidate_coverage_fraction": 0.017241379310344827,
+    "source_wet_reference_species_names_with_SVE": [
+      {
+        "MOIST": 7.3,
+        "Page_guilds": [
+          "bee",
+          "fly"
+        ],
+        "Page_original_study_ids": [
+          "Cunnold_2018_1"
+        ],
+        "Page_taxonlevel_effect_rows": 8,
+        "species": "Eupatorium cannabinum"
+      }
+    ]
+  },
+  "scientific_limits": {
+    "no_ALAN_lighting_treatment": true,
+    "no_cross_study_pooled_qfly_qmoth_effect": true,
+    "no_original_study_level_sampling_variances": true,
+    "source_study_year_may_be_multiyear_range": true,
+    "only_four_source_positive_q_ratios_plus_one_both_zero_comparator": true,
+    "one_recorded_butterfly_taxon_corrected_in_sensitivity_not_raw": true,
+    "no_exact_lu_seven_or_five_moth_fly_species_overlap_with_original_363_wet_ALAN_flora": true,
+    "no_real_seeds_or_reproduction_outcomes": true,
+    "no_transfer_between_distinct_plant_species": true
+  }
+}

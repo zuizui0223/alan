@@ -1,0 +1,826 @@
+{
+  "schema": "alan_page2021_original_72plantstudy_real_visitation_pollen_network_rank_20261118_v1",
+  "source_original_DOI": "10.6084/m9.figshare.16160265.v1",
+  "source_paper": "10.1002/ajb2.1764",
+  "source_original_Figshare_csv_SHA256": "e28ebe99e0dfb27b73fbe6638e568bf98fa95b92c920e1d3d981e8eaea27519a",
+  "source_original_623_taxon_records": 623,
+  "source_original_studies": 69,
+  "source_original_plants": 102,
+  "eligible_source_plant_study_periods": 72,
+  "eligible_source_plant_taxa": 62,
+  "eligible_source_original_studies": 33,
+  "source_verified_CI_run": "https://github.com/zuizui0223/alan/actions/runs/44258740517",
+  "original_72_networks_artifact": "https://github.com/zuizui0223/alan/actions/runs/44258740517/artifacts/14407371052",
+  "original_source_comparable_endpoint": "number of conspecific pollen grains",
+  "original_source_visitor_frequency_units": [
+    "number of visits per unit time per unit area",
+    "number of flowers visited per unit time per unit area"
+  ],
+  "source_original_results_no_taxon_revision": {
+    "independent_studies": 33,
+    "largest_study": {
+      "original_study_id": "Cunnold_2018_1",
+      "plant_networks": 21,
+      "within_source_study_mismatch_fraction": 0.14285714285714285
+    },
+    "leave_one_study_range": [
+      0.22727272727272727,
+      0.35294117647058826
+    ],
+    "mismatch_fraction": 0.2916666666666667,
+    "mismatch_n": 21,
+    "plants": 62,
+    "positive_q_only_mismatch": 15,
+    "positive_q_only_n": 58,
+    "positive_q_only_rate": 0.25862068965517243,
+    "rare_important_examples": [
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 2.0899806948976605,
+        "Hill2_effective_taxon_number_by_visit_rate": 1.9818336502852567,
+        "observed_source_pollinator_guilds": [
+          "ant",
+          "bee",
+          "fly"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 8,
+        "original_visitation_rate_unit": "number of flowers visited per unit time per unit area",
+        "rare_functional_taxa_n": 1,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [
+          {
+            "functional_pollen_rate_share": 0.1298997927483281,
+            "original_guild": "bee",
+            "original_taxon": "Bombus jonellus",
+            "visitation_share": 0.02763819095477387
+          }
+        ],
+        "source_plant": "Erica_tetralix",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Ballantyne_2015_1",
+        "source_study_year_period": "2013-2014",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Bombus spp.",
+        "top_pollen_taxon_function_share": 0.6710873234621711,
+        "top_pollen_taxon_visit_share": 0.6809045226130653,
+        "top_visitor_equals_top_functional_pollen": true,
+        "top_visitor_functional_pollen_share": 0.6710873234621711,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Bombus spp.",
+        "top_visitor_visit_rate_share": 0.6809045226130653
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 1.4548041783050165,
+        "Hill2_effective_taxon_number_by_visit_rate": 2.2100172061079055,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "butterfly",
+          "fly",
+          "moth"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 16,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 1,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [
+          {
+            "functional_pollen_rate_share": 0.1600400984234029,
+            "original_guild": "bee",
+            "original_taxon": "Anthophora sp.",
+            "visitation_share": 0.04707238358690641
+          }
+        ],
+        "source_plant": "Polygaloides_vayredae",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Castro_2013_1",
+        "source_study_year_period": "2005-2007",
+        "source_zero_single_visit_pollen_taxa_n": 12,
+        "top_functional_taxon": "Bombus pascuorum",
+        "top_pollen_taxon_function_share": 0.8131850906771165,
+        "top_pollen_taxon_visit_share": 0.1686030428769018,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0,
+        "top_visitor_source_pollen_efficiency_zero": true,
+        "top_visitor_taxon": "Bombus terrestris",
+        "top_visitor_visit_rate_share": 0.6464730290456432
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 6.143187462393511,
+        "Hill2_effective_taxon_number_by_visit_rate": 7.238943842299058,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "fly"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 12,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 1,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [
+          {
+            "functional_pollen_rate_share": 0.12294908882798575,
+            "original_guild": "bee",
+            "original_taxon": "Bombus spp.",
+            "visitation_share": 0.023031601499732192
+          }
+        ],
+        "source_plant": "Nepeta_cataria",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Cunnold_2018_1",
+        "source_study_year_period": "2014-2015",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Bombus hortorum",
+        "top_pollen_taxon_function_share": 0.2685575329597067,
+        "top_pollen_taxon_visit_share": 0.23567220139260847,
+        "top_visitor_equals_top_functional_pollen": true,
+        "top_visitor_functional_pollen_share": 0.2685575329597067,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Bombus hortorum",
+        "top_visitor_visit_rate_share": 0.23567220139260847
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 2.612352997226111,
+        "Hill2_effective_taxon_number_by_visit_rate": 1.3051998705567764,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "beetle"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 3,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 1,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [
+          {
+            "functional_pollen_rate_share": 0.30151387095574,
+            "original_guild": "beetle",
+            "original_taxon": "Protaetia brevitarsis",
+            "visitation_share": 0.03231017770597738
+          }
+        ],
+        "source_plant": "Schima_superba",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Yang_2017_1",
+        "source_study_year_period": "2016",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Apis cerana",
+        "top_pollen_taxon_function_share": 0.5040729850668659,
+        "top_pollen_taxon_visit_share": 0.8691437802907915,
+        "top_visitor_equals_top_functional_pollen": true,
+        "top_visitor_functional_pollen_share": 0.5040729850668659,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Apis cerana",
+        "top_visitor_visit_rate_share": 0.8691437802907915
+      }
+    ],
+    "rare_important_groups": 4,
+    "source_exclusions": {
+      "ambiguous_equal_top_visitor_or_functional_taxon": 3,
+      "duplicate_original_pollinator_taxa_same_source_cell": 2,
+      "fewer_than_two_source_pollinator_rows": 10,
+      "not_conspecific_pollen_with_standard_visitation_rate": 32
+    },
+    "source_plant_groups": 72,
+    "study_balanced_mismatch": 0.2922077922077922,
+    "study_bootstrap": {
+      "bootstrap_draws": 3999,
+      "does_not_estimate_ALAN_effect": true,
+      "mismatch_fraction95": [
+        0.15294117647058825,
+        0.5
+      ],
+      "original_plant_groups": 72,
+      "source_unique_study_IDs": 33,
+      "status": "source_study_clustered_observational_descriptive_bootstrap"
+    },
+    "top_mismatch_examples": [
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 1.4548041783050165,
+        "Hill2_effective_taxon_number_by_visit_rate": 2.2100172061079055,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "butterfly",
+          "fly",
+          "moth"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 16,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 1,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [
+          {
+            "functional_pollen_rate_share": 0.1600400984234029,
+            "original_guild": "bee",
+            "original_taxon": "Anthophora sp.",
+            "visitation_share": 0.04707238358690641
+          }
+        ],
+        "source_plant": "Polygaloides_vayredae",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Castro_2013_1",
+        "source_study_year_period": "2005-2007",
+        "source_zero_single_visit_pollen_taxa_n": 12,
+        "top_functional_taxon": "Bombus pascuorum",
+        "top_pollen_taxon_function_share": 0.8131850906771165,
+        "top_pollen_taxon_visit_share": 0.1686030428769018,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0,
+        "top_visitor_source_pollen_efficiency_zero": true,
+        "top_visitor_taxon": "Bombus terrestris",
+        "top_visitor_visit_rate_share": 0.6464730290456432
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 2.316354381457193,
+        "Hill2_effective_taxon_number_by_visit_rate": 2.108576767704526,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "beetle",
+          "fly"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 7,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 0,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [],
+        "source_plant": "Campanula_persicifolia",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Cunnold_2018_1",
+        "source_study_year_period": "2014-2015",
+        "source_zero_single_visit_pollen_taxa_n": 2,
+        "top_functional_taxon": "Megachilidae spp.",
+        "top_pollen_taxon_function_share": 0.5461455937106351,
+        "top_pollen_taxon_visit_share": 0.1371841155234657,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0.3597482365986199,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Apis mellifera",
+        "top_visitor_visit_rate_share": 0.6660649819494585
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 6.480994588866203,
+        "Hill2_effective_taxon_number_by_visit_rate": 5.031687555549831,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "fly"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 11,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 0,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [],
+        "source_plant": "Echium_vulgare",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Cunnold_2018_1",
+        "source_study_year_period": "2014-2015",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Bombus spp.",
+        "top_pollen_taxon_function_share": 0.2837051578726417,
+        "top_pollen_taxon_visit_share": 0.1504,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0.19754365386524494,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Episyrphus balteatus",
+        "top_visitor_visit_rate_share": 0.3776
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 5.210594493198125,
+        "Hill2_effective_taxon_number_by_visit_rate": 4.3575026439102285,
+        "observed_source_pollinator_guilds": [
+          "bee"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 7,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 0,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [],
+        "source_plant": "Geranium_johnsonii",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Cunnold_2018_1",
+        "source_study_year_period": "2014-2015",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Bombus lapidarius",
+        "top_pollen_taxon_function_share": 0.25888939787244875,
+        "top_pollen_taxon_visit_share": 0.17238001958863858,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0.2479645747442358,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Bombus pratorum",
+        "top_visitor_visit_rate_share": 0.3751224289911851
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 3.6033346583463364,
+        "Hill2_effective_taxon_number_by_visit_rate": 5.511305161390926,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "bird",
+          "butterfly",
+          "wasp"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 8,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 0,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [],
+        "source_plant": "Malva_phoenicea",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "de Castro_2017_1",
+        "source_study_year_period": "2006-2009",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Phylloscopus canariensis",
+        "top_pollen_taxon_function_share": 0.37086549657165035,
+        "top_pollen_taxon_visit_share": 0.19946808510638298,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0.05929535555651387,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Pararge xiphioides",
+        "top_visitor_visit_rate_share": 0.2925531914893617
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 3.5898643782663866,
+        "Hill2_effective_taxon_number_by_visit_rate": 3.95797351755901,
+        "observed_source_pollinator_guilds": [
+          "bird"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 4,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 0,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [],
+        "source_plant": "Aloe_ferox",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Diller_2019_1",
+        "source_study_year_period": "2017",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Lamprotornis nitens",
+        "top_pollen_taxon_function_share": 0.32374297995190776,
+        "top_pollen_taxon_visit_share": 0.23636363636363636,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0.3117448587881599,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Ploceus spp.",
+        "top_visitor_visit_rate_share": 0.2872727272727273
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 2.9038321921573487,
+        "Hill2_effective_taxon_number_by_visit_rate": 2.1574448628726275,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "bird"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 4,
+        "original_visitation_rate_unit": "number of flowers visited per unit time per unit area",
+        "rare_functional_taxa_n": 0,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [],
+        "source_plant": "Pitcairnia_angustifolia",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Fumero_Cabán_2007_1",
+        "source_study_year_period": "2002",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Apis mellifera",
+        "top_pollen_taxon_function_share": 0.4242678764709946,
+        "top_pollen_taxon_visit_share": 0.29993386243386244,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0.27586486424245216,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Coereba flaveola",
+        "top_visitor_visit_rate_share": 0.6068121693121693
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 5.3468995776814765,
+        "Hill2_effective_taxon_number_by_visit_rate": 6.119448054165587,
+        "observed_source_pollinator_guilds": [
+          "ant",
+          "bee",
+          "fly"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 8,
+        "original_visitation_rate_unit": "number of flowers visited per unit time per unit area",
+        "rare_functional_taxa_n": 0,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [],
+        "source_plant": "Hormathophylla_spinosa",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Gomez_1999_1",
+        "source_study_year_period": "1988-1991",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Dufourea paradoxa",
+        "top_pollen_taxon_function_share": 0.2728516605184054,
+        "top_pollen_taxon_visit_share": 0.21581008712333147,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0.23460277113443165,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Colletes nigricans",
+        "top_visitor_visit_rate_share": 0.22076572616097834
+      }
+    ],
+    "version": "raw"
+  },
+  "independent_Nymphalidae_taxonomy_revision_Vanessa_carye": {
+    "independent_studies": 33,
+    "largest_study": {
+      "original_study_id": "Cunnold_2018_1",
+      "plant_networks": 21,
+      "within_source_study_mismatch_fraction": 0.14285714285714285
+    },
+    "leave_one_study_range": [
+      0.22727272727272727,
+      0.35294117647058826
+    ],
+    "mismatch_fraction": 0.2916666666666667,
+    "mismatch_n": 21,
+    "plants": 62,
+    "positive_q_only_mismatch": 17,
+    "positive_q_only_n": 60,
+    "positive_q_only_rate": 0.2833333333333333,
+    "rare_important_examples": [
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 2.0899806948976605,
+        "Hill2_effective_taxon_number_by_visit_rate": 1.9818336502852567,
+        "observed_source_pollinator_guilds": [
+          "ant",
+          "bee",
+          "fly"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 8,
+        "original_visitation_rate_unit": "number of flowers visited per unit time per unit area",
+        "rare_functional_taxa_n": 1,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [
+          {
+            "functional_pollen_rate_share": 0.1298997927483281,
+            "original_guild": "bee",
+            "original_taxon": "Bombus jonellus",
+            "visitation_share": 0.02763819095477387
+          }
+        ],
+        "source_plant": "Erica_tetralix",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Ballantyne_2015_1",
+        "source_study_year_period": "2013-2014",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Bombus spp.",
+        "top_pollen_taxon_function_share": 0.6710873234621711,
+        "top_pollen_taxon_visit_share": 0.6809045226130653,
+        "top_visitor_equals_top_functional_pollen": true,
+        "top_visitor_functional_pollen_share": 0.6710873234621711,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Bombus spp.",
+        "top_visitor_visit_rate_share": 0.6809045226130653
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 1.4548041783050165,
+        "Hill2_effective_taxon_number_by_visit_rate": 2.2100172061079055,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "butterfly",
+          "fly",
+          "moth"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 16,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 1,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [
+          {
+            "functional_pollen_rate_share": 0.1600400984234029,
+            "original_guild": "bee",
+            "original_taxon": "Anthophora sp.",
+            "visitation_share": 0.04707238358690641
+          }
+        ],
+        "source_plant": "Polygaloides_vayredae",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Castro_2013_1",
+        "source_study_year_period": "2005-2007",
+        "source_zero_single_visit_pollen_taxa_n": 12,
+        "top_functional_taxon": "Bombus pascuorum",
+        "top_pollen_taxon_function_share": 0.8131850906771165,
+        "top_pollen_taxon_visit_share": 0.1686030428769018,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0,
+        "top_visitor_source_pollen_efficiency_zero": true,
+        "top_visitor_taxon": "Bombus terrestris",
+        "top_visitor_visit_rate_share": 0.6464730290456432
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 6.143187462393511,
+        "Hill2_effective_taxon_number_by_visit_rate": 7.238943842299058,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "fly"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 12,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 1,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [
+          {
+            "functional_pollen_rate_share": 0.12294908882798575,
+            "original_guild": "bee",
+            "original_taxon": "Bombus spp.",
+            "visitation_share": 0.023031601499732192
+          }
+        ],
+        "source_plant": "Nepeta_cataria",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Cunnold_2018_1",
+        "source_study_year_period": "2014-2015",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Bombus hortorum",
+        "top_pollen_taxon_function_share": 0.2685575329597067,
+        "top_pollen_taxon_visit_share": 0.23567220139260847,
+        "top_visitor_equals_top_functional_pollen": true,
+        "top_visitor_functional_pollen_share": 0.2685575329597067,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Bombus hortorum",
+        "top_visitor_visit_rate_share": 0.23567220139260847
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 2.612352997226111,
+        "Hill2_effective_taxon_number_by_visit_rate": 1.3051998705567764,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "beetle"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 3,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 1,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [
+          {
+            "functional_pollen_rate_share": 0.30151387095574,
+            "original_guild": "beetle",
+            "original_taxon": "Protaetia brevitarsis",
+            "visitation_share": 0.03231017770597738
+          }
+        ],
+        "source_plant": "Schima_superba",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Yang_2017_1",
+        "source_study_year_period": "2016",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Apis cerana",
+        "top_pollen_taxon_function_share": 0.5040729850668659,
+        "top_pollen_taxon_visit_share": 0.8691437802907915,
+        "top_visitor_equals_top_functional_pollen": true,
+        "top_visitor_functional_pollen_share": 0.5040729850668659,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Apis cerana",
+        "top_visitor_visit_rate_share": 0.8691437802907915
+      }
+    ],
+    "rare_important_groups": 4,
+    "source_exclusions": {
+      "ambiguous_equal_top_visitor_or_functional_taxon": 3,
+      "duplicate_original_pollinator_taxa_same_source_cell": 2,
+      "fewer_than_two_source_pollinator_rows": 10,
+      "not_conspecific_pollen_with_standard_visitation_rate": 32
+    },
+    "source_plant_groups": 72,
+    "study_balanced_mismatch": 0.2922077922077922,
+    "study_bootstrap": {
+      "bootstrap_draws": 3999,
+      "does_not_estimate_ALAN_effect": true,
+      "mismatch_fraction95": [
+        0.15294117647058825,
+        0.5
+      ],
+      "original_plant_groups": 72,
+      "source_unique_study_IDs": 33,
+      "status": "source_study_clustered_observational_descriptive_bootstrap"
+    },
+    "top_mismatch_examples": [
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 1.4548041783050165,
+        "Hill2_effective_taxon_number_by_visit_rate": 2.2100172061079055,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "butterfly",
+          "fly",
+          "moth"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 16,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 1,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [
+          {
+            "functional_pollen_rate_share": 0.1600400984234029,
+            "original_guild": "bee",
+            "original_taxon": "Anthophora sp.",
+            "visitation_share": 0.04707238358690641
+          }
+        ],
+        "source_plant": "Polygaloides_vayredae",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Castro_2013_1",
+        "source_study_year_period": "2005-2007",
+        "source_zero_single_visit_pollen_taxa_n": 12,
+        "top_functional_taxon": "Bombus pascuorum",
+        "top_pollen_taxon_function_share": 0.8131850906771165,
+        "top_pollen_taxon_visit_share": 0.1686030428769018,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0,
+        "top_visitor_source_pollen_efficiency_zero": true,
+        "top_visitor_taxon": "Bombus terrestris",
+        "top_visitor_visit_rate_share": 0.6464730290456432
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 2.316354381457193,
+        "Hill2_effective_taxon_number_by_visit_rate": 2.108576767704526,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "beetle",
+          "fly"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 7,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 0,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [],
+        "source_plant": "Campanula_persicifolia",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Cunnold_2018_1",
+        "source_study_year_period": "2014-2015",
+        "source_zero_single_visit_pollen_taxa_n": 2,
+        "top_functional_taxon": "Megachilidae spp.",
+        "top_pollen_taxon_function_share": 0.5461455937106351,
+        "top_pollen_taxon_visit_share": 0.1371841155234657,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0.3597482365986199,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Apis mellifera",
+        "top_visitor_visit_rate_share": 0.6660649819494585
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 6.480994588866203,
+        "Hill2_effective_taxon_number_by_visit_rate": 5.031687555549831,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "fly"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 11,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 0,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [],
+        "source_plant": "Echium_vulgare",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Cunnold_2018_1",
+        "source_study_year_period": "2014-2015",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Bombus spp.",
+        "top_pollen_taxon_function_share": 0.2837051578726417,
+        "top_pollen_taxon_visit_share": 0.1504,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0.19754365386524494,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Episyrphus balteatus",
+        "top_visitor_visit_rate_share": 0.3776
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 5.210594493198125,
+        "Hill2_effective_taxon_number_by_visit_rate": 4.3575026439102285,
+        "observed_source_pollinator_guilds": [
+          "bee"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 7,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 0,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [],
+        "source_plant": "Geranium_johnsonii",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Cunnold_2018_1",
+        "source_study_year_period": "2014-2015",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Bombus lapidarius",
+        "top_pollen_taxon_function_share": 0.25888939787244875,
+        "top_pollen_taxon_visit_share": 0.17238001958863858,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0.2479645747442358,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Bombus pratorum",
+        "top_visitor_visit_rate_share": 0.3751224289911851
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 3.6033346583463364,
+        "Hill2_effective_taxon_number_by_visit_rate": 5.511305161390926,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "bird",
+          "butterfly",
+          "wasp"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 8,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 0,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [],
+        "source_plant": "Malva_phoenicea",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "de Castro_2017_1",
+        "source_study_year_period": "2006-2009",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Phylloscopus canariensis",
+        "top_pollen_taxon_function_share": 0.37086549657165035,
+        "top_pollen_taxon_visit_share": 0.19946808510638298,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0.05929535555651387,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Pararge xiphioides",
+        "top_visitor_visit_rate_share": 0.2925531914893617
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 3.5898643782663866,
+        "Hill2_effective_taxon_number_by_visit_rate": 3.95797351755901,
+        "observed_source_pollinator_guilds": [
+          "bird"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 4,
+        "original_visitation_rate_unit": "number of visits per unit time per unit area",
+        "rare_functional_taxa_n": 0,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [],
+        "source_plant": "Aloe_ferox",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Diller_2019_1",
+        "source_study_year_period": "2017",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Lamprotornis nitens",
+        "top_pollen_taxon_function_share": 0.32374297995190776,
+        "top_pollen_taxon_visit_share": 0.23636363636363636,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0.3117448587881599,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Ploceus spp.",
+        "top_visitor_visit_rate_share": 0.2872727272727273
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 2.9038321921573487,
+        "Hill2_effective_taxon_number_by_visit_rate": 2.1574448628726275,
+        "observed_source_pollinator_guilds": [
+          "bee",
+          "bird"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 4,
+        "original_visitation_rate_unit": "number of flowers visited per unit time per unit area",
+        "rare_functional_taxa_n": 0,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [],
+        "source_plant": "Pitcairnia_angustifolia",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Fumero_Cabán_2007_1",
+        "source_study_year_period": "2002",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Apis mellifera",
+        "top_pollen_taxon_function_share": 0.4242678764709946,
+        "top_pollen_taxon_visit_share": 0.29993386243386244,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0.27586486424245216,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Coereba flaveola",
+        "top_visitor_visit_rate_share": 0.6068121693121693
+      },
+      {
+        "Hill2_effective_taxon_number_by_pollen_delivery": 5.3468995776814765,
+        "Hill2_effective_taxon_number_by_visit_rate": 6.119448054165587,
+        "observed_source_pollinator_guilds": [
+          "ant",
+          "bee",
+          "fly"
+        ],
+        "original_SVE_measure": "number of conspecific pollen grains",
+        "original_source_pollinator_taxa": 8,
+        "original_visitation_rate_unit": "number of flowers visited per unit time per unit area",
+        "rare_functional_taxa_n": 0,
+        "rare_under5pct_visitation_over10pct_functional_pollen": [],
+        "source_plant": "Hormathophylla_spinosa",
+        "source_single_site_plants_not_independent_studies": true,
+        "source_study": "Gomez_1999_1",
+        "source_study_year_period": "1988-1991",
+        "source_zero_single_visit_pollen_taxa_n": 0,
+        "top_functional_taxon": "Dufourea paradoxa",
+        "top_pollen_taxon_function_share": 0.2728516605184054,
+        "top_pollen_taxon_visit_share": 0.21581008712333147,
+        "top_visitor_equals_top_functional_pollen": false,
+        "top_visitor_functional_pollen_share": 0.23460277113443165,
+        "top_visitor_source_pollen_efficiency_zero": false,
+        "top_visitor_taxon": "Colletes nigricans",
+        "top_visitor_visit_rate_share": 0.22076572616097834
+      }
+    ],
+    "version": "verified"
+  },
+  "limitations": {
+    "all_effects_source_observational_not_manipulated_ALAN": true,
+    "all_matched_effectiveness_measures_same_plant_study_period_metric_units": true,
+    "study_period_can_span_years": true,
+    "missing_pollen_SDs_and_pollen_quality": true,
+    "source_zero_SVE_is_actual_observed_zero_not_missing": true,
+    "study_level_bootstrap_is_descriptive_not_fitted_random_effects": true,
+    "study_nonsimultaneous_date_binning_possible": true,
+    "these_72_plant_networks_not_72_independent_field_experiments": true,
+    "source_Erica_tetralix_primary_Ballantyne_study_also_in_Page_data": true,
+    "cannot_directly_calibrate_Lu_alpine_7_plants_or_58_wet_ALAN_case_plants": true,
+    "no_stigma_compatible_function_for_ALAN_treatment": true
+  }
+}
