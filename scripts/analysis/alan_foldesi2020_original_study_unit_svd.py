@@ -65,7 +65,9 @@ def source_rows():
     require(hashlib.sha256(raw).hexdigest()==EXPECTED_SHA256,
             "Original exact source dataset changed version")
     import csv
-    txt=raw.decode("utf-8-sig")
+    # The original published CSV contains Latin-1 non-breaking spaces (0xa0).
+    # Decode the byte-verified original directly without replacing its values.
+    txt=raw.decode("latin-1")
     frame=list(csv.DictReader(io.StringIO(txt),delimiter=";"))
     require(len(frame)==ROWS,"Original dataset must be 111 records, never pretend 127")
     expected={"studyID","Plant_sp","Plant_family","type","Pollinator",
