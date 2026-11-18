@@ -176,8 +176,9 @@ def taxon_verified_source_sensitivity(rows):
     flagged=[r for r in rows
              if r["pollinator.group"].strip()=="moth" and
                 r["pollinator.taxon"].strip()=="Vanessa carye"]
-    check(len(flagged)==1,"Original single Nymphalidae Vanessa carye mislabeled moth changed")
-    without=[r for r in rows if r is not flagged[0]]
+    check(len(flagged)>=1,"Original documented Nymphalidae Vanessa carye mislabel absent from source")
+    excluded_ids={id(r) for r in flagged}
+    without=[r for r in rows if id(r) not in excluded_ids]
     original=compare(rows,VKEY,True)
     validated=compare(without,VKEY,True)
     fixed=within_original_sameplant_pollen_flux(without)
@@ -188,8 +189,11 @@ def taxon_verified_source_sensitivity(rows):
       "independent_taxonomy_superfamily":"Papilionoidea",
       "independent_taxonomic_authority":"https://mczbase.mcz.harvard.edu/name/Vanessa%20carye",
       "original_source_flagged_rows":len(flagged),
-      "original_source_Vanessa_q_grains":num(flagged[0]["effectiveness.average"]),
-      "original_source_Vanessa_visitation_rate":num(flagged[0]["visit.value"]),
+      "original_source_Vanessa_source_records":[{
+          "source_study":r["studyID"],"source_plant":r["plant.species"],
+          "source_original_SVE":num(r["effectiveness.average"]),
+          "source_original_visit_rate":num(r["visit.value"])}
+          for r in flagged],
       "original_source_taxonomic_mismatch_not_silently_relabelled":True,
       "unmodified_source_original_moth_fly_pairs":original["original_moth_fly_matched_cells"],
       "after_excluding_known_misclassified_butterfly_pairs":
