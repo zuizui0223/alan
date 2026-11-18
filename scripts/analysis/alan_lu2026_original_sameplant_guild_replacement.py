@@ -47,7 +47,9 @@ def indexed_original(s):
         repeat=str(r["repeat"]).strip()
         plant=str(r["plant"]).strip()
         need(phase in ("day","night") and arm in ("lit","dark"),
-             "unknown source diel/treatment coding")
+             "unknown source diel/treatment coding: sampling_time="
+             +repr(str(r["sampling_time"])[:60])+", treatment="
+             +repr(str(r["treatment"])[:60]))
         need(block and plant and survey_round and repeat,
              "original source plant, block or observation period missing")
         v={g:num(r[g]) for g in G}
