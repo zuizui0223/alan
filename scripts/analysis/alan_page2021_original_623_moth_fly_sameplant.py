@@ -214,6 +214,13 @@ def run(rows):
       "source_study_count":len(set(r["studyID"] for r in rows)),
       "source_plant_count":len(set(r["plant.species"] for r in rows)),
       "source_pollinator_group_counts":dict(bygrp),
+      "original_moth_group_taxon_labels":sorted(set(
+          r["pollinator.taxon"] for r in rows
+          if r["pollinator.group"].strip()=="moth")),
+      "original_mixed_butterfly_moth_taxon_labels":sorted(set(
+          r["pollinator.taxon"] for r in rows
+          if r["pollinator.group"].strip()=="butterfly/moth")),
+      "source_original_study_year_field_can_be_range_not_single_year":True,
       "source_effectiveness_metrics_with_units":{
         f"{k[0]} | {k[1]}":v for k,v in bymetric.items()},
       "source_visit_metrics":dict(byvisit),
