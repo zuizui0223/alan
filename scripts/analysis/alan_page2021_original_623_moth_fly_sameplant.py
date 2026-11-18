@@ -73,6 +73,95 @@ def compare(rows,key,include_numeric):
             "source_comparisons":outcomes,
             "not_a_valid_precision_weighted_meta_effect":True}
 
+def within_original_sameplant_pollen_flux(rows):
+    """For matching actual source SVE and visit units, calculate q*V.
+
+    Pollination-efficiency q is a measured mean of conspecific pollen grains
+    per visit; V is the reported visit *rate*, often per time and area.
+    Therefore q*V is only a relative, conditional pollen-flux proxy within
+    a study/plant/source sampling unit, not observed seed output or a novel
+    cross-study pooled response. If the visit metric is literally 'other',
+    leave the flux undefined. Zero moth q produces a genuinely undefined
+    positive fly/moth ratio, not an invented arbitrarily large finite value.
+    """
+    mapping=defaultdict(list)
+    for r in rows:
+        mapping[tuple(r[k].strip() for k in VKEY)].append(r)
+    support=[]
+    for key,group in mapping.items():
+        g=defaultdict(list)
+        for r in group:g[r["pollinator.group"].strip()].append(r)
+        if not g["moth"] or not g["fly"]:continue
+        stage={"source_study":key[0],"source_plant":key[1],
+               "source_original_study_year":key[2],
+               "source_effectiveness_metric":key[3],
+               "source_original_effect_unit":key[4],
+               "source_visitation_unit":key[5],
+               "source_moth_taxa_n":len(g["moth"]),
+               "source_fly_taxa_n":len(g["fly"])}
+        stage["source_taxon_details"]={}
+        for name in ("moth","fly"):
+            entries=[]
+            for r in g[name]:
+                q=num(r["effectiveness.average"])
+                visit=num(r["visit.value"])
+                entries.append({"source_original_visitor_taxon":r["pollinator.taxon"],
+                    "source_average_SVE_conspecific_grains_per_visit":q,
+                    "source_visitation_rate":visit,
+                    "source_metric":r["effectiveness.metric"],
+                    "original_taxon_sample_size_not_provided":True})
+            stage["source_taxon_details"][name]=entries
+        can_use=(key[3].lower()=="number of conspecific pollen grains" and
+            key[4].lower()=="mean" and key[5].lower()!="other")
+        for name in ("moth","fly"):
+            values=stage["source_taxon_details"][name]
+            can_use=can_use and all(
+                x["source_average_SVE_conspecific_grains_per_visit"] is not None and
+                x["source_average_SVE_conspecific_grains_per_visit"]>=0 and
+                x["source_visitation_rate"] is not None and
+                x["source_visitation_rate"]>=0 for x in values)
+        stage["source_same_metric_pollen_times_visits_eligible"]=bool(can_use)
+        if can_use:
+            rate={}
+            for name in ("moth","fly"):
+                o=stage["source_taxon_details"][name]
+                rates=sum(x["source_visitation_rate"] for x in o)
+                function=sum(x["source_visitation_rate"]*
+                    x["source_average_SVE_conspecific_grains_per_visit"] for x in o)
+                rate[name]={"original_source_visitor_rate_sum":rates,
+                    "estimated_pollen_delivered_rate_visitor_SVE_times_rate":function,
+                    "source_visit_rate_weighted_mean_SVE":
+                        function/rates if rates>0 else None}
+            moth=rate["moth"]
+            fly=rate["fly"]
+            stage.update({
+               "within_source_original_visitor_rate_and_functional_weights":rate,
+               "visitation_ratio_fly_vs_moth":(
+                 fly["original_source_visitor_rate_sum"]/
+                 moth["original_source_visitor_rate_sum"]
+                 if moth["original_source_visitor_rate_sum"]>0 else None),
+               "estimated_conspecific_pollen_flux_ratio_fly_vs_moth":(
+                 fly["estimated_pollen_delivered_rate_visitor_SVE_times_rate"]/
+                 moth["estimated_pollen_delivered_rate_visitor_SVE_times_rate"]
+                 if moth["estimated_pollen_delivered_rate_visitor_SVE_times_rate"]>0 else None),
+               "source_functional_ratio_is_sve_times_visit_not_observed_fitness":True
+            })
+        else:
+            stage["source_plant_relative_flux_unidentifiable_reason"]=(
+               "original visit.metric is not a standard comparable field rate, "
+               "or SVE metric or missing numeric data not matched")
+        support.append(stage)
+    return {
+       "source_study_plant_year_same_SVE_and_visit_unit_pairs":len(support),
+       "source_paired_original_studies":len({r["source_study"] for r in support}),
+       "source_paired_sameplant_records":support,
+       "source_study_plant_comparisons_with_comparable_visit_rate_and_SVE":
+          sum(x["source_same_metric_pollen_times_visits_eligible"] for x in support),
+       "source_no_moth_fly_light_treatment_in_this_observational_SVE_data":True,
+       "source_no_guild_effectiveness_variances_available":True,
+       "source_unmeasured_reproductive_seed_success":True
+    }
+
 def run(rows):
     bygrp=Counter(r["pollinator.group"].strip() for r in rows)
     bymetric=Counter((r["effectiveness.metric"].strip(),
@@ -92,6 +181,8 @@ def run(rows):
       "source_visit_metrics":dict(byvisit),
       "source_SVE_missing":sum(num(r["effectiveness.average"]) is None for r in rows),
       "source_visit_value_missing":sum(num(r["visit.value"]) is None for r in rows),
+      "same_study_same_plant_original_measured_SVE_times_visitor_rate":
+          within_original_sameplant_pollen_flux(rows),
       "same_plant_study_year_but_unknown_function_metric_comparability":
           compare(rows,PKEY,False),
       "same_study_plant_year_and_original_effect_metric_unit":
