@@ -114,6 +114,11 @@ def candidate_groups(rows,taxon_validate=False):
             "Hill2_effective_taxon_number_by_pollen_delivery":n_eff("estimated_conspecific_pollen_delivery_rate"),
             "rare_under5pct_visitation_over10pct_functional_pollen":rare,
             "rare_functional_taxa_n":len(rare),
+            "source_zero_single_visit_pollen_taxa_n":
+                sum(a["source_single_visit_stigma_conspecific_pollen_mean"]==0
+                    for a in observed),
+            "top_visitor_source_pollen_efficiency_zero":
+                topV["source_single_visit_stigma_conspecific_pollen_mean"]==0,
             "source_single_site_plants_not_independent_studies":True
         })
     return output,dict(excluded),len(groups)
@@ -144,8 +149,37 @@ def run(rows):
         rare=[z for z in x if z["rare_functional_taxa_n"]>0]
         functional_narrow=[z for z in x if z["Hill2_effective_taxon_number_by_pollen_delivery"]<
                                              z["Hill2_effective_taxon_number_by_visit_rate"]]
+        bystudy=collections.defaultdict(list)
+        for z in x:bystudy[z["source_study"]].append(z)
+        studyrates=[sum(not a["top_visitor_equals_top_functional_pollen"] for a in v)/len(v)
+                    for v in bystudy.values()]
+        largest=sorted(bystudy.items(),key=lambda z:len(z[1]),reverse=True)
+        other_only=[z for z in x if z["source_zero_single_visit_pollen_taxa_n"]==0]
+        std_without=[sum(not a["top_visitor_equals_top_functional_pollen"] for a in x
+                if a["source_study"]!=sid)/
+                sum(a["source_study"]!=sid for a in x)
+                for sid in bystudy if sum(a["source_study"]!=sid for a in x)>0]
         return {
           "original_source_study_plant_period_metric_visitation_cells":cells,
+          "source_study_balanced_mean_mismatch_fraction":
+               statistics.fmean(studyrates) if studyrates else None,
+          "largest_contributing_source_study":{
+              "original_study_id":largest[0][0],
+              "plant_networks":len(largest[0][1]),
+              "within_source_study_mismatch_fraction":
+                  sum(not a["top_visitor_equals_top_functional_pollen"]
+                      for a in largest[0][1])/len(largest[0][1])
+          } if largest else None,
+          "leave_any_single_original_study_out_mismatch_fraction_min_max":
+              [min(std_without),max(std_without)] if std_without else None,
+          "positive_q_only_visitor_taxa_groups_count":len(other_only),
+          "positive_q_only_visitor_taxa_mismatch_n":sum(
+              not a["top_visitor_equals_top_functional_pollen"]
+              for a in other_only),
+          "positive_q_only_visitor_taxa_mismatch_fraction":(
+              sum(not a["top_visitor_equals_top_functional_pollen"]
+                  for a in other_only)/len(other_only)) if other_only else None,
+          "all_source_q_variances_or_visitation_rate_SEs_missing":True,
           "eligible_comparable_functional_pollen_plant_groups":len(x),
           "source_unique_studies":len({a["source_study"] for a in x}),
           "source_unique_plant_taxon_names":len({a["source_plant"] for a in x}),
@@ -192,6 +226,12 @@ def main():
           "mismatch_n":x["top_visitor_differs_from_top_function_n"],
           "mismatch_fraction":x["top_visitor_differs_from_top_function_fraction"],
           "rare_important_groups":x["rare_visitor_under5percent_but_over10percent_pollen_groups_n"],
+          "study_balanced_mismatch":x["source_study_balanced_mean_mismatch_fraction"],
+          "largest_study":x["largest_contributing_source_study"],
+          "leave_one_study_range":x["leave_any_single_original_study_out_mismatch_fraction_min_max"],
+          "positive_q_only_n":x["positive_q_only_visitor_taxa_groups_count"],
+          "positive_q_only_mismatch":x["positive_q_only_visitor_taxa_mismatch_n"],
+          "positive_q_only_rate":x["positive_q_only_visitor_taxa_mismatch_fraction"],
           "source_exclusions":x["original_groups_excluded_by_source_quality"],
           "study_bootstrap":x["source_group_study_unit_bootstrap"],
           "top_mismatch_examples":x["examples_mismatched_functional_taxa"][:8],
