@@ -57,6 +57,31 @@ def synthesize(registry):
         "not_a_control_adjusted_BACI_effect": True,
         "repeated_15_nights_are_not_independent_light_replicates": True,
     }
+    # Brown's predator and herbivore guilds were classified from the SAME
+    # ten experimental pitfall traps across the SAME three light periods.
+    # Compute within-arm stage composition only; no predator->herbivore
+    # mortality or control-adjusted causal mediation is observed.
+    hrows = [r for r in by_ep["herbivore_abundance"] if r["programme_id"] == "Brown2023"]
+    if len(hrows) != 1:
+        raise ValueError("Brown herbivore endpoint must remain one non-independent stage")
+    h = hrows[0]["effect"]
+    if h["kind"] != "three_period_experimental_trap_means" or min(h["pre"], h["during"], h["post"]) <= 0:
+        raise ValueError("Invalid original Brown Table 3 herbivore means")
+    trophic_ratio = {stage: b[stage]/h[stage] for stage in ("pre", "during", "post")}
+    brown_trophic = {
+        "source": "Brown 2023 original Table 3, experimental traps only",
+        "predator_average_capture": {stage: b[stage] for stage in ("pre", "during", "post")},
+        "herbivore_average_capture": {stage: h[stage] for stage in ("pre", "during", "post")},
+        "predator_to_herbivore_capture_ratio": trophic_ratio,
+        "light_on_to_pre_predator_herbivore_ratio_of_ratios": trophic_ratio["during"]/trophic_ratio["pre"],
+        "post_to_pre_predator_herbivore_ratio_of_ratios": trophic_ratio["post"]/trophic_ratio["pre"],
+        "herbivore_during_to_pre_within_lit": h["during"]/h["pre"],
+        "herbivore_pre_minus_during_tukey_CI_from_original": h["reported_tukey_pre_vs_during_ci_for_pre_minus_during"],
+        "same_original_trap_level_process_not_two_experiments": True,
+        "pitfall_counts_are_activity_density_not_true_abundance": True,
+        "not_a_direct_predation_or_plant_damage_effect": True,
+        "not_a_control_adjusted_BACI_estimate": True,
+    }
     boom = next(r for r in by_ep["nursery_seed_predation"] if r["programme_id"] == "Boom2020")["effect"]
     specs = {}
     for treatment in ("dark", "green", "white", "red"):
@@ -82,6 +107,7 @@ def synthesize(registry):
             "different_ecological_stages_are_not_interchangeable": sorted(by_ep),
         },
         "brown2023_original_published_period_arithmetic": brown,
+        "brown2023_predator_herbivore_source_trophic_capture_reweighting": brown_trophic,
         "boom2020_spectral_nursery_algebra": {
             "product_of_published_means_fruit_times_noninfested_times_fertilized": specs,
             "green_to_dark_product_ratio": specs["green"]/specs["dark"],
@@ -119,6 +145,7 @@ def main():
     print("PREDATOR_PROGRAMMES",ans["evidence"]["independent_programmes_unique"])
     print("PREDATOR_DIRECTIONS",ans["evidence"]["predator_abundance_published_directions"])
     print("BROWN_DESCRIPTIVE_DURING_PRE",round(ans["brown2023_original_published_period_arithmetic"]["during_to_pre_descriptive_ratio"],6))
+    print("BROWN_TROPHIC_PREDATOR_HERBIVORE_RATIO_OF_RATIOS",round(ans["brown2023_predator_herbivore_source_trophic_capture_reweighting"]["light_on_to_pre_predator_herbivore_ratio_of_ratios"],6))
     print("BOOM_SPECTRAL_PRODUCT_GREEN_DARK",round(ans["boom2020_spectral_nursery_algebra"]["green_to_dark_product_ratio"],6))
 
 
