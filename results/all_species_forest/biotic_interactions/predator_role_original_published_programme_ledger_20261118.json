@@ -1,7 +1,7 @@
 {
   "schema": "alan_20261118_new_predator_roles_programme_ledger_v1",
   "as_of": "2026-11-18",
-  "selection": "purposeful mechanism and counterexample set; NOT a systematic review or representative meta sample",
+  "selection": "purposeful mechanism and counterexample set; NOT a systematic review or representative meta sample; 2022 artificial-prey spatial reversal was independently added as a published non-randomized counterexample, not pooled with manipulative predator-abundance outcomes",
   "source_independence_rule": "programme_id is independent study programme; never count multiple endpoint_id rows as independent experiments",
   "light_treatment_unit_rule": "use independently assigned lit and unlit field plots/sites; repeated nights, multiple model caterpillars, leaves and individual insects are not independent installations",
   "source_verification_note": "Parkinson directly refit on main; other numerical entries from cited primary published text unless EDI access separately demonstrated",
@@ -238,6 +238,40 @@
       "site_confounding": "no significant overall seeds/flower treatment difference; conditional ovule values selected on noninfested fruits; ratio not mediation",
       "plant_fitness_measured": true,
       "source_url": "https://doi.org/10.1038/s41598-020-75471-1"
+    },
+    {
+      "programme_id": "Eckhartt2022",
+      "endpoint_id": "Eckhartt2022_bait_predation_spatial_gradient",
+      "year": 2022,
+      "doi": "10.1098/rsbl.2022.0281",
+      "biome": "urban grass streetlight margin",
+      "site_type": "St Andrews UK established LED streetlights; five within-lamp distances",
+      "guild": "unknown predators consuming insect-containing suet pellets",
+      "endpoint": "surrogate_bait_predation_probability",
+      "direction": "lower_predation_near_light_at_night",
+      "source_treatment_units": "7 existing lamppost clusters, measured for 13 calendar days, 5 distance levels; NOT 830 independently assigned lamps",
+      "sampling": "830 artificial prey bait events (approximately 415 before and 415 after dusk); baits left for six hours each; natural twilight and lamp-on coincide",
+      "effect": {
+        "kind": "published_random_lamp_batch_GLMM",
+        "value": null,
+        "model_intercept": -3.32,
+        "pre_dusk_logit": 9.263,
+        "distance_post_dusk_logit_per_m": 0.384,
+        "distance_SE": 0.089,
+        "pre_dusk_distance_interaction": -0.491,
+        "interaction_SE": 0.148,
+        "interaction_z": -3.323,
+        "interaction_reported_p": "<0.001",
+        "published_before_baits_predated": 345,
+        "published_after_baits_predated": 171,
+        "published_baits_total": 830,
+        "random_lamp_intercept_variance": 17.02,
+        "random_batch_intercept_variance": 12.92
+      },
+      "raw_source_status": "published original peer-reviewed Table 1 and official Dryad dataset doi:10.5061/dryad.7m0cfxpxv; author original workbook SHA and 7-lamp refit not yet verified (Dryad API metadata accessible)",
+      "site_confounding": "original lampposts were not switched off at night; time-of-day and unmanipulated street lighting change together; bait pellets are not living insects; real predators unobserved; nuisance random-effects does not make 830 sites",
+      "plant_fitness_measured": false,
+      "source_url": "https://doi.org/10.1098/rsbl.2022.0281"
     }
   ]
 }
