@@ -8,6 +8,7 @@ on:
     paths:
       - 'scripts/analysis/alan_true_parkinson2020_aquatic_spider_20261118.py'
       - 'scripts/analysis/alan_wet_biotic_multiguild_source_20261118.py'
+      - 'scripts/acquisition/alan_lu2026_pollination_supplement_source_gate.py'
       - 'tests/test_alan_wet_biotic_multiguild_source_20261118.py'
       - 'tests/test_alan_true_parkinson2020_aquatic_spider_20261118.py'
       - '.github/workflows/alan-true-riparian-insect-spider-source-20261118.yml'
@@ -111,3 +112,36 @@ jobs:
           path: /tmp/alan_wet_biotic_multiguild_source_20261118.json
           retention-days: 90
           if-no-files-found: error
+
+  lu2026-five-block-pollination-original-source-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile exact published source gate to block invented or malformed data results
+        run: python -m py_compile scripts/acquisition/alan_lu2026_pollination_supplement_source_gate.py
+      - name: Source only actual 2026 Lu et al five paired-block DataS1 from official publication hosts
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_lu2026
+          python scripts/acquisition/alan_lu2026_pollination_supplement_source_gate.py --out /tmp/alan_lu2026/original_data_availability.json
+      - name: Report availability separately from actual biological effects
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_lu2026/original_data_availability.json'))
+          assert d['schema']=='alan_lu2026_alpine_pollination_real_DataS1_source_gate_v1'
+          assert d['source_paper_original_independent_treatment_control_pairs']==5
+          assert not d['meta_pollinator_replacement_coefficient_fitted']
+          print('LU2026_ORIGINAL_DATA_AVAILABILITY_AND_WORKBOOK_STRUCTURE',d['status'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-lu2026-official-fiveblock-original-plant-pollinator-data-gate
+          path: /tmp/alan_lu2026/original_data_availability.json
+          retention-days: 90
+          if-no-files-found: warn
