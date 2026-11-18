@@ -89,7 +89,6 @@ def validate_diel(table):
     # block/survey-round/repeat may occur more than once. Preserve ALL original
     # rows, but do not count those repeated keys as additional experimental
     # light installations. Report this issue as source-granularity QA.
-    from collections import Counter
     source_keys=Counter((x["day"],x["light"],x["block"],x["round"],x["repeat"])
                          for x in parsed)
     repeated=sum(v-1 for v in source_keys.values())
