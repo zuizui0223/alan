@@ -1,7 +1,7 @@
 """Exact source-data algebra: pollinator q×V function is not visitation."""
 import unittest
 from scripts.analysis.alan_page2021_source_functional_bottlenecks_20261118 import (
- measures,aggregate,study_bootstrap,SCHEMA
+ measures,aggregate,study_bootstrap,same_original_study_mixed_vs_single_guild_gate,SCHEMA
 )
 
 class FunctionalBottleneckTests(unittest.TestCase):
@@ -56,5 +56,21 @@ class FunctionalBottleneckTests(unittest.TestCase):
         self.assertAlmostEqual(s["top_functional_share_gap_among_rank_mismatch_only"],1.)
         self.assertAlmostEqual(s["frequent_visitor_proxy_abs_pollen_share_error_mean"],.9)
         self.assertEqual(s["source_plant_network_cells"],1)
+    def test_one_original_study_contains_both_guild_types_source_STOP(self):
+        data=[
+         {"source_study":"S","original_visitor_guilds":1,
+          "original_visitor_taxa":3,"functional_total_variation":.10},
+         {"source_study":"S","original_visitor_guilds":2,
+          "original_visitor_taxa":7,"functional_total_variation":.28},
+         {"source_study":"T","original_visitor_guilds":2,
+          "original_visitor_taxa":5,"functional_total_variation":.38},
+        ]
+        x=same_original_study_mixed_vs_single_guild_gate(data)
+        self.assertEqual(x["source_original_studies_with_within_study_both_guild_categories"],1)
+        self.assertEqual(x["status"],
+            "within_study_multi_vs_single_guild_common_support_STOP")
+        self.assertIsNone(x["within_study_multi_vs_single_guild_comparison_meta_coefficient"])
+        self.assertTrue(x["guild_categories_confounded_with_source_study_and_taxon_richness"])
+
 if __name__=="__main__":
     unittest.main()
