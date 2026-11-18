@@ -36,6 +36,10 @@ class TestStudyUnitPollenSource(unittest.TestCase):
         self.assertEqual(x["source_study_plant_guild_pair_count"],1)
         self.assertTrue(x["no_inference_on_moth_pollen_deposition"])
         self.assertTrue(x["study_plant_pairs"][0]["no_valid_SE_due_shared_honeybee_controls"])
+        self.assertAlmostEqual(
+            x["descriptive_matched_original_study_plant_fly_vs_wild_bee"][
+               "matched_original_study_plant_ratio_median"
+            ],__import__("math").exp(.7))
 
     def test_plant_genus_overlap_is_not_functional_effect(self):
         a=[{"plant":"Pedicularis_other"},
