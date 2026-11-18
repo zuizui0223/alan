@@ -162,6 +162,44 @@ def within_original_sameplant_pollen_flux(rows):
        "source_unmeasured_reproductive_seed_success":True
     }
 
+def taxon_verified_source_sensitivity(rows):
+    """Correct one empirically independently taxonomically verified label.
+
+    The published SVE/visit source lists Vanessa carye under 'moth' although
+    Harvard MCZ taxonomy identifies Vanessa carye as Nymphalidae,
+    Papilionoidea (a BUTTERFLY), not a moth. Its source SVE=0 and
+    visit rate 0.01 are not moth q, even though original Page group says moth.
+    Never silently overwrite or recode the original published CSV.
+    Keep original estimate and show separate, justified sensitivity.
+    Source taxonomy: https://mczbase.mcz.harvard.edu/name/Vanessa%20carye .
+    """
+    flagged=[r for r in rows
+             if r["pollinator.group"].strip()=="moth" and
+                r["pollinator.taxon"].strip()=="Vanessa carye"]
+    check(len(flagged)==1,"Original single Nymphalidae Vanessa carye mislabeled moth changed")
+    without=[r for r in rows if r is not flagged[0]]
+    original=compare(rows,VKEY,True)
+    validated=compare(without,VKEY,True)
+    fixed=within_original_sameplant_pollen_flux(without)
+    return {
+      "original_source_taxon_code":"moth",
+      "confirmed_taxon":"Vanessa carye",
+      "independent_taxonomy_family":"Nymphalidae",
+      "independent_taxonomy_superfamily":"Papilionoidea",
+      "independent_taxonomic_authority":"https://mczbase.mcz.harvard.edu/name/Vanessa%20carye",
+      "original_source_flagged_rows":len(flagged),
+      "original_source_Vanessa_q_grains":num(flagged[0]["effectiveness.average"]),
+      "original_source_Vanessa_visitation_rate":num(flagged[0]["visit.value"]),
+      "original_source_taxonomic_mismatch_not_silently_relabelled":True,
+      "unmodified_source_original_moth_fly_pairs":original["original_moth_fly_matched_cells"],
+      "after_excluding_known_misclassified_butterfly_pairs":
+         validated["original_moth_fly_matched_cells"],
+      "corrected_taxon_reference_sensitivity_SVE":validated,
+      "corrected_taxon_reference_sensitivity_pollen_rate":fixed,
+      "other_taxa_not_all_independently_reverified":True,
+      "no_moth_vs_fly_ALAN_exposure_estimated":True
+    }
+
 def run(rows):
     bygrp=Counter(r["pollinator.group"].strip() for r in rows)
     bymetric=Counter((r["effectiveness.metric"].strip(),
@@ -183,6 +221,8 @@ def run(rows):
       "source_visit_value_missing":sum(num(r["visit.value"]) is None for r in rows),
       "same_study_same_plant_original_measured_SVE_times_visitor_rate":
           within_original_sameplant_pollen_flux(rows),
+      "original_source_Nymphalidae_record_misclassified_as_moth_sensitivity":
+          taxon_verified_source_sensitivity(rows),
       "same_plant_study_year_but_unknown_function_metric_comparability":
           compare(rows,PKEY,False),
       "same_study_plant_year_and_original_effect_metric_unit":
