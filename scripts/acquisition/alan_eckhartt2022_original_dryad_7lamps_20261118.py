@@ -13,6 +13,7 @@ import json
 import re
 import urllib.error
 import urllib.request
+import zipfile
 from pathlib import Path
 
 DOI = "10.5061/dryad.7m0cfxpxv"
@@ -158,7 +159,6 @@ def audit():
         try:
             b=get(url)
             if b.startswith(b"PK\x03\x04"):
-                import zipfile
                 with zipfile.ZipFile(io.BytesIO(b)) as archive:
                     source_members=[n for n in archive.namelist() if n.lower().endswith(".xlsx")]
                     if source_members and (label.endswith("zip") or len(source_members) <= 3):
