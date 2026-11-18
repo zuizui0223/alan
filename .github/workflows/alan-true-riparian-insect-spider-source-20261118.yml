@@ -18,6 +18,8 @@ on:
       - 'scripts/acquisition/alan_foldesi2020_svd_original_dryad.py'
       - 'scripts/acquisition/alan_ballantyne2015_heathland_pollination_source.py'
       - 'scripts/analysis/alan_ballantyne2015_heathland_visit_pollen_effectiveness_20261118.py'
+      - 'scripts/analysis/alan_heathland_fiveplant_functional_pollen_network_20261118.py'
+      - 'tests/test_alan_heathland_fiveplant_functional_network_20261118.py'
       - 'tests/test_alan_ballantyne2015_heathland_pollen_effectiveness.py'
       - 'scripts/analysis/alan_foldesi2020_original_study_unit_svd.py'
       - 'tests/test_alan_foldesi2020_original_study_unit_svd.py'
@@ -499,5 +501,45 @@ jobs:
         with:
           name: alan-ballantyne2015-heathland-1338-visit-pollen-functional-group-original
           path: /tmp/alan_heath_original/source_original_1338_pollen_vs_visits.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  heath-fiveplant-visitation-vs-actual-pollen-function:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test rare but efficient and common ineffective visitor cases
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_heathland_fiveplant_functional_network_20261118.py -v
+      - name: Test real 1338 visit-vs-stigma deposition network functional ranking and date cluster stability
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_heath_function
+          python -m scripts.analysis.alan_heathland_fiveplant_functional_pollen_network_20261118 \
+            --out /tmp/alan_heath_function/source_fiveplant_functional_network.json
+      - name: Verify five plants, source-only functional pollen and no light treatment
+        run: |
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/alan_heath_function/source_fiveplant_functional_network.json'))
+          assert x['schema']=='alan_heathland_2015_original_1338_functional_network_stability_v1'
+          assert x['original_visits_to_virgin_stigmas']==1338
+          assert x['original_five_heath_plant_species']==5
+          assert x['main_alan_moisture_affinity_8p1_candidate_E_tetralix']
+          assert not x['no_ALAN_treatment']==False
+          assert x['no_moth_visit_observed']
+          assert x['do_not_count_n_plant_species_as_independent_field_replicates']
+          print('HEATH_VISIT_VS_FUNCTIONAL_POLLEN_SOURCE_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-five-true-heath-functional-pollen-vs-visit-1338-20261118
+          path: /tmp/alan_heath_function/source_fiveplant_functional_network.json
           retention-days: 90
           if-no-files-found: warn
