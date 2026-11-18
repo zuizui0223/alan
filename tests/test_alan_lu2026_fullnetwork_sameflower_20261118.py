@@ -2,7 +2,7 @@
 import unittest
 
 from scripts.analysis.alan_lu2026_original_fullnetwork_sameflower_20261118 import (
-  parse_source,compare_views,SOURCE_ROWS,COMPLETE_RECORDS
+  parse_source,compare_views,joint_day_night_same_plant_routes,SOURCE_ROWS,COMPLETE_RECORDS
 )
 
 class TestOriginalFullNetworkSource(unittest.TestCase):
@@ -42,6 +42,27 @@ class TestOriginalFullNetworkSource(unittest.TestCase):
         result=compare_views(valid,visit,focal)
         self.assertFalse(result["source_three_views_exact_same_visitation_totals"])
         self.assertTrue(result["do_not_sum_across_three_views"])
+
+    def test_same_flower_day_night_alternative_requires_both_arms_both_periods(self):
+        def row(phase,arm,plant,block,moth,fly):
+            return {"phase":phase,"arm":arm,"plant":plant,"block":block,
+                    "round":"t1","repeat":"1",
+                    "all":moth+fly,"Lepidoptera":moth,"Diptera":fly,
+                    "Hymenoptera":0,"Coleoptera":0,"Others":0}
+        d=[
+            row("night","dark","P","1",5,1),
+            row("night","lit","P","1",1,3),
+            row("day","dark","P","1",0,1),
+            row("day","lit","P","1",0,4),
+            row("night","dark","Q","2",4,2),
+            row("night","lit","Q","2",1,2)
+        ]
+        r=joint_day_night_same_plant_routes(d)
+        self.assertEqual(r["same_plant_and_spatial_block_has_both_arms_for_day_and_night"],1)
+        self.assertEqual(r["patterns"]["night_moth_down_and_both_fly_up"]["source_plant_block_pairs"],1)
+        self.assertAlmostEqual(r["positive_night_fly_visit_gain_on_those_same_plant_pairs"],2)
+        self.assertAlmostEqual(r["positive_day_fly_visit_gain_on_those_same_plant_pairs"],3)
+        self.assertTrue(r["same_flower_temporal_visitor_change_not_a_pollen_or_seed_rescue"])
 
 if __name__=="__main__":
     unittest.main()
