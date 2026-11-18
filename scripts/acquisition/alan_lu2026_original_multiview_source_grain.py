@@ -75,108 +75,67 @@ def summarize(data):
         "code_names_not_assumed_to_be_latin_binomials":True
     }
 
+
 def inspect():
     wb,rcode,metadata=source_open()
     assert metadata["source_workbook_sha256"]==ORIGINAL_WORKBOOK_SHA
     sheets=sheet_data(wb)
-    target={}
-    for n in ("visitation","species visitation","plant–pollinator network"):
-        target[n]=summarize(sheets[n])
-    author_code_lines=rcode.splitlines()
+    table={name:summarize(sheets[name]) for name in (
+        "visitation","species visitation","plant–pollinator network")}
     hints={}
     for tag in (*CODES,*LATIN):
-        found=[(i+1,line[:200]) for i,line in enumerate(author_code_lines)
+        found=[(i+1,line[:200]) for i,line in enumerate(rcode.splitlines())
                if re.search(r"\b"+re.escape(tag)+r"\b",line,re.IGNORECASE)]
-        hints[tag]={"matches_in_source_original_R":len(found),
-                    "line_numbers":[i for i,_ in found[:15]],
-                    "short_source_R_line_context":list(dict.fromkeys(line for _,line in found[:4]))}
-    # The published author R script contains an explicit original code to
-    # abbreviated Latin binomial map, e.g. "llxq" = "A. hancockii".
-    # Extract only this SOURCE map. Never infer taxa from arbitrary codes.
+        hints[tag]={
+            "matches_in_original_R":len(found),
+            "source_R_line_numbers":[i for i,_ in found[:15]]
+        }
     author_code_map={}
-    for line in author_code_lines:
-        match=re.search(r'^\s*"([a-z]{2,8})"\s*=\s*"([A-Z]\.\s+[a-z-]+)"\s*,?\s*
-    aggregate=target["plant–pollinator network"]
-    return {"schema":SCHEMA,"source_original_2026_DOI":"10.1002/ece3.74368",
-       "source_exact_xlsx_sha256":ORIGINAL_WORKBOOK_SHA,
-       "original_paired_light_spatial_blocks":5,
-       "tables":target,
-       "author_source_R_plant_code_lookup":hints,
-       "author_R_verified_plant_code_to_latin_abbreviation":author_code_map,
-       "source_population_warning":{
-           "selected_11_plant_source_has_more_night_diptera_than_aggregate":
-               (others["all_numeric_guild_sums_by_source_phase"]["night"]["Diptera"] >
-                original["all_numeric_guild_sums_by_source_phase"]["night"]["Diptera"]),
-           "selected_11_plant_source_not_a_partition_of_aggregate_visitation":True,
-           "full_network_table_raw_blank_identifiers_are_not_filled":True,
-           "same_plant_moth_to_fly_replacement_not_assigned_pollen_function":True
-       },
-       "original_source_seed_set_measured":False}
+    for key,abbr in re.findall(
+        r'"([a-z]{2,8})"\s*=\s*"([A-Z]\.\s*[a-z][a-z-]+)"',rcode):
+        if key in author_code_map and author_code_map[key]!=abbr:
+            raise ValueError("Original R species code-label conflict")
+        author_code_map[key]=abbr
+    original=table["visitation"]
+    focal=table["species visitation"]
+    return {
+        "schema":SCHEMA,
+        "source_original_2026_DOI":"10.1002/ece3.74368",
+        "source_exact_xlsx_sha256":ORIGINAL_WORKBOOK_SHA,
+        "original_paired_light_spatial_blocks":5,
+        "tables":table,
+        "author_source_R_plant_code_lookup":hints,
+        "author_R_verified_plant_code_to_latin_abbreviation":author_code_map,
+        "source_population_warning":{
+            "selected_11_plant_source_has_more_night_diptera_than_aggregate":
+                (focal["all_numeric_guild_sums_by_source_phase"]["night"]["Diptera"] >
+                 original["all_numeric_guild_sums_by_source_phase"]["night"]["Diptera"]),
+            "focal_11_plants_not_known_partition_of_full_visitation":True,
+            "one_full_network_row_has_unfilled_diel_and_treatment":True,
+            "source_no_blank_identifier_auto_fill":True,
+            "same_plant_moth_to_fly_replacement_NOT_pollen_function":True
+        },
+        "original_source_seed_set_measured":False
+    }
 
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--out",required=True)
-    args=p.parse_args()
-    r=inspect()
-    o=Path(args.out);o.parent.mkdir(parents=True,exist_ok=True)
-    o.write_text(json.dumps(r,sort_keys=True,indent=2,ensure_ascii=False)+"\n")
-    print("LU2026_ORIGINAL_MULTIVIEW_OBSERVATION_GRAIN_AUDIT",
-        json.dumps({"source_counts":{name:{
-          "raw_rows":v["raw_source_data_rows"],
-          "valid_rows":v["valid_parseable_full_source_identifier_rows"],
-          "identifier_blank_rows":v["missing_identifier_field_row_counts"],
-          "plant_n":v["distinct_parseable_plant_labels"],
-          "source_identity_patterns":v["partially_blank_rows_by_identifier_pattern"][:6]}
-          for name,v in r["tables"].items()},
-          "author_source_code_map":r["author_R_verified_plant_code_to_latin_abbreviation"],
-          "unverified_plant_code_map":{k:v["matches_in_source_original_R"]
-              for k,v in r["author_source_R_plant_code_lookup"].items()},
-          "warning":r["source_population_warning"]},
-          ensure_ascii=False,sort_keys=True),flush=True)
+    a=p.parse_args()
+    d=inspect()
+    out=Path(a.out)
+    out.parent.mkdir(parents=True,exist_ok=True)
+    out.write_text(json.dumps(d,sort_keys=True,indent=2,ensure_ascii=False)+"\n")
+    print("LU2026_ORIGINAL_MULTIVIEW_OBSERVATION_GRAIN_AUDIT",json.dumps({
+        "source_counts":{name:{
+            "raw_rows":t["raw_source_data_rows"],
+            "valid_rows":t["valid_parseable_full_source_identifier_rows"],
+            "identifier_blank_rows":t["missing_identifier_field_row_counts"],
+            "plant_n":t["distinct_parseable_plant_labels"]
+        } for name,t in d["tables"].items()},
+        "author_source_code_map":d["author_R_verified_plant_code_to_latin_abbreviation"],
+        "warning":d["source_population_warning"]
+    },ensure_ascii=False,sort_keys=True),flush=True)
 
-if __name__=="__main__":main()
-,line)
-        if match:
-            key,abbr=match.groups()
-            if key in author_code_map and author_code_map[key]!=abbr:
-                raise ValueError("original author R taxon mapping conflict")
-            author_code_map[key]=abbr
-    original=target["visitation"]
-    others=target["species visitation"]
-    aggregate=target["plant–pollinator network"]
-    return {"schema":SCHEMA,"source_original_2026_DOI":"10.1002/ece3.74368",
-       "source_exact_xlsx_sha256":ORIGINAL_WORKBOOK_SHA,
-       "original_paired_light_spatial_blocks":5,
-       "tables":target,
-       "author_source_R_plant_code_lookup":hints,
-       "source_population_warning":{
-           "selected_11_plant_source_has_more_night_diptera_than_aggregate":
-               (others["all_numeric_guild_sums_by_source_phase"]["night"]["Diptera"] >
-                original["all_numeric_guild_sums_by_source_phase"]["night"]["Diptera"]),
-           "selected_11_plant_source_not_a_partition_of_aggregate_visitation":True,
-           "full_network_table_raw_blank_identifiers_are_not_filled":True,
-           "same_plant_moth_to_fly_replacement_not_assigned_pollen_function":True
-       },
-       "original_source_seed_set_measured":False}
-
-def main():
-    p=argparse.ArgumentParser()
-    p.add_argument("--out",required=True)
-    args=p.parse_args()
-    r=inspect()
-    o=Path(args.out);o.parent.mkdir(parents=True,exist_ok=True)
-    o.write_text(json.dumps(r,sort_keys=True,indent=2,ensure_ascii=False)+"\n")
-    print("LU2026_ORIGINAL_MULTIVIEW_OBSERVATION_GRAIN_AUDIT",
-        json.dumps({"source_counts":{name:{
-          "raw_rows":v["raw_source_data_rows"],
-          "valid_rows":v["valid_parseable_full_source_identifier_rows"],
-          "identifier_blank_rows":v["missing_identifier_field_row_counts"],
-          "plant_n":v["distinct_parseable_plant_labels"],
-          "source_identity_patterns":v["partially_blank_rows_by_identifier_pattern"][:6]}
-          for name,v in r["tables"].items()},
-          "unverified_plant_code_map":{k:v["matches_in_source_original_R"]
-              for k,v in r["author_source_R_plant_code_lookup"].items()},
-          "warning":r["source_population_warning"]},
-          ensure_ascii=False,sort_keys=True),flush=True)
-
-if __name__=="__main__":main()
+if __name__=="__main__":
+    main()
