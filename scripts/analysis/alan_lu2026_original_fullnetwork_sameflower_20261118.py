@@ -123,6 +123,58 @@ def compare_views(full,visit,focal):
         "do_not_sum_across_three_views":True
     }
 
+def theoretical_same_flower_fly_effectiveness_threshold(full):
+    """Hypothetical q_fly/q_moth needed to replace moth-visit loss.
+
+    Under an explicitly counterfactual linear same-flower pollen model
+    ΔP = q_moth*Δmoth + q_fly*Δfly, assuming q_moth>0, stable per-visit
+    effectiveness across light conditions, no other guild changes,
+    matched survey effort, and no autonomous selfing contribution change.
+    This is NOT an observed pollen deposition or seed-set quantity.
+    """
+    paired=match_plants(full,[])["same_plant_block_round_repeat"]
+    byplant=collections.defaultdict(lambda:{
+        "blocks":set(),"moth_delta":0.,"fly_delta":0.,
+        "all_delta":0.,"source_matched_periods":0})
+    for r in paired:
+        if r["phase"]!="night":continue
+        x=byplant[r["plant"]]
+        x["blocks"].add(r["block"])
+        x["moth_delta"]+=r["moth_delta"]
+        x["fly_delta"]+=r["fly_delta"]
+        x["all_delta"]+=r["total_delta"]
+        x["source_matched_periods"]+=1
+    eligible={}
+    for plant,x in byplant.items():
+        nb=len(x["blocks"])
+        if nb<2:continue
+        ml=x["moth_delta"]
+        fg=x["fly_delta"]
+        # If flies do not increase, no positive finite fly effectiveness
+        # can directly compensate a lost moth under this two-guild scenario.
+        threshold=(-ml/fg) if ml<0 and fg>0 else None
+        eligible[plant]={
+            "observed_same_lit_dark_spatial_blocks":nb,
+            "observed_paired_survey_periods":x["source_matched_periods"],
+            "source_moth_visits_lit_minus_dark":ml,
+            "source_fly_visits_lit_minus_dark":fg,
+            "source_total_visits_lit_minus_dark":x["all_delta"],
+            "counterfactual_min_q_fly_per_visit_relative_to_q_moth":threshold,
+            "threshold_defined_only_if_moth_lost_and_fly_gained":ml<0 and fg>0,
+            "no_direct_pollen_deposition_or_seed_set_observed":True}
+    defined=[v for v in eligible.values()
+             if v["counterfactual_min_q_fly_per_visit_relative_to_q_moth"] is not None]
+    return {
+       "original_species_with_2plus_independent_light_blocks":len(eligible),
+       "species_with_moth_loss_and_fly_gain_under_same_survey_round":len(defined),
+       "source_original_plant_specific_counterfactual_thresholds":eligible,
+       "equation":"ΔP = q_moth*ΔV_moth + q_fly*ΔV_fly; if ΔV_moth<0 and ΔV_fly>0 then q_fly/q_moth>=-ΔV_moth/ΔV_fly",
+       "assumptions":"Linear no-saturation effective pollen deposition; q constant across light/dark, other guilds unchanged, autonomous selfing unchanged, matched exposure; NONE directly verified",
+       "not_measurement_of_fly_or_moth_pollen_efficiency":True,
+       "denominator_is_original_same_plant_same_block_same_round_visits":True,
+       "no_species_level_hypothesis_testing_or_plant_fitness_prediction":True
+    }
+
 def joint_day_night_same_plant_routes(full):
     """Can daytime or nighttime Diptera visit the SAME plant losing night moths?"""
     paired=match_plants(full,[])
@@ -262,6 +314,8 @@ def execute():
             "same_plant_study_within_network_view":result,
             "source_temporal_day_night_same_flower_substitution":
                 joint_day_night_same_plant_routes(full),
+            "hypothetical_pollen_visit_effectiveness_thresholds":
+                theoretical_same_flower_fly_effectiveness_threshold(full),
             "original_full_network_only_five_block_guilds":
                 within_fullnetwork_five_block_guilds(full),
             "three_views_denominator_audit":original,
@@ -284,6 +338,8 @@ def main():
             result["three_views_denominator_audit"]["source_three_views_exact_same_visitation_totals"],
         "day_night_same_flower_routes":
             result["source_temporal_day_night_same_flower_substitution"],
+        "potential_fly_effectiveness_thresholds":
+            result["hypothetical_pollen_visit_effectiveness_thresholds"],
         "original_full_network_night_guild_shift":
             result["original_full_network_only_five_block_guilds"]["night"],
         "coincident_plant_coverage":{k:{
