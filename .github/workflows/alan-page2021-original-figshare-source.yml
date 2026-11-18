@@ -7,6 +7,8 @@ on:
       - 'scripts/acquisition/alan_page2021_original_1564_sve_figshare.py'
       - 'scripts/analysis/alan_page2021_original_623_moth_fly_sameplant.py'
       - 'scripts/analysis/alan_page2021_363wet_plant_case_coverage.py'
+      - 'scripts/analysis/alan_page2021_original_macro_functional_network_mismatch.py'
+      - 'tests/test_alan_page2021_macro_functional_network_mismatch.py'
       - 'tests/test_alan_page2021_original_623_moth_fly.py'
       - '.github/workflows/alan-page2021-original-figshare-source.yml'
   pull_request:
@@ -123,5 +125,46 @@ jobs:
         with:
           name: alan-page2021-sve-623-vs-frozen-wet-flora-363-coverage
           path: /tmp/alan_page_wet/page_original_case_species_coverage.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  original-69studies-102plants-pollen-function-vs-visitor-rate-network:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Ensure only same plant/measurement source strata and true study clusters
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_page2021_macro_functional_network_mismatch.py -v
+      - name: Reconstruct original Page 623 taxon visit-rate and conspecific pollen network from source SHA
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/page_macro
+          python -m scripts.analysis.alan_page2021_original_macro_functional_network_mismatch \
+            --out /tmp/page_macro/page_source_functional_rank_mismatch.json
+      - name: Check 623 original effects and explicit no-ALAN/other-endpoint inference
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/page_macro/page_source_functional_rank_mismatch.json'))
+          assert r['schema']=='alan_page2021_original_pollinator_rank_vs_stigma_pollen_flux_macro_v1'
+          assert r['original_Page_taxonlevel_source_n']==623
+          for n in ('source_original_no_taxon_change',
+                    'excluding_independently_verified_Vanessa_mislabeled_moth'):
+              z=r[n]
+              assert z['eligible_comparable_functional_pollen_plant_groups']<=z['original_source_study_plant_period_metric_visitation_cells']
+              assert z['no_page_study_used_ALAN_lighting_intervention']
+          assert r['source_no_pollen_SDs_or_ALAN_treatments']
+          print('PAGE2021_ACTUAL_MACRO_POLLEN_VISIT_RANK_COHORT_VERIFIED')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-page2021-original-plant-visitor-functional-importance-69study
+          path: /tmp/page_macro/page_source_functional_rank_mismatch.json
           retention-days: 90
           if-no-files-found: warn
