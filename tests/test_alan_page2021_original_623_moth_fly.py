@@ -1,7 +1,7 @@
 """Strict pairing of Page et al 2021 original SVE by true study and plant."""
 import unittest
 from scripts.analysis.alan_page2021_original_623_moth_fly_sameplant import (
-    compare, QKEY, VKEY, PKEY
+    compare, within_original_sameplant_pollen_flux, QKEY, VKEY, PKEY
 )
 def row(study,plant,year,guild,metric="stigma pollen",
         unit="grains",visitmetric="visits/hour",q="10"):
@@ -30,4 +30,35 @@ class PageSourceSamePlantPairing(unittest.TestCase):
            row("a","P","2020","fly",visitmetric="visits/hour")]
         self.assertEqual(compare(a,QKEY,True)["original_moth_fly_matched_cells"],1)
         self.assertEqual(compare(a,VKEY,True)["original_moth_fly_matched_cells"],0)
+    def test_functional_stigma_pollen_flux_not_visit_rate(self):
+        a=[row("a","Plant","2020","moth",metric="number of conspecific pollen grains",
+               unit="mean",q="10"),
+           row("a","Plant","2020","fly",metric="number of conspecific pollen grains",
+               unit="mean",q="5")]
+        a[0]["visit.value"]="2";a[1]["visit.value"]="4"
+        z=within_original_sameplant_pollen_flux(a)
+        d=z["source_paired_sameplant_records"][0]
+        self.assertEqual(d["source_same_metric_pollen_times_visits_eligible"],True)
+        self.assertAlmostEqual(d["visitation_ratio_fly_vs_moth"],2.)
+        self.assertAlmostEqual(d["estimated_conspecific_pollen_flux_ratio_fly_vs_moth"],1.)
+        self.assertTrue(d["source_functional_ratio_is_sve_times_visit_not_observed_fitness"])
+
+    def test_no_infinite_ratio_when_moth_q_zero(self):
+        a=[row("a","Plant","2020","moth",metric="number of conspecific pollen grains",
+               unit="mean",q="0"),
+           row("a","Plant","2020","fly",metric="number of conspecific pollen grains",
+               unit="mean",q="7")]
+        z=within_original_sameplant_pollen_flux(a)
+        self.assertIsNone(z["source_paired_sameplant_records"][0][
+            "estimated_conspecific_pollen_flux_ratio_fly_vs_moth"])
+
+    def test_other_visitation_measure_cannot_make_flux(self):
+        a=[row("a","Plant","2020","moth",metric="number of conspecific pollen grains",
+               unit="mean",visitmetric="other"),
+           row("a","Plant","2020","fly",metric="number of conspecific pollen grains",
+               unit="mean",visitmetric="other")]
+        z=within_original_sameplant_pollen_flux(a)
+        self.assertFalse(z["source_paired_sameplant_records"][0][
+            "source_same_metric_pollen_times_visits_eligible"])
+
 if __name__=="__main__":unittest.main()
