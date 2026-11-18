@@ -1,0 +1,48 @@
+name: ALAN Page 2021 Figshare single-visit effectiveness source gate
+on:
+  push:
+    branches:
+      - analysis/alan-biotic-aquatic-spider-original-20261118
+    paths:
+      - 'scripts/acquisition/alan_page2021_original_1564_sve_figshare.py'
+      - '.github/workflows/alan-page2021-original-figshare-source.yml'
+  pull_request:
+    paths:
+      - 'scripts/acquisition/alan_page2021_original_1564_sve_figshare.py'
+      - '.github/workflows/alan-page2021-original-figshare-source.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  page2021-original-project-article-file-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Retrieve original publicly released project article and file schemas
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_page2021
+          python -m scripts.acquisition.alan_page2021_original_1564_sve_figshare \
+            --out /tmp/alan_page2021/source.json
+      - name: Report original effects without inventing moth versus fly or ALAN treatment
+        run: |
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/alan_page2021/source.json'))
+          assert x['schema']=='alan_page2021_single_visit_pollen_1564_figshare_source_gate_v1'
+          assert x['original_abstract_reported_studies']==168
+          assert x['original_abstract_reported_single_visit_effects']==1564
+          assert x['moth_vs_fly_same_plant_original_contrasts_estimated'] is False
+          print('PAGE2021_ACTUAL_SOURCE_AUDIT',x['status'], x.get('source_article_count'),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-page2021-original-figshare-120921-file-audit
+          path: /tmp/alan_page2021/source.json
+          retention-days: 60
+          if-no-files-found: warn
