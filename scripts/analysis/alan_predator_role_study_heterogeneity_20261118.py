@@ -1,0 +1,126 @@
+#!/usr/bin/env python3
+"""Source-grain, non-pooling synthesis of ALAN predator and mutualist-antagonist studies.
+
+Never treat multiple endpoints, leaves, nights, individual insects, or model
+caterpillars from the same assigned light plots as independent ALAN studies.
+No source whose original cluster-level variance is unavailable receives an SE.
+"""
+import argparse
+import json
+from collections import Counter, defaultdict
+from pathlib import Path
+
+
+def synthesize(registry):
+    if registry.get("schema") != "alan_20261118_new_predator_roles_programme_ledger_v1":
+        raise ValueError("Unexpected frozen primary-source programme ledger schema")
+    rows = registry["rows"]
+    keys = [r["endpoint_id"] for r in rows]
+    if len(keys) != len(set(keys)):
+        raise ValueError("Duplicated endpoint_id")
+    if len({r["programme_id"] for r in rows}) >= len(rows):
+        raise ValueError("Missing same-programme endpoint grouping")
+    if any(r["source_url"].startswith("https://doi.org/") is False
+           and "github.com/zuizui0223/alan" not in r["source_url"] for r in rows):
+        raise ValueError("Missing verified primary source URL")
+    by_ep = defaultdict(list)
+    for r in rows:
+        by_ep[r["endpoint"]].append(r)
+        if r.get("plant_fitness_measured") not in (False, True):
+            raise ValueError("Explicitly distinguish plant-fitness endpoint")
+        if not r.get("source_treatment_units") or not r.get("source_treatment_units"):
+            raise ValueError("No treatment unit")
+        if not r.get("raw_source_status"):
+            raise ValueError("No source fidelity status")
+        if r["effect"].get("kind") == "published_approximate_fold_decline" and isinstance(r["effect"]["value"], float):
+            raise ValueError("Cannot turn an approximate source phrase into a precise biological effect")
+    predator = by_ep["predator_abundance"]
+    programmes = [r["programme_id"] for r in predator]
+    if len(programmes) != len(set(programmes)):
+        raise ValueError("Predator direction across studies would double-count one original programme")
+    dirs = Counter(r["direction"] for r in predator)
+    if set(dirs) != {"increase", "decrease", "not_resolved"}:
+        raise ValueError("Keep positive, negative and unresolved original predator programmes")
+    # Brown (2023) published Table 3; these two within-arm summaries are NOT
+    # a time-controlled DID, a between-site treatment ratio or density.
+    b = next(r for r in predator if r["programme_id"] == "Brown2023")["effect"]
+    if b["kind"] != "three_period_experimental_trap_means" or min(b["pre"], b["during"], b["post"]) <= 0:
+        raise ValueError("Published Brown periods invalid")
+    brown = {
+        "experimental_trap_mean_pre": b["pre"],
+        "experimental_trap_mean_during": b["during"],
+        "experimental_trap_mean_post": b["post"],
+        "during_to_pre_descriptive_ratio": b["during"] / b["pre"],
+        "post_to_pre_descriptive_ratio": b["post"] / b["pre"],
+        "during_minus_pre_insects_per_trap": b["during"] - b["pre"],
+        "original_published_pre_minus_during_tukey_CI": b["reported_tukey_pre_vs_during_ci_for_pre_minus_during"],
+        "not_a_control_adjusted_BACI_effect": True,
+        "repeated_15_nights_are_not_independent_light_replicates": True,
+    }
+    boom = next(r for r in by_ep["nursery_seed_predation"] if r["programme_id"] == "Boom2020")["effect"]
+    specs = {}
+    for treatment in ("dark", "green", "white", "red"):
+        a = boom[treatment]
+        for v in a.values():
+            if not 0 <= v <= 1:
+                raise ValueError("Source proportions outside [0,1]")
+        specs[treatment] = a["fruit"] * (1 - a["infested"]) * a["fertilized_noninfested"]
+    if boom["seed_output_omnibus_p"] < 0.05:
+        raise ValueError("Source overall seed test changed: reconsider scientific claim")
+    return {
+        "schema": "alan_20261118_predator_role_nonpooled_stage_synthesis_v1",
+        "evidence": {
+            "independent_programmes_unique": len(set(r["programme_id"] for r in rows)),
+            "distinct_endpoint_entries": len(rows),
+            "predator_abundance_programmes": len(predator),
+            "predator_abundance_published_directions": dict(dirs),
+            "opposite_predator_directions_exist": bool(dirs["increase"] and dirs["decrease"]),
+            "forest_predator_direction_crosses_increase_null_decrease": set(r["direction"] for r in predator if "forest" in r["biome"]) == {"increase", "not_resolved", "decrease"},
+            "no_forest_vs_open_habitat_causal_moderator_identified": True,
+            "no_plant_pollination_mediation_fitted": True,
+            "no_common_endpoint_random_effects_meta_fitted": True,
+            "different_ecological_stages_are_not_interchangeable": sorted(by_ep),
+        },
+        "brown2023_original_published_period_arithmetic": brown,
+        "boom2020_spectral_nursery_algebra": {
+            "product_of_published_means_fruit_times_noninfested_times_fertilized": specs,
+            "green_to_dark_product_ratio": specs["green"]/specs["dark"],
+            "green_to_dark_fruit_factor": boom["green"]["fruit"]/boom["dark"]["fruit"],
+            "green_to_dark_noninfested_factor": (1-boom["green"]["infested"])/(1-boom["dark"]["infested"]),
+            "green_to_dark_conditional_fertilization_factor": boom["green"]["fertilized_noninfested"]/boom["dark"]["fertilized_noninfested"],
+            "overall_seed_output_reported_omnibus_p": boom["seed_output_omnibus_p"],
+            "overall_net_seed_decline_statistically_resolved": False,
+            "algebra_not_causal_mediation": True,
+            "nested_ovules_not_independent_lighting_installations": True,
+        },
+        "programme_source_status": [{
+            "programme_id": k, "endpoints": sorted(r["endpoint_id"] for r in rows if r["programme_id"] == k),
+            "has_original_reanalysis_in_main": k == "Parkinson2020",
+        } for k in sorted({r["programme_id"] for r in rows})],
+        "scope": {
+            "systematic_review": False,
+            "effect_counts_not_vote_count_meta": True,
+            "cannot_identify_predator_beneficial_pollination": True,
+            "no_novel_experimental_results_created": True,
+            "new_edi_raw_reanalysis_requires_source_verified_pair_IDs": True,
+            "source_unavailable_is_not_negative_biology": True,
+        },
+    }
+
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument("--registry", type=Path, default=Path("results/all_species_forest/biotic_interactions/predator_role_original_published_programme_ledger_20261118.json"))
+    p.add_argument("--out", type=Path, required=True)
+    args = p.parse_args()
+    ans = synthesize(json.loads(args.registry.read_text()))
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text(json.dumps(ans, ensure_ascii=False, indent=2) + "\n")
+    print("PREDATOR_PROGRAMMES",ans["evidence"]["independent_programmes_unique"])
+    print("PREDATOR_DIRECTIONS",ans["evidence"]["predator_abundance_published_directions"])
+    print("BROWN_DESCRIPTIVE_DURING_PRE",round(ans["brown2023_original_published_period_arithmetic"]["during_to_pre_descriptive_ratio"],6))
+    print("BOOM_SPECTRAL_PRODUCT_GREEN_DARK",round(ans["boom2020_spectral_nursery_algebra"]["green_to_dark_product_ratio"],6))
+
+
+if __name__ == "__main__":
+    main()
