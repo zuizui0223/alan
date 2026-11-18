@@ -199,99 +199,69 @@ def source_results(rows0,blocks,author_taxon_map=None):
         out[mode]=result
     return out
 
+
+def read_author_taxon_abbreviations(r_source, plant_codes):
+    """Use author R mapping only when explicitly present in exact supplement."""
+    mapped={}
+    for key,abbr in re.findall(
+        r'"([a-z]{2,8})"\s*=\s*"([A-Z]\.\s*[a-z][a-z-]+)"', r_source):
+        if key in mapped and mapped[key]!=abbr:
+            raise ValueError("Conflicting original Lu author code to taxon mapping")
+        mapped[key]=abbr
+    return {x:mapped.get(x) for x in sorted(plant_codes)}
+
 def calculate():
-    b,rcode,metadata=source_open()
+    wb,rcode,metadata=source_open()
     need(metadata["source_workbook_sha256"]==ORIGINAL_WORKBOOK_SHA,
          "source original 2026 supplemental XLSX changed")
-    sheets=sheet_data(b)
+    sheets=sheet_data(wb)
     source,blocks=indexed_original(sheets[RAW_SHEET])
     visitation=rows(sheets["visitation"])
     verify=summarize(source,blocks,visitation)
-    # Read short code-name pairs from the actual author R script.
-    author_taxon_map={}
-    for line in rcode.splitlines():
-        match=re.search(r'^\s*"([a-z]{2,8})"\s*=\s*"([A-Z]\.\s+[a-z-]+)"\s*,?\s*
-            "original_source_workbook_SHA256":ORIGINAL_WORKBOOK_SHA,
-            "DOI":"10.1002/ece3.74368",
-            "original_independently_lit_control_spatial_pairs":5,
-            "original_source_verification":verify,
-            "original_same_plant_within_block_subsets":byplant,
-            "source_moth_to_fly_functional_pollen_substitution_measured":False,
-            "plant_specific_seed_set_measured":False,
-            "original_JPE_2026_light_installation_independence_verified":False,
-            "limitations":[
-              "Only plant identities recorded in both original treatment arms and matched spatial blocks considered; unmatched plant not assumed to have zero visits",
-              "Different sampling periods/replicates may remain in the source for each plant arm; strict matched-round control is separate",
-              "Source plant-level visit count is not normalized by flower abundance or actual receptive stigma count",
-              "No actual plant reproductive outcome measured by the ECE network study",
-              "Same five treatment pairs generate all taxa-specific effects; cannot treat plant-by-block comparisons as independent field light experiments",
-              "Species response prioritization is exploratory and must not be used as a separate multiple-testing family without correction"
-            ]}
+    plantcodes={x["plant"] for x in source}
+    mapping=read_author_taxon_abbreviations(rcode,plantcodes)
+    byplant=source_results(source,blocks,mapping)
+    return {
+        "schema":SCHEMA,
+        "author_R_source_verified_plant_codes_to_latin_abbreviations":mapping,
+        "plant_code_mapping_fraction_verified":
+            sum(v is not None for v in mapping.values())/len(mapping),
+        "original_source_workbook_SHA256":ORIGINAL_WORKBOOK_SHA,
+        "DOI":"10.1002/ece3.74368",
+        "original_independently_lit_control_spatial_pairs":5,
+        "original_source_verification":verify,
+        "original_same_plant_within_block_subsets":byplant,
+        "source_moth_to_fly_functional_pollen_substitution_measured":False,
+        "plant_specific_seed_set_measured":False,
+        "original_JPE_2026_light_installation_independence_verified":False,
+        "limitations":[
+            "Focal 11 plant species visitation sheet is not a partition of the complete plant community visitation sheet",
+            "Only plants observed in both source lighting arms of same spatial block enter individual flower contrasts; unmatched plant not assigned zero",
+            "Strict matched time and survey replicate compared separately from any-round block-level support",
+            "The original five independent blocks cannot be replaced by plant-by-survey pseudo-experimental replicates",
+            "Plant visits do not identify pollinator effectiveness, compatible pollen deposition, or seed set",
+            "Species labels remain author codes unless exactly mapped by original source R code"
+        ]
+    }
 
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--out",required=True)
     a=p.parse_args()
     result=calculate()
-    dest=Path(a.out);dest.parent.mkdir(exist_ok=True,parents=True)
+    dest=Path(a.out)
+    dest.parent.mkdir(exist_ok=True,parents=True)
     dest.write_text(json.dumps(result,ensure_ascii=False,sort_keys=True,indent=2)+"\n")
     print("LU2026_ORIGINAL_SAME_FLOWERS_GUILD_REPLACEMENT",json.dumps({
-      "source":result["original_source_verification"],
-      "support":{k:{
-        "matched_source_rowkeys":v["original_source_matched_row_keys"],
-        "night_block_plant_pairs":v["source_plants_same_block_treatment_pairs_by_diel"]["night"],
-        "night_mothdown_flyup":v["night_same_plant_moth_down_fly_up"],
-        "strongest_species":v["night_largest_documented_species_changes_descriptive"][:10],
-      } for k,v in result["original_same_plant_within_block_subsets"].items()}
-    },ensure_ascii=False,sort_keys=True),flush=True)
-
-if __name__=="__main__":
-    main()
-,line)
-        if match:
-            key,value=match.groups()
-            if key in author_taxon_map and author_taxon_map[key]!=value:
-                raise ValueError("Conflicting original Lu R species label mapping")
-            author_taxon_map[key]=value
-    observed_plant_codes={r["plant"] for r in source}
-    byplant=source_results(source,blocks,author_taxon_map)
-    return {"schema":SCHEMA,
-            "author_R_source_verified_plant_codes_to_latin_abbreviations":
-                {k:author_taxon_map.get(k) for k in sorted(observed_plant_codes)},
-            "plant_code_mapping_fraction_verified":
-                len(observed_plant_codes & author_taxon_map.keys())/len(observed_plant_codes),
-            "original_source_workbook_SHA256":ORIGINAL_WORKBOOK_SHA,
-            "DOI":"10.1002/ece3.74368",
-            "original_independently_lit_control_spatial_pairs":5,
-            "original_source_verification":verify,
-            "original_same_plant_within_block_subsets":byplant,
-            "source_moth_to_fly_functional_pollen_substitution_measured":False,
-            "plant_specific_seed_set_measured":False,
-            "original_JPE_2026_light_installation_independence_verified":False,
-            "limitations":[
-              "Only plant identities recorded in both original treatment arms and matched spatial blocks considered; unmatched plant not assumed to have zero visits",
-              "Different sampling periods/replicates may remain in the source for each plant arm; strict matched-round control is separate",
-              "Source plant-level visit count is not normalized by flower abundance or actual receptive stigma count",
-              "No actual plant reproductive outcome measured by the ECE network study",
-              "Same five treatment pairs generate all taxa-specific effects; cannot treat plant-by-block comparisons as independent field light experiments",
-              "Species response prioritization is exploratory and must not be used as a separate multiple-testing family without correction"
-            ]}
-
-def main():
-    p=argparse.ArgumentParser()
-    p.add_argument("--out",required=True)
-    a=p.parse_args()
-    result=calculate()
-    dest=Path(a.out);dest.parent.mkdir(exist_ok=True,parents=True)
-    dest.write_text(json.dumps(result,ensure_ascii=False,sort_keys=True,indent=2)+"\n")
-    print("LU2026_ORIGINAL_SAME_FLOWERS_GUILD_REPLACEMENT",json.dumps({
-      "source":result["original_source_verification"],
-      "support":{k:{
-        "matched_source_rowkeys":v["original_source_matched_row_keys"],
-        "night_block_plant_pairs":v["source_plants_same_block_treatment_pairs_by_diel"]["night"],
-        "night_mothdown_flyup":v["night_same_plant_moth_down_fly_up"],
-        "strongest_species":v["night_largest_documented_species_changes_descriptive"][:10],
-      } for k,v in result["original_same_plant_within_block_subsets"].items()}
+        "source":result["original_source_verification"],
+        "source_taxon_map":result["author_R_source_verified_plant_codes_to_latin_abbreviations"],
+        "support":{k:{
+            "matched_source_rowkeys":v["original_source_matched_row_keys"],
+            "night_block_plant_pairs":
+                v["source_plants_same_block_treatment_pairs_by_diel"]["night"],
+            "night_mothdown_flyup":v["night_same_plant_moth_down_fly_up"],
+            "strongest_species":v["night_largest_documented_species_changes_descriptive"][:10]
+        } for k,v in result["original_same_plant_within_block_subsets"].items()}
     },ensure_ascii=False,sort_keys=True),flush=True)
 
 if __name__=="__main__":
