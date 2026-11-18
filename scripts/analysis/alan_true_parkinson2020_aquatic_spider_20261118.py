@@ -78,6 +78,7 @@ def grouped_source(spider_path,insects_path,mass_path):
     need(set(pan_by)==set(by),"invertebrate source mesocosm mismatch")
     labels={}
     records=[]
+    source_family_partition_discrepancies=0
     for ident in sorted(by):
         pr=pan_by[ident]
         treatments={r["Treatment"] for r in by[ident]}|{pr["Treatment"]}
@@ -95,7 +96,11 @@ def grouped_source(spider_path,insects_path,mass_path):
         need(all(x>=0 and float(x).is_integer() for x in (aq,land,total,caen,chir,noct)),
              "non-count data in original pan trap")
         need(aq+land==total,"aquatic/terrestrial breakdown fails original total")
-        need(caen+chir<=aq,"aquatic taxa exceed aquatic total")
+        # One author-supplied mesocosm has Caenidae + Chironomidae
+        # exceeding its "aquatic origin" total by one individual.
+        # Preserve original primary aquatic totals, report this source
+        # discrepancy, and never fabricate a corrected field count.
+        source_family_partition_discrepancies += int(caen+chir>aq)
         need(noct<=land,"terrestrial moth count exceeds terrestrial total")
         ss=np.array([float(r["# Individual tetragnathids"]) for r in by[ident]],float)
         prey=np.array([float(r["# individual insects in webs"]) for r in by[ident]],float)
@@ -114,6 +119,8 @@ def grouped_source(spider_path,insects_path,mass_path):
             "spider_3dates":[int(r["# Individual tetragnathids"]) for r in sorted_visits],
             "web_prey_3dates":[int(r["# individual insects in webs"]) for r in sorted_visits]
         })
+    need(source_family_partition_discrepancies==1,
+         "published family-level source mismatch count unexpectedly changed")
     need(sum(labels.values())==10 and len(labels)==20,
          "original 10 ALAN/10 non-ALAN treatments not preserved")
     need(all(r["Treatment"] in ("ALAN","no ALAN") and
@@ -131,7 +138,10 @@ def grouped_source(spider_path,insects_path,mass_path):
                     "published_article_total_stated_1990":1990,
                     "raw_sum_differs_from_published_by":2,
                     "spider_repeated_observed_count_total":645,
-                    "spider_body_mass_has_no_mesocosm_ID_so_not_analysed_as_independent_unit":True}
+                    "spider_body_mass_has_no_mesocosm_ID_so_not_analysed_as_independent_unit":True,
+                    "mesocosms_with_two_aquatic_taxon_families_exceed_source_aquatic_total":
+                       source_family_partition_discrepancies,
+                    "family_mismatch_count_is_retained_not_repaired":True}
 
 def exact_unblocked_test(values,treatment,members=None):
     values=np.array(values,float)
