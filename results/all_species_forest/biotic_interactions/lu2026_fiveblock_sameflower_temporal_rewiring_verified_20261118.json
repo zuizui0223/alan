@@ -1,0 +1,182 @@
+{
+  "schema": "alan_biotic_lu2026_fiveblock_sameflower_temporal_rewiring_verified_20261118_v1",
+  "primary_source_doi": "10.1002/ece3.74368",
+  "source_year": 2024,
+  "authors_original_XLSX_SHA256": "ba7e15e66986f64943a38fd294e49d7128cf7719d318578f6b805d29cde8f98f",
+  "verified_GitHub_Actions_run": "https://github.com/zuizui0223/alan/actions/runs/44245596409",
+  "verified_original_fullnetwork_artifact": "https://github.com/zuizui0223/alan/actions/runs/44245596409/artifacts/14401198217",
+  "original_source_inference_units": {
+    "independent_lit_dark_spatial_pairs": 5,
+    "independent_light_installations": 10,
+    "not_400_or_1605_independent_experiments": true
+  },
+  "original_three_published_sheet_qa": {
+    "group_summary_rows": 400,
+    "focal_11_species_rows": 1038,
+    "full_raw_network_rows": 1606,
+    "full_network_valid_lit_dark_diel_rows": 1605,
+    "discarded_unlabelled_lighting_diel_rows": 1,
+    "full_network_distinct_plant_labels": 44,
+    "full_network_night_taxon_labels": 31,
+    "full_network_day_taxon_labels": 42,
+    "paper_night_taxon_count": 29,
+    "paper_day_taxon_count": 40,
+    "night_Diptera_group_summary": 205,
+    "night_Diptera_focal_11_sheet": 287,
+    "night_Diptera_full_valid_network": 314,
+    "night_all_visit_group_summary": 2160,
+    "night_all_visit_full_valid_network": 2140,
+    "three_views_not_a_common_reconciled_visits_denominator": true
+  },
+  "five_block_NIGHT_from_full_network_only": {
+    "Lepidoptera": {
+      "lit": 355,
+      "dark": 842,
+      "total_ratio": 0.42161520190023755,
+      "geometric_paired_ratio": 0.4106632285597909,
+      "source_exact_unblocked_5_pair_signflip_p": 0.0625
+    },
+    "Diptera": {
+      "lit": 197,
+      "dark": 117,
+      "total_ratio": 1.6837606837606838,
+      "geometric_paired_ratio": 1.717701925825534,
+      "source_exact_unblocked_5_pair_signflip_p": 0.0625
+    },
+    "total_visits": {
+      "lit": 828,
+      "dark": 1312,
+      "geometric_paired_ratio": 0.6210478797789418
+    },
+    "moth_relative_to_fly_ratio": 0.2390771194847585,
+    "all_five_original_blocks_show_moth_relative_to_fly_decrease": true,
+    "signed_p_reach_below_point05_in_five_independent_blocks": false
+  },
+  "night_same_plant_coobservations": {
+    "same_plant_same_block_any_source_round": {
+      "original_source_plant_block_night_pairs": 39,
+      "with_moth_decrease_and_fly_increase": 11,
+      "distinct_plants_with_that_crossover": 7,
+      "blocks_with_that_crossover": 4
+    },
+    "additionally_identical_round_and_repeat": {
+      "original_source_plant_block_night_pairs": 34,
+      "unique_plant_block_pairs_with_any_mothdecrease_flyincrease": 17,
+      "source_matched_period_records_with_mothdecrease_flyincrease": 31,
+      "distinct_plants_with_that_crossover": 9,
+      "blocks_with_that_crossover": 5
+    }
+  },
+  "cross_diel_same_plant_block": {
+    "original_plant_block_pairs_with_light_both_arms_day_and_night": 33,
+    "distinct_original_plant_labels": 14,
+    "independent_spatial_blocks": 5,
+    "night_moth_decreased": {
+      "plant_block_pairs": 21,
+      "plant_taxa": 13
+    },
+    "among_moth_declining_night_fly_increased": {
+      "plant_block_pairs": 11,
+      "plant_taxa": 7
+    },
+    "among_moth_declining_day_fly_increased": {
+      "plant_block_pairs": 12,
+      "plant_taxa": 9
+    },
+    "among_moth_declining_either_night_or_day_fly_increased": {
+      "plant_block_pairs": 15,
+      "plant_taxa": 9
+    },
+    "among_moth_declining_both_diel_fly_increased": {
+      "plant_block_pairs": 8,
+      "plant_taxa": 7
+    },
+    "among_moth_declining_neither_diel_fly_increased": {
+      "plant_block_pairs": 6,
+      "plant_taxa": 6
+    },
+    "not_measured": [
+      "stigmatic conspecific pollen receipt",
+      "pollen viability",
+      "seed set",
+      "source plant flower abundance/flower density denominators"
+    ]
+  },
+  "mathematical_effectiveness_ratio_thresholds": {
+    "equation": "Minimum q_fly/q_moth = - Δvisits_moth / Δvisits_fly for matched same-plant same-round Δmoth<0 and Δfly>0, if other guild effects and selfing changes=0",
+    "note": "The values are mathematical requirements conditional on restrictive assumptions, NOT observed pollinator effectiveness.",
+    "source_taxa": [
+      {
+        "original_label": "甘肃马先蒿",
+        "Latin_abbreviation_author_R": "P. kansuensis",
+        "paired_spatial_blocks": 4,
+        "moth_delta": -8,
+        "fly_delta": 12,
+        "necessary_fly_effectiveness_ratio": 0.6666666666666666
+      },
+      {
+        "original_label": "铃铃香青",
+        "Latin_abbreviation_author_R": "A. hancockii",
+        "paired_spatial_blocks": 5,
+        "moth_delta": -188,
+        "fly_delta": 8,
+        "necessary_fly_effectiveness_ratio": 23.5
+      },
+      {
+        "original_label": "火绒草",
+        "Latin_abbreviation_author_R": "L. leontopodioides",
+        "paired_spatial_blocks": 4,
+        "moth_delta": -39,
+        "fly_delta": 10,
+        "necessary_fly_effectiveness_ratio": 3.9
+      },
+      {
+        "original_label": "葛缕子",
+        "Latin_abbreviation_author_R": "C. carvi",
+        "paired_spatial_blocks": 4,
+        "moth_delta": -11,
+        "fly_delta": 4,
+        "necessary_fly_effectiveness_ratio": 2.75
+      },
+      {
+        "original_label": "金露梅",
+        "Latin_abbreviation_author_R": "D. fruticosa",
+        "paired_spatial_blocks": 3,
+        "moth_delta": -20,
+        "fly_delta": 5,
+        "necessary_fly_effectiveness_ratio": 4
+      },
+      {
+        "original_label": "刺儿菜",
+        "Latin_abbreviation_author_R": "C. setosum",
+        "paired_spatial_blocks": 2,
+        "moth_delta": -5,
+        "fly_delta": 2,
+        "necessary_fly_effectiveness_ratio": 2.5
+      },
+      {
+        "original_label": "路边青",
+        "Latin_abbreviation_author_R": "G. aleppicum",
+        "paired_spatial_blocks": 2,
+        "moth_delta": -1,
+        "fly_delta": 1,
+        "necessary_fly_effectiveness_ratio": 1
+      }
+    ],
+    "excluded_undefined_denominators": [
+      "no fly visitation increase",
+      "no moth decline",
+      "one or zero plant spatial block"
+    ],
+    "no_causal_plant_reproductive_effects_estimated": true
+  },
+  "JPE_same_focal_species_crosspaper": {
+    "DOI": "10.1093/jpe/rtag160",
+    "plant": "Pedicularis kansuensis",
+    "published_nocturnal_pollen_receipt_reduction_percent": 53.8,
+    "published_seed_set_reduction_percent": 56,
+    "same_experimental_plot_linkage_unverified": true,
+    "source_visitation_and_JPE_seed_results_NOT_formally_jointly_fitted": true
+  },
+  "interpretation": "ALAN redistributes visitor interactions across guild, plant and diel channel, but numerical visit substitution is not effective pollen substitution; same-plant trends are source authentic and five spatial light pairs, not 44 independent experiments."
+}
