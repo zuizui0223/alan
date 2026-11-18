@@ -217,8 +217,36 @@ def execute():
         g:group_summary(rows,g,random_state)
         for g in ("Diptera","Hymenoptera")
     }
+    # Ballantyne (2015) is the SAME original 1338-visit heathland network
+    # subsequently incorporated into the Földesi (2020) Dryad meta.
+    # Cross-citation does NOT create independent original study evidence.
+    overlapping_source_study="Ballantyne_et_al_2015"
+    overlap=[r for r in rows if r["study"]==overlapping_source_study]
+    require(len(overlap)==19,"Original Földesi reused Ballantyne source no longer 19 rows")
+    external=[r for r in rows if r["study"]!=overlapping_source_study]
+    guild_external={
+        g:group_summary(external,g,random_state)
+        for g in ("Diptera","Hymenoptera")
+    }
+    provenance_crosspaper={
+        "source_studyID":overlapping_source_study,
+        "original_primary_heath_study_DOI":"10.1098/rspb.2015.1130",
+        "original_source_heathland_Dryad_DOI":"10.5061/dryad.17pp3",
+        "meta_source_Foldesi2015_also_contains_primary_heath_records":True,
+        "raw_meta_effect_rows_reusing_primary_heath":len(overlap),
+        "raw_fly_effect_rows_reusing_primary_heath":
+           sum(r["guild"]=="Diptera" for r in overlap),
+        "raw_bee_effect_rows_reusing_primary_heath":
+           sum(r["guild"]=="Hymenoptera" for r in overlap),
+        "meta_plant_names_overlapping_ballantyne":[
+           p for p in sorted({r["plant"] for r in overlap})],
+        "independent_external_meta_excludes_all_19_duplicated_source_effects":True,
+        "not_two_independent_studies_for_crosspaper_meta":True
+    }
     return {
        "schema":SCHEMA,
+       "original_primary_heath_source_overlap_audit":provenance_crosspaper,
+       "independent_of_heath_original_source_study_balanced_sensitivity":guild_external,
        "source":source,
        "source_group_study_unit_descriptive":guild,
        "same_original_study_same_plant_fly_bee_strata":
@@ -251,6 +279,8 @@ def main():
     print("FOLDESI_TRUE_ORIGINAL_STUDY_UNIT_FLY_POLLEN_DEPOSITION",json.dumps({
        "source":result["source"],
        "guilds":result["source_group_study_unit_descriptive"],
+       "shared_original_primary_source":result["original_primary_heath_source_overlap_audit"],
+       "excluding_shared_primary_heath_source":result["independent_of_heath_original_source_study_balanced_sensitivity"],
        "same_plant_study_support":{
           key:val for key,val in
           result["same_original_study_same_plant_fly_bee_strata"].items()
