@@ -17,6 +17,8 @@ on:
       - 'scripts/acquisition/alan_lu2026_original_multiview_source_grain.py'
       - 'scripts/acquisition/alan_foldesi2020_svd_original_dryad.py'
       - 'scripts/acquisition/alan_ballantyne2015_heathland_pollination_source.py'
+      - 'scripts/analysis/alan_ballantyne2015_heathland_visit_pollen_effectiveness_20261118.py'
+      - 'tests/test_alan_ballantyne2015_heathland_pollen_effectiveness.py'
       - 'scripts/analysis/alan_foldesi2020_original_study_unit_svd.py'
       - 'tests/test_alan_foldesi2020_original_study_unit_svd.py'
       - 'tests/test_alan_lu2026_original_sameplant_guild_replacement.py'
@@ -455,5 +457,47 @@ jobs:
         with:
           name: alan-ballantyne2015-original-wet-heath-visitor-and-pollen-raw-source-gate
           path: /tmp/alan_heath_pollen/original_heath_source_gate.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  ballantyne2015-heathland-plant-visitor-functional-importance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prove per-visit stigmatic pollen not equal visitation and source absence cannot be invented
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_ballantyne2015_heathland_pollen_effectiveness.py -v
+      - name: Recompute exact published heathland 1338 original virgin-stigma visits vs pollen deposition
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_heath_original
+          python -m scripts.analysis.alan_ballantyne2015_heathland_visit_pollen_effectiveness_20261118 \
+            --out /tmp/alan_heath_original/source_original_1338_pollen_vs_visits.json
+      - name: Check true single field community five plants and no imaginary moth or light effect
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_heath_original/source_original_1338_pollen_vs_visits.json'))
+          assert d['schema']=='alan_ballantyne2015_original_heathland_visit_vs_pollen_effectiveness_v1'
+          assert d['source_original_plant_x_virgin_stigma_visits']==1338
+          assert d['source_unique_plant_taxa']==5
+          assert d['source_original_field_community_count']==1
+          assert d['source_original_taxonomic_groups']=={'bees':1263,'flies':59,'other':16}
+          assert d['source_original_moth_visits']==0
+          assert d['source_original_non_depositing_visit_events']==281
+          assert not d['source_has_manipulated_ALAN_treatment']
+          assert d['no_plant_specific_moth_fly_effectiveness_ratio_estimated']
+          print('HEATHLAND_TRUE_VISIT_VS_POLLEN_ORIGINAL_SOURCE_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-ballantyne2015-heathland-1338-visit-pollen-functional-group-original
+          path: /tmp/alan_heath_original/source_original_1338_pollen_vs_visits.json
           retention-days: 90
           if-no-files-found: warn
