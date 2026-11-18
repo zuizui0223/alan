@@ -16,7 +16,7 @@ class PredatorRoleStudyHeterogeneityTests(unittest.TestCase):
     def test_full_programmes_and_opposing_signs_without_meta(self):
         r = synthesize(self.registry)
         self.assertEqual(r["evidence"]["independent_programmes_unique"], 6)
-        self.assertEqual(r["evidence"]["distinct_endpoint_entries"], 8)
+        self.assertEqual(r["evidence"]["distinct_endpoint_entries"], 9)
         self.assertEqual(r["evidence"]["predator_abundance_programmes"], 5)
         self.assertEqual(r["evidence"]["predator_abundance_published_directions"],
                          {"increase": 3, "not_resolved": 1, "decrease": 1})
@@ -29,6 +29,16 @@ class PredatorRoleStudyHeterogeneityTests(unittest.TestCase):
         self.assertAlmostEqual(r["during_to_pre_descriptive_ratio"], 11.34/4.96)
         self.assertAlmostEqual(r["post_to_pre_descriptive_ratio"], 3.10/4.96)
         self.assertTrue(r["not_a_control_adjusted_BACI_effect"])
+        # Predator and herbivore data are shared original pitfall traps, not two experiments.
+        q = synthesize(self.registry)["brown2023_predator_herbivore_source_trophic_capture_reweighting"]
+        self.assertAlmostEqual(q["predator_to_herbivore_capture_ratio"]["pre"], 4.96/3.28)
+        self.assertAlmostEqual(q["predator_to_herbivore_capture_ratio"]["during"], 11.34/1.45)
+        self.assertAlmostEqual(q["predator_to_herbivore_capture_ratio"]["post"], 3.10/2.65)
+        self.assertAlmostEqual(q["light_on_to_pre_predator_herbivore_ratio_of_ratios"],
+                               (11.34/1.45)/(4.96/3.28))
+        self.assertTrue(q["not_a_direct_predation_or_plant_damage_effect"])
+        self.assertTrue(q["same_original_trap_level_process_not_two_experiments"])
+
         self.assertTrue(r["repeated_15_nights_are_not_independent_light_replicates"])
 
     def test_boom_factorization_and_nonsignificant_net_seeds(self):
