@@ -171,7 +171,24 @@ def within_study_original_plant_pairs(rows):
           "not_fly_vs_moth_effectiveness":True,
           "no_valid_SE_due_shared_honeybee_controls":True
         })
+    ratios=[r["descriptive_ratio_fly_vs_wild_bee"] for r in matched]
+    n=len(ratios)
+    if n:
+        lower=sum(v<1 for v in ratios)
+        # Exact two-sided sign reference under equal-likelihood independent
+        # study-level directions; observational source selection means it is
+        # descriptive, not a registered causal pollen-efficiency test.
+        k=min(lower,n-lower)
+        sign_p=min(1.,2*sum(math.comb(n,i) for i in range(k+1))/2**n)
+        desc={"matched_original_study_plant_ratios_min_max":[min(ratios),max(ratios)],
+             "matched_original_study_plant_ratio_median":statistics.median(ratios),
+             "matched_original_study_plant_all_fly_below_bee":lower==n,
+             "matched_study_plant_fly_below_bee_n":lower,
+             "exploratory_study_plant_sign_test_two_sided_p":sign_p,
+             "does_not_compare_fly_with_moth":True}
+    else:desc={"status":"no_study_plant_overlap_STOP"}
     return {"source_study_plant_guild_pair_count":len(matched),
+      "descriptive_matched_original_study_plant_fly_vs_wild_bee":desc,
       "independent_studies_with_both_fly_and_wild_bee":
         len({r["source_study"] for r in matched}),
       "plant_taxa_with_both_fly_and_wild_bee":len({r["source_plant_taxon"] for r in matched}),
