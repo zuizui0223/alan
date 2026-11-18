@@ -102,6 +102,34 @@
       "source_url": "https://doi.org/10.1016/j.isci.2023.106203"
     },
     {
+      "programme_id": "Brown2023",
+      "endpoint_id": "Brown2023_herbivore",
+      "year": 2023,
+      "doi": "10.1016/j.isci.2023.106203",
+      "biome": "temperate oak-hickory forest/path edge",
+      "site_type": "same 10 experimental and 10 control pitfall traps as predator endpoint",
+      "guild": "ground-active herbivorous arthropods",
+      "endpoint": "herbivore_abundance",
+      "direction": "decrease_during_light",
+      "source_treatment_units": "same 20 fixed traps; 10 lit and 10 control; do NOT count as an independent experiment from Brown predator data",
+      "sampling": "same 5 pre, 5 during, 5 post nights as Brown predator endpoint",
+      "effect": {
+        "kind": "three_period_experimental_trap_means",
+        "value": null,
+        "pre": 3.28,
+        "during": 1.45,
+        "post": 2.65,
+        "reported_tukey_pre_vs_during_ci_for_pre_minus_during": [
+          0.43,
+          3.23
+        ]
+      },
+      "raw_source_status": "published peer-reviewed primary Table 3; family-level original source by request only",
+      "site_confounding": "guild catch/activity-density can change by movement, capture propensity, and taxonomy; does NOT establish predator control of herbivores",
+      "plant_fitness_measured": false,
+      "source_url": "https://doi.org/10.1016/j.isci.2023.106203"
+    },
+    {
       "programme_id": "Guo2025",
       "endpoint_id": "Guo2025_orbweaver",
       "year": 2025,
