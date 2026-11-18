@@ -1,7 +1,7 @@
 """Strict pairing of Page et al 2021 original SVE by true study and plant."""
 import unittest
 from scripts.analysis.alan_page2021_original_623_moth_fly_sameplant import (
-    compare, within_original_sameplant_pollen_flux, QKEY, VKEY, PKEY
+    compare, within_original_sameplant_pollen_flux, taxon_verified_source_sensitivity, QKEY, VKEY, PKEY
 )
 def row(study,plant,year,guild,metric="stigma pollen",
         unit="grains",visitmetric="visits/hour",q="10"):
@@ -60,5 +60,22 @@ class PageSourceSamePlantPairing(unittest.TestCase):
         z=within_original_sameplant_pollen_flux(a)
         self.assertFalse(z["source_paired_sameplant_records"][0][
             "source_same_metric_pollen_times_visits_eligible"])
+
+    def test_original_Nymphalidae_Vanessa_not_moth_source_preserved(self):
+        a=[row("study","Plant","2020","moth",metric="number of conspecific pollen grains",
+               unit="mean",q="1.3"),
+           row("study","Plant","2020","moth",metric="number of conspecific pollen grains",
+               unit="mean",q="0"),
+           row("study","Plant","2020","fly",metric="number of conspecific pollen grains",
+               unit="mean",q="4")]
+        a[0]["pollinator.taxon"]="Hyles annei"
+        a[1]["pollinator.taxon"]="Vanessa carye"
+        a[1]["visit.value"]="0.01"
+        source_ratio=compare(a,VKEY,True)["source_comparisons"][0]["source_fly_moth_mean_SVE_ratio"]
+        checked=taxon_verified_source_sensitivity(a)
+        after=checked["corrected_taxon_reference_sensitivity_SVE"]["source_comparisons"][0]
+        self.assertAlmostEqual(source_ratio,4/.65)
+        self.assertAlmostEqual(after["source_fly_moth_mean_SVE_ratio"],4/1.3)
+        self.assertTrue(checked["original_source_taxonomic_mismatch_not_silently_relabelled"])
 
 if __name__=="__main__":unittest.main()
