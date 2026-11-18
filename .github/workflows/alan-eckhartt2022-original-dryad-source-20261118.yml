@@ -1,0 +1,58 @@
+name: ALAN seven-lamppost Dryad predation spatial-gradient source audit
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - scripts/acquisition/alan_eckhartt2022_original_dryad_7lamps_20261118.py
+      - tests/test_alan_eckhartt2022_original_dryad_7lamps_20261118.py
+      - .github/workflows/alan-eckhartt2022-original-dryad-source-20261118.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authentic-2022-dryad-source-schema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install bounded XLSX reader and validate no source bait rows or lamp IDs published
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m unittest discover -s tests -p test_alan_eckhartt2022_original_dryad_7lamps_20261118.py -v
+      - name: Source-check primary Dryad DOI and author-deposited 7-lamppost workbook
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_eckhartt2022_original
+          python -m scripts.acquisition.alan_eckhartt2022_original_dryad_7lamps_20261118 \
+            --out /tmp/alan_eckhartt2022_original/safe_source_schema.json
+      - name: Guard 7 true lamppost clusters and do not invent causal contrasts if Dryad unavailable
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          p='/tmp/alan_eckhartt2022_original/safe_source_schema.json'
+          x=json.load(open(p))
+          assert x['schema']=='alan_20261118_eckhartt2022_original_dryad_source_schema_v1'
+          assert x['published_source_design']['lampposts']==7
+          assert x['published_source_design']['published_bait_observations']==830
+          assert not x['raw_bait_or_lamppost_IDs_exported']
+          assert not x['individual_data_rows_exported']
+          assert not x['raw_7_lamppost_spatiotemporal_model_fitted']
+          assert x['source_status'] in {'RAW_XLSX_SCHEMA_VERIFIED','API_METADATA_ONLY','SOURCE_STOP'}
+          print('ECKHARTT_ACTUAL_SOURCE_GATE',x['source_status'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-eckhartt2022-seven-lamp-original-Dryad-schema-and-source-status
+          path: /tmp/alan_eckhartt2022_original/safe_source_schema.json
+          if-no-files-found: warn
+          retention-days: 90
