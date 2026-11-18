@@ -103,7 +103,6 @@ def report(workbook,rscript,src):
         stat[k]={"source_rows_nonempty":nonempty,
                  "first_five_row_field_counts":[len(x) for x in rows[:5]],
                  "header_row":[str(x)[:100] for x in rows[0][:35]] if rows else [],
-                 "second_row_preview":[str(x)[:70] for x in rows[1][:25]] if len(rows)>1 else [],
                  "readme_dictionary_rows":descriptions}
     selected=[q.strip()[:180] for q in rscript.splitlines()
               if any(s in q.lower() for s in ("read_excel","sheet =","sheet=","read.xlsx","visitation"))]
@@ -124,7 +123,7 @@ def main():
     file.write_text(json.dumps(ans,indent=2,ensure_ascii=False,sort_keys=True)+"\n")
     print("LU2026_SOURCE_EXACT_WORKBOOK_SCHEMA",json.dumps(
       {k:{"n_rows":v["source_rows_nonempty"],"columns":v["header_row"],
-          "preview":v["second_row_preview"]}
+          "variable_dictionary_rows":v["readme_dictionary_rows"] if k=="ReadMe" else []}
        for k,v in ans["raw_original_sheets"].items()},ensure_ascii=False,sort_keys=True))
     print("LU2026_README_AUTHOR_EXPLANATIONS",
           json.dumps(ans["raw_original_sheets"]["ReadMe"]["readme_dictionary_rows"],
