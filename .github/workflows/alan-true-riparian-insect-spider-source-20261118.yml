@@ -16,6 +16,7 @@ on:
       - 'tests/test_alan_lu2026_fullnetwork_sameflower_20261118.py'
       - 'scripts/acquisition/alan_lu2026_original_multiview_source_grain.py'
       - 'scripts/acquisition/alan_foldesi2020_svd_original_dryad.py'
+      - 'scripts/acquisition/alan_ballantyne2015_heathland_pollination_source.py'
       - 'scripts/analysis/alan_foldesi2020_original_study_unit_svd.py'
       - 'tests/test_alan_foldesi2020_original_study_unit_svd.py'
       - 'tests/test_alan_lu2026_original_sameplant_guild_replacement.py'
@@ -420,5 +421,39 @@ jobs:
         with:
           name: alan-foldesi-study-27-plant-29-original-pollen-effectiveness-111
           path: /tmp/alan_foldesi_study_source/original_111_observations.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  ballantyne2015-original-wet-heath-visit-vs-stigma-pollen-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recover source-authentic one heathland community with real pollen deposition and observed pollinators
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_heath_pollen
+          python -m scripts.acquisition.alan_ballantyne2015_heathland_pollination_source \
+            --out /tmp/alan_heath_pollen/original_heath_source_gate.json
+      - name: Keep non-ALAN observational source distinct from lighting experiment
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_heath_pollen/original_heath_source_gate.json'))
+          assert d['schema']=='alan_ballantyne2015_wet_heath_single_visit_pollen_dryad_original_schema_v1'
+          assert d['source_independent_field_community_count']==1
+          assert d['source_valid_zip_CRC']
+          assert not d['source_ALAN_treatment_manipulated']
+          assert d['source_no_visitor_absence_inferred_from_missing_single_visit_deposition']
+          print('WET_HEATH_ORIGINAL_POLLEN_VS_VISITS_SOURCE_VERIFY',d['source_original_rows'],d['source_original_header'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-ballantyne2015-original-wet-heath-visitor-and-pollen-raw-source-gate
+          path: /tmp/alan_heath_pollen/original_heath_source_gate.json
           retention-days: 90
           if-no-files-found: warn
