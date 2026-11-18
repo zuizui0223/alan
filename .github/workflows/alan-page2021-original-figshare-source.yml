@@ -6,6 +6,7 @@ on:
     paths:
       - 'scripts/acquisition/alan_page2021_original_1564_sve_figshare.py'
       - 'scripts/analysis/alan_page2021_original_623_moth_fly_sameplant.py'
+      - 'scripts/analysis/alan_page2021_363wet_plant_case_coverage.py'
       - 'tests/test_alan_page2021_original_623_moth_fly.py'
       - '.github/workflows/alan-page2021-original-figshare-source.yml'
   pull_request:
@@ -87,5 +88,40 @@ jobs:
         with:
           name: alan-page2021-623-taxa-moth-fly-same-study-plant-SVE-source
           path: /tmp/alan_page_mothfly/strict_sameplant_original_moth_fly.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  original-sve-to-363-frozen-wet-flora-source-transport:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compute actual exact-match source overlap and absence gates
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_page_wet
+          python -m scripts.analysis.alan_page2021_363wet_plant_case_coverage \
+            --out /tmp/alan_page_wet/page_original_case_species_coverage.json
+      - name: Verify frozen alan/main wet flora and strict no-effect transport
+        run: |
+          python - <<'PY'
+          import json
+          s=json.load(open('/tmp/alan_page_wet/page_original_case_species_coverage.json'))
+          assert s['schema']=='alan_page2021_original_sve_source_versus_363_wet_plant_coverage_v1'
+          assert s['original_main_wet_species']==363
+          assert s['original_main_selected_ALAN_recording_rate_decline_cases']==58
+          assert s['original_main_other_high_MOIST_species']==305
+          assert s['source_same_study_plant_moth_and_fly_pairs']==5
+          assert not s['no_pollen_efficiency_transferred_between_nonidentical_species']==False
+          print('PAGE_623_SOURCE_WET_FLORA_EXACT_TAXON_OVERLAP_PASS',s['Page_source_wet_candidate_cases_matched'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-page2021-sve-623-vs-frozen-wet-flora-363-coverage
+          path: /tmp/alan_page_wet/page_original_case_species_coverage.json
           retention-days: 90
           if-no-files-found: warn
