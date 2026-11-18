@@ -1,0 +1,85 @@
+{
+  "schema": "alan_heath_original_fiveplant_functional_network_20261118_v1",
+  "provenance": {
+    "doi": "10.1098/rspb.2015.1130",
+    "dryad": "10.5061/dryad.17pp3",
+    "sha256": "6994304ac377540c87b57560ecec50f72e8514494f9edd034eae2b5ed18f61c1",
+    "run_url": "https://github.com/zuizui0223/alan/actions/runs/44254335152",
+    "n_original_visits": 1338,
+    "n_plant_species": 5,
+    "n_independent_field_communities": 1,
+    "n_ALAN_treatments": 0
+  },
+  "main_result": {
+    "top_visit_species_equals_top_function_species_in_all_five": true,
+    "n_plants_with_rare_lt5pct_visitors_but_gt10pct_pollen": 1,
+    "source_selected_ALAN_wet_decline_candidate": "Erica tetralix",
+    "source_selected_species_moisture": 8.1,
+    "rare_taxon": "Bombus jonellus",
+    "rare_visits": 11,
+    "rare_visits_share": 0.02763819095477387,
+    "rare_delivered_conspecific_pollen_grains": 608,
+    "rare_pollen_share": 0.12988677632984405,
+    "rare_function_vs_visit_share_multiple": 4.699539725388902,
+    "fraction_3999_source_day_bootstraps_with_rare_function_support": 0.6666666666666666,
+    "common_taxon": "Apis mellifera",
+    "common_visits": 77,
+    "common_delivered_conspecific_pollen_grains": 226,
+    "rare_per_visit_pollen_vs_common": 18.831858407079647,
+    "rare_taxon_observed_source_dates": 4,
+    "rare_to_common_per_visit_source_date_bootstrap95": [
+      9.235474006116208,
+      35.18391787852866
+    ]
+  },
+  "all_five": {
+    "Calluna vulgaris": {
+      "top_visitor_and_pollen": "Apis mellifera",
+      "max_taxon_pollen_share": 0.5222566055701023,
+      "rare_over10pct_source": false
+    },
+    "Erica cinerea": {
+      "top_visitor_and_pollen": "Bombus terrestris/lucorum",
+      "max_taxon_pollen_share": 0.724851538599964,
+      "rare_over10pct_source": false
+    },
+    "Erica tetralix": {
+      "top_visitor_and_pollen": "Bombus terrestris/lucorum",
+      "max_taxon_pollen_share": 0.6712240974150823,
+      "rare_over10pct_source": true
+    },
+    "Ulex minor": {
+      "top_visitor_and_pollen": "Bombus lapidarius",
+      "max_taxon_pollen_share": 0.45350929814037194,
+      "rare_over10pct_source": false
+    },
+    "Ulex europaeus": {
+      "top_visitor_and_pollen": "Bombus terrestris/lucorum",
+      "max_taxon_pollen_share": 0.5067607289829512,
+      "rare_over10pct_source": false
+    }
+  },
+  "function_and_limitations": {
+    "Calluna vulgaris": {
+      "fly_original_visits": 45,
+      "fly_to_bee_mean_pollen_per_visit_ratio": 0.7328362114076401,
+      "descriptive_date_bootstrap_ratio95": [
+        0.24853531817679356,
+        1.146857825567503
+      ]
+    },
+    "Erica tetralix": {
+      "fly_original_visits": 4,
+      "fly_original_observation_dates": 3,
+      "fly_date_cluster_CI": "SOURCE_STOP"
+    },
+    "Ulex europaeus": {
+      "source_observation_dates": 2,
+      "date_cluster_bootstrap": "SOURCE_STOP"
+    },
+    "biological_interactions_not_ALAN_causal_effect": true,
+    "one_field_community_not_global_meta": true,
+    "no_moth_visits_in_original_source": true,
+    "no_actual_seed_output_measured": true
+  }
+}
