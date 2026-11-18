@@ -234,6 +234,53 @@ def study_bootstrap(records,reps=NBOOT):
       "not_an_ALAN_or_pollinator_loss_randomized_test":True
     }
 
+def same_original_study_mixed_vs_single_guild_gate(audited):
+    """Source support for associating guild breadth with functional divergence.
+
+    Compare within ORIGINAL study, not cross-study mean differences. If a
+    study only contains single-guild or only multi-guild plant networks, it
+    cannot identify a within-study contrast; reject a causal comparison.
+    More taxa in mixed guilds also confounds a naive between-group signal.
+    """
+    bystudy=collections.defaultdict(lambda:{"single":[],"multi":[]})
+    for z in audited:
+        key="multi" if z["original_visitor_guilds"]>=2 else "single"
+        bystudy[z["source_study"]][key].append(z)
+    matched={
+        st:{
+          "source_mixed_guild_plant_networks":len(g["multi"]),
+          "source_one_guild_plant_networks":len(g["single"]),
+          "within_original_study_mean_total_variation_difference":
+              average([x["functional_total_variation"] for x in g["multi"]])-
+              average([x["functional_total_variation"] for x in g["single"]])
+        } for st,g in bystudy.items() if g["single"] and g["multi"]
+    }
+    multi=[x for x in audited if x["original_visitor_guilds"]>=2]
+    single=[x for x in audited if x["original_visitor_guilds"]==1]
+    out={
+        "source_original_studies_total":len(bystudy),
+        "source_original_studies_with_within_study_both_guild_categories":len(matched),
+        "source_original_studies_with_both_guild_categories":matched,
+        "observed_mixed_guild_groups":len(multi),
+        "observed_single_guild_groups":len(single),
+        "mixed_guild_original_taxon_count_mean":average(
+            [z["original_visitor_taxa"] for z in multi]),
+        "one_guild_original_taxon_count_mean":average(
+            [z["original_visitor_taxa"] for z in single]),
+        "cross_study_mixed_minus_single_TV_not_causal":average(
+            [z["functional_total_variation"] for z in multi])-
+            average([z["functional_total_variation"] for z in single]),
+        "guild_categories_confounded_with_source_study_and_taxon_richness":True,
+        "experimental_ALAN_moderation_by_visitor_guild_breadth_estimated":False
+    }
+    if len(matched)<5:
+        out["status"]="within_study_multi_vs_single_guild_common_support_STOP"
+        out["within_study_multi_vs_single_guild_comparison_meta_coefficient"]=None
+    else:
+        out["status"]="exploratory_within_study_source_comparison_possible"
+        out["within_study_multi_vs_single_guild_comparison_meta_coefficient"]=None
+    return out
+
 def execute(raw):
     versions={}
     for label,rev in (("as_published",False),
@@ -272,6 +319,8 @@ def execute(raw):
            "source_quality_excluded_original_network_cells":ex,
            "subsets_and_source_study_bootstrap":sub,
            "multi_guild_minus_single_guild_average_TV_descriptive":differential,
+           "original_study_blocked_guild_breadth_identification":
+               same_original_study_mixed_vs_single_guild_gate(audited),
            "example_high_functional_composition_mismatch":sorted(audited,
                 key=lambda z:-z["functional_total_variation"])[:12],
            "example_high_top_visitor_prediction_error":sorted(audited,
@@ -309,7 +358,9 @@ def main():
           "richness_ge5":d["subsets_and_source_study_bootstrap"]["source_visitor_richness_at_least_5"]["source_summary"],
           "multi_guild":d["subsets_and_source_study_bootstrap"]["two_or_more_source_visitor_guilds"]["source_summary"],
           "one_guild":d["subsets_and_source_study_bootstrap"]["only_one_source_visitor_guild"]["source_summary"],
-          "multi_minus_single_TV":d["multi_guild_minus_single_guild_average_TV_descriptive"]
+          "multi_minus_single_TV":d["multi_guild_minus_single_guild_average_TV_descriptive"],
+          "within_study_guild_contrast_gate":
+              d["original_study_blocked_guild_breadth_identification"]
         } for version,d in result["source_sensitivity_versions"].items()
     },ensure_ascii=False,sort_keys=True),flush=True)
 
