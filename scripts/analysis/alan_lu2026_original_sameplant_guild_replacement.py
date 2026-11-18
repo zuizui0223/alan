@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Source-authentic Lu 2026 plant-specific moth vs fly redistribution analysis.
 
-Read publication-original Data S1 at fixed XLSX checksum. Main published
-guild totals are corroborated against the separate author visitation sheet,
-not silently treated as 1606 independent experiments. For a plant to enter
-same-flower contrasts, both original lit/dark arms must have source records
+Read publication-original Data S1 at fixed XLSX checksum. The
+author's focal 11-plant 'species visitation' original table has 1,038 source
+records; it is not the COMPLETE 29 night/40 day plant community. The separate
+'plant–pollinator network' worksheet contains non-tabular sparse/blank
+identifier fields and is not silently imputed from previous row values.
+For a plant to enter same-flower contrasts, both original lit/dark arms must have source records
 in the *same spatial block and sampling period*, rather than infer unlisted
 plant species as zeros or local absences. Compare (i) plant×block×diel
 source support, (ii) plant×block×diel×survey-round/repeat strict support,
@@ -30,8 +32,8 @@ from scripts.analysis.alan_lu2026_original_fiveblock_guild_replacement import (
 
 SCHEMA="alan_lu2026_original_same_plant_guild_replacement_20261118_v1"
 G=("all","Lepidoptera","Diptera","Hymenoptera","Coleoptera","Others")
-RAW_SHEET="plant–pollinator network"
-N_SOURCE=1606
+RAW_SHEET="species visitation"
+N_SOURCE=1038
 
 def indexed_original(s):
     src=rows(s)
@@ -81,14 +83,17 @@ def summarize(source,blocks,visit_rows):
             k=num(r[col])
             need(k is not None,"original visitation supporting source count missing")
             main[(t,g)]+=int(k)
-    audit={"source_plant_network_rows":len(source),
+    audit={"source_selected_focal_plant_visitation_rows":len(source),
+        "source_focal_11_plants_NOT_complete_29_night_40_day_network":True,
+        "source_original_full_network_1606_rows_not_used_due_sparse_identifiers":True,
         "original_visitation_rows":len(visit_rows),
         "original_unique_plant_labels":len({r["plant"] for r in source}),
         "original_plants_by_diel":{t:len({r["plant"] for r in source if r["phase"]==t})
                                    for t in ("day","night")},
-        "original_network_matches_aggregate_visitation_sheet_exactly":
+        "source_focal_plant_counts_equal_whole_community_visitation":
             all(network[k]==main[k] for k in main),
-        "per_diel_source_network_visits":{
+        "source_focal_plants_are_subset_of_full_community":True,
+        "per_diel_focal_plant_visits_vs_total_community":{
              t:{g:{"plant_network":network[(t,g)],"visitation_sheet":main[(t,g)]}
                 for g in G} for t in ("night","day")},
         "network_rows_with_zero_total_visitors":
