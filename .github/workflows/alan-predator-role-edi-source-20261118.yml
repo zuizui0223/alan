@@ -34,20 +34,22 @@ jobs:
           import json
           p='/tmp/alan_predator_roles_20261118/programme_stage_summary.json'
           x=json.load(open(p))
-          assert x['evidence']['independent_programmes_unique']==6
+          assert x['evidence']['independent_programmes_unique']==7
           assert x['evidence']['predator_abundance_programmes']==5
-          assert x['evidence']['distinct_endpoint_entries']==9
+          assert x['evidence']['distinct_endpoint_entries']==10
           assert x['evidence']['predator_abundance_published_directions']=={
               'increase':3,'not_resolved':1,'decrease':1}
           assert x['evidence']['no_common_endpoint_random_effects_meta_fitted']
           assert x['scope']['no_novel_experimental_results_created']
+          assert x['eckhartt2022_original_published_model']['not_randomly_assigned_ALAN']
+          assert x['eckhartt2022_original_published_model']['original_n_lamppost_clusters']==7
           assert x['brown2023_predator_herbivore_source_trophic_capture_reweighting']['light_on_to_pre_predator_herbivore_ratio_of_ratios']>5
           assert x['boom2020_spectral_nursery_algebra']['overall_seed_output_reported_omnibus_p']==0.63
           print('ALAN_PREDATOR_EVIDENCE_PROGRAMME_AND_REPRODUCTION_SOURCE_GATES_OK')
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: alan-predator-6-programmes-9-endpoints-source-stage-audit-20261118
+          name: alan-predator-7-programmes-10-endpoints-source-stage-audit-20261118
           path: /tmp/alan_predator_roles_20261118/programme_stage_summary.json
           if-no-files-found: error
           retention-days: 90
