@@ -58,3 +58,9 @@ Deitsch & Kaiser の[Environmental Data Initiative 原研究資料](https://doi.
 - Farnworth et al. 2026 https://doi.org/10.1016/j.biocon.2026.111967
 - Boom et al. 2020 https://doi.org/10.1038/s41598-020-75471-1
 - [出典別プログラム台帳](../results/all_species_forest/biotic_interactions/predator_role_original_published_programme_ledger_20261118.json)、[非プール統合の再現コード](../scripts/analysis/alan_predator_role_study_heterogeneity_20261118.py)
+
+## 2026-11-18 初回CI実行とデータ入手状態
+
+[GitHub Actions run #44292386232](https://github.com/zuizui0223/alan/actions/runs/44292386232) で**計8個の独立性・算術・出典非開示テストが成功**。公刊Table 3からのBrown照明側の捕食者中／前比は**2.286290**、Boom公刊4光色の緑／暗の繁殖割合積は**0.514973**と再計算した。これはそれぞれ照明側の記述的比および非有意（全体p=.63）の数値であり、メタ効果ではない。
+
+同CIのEDI取得先 `package/eml`、`package/name`、`package/metadata` はすべて **SOURCE_STOP（原エンティティ0件）**だった。**CIが緑でも原4ペアを実際に再解析したとはいえない。** 原元資料DOIは存在し公開と記載されているが、この実行環境からは取得不能。そこで後続コミットで[原著公式Figshare collection 6440235](https://doi.org/10.6084/m9.figshare.c.6440235)の補足資料の真正ファイル名・SHA・CSV構造のみ別経路で照合するコードを追加した。Figshareの補足ファイルをEDI本体の元4ペアデータと無条件に同一視しない。
