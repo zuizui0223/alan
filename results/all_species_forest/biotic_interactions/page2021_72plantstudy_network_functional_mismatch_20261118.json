@@ -816,7 +816,6 @@
     "study_period_can_span_years": true,
     "missing_pollen_SDs_and_pollen_quality": true,
     "source_zero_SVE_is_actual_observed_zero_not_missing": true,
-    "study_level_bootstrap_is_descriptive": false,
     "study_level_bootstrap_is_descriptive_not_fitted_random_effects": true,
     "study_nonsimultaneous_date_binning_possible": true,
     "these_72_plant_networks_not_72_independent_field_experiments": true,
