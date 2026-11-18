@@ -82,6 +82,25 @@ def audit():
         enc,sep,frame=read_data(raw)
         guide=z.read(guides[0]).decode("utf-8-sig",errors="replace")
     cols=list(frame[0])
+    from collections import Counter,defaultdict
+    plant_names=Counter(r.get("plant_species","").strip() for r in frame)
+    visit_groups=Counter(r.get("visitor_group","").strip() for r in frame)
+    source_dates=defaultdict(set)
+    for r in frame:
+        source_dates[r.get("plant_species","").strip()].add(r.get("date","").strip())
+    numeric_source={}
+    for col in ("conspecific_pollen_deposited_(before_control_values_removed)",
+                "conspecific_pollen_deposited","length_of_visit"):
+        nums=[];missing=0
+        for row in frame:
+            v=row.get(col,"").strip()
+            try:nums.append(float(v))
+            except ValueError:missing+=1
+        numeric_source[col]={
+            "original_numeric_records":len(nums),"original_missing_records":missing,
+            "raw_zero_or_negative":sum(x<=0 for x in nums),
+            "negative":sum(x<0 for x in nums),
+            "min":min(nums) if nums else None,"max":max(nums) if nums else None}
     notes=[s[:150] for s in guide.splitlines() if s.strip()][:24]
     # Metadata only; original individual interactions stay off GitHub.
     summary={
@@ -95,6 +114,11 @@ def audit():
         "source_csv_byte_length":len(raw),
         "source_original_rows":len(frame),
         "source_original_header":cols,
+        "plant_source_visit_counts":dict(plant_names),
+        "visitor_taxonomic_group_counts":dict(visit_groups),
+        "source_unique_observation_days_per_plant":{
+            k:len(v) for k,v in source_dates.items()},
+        "original_measurement_missingness_and_negative_counts":numeric_source,
         "source_csv_delimiter":sep,
         "source_csv_encoding":enc,
         "source_guidance_filename":guides[0],
