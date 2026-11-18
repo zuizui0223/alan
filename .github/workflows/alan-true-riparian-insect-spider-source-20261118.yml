@@ -553,7 +553,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Official Figshare project 120921 survey: determine available true plant/insect SVD file sources
+      - name: 'Official Figshare project 120921 survey: determine available true plant/insect SVD file sources'
         run: |
           set -euo pipefail
           mkdir -p /tmp/alan_page_original
