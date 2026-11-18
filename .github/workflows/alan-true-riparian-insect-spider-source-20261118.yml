@@ -9,6 +9,7 @@ on:
       - 'scripts/analysis/alan_true_parkinson2020_aquatic_spider_20261118.py'
       - 'scripts/analysis/alan_wet_biotic_multiguild_source_20261118.py'
       - 'scripts/acquisition/alan_lu2026_pollination_supplement_source_gate.py'
+      - 'scripts/acquisition/alan_lu2026_original_workbook_schema.py'
       - 'tests/test_alan_wet_biotic_multiguild_source_20261118.py'
       - 'tests/test_alan_true_parkinson2020_aquatic_spider_20261118.py'
       - '.github/workflows/alan-true-riparian-insect-spider-source-20261118.yml'
@@ -143,5 +144,38 @@ jobs:
         with:
           name: alan-lu2026-official-fiveblock-original-plant-pollinator-data-gate
           path: /tmp/alan_lu2026/original_data_availability.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  lu2026-actual-data-excel-readme-source-schema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Source-only parse original five paired-block workbook
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_lu2026_original
+          python scripts/acquisition/alan_lu2026_original_workbook_schema.py \
+            --out /tmp/alan_lu2026_original/source_schema.json
+      - name: Verify original EuropePMC hosted XLSX exact sha and block-aware inference STOP
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/alan_lu2026_original/source_schema.json'))
+          assert a['schema']=='alan_lu2026_original_fiveblock_plant_pollinator_sheet_schema_v1'
+          assert a['source_workbook_sha256']=='ba7e15e66986f64943a38fd294e49d7128cf7719d318578f6b805d29cde8f98f'
+          assert a['original_independent_lit_dark_site_pairs']==5
+          assert not a['source_plant_visitor_effects_fitted']
+          print('LU2026_AUTHENTIC_README_AND_BLOCK_SCHEMA_PASS',[(k,v['source_rows_nonempty']) for k,v in a['raw_original_sheets'].items()])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-lu2026-author-original-DataS1-fiveblock-excel-source-schema
+          path: /tmp/alan_lu2026_original/source_schema.json
           retention-days: 90
           if-no-files-found: warn
