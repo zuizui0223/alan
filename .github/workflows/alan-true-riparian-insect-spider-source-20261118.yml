@@ -16,6 +16,8 @@ on:
       - 'tests/test_alan_lu2026_fullnetwork_sameflower_20261118.py'
       - 'scripts/acquisition/alan_lu2026_original_multiview_source_grain.py'
       - 'scripts/acquisition/alan_foldesi2020_svd_original_dryad.py'
+      - 'scripts/analysis/alan_foldesi2020_original_study_unit_svd.py'
+      - 'tests/test_alan_foldesi2020_original_study_unit_svd.py'
       - 'tests/test_alan_lu2026_original_sameplant_guild_replacement.py'
       - 'tests/test_alan_lu2026_original_fiveblock_guild_replacement.py'
       - 'tests/test_alan_wet_biotic_multiguild_source_20261118.py'
@@ -376,5 +378,47 @@ jobs:
         with:
           name: alan-foldesi2020-pollen-deposition-127-dryad-original-source-gate
           path: /tmp/alan_foldesi_svd/dryad_source_gate.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  foldesi-original-111-svd-meta-study-unit-reanalysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test true original-study unit meta and no fly-as-moth substitution
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_foldesi2020_original_study_unit_svd.py -v
+      - name: Recover byte-pinned original published Dryad CSV and study-level pollen source contrasts
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_foldesi_study_source
+          python -m scripts.analysis.alan_foldesi2020_original_study_unit_svd \
+            --out /tmp/alan_foldesi_study_source/original_111_observations.json
+      - name: Verify source 111 versus published 127 cannot be hidden and no moth efficacy invented
+        run: |
+          python - <<'PY'
+          import json
+          p='/tmp/alan_foldesi_study_source/original_111_observations.json'
+          d=json.load(open(p))
+          assert d['schema']=='alan_foldesi2020_original_111_svd_study_unit_calibration_gate_v1'
+          assert d['source']['source_observations']==111
+          assert d['source']['source_studies']==27
+          assert d['source']['source_plant_taxa']==29
+          assert d['source']['source_effect_counts_by_guild']['Diptera']==30
+          assert d['source']['source_effect_counts_by_guild']['Hymenoptera']==81
+          assert d['source']['source_minus_published']['n_observations']==-16
+          assert d['fly_moth_direct_efficiency_missing']
+          print('FOLDESI_ORIGINAL_STUDY_CLUSTERED_POLLEN_SOURCE_PASS', d['source'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-foldesi-study-27-plant-29-original-pollen-effectiveness-111
+          path: /tmp/alan_foldesi_study_source/original_111_observations.json
           retention-days: 90
           if-no-files-found: warn
