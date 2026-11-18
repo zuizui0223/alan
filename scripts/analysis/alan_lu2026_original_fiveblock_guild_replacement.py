@@ -151,6 +151,24 @@ def fit_five_blocks(data):
                 "original_pair_delta_log1pseudocount_min":min(delta),
                 "original_pair_delta_log1pseudocount_max":max(delta)
             })
+            # Original sampling rows differ slightly among the paired
+            # block×diel×arm cells (18 to 22). Estimate visit-count rates
+            # per author observation row as a sensitivity to effort imbalance.
+            nlit=[block_obs[(t,"lit",b)] for b in blocks]
+            ndark=[block_obs[(t,"dark",b)] for b in blocks]
+            need(all(a>0 and b>0 for a,b in zip(nlit,ndark)),
+                 "original treatment arm without observed sampling periods")
+            normalized=[
+                math.log(((l+.5)/na)/((d+.5)/nb))
+                for l,d,na,nb in zip(lit,dark,nlit,ndark)]
+            x["normalized_by_original_sampling_row"]=dict(
+                exact_five_signflip(normalized),
+                geometric_block_pair_visits_per_sampling_row_ratio=
+                    math.exp(statistics.mean(normalized)),
+                original_lit_sampling_rows=sum(nlit),
+                original_dark_sampling_rows=sum(ndark),
+                source_normalization_is_observation_rows_not_minutes=True
+            )
             groups[g]=x
         # Guild tradeoff, not simply a total animal visit reduction.
         moth=[math.log((value[((t,"lit",b),"Lepidoptera")]+.5)/
@@ -166,8 +184,43 @@ def fit_five_blocks(data):
             "pseudocount_sensitivity_needed_for_sparse_blocks":True,
             "replacement_in_effective_pollen_delivery_NOT_measured":True
         })
+        compensation=[]
+        for b in blocks:
+            m0=value[((t,"dark",b),"Lepidoptera")]
+            m1=value[((t,"lit",b),"Lepidoptera")]
+            f0=value[((t,"dark",b),"Diptera")]
+            f1=value[((t,"lit",b),"Diptera")]
+            compensation.append({
+                "moth_visit_change_lit_minus_dark":m1-m0,
+                "fly_visit_change_lit_minus_dark":f1-f0,
+                "total_visit_change_lit_minus_dark":
+                    value[((t,"lit",b),"total")]-value[((t,"dark",b),"total")],
+                "fly_gains_as_fraction_of_absolute_moth_loss":
+                    ((f1-f0)/(m0-m1) if m0>m1 else None)
+            })
+        moth_loss=sum(-x["moth_visit_change_lit_minus_dark"] for x in compensation)
+        fly_gain=sum(x["fly_visit_change_lit_minus_dark"] for x in compensation)
+        compensation_summary={
+            "independent_block_count":5,
+            "source_moth_visits_lit_minus_dark":-moth_loss,
+            "source_fly_visits_lit_minus_dark":fly_gain,
+            "fly_visit_increase_divided_by_moth_visit_decrease":
+                (fly_gain/moth_loss if moth_loss>0 else None),
+            "blocks_where_moth_decreased_and_fly_increased":sum(
+               r["moth_visit_change_lit_minus_dark"]<0 and
+               r["fly_visit_change_lit_minus_dark"]>0 for r in compensation),
+            "blockwise_change_ranges":{
+               key:[min(x[key] for x in compensation),
+                    max(x[key] for x in compensation)]
+               for key in ("moth_visit_change_lit_minus_dark",
+                           "fly_visit_change_lit_minus_dark",
+                           "total_visit_change_lit_minus_dark")},
+            "not_a_pollen_function_compensation_fraction":True,
+            "source_sampling_opportunity_different_between_arms":True
+        }
         out["source_5_pair_diel_guilds"][t]={"guilds":groups,
-                                  "paired_moth_relative_to_fly":joint}
+                                  "paired_moth_relative_to_fly":joint,
+                                  "visit_count_stage_compensation":compensation_summary}
     out["original_plant_pollinator_visitor_total_vs_paper"]={
       "source_night_total_visits":sum(r["total"] for r in data if r["day"]=="night"),
       "source_day_total_visits":sum(r["total"] for r in data if r["day"]=="day"),
