@@ -184,8 +184,9 @@ def plant_summary(rows,plant):
         "observed_n_fly_single_visits":fly["source_visits"],
         "observed_n_bee_single_visits":bee["source_visits"],
         "mean_fly_per_visit_pollen_relative_to_bee":
-            safe_div(fly.get("source_mean_grains_per_visitor_virgin_stigma",0),
-                     bee.get("source_mean_grains_per_visitor_virgin_stigma",0)),
+            (safe_div(fly["source_mean_grains_per_visitor_virgin_stigma"],
+                      bee["source_mean_grains_per_visitor_virgin_stigma"])
+             if fly["source_visits"]>0 and bee["source_visits"]>0 else None),
         "source_direct_moth_SVD_measurement_absent":True,
         "source_guild_efficiency_mean_not_a_seed_set_or_ALAN_effect":True
     }
