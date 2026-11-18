@@ -90,7 +90,7 @@ def grouped_source(spider_path,insects_path,mass_path):
         land=count("# of individual terrestrial invertebrates")
         total=count("# individual invertebrates")
         caen=count("# Caenidae (A)")
-        chir=count("# Chironomidae (C)")
+        chir=count("# Chironomidae (C) ")
         noct=count("# Noctuidae (m) ")
         need(all(x>=0 and float(x).is_integer() for x in (aq,land,total,caen,chir,noct)),
              "non-count data in original pan trap")
