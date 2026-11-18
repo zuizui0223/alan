@@ -12,6 +12,7 @@ on:
       - 'scripts/acquisition/alan_lu2026_original_workbook_schema.py'
       - 'scripts/analysis/alan_lu2026_original_fiveblock_guild_replacement.py'
       - 'scripts/analysis/alan_lu2026_original_sameplant_guild_replacement.py'
+      - 'scripts/acquisition/alan_lu2026_original_multiview_source_grain.py'
       - 'tests/test_alan_lu2026_original_sameplant_guild_replacement.py'
       - 'tests/test_alan_lu2026_original_fiveblock_guild_replacement.py'
       - 'tests/test_alan_wet_biotic_multiguild_source_20261118.py'
@@ -258,5 +259,40 @@ jobs:
         with:
           name: alan-lu2026-source-actual-same-flower-diel-guild-shift
           path: /tmp/alan_lu2026_sameplant/author_source_matched_flower_guild_substitution.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  lu2026-author-workbook-multiview-grain-qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Audit original Lu source sheet grain and repeated/missing identifiers
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_lu2026_source
+          python -m scripts.acquisition.alan_lu2026_original_multiview_source_grain \
+            --out /tmp/alan_lu2026_source/three_original_views.json
+      - name: Enforce authored original three sheet sample sizes and provenance
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/alan_lu2026_source/three_original_views.json'))
+          assert r['schema']=='alan_lu2026_source_three_workbook_views_visitor_grain_20261118_v1'
+          assert r['original_paired_light_spatial_blocks']==5
+          assert r['tables']['visitation']['raw_source_data_rows']==400
+          assert r['tables']['species visitation']['raw_source_data_rows']==1038
+          assert r['tables']['plant–pollinator network']['raw_source_data_rows']==1606
+          assert not r['original_source_seed_set_measured']
+          print('LU2026_SOURCE_MULTIVIEW_ABSENCE_AND_DENOMINATOR_GATE_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-lu2026-original-author-three-worksheet-measurement-grain
+          path: /tmp/alan_lu2026_source/three_original_views.json
           retention-days: 90
           if-no-files-found: warn
