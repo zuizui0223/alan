@@ -7,6 +7,8 @@ on:
   pull_request:
     paths:
       - 'scripts/analysis/alan_true_parkinson2020_aquatic_spider_20261118.py'
+      - 'scripts/analysis/alan_wet_biotic_multiguild_source_20261118.py'
+      - 'tests/test_alan_wet_biotic_multiguild_source_20261118.py'
       - 'tests/test_alan_true_parkinson2020_aquatic_spider_20261118.py'
       - '.github/workflows/alan-true-riparian-insect-spider-source-20261118.yml'
       - 'docs/ALAN_BIOTIC_INTERACTION_SOURCE_20261118.md'
@@ -76,3 +78,36 @@ jobs:
           path: /tmp/alan_original_biotic/stage_separated_source_fit_20261118.json
           if-no-files-found: warn
           retention-days: 90
+
+  original-wet-flora-cross-guild-provenance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recompute exact frozen wet plant and source-matched insect-predator guild inventory
+        run: |
+          set -euo pipefail
+          python scripts/analysis/alan_wet_biotic_multiguild_source_20261118.py \
+            --base results/all_species_forest \
+            --out /tmp/alan_wet_biotic_multiguild_source_20261118.json
+      - name: Guard source fidelity and nonpromotion of iNaturalist-linked hypothetical food webs
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_wet_biotic_multiguild_source_20261118.py -v
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/alan_wet_biotic_multiguild_source_20261118.json'))
+          assert a['schema']=='alan_wet_flora_adult_visitor_predator_multiguild_source_audit_20261118_v1'
+          assert a['two_step_biotic_graph_support']['chains_with_at_least_one_non_iNaturalist_source_pair']==2
+          assert a['documented_riparian_moth_adult_spider_chains']['original_moth_to_spider_source_rows']==8
+          print('ALAN_BIOTIC_363_WET_PLANT_SOURCE_PROVENANCE_GATE_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-363-wet-flora-adult-visitor-predator-guild-source-20261118
+          path: /tmp/alan_wet_biotic_multiguild_source_20261118.json
+          retention-days: 90
+          if-no-files-found: error
