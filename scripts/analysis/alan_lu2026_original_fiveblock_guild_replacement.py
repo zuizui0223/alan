@@ -85,13 +85,26 @@ def validate_diel(table):
                        "round":survey_round,"repeat":rep,**v})
     blocks=sorted({v["block"] for v in parsed})
     need(len(blocks)==5,"exactly five independent original spatial blocks required")
-    need(len({(x["day"],x["light"],x["block"],x["round"],x["repeat"])
-             for x in parsed})==400,"repeated identical block/round observation key")
+    # In the author's original Data.xlsx, combinations of diel/treatment/
+    # block/survey-round/repeat may occur more than once. Preserve ALL original
+    # rows, but do not count those repeated keys as additional experimental
+    # light installations. Report this issue as source-granularity QA.
+    from collections import Counter
+    source_keys=Counter((x["day"],x["light"],x["block"],x["round"],x["repeat"])
+                         for x in parsed)
+    repeated=sum(v-1 for v in source_keys.values())
+    whole_rows=Counter((x["day"],x["light"],x["block"],x["round"],x["repeat"],
+                        *(x[k] for k in (*PRIMARY,*DAYTIME))) for x in parsed)
+    exact_duplicate_rows=sum(v-1 for v in whole_rows.values())
     need(all(("day",arm,block) in original and ("night",arm,block) in original
              for block in blocks for arm in ("lit","dark")),"not all 5 treatment pairs share day and night")
     return parsed,{"n_raw_visits_frame_rows":len(table),
        "original_independent_block_pairs":len(blocks),
-       "observed_15_group_??":None,
+       "source_number_of_unique_diel_arm_block_round_repeat_keys":len(source_keys),
+       "source_rows_with_reused_observation_keys":repeated,
+       "source_completely_identical_full_rows_beyond_first":exact_duplicate_rows,
+       "source_max_repeated_key_multiplicity":max(source_keys.values()),
+       "repeated_keys_retained_as_author_original_not_extra_light_treatments":True,
        "balanced_source_group_record_count":len(set(original.values()))==1,
        "per_diel_arm_block_record_counts":sorted(set(original.values())),
        "independent_treatment_installations":10,
