@@ -8,6 +8,8 @@ on:
       - 'scripts/analysis/alan_page2021_original_623_moth_fly_sameplant.py'
       - 'scripts/analysis/alan_page2021_363wet_plant_case_coverage.py'
       - 'scripts/analysis/alan_page2021_original_macro_functional_network_mismatch.py'
+      - 'scripts/analysis/alan_page2021_source_functional_bottlenecks_20261118.py'
+      - 'tests/test_alan_page2021_source_functional_bottlenecks.py'
       - 'tests/test_alan_page2021_macro_functional_network_mismatch.py'
       - 'tests/test_alan_page2021_original_623_moth_fly.py'
       - '.github/workflows/alan-page2021-original-figshare-source.yml'
@@ -166,5 +168,52 @@ jobs:
         with:
           name: alan-page2021-original-plant-visitor-functional-importance-69study
           path: /tmp/page_macro/page_source_functional_rank_mismatch.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  original-72-plant-study-functional-bottleneck-composition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Synthetic-only tests of pollen vs visit compositional divergence and cluster units
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_page2021_source_functional_bottlenecks.py -v
+      - name: Recompute from Page Figshare original SHA-locked 623 taxa, 72 comparable networks and 33 studies
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_page_function
+          python -m scripts.analysis.alan_page2021_source_functional_bottlenecks_20261118 \
+            --out /tmp/alan_page_function/source_visitation_vs_true_pollen_network.json
+      - name: Gate true study count, source taxon audit and observational not causal outcomes
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_page_function/source_visitation_vs_true_pollen_network.json'))
+          assert d['schema']=='alan_page2021_33study_72plant_network_functional_tv_and_loss_v1'
+          assert d['source_original_taxon_rows']==623
+          assert d['original_csv_sha256']=='e28ebe99e0dfb27b73fbe6638e568bf98fa95b92c920e1d3d981e8eaea27519a'
+          for name,v in d['source_sensitivity_versions'].items():
+              assert v['source_matched_eligible_plant_networks']==72
+              assert v['source_matched_original_studies']==33
+              a=v['subsets_and_source_study_bootstrap']['all_source_comparable_networks']['source_summary']
+              assert a['source_plant_network_cells']==72
+              assert a['source_studies']==33
+              assert a['frequent_visitor_proxy_abs_pollen_share_error_mean']>=0
+              assert a['functional_weight_vs_visitation_weight_TV_mean']<=1
+          assert d['no_experimental_ALAN_light_treatment']
+          assert d['no_targeted_pollinator_removal_or_predator_intervention']
+          assert d['cannot_infer_stigma_to_seed_fitness']
+          print('PAGE2021_TRUE_FUNCTIONAL_VISITOR_BOTTLENECK_SOURCE_GATE_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-page2021-33study-72-network-visitation-vs-pollen-bottleneck
+          path: /tmp/alan_page_function/source_visitation_vs_true_pollen_network.json
           retention-days: 90
           if-no-files-found: warn
