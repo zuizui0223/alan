@@ -19,6 +19,7 @@ on:
       - 'scripts/acquisition/alan_ballantyne2015_heathland_pollination_source.py'
       - 'scripts/analysis/alan_ballantyne2015_heathland_visit_pollen_effectiveness_20261118.py'
       - 'scripts/analysis/alan_heathland_fiveplant_functional_pollen_network_20261118.py'
+      - 'scripts/acquisition/alan_page2021_original_1564_sve_figshare.py'
       - 'tests/test_alan_heathland_fiveplant_functional_network_20261118.py'
       - 'tests/test_alan_ballantyne2015_heathland_pollen_effectiveness.py'
       - 'scripts/analysis/alan_foldesi2020_original_study_unit_svd.py'
@@ -541,5 +542,42 @@ jobs:
         with:
           name: alan-five-true-heath-functional-pollen-vs-visit-1338-20261118
           path: /tmp/alan_heath_function/source_fiveplant_functional_network.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  page2021-168study-single-visit-figshare-original-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Official Figshare project 120921 survey: determine available true plant/insect SVD file sources
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_page_original
+          python -m scripts.acquisition.alan_page2021_original_1564_sve_figshare \
+            --out /tmp/alan_page_original/page_figshare_source_audit.json
+      - name: Do not assume Lepidoptera guild or same-plant Fly/Moth data before original file inspection
+        run: |
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/alan_page_original/page_figshare_source_audit.json'))
+          assert x['schema']=='alan_page2021_single_visit_pollen_1564_figshare_source_gate_v1'
+          assert x['original_abstract_reported_studies']==168
+          assert x['original_abstract_reported_single_visit_effects']==1564
+          assert not x['published_source_is_an_original_effect_meta_not_an_ALAN_treatment']==False
+          assert not x['moth_vs_fly_same_plant_original_contrasts_estimated']
+          print('PAGE2021_FIGSHARE_ORIGINAL_SOURCE_STATUS',x['status'])
+          print('PAGE2021_ORIGINAL_AVAILABLE_FILES',
+                [(a['id'],a['title'],[(f['name'],f.get('source_schema',{}).get('status'))
+                   for f in a['files']]) for a in x.get('source_article_metadata',[])])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-page2021-168studies-1564-stigma-pollen-Figshare-original-source-gate
+          path: /tmp/alan_page_original/page_figshare_source_audit.json
           retention-days: 90
           if-no-files-found: warn
