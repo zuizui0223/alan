@@ -28,10 +28,31 @@ def source():
     with MAIN_FILE.open(newline="",encoding="utf-8") as f:rows=list(csv.DictReader(f))
     if len(rows)!=363 or sum(r["candidate"]=="True" for r in rows)!=58:
         raise RuntimeError("Frozen original 58/305 wet-case source mutated")
-    return {r["accepted"]:r for r in rows}
+    # The 363 original source rows contain 2 same-binomial wet references
+    # measured in distinct site regions. A dictionary must NOT silently
+    # erase their source row membership or invent 363 different species.
+    by=defaultdict(list)
+    for r in rows:by[r["accepted"]].append(r)
+    duplicates={k:v for k,v in by.items() if len(v)>1}
+    for k,values in duplicates.items():
+        assert len({v["candidate"] for v in values})==1,(
+            "same-binomial candidate/ref source group conflict")
+        assert len({v["indicator"] for v in values})==1,(
+            "same-binomial source MOIST conflict")
+    return ({k:v[0] for k,v in by.items()},{
+       "source_original_rows":len(rows),
+       "source_distinct_accepted_species":len(by),
+       "source_duplicated_accepted_binomial_names":sorted(duplicates),
+       "source_distinct_ALAN_candidates":
+           len({r["accepted"] for r in rows if r["candidate"]=="True"}),
+       "source_distinct_other_wet_species":
+           len({r["accepted"] for r in rows if r["candidate"]=="False"}),
+       "source_original_case_rows":58,
+       "source_original_reference_rows":305
+    })
 
 def execute():
-    wet=source()
+    wet,original_meta=source()
     rows=get_source()
     normalize=lambda r:r.replace("_"," ").strip()
     lookup=defaultdict(list)
@@ -47,7 +68,15 @@ def execute():
      "main_wet_flora_source_git_blob_SHA1":MAIN_BLOB,
      "source_original_Page_taxon_table_sha256":
          "e28ebe99e0dfb27b73fbe6638e568bf98fa95b92c920e1d3d981e8eaea27519a",
-     "original_main_wet_species":len(wet),
+     "original_main_wet_species":original_meta["source_original_rows"],
+     "original_main_distinct_accepted_plant_binomials":
+         original_meta["source_distinct_accepted_species"],
+     "original_main_source_duplicates_not_imputed_as_unique_species":
+         original_meta["source_duplicated_accepted_binomial_names"],
+     "original_main_distinct_selected_candidate_species":
+         original_meta["source_distinct_ALAN_candidates"],
+     "original_main_distinct_reference_species":
+         original_meta["source_distinct_other_wet_species"],
      "original_main_selected_ALAN_recording_rate_decline_cases":58,
      "original_main_other_high_MOIST_species":305,
      "Page_source_distinct_study_plant_labels":len(page_plants),
@@ -58,13 +87,19 @@ def execute():
         {"species":n,"source_MOIST":float(wet[n]["indicator"]),
          "original_Page_pollinator_guilds":sorted(set(
               r["pollinator.group"] for r in lookup[n])),
-         "original_Page_taxonlevel_effect_rows":len(lookup[n])}
+         "original_Page_taxonlevel_effect_rows":len(lookup[n]),
+         "original_Page_study_ids":sorted(set(
+              r["studyID"] for r in lookup[n])),
+         "original_Page_SVE_effectiveness_metrics":sorted(set(
+              r["effectiveness.metric"] for r in lookup[n]))}
         for n in matchedcases],
      "source_wet_reference_species_names_with_SVE":[
         {"species":n,"MOIST":float(wet[n]["indicator"]),
          "Page_guilds":sorted(set(
               r["pollinator.group"] for r in lookup[n])),
-         "Page_taxonlevel_effect_rows":len(lookup[n])}
+         "Page_taxonlevel_effect_rows":len(lookup[n]),
+         "Page_original_study_ids":sorted(set(
+              r["studyID"] for r in lookup[n]))}
         for n in matchedrefs],
      "source_same_study_plant_moth_and_fly_pairs":len(five),
      "source_Pagemothfly_pair_plant_names":sorted(paired),
@@ -73,6 +108,8 @@ def execute():
           sorted(paired&LU7),
      "source_wet_candidate_coverage_fraction":len(matchedcases)/58,
      "source_other_wet_reference_coverage_fraction":len(matchedrefs)/305,
+     "source_unique_reference_binomial_coverage_fraction":
+          len(matchedrefs)/original_meta["source_distinct_other_wet_species"],
      "no_ecological_absence_inferred_from_missing_single_visit_data":True,
      "no_species_level_ALAN_effect_estimated":True,
      "no_pollen_efficiency_transferred_between_nonidentical_species":True,
