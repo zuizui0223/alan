@@ -1,0 +1,78 @@
+name: ALAN true riparian aquatic-origin insects and spider interception evidence
+
+on:
+  push:
+    branches:
+      - analysis/alan-biotic-aquatic-spider-original-20261118
+  pull_request:
+    paths:
+      - 'scripts/analysis/alan_true_parkinson2020_aquatic_spider_20261118.py'
+      - 'tests/test_alan_true_parkinson2020_aquatic_spider_20261118.py'
+      - '.github/workflows/alan-true-riparian-insect-spider-source-20261118.yml'
+      - 'docs/ALAN_BIOTIC_INTERACTION_SOURCE_20261118.md'
+      - 'results/all_species_forest/biotic_interactions/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-twenty-mesocosms-source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify original statistical source guards and install NumPy
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3
+          python -m unittest discover -s tests -p test_alan_true_parkinson2020_aquatic_spider_20261118.py -v
+      - name: Download only original-author source at immutable Git commit
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_original_biotic
+          BASE="https://raw.githubusercontent.com/LizzParkinson/ALAN_Data/6985359fd29dfe321c740691bf97ea9d564db769"
+          curl -fL --retry 3 --max-time 180 "$BASE/Spider%20and%20Prey%20Insect%20Abundance.csv" -o "/tmp/alan_original_biotic/Spider and Prey Insect Abundance.csv"
+          curl -fL --retry 3 --max-time 180 "$BASE/Aquatic%20and%20Terrestrial%20Invertebrate%20Inputs.csv" -o "/tmp/alan_original_biotic/Aquatic and Terrestrial Invertebrate Inputs.csv"
+          curl -fL --retry 3 --max-time 180 "$BASE/Spider%20Body%20Mass.csv" -o "/tmp/alan_original_biotic/Spider Body Mass.csv"
+          test "$(git hash-object '/tmp/alan_original_biotic/Spider and Prey Insect Abundance.csv')" = "63965aaedae5254ea0064b9346a7fc2a8f7b610a"
+          test "$(git hash-object '/tmp/alan_original_biotic/Aquatic and Terrestrial Invertebrate Inputs.csv')" = "4e2b7065d67e0604ca121ea26c96b5db6d64de94"
+          test "$(git hash-object '/tmp/alan_original_biotic/Spider Body Mass.csv')" = "8ff2eefe6ff365e2b0f6eed038ed7b6db74247fc"
+          echo "SOURCE_AUTHENTIC_THREE_ORIGINAL_GIT_BLOBS_OK"
+      - name: Reanalyze aquatic-origin prey, terrestrial-origin prey, spider numbers and spider web captures
+        run: |
+          set -euo pipefail
+          python scripts/analysis/alan_true_parkinson2020_aquatic_spider_20261118.py \
+            --spider-source "/tmp/alan_original_biotic/Spider and Prey Insect Abundance.csv" \
+            --aquatic-source "/tmp/alan_original_biotic/Aquatic and Terrestrial Invertebrate Inputs.csv" \
+            --mass-source "/tmp/alan_original_biotic/Spider Body Mass.csv" \
+            --out /tmp/alan_original_biotic/stage_separated_source_fit_20261118.json
+      - name: Assert no invented treatment replication, moth pollination or plant fitness
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/alan_original_biotic/stage_separated_source_fit_20261118.json').read_text())
+          assert a['schema']=='alan_true_original_parkinson2020_riparian_predators_aquatic_insect_stage_sep_v1'
+          assert a['source_units']['independent_original_mesocosms']==20
+          assert a['source_units']['spider_csv_rows']==60
+          assert a['source_units']['lit_mesocosms']==10
+          assert a['source_units']['control_mesocosms']==10
+          assert a['source_units']['raw_pan_invertebrate_total']==1992
+          assert a['source_units']['spider_body_mass_has_no_mesocosm_ID_so_not_analysed_as_independent_unit']
+          assert a['stage_effects']['Noctuidae_terrestrial_moth_insufficient']['moth_pollination_ALAN_effect']=='NOT ESTIMABLE'
+          assert not a['moth_pollen_to_plant_reproduction_identified']
+          print('ALAN_SOURCE_INTERACTION_STAGES_PASS',list(a['stage_effects']))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-true-original-20mesocosm-aquatic-prey-spider-20261118
+          path: /tmp/alan_original_biotic/stage_separated_source_fit_20261118.json
+          if-no-files-found: warn
+          retention-days: 90
