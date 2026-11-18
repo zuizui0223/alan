@@ -81,6 +81,60 @@ def source_table_summary(content):
         return {"format": "not_structured_csv"}
 
 
+
+def figshare_supplement_inspection(report):
+    """Cross-check official Figshare supplementary collection; not EDI raw proof."""
+    base = "https://api.figshare.com/v2"
+    request_url = base + "/collections/6440235/articles"
+    try:
+        items = json.loads(get(request_url))
+        if not isinstance(items, list):
+            raise ValueError("Figshare collection was not a public article array")
+        report["figshare_source"] = {
+            "status": "PUBLIC_COLLECTION_METADATA_RETRIEVED",
+            "collection": "10.6084/m9.figshare.c.6440235",
+            "articles_listed": len(items), "article_details": [],
+        }
+        for item in items[:8]:
+            article_id = item.get("id")
+            if not isinstance(article_id, int):
+                continue
+            d = json.loads(get(f"{base}/articles/{article_id}"))
+            title = d.get("title", "")
+            match_source = "caterpillar" in title.lower() or "light at night" in title.lower()
+            files = d.get("files", [])
+            entry = {
+                "article_id": article_id, "title": title, "paper_subject_match": match_source,
+                "source_files": [
+                    {"name": v.get("name"), "size": v.get("size"), "reported_md5": v.get("supplied_md5")}
+                    for v in files
+                ],
+            }
+            report["figshare_source"]["article_details"].append(entry)
+            if not match_source:
+                continue
+            for v in files[:15]:
+                name = v.get("name", "")
+                size = v.get("size", -1)
+                url = v.get("download_url")
+                if not isinstance(size, int) or not 0 < size < 4_000_000 or not url:
+                    continue
+                if not name.lower().endswith((".csv", ".tsv", ".txt")):
+                    continue
+                try:
+                    content = get(url)
+                    digest = {"entity_source_url": url, "original_source_file_name": name,
+                              "raw_SHA256": hashlib.sha256(content).hexdigest(),
+                              "byte_count": len(content), "source_type": "FIGSHARE_SUPPLEMENT_NOT_EDI"}
+                    digest.update(source_table_summary(content))
+                    report["figshare_source"].setdefault("small_file_schemas", []).append(digest)
+                except (ValueError, urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as e:
+                    report["figshare_source"].setdefault("small_file_SOURCE_STOPs", []).append(
+                        {"file_name": name, "error_class": type(e).__name__})
+    except (ValueError, urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError) as e:
+        report["figshare_source"] = {
+            "status": "SUPPLEMENT_SOURCE_STOP", "url": request_url, "error_class": type(e).__name__}
+
 def inspect_source():
     report = {"schema": "alan_edi_deitsch2023_authentic_source_preflight_20261118_v1",
               "source": {"package_ID": PACKAGE, "dataset_DOI": "10.6073/pasta/71525c9c724db0a21249584afca9ddbd",
@@ -140,6 +194,7 @@ def inspect_source():
         "RAW_SOURCE_AND_SCHEMA_VERIFIED" if any(v.get("format") == "delimited_text"
                                              for v in report["entity_summaries"])
         else "SOURCE_METADATA_ONLY_OR_STOP")
+    figshare_supplement_inspection(report)
     report["independent_raw_plot_effect_fit"] = False
     report["no_invented_se_or_light_pair_ids"] = True
     return report
