@@ -12,6 +12,8 @@ on:
       - 'scripts/acquisition/alan_lu2026_original_workbook_schema.py'
       - 'scripts/analysis/alan_lu2026_original_fiveblock_guild_replacement.py'
       - 'scripts/analysis/alan_lu2026_original_sameplant_guild_replacement.py'
+      - 'scripts/analysis/alan_lu2026_original_fullnetwork_sameflower_20261118.py'
+      - 'tests/test_alan_lu2026_fullnetwork_sameflower_20261118.py'
       - 'scripts/acquisition/alan_lu2026_original_multiview_source_grain.py'
       - 'tests/test_alan_lu2026_original_sameplant_guild_replacement.py'
       - 'tests/test_alan_lu2026_original_fiveblock_guild_replacement.py'
@@ -294,5 +296,48 @@ jobs:
         with:
           name: alan-lu2026-original-author-three-worksheet-measurement-grain
           path: /tmp/alan_lu2026_source/three_original_views.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  lu2026-author-fullnetwork-45plant-within-block-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 11
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile repaired Lu 2026 source-only analyses and unit test no-missing-source-fill rules
+        run: |
+          set -euo pipefail
+          python -m py_compile \
+            scripts/analysis/alan_lu2026_original_sameplant_guild_replacement.py \
+            scripts/acquisition/alan_lu2026_original_multiview_source_grain.py \
+            scripts/analysis/alan_lu2026_original_fullnetwork_sameflower_20261118.py
+          python -m unittest discover -s tests -p test_alan_lu2026_fullnetwork_sameflower_20261118.py -v
+      - name: Compute original 1605 fully labelled plant-pollinator network rows with same-plant comparisons
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_lu2026_full
+          python -m scripts.analysis.alan_lu2026_original_fullnetwork_sameflower_20261118 \
+            --out /tmp/alan_lu2026_full/source_original_45plant_within_block.json
+      - name: Verify scope and remove unmapped source row without inventing biology
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/alan_lu2026_full/source_original_45plant_within_block.json'))
+          assert r['schema']=='alan_lu2026_original_45plant_network_same_flower_20261118_v1'
+          assert r['source_spatial_pairs']==5
+          assert r['source_original_measured_table']['original_rows_with_unreported_light_or_diel']==1
+          assert r['source_original_measured_table']['source_valid_plant_visitation_rows']==1605
+          assert not r['moth_loss_fly_gain_is_visitation_not_functional_pollen']==False
+          assert r['undocumented_species_or_missing_light_arm_not_assigned_zero']
+          print('LU2026_ALL45_SOURCE_PAIRS_AND_MEASUREMENT_DENOMINATORS_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-lu2026-45plants-author-original-fullnetwork-guild-cooccurrence
+          path: /tmp/alan_lu2026_full/source_original_45plant_within_block.json
           retention-days: 90
           if-no-files-found: warn
