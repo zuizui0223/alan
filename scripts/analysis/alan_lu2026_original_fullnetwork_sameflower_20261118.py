@@ -123,6 +123,53 @@ def compare_views(full,visit,focal):
         "do_not_sum_across_three_views":True
     }
 
+def within_fullnetwork_five_block_guilds(full):
+    # Counts within the 1,605 valid *same full network worksheet* rows.
+    # There are only FIVE independent original spatial lit/dark pairs.
+    from scripts.analysis.alan_lu2026_original_fiveblock_guild_replacement import exact_five_signflip
+    blocks=sorted({x["block"] for x in full})
+    need(len(blocks)==5,"full author network no longer has five blocks")
+    by=collections.Counter()
+    for x in full:
+        for guild in ("all","Lepidoptera","Diptera"):
+            by[(x["phase"],x["arm"],x["block"],guild)]+=x[guild]
+    out={}
+    for diel in ("night","day"):
+        guilds={}
+        for guild in ("all","Lepidoptera","Diptera"):
+            lit=[by[(diel,"lit",b,guild)] for b in blocks]
+            dark=[by[(diel,"dark",b,guild)] for b in blocks]
+            delta=[math.log((a+0.5)/(c+0.5)) for a,c in zip(lit,dark)]
+            x=exact_five_signflip(delta)
+            guilds[guild]={
+              "sum_lit_visits":sum(lit),
+              "sum_dark_visits":sum(dark),
+              "lit_dark_total_visits_ratio":
+                 sum(lit)/sum(dark) if sum(dark)>0 else None,
+              "five_pair_geometric_lit_dark_visits_ratio":
+                 math.exp(x["paired_5_block_mean"]),
+              "descriptive_two_sided_32_signflip_p":
+                 x["descriptive_exact_32_paired_label_signflips_two_sided_p"],
+              "block_count":len(blocks),
+              "original_experimental_light_units_not_plant_rows":10
+            }
+        moth=[math.log((by[(diel,"lit",b,"Lepidoptera")]+.5)/
+                       (by[(diel,"dark",b,"Lepidoptera")]+.5)) for b in blocks]
+        flies=[math.log((by[(diel,"lit",b,"Diptera")]+.5)/
+                        (by[(diel,"dark",b,"Diptera")]+.5)) for b in blocks]
+        joint=exact_five_signflip([a-b for a,b in zip(moth,flies)])
+        out[diel]={
+           "original_author_full_network_source_guilds":guilds,
+           "five_block_relative_moth_to_fly_lit_vs_dark_geometric_ratio":
+               math.exp(joint["paired_5_block_mean"]),
+           "five_block_moth_fly_relative_signflip_p":
+               joint["descriptive_exact_32_paired_label_signflips_two_sided_p"],
+           "relative_moth_to_fly_direction_negative_blocks":
+               joint["independent_block_negative_effects"],
+           "visitation_not_functional_pollen_substitution":True
+        }
+    return out
+
 def execute():
     workbook,rcode,src=source_open()
     need(src["source_workbook_sha256"]==ORIGINAL_WORKBOOK_SHA,
@@ -140,6 +187,8 @@ def execute():
             "source_spatial_pairs":5,"source_original_measured_table":support,
             "original_author_R_explicit_name_mapping_only":author_map,
             "same_plant_study_within_network_view":result,
+            "original_full_network_only_five_block_guilds":
+                within_fullnetwork_five_block_guilds(full),
             "three_views_denominator_audit":original,
             "moth_loss_fly_gain_is_visitation_not_functional_pollen":True,
             "source_original_species_seed_set_not_measured":True,
@@ -158,6 +207,8 @@ def main():
         "original_source":result["source_original_measured_table"],
         "source_denominators_identical":
             result["three_views_denominator_audit"]["source_three_views_exact_same_visitation_totals"],
+        "original_full_network_night_guild_shift":
+            result["original_full_network_only_five_block_guilds"]["night"],
         "coincident_plant_coverage":{k:{
           "source_plant_labels":v["original_distinct_matched_plants"],
           "night_plant_block_pairs":v["source_plants_same_block_treatment_pairs_by_diel"]["night"],
