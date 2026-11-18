@@ -31,6 +31,7 @@ DOI="10.5061/dryad.05qfttf1n"
 ARTICLE_DOI="10.1111/1365-2664.13798"
 SCHEMA="alan_foldesi2020_original_127_SVD_FlyBee_Dryad_source_gate_v1"
 SOURCE_URLS=[
+ "https://datadryad.org/api/v2/versions/91142/download",
  "https://datadryad.org/downloads/file_stream/478779",
  "https://datadryad.org/api/v2/files/478779/download",
  "https://datadryad.org/api/v2/datasets/doi%3A10.5061%2Fdryad.05qfttf1n/download"
@@ -50,12 +51,18 @@ def decode_csv(blob):
         try:
             text=blob.decode(charset)
             if "\x00" in text:continue
+            prefix=text[:2000].lstrip().lower()
+            if prefix.startswith(("<!doctype html","<html","<?xml","<script","{")):
+                raise ValueError("Source returned HTML/JSON validation page, not a biological CSV")
             separator=","
             try:separator=csv.Sniffer().sniff(text[:4000],delimiters=",;\t").delimiter
             except csv.Error:pass
             frame=list(csv.DictReader(io.StringIO(text),delimiter=separator))
             header=list(frame[0]) if frame else []
-            if len(header)<3:continue
+            if len(header)<5 or len(frame)<20:continue
+            if not any(any(token in k.lower() for token in
+                 ("study","pollen","plant","species","taxon","visit","deposition"))
+                 for k in header):continue
             return header,frame,separator
         except (UnicodeError,ValueError):
             continue
@@ -127,7 +134,32 @@ def audit():
     except Exception as e:
         out["source_api"]={"status":"metadata_access_STOP","reason_type":type(e).__name__,
                            "http_status":e.code if isinstance(e,urllib.error.HTTPError) else None}
-    for url in SOURCE_URLS:
+    try:
+        files_payload,url,_=fetch("https://datadryad.org/api/v2/versions/91142/files")
+        files=json.loads(files_payload)
+        included=files.get("_embedded",{}).get("stash:files",[])
+        out["source_version_file_listing"]={
+            "api_version":91142,
+            "original_public_api_file_count":len(included),
+            "published_filenames":[x.get("path") for x in included],
+            "original_file_download_links":[
+                x.get("_links",{}).get("stash:download",{}).get("href")
+                for x in included]
+        }
+        dynamic=[]
+        for info in included:
+            href=info.get("_links",{}).get("stash:download",{}).get("href")
+            if isinstance(href,str) and href.startswith("/"):
+                dynamic.append("https://datadryad.org"+href)
+            elif isinstance(href,str) and href.startswith("https://"):
+                dynamic.append(href)
+        urls=list(dict.fromkeys(dynamic+SOURCE_URLS))
+    except Exception as e:
+        out["source_version_file_listing"]={
+            "status":"source_files_metadata_access_STOP",
+            "reason_type":type(e).__name__}
+        urls=SOURCE_URLS
+    for url in urls:
         test={"url":url}
         try:
             blob,actual,mime=fetch(url)
