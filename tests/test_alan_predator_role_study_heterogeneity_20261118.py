@@ -15,14 +15,25 @@ class PredatorRoleStudyHeterogeneityTests(unittest.TestCase):
 
     def test_full_programmes_and_opposing_signs_without_meta(self):
         r = synthesize(self.registry)
-        self.assertEqual(r["evidence"]["independent_programmes_unique"], 6)
-        self.assertEqual(r["evidence"]["distinct_endpoint_entries"], 9)
+        self.assertEqual(r["evidence"]["independent_programmes_unique"], 7)
+        self.assertEqual(r["evidence"]["distinct_endpoint_entries"], 10)
         self.assertEqual(r["evidence"]["predator_abundance_programmes"], 5)
         self.assertEqual(r["evidence"]["predator_abundance_published_directions"],
                          {"increase": 3, "not_resolved": 1, "decrease": 1})
         self.assertTrue(r["evidence"]["forest_predator_direction_crosses_increase_null_decrease"])
         self.assertTrue(r["evidence"]["no_common_endpoint_random_effects_meta_fitted"])
         self.assertFalse(r["scope"]["systematic_review"])
+
+    def test_seven_lamppost_postdusk_distance_gradient_is_not_mortality_meta(self):
+        import math
+        x=synthesize(self.registry)["eckhartt2022_original_published_model"]
+        self.assertEqual(x["original_n_lamppost_clusters"],7)
+        self.assertEqual(x["original_n_bait_events"],830)
+        self.assertAlmostEqual(x["post_dusk_distance_odds_ratio_per_m"],math.exp(0.384))
+        self.assertAlmostEqual(x["pre_dusk_distance_odds_ratio_per_m"],math.exp(-0.107))
+        self.assertTrue(x["not_randomly_assigned_ALAN"])
+        self.assertTrue(x["pre_dusk_daytime_vs_post_dusk_confounded"])
+        self.assertTrue(x["cannot_meta_pool_with_predator_abundance"])
 
     def test_brown_is_not_treatment_contrast_or_independent_nights(self):
         r = synthesize(self.registry)["brown2023_original_published_period_arithmetic"]
