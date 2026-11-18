@@ -29,7 +29,7 @@ from scripts.analysis.alan_lu2026_original_fiveblock_guild_replacement import (
     rows,num,normalize_time,normalize_light,need
 )
 from scripts.analysis.alan_lu2026_original_sameplant_guild_replacement import (
-    source_results,read_author_taxon_abbreviations
+    source_results,read_author_taxon_abbreviations,match_plants
 )
 
 SCHEMA="alan_lu2026_original_45plant_network_same_flower_20261118_v1"
@@ -123,6 +123,79 @@ def compare_views(full,visit,focal):
         "do_not_sum_across_three_views":True
     }
 
+def joint_day_night_same_plant_routes(full):
+    """Can daytime or nighttime Diptera visit the SAME plant losing night moths?"""
+    paired=match_plants(full,[])
+    all_by_pair={}
+    for row in paired["same_plant_block_any_round"]:
+        key=(row["plant"],row["block"])
+        d=all_by_pair.setdefault(key,{})
+        # Requiring the SAME plant at SAME block with original lit/dark
+        # recordings for each diel session separately.
+        if row["phase"] in d:raise ValueError("original same plant×block×phase duplicated")
+        d[row["phase"]]=row
+    checked=[(plant,block,v["night"],v["day"])
+             for (plant,block),v in all_by_pair.items()
+             if "night" in v and "day" in v]
+    stat=collections.Counter()
+    plants=collections.defaultdict(set)
+    spatial_blocks=collections.defaultdict(set)
+    original_night_moth_loss=0.0
+    original_day_fly_gain=0.0
+    original_night_fly_gain=0.0
+    documented=[]
+    for plant,block,night,day in checked:
+        moth_down=night["moth_delta"]<0
+        noct_fly_up=night["fly_delta"]>0
+        diurnal_fly_up=day["fly_delta"]>0
+        categories={
+           "night_moth_down":moth_down,
+           "night_moth_down_and_night_fly_up":moth_down and noct_fly_up,
+           "night_moth_down_and_day_fly_up":moth_down and diurnal_fly_up,
+           "night_moth_down_and_either_fly_up":
+               moth_down and (noct_fly_up or diurnal_fly_up),
+           "night_moth_down_and_both_fly_up":
+               moth_down and noct_fly_up and diurnal_fly_up,
+           "night_moth_down_without_fly_increase":
+               moth_down and not noct_fly_up and not diurnal_fly_up
+        }
+        for cat,yes in categories.items():
+            if yes:
+                stat[cat]+=1
+                plants[cat].add(plant)
+                spatial_blocks[cat].add(block)
+        if moth_down:
+            original_night_moth_loss-=night["moth_delta"]
+            if noct_fly_up:original_night_fly_gain+=night["fly_delta"]
+            if diurnal_fly_up:original_day_fly_gain+=day["fly_delta"]
+        documented.append((plant,block,night["moth_delta"],night["fly_delta"],
+                           day["fly_delta"],noct_fly_up,diurnal_fly_up))
+    return {
+      "same_plant_and_spatial_block_has_both_arms_for_day_and_night":len(checked),
+      "distinct_original_plant_labels":len({k for k,b,_,_ in checked}),
+      "distinct_independent_experimental_light_blocks":len({b for k,b,_,_ in checked}),
+      "patterns":{cat:{
+            "source_plant_block_pairs":stat[cat],
+            "distinct_plant_labels":len(plants[cat]),
+            "independent_light_blocks_with_pattern":len(spatial_blocks[cat])
+          } for cat in (
+           "night_moth_down",
+           "night_moth_down_and_night_fly_up",
+           "night_moth_down_and_day_fly_up",
+           "night_moth_down_and_either_fly_up",
+           "night_moth_down_and_both_fly_up",
+           "night_moth_down_without_fly_increase")},
+      "total_night_moth_visit_decline_among_night_moth_declining_same_plant_pairs":
+          original_night_moth_loss,
+      "positive_night_fly_visit_gain_on_those_same_plant_pairs":
+          original_night_fly_gain,
+      "positive_day_fly_visit_gain_on_those_same_plant_pairs":
+          original_day_fly_gain,
+      "different_diel_visit_count_denominators_not_interchangeable":True,
+      "same_flower_temporal_visitor_change_not_a_pollen_or_seed_rescue":True,
+      "five_light_blocks_not_plant_block_independent_studies":True
+    }
+
 def within_fullnetwork_five_block_guilds(full):
     # Counts within the 1,605 valid *same full network worksheet* rows.
     # There are only FIVE independent original spatial lit/dark pairs.
@@ -187,6 +260,8 @@ def execute():
             "source_spatial_pairs":5,"source_original_measured_table":support,
             "original_author_R_explicit_name_mapping_only":author_map,
             "same_plant_study_within_network_view":result,
+            "source_temporal_day_night_same_flower_substitution":
+                joint_day_night_same_plant_routes(full),
             "original_full_network_only_five_block_guilds":
                 within_fullnetwork_five_block_guilds(full),
             "three_views_denominator_audit":original,
@@ -207,6 +282,8 @@ def main():
         "original_source":result["source_original_measured_table"],
         "source_denominators_identical":
             result["three_views_denominator_audit"]["source_three_views_exact_same_visitation_totals"],
+        "day_night_same_flower_routes":
+            result["source_temporal_day_night_same_flower_substitution"],
         "original_full_network_night_guild_shift":
             result["original_full_network_only_five_block_guilds"]["night"],
         "coincident_plant_coverage":{k:{
