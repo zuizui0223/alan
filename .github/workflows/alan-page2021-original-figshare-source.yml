@@ -5,6 +5,8 @@ on:
       - analysis/alan-biotic-aquatic-spider-original-20261118
     paths:
       - 'scripts/acquisition/alan_page2021_original_1564_sve_figshare.py'
+      - 'scripts/analysis/alan_page2021_original_623_moth_fly_sameplant.py'
+      - 'tests/test_alan_page2021_original_623_moth_fly.py'
       - '.github/workflows/alan-page2021-original-figshare-source.yml'
   pull_request:
     paths:
@@ -45,4 +47,45 @@ jobs:
           name: alan-page2021-original-figshare-120921-file-audit
           path: /tmp/alan_page2021/source.json
           retention-days: 60
+          if-no-files-found: warn
+
+  real-original-623-plant-taxon-moth-fly-contrast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Ensure same study, same plant, same pollination measure and visitation units are enforced
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_page2021_original_623_moth_fly.py -v
+      - name: Recompute actual downloaded 623 author records for any strict moth and fly comparator
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_page_mothfly
+          python -m scripts.analysis.alan_page2021_original_623_moth_fly_sameplant \
+            --out /tmp/alan_page_mothfly/strict_sameplant_original_moth_fly.json
+      - name: Preserve source scope and prohibit cross-study functional compensation
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/alan_page_mothfly/strict_sameplant_original_moth_fly.json'))
+          assert r['schema']=='alan_page2021_623_original_taxonlevel_moth_fly_comparator_gate_v1'
+          assert r['source_taxonlevel_rows']==623
+          assert r['author_original_CSV_SHA256']=='e28ebe99e0dfb27b73fbe6638e568bf98fa95b92c920e1d3d981e8eaea27519a'
+          assert 'fly' in r['source_pollinator_group_counts']
+          assert 'moth' in r['source_pollinator_group_counts']
+          assert not r['no_ALAN_lighting_manipulation']==False
+          assert r['no_crossstudy_fly_moth_ratio_constructed']
+          print('PAGE_SOURCE_UNIT_AND_BIOTIC_GUILD_GATE_PASS',
+                r['STRICT_same_study_plant_year_effect_metric_unit_and_visit_metric']['original_moth_fly_matched_cells'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-page2021-623-taxa-moth-fly-same-study-plant-SVE-source
+          path: /tmp/alan_page_mothfly/strict_sameplant_original_moth_fly.json
+          retention-days: 90
           if-no-files-found: warn
