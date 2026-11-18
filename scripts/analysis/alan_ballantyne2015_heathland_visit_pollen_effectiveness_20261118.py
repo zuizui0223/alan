@@ -236,12 +236,94 @@ def date_cluster_bootstrap(rows,plant):
         vals[int(.025*(len(vals)-1))],vals[int(.975*(len(vals)-1))]]
     return q
 
+def main_alan_wet_cohort_join():
+    # The exact species occurs in the selected long-term plant group, but
+    # the independent heathland 2013-14 study DOES NOT manipulate ALAN.
+    # This overlap is an ecological case bridge, not an independent test of
+    # the full 283-species selection or an SVD-mediated ALAN effect.
+    base=Path("results/all_species_forest/wet_partner_composition/species.csv")
+    raw=base.read_bytes()
+    expected="bdca428269614c51e2c592f8757384d60f78438e"
+    git_sha=hashlib.sha1(b"blob "+str(len(raw)).encode()+b"\0"+raw).hexdigest()
+    require(git_sha==expected,"the original main wet-plant source changed")
+    import csv
+    with base.open(newline="",encoding="utf-8") as handle:
+        records=list(csv.DictReader(handle))
+    require(len(records)==363,"main wet flora list changed")
+    require(sum(r["candidate"]=="True" for r in records)==58,
+            "main selected wet flora cases changed")
+    e=[r for r in records if r["accepted"]=="Erica tetralix"]
+    require(len(e)==1 and e[0]["candidate"]=="True" and
+        float(e[0]["indicator"])==8.1,"E. tetralix true case source changed")
+    row=e[0]
+    return {
+       "original_alan_main_source_blob_sha1":git_sha,
+       "original_alan_main_wet_flora_species":363,
+       "original_alan_main_selected_wet_candidate_species":58,
+       "selected_decline_candidate_botanical_species":row["accepted"],
+       "original_study_EIV_MOIST":float(row["indicator"]),
+       "original_study_decline_candidate":True,
+       "original_source_region":row["site_region"],
+       "source_globally_documented_flower_visitors":int(row["visitors_documented"]),
+       "source_globally_documented_predators":int(row["predators_documented"]),
+       "source_globally_documented_adult_prey_predators":
+           int(row["adult_prey_predators_documented"]),
+       "globally_documented_guild_lists_NOT_current_site_pollinator_community":True,
+       "independent_heath_SVD_study_measured_ALAN":False,
+       "same_geographic_site_and_year_as_original_decline_association_verified":False,
+       "source_overlap_does_not_identify_light_to_pollen_mechanism":True
+    }
+
+def e_tetralix_selective_visitation_importance(plant):
+    source=plant["original_source_visitor_taxa"]
+    a=source["Apis_mellifera"]
+    b=source["Bombus_jonellus"]
+    tot=plant["original_total_conspecific_pollen_grains_after_controls"]
+    visits=plant["original_flower_single_visit_events"]
+    source_bee_rare_effect={
+        "bee_taxon_rare_original":"Bombus_jonellus",
+        "bee_taxon_common_original":"Apis_mellifera",
+        "rare_recorded_visits":b["source_visits"],
+        "common_recorded_visits":a["source_visits"],
+        "rare_mean_conspecific_pollen_per_visit":b["mean_conspecific_pollen_after_controls"],
+        "common_mean_conspecific_pollen_per_visit":a["mean_conspecific_pollen_after_controls"],
+        "rare_total_source_pollen":int(round(b["source_visits"]*
+                       b["mean_conspecific_pollen_after_controls"])),
+        "common_total_source_pollen":int(round(a["source_visits"]*
+                       a["mean_conspecific_pollen_after_controls"])),
+        "rare_visit_fraction":b["source_visits"]/visits,
+        "common_visit_fraction":a["source_visits"]/visits,
+        "rare_conspecific_pollen_fraction":
+             b["source_visits"]*b["mean_conspecific_pollen_after_controls"]/tot,
+        "common_conspecific_pollen_fraction":
+             a["source_visits"]*a["mean_conspecific_pollen_after_controls"]/tot,
+        "source_rare_per_visit_pollen_vs_common":
+             b["mean_conspecific_pollen_after_controls"]/
+             a["mean_conspecific_pollen_after_controls"],
+        "source_rare_total_pollen_vs_common":
+             b["source_visits"]*b["mean_conspecific_pollen_after_controls"]/
+             (a["source_visits"]*a["mean_conspecific_pollen_after_controls"]),
+        "rare_pollinator_source_unique_observation_days":b["source_days"],
+        "not_an_ALAN_treatment":True,
+        "small_sample_of_rare_pollinator_precludes_population_level_causal_claim":True
+    }
+    require(source_bee_rare_effect["rare_total_source_pollen"]==608 and
+            source_bee_rare_effect["common_total_source_pollen"]==226,
+            "original E. tetralix 2013-14 rare vs common single-visit pollen totals changed")
+    return source_bee_rare_effect
+
 def execute():
     r=normalize(load())
     plants={plant:plant_summary(r,plant) for plant in PLANTS}
     for plant in plants:
         plants[plant]["fly_vs_bee_same_plant"]["date_cluster_source_sensitivity"]=date_cluster_bootstrap(r,plant)
+    etet_cross_evidence=main_alan_wet_cohort_join()
+    rare_function=e_tetralix_selective_visitation_importance(plants["Erica_tetralix"])
     return {
+        "selected_wet_main_decline_candidate_independent_functional_field_bridge":
+            etet_cross_evidence,
+        "erica_tetralix_rare_versus_common_bee_single_visit_pollen_importance":
+            rare_function,
         "schema":SCHEMA,"source_Dryad_DOI":"10.5061/dryad.17pp3",
         "source_article_DOI":"10.1098/rspb.2015.1130",
         "source_exact_original_csv_sha256":SHA256,
@@ -271,6 +353,10 @@ def main():
       "source_original_events":out["source_original_plant_x_virgin_stigma_visits"],
       "taxonomic_groups":out["source_original_taxonomic_groups"],
       "source_moths_n":out["source_original_moth_visits"],
+      "wet_selected_candidate_original_ALAN_cohort":
+          out["selected_wet_main_decline_candidate_independent_functional_field_bridge"],
+      "E_tetralix_Bombus_jonellus_vs_Apis":
+          out["erica_tetralix_rare_versus_common_bee_single_visit_pollen_importance"],
       "plants":{p:{
           "days":a["source_days"],
           "visits":a["original_flower_single_visit_events"],
