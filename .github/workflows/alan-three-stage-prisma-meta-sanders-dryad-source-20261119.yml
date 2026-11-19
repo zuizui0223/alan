@@ -1,0 +1,78 @@
+name: ALAN three-stage meta PRISMA source-seed and Sanders original Dryad preflight
+
+on:
+  push:
+    branches:
+      - analysis/alan-three-stage-prisma-meta-protocol-20261119
+    paths:
+      - config/alan_prisma_three_stage_seed_census_20261119.json
+      - scripts/analysis/alan_three_stage_prisma_seed_readiness_20261119.py
+      - tests/test_alan_three_stage_prisma_seed_readiness_20261119.py
+      - scripts/acquisition/alan_sanders2020_source_126paper_Dryad_preflight_20261119.py
+      - tests/test_alan_sanders2020_source_126paper_Dryad_preflight_20261119.py
+      - .github/workflows/alan-three-stage-prisma-meta-sanders-dryad-source-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prereg-source-study-grain-and-seed-inclusion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify PRISMA not run, DOI study-programme overlap and no invented eligible effects
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_three_stage_prisma_seed_readiness_20261119.py -v
+          python -m unittest discover -s tests -p test_alan_sanders2020_source_126paper_Dryad_preflight_20261119.py -v
+      - name: Summarize intentionally seeded literature separately from systematic counts
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_stage_meta_source
+          python -m scripts.analysis.alan_three_stage_prisma_seed_readiness_20261119 \
+            --out /tmp/alan_stage_meta_source/known_seed_not_prisma_study_counts.json
+      - name: Fetch author Dryad dataset 126 papers and 1304 original Hedges-d effects source
+        run: |
+          set -euo pipefail
+          python -m scripts.acquisition.alan_sanders2020_source_126paper_Dryad_preflight_20261119 \
+            --out /tmp/alan_stage_meta_source/sanders_original_csv_source_schema_and_SHA.json
+      - name: Guard source status and never substitute Hedges d for lnRR
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          p='/tmp/alan_stage_meta_source/'
+          s=json.load(open(p+'known_seed_not_prisma_study_counts.json'))
+          d=json.load(open(p+'sanders_original_csv_source_schema_and_SHA.json'))
+          assert s['schema']=='alan_20261119_three_stage_PRISMA_source_seed_readiness_guard_v1'
+          assert s['S1_known_intentionally_seeded_primary_paper_records']==9
+          assert s['S2_known_intentionally_seeded_primary_paper_records']==11
+          assert s['PRISMA_records_identified_from_database'] is None
+          assert s['S1_primary_META_ready_k'] is None
+          assert s['S2_primary_META_ready_k'] is None
+          assert d['schema']=='alan_sanders2020_original_126paper_1304_meta_source_preflight_v1'
+          assert d['published_n_papers']==126
+          assert d['published_n_effects']==1304
+          assert d['source_data_not_assumed_lnRR']
+          assert not d['raw_source_rows_saved_in_git']
+          assert d['source_status'] in ('SOURCE_STOP','PARTIAL_SOURCE_STOP','AUTHENTIC_ORIGINAL_HEDGES_D_CSV_AND_R_CODE_VERIFIED')
+          if d['source_status']=='AUTHENTIC_ORIGINAL_HEDGES_D_CSV_AND_R_CODE_VERIFIED':
+            assert d['original_CSV_SHA256']
+            assert d['original_R_code_SHA256']
+            print('SANDERS126_AUTHENTIC_SOURCE_ORIGINAL_CSV_AND_CODE_VERIFIED')
+          else:
+            print('SANDERS126_ORIGINAL_SOURCE_STOP_NOT_AN_EFFECT_META',d['source_status'])
+          print('THREE_STAGE_ALAN_META_PRISMA_NOT_RUN_SEED_READY')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-3stage-source-grain-PRISMA-not-run-and-Sanders-original-meta-schema
+          path: /tmp/alan_stage_meta_source/*.json
+          if-no-files-found: warn
+          retention-days: 90
