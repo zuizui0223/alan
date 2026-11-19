@@ -56,9 +56,9 @@ class OriginalLuPlantQThresholdTests(unittest.TestCase):
         self.assertTrue(q["common_source_block_q_ratio_is_not_corrected_for_flower_availability"])
         self.assertEqual(len(a["focal_plant_thresholds_aggregated_no_original_species_or_site_ID"]),2)
         self.assertTrue(all(r["common_physical_blocks_with_positive_source_visits_in_both_arms"]==1
-                            for r in a["focal_plant_thresholds_aggregated_no_original_species_or_site_ID"])
+                            for r in a["focal_plant_thresholds_aggregated_no_original_species_or_site_ID"]))
         self.assertTrue(all(r["source_common_block_leave_one_out_q_ratio_minmax"] is None
-                            for r in a["focal_plant_thresholds_aggregated_no_original_species_or_site_ID"])
+                            for r in a["focal_plant_thresholds_aggregated_no_original_species_or_site_ID"]))
 
         self.assertTrue(q["theoretical_only_NOT_compensated_plant_proportion"])
         self.assertTrue(a["guard"]["no_causal_pollination_rescue_fraction_reported"])
