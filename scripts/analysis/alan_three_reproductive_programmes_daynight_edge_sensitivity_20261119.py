@@ -136,6 +136,37 @@ def report(data):
     }
     if not required.issubset(set(ids)):
         raise ValueError("Critical original signed table contrasts omitted")
+    # NEW purely conditional seed-predation compensation threshold, using
+    # ONLY the source-reported Giavi Table 1b OR.  Let p be the chance an
+    # exposed flower forms a capsule, h the fraction of formed capsules
+    # infected. W=p*(1-h) is the proportion of exposed flowers producing
+    # at least one UNINFECTED capsule (not a seed count).
+    # For h_control=h and attack odds ratio OR, h_adj=OR*h/(1-h+OR*h).
+    # No net loss requires p_adj/p_control >= (1-h)/(1-h_adj)
+    #   = 1+(OR-1)*h.
+    # Baseline h here is HYPOTHETICAL, not read from raw original plots.
+    odds_rows=[a for a in original_contrasts
+               if a["endpoint"]=="Silene_infested_fruit_fraction"
+               and a["orientation"]=="adjacent/dark"]
+    if len(odds_rows)!=1:
+        raise ValueError("Original adjacent-vs-dark attack odds must be singular")
+    observed_odds=odds_rows[0]["source_model_conditional_attack_odds_ratio"]
+    odds_ci=odds_rows[0]["attack_odds_ratio_Wald_95pct_CI"]
+    conditional_threshold=[]
+    for h in (0.05,0.10,0.20,0.30):
+        infected_adj=observed_odds*h/(1-h+observed_odds*h)
+        threshold=1+(observed_odds-1)*h
+        conditional_threshold.append({
+            "hypothetical_original_dark_fruit_infection_probability":h,
+            "model_constrained_adjacent_fruit_infection_probability":infected_adj,
+            "minimum_adjacent_vs_dark_capsule_formation_probability_ratio_for_no_uninfected_capsule_loss":threshold,
+            "conditional_ratio_from_low_attack_OR":1+(odds_ci[0]-1)*h,
+            "conditional_ratio_from_high_attack_OR":1+(odds_ci[1]-1)*h,
+            "maximum_original_dark_capsule_formation_probability_where_full_rescue_is_even_possible":1/threshold,
+            "NOT_an_observed_ALAN_pollination_effect":True,
+            "NOT_a_total_seed_set_estimate":True,
+            "baseline_infection_hypothetical_not_from_Giavi_original_samples":True,
+        })
     gi={
         "study_DOI":g["doi"],
         "physical_lit_meadows":4,
@@ -145,6 +176,8 @@ def report(data):
         "original_published_effects_separately_by_endpoint":original_contrasts,
         "cannot_pretend_published_reproduction_link_is_actual_seed_loss_ratio":True,
         "no_raw_plot_level_field_reanalysis":True,
+        "conditional_compensatory_pollination_thresholds":conditional_threshold,
+        "odds_ratio_to_risk_model_not_original_randomized_pollen_success":True,
     }
     wi=[]
     for row in w["published_mechanism_contrasts"]:
