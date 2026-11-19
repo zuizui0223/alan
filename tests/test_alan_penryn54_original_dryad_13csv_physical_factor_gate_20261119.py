@@ -4,6 +4,7 @@ import unittest
 import zipfile
 import hashlib
 from unittest.mock import patch
+import urllib.error
 
 from scripts.analysis import alan_penryn54_original_dryad_13csv_physical_factor_gate_20261119 as a
 
@@ -66,6 +67,20 @@ class Source54TroughOriginalFactorialTests(unittest.TestCase):
             z.writestr("PeaAphid2014.csv","Plot,T treatment,L treatment\nC1,H,W\n")
         with self.assertRaisesRegex(ValueError,"archive SHA256 drift"):
             a.parse_zip_archive(fake.getvalue(),strict=True)
+
+    def test_original_Dryad_HTTP401_source_stop_is_not_biological_null(self):
+        def refuse(url):
+            raise urllib.error.HTTPError(url,401,"Requires authentication",None,None)
+        x=a.original_13csv_real_source_or_stop(source_get=refuse)
+        self.assertEqual(x["source_status"],"SOURCE_STOP_ORIGINAL_DRYAD_DOWNLOAD_UNAVAILABLE")
+        self.assertEqual(x["source_access_http_code"],401)
+        self.assertFalse(x["source_all_13_source_member_hashes_verified"])
+        self.assertFalse(x["cross_file_exact_original_plot_factor_allocations_consistent"])
+        self.assertFalse(x["source_plot_identity_recovered_in_memory"])
+        self.assertTrue(x["no_new_causal_medation_or_light_x_trophic_glmm_fitted"])
+        self.assertTrue(x["post_reintroduction_slugs_2015_excluded_from_authors_original_fit"])
+        self.assertNotIn("original_source_factor_codes",x)
+        self.assertFalse(x["source_original_plot_IDs_committed_or_exported"])
 
     def test_unnamed_first_column_source_is_id_not_empty(self):
         tab={"point_quadrat_110713.csv":{
