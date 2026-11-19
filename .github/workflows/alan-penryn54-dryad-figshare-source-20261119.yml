@@ -25,7 +25,7 @@ jobs:
       - name: Validate XLSX CSV and ZIP schema without individual plot data export
         run: |
           set -euo pipefail
-          python -m pip install -q openpyxl==3.1.5
+          python -m pip install -q openpyxl==3.1.5 pypdf==6.1.0
           python -m unittest discover -s tests -p test_alan_penryn54_crosspaper_figshare_dryad_primary_audit_20261119.py -v
       - name: Fetch exact official published Figshare article and Dryad DOI source metadata/bytes
         run: |
@@ -49,6 +49,11 @@ jobs:
           assert not x['source_original_row_level_observations_exported']
           assert not x['source_original_plot_IDs_exported']
           assert x['green_CI_does_not_imply_original_download']
+          pdf=x['figshare_2022_plant_original_dataset']
+          for item in pdf.get('files',[]):
+            if str(item.get('original_file_name','')).lower().endswith('.pdf') and item.get('download_status')=='VERIFIED_RAW_BYTES':
+              assert item['original_file_schema_only']['kind']=='pdf'
+              assert item['original_file_schema_only']['no_original_pdf_measurement_cells_exported']
           for k in ('figshare_2022_plant_original_dataset','dryad_2018_herbivory_original_dataset'):
             z=x[k]
             assert z['source_authenticated_original_table_count']>=0
