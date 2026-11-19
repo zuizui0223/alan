@@ -121,6 +121,37 @@ def xlsx_schema(original):
     return out
 
 
+def pdf_schema(source):
+    """Read original archival PDF text/table geometry; never publish raw cells."""
+    from pypdf import PdfReader
+    if not source.startswith(b"%PDF-"):
+        raise ValueError("Not a real published PDF source")
+    reader=PdfReader(io.BytesIO(source))
+    if len(reader.pages)>80:
+        raise ValueError("Unusually long original data PDF; inspect separately")
+    pages=[]
+    for p in reader.pages:
+        text=p.extract_text() or ""
+        lines=text.splitlines()
+        # Numeric-heavy rows provide evidence of tabulated individual data,
+        # not actual values. Do not export source plot or treatment rows.
+        numeric_lines=sum(bool(re.findall(r"-?\d+(?:\.\d+)?",line))
+                          and len(re.findall(r"-?\d+(?:\.\d+)?",line))>=4
+                          for line in lines)
+        pages.append({
+            "extractable_characters":len(text),
+            "lines_with_four_or_more_numeric_fields":numeric_lines,
+            "page_line_count":len(lines),
+            "contains_mesocosm_keyword":bool(re.search(r"mesocosm|trough",text,re.I)),
+            "contains_biomass_keyword":bool(re.search(r"biomass|dry\s*mass",text,re.I)),
+            "contains_treatment_keyword":bool(re.search(r"treatment|light|predator|herbivor",text,re.I)),
+        })
+    return {"kind":"pdf","page_count":len(reader.pages),
+            "page_text_shapes_only":pages,
+            "no_original_pdf_measurement_cells_exported":True,
+            "cannot_claim_plant_original_numeric_table_reanalysis_from_PDF_shape_only":True}
+
+
 def safe_schema(name,b):
     suffix=Path(name).suffix.lower()
     if suffix==".csv":
@@ -129,6 +160,8 @@ def safe_schema(name,b):
         return {"kind":"tsv","sheets":[csv_schema(b,delimiter="\t")]}
     if suffix==".xlsx":
         return {"kind":"xlsx","sheets":xlsx_schema(b)}
+    if suffix==".pdf":
+        return pdf_schema(b)
     if suffix==".zip" and b.startswith(b"PK\x03\x04"):
         # Bound total uncompressed size and number of members against ZIP bombs.
         sheets=[]
@@ -222,6 +255,20 @@ def get_dryad():
                             if isinstance(rec,dict) and isinstance(rec.get("id"),int):
                                 ids.append(rec["id"])
                 out["resolved_version_IDs"]=ids[:5]
+                out["version_first_layer"]={
+                  "top_level_keys":list(data.keys())[:30],
+                  "embedded_collection_keys":list(embedded.keys()),
+                  "embedded_shapes":{
+                    str(k):{"value_type":type(v).__name__,
+                            "n_entries":len(v) if isinstance(v,list) else None,
+                            "first_record_keys":list(v[0].keys()) if isinstance(v,list) and v and isinstance(v[0],dict) else []}
+                    for k,v in embedded.items()
+                  },
+                }
+                # Dryad older deposits sometimes expose their current
+                # version through a version "href" but use noninteger ids.
+                # Do NOT guess file identifiers from DOI suffix or filenames.
+
         except (ValueError,KeyError,urllib.error.HTTPError,urllib.error.URLError,TimeoutError) as exc:
             out[label+"_metadata_status"]="SOURCE_STOP"
             out[label+"_error_type"]=type(exc).__name__
@@ -314,6 +361,8 @@ def main():
         d=z[key]
         print("ALAN_54_PROGRAMME_PUBLIC_SOURCE",key,d["metadata"],"actual_tables",d["source_authenticated_original_table_count"])
         print("ALAN_54_PROGRAMME_SOURCE_FILES",key,d.get("files"))
+        if key.startswith("dryad"):
+            print("ALAN_54_DRYAD_SOURCE_METADATA_DIAG",{k:v for k,v in d.items() if k.endswith("_status") or k.endswith("_keys") or k in ("resolved_version_IDs","version_first_layer","verified_versions_file_index","file_index_errors","dataset_title")})
     print("ALAN_54_MESOCOSM_3PUBLICATIONS_1EXPERIMENT_NO_NEW_META",z["source_54_plot_light_treatment_year_full_join_verified"])
 
 
