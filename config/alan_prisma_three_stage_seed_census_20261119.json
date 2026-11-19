@@ -351,10 +351,25 @@
       "current_source_tier": "candidate_known_original_methods_mixed",
       "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
       "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S1",
+      "study_programme_id": "AquaticDipteraEmergence2025",
+      "doi": "10.1007/s00027-025-01161-7",
+      "habitat": "aquatic_riparian",
+      "design": "experimental_streetlight_near_drainage_ditch",
+      "endpoint_candidates": [
+        "true_aquatic_Diptera_emergence",
+        "flying_adult_Diptera_light_trap_abundance"
+      ],
+      "independence_note": "Author reports emergence around half while illuminated trap-flying adult counts ~8x; source independent field-lit and dark site/fixture replication numbers must be checked. Emerging vs flying are distinct denominators and not opposite estimates of the same population abundance.",
+      "current_source_tier": "published_abstract_origins_and_effect_directions_no_source_variance",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
     }
   ],
   "counts": {
-    "S1_purposeful_candidate_paper_records_not_search_inclusions": 9,
+    "S1_purposeful_candidate_paper_records_not_search_inclusions": 10,
     "S2_purposeful_candidate_paper_records_not_search_inclusions": 11,
     "source_original_independent_lighting_programme_total": "UNKNOWN_UNTIL_DEDUPLICATION",
     "S1_confirmed_readily_extractable_lnRR_with_correct_variance": "UNKNOWN_NEEDS_ENDPOINT_RECHECK",
