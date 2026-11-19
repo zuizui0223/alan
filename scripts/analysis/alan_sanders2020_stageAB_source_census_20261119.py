@@ -86,7 +86,10 @@ def source_panel_census(rows,source_identity,strict=True):
         desc=(row.get("Measure.description") or "").strip()
         species=(row.get("Species") or "").strip()
         key=row.get("Study","").strip()
-        class_text=" ".join((category,sub,desc))
+        # Do not turn the original broad "populations" category into a
+        # predator abundance signal. Only original endpoint subcategory
+        # and original measured variable description can carry that label.
+        class_text=" ".join((sub,desc))
         category_counts["original_Category"][category or "<BLANK>"]+=1
         category_counts["original_SubCategory"][sub or "<BLANK>"]+=1
         category_counts["original_Phylum"][phylum or "<BLANK>"]+=1
