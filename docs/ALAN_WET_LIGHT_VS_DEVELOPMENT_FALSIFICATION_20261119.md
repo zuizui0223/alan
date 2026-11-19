@@ -39,6 +39,35 @@ The script \`scripts/analysis/alan_light_development_overlap_20261119.py\` works
 - If a contrast persists after both forms of adjustment: treat it as **exploratory until an independent botanical dataset or held-out epoch replicates it**.
 - Do not merge into \`main\` as the primary causal mechanism; PR review stays draft until source results and independent validation are assessed.
 
+## Executed source-verified audit and outcome-independent STOP
+
+[Successful GitHub Actions run #44528843759](https://github.com/zuizui0223/alan/actions/runs/44528843759) recomputed the frozen historical source (raw gzip SHA256 \`4d151698e0da5ee754326220d3bb817b141da00770299e7f8910366d8771e74f\`). All source tests passed. Full audit: [JSON](../results/all_species_forest/wet_falsification/light_vs_development_overlap_20261119.json).
+
+| Source comparison | Development-matched | Development + water-change-matched |
+|---|---:|---:|
+| Pairs / independent spatial blocks | **187 / 30** | **114 / 25** |
+| Median matched light-slope contrast (DN per decade) | 4.58 | 5.80 |
+| Mean site-paired candidate-minus-reference recording-rate trend difference (pp per decade) | −2.476 | −1.020 |
+| Source-block bootstrap 95% descriptive interval | [−5.291,−0.237] | [−2.987,+1.653] |
+| Baseline open-water area standardized mean difference | **+0.722** | **+0.360** |
+| Baseline water-detection frequency standardized mean difference | **+0.745** | **+0.360** |
+| Built-change standardized mean difference | +0.033 | +0.023 |
+| Source-support gate | **SOURCE_SUPPORT_STOP** | **SOURCE_SUPPORT_STOP** |
+
+The initial development-matched negative mean is *not a qualified ALAN-specific estimate*: baseline water is poorly balanced, and the reference plant group already belongs to a previously selected candidate survey panel. Adding water-change matching changes the membership from 187 to 114 pairs and attenuates the mean. That comparison cannot attribute attenuation to surface water because the underlying matching population also changes.
+
+### Identical-pair sensitivity without reselecting sites
+
+On exactly the same 187 development-matched pairs, retaining baseline water, climate, light and built controls in both regressions:
+
+- Without annual water-change slopes: relative recording-rate trend slope **−3.475 pp per 10 DN per decade**, block-bootstrap 95% descriptive interval **[−7.287, +0.598]**.
+- With annual water-area and frequency change slopes: **−3.498**, interval **[−7.052,+0.610]**.
+- Difference −0.023; the water-change covariates **did not attenuate** the matched-pair *slope* on this same sample.
+
+This was added as a post-hoc sensitivity to distinguish change in model covariates from change in matched pair composition, not a pre-registered confirmatory estimator. It has wide bootstrap intervals and the development-matched sample still fails the initial-water balance gate. No evidence here establishes that light, rather than drainage or correlated land-cover change, caused wet-plant decline. Conversely, failure of an open-water proxy to change the point estimate cannot exclude subsurface or vegetated-wetland loss.
+
+**Disposition**: empirical matching was executed, but both matched analyses are **held out of the manuscript's principal evidence**. Do not interpret the earlier negative descriptive interval as an ALAN-specific ecological mechanism. An independent 3,901-species continuous-response model or held-out botanical survey paired with direct hydrology and contemporaneous urban/light trends is the next useful test.
+
 ## Reproducibility
 
 \`\`\`bash
