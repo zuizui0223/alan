@@ -43,7 +43,7 @@ class PublicationMethodYearCoverageTests(unittest.TestCase):
         self.assertEqual(result["source_publication_count"],2)
         self.assertEqual(result["original_method_observed_studies"],1)
         early=result["year_stratified_source_coding"]["pre2020"]
-        late=result["year_stratified_source_coding"]["2020_2022"]
+        late=result["year_stratified_source_coding"]["2020plus"]
         self.assertEqual(early["publication_counts"]["n_studies"],1)
         self.assertEqual(early["publication_counts"]["coded_any_spatial"],1)
         self.assertEqual(late["publication_counts"]["n_studies"],1)
@@ -57,9 +57,9 @@ class PublicationMethodYearCoverageTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"Conflicting paper"):
             profile(cases,strict=False)
         cases=source()
-        cases[0]["Publication Year"]="2025"
-        cases[1]["Publication Year"]="2025"
-        with self.assertRaisesRegex(ValueError,"after source 2022"):
+        cases[0]["Publication Year"]="2030"
+        cases[1]["Publication Year"]="2030"
+        with self.assertRaisesRegex(ValueError,"plausible interval"):
             profile(cases,strict=False)
 
 
