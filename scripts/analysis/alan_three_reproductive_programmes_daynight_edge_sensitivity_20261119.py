@@ -29,6 +29,15 @@ def phi(z):
 def report(data):
     if data.get("schema")!=SCHEMA or data.get("source_review_SHA256")!=SOURCE_REVIEW_SHA:
         raise ValueError("Original 3-study provenance changed")
+    scope=data.get("model_scope",{})
+    if not all(scope.get(k) is True for k in (
+        "reproduction_and_prey_capture_not_common_effect_size",
+        "three_publications_not_three_matching_seed_effects",
+        "conditional_caging_compensation_is_noncausal_sensitivity",
+        "no_cross_study_random_effect_meta_fitted",
+        "treatment_or_caging_group_not_equal_independent_light_installation"
+    )):
+        raise ValueError("Incompatible ecological stages or source independence gate changed")
     studies={s["programme"]:s for s in data["primary_studies"]}
     if set(studies)!={"Macgregor2019","Giavi2020","Wilson2021"}:
         raise ValueError("Unexpected original study identity")
