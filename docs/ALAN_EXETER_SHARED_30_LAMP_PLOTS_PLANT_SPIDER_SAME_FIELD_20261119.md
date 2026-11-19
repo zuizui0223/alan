@@ -63,3 +63,15 @@
 **未解決**：元個別区画データの共有・一致、同じ区画×年での相関、送粉者・植食者・直接クモ捕食、真正共通の植物種子・結実。したがって「クモがALAN下の植物の花色／開花時期を媒介した」や「二つの実験で全球再現した」とは主張しない。
 
 解析・CI： [真正2論文と30物理照明区画の原本ゲート](../scripts/analysis/alan_exeter_lizard_shared30_plant_predator_crosspaper_source_20261119.py)、[元の共通照明区画単位のテスト](../tests/test_alan_exeter_lizard_shared30_plant_predator_crosspaper_source_20261119.py)、[公的大学アーカイブへのアクセス検証workflow](../.github/workflows/alan-exeter-lizard-shared30-plant-spider-source-20261119.yml)。今後source accessがSTOPでも、本研究の**公刊実験同一性**は別証拠として維持する。
+
+
+## 公開原データ取得の実行結果（2026-11-19）
+
+[GitHub Actions #44513058021](https://github.com/zuizui0223/alan/actions/runs/44513058021) の**公的大学アーカイブ探索ジョブは成功**し、大学ドメインの原著アーカイブの2レコードから直接HTMLを取得した：
+
+- 植物Bennie2018（元記録handle `10871/27138`）：公式大学アーカイブのHTML **284,942 bytes**を取得、識別できる元研究CSV・XLSXなどへの直接リンク**0本**。
+- クモ・甲虫Davies2017（元記録handle `10871/25044`）：公式大学アーカイブのHTML **300,008 bytes**を取得、直接リンク**0本**。
+- それぞれ現サイトの候補 `/repository/server/api/core/handles/...` は**HTTP404**。リンク0本は「研究データが存在しない」ことではなく、**この探索ではダウンロード可能な原数値テーブルを取得できなかった**という正確な到達度。
+- この初回runの単位検証ジョブは、研究結果の失敗ではなく**テストの疑似HTTPリダイレクトURLとassert文の正規表現**に関する2件でfail。検証コードを修正し、再実行の結果は別runで確認する。元データ取得のジョブだけが成功した事実を全workflow成功と誤報告しない。
+
+原論文のsource methodsが同じ物理照明区画を示すこと自体は維持できるが、**両方に共通するplot IDの対応表はまだ原本取得できていない**。したがって植物とクモの同一区画共変動・季節ミスマッチ・捕食媒介の係数は一つも推定していない。
