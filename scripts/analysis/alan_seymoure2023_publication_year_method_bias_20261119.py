@@ -101,7 +101,7 @@ def profile(rows,strict=True):
         "source_SHA256":SOURCE_SHA256,
         "source_publication_count":all_papers,
         "original_publication_year_metadata_counts":dict(sorted(original_year_metadata.items())),
-        "reported_years_after_2022":sum(int(year)>2022 and year.isdigit() for year in original_year_metadata.elements()),
+        "reported_years_after_2022":sum(year.isdigit() and int(year)>2022 for year in original_year_metadata.elements()),
         "database_search_cutoff_is_not_publication_year_filter":True,
         "year_stratified_source_coding":result,
         "year_specific_guild_diagnostics":year_groups,
