@@ -43,6 +43,7 @@ def profile(rows,strict=True):
     result={}
     for cohort,papers_list in cohorts.items():
         study_counter=Counter()
+        study_counter["n_studies"]=0
         type_stats=defaultdict(lambda:Counter())
         for k,rr in papers_list:
             anyred=int(any(r["interaction strength (IS) reduction"]=="1" for r in rr))
@@ -137,6 +138,8 @@ def main():
     ans=profile(rows,strict=True)
     arg.out.parent.mkdir(exist_ok=True,parents=True)
     arg.out.write_text(json.dumps(ans,ensure_ascii=False,indent=2)+"\n")
+    print("ALAN_YEAR_RAW_PUB_METADATA",ans["original_publication_year_metadata_counts"])
+    print("ALAN_YEAR_AFTER_2022",ans["reported_years_after_2022"])
     print("ALAN_YEAR_STUDY_SOURCE_COHORT",ans["year_stratified_source_coding"])
     print("ALAN_YEAR_REVIEW_METHODOLOGY_GATES",ans["year_specific_guild_diagnostics"])
 
