@@ -9,6 +9,9 @@ aphid or flower-head repeated rows that they are independently lit plots.
 import argparse
 import hashlib
 import io
+import tarfile
+import xml.etree.ElementTree as ET
+import urllib.parse
 import json
 import urllib.error
 import urllib.request
@@ -91,6 +94,52 @@ def audit():
             out["attempts"].append({"URL":url,"status":"SOURCE_STOP",
                                     "error_type":type(e).__name__,
                                     **({"http_status":e.code} if isinstance(e,urllib.error.HTTPError) else {})})
+
+    # NCBI's official Open Access API can expose the complete published OA
+    # package even when direct PMC reader /bin URLs return 404. Use ONLY the
+    # exact author article PMCID, and parse the official returned archive URL.
+    # We will never construct a guessed or cross-article archive path.
+    try:
+        oa_url=f"https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi?id={PMCID}"
+        xml=get(oa_url)
+        root=ET.fromstring(xml)
+        rec=[e for e in root.findall(".//record") if e.attrib.get("id")==PMCID]
+        if len(rec)!=1:
+            raise ValueError("NCBI OA original PMCID record was not identified")
+        links=[e.attrib.get("href","") for e in rec[0].findall("./link")
+               if e.attrib.get("format")=="tgz"]
+        if not links:
+            raise ValueError("NCBI public OA package has no tgz archive link")
+        original_uri=urllib.parse.urlparse(links[0])
+        if original_uri.hostname!="ftp.ncbi.nlm.nih.gov" or not original_uri.path.startswith("/pub/pmc/"):
+            raise ValueError("Original NCBI archive URL not an approved official source")
+        pkg_url="https://ftp.ncbi.nlm.nih.gov"+original_uri.path
+        compressed=get(pkg_url)
+        if not compressed.startswith(b"\x1f\x8b"):
+            raise ValueError("NCBI source package is not original gzip bytes")
+        if len(compressed)>MAX_BYTES:
+            raise ValueError("NCBI archive exceeds preflight size")
+        with tarfile.open(fileobj=io.BytesIO(compressed),mode="r:gz") as tf:
+            matches=[m for m in tf.getmembers()
+                    if m.isfile() and Path(m.name).name==EXPECTED_FILE and m.size<=300_000]
+            if len(matches)!=1:
+                raise ValueError("Expected original XLSX was not unique in official NCBI OA archive")
+            original_bytes=tf.extractfile(matches[0]).read()
+        tabs=workbook_schema(original_bytes)
+        if not tabs:raise ValueError("Original workbook has no inspectable source tabs")
+        out["source_status"]="RAW_SOURCE_XLSX_SCHEMA_VERIFIED"
+        out["source_SHA256"]=hashlib.sha256(original_bytes).hexdigest()
+        out["source_bytes"]=len(original_bytes)
+        out["source_original_sheet_structure"]=tabs
+        out["source_success_URL"]=pkg_url
+        out["attempts"].append({"URL":pkg_url,"status":"OA_OFFICIAL_PACKAGE_AND_ORIGINAL_XLSX_VERIFIED",
+                                "size_original_xlsx":len(original_bytes),
+                                "package_SHA256":hashlib.sha256(compressed).hexdigest()})
+    except (ValueError,ET.ParseError,tarfile.TarError,urllib.error.URLError,urllib.error.HTTPError,TimeoutError) as e:
+        out["attempts"].append({"URL":"NCBI_OA_UTILS_PUBLIC_PACKAGE",
+                                "status":"SOURCE_STOP",
+                                "error_type":type(e).__name__,
+                                **({"http_status":e.code} if isinstance(e,urllib.error.HTTPError) else {})})
     return out
 
 def main():
