@@ -40,10 +40,23 @@ jobs:
           d=json.load(open('/tmp/alan_penryn54_original_jointsource/true_2018_Dryad_13csv_54trough_factorial_source.json'))
           assert d['schema']=='alan_2018_original_13CSV_54trough_repeated_physical_factor_and_outcome_gate_v1'
           assert d['original_zip_sha256']=='5dc5bc93e48758364d068c113edb84e05b81f99b22827c4c6ee0c14f42ba3130'
-          assert d['source_all_13_source_member_hashes_verified']
-          assert d['source_all_13_source_row_counts_verified']
-          assert d['original_13_source_CSV_physical_grain']['slugs2013.csv']['original_physical_unit_count']==36
-          assert d['original_13_source_CSV_physical_grain']['PeaAphid2015.csv']['original_physical_unit_count']==54
+          # Authentication errors do not imply zero ecological abundance.
+          assert d['source_status'] in (
+            'ORIGINAL_54_SOURCE_FACTORIAL_PLOT_JOIN_VERIFIED',
+            'FACTORIAL_SOURCE_STOP_OR_SOURCE_CODE_INCONSISTENCY',
+            'SOURCE_STOP_ORIGINAL_DRYAD_DOWNLOAD_UNAVAILABLE')
+          if d['source_status']=='SOURCE_STOP_ORIGINAL_DRYAD_DOWNLOAD_UNAVAILABLE':
+            assert not d['source_all_13_source_member_hashes_verified']
+            assert not d['cross_file_exact_original_plot_factor_allocations_consistent']
+            assert d['no_new_causal_medation_or_light_x_trophic_glmm_fitted']
+            assert d['source_access_http_code'] in (None,401,403,429,500,502,503,504)
+            print('PENRYN54_GENUINE_PUBLIC_DATA_SOURCE_STOP',d['source_access_http_code'])
+          else:
+            assert d['source_all_13_source_member_hashes_verified']
+            assert d['source_all_13_source_row_counts_verified']
+          if d['source_all_13_source_member_hashes_verified']:
+            assert d['original_13_source_CSV_physical_grain']['slugs2013.csv']['original_physical_unit_count']==36
+            assert d['original_13_source_CSV_physical_grain']['PeaAphid2015.csv']['original_physical_unit_count']==54
           assert d['post_reintroduction_slugs_2015_excluded_from_authors_original_fit']
           assert not d['source_original_plot_IDs_committed_or_exported']
           assert not d['source_original_biological_rows_exported']
