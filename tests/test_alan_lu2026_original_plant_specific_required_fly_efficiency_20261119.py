@@ -51,6 +51,15 @@ class OriginalLuPlantQThresholdTests(unittest.TestCase):
         self.assertEqual(q["maximum"],2)
         self.assertEqual(q["count_where_equal_q_visits_would_suffice"],1)
         self.assertEqual(q["count_where_fly_q_must_exceed_moth_q"],1)
+        self.assertEqual(q["n_plants_with_at_least_one_common_documented_light_block"],2)
+        self.assertEqual(q["n_plants_with_positive_loss_and_gain_within_common_documented_blocks"],2)
+        self.assertTrue(q["common_source_block_q_ratio_is_not_corrected_for_flower_availability"])
+        self.assertEqual(len(a["focal_plant_thresholds_aggregated_no_original_species_or_site_ID"]),2)
+        self.assertTrue(all(r["common_physical_blocks_with_positive_source_visits_in_both_arms"]==1
+                            for r in a["focal_plant_thresholds_aggregated_no_original_species_or_site_ID"])
+        self.assertTrue(all(r["source_common_block_leave_one_out_q_ratio_minmax"] is None
+                            for r in a["focal_plant_thresholds_aggregated_no_original_species_or_site_ID"])
+
         self.assertTrue(q["theoretical_only_NOT_compensated_plant_proportion"])
         self.assertTrue(a["guard"]["no_causal_pollination_rescue_fraction_reported"])
         self.assertTrue(a["guard"]["six_plant_thresholds_one_five_block_experiment_NOT_six_independent_light_studies"])
@@ -109,6 +118,34 @@ class OriginalLuPlantQThresholdTests(unittest.TestCase):
             source_bytes(reader=blocked)
         self.assertGreaterEqual(len(cm.exception.errors),3)
         self.assertTrue(all(e["error_class"]=="TimeoutError" for e in cm.exception.errors))
+
+    def test_unmatched_light_blocks_do_not_impute_plant_visits_or_moth_fly_efficiency(self):
+        plantrows,visits=self.original_shape()
+        for row in plantrows:
+            if row["plant"]=="A" and row["treatment"]=="Lit":
+                row["block"]=2
+        result=source_plant_q_thresholds(plantrows,visits,strict=False)
+        plantA=next(x for x in result["focal_plant_thresholds_aggregated_no_original_species_or_site_ID"]
+                    if abs(x["required_fly_over_moth_single_visit_effectiveness_ratio_if_other_factors_constant"]-2)<1e-9)
+        self.assertEqual(plantA["common_physical_blocks_with_positive_source_visits_in_both_arms"],0)
+        self.assertIsNone(plantA["common_documented_blocks_conditional_q_ratio"])
+        self.assertTrue(plantA["unrecorded_plant_in_block_does_not_imply_true_zero"])
+        self.assertEqual(result["focal_six_plant_required_efficiency_ratio_descriptive_summary"]["n_plants_with_at_least_one_common_documented_light_block"],1)
+
+    def test_same_original_block_sensitivity_may_differ_from_unmatched_pooled_source_count(self):
+        plantrows,visits=self.original_shape()
+        plantrows.extend([
+            plant("A","Unlit",3,1,block=2),
+            plant("A","Lit",2,1,block=2),
+        ])
+        result=source_plant_q_thresholds(plantrows,visits,strict=False)
+        plantA=next(x for x in result["focal_plant_thresholds_aggregated_no_original_species_or_site_ID"]
+                    if x["loss_original_moth_visitor_events"]==7)
+        self.assertEqual(plantA["common_physical_blocks_with_positive_source_visits_in_both_arms"],2)
+        self.assertEqual(plantA["source_documented_positive_visitation_rows_dark_and_lit"],[2,2])
+        self.assertEqual(plantA["source_common_block_leave_one_out_valid_n"],1)
+        self.assertAlmostEqual(plantA["common_documented_blocks_conditional_q_ratio"],7/3)
+        self.assertEqual(plantA["source_common_block_leave_one_out_q_ratio_minmax"],[2,2])
 
     def test_source_2026_author_SHA_and_strict_data_volume_guards(self):
         self.assertEqual(AUTHOR_SHA,"ba7e15e66986f64943a38fd294e49d7128cf7719d318578f6b805d29cde8f98f")
