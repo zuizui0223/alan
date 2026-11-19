@@ -47,6 +47,14 @@ class TestMatching(unittest.TestCase):
         p, _, _ = m.pair_sites(a)
         self.assertEqual(len(p), 0)
 
+    def test_identical_pairs_nested_water_regression(self):
+        a = make_source()
+        p, _, _ = m.pair_sites(a)
+        z = m.same_cohort_water_adjustment(p)
+        self.assertEqual(z["same_matched_pairs"], len(p))
+        self.assertTrue(z["both_models_include_baseline_water_and_climate"])
+        self.assertEqual(z["status"], "POSTHOC_SENSITIVITY_ONLY")
+
     def test_report_has_no_causal_claim(self):
         a = make_source()
         p, f, s = m.pair_sites(a, water_matched=True)
