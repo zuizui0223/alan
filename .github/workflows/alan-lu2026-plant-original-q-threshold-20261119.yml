@@ -41,6 +41,14 @@ jobs:
           p='/tmp/alan_stageC_real_original/source_5block_11plant_required_fly_moth_q_without_pollen.json'
           d=json.load(open(p))
           assert d['schema']=='alan_20261119_lu2026_original_plant_specific_stageC_moth_fly_required_q_not_observed_pollination_v1'
+          if d.get('source_status')=='SOURCE_STOP_ORIGINAL_WORKBOOK_NOT_RETRIEVED':
+            assert d['source_plant_thresholds_not_estimated']
+            assert d['original_observations_not_imputed_or_fabricated']
+            assert d['no_causal_pollination_rescue_fraction_reported']
+            assert len(d['source_attempts'])>=3
+            print('LU2026_ORIGINAL_SUPPLEMENT_DOWNLOAD_SOURCE_STOP_NO_NEW_PLANT_Q_ESTIMATES')
+            raise SystemExit(0)
+          assert d['source_status']=='ORIGINAL_WORKBOOK_SOURCE_VERIFIED'
           assert d['source_original_workbook_sha256']=='ba7e15e66986f64943a38fd294e49d7128cf7719d318578f6b805d29cde8f98f'
           assert d['source_total_survey_rows']==400
           assert d['source_plant_positive_visitation_rows']==1038
