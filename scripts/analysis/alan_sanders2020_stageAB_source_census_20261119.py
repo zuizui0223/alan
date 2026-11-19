@@ -44,6 +44,7 @@ PLANT_CLASS_WORDS=("magnoliopsida","liliopsida","rosopsida","eudicotyledones","m
 S1_MARKS=re.compile(r"abundan|predat|populat|captur|arthropod|insect|spider|emerg|prey|pitfall",re.I)
 S2_REPRO_MARKS=re.compile(r"pollinat|pollen|fruit|seed|ovule|germin|reproduc|stigma",re.I)
 S2_VISIT_MARKS=re.compile(r"flower.{0,20}visit|visitation|nectar|foraging.{0,30}flower|pollinat",re.I)
+S2_PHENO_MARKS=re.compile(r"flower|phenolog|bloom|anthesis|flowering|bud.?burst",re.I)
 
 
 def valnum(s):
@@ -95,6 +96,9 @@ def source_panel_census(rows,source_identity,strict=True):
         category_counts["original_Phylum"][phylum or "<BLANK>"]+=1
         category_counts["original_Class"][clazz or "<BLANK>"]+=1
         category_counts["original_Field_Lab"][(row.get("Field.Lab") or "").strip() or "<BLANK>"]+=1
+        category_counts["original_Delete"][(row.get("Delete") or "").strip() or "<BLANK>"]+=1
+        category_counts["original_Activity"][(row.get("Activity") or "").strip() or "<BLANK>"]+=1
+        category_counts["original_Noct"][(row.get("Noct") or "").strip() or "<BLANK>"]+=1
         if not key and strict:
             raise ValueError("Original Sanders Study ID required for dependence")
         plant=(any(x in phylum for x in PLANT_PHYLUM_WORDS) or
@@ -105,6 +109,7 @@ def source_panel_census(rows,source_identity,strict=True):
         flags={
             "S1_arthropod_predation_abundance_candidate":arthropod and bool(S1_MARKS.search(class_text)),
             "S2_plant_reproductive_endpoint_candidate":plant and bool(S2_REPRO_MARKS.search(class_text)),
+            "S2_plant_flowering_phenology_candidate_NOT_seed_outcome":plant and bool(S2_PHENO_MARKS.search(class_text)),
             "S2_invertebrate_potential_flower_visitation_candidate":arthropod and bool(S2_VISIT_MARKS.search(class_text)),
         }
         nL=valnum(row.get("Experimental_N"))
