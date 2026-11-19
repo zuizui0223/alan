@@ -369,6 +369,13 @@ def get_dryad():
                         z["source_download_link_status"]="HAL_SOURCE_UNEXPECTED"
                 if isinstance(fi,int):
                     official_download.append(f"{DRYAD_API}/files/{fi}/download")
+                    # These two public browser links are documented by
+                    # Dryad's download UI, distinct from the API's
+                    # sometimes authenticated file endpoint.
+                    official_download.extend((
+                        f"https://datadryad.org/downloads/file_stream/{fi}",
+                        f"https://datadryad.org/stash/downloads/file_stream/{fi}",
+                    ))
                 if filename and (rawsize is None or isinstance(rawsize,int) and 0<rawsize<=MAX_BYTES):
                     for attempt in list(dict.fromkeys(official_download)):
                         try:
@@ -389,6 +396,36 @@ def get_dryad():
             out.setdefault("file_index_errors",[]).append({
                 "version_ID":ver,"error_type":type(exc).__name__,
                 **({"http_status":exc.code} if isinstance(exc,urllib.error.HTTPError) else {})})
+    # Additional official Dryad archive endpoint documented in API:
+    # GET /datasets/{doi}/download. We do not infer raw data availability
+    # from metadata alone; only verified ZIP member schemas count.
+    if out["source_authenticated_original_table_count"]==0:
+        verfileid=re.search(r"/versions/([0-9]+)/files",resolved_urls[0]) if resolved_urls else None
+        routes=[("original_dataset_archive",f"{DRYAD_API}/datasets/{doi}/download")]
+        if verfileid:
+            routes.append(("original_version_archive",
+                           f"{DRYAD_API}/versions/{verfileid.group(1)}/download"))
+        for label,url in routes:
+            try:
+                b=pull(url,limit=MAX_BYTES)
+                if not b.startswith(b"PK\x03\x04"):
+                    raise ValueError("Official Dryad archive is not original ZIP bytes")
+                schema=safe_schema("original_dataset.zip",b)
+                if not schema["members"]:
+                    raise ValueError("Original Dryad archive has no tabular source files")
+                out["official_archive_status"]="ORIGINAL_SOURCE_ARCHIVE_ZIP_VERIFIED"
+                out["official_archive_SHA256"]=hashlib.sha256(b).hexdigest()
+                out["official_archive_size_bytes"]=len(b)
+                out["official_archive_schema_only"]=schema
+                out["source_authenticated_original_table_count"]=len(schema["members"])
+                out["official_archive_source_URL"]=url
+                break
+            except (ValueError,zipfile.BadZipFile,urllib.error.HTTPError,urllib.error.URLError,TimeoutError) as exc:
+                out.setdefault("official_archive_attempts",[]).append({
+                    "source_route":label,
+                    "status":"SOURCE_STOP","error_type":type(exc).__name__,
+                    **({"http_status":exc.code} if isinstance(exc,urllib.error.HTTPError) else {})
+                })
     out["retrieval_status"]=(
         "RAW_ORIGINAL_TABLES_VERIFIED" if out["source_authenticated_original_table_count"]>0
         else "FILE_METADATA_ONLY_OR_SOURCE_STOP"
