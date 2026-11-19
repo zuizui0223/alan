@@ -473,6 +473,16 @@ def main():
         d=z[key]
         print("ALAN_54_PROGRAMME_PUBLIC_SOURCE",key,d["metadata"],"actual_tables",d["source_authenticated_original_table_count"])
         print("ALAN_54_PROGRAMME_SOURCE_FILES",key,d.get("files"))
+        if key.startswith("dryad") and d.get("official_archive_status")=="ORIGINAL_SOURCE_ARCHIVE_ZIP_VERIFIED":
+            archive=d["official_archive_schema_only"]
+            print("ALAN_DRYAD_ORIGINAL_DATASET_ARCHIVE_SHA",
+                  d["official_archive_SHA256"])
+            print("ALAN_DRYAD_ORIGINAL_DATASET_CSV_SCHEMAS",
+                  [{"member":entry.get("archive_member"),
+                    "sha":entry.get("member_SHA256"),
+                    "sheets":entry.get("sheets",[])}
+                   for entry in archive.get("members",[])])
+
         if key.startswith("dryad"):
             print("ALAN_54_DRYAD_SOURCE_METADATA_DIAG",{k:v for k,v in d.items() if k.endswith("_status") or k.endswith("_keys") or k in ("resolved_version_IDs","version_first_layer","verified_versions_file_index","file_index_errors","dataset_title")})
     print("ALAN_54_MESOCOSM_3PUBLICATIONS_1EXPERIMENT_NO_NEW_META",z["source_54_plot_light_treatment_year_full_join_verified"])
