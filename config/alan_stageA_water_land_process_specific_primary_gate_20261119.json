@@ -1,0 +1,162 @@
+{
+  "schema": "alan_stageA_primary_original_water_land_outcome_and_programme_partition_v1",
+  "analysis_date": "2026-11-19",
+  "selection": "Targeted fulltext validation of known mechanistic counterexamples; NOT a systematic global search or full denominator",
+  "programme_count": 6,
+  "source_publication_count_unique": 7,
+  "programmes": [
+    {
+      "programme_id": "Parkinson2020_20freshwater_mesocosms",
+      "doi": "10.1371/journal.pone.0240138",
+      "site_type": "freshwater_riparian",
+      "original_n_light_installation": 10,
+      "original_n_dark_installation": 10,
+      "source_summary": [
+        {
+          "stage": "emerging_aquatic_origin_flying_insects",
+          "light_dark_ratio": 6.63,
+          "kind": "measured_counts"
+        },
+        {
+          "stage": "web_building_spider_number",
+          "light_dark_ratio": 2.01,
+          "kind": "measured_abundance"
+        }
+      ],
+      "source_status": "true original source reanalysed on alan/main; fish-factorial block source limitation",
+      "biological_scope": "ALAN changes spider counts and aquatic-origin insect abundance, not flower or seed"
+    },
+    {
+      "programme_id": "Perkin2014_4paired_headwater_streams",
+      "doi": "10.1111/fwb.12426",
+      "site_type": "freshwater_headwater_stream",
+      "original_n_independent_streams": 4,
+      "original_n_light_reach_per_stream": 1,
+      "original_n_dark_reach_per_stream": 1,
+      "source_summary": [
+        {
+          "stage": "night_aquatic_invertebrate_drift",
+          "light_dark_ratio": 0.5,
+          "kind": "approximately published, different from emergence"
+        },
+        {
+          "stage": "aquatic_insect_emergence",
+          "direction": "not_resolved",
+          "kind": "published_null_not_zero"
+        },
+        {
+          "stage": "trout_growth",
+          "direction": "not_resolved",
+          "kind": "published_null_not_zero"
+        }
+      ],
+      "source_status": "paper fulltext and author XLSX AppendixS2 identified; original arm level variance not yet independently reanalysed",
+      "biological_scope": "One stream contributes paired control; four streams independently replicate stream context"
+    },
+    {
+      "programme_id": "WesthavellandDrainageDitch2012",
+      "doi": "10.3389/fenvs.2017.00061",
+      "site_type": "freshwater_riparian",
+      "original_n_treated_sites": 1,
+      "original_n_dark_sites": 1,
+      "same_programme_source_papers": [
+        "10.3389/fenvs.2017.00061",
+        "10.1007/s00027-025-01161-7"
+      ],
+      "source_summary": [
+        {
+          "stage": "broad_aquatic_insect_emergence_2012_2013",
+          "direction": "increase",
+          "kind": "BACI paper published direction"
+        },
+        {
+          "stage": "ground_araneae_predators",
+          "direction": "increase_some_species",
+          "kind": "taxon specific"
+        },
+        {
+          "stage": "ground_carabid_activity",
+          "direction": "decrease",
+          "kind": "taxon specific"
+        },
+        {
+          "stage": "Diptera_emergence_2014",
+          "light_dark_mean_lit": 3.72,
+          "light_dark_mean_dark": 7.84,
+          "kind": "published CPUE mean, source site 1/site no independent replication"
+        },
+        {
+          "stage": "Diptera_flying_adult_air_eclector_2014",
+          "light_dark_ratio": 8,
+          "kind": "published approximate flying trap count ratio"
+        }
+      ],
+      "source_status": "two publication public originals validated; within-site lamps/traps NOT independent field lighting assignments",
+      "biological_scope": "2017 broad aquatic emergence vs 2025 Diptera 2014 differ year/taxon; do not infer biological reversal in same group"
+    },
+    {
+      "programme_id": "NavarroBarranco2015_GreatBarrierReef_lighttraps",
+      "doi": "10.1016/j.marpolbul.2015.02.023",
+      "site_type": "marine_shallow_water",
+      "original_n_light_installation": null,
+      "original_n_dark_installation": null,
+      "source_summary": [
+        {
+          "stage": "mobile_amphipod_light_trap_catch",
+          "direction": "increase_LED_and_halogen_vs_unlit",
+          "kind": "published light trap attraction, NOT direct total emergence"
+        }
+      ],
+      "source_status": "primary journal abstract and Marine Pollution Bulletin, original trap light assignment n not yet verified",
+      "biological_scope": "MARINE trap catch cannot stand in for freshwater drift/emergence"
+    },
+    {
+      "programme_id": "Deitsch2023_hardwood_4pairs",
+      "doi": "10.1098/rspb.2023.0153",
+      "site_type": "terrestrial_forest",
+      "original_n_lit_dark_pairs": 4,
+      "source_summary": [
+        {
+          "stage": "predatory_arthropod_activity_density",
+          "direction": "increase",
+          "kind": "original published"
+        },
+        {
+          "stage": "model_clay_caterpillar_attack_marks",
+          "direction": "increase",
+          "kind": "surrogate prey attacks"
+        }
+      ],
+      "source_status": "original EDI raw not acquired; primary publication methods known",
+      "biological_scope": "forest comparator but endpoint must match riparian arthropod group"
+    },
+    {
+      "programme_id": "Farnworth2026_NZ_forest_predators",
+      "doi": "10.1016/j.biocon.2026.111967",
+      "site_type": "terrestrial_forest",
+      "original_n_light_installation": null,
+      "original_n_dark_installation": null,
+      "source_summary": [
+        {
+          "stage": "ground_predator_pitfall_activity_density",
+          "light_dark_ratio": 0.3333333333333333,
+          "kind": "published approximate decline; site n pending"
+        }
+      ],
+      "source_status": "published abstract and preliminary 6/6 site note, original method and variance not verified",
+      "biological_scope": "directionally opposite terrestrial predator response, demonstrates sign heterogeneity"
+    }
+  ],
+  "source_inference_gates": {
+    "site_type_is_pre_ALAN_habitat": true,
+    "freshwater_vs_marine_not_automatically_equivalent": true,
+    "night_drift_vs_emergence_vs_flying_catch_vs_predator_activity_not_same_lnRR_endpoint": true,
+    "repeat_traps_not_independent_lit_sites": true,
+    "Westhavelland_2017_2025_two_publications_one_lit_dark_site_pair": true,
+    "source_only_6_targeted_programmes_not_6_meta_ready_programmes": true,
+    "Water_vs_Terrestrial_meta_moderator_not_fitted": true,
+    "no_pooled_reproduction_or_plant_fitness_effect": true,
+    "positive_negative_null_results_all_retained": true,
+    "no_independent_lighting_site_random_effects_estimated": true
+  }
+}
