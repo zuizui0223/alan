@@ -1,0 +1,60 @@
+name: ALAN 81 interaction x 79 publication true source-coded effect comparison
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - scripts/analysis/alan_seymoure2023_original_direction_study_units_20261119.py
+      - tests/test_alan_seymoure2023_original_direction_study_units_20261119.py
+      - .github/workflows/alan-seymoure2023-81interaction-79paper-direction-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-study-and-interaction-units:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test source footer exclusion and multiple interaction stages per publication
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m unittest discover -s tests -p test_alan_seymoure2023_original_direction_study_units_20261119.py -v
+          python -m unittest discover -s tests -p test_alan_seymoure2023_true_workbook_coding_audit_20261119.py -v
+      - name: Re-fetch SHA-locked original 81 investigation Excel source and run DOI-cluster audit
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_review81
+          python -m scripts.analysis.alan_seymoure2023_original_direction_study_units_20261119 \
+            --out /tmp/alan_review81/original_79paper_81interaction_source_effects.json
+      - name: Assert 79 independent publication keys and 81 source investigations, not 91 separate experiments
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_review81/original_79paper_81interaction_source_effects.json'))
+          assert d['schema']=='alan_seymoure2023_original_81interactions_79publications_codebook_stage_audit_v1'
+          assert d['interaction_level_original_coded_counts']['investigations']==81
+          assert d['publication_level_DOI_aggregated_counts']['publications']==79
+          assert d['interaction_level_original_coded_counts']['coded_reduction']==29
+          assert d['interaction_level_original_coded_counts']['coded_enhancement']==28
+          assert d['interaction_level_original_coded_counts']['coded_temporal']==7
+          assert d['interaction_level_original_coded_counts']['coded_spatial']==27
+          assert d['source_limits']['direction_and_mismatch_not_independent_effects']
+          assert d['source_limits']['no_original_study_rows_exported']
+          print('ORIGINAL_79_PUBLICATION_AND_81_INTERACTION_EFFECT_SOURCE_GATES_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-Seymoure2023-79paper-81interaction-source-effect-audit
+          path: /tmp/alan_review81/original_79paper_81interaction_source_effects.json
+          if-no-files-found: warn
+          retention-days: 90
