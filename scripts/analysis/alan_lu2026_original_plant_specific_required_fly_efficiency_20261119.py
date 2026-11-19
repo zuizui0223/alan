@@ -151,9 +151,9 @@ def source_plant_q_thresholds(plant_rows,visit_rows,strict=True):
     for i,x in enumerate(threshold,1):x["original_source_plant_anon_rank"]=i
     total_loss=original["Unlit"]["moth"]-original["Lit"]["moth"]
     total_gain=original["Lit"]["fly"]-original["Unlit"]["fly"]
-    if total_loss!=481 or total_gain!=97:
+    if strict and (total_loss!=481 or total_gain!=97):
         raise ValueError("Original community moth and fly changes mismatch")
-    needs=total_loss/total_gain
+    needs=(total_loss/total_gain) if total_loss>0 and total_gain>0 else None
     ratios=[x["required_fly_over_moth_single_visit_effectiveness_ratio_if_other_factors_constant"] for x in threshold]
     def quantile(p):
         if not ratios:return None
