@@ -29,23 +29,85 @@ WORKBOOK="Date.xlsx"
 AUTHOR_SHA="ba7e15e66986f64943a38fd294e49d7128cf7719d318578f6b805d29cde8f98f"
 SCHEMA="alan_20261119_lu2026_original_plant_specific_stageC_moth_fly_required_q_not_observed_pollination_v1"
 
-def source_bytes():
-    req=urllib.request.Request(SOURCE,headers={
-        "User-Agent":"ALAN-source-real-singlevisit-pollen-compensation-gates/2026-11-19",
-        "Accept":"application/zip,*/*"})
-    with urllib.request.urlopen(req,timeout=50) as f:
-        data=f.read(20_000_000)
-    with zipfile.ZipFile(io.BytesIO(data)) as outer:
-        if NESTED not in outer.namelist():
-            raise ValueError("Original Lu author supplement nested archive absent")
-        inner=outer.read(NESTED)
-    with zipfile.ZipFile(io.BytesIO(inner)) as actual:
-        if WORKBOOK not in actual.namelist():
-            raise ValueError("Original Lu 2026 source Date.xlsx missing")
-        raw=actual.read(WORKBOOK)
-    if hashlib.sha256(raw).hexdigest()!=AUTHOR_SHA:
-        raise ValueError("Original Lu 2026 workbook identity SHA drift")
+SOURCE_URLS=(
+    "https://pmc.ncbi.nlm.nih.gov/articles/instance/13645961/bin/ECE3-16-e74368-s001.zip",
+    "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13645961/supplementaryFiles",
+    "https://onlinelibrary.wiley.com/doi/suppl/10.1002/ece3.74368/supinfo/ece374368-sup-0002-DataS1.zip",
+)
+MAX_SOURCE_BYTES=20_000_000
+
+
+def unpack_author_workbook(payload,original_sha=AUTHOR_SHA):
+    """Original author workbook, from either EBI's outer or direct inner ZIP."""
+    if not zipfile.is_zipfile(io.BytesIO(payload)):
+        raise ValueError("Lu original supplementary endpoint returned non-ZIP bytes")
+    with zipfile.ZipFile(io.BytesIO(payload)) as outer:
+        if outer.testzip() is not None:
+            raise ValueError("Author supplementary archive CRC check failed")
+        names=outer.namelist()
+        if NESTED in names:
+            inner=outer.read(NESTED)
+        elif WORKBOOK in names:
+            inner=payload
+        else:
+            raise ValueError("Expected Lu original nested ZIP or Date.xlsx absent")
+    with zipfile.ZipFile(io.BytesIO(inner)) as z:
+        if z.testzip() is not None:
+            raise ValueError("Nested author supplementary archive CRC failed")
+        if WORKBOOK not in z.namelist():
+            raise ValueError("Author original Date.xlsx source missing")
+        info=z.getinfo(WORKBOOK)
+        if info.file_size>MAX_SOURCE_BYTES:
+            raise ValueError("Original author workbook exceeds bounded source size")
+        raw=z.read(WORKBOOK)
+    if hashlib.sha256(raw).hexdigest()!=original_sha:
+        raise ValueError("Source original Lu 2026 workbook SHA256 drift")
     return raw
+
+
+def source_bytes(reader=None):
+    """Try each exact publisher/PMC archive; never change source content."""
+    import urllib.error
+    if reader is None:
+        def reader(url,timeout):
+            req=urllib.request.Request(url,headers={
+                "User-Agent":"ALAN-systematic-source-2026-11-19 ecologists",
+                "Accept":"application/zip,application/octet-stream,*/*"})
+            with urllib.request.urlopen(req,timeout=timeout) as resp:
+                # This ZIP is public published supplemental material. Reject
+                # very large responses and untrusted non-public endpoints.
+                data=resp.read(MAX_SOURCE_BYTES+1)
+                if len(data)>MAX_SOURCE_BYTES:
+                    raise ValueError("Author original supplement ZIP exceeds bounded size")
+                return data
+    errors=[]
+    for index,url in enumerate(SOURCE_URLS):
+        # PMC direct URLs respond rapidly when available. EBI is often the
+        # authoritative successful source but can take >50s transiently.
+        for attempt in range(2 if index==1 else 1):
+            try:
+                dat=reader(url,90 if index==1 else 22)
+                raw=unpack_author_workbook(dat)
+                return raw,{
+                  "original_source_url":url,
+                  "source_original_exact_workbook_SHA256":AUTHOR_SHA,
+                  "original_source_access":"SUCCESS",
+                }
+            except (urllib.error.URLError,TimeoutError,OSError,ValueError,
+                    KeyError,zipfile.BadZipFile) as exc:
+                errors.append({
+                  "source_type":("PMC_DIRECT" if index==0 else "EUROPEPMC" if index==1 else "PUBLISHER"),
+                  "attempt_number":attempt+1,
+                  "error_class":type(exc).__name__,
+                  **({"http_status":exc.code} if isinstance(exc,urllib.error.HTTPError) else {})
+                })
+    raise OriginalSourceUnavailable(errors)
+
+
+class OriginalSourceUnavailable(Exception):
+    def __init__(self,errors):
+        super().__init__("Author Lu original supplement not retrieved from available official hosts")
+        self.errors=errors
 
 
 def read_sheet(wb,name,max_rows=2500):
@@ -202,12 +264,29 @@ def main():
     a.add_argument("--out",type=Path,required=True)
     args=a.parse_args()
     from openpyxl import load_workbook
-    b=source_bytes()
+    try:
+        b,source_provenance=source_bytes()
+    except OriginalSourceUnavailable as exc:
+        args.out.parent.mkdir(parents=True,exist_ok=True)
+        stopped={
+            "schema":SCHEMA,
+            "source_status":"SOURCE_STOP_ORIGINAL_WORKBOOK_NOT_RETRIEVED",
+            "original_expected_workbook_SHA256":AUTHOR_SHA,
+            "source_attempts":exc.errors,
+            "source_plant_thresholds_not_estimated":True,
+            "no_causal_pollination_rescue_fraction_reported":True,
+            "original_observations_not_imputed_or_fabricated":True,
+        }
+        args.out.write_text(json.dumps(stopped,ensure_ascii=False,indent=2)+"\n")
+        print("LU2026_ORIGINAL_STAGE_C_SOURCE_STOP",stopped["source_attempts"])
+        return
     wb=load_workbook(io.BytesIO(b),read_only=True,data_only=True)
     plant=read_sheet(wb,"species visitation")
     visitation=read_sheet(wb,"visitation")
     wb.close()
     z=source_plant_q_thresholds(plant,visitation,strict=True)
+    z["source_status"]="ORIGINAL_WORKBOOK_SOURCE_VERIFIED"
+    z["original_supplement_access_provenance"]=source_provenance
     args.out.parent.mkdir(parents=True,exist_ok=True)
     args.out.write_text(json.dumps(z,ensure_ascii=False,indent=2)+"\n")
     print("LU2026_ORIGINAL_SINGLE_FIELD_STUDY_COMMUNITY_CONDITIONAL_Q_RATIO",z["community_conditional_qfly_qmoth_threshold_if_all_visits_act_on_same_equivalent_plants"])
