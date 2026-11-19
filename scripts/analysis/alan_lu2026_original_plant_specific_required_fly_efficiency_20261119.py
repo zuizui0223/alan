@@ -148,7 +148,8 @@ def source_plant_q_thresholds(plant_rows,visit_rows,strict=True):
         raise ValueError("Original Lu all-visit source schema missing")
     if strict and (len(plant_rows)!=1038 or len(visit_rows)!=400):
         raise ValueError("Original 1038 plant rows and 400 survey rows changed")
-    plants=defaultdict(lambda:defaultdict(lambda:{"moth":0,"fly":0,"all":0,"blocks":set()}))
+    plants=defaultdict(lambda:defaultdict(lambda:{"moth":0,"fly":0,"all":0,"blocks":set(),"positive_source_rows":0}))
+    perblock=defaultdict(lambda:defaultdict(lambda:defaultdict(lambda:{"moth":0,"fly":0,"positive_source_rows":0})))
     raw_plant_names=set()
     for r in plant_rows:
         name=str(r.get("plant") or "").strip()
@@ -166,6 +167,11 @@ def source_plant_q_thresholds(plant_rows,visit_rows,strict=True):
         for key,value in zip(("all","moth","fly"),counts):
             x[key]+=value
         x["blocks"].add(block)
+        x["positive_source_rows"]+=1
+        y=perblock[name][t][block]
+        y["moth"]+=counts[1]
+        y["fly"]+=counts[2]
+        y["positive_source_rows"]+=1
     if strict and len(raw_plant_names)!=11:
         raise ValueError("Original paper focal 11 documented plant taxa changed")
     original=defaultdict(lambda:{"moth":0,"fly":0,"n":0})
@@ -195,6 +201,22 @@ def source_plant_q_thresholds(plant_rows,visit_rows,strict=True):
         if eligible:observed_both+=1
         if eligible:
             needed=loss/gain
+            # This source sheet has positive visitation rows, not complete
+            # flower availability or flower-hour observation denominators.
+            # In a restricted sensitivity, compare only spatial blocks
+            # with documented positive visits in BOTH treatment arms.
+            # Missing source rows are NEVER assumed to be zero visitors.
+            shared=sorted(set(perblock[name]["Unlit"]) & set(perblock[name]["Lit"]))
+            def conditional_block_ratio(blocks):
+                lost=sum(perblock[name]["Unlit"][b]["moth"]-
+                         perblock[name]["Lit"][b]["moth"] for b in blocks)
+                gained=sum(perblock[name]["Lit"][b]["fly"]-
+                           perblock[name]["Unlit"][b]["fly"] for b in blocks)
+                return lost/gained if lost>0 and gained>0 else None
+            restricted=conditional_block_ratio(shared) if shared else None
+            loo=[conditional_block_ratio([x for x in shared if x!=b])
+                 for b in shared] if len(shared)>=2 else []
+            valid_loo=[x for x in loo if x is not None]
             threshold.append({
                 # Taxon identity public but not needed for aggregate inference;
                 # do not duplicate source original rare taxon x plot rows.
@@ -203,6 +225,13 @@ def source_plant_q_thresholds(plant_rows,visit_rows,strict=True):
                 "gain_original_fly_visitor_events":gain,
                 "required_fly_over_moth_single_visit_effectiveness_ratio_if_other_factors_constant":needed,
                 "equal_q_is_theoretically_sufficient_for_lost_moth_event_count":needed<=1,
+                "source_documented_positive_visitation_rows_dark_and_lit":[dark["positive_source_rows"],lit["positive_source_rows"]],
+                "common_physical_blocks_with_positive_source_visits_in_both_arms":len(shared),
+                "common_documented_blocks_conditional_q_ratio":restricted,
+                "source_common_block_leave_one_out_q_ratio_minmax":[min(valid_loo),max(valid_loo)] if valid_loo else None,
+                "source_common_block_leave_one_out_valid_n":len(valid_loo),
+                "unrecorded_plant_in_block_does_not_imply_true_zero":True,
+                "no_true_same_plant_exposed_flower_or_effort_denominator":True,
                 "plant_q_measurement_observed":False,
                 "light_exposed_flower_availability_verified":False,
                 "no_actual_pollen_fruit_seed_compensation_verified":True,
@@ -244,6 +273,13 @@ def source_plant_q_thresholds(plant_rows,visit_rows,strict=True):
             "count_where_equal_q_visits_would_suffice":sum(v<=1 for v in ratios),
             "count_where_fly_q_must_exceed_moth_q":sum(v>1 for v in ratios),
             "theoretical_only_NOT_compensated_plant_proportion":True,
+            "n_plants_with_at_least_one_common_documented_light_block":sum(
+                x["common_physical_blocks_with_positive_source_visits_in_both_arms"]>0
+                for x in threshold),
+            "n_plants_with_positive_loss_and_gain_within_common_documented_blocks":sum(
+                x["common_documented_blocks_conditional_q_ratio"] is not None
+                for x in threshold),
+            "common_source_block_q_ratio_is_not_corrected_for_flower_availability":True,
         },
         "focal_plant_thresholds_aggregated_no_original_species_or_site_ID":threshold,
         "guard":{
