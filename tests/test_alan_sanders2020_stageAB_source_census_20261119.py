@@ -51,8 +51,10 @@ class Original126ALANMetaStageScreenTests(unittest.TestCase):
         ]
         out=source_panel_census(rows,{"original_CSV_SHA256":"synthetic","original_R_code_SHA256":"synthetic"},strict=False)
         b=out["stageAB_broad_record_screening_not_eligible_effects"]
-        self.assertEqual(b["S2_plant_reproductive_endpoint_candidate"]["source_unique_original_Study_ids_preliminary"],3)
-        self.assertEqual(b["S2_plant_reproductive_endpoint_candidate"]["source_positive_arms_SD_n_arithmetically_available_records"],3)
+        self.assertEqual(b["S2_plant_reproductive_endpoint_candidate"]["source_unique_original_Study_ids_preliminary"],2)
+        self.assertEqual(b["S2_plant_reproductive_endpoint_candidate"]["source_positive_arms_SD_n_arithmetically_available_records"],2)
+        self.assertEqual(b["S2_plant_flowering_phenology_candidate_NOT_seed_outcome"]["source_unique_original_Study_ids_preliminary"],1)
+        self.assertEqual(b["S2_plant_flowering_phenology_candidate_NOT_seed_outcome"]["source_positive_arms_SD_n_arithmetically_available_records"],1)
 
     def test_nonpositive_means_not_lnRR_ready_even_with_large_flower_sample(self):
         rows=[row("StudyA","Tracheophyta","Magnoliopsida","","seed output","reproduction",0,3)]
