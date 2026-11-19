@@ -1,0 +1,64 @@
+name: ALAN Stage C Lu 2026 original plant-specific moth-to-fly q threshold
+
+on:
+  push:
+    branches:
+      - analysis/alan-three-stage-prisma-meta-protocol-20261119
+    paths:
+      - scripts/analysis/alan_lu2026_original_plant_specific_required_fly_efficiency_20261119.py
+      - tests/test_alan_lu2026_original_plant_specific_required_fly_efficiency_20261119.py
+      - .github/workflows/alan-lu2026-plant-original-q-threshold-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  real-original-5block-pollen-efficiency-necessary-condition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate plant-specific necessary q and source missingness without fabricated pollen
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m unittest discover -s tests -p test_alan_lu2026_original_plant_specific_required_fly_efficiency_20261119.py -v
+      - name: Download original authenticated Lu 2026 full day-night visitation source and compute plant q bounds
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_stageC_real_original
+          python -m scripts.analysis.alan_lu2026_original_plant_specific_required_fly_efficiency_20261119 \
+            --out /tmp/alan_stageC_real_original/source_5block_11plant_required_fly_moth_q_without_pollen.json
+      - name: Treat q as UNKNOWN and no compensable fraction as measured
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          p='/tmp/alan_stageC_real_original/source_5block_11plant_required_fly_moth_q_without_pollen.json'
+          d=json.load(open(p))
+          assert d['schema']=='alan_20261119_lu2026_original_plant_specific_stageC_moth_fly_required_q_not_observed_pollination_v1'
+          assert d['source_original_workbook_sha256']=='ba7e15e66986f64943a38fd294e49d7128cf7719d318578f6b805d29cde8f98f'
+          assert d['source_total_survey_rows']==400
+          assert d['source_plant_positive_visitation_rows']==1038
+          assert d['source_field_blocks']==5
+          assert d['source_original_focal_plant_species']==11
+          assert d['original_documented_nocturnal_moth_down_fly_up_plant_n']==6
+          assert d['community_visit_event_losses_moth']==481
+          assert d['community_visit_event_gains_fly']==97
+          assert abs(d['community_conditional_qfly_qmoth_threshold_if_all_visits_act_on_same_equivalent_plants']-481/97)<1e-12
+          assert d['focal_six_plant_required_efficiency_ratio_descriptive_summary']['theoretical_only_NOT_compensated_plant_proportion']
+          assert d['guard']['no_causal_pollination_rescue_fraction_reported']
+          assert d['guard']['source_q_SVD_and_stigma_pollen_not_measured']
+          assert d['guard']['six_plant_thresholds_one_five_block_experiment_NOT_six_independent_light_studies']
+          print('LU2026_TRUE_SOURCE_PLANT_Q_THRESHOLDS_NOT_MEASURED_POLLEN_OR_SEEDS_OK')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-Lu2026-true-11plant-5block-conditional-fly-moth-q-thresholds
+          path: /tmp/alan_stageC_real_original/source_5block_11plant_required_fly_moth_q_without_pollen.json
+          retention-days: 90
+          if-no-files-found: error
