@@ -5,7 +5,7 @@ import zipfile
 from openpyxl import Workbook
 
 from scripts.acquisition.alan_penryn54_crosspaper_figshare_dryad_primary_audit_20261119 import (
-    classify_original_table,csv_schema,xlsx_schema,safe_schema,run
+    classify_original_table,csv_schema,xlsx_schema,safe_schema,run, dryad_hal_version_file_lists, dryad_official_href
 )
 
 class OriginalPenryn54SourceTests(unittest.TestCase):
@@ -48,6 +48,28 @@ class OriginalPenryn54SourceTests(unittest.TestCase):
         self.assertEqual(info["kind"],"zip")
         self.assertEqual(info["members"][0]["kind"],"csv")
         self.assertNotIn("Site123",str(info))
+
+    def test_dryad_hal_records_use_stash_files_link_not_missing_version_id(self):
+        ds={"_links":{"stash:version":{"href":"/api/v2/versions/131413"}}}
+        versions={"_embedded":{"stash:versions":[
+           {"versionNumber":1,
+            "_links":{"self":{"href":"/api/v2/versions/131413"},
+                      "stash:files":{"href":"/api/v2/versions/131413/files"}}}
+        ]}}
+        urls=dryad_hal_version_file_lists(ds,versions)
+        self.assertEqual(urls,["https://datadryad.org/api/v2/versions/131413/files"])
+        self.assertEqual(dryad_official_href(
+            "/api/v2/files/190044/download",allow_files=True),
+            "https://datadryad.org/api/v2/files/190044/download")
+        with self.assertRaisesRegex(ValueError,"nonofficial"):
+            dryad_official_href("https://malicious.example/api/v2/versions/131413/files")
+        with self.assertRaisesRegex(ValueError,"genuine original"):
+            dryad_official_href("https://datadryad.org/api/v2/versions/131413")
+
+    def test_version_hal_link_can_be_derived_from_dataset_metadata_alone(self):
+        ds={"_links":{"stash:version":{"href":"/api/v2/versions/44455"}}}
+        result=dryad_hal_version_file_lists(ds,{"_embedded":{"stash:versions":[]}})
+        self.assertEqual(result,["https://datadryad.org/api/v2/versions/44455/files"])
 
     def test_unknown_original_binary_not_invented_as_spreadsheet(self):
         s=safe_schema("predators.RData",b"binary-raw-original-not-parsed")
