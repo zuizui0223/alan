@@ -1,0 +1,188 @@
+{
+  "schema": "alan_source_3_true_plant_reproduction_pathway_contrasts_20261119_v1",
+  "selection_source": "Seymoure et al. 2023 author Figshare 81 original interaction rows; 17 pollination/herbivory primary papers, exactly 3 with flowering plant reproduction endpoints",
+  "source_review_SHA256": "a4c105c50f7b53cb2c58b287d065b79432b6ec7c308c35b1c4b873e78a4a359e",
+  "primary_studies": [
+    {
+      "programme": "Macgregor2019",
+      "doi": "10.1002/ecs2.2550",
+      "year": 2019,
+      "plant": "Silene latifolia",
+      "interaction": "day and night pollinator routes and seed predation among successfully pollinated capsules",
+      "design": {
+        "independent_field_plots": 5,
+        "repeated_field_runs": 4,
+        "individual_female_plants": 169,
+        "observed_flowers": 417,
+        "pollinated_flowers": 194,
+        "damaged_successfully_pollinated_capsules": 46,
+        "undamaged_capsules_for_seed_count_or_mass": 148,
+        "source_original_numerical_treatment_CSV_available": false,
+        "source_original_scripts_verified_elsewhere": true
+      },
+      "published_day_night_flower_access_success": {
+        "open_both": 0.72,
+        "day_only": 0.376,
+        "night_only": 0.528,
+        "source": "published manuscript Results, pooled caging regimes across light exposures; author-provided marginal predictions NOT exposure-specific lighting response"
+      },
+      "lighting_results": {
+        "full_night_vs_dark_pollination_success": "positive_published_model",
+        "part_night_vs_dark_pollination_success": "not_resolved",
+        "lit_vs_dark_seed_count_or_dry_mass": "not_resolved"
+      },
+      "endpoint_state": "pollination_success_and_conditional_seed_quality",
+      "primary_url": "https://doi.org/10.1002/ecs2.2550",
+      "limit": "Four pollinator access cages not randomized lighting replicates; 417 flowers nested within 169 plants and four repeated rounds; cannot create treatment-specific SE from caging percentages"
+    },
+    {
+      "programme": "Giavi2020",
+      "doi": "10.1038/s41598-020-68667-y",
+      "year": 2020,
+      "plant": "Silene latifolia; Epilobium angustifolium",
+      "interaction": "nursery pollination benefits vs Hadena larval pre-dispersal seed predation and dark-edge spillover",
+      "design": {
+        "independent_lit_meadows": 4,
+        "independent_dark_control_meadows": 4,
+        "potted_plants": 97,
+        "Silene_individual_plants": 47,
+        "Epilobium_individual_plants": 50,
+        "selected_capsules_Epilobium": 240,
+        "selected_capsules_Silene": 199,
+        "adjacent_dark_shares_treatment_meadow": true,
+        "lab_moth_replicates": 27,
+        "lab_distinct_females": 22
+      },
+      "published_model_contrasts": [
+        {
+          "endpoint": "Epilobium_selected_capsule_at_least_four_mature_seeds",
+          "contrast": "illuminated vs dark independent control",
+          "beta": -1.37,
+          "SE": 0.726,
+          "p_published": 0.058,
+          "model": "authors mixed binomial original Table 1a",
+          "orientation": "lit/dark",
+          "effect_type": "reported_link_scale_coefficient"
+        },
+        {
+          "endpoint": "Silene_infested_fruit_fraction",
+          "contrast": "adjacent dark vs independent dark control",
+          "beta": 1.9,
+          "SE": 0.576,
+          "p_published": "<0.001",
+          "model": "authors original Table 1b",
+          "orientation": "adjacent/dark",
+          "effect_type": "odds_ratio_from_reported_binomial_logit"
+        },
+        {
+          "endpoint": "Silene_infested_fruit_fraction",
+          "contrast": "adjacent dark vs illuminated",
+          "beta": 1.14,
+          "SE": 0.363,
+          "p_published": 0.002,
+          "model": "authors original Table 1b",
+          "orientation": "adjacent/lit",
+          "effect_type": "odds_ratio_from_reported_binomial_logit"
+        },
+        {
+          "endpoint": "Silene_uninfected_capsules_per_exposed_flower",
+          "contrast": "independent dark vs adjacent dark",
+          "beta": 1.04,
+          "SE": 0.499,
+          "p_published": 0.037,
+          "model": "authors original Table 1c",
+          "orientation": "dark/adjacent",
+          "effect_type": "original_fitted_link_beta_ONLY_due_to_documented_binomial_denominator_ambiguity"
+        },
+        {
+          "endpoint": "Silene_uninfected_capsules_per_exposed_flower",
+          "contrast": "illuminated vs adjacent dark",
+          "beta": 0.69,
+          "SE": 0.371,
+          "p_published": 0.063,
+          "model": "authors original Table 1c",
+          "orientation": "lit/adjacent",
+          "effect_type": "original_fitted_link_beta_ONLY_due_to_documented_binomial_denominator_ambiguity"
+        },
+        {
+          "endpoint": "Silene_lab_moth_flower_visitation_events",
+          "contrast": "lit corridor vs dark corridor",
+          "beta": -1.22,
+          "SE": 0.522,
+          "p_published": 0.02,
+          "model": "authors original Table 2 Poisson",
+          "orientation": "lit/dark",
+          "effect_type": "authors_adjusted_visitation_link_coefficient"
+        },
+        {
+          "endpoint": "Silene_lab_Hadena_egg_count",
+          "contrast": "lit corridor vs dark corridor",
+          "beta": -1.17,
+          "SE": 0.622,
+          "p_published": 0.06,
+          "model": "authors original Table 2 Poisson",
+          "orientation": "lit/dark",
+          "effect_type": "authors_adjusted_oviposition_link_coefficient"
+        }
+      ],
+      "endpoint_state": "fruit_attack_and_relative_reproduction_and_selected_capsule_seed_presence",
+      "primary_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7368033/",
+      "limit": "Table 1b and 1c are repeated endpoints on the same eight meadows; 97 pots not independent light installations; link coefficient Table1c cannot be converted to total seed counts or biological relative risk due to reported cbind denominator ambiguity; no primary plot-level raw data available"
+    },
+    {
+      "programme": "Wilson2021",
+      "doi": "10.1093/icb/icab010",
+      "year": 2021,
+      "plant": "Hesperoyucca whipplei",
+      "interaction": "diurnal obligate Tegeticula moth pollination plus larval recruitment",
+      "design": {
+        "direct_experimental_light_towers_and_observational_skyglow_are_distinct_contrasts": true,
+        "original_independent_light_towers_n": null,
+        "original_independent_skyglow_sites_n": null
+      },
+      "published_mechanism_contrasts": [
+        {
+          "endpoint": "yucca_fruit_recruitment",
+          "exposure": "skyglow",
+          "direction": "positive_reported",
+          "randomized": false,
+          "reported_effect_beta_SE_available": false
+        },
+        {
+          "endpoint": "moth_larva_recruitment",
+          "exposure": "skyglow",
+          "direction": "positive_reported",
+          "randomized": false,
+          "reported_effect_beta_SE_available": false
+        },
+        {
+          "endpoint": "yucca_fruit_recruitment",
+          "exposure": "direct_lamp",
+          "direction": "positive_weaker_reported",
+          "randomized": "unverified_original_tower_assignment",
+          "reported_effect_beta_SE_available": false
+        },
+        {
+          "endpoint": "moth_larva_recruitment",
+          "exposure": "direct_lamp",
+          "direction": "not_resolved",
+          "randomized": "unverified_original_tower_assignment",
+          "reported_effect_beta_SE_available": false
+        }
+      ],
+      "endpoint_state": "fruit_and_larval_recruitment_under_naturally_gradient_and_direct_light",
+      "primary_url": "https://doi.org/10.1093/icb/icab010",
+      "limit": "Published synopsis contains sign comparisons but source effect betas and SE absent; natural skyglow is not an experimentally assigned lamp treatment"
+    }
+  ],
+  "model_scope": {
+    "same_plant_species_in_Macgregor_and_Giavi_but_different_field_experiments": true,
+    "treatment_or_caging_group_not_equal_independent_light_installation": true,
+    "reproduction_and_prey_capture_not_common_effect_size": false,
+    "three_publications_not_three_matching_seed_effects": true,
+    "no_cross_study_random_effect_meta_fitted": true,
+    "paper_coefficients_preserve_original_scale": true,
+    "conditional_caging_compensation_is_noncausal_sensitivity": true,
+    "do_not_map_Giavi_nursery_seed_predator_to_Macgregor_parasitized_capsule_without_identification": true
+  }
+}
