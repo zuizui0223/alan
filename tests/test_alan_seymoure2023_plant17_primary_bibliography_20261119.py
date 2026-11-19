@@ -53,10 +53,9 @@ class Plant17OriginalBibliographyUnitTests(unittest.TestCase):
 
     def test_same_study_must_not_have_conflicting_doi(self):
         x=test_source()
-        # Keep normalized study key same, make paper name/DOI conflict
-        x[1]["DOI"]=""
-        x[1]["DOI Link"]="https://doi.org/10.5555/Z"
-        with self.assertRaises(ValueError):
+        # Same DOI must not silently absorb two conflicting primary titles.
+        x[1]["Article Title"]="Different primary paper title"
+        with self.assertRaisesRegex(ValueError,"title inconsistency"):
             a.source_bibliography(x,strict=False)
 
 if __name__=="__main__":
