@@ -21,8 +21,7 @@ class OriginalSileneAndYuccaReproductionPathwayTests(unittest.TestCase):
         self.assertAlmostEqual(m["observed_minus_independent_route_prediction_percentage_points"],100*(.72-expected))
         self.assertAlmostEqual(m["published_damaged_fraction_among_successfully_pollinated"],46/194)
         self.assertTrue(m["marginal_caging_rates_not_a_dark_control_only_comparison"])
-        val=m["night_loss_sensitivity_not_a_causal_ALAN_dose_response"] if "night_loss_sensitivity_not_a_causal_ALAN_dose_response" in m else m["night_loss_sensitivity_not_a_causal_ALAN_dose_response"]
-        s=m["night_loss_sensitivity_not_a_causal_ALAN_dose_response"] if False else m["night_loss_sensitivity_not_a_causal_ALAN_dose_response"]
+        s=m["night_loss_sensitivity_not_a_causal_ALAN_dose_response"]
         self.assertEqual(len(s),5)
         self.assertAlmostEqual(s[2]["predicted_combined_pollination_success_if_day_unchanged"],1-(1-.376)*(1-.264))
         self.assertAlmostEqual(s[-1]["predicted_combined_pollination_success_if_day_unchanged"],.376)
