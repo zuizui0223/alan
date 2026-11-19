@@ -1,0 +1,57 @@
+{
+  "schema": "alan_stageC_single_visit_effectiveness_public_review_source_gate_v1",
+  "as_of": "2026-11-19",
+  "selection_status": "TARGETED_KNOWN_PRIOR_META_REVIEWS_NOT_A_COMPLETED_SYSTEMATIC_SEARCH",
+  "original_public_review_meta": [
+    {
+      "doi": "10.1002/ajb2.1764",
+      "source_project": "https://figshare.com/projects/Page_Nicholson_etal_2021_SingleVisitEffectiveness_meta-analysis/120921",
+      "source_project_id": 120921,
+      "author": "Page et al. 2021",
+      "published_original_studies": 168,
+      "published_original_SVE_measures": 1564,
+      "published_source_plant_species": 240,
+      "source_studies_with_paired_visitation_frequency": 69,
+      "evidence_endpoint": "single-visit effectiveness across diverse pollinators and plants; some reproductive endpoints may differ from actual conspecific deposition",
+      "moth_fly_same_plant_q_ratio_in_original_source": "UNKNOWN_NEEDS_TRUE_TAXON_AND_MEASUREMENT_DEFINITION",
+      "source_download_original_tables_verified": false,
+      "source_original_published_primary_study_IDs_verified_for_our_stageC": false,
+      "comparator_group": "honeybee vs other floral visitors, not moth vs fly direct contrast"
+    },
+    {
+      "doi": "10.1111/1365-2664.13798",
+      "source_dataset_doi": "10.5061/dryad.05qfttf1n",
+      "source_dataset": "https://datadryad.org/dataset/doi%3A10.5061/dryad.05qfttf1n",
+      "source_file_name": "Metadata.csv",
+      "author": "Földesi et al. 2020/2021",
+      "published_original_studies": 28,
+      "published_original_SVD_taxa": 127,
+      "published_source_bee_taxa": 94,
+      "published_source_fly_taxa": 33,
+      "published_original_plant_species": 30,
+      "evidence_endpoint": "single visit conspecific pollen grains deposited on stigmas; active detached flower vs static attached flower",
+      "moth_fly_same_plant_q_ratio_in_original_source": "NOT_ESTIMABLE_NO_LEPIDOPTERAN_REFERENCE_GROUP",
+      "source_original_research_studies_not_independent_from_Page_meta_without_DOI_DEDUP": true,
+      "source_download_original_tables_verified": false,
+      "source_original_published_primary_study_IDs_verified_for_our_stageC": false,
+      "comparator_group": "honeybee versus wild bees or flies, moths explicitly not included"
+    }
+  ],
+  "independent_manual_ALAN_visit_source": {
+    "doi": "10.1002/ece3.74368",
+    "actual_field_original_blocks": 5,
+    "source_11_positive_documented_focal_plants": true,
+    "plant_q_observed_in_original_Lu_ALAN_visitation": false,
+    "confirmed_same_plant_moth_and_fly_visitation_changes_count": 6,
+    "published_community_lost_Lepidoptera_visits": 481,
+    "published_community_gained_Diptera_visits": 97,
+    "source_stageC_plant_q_distribution_not_pollen_compensation": true
+  },
+  "analytic_hard_stop": {
+    "no_species_level_moth_fly_pair_matched_true_single_visit_conspec_pollen_q_verified": true,
+    "cannot_use_fly_to_bee_q_as_fly_to_moth_q": true,
+    "do_not_use_broad_SVE_plant_species_n_as_plant_with_ALAN_lit_dark_visit_n": true,
+    "C_moth_fly_functional_compensation_prevalence_not_estimated": true,
+    "distinct_original_pollen_delivery_protocols_required": true
+  }
+}
