@@ -117,10 +117,17 @@ mainの長期減少候補の湿潤性偏り β≈+0.534 は**植物種群の構�
 
 ## 既存研究と作業開始時の母集団
 
-機械可読seed台帳：config/alan_prisma_three_stage_seed_census_20261119.json。Aに**9件の意図的候補**、Bに**11件の意図的候補**（観察や訪花だけ、重複可能性含む）。これは検索結果の網羅性・採択数ではない。Seymoureの79論文はreviewの独立原著、Guenat照明22候補（UV-B8、非UV-B14候補）は原著重複を含み、Sandersの126論文／1,304効果量は元のHedges dデータセットであって、これらを単純加算しない。
+機械可読seed台帳：config/alan_prisma_three_stage_seed_census_20261119.json。Aに**11件の意図的候補**（作成時の9件＋2025水生双翅目・2017同一水辺プログラム）、Bに**11件の意図的候補**（観察や訪花だけ、重複可能性含む）。これは検索結果の網羅性・採択数ではない。Seymoureの79論文はreviewの独立原著、Guenat照明22候補（UV-B8、非UV-B14候補）は原著重複を含み、Sandersの126論文／1,304効果量は元のHedges dデータセットであって、これらを単純加算しない。
 
 既存監査の**12植物繁殖原著（9直接光照射・3観察）**で、独立した暗所における夜間送粉依存と、同じ植物の明暗全日開放種子効果＋SEが完全にそろった研究は0。**これはBの一般的な訪花lnRR研究が0という主張ではない**。すべて再抽出が必要。
 
-次にSanders Dryad DOI 10.5061/dryad.wpzgmsbjnの公開CSV（Sanders_et_al_datafile.csv）と解析Rコード、Guenat2023真正S4/S7/S13、Seymoure79件の原著DOIを重複照合し、2021〜2026の新照明実験を追加する。表層の信号変化だけでなく、原実験の暗対照・n・SE・水辺・湿潤・自殖の原情報を集め、PRISMA flow実際の検索日・nを別ファイルに保存する。
+Sanders Dryad DOI 10.5061/dryad.wpzgmsbjnの公開CSV（Sanders_et_al_datafile.csv）と解析RコードはZenodo原ファイルのMD5/SHA256により真正取得済み。著者のKeep 1,109／Delete 195を分離し、AではKeep152効果・23元Study（うち野外Keep130・19Study）、Bの植物繁殖関連ではKeep12効果・1Studyと再集計した。段階Aの記録は水辺・陸地／羽化・流下・捕獲を同じエンドポイントに自動昇格できず、[実測監査の追加結果](ALAN_THREE_STAGE_SANDERS_KEEP_DELETE_AQUATIC_EFFECT_STAGE_FULLTEXT_TRIAGE_20261119.md)に保全した。次にGuenat2023真正S4/S7/S13、Seymoure79件の原著DOIを重複照合し、2021〜2026の新照明実験を追加する。表層の信号変化だけでなく、原実験の暗対照・n・SE・水辺・湿潤・自殖の原情報を集め、PRISMA flow実際の検索日・nを別ファイルに保存する。
 
 参照：Sanders 2021 DOI 10.1038/s41559-020-01322-x（元Dryad 10.5061/dryad.wpzgmsbjn）、Guenat & Dallimer 2023 DOI 10.1002/ece3.9990、Seymoure 2023 DOI 10.1098/rstb.2022.0356、PRISMA 2020 DOI 10.1136/bmj.n71、PRISMA-S DOI 10.1186/s13643-020-01542-z、metafor公式文書。
+
+
+## 2026-11-19 真正元データからの採択品質ゲート
+
+[Sanders2021元作者アーカイブ実行CI](https://github.com/zuizui0223/alan/actions/runs/44529932726) では元CSV1,304行・元著者RコードのMD5/SHAを確認。さらに[元著者Keep/Deleteを段階別に分割したCI](https://github.com/zuizui0223/alan/actions/runs/44538857424) は4テスト成功、[段階Aの物理サイトと測定過程を分離するCI](https://github.com/zuizui0223/alan/actions/runs/44540344752) も成功。公開CSVの「Study=23」や「n=153候補」は**適格な独立照明研究数ではない**。
+
+水際のManfrin2017と2025は同一Westhavellandの照明1地点・対照1地点に入れ子であり、追加引用を独立した12灯×2研究と数えない。4森林河川ペアのPerkin2014では水生無脊椎動物のドリフトは減ったが羽化は不明瞭、Westhavelland2014では水生Dipteraの羽化量が減り灯下飛翔捕獲は増えた。**捕獲法・移動・羽化の区別は水辺モデレータより先に必要**。これらは事前登録ではなく、検索前の原著検証として扱う。
