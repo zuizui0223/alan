@@ -1,0 +1,45 @@
+name: ALAN Page original functional visit replacement gate
+
+on:
+  push:
+    branches: [analysis/alan-functional-compensation-20261119]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-72networks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Test mathematical scenarios and reject pseudo replication
+        run: python -m unittest discover -s tests -p test_alan_page2021_replacement_threshold_20261119.py -v
+      - name: Refit source-pinned original Page 623 taxon rows 33 studies 72 networks
+        run: |
+          python -m scripts.analysis.alan_page2021_replacement_threshold_20261119 \
+            --out /tmp/alan_page_replacement_20261119.json
+      - name: Audit primary source stop gates, no causal ALAN promotion
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_page_replacement_20261119.json'))
+          assert d['source_rows']==623
+          assert d['no_alan_experiment_joined']
+          assert d['no_observed_behavioural_compensation']
+          assert d['cannot_generalize_to_wet_plant_ALAN_decline']
+          for z in d['scenarios'].values():
+            assert z['source_networks']==72 and z['studies_count']==33
+            assert z['subsets']['all']['bootstrap']['original_source_studies']==33
+          print('PAGE_FUNCTIONAL_COUNTERFACTUAL_SOURCE_AND_NO_CAUSAL_PROMOTION_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-original-page33-functional-visit-replacement
+          path: /tmp/alan_page_replacement_20261119.json
+          if-no-files-found: error
+          retention-days: 60
