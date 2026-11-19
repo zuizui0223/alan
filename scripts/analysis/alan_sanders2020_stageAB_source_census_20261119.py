@@ -39,8 +39,8 @@ REQUIRED={
     "Night_Lux","Location","DOI","Delete",
 }
 ARTHROPOD_WORDS=("arthropoda","insecta","arachnida","malacostraca")
-PLANT_PHYLUM_WORDS=("tracheophyta","magnoliophyta","streptophyta","spermatophyta","plantae")
-PLANT_CLASS_WORDS=("magnoliopsida","liliopsida","rosopsida","eudicotyledones")
+PLANT_PHYLUM_WORDS=("tracheophyta","magnoliophyta","streptophyta","spermatophyta","plantae","angiosperms","anthophyta")
+PLANT_CLASS_WORDS=("magnoliopsida","liliopsida","rosopsida","eudicotyledones","monocots","dicotyledons","eudicots","equisetopsida","monocotyledoneae")
 S1_MARKS=re.compile(r"abundan|predat|populat|captur|arthropod|insect|spider|emerg|prey|pitfall",re.I)
 S2_REPRO_MARKS=re.compile(r"pollinat|pollen|fruit|seed|ovule|germin|reproduc|stigma",re.I)
 S2_VISIT_MARKS=re.compile(r"flower.{0,20}visit|visitation|nectar|foraging.{0,30}flower|pollinat",re.I)
