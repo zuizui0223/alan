@@ -111,10 +111,10 @@
       "actual_Lu_focal_plant_species_match_verified": false
     },
     {
-      "doi": "10.1007/s11104-015-2621-9",
+      "doi": "10.1002/ece3.1784",
       "source_type": "long_tubed_fly_pollination",
       "guild": "long_tongue_fly",
-      "plant": "Alpine/Himalayan long tubed plant",
+      "plant": "Roscoea purpurea",
       "primary_study_q_observation_kind": "single fly pollen deposition and fruit/seed comparison",
       "source_blocker": "moth_not_measured",
       "eligible_as_same_plant_single_visit_moth_vs_fly_q_for_Lu2026": false,
@@ -124,10 +124,10 @@
       "actual_Lu_focal_plant_species_match_verified": false
     },
     {
-      "doi": "10.1371/journal.pone.0283782",
+      "doi": "10.1371/journal.pone.0281810",
       "source_type": "Rubus_night_day_pollen_transfer",
       "guild": "mixed_day_night",
-      "plant": "Rubus fruticosus agg",
+      "plant": "Rubus fruticosus agg.",
       "primary_study_q_observation_kind": "stigma total pollen deposition in night vs day bagging",
       "source_blocker": "no_single_visit_guild_identification",
       "eligible_as_same_plant_single_visit_moth_vs_fly_q_for_Lu2026": false,
@@ -143,5 +143,6 @@
   "no_real_plant_pollen_compensation_fraction_fitted": true,
   "no_validated_q_efficiency_ratio_entered": true,
   "group_label_Lepidoptera_mostly_moth_not_always_moth": true,
-  "different_plants_or_butterflies_vs_moths_not_transferable_without_external_model": true
+  "different_plants_or_butterflies_vs_moths_not_transferable_without_external_model": true,
+  "authentic_primary_DOI_rechecked_against_publisher_records": true
 }
