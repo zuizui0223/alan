@@ -1,11 +1,13 @@
 import io
+import hashlib
+from unittest.mock import patch
 import csv
 import json
 import unittest
 import zipfile
 
 from scripts.acquisition.alan_sanders2020_source_126paper_Dryad_preflight_20261119 import (
-    parse_zip,PUBLISHED_PAPERS,PUBLISHED_EFFECTS
+    parse_zip,PUBLISHED_PAPERS,PUBLISHED_EFFECTS,zenodo_original_author_mirror,ZENODO_EXPECTED_ORIGINAL_MD5
 )
 
 class Sanders2020OriginalALANReviewSourceTests(unittest.TestCase):
@@ -42,6 +44,34 @@ class Sanders2020OriginalALANReviewSourceTests(unittest.TestCase):
             z.writestr("Sanders_et_al_datafile.csv","Study,d\nA,0.5\n")
         with self.assertRaisesRegex(ValueError,"author CSV and code"):
             parse_zip(b.getvalue(),strict=True)
+
+    def test_original_zenodo_mirror_validates_real_upstream_checksum(self):
+        rawcsv=b"Study,Effect size\nStudyA,0.4\n"
+        rawr=b"# genuine-format original source code surrogate for deterministic test\n"
+        names={"Sanders_et_al_datafile.csv":rawcsv,"Sanders_meta__rcode.r":rawr}
+        md5={name:hashlib.md5(value).hexdigest() for name,value in names.items()}
+        record={"metadata":{"related_identifiers":[{"identifier":"10.5061/dryad.wpzgmsbjn"}]},
+                "files":[{"key":name,"checksum":"md5:"+md5[name],
+                          "links":{"self":"https://zenodo.org/api/records/3998338/files/"+name+"/content"}}
+                         for name in names]}
+        def fetch(url):
+            if url.endswith("/3998338"):
+                return json.dumps(record).encode()
+            for name,byte in names.items():
+                if "/"+name+"/content" in url:
+                    return byte
+            raise AssertionError(url)
+        with patch.dict(ZENODO_EXPECTED_ORIGINAL_MD5,md5,clear=True):
+            zip_bytes,files=zenodo_original_author_mirror(fetch)
+        self.assertEqual(len(files),2)
+        x=parse_zip(zip_bytes,strict=True)
+        self.assertEqual(x["verified_original_source_tabular_rows"],1)
+        self.assertEqual(x["source_status"],"AUTHENTIC_ORIGINAL_HEDGES_D_CSV_AND_R_CODE_VERIFIED")
+        self.assertNotIn("StudyA",str(x))
+        record["files"][0]["checksum"]="md5:incorrect"
+        with patch.dict(ZENODO_EXPECTED_ORIGINAL_MD5,md5,clear=True):
+            with self.assertRaisesRegex(ValueError,"checksum"):
+                zenodo_original_author_mirror(fetch)
 
     def test_dont_treat_arbitrary_string_as_original_archival_zip(self):
         with self.assertRaisesRegex(ValueError,"ZIP"):
