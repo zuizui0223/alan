@@ -1,0 +1,177 @@
+{
+  "schema": "alan_grognuz2026_original_figure4_approx_treatment_shift_day_source_register_v1",
+  "date": "2026-11-19",
+  "primary_doi": "10.1016/j.biocon.2025.111650",
+  "primary_publication": "Biological Conservation 314 (2026) 111650; Grognuz Gisler Knop",
+  "primary_open_paper": "https://ira.agroscope.ch/it-CH/Page/Einzelpublikation/Download?einzelpublikationId=68011",
+  "original_data_repository": "https://data.mendeley.com/datasets/xjmn5jhxyn/1",
+  "source_raw_original_pheno_plot_data_status": "NOT_VERIFIED: prior public Mendeley API reported HTTP401; no source-download success asserted",
+  "design": {
+    "same_manipulated_experiment_programme": true,
+    "field_seasons": [
+      2022,
+      2023
+    ],
+    "matched_light_dark_site_pairs_in_2022": 6,
+    "matched_light_dark_site_pairs_in_2023": 8,
+    "matched_site_pair_years_total": 14,
+    "distinct_physical_sites_confirmed_across_years": false,
+    "site_year_observations_not_independent_plant_species_replicates": true,
+    "original_2022_field_sites": 12,
+    "original_2023_field_sites": 16,
+    "within_site_inner_pheno_subplots": 108,
+    "model_structure": "Separate Gaussian mixed effects by phenology stage; LIGHT * species, LIGHT * distance, YEAR, random SITE and species:SITE",
+    "original_analyzed_flowering_species": 16,
+    "original_published_species_with_at_least_one_week_shift_at_any_stage": 12,
+    "published_germination_species_n": 6,
+    "published_petals_shift_example": {
+      "day_flowering_Malva_moschata_morning_opening_min": -147,
+      "Malva_author_reported_CI_minutes": [
+        -221.4,
+        -72
+      ],
+      "night_flowering_Silene_noctiflora_morning_begin_closing_min": 80,
+      "Silene_author_reported_CI_minutes": [
+        -2.6,
+        162.9
+      ]
+    },
+    "actual_pollinator_visitation_or_seed_fitness_in_same_experiment_measured": false
+  },
+  "source_figure_4": {
+    "source_type": "AUTHOR_PUBLISHED_FIGURE_APPROXIMATE_DIAMOND_MEDIANS_READ_FROM_PRINTED_PLOT",
+    "not_original_data_or_published_exact_coefficients": true,
+    "original_figures_exact_numeric_regression_table_not_recovered": true,
+    "visual_readout_uncertainty_unquantified": true,
+    "illustrative_artificial_rounding_perturbation_days": 3,
+    "readout_uncertainty_plus_minus_3_days_is_not_source_confidence_interval": true,
+    "treat_stage_contrasts_as_correlated_within_species_and_site": true,
+    "stages": {
+      "FIRST": "light minus control difference in first observed bloom time days, approximate graph diamond",
+      "QUARTER": "light minus control difference in first quarter maximum bloom days, approximate graph diamond",
+      "PEAK": "light minus control difference in maximum inflorescence number timing days, approximate graph diamond",
+      "ULTIMATE": "light minus control difference in last observed bloom time days, approximate graph diamond"
+    },
+    "source_species": [
+      {
+        "species": "Achillea millefolium",
+        "FIRST": 9,
+        "QUARTER": 4,
+        "PEAK": 5,
+        "ULTIMATE": -6
+      },
+      {
+        "species": "Centaurea cyanus",
+        "FIRST": 6,
+        "QUARTER": 7,
+        "PEAK": -5,
+        "ULTIMATE": -18
+      },
+      {
+        "species": "Sinapis arvensis",
+        "FIRST": 4,
+        "QUARTER": 2,
+        "PEAK": 0,
+        "ULTIMATE": 14
+      },
+      {
+        "species": "Daucus carota",
+        "FIRST": 4,
+        "QUARTER": 0,
+        "PEAK": -8,
+        "ULTIMATE": -20
+      },
+      {
+        "species": "Papaver rhoeas",
+        "FIRST": 1,
+        "QUARTER": 2,
+        "PEAK": 2,
+        "ULTIMATE": 6
+      },
+      {
+        "species": "Sonchus sp.",
+        "FIRST": 0,
+        "QUARTER": 1,
+        "PEAK": -7,
+        "ULTIMATE": -8
+      },
+      {
+        "species": "Centaurea jacea",
+        "FIRST": -3,
+        "QUARTER": -2,
+        "PEAK": -2,
+        "ULTIMATE": 21
+      },
+      {
+        "species": "Leucanthemum vulgare",
+        "FIRST": -5,
+        "QUARTER": -1,
+        "PEAK": -24,
+        "ULTIMATE": -9
+      },
+      {
+        "species": "Malva moschata",
+        "FIRST": -3,
+        "QUARTER": -2,
+        "PEAK": 0,
+        "ULTIMATE": 5
+      },
+      {
+        "species": "Silene pratensis",
+        "FIRST": -7,
+        "QUARTER": -11,
+        "PEAK": -8,
+        "ULTIMATE": -6
+      },
+      {
+        "species": "Trifolium incarnatum",
+        "FIRST": -7,
+        "QUARTER": -10,
+        "PEAK": -10,
+        "ULTIMATE": -14
+      },
+      {
+        "species": "Echium vulgare",
+        "FIRST": -8,
+        "QUARTER": -14,
+        "PEAK": -12,
+        "ULTIMATE": -6
+      },
+      {
+        "species": "Epilobium sp.",
+        "FIRST": -8,
+        "QUARTER": -2,
+        "PEAK": -12,
+        "ULTIMATE": -2
+      },
+      {
+        "species": "Veronica persica",
+        "FIRST": -10,
+        "QUARTER": -5,
+        "PEAK": -2,
+        "ULTIMATE": 14
+      },
+      {
+        "species": "Matricaria chamomilla",
+        "FIRST": -10,
+        "QUARTER": -8,
+        "PEAK": -16,
+        "ULTIMATE": -14
+      },
+      {
+        "species": "Trifolium pratense",
+        "FIRST": -21,
+        "QUARTER": -22,
+        "PEAK": -11,
+        "ULTIMATE": 1
+      }
+    ]
+  },
+  "scope_limits": {
+    "no_source_raw_regression_SE_for_any_individual_species": true,
+    "not_true_coflowering_synchrony_without_dark_absolute_flowering_dates": true,
+    "not_actual_plant_pollinator_overlap_without_time_resolved_visits": true,
+    "do_not_use_16_species_as_16_independent_light_manipulation_studies": true,
+    "do_not_fit_meta_mean_from_64_same_study_approx_effects": true
+  }
+}
