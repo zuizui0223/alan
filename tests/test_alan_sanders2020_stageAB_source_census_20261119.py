@@ -43,6 +43,17 @@ class Original126ALANMetaStageScreenTests(unittest.TestCase):
         self.assertNotIn("StudyA",str(out))
         self.assertNotIn("StudyB",str(out))
 
+    def test_original_angiosperms_and_monocots_are_not_falsely_excluded(self):
+        rows=[
+            row("PlantStudyA","angiosperms","monocots","","seed output","Reproductive.output",5,3),
+            row("PlantStudyB","anthophyta","dicotyledons","","fruit set","Reproductive.output",6,4),
+            row("PlantStudyC","tracheophyta","liliopsida","","flower phenology","Plant.phy",8,7),
+        ]
+        out=source_panel_census(rows,{"original_CSV_SHA256":"synthetic","original_R_code_SHA256":"synthetic"},strict=False)
+        b=out["stageAB_broad_record_screening_not_eligible_effects"]
+        self.assertEqual(b["S2_plant_reproductive_endpoint_candidate"]["source_unique_original_Study_ids_preliminary"],3)
+        self.assertEqual(b["S2_plant_reproductive_endpoint_candidate"]["source_positive_arms_SD_n_arithmetically_available_records"],3)
+
     def test_nonpositive_means_not_lnRR_ready_even_with_large_flower_sample(self):
         rows=[row("StudyA","Tracheophyta","Magnoliopsida","","seed output","reproduction",0,3)]
         d=source_panel_census(rows,{"original_CSV_SHA256":"x","original_R_code_SHA256":"y"},strict=False)
