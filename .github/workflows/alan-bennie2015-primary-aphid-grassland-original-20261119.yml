@@ -1,0 +1,54 @@
+name: ALAN original Bennie 2015 light x grassland aphid data source gate
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - scripts/acquisition/alan_bennie2015_primary_grassland_light_aphid_xlsx_20261119.py
+      - tests/test_alan_bennie2015_primary_grassland_light_aphid_xlsx_20261119.py
+      - .github/workflows/alan-bennie2015-primary-aphid-grassland-original-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authentic-grassland-resource-aphid-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate original workbook parser and plot-ID privacy
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m unittest discover -s tests -p test_alan_bennie2015_primary_grassland_light_aphid_xlsx_20261119.py -v
+      - name: Source-lock original public 2015 publisher/PMC supplemental workbook
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_bennie2015_original
+          python -m scripts.acquisition.alan_bennie2015_primary_grassland_light_aphid_xlsx_20261119 \
+            --out /tmp/alan_bennie2015_original/primary_file_hash_and_source_shape.json
+      - name: If original data unavailable report SOURCE STOP; do not invent aphid or pollination coefficient
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/alan_bennie2015_original/primary_file_hash_and_source_shape.json'))
+          assert x['schema']=='alan_bennie2015_original_flora_aphid_supplement_source_gate_v1'
+          assert x['source_status'] in ('SOURCE_STOP','RAW_SOURCE_XLSX_SCHEMA_VERIFIED')
+          assert x['original_primary_publication_DOI']=='10.1098/rstb.2014.0131'
+          assert not x['actual_lighting_effect_fit_from_original_samples']
+          assert x['no_original_study_rows_or_site_IDs_exported']
+          print('ALAN_BENNIE2015_TRUE_ORIGINAL_SOURCE_ACCESS',x['source_status'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-original-Bennie2015-aphid-grassland-source-XLSX-hashes-and-plot-grain
+          path: /tmp/alan_bennie2015_original/primary_file_hash_and_source_shape.json
+          retention-days: 90
+          if-no-files-found: error
