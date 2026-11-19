@@ -25,17 +25,19 @@ def profile(rows,strict=True):
     papers=defaultdict(list)
     for r in scientific:
         papers[study_key(r)].append(r)
-    cohorts={"pre2020":[],"2020_2022":[],"unusable_year":[]}
+    cohorts={"pre2020":[],"2020plus":[],"unusable_year":[]}
+    original_year_metadata=Counter()
     for k,rs in papers.items():
         years={r.get("Publication Year","") for r in rs}
         if len(years)!=1:
             raise ValueError("Conflicting paper publication years")
         year=next(iter(years))
+        original_year_metadata[year or "<BLANK>"]+=1
         if re.fullmatch(r"[0-9]{4}",year):
             y=int(year)
-            if not 1960<=y<=2022:
-                raise ValueError("Paper falls after source 2022 review or before plausible field")
-            name="pre2020" if y<2020 else "2020_2022"
+            if not 1960<=y<=2026:
+                raise ValueError("Paper publication year is outside a plausible interval")
+            name="pre2020" if y<2020 else "2020plus"
         else:name="unusable_year"
         cohorts[name].append((k,rs))
     result={}
@@ -74,7 +76,7 @@ def profile(rows,strict=True):
     # Directional contrast is *composition-dependent*. Exhibit sensitivity
     # across two publication periods without assuming year is randomized.
     year_groups=[]
-    for name in ("pre2020","2020_2022"):
+    for name in ("pre2020","2020plus"):
         q=result[name]["interaction_type_counts"]
         p=q.get("predator-prey",{})
         h=q.get("herbivory",{})
@@ -98,6 +100,9 @@ def profile(rows,strict=True):
         "schema":"alan_seymoure2023_original_79paper_publication_year_methods_caution_v1",
         "source_SHA256":SOURCE_SHA256,
         "source_publication_count":all_papers,
+        "original_publication_year_metadata_counts":dict(sorted(original_year_metadata.items())),
+        "reported_years_after_2022":sum(int(year)>2022 and year.isdigit() for year in original_year_metadata.elements()),
+        "database_search_cutoff_is_not_publication_year_filter":True,
         "year_stratified_source_coding":result,
         "year_specific_guild_diagnostics":year_groups,
         "original_method_observed_studies":all_papers-base["publication_level_DOI_aggregated_counts"]["source_studies_all_methods_blank"],
@@ -107,6 +112,7 @@ def profile(rows,strict=True):
             "method_present_does_not_prove_random_light_assignment":True,
             "multiple_yearly_observations_not_from_original":True,
             "published_year_is_not_study_year":True,
+            "source_record_publication_year_after_2022_is_preserved":True,
             "four_binary_interaction_flags_not_comparable_effect_sizes":True,
             "selected_literature_not_probability_sample":True,
             "no_reweighting_to_all_global_species_interactions":True,
