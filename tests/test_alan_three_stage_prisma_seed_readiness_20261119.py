@@ -69,7 +69,7 @@ class ThreeStagePRISMASourceReadinessTests(unittest.TestCase):
         r=copy.deepcopy(self.data)
         r["seed_candidates"]=[x for x in r["seed_candidates"] if x["study_programme_id"]!="Macgregor2019"]
         # Removing any one pre-identified candidate is source registry drift.
-        with self.assertRaisesRegex(ValueError,"lists changed"):
+        with self.assertRaisesRegex(ValueError,"11 A/11 B"):
             audit(r)
         r=copy.deepcopy(self.data)
         r["seed_candidates"][0]["screening_status"]="INCLUDED_IN_META"
