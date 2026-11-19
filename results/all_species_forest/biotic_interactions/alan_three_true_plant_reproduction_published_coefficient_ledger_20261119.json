@@ -178,7 +178,7 @@
   "model_scope": {
     "same_plant_species_in_Macgregor_and_Giavi_but_different_field_experiments": true,
     "treatment_or_caging_group_not_equal_independent_light_installation": true,
-    "reproduction_and_prey_capture_not_common_effect_size": false,
+    "reproduction_and_prey_capture_not_common_effect_size": true,
     "three_publications_not_three_matching_seed_effects": true,
     "no_cross_study_random_effect_meta_fitted": true,
     "paper_coefficients_preserve_original_scale": true,
