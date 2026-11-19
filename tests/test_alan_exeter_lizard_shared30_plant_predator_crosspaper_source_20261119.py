@@ -82,7 +82,7 @@ class SharedThirtyLightPlotsTests(unittest.TestCase):
         self.assertFalse(d["joint_original_plant_arachnid_plot_records_verified"])
         self.assertFalse(d["verified_source_joint_multi_trophic_treatment_effect_estimated"])
         self.assertTrue(d["no_original_plot_ID_or_arthropod_row_exported"])
-        success=d["public_archival_page_access"]["Bennie2018_flowering_original_archived_handle"][1]
+        success=d["public_archival_page_access"]["Bennie2018_flowering_original_archived_handle"][0]
         self.assertEqual(success["status"],"SOURCE_METADATA_RETRIEVED")
         self.assertEqual(len(success["official_archived_file_candidates"]),1)
         self.assertTrue(d["metadata_success_not_raw_multitrophic_join"])
