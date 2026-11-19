@@ -17,6 +17,7 @@ import json
 import math
 from pathlib import Path
 from scipy.stats import t as student_t
+from scipy.stats import f as fisher_f
 
 from scripts.analysis.alan_anic2022_original_pdf_biomass_54trough_parse_20261119 import (
     FILE_SHA256,FILE_ID,FIGSHARE_API,get,read_original_biomass_pdf
@@ -51,6 +52,58 @@ def layer(rows):
             ],
         }
     return raw,out
+
+
+def balanced_original_factorial_anova(raw):
+    """Descriptive classical balanced original light×trophic ANOVA.
+
+    Using true original cell n, sample mean and sample SD is algebraically
+    equivalent to a 3×3 OLS two-way ANOVA on the 54 original physical troughs
+    under the *homoskedastic* residual assumption. This is a DIFFERENT
+    fixed-model estimand from authors' AIC selected GLMs and Tukey contrasts.
+    """
+    if len(raw)!=9 or any(c["original_mesocosms_with_this_species"]!=6 for c in raw.values()):
+        raise ValueError("Original 3×3×6 balanced factorial source required")
+    n=6
+    cellmean={(l,t):raw[(l,t)]["original_biomass_total_g_arithmetic_mean"]
+              for l in LIGHT for t in TROPHIC}
+    mean_l={l:sum(cellmean[(l,t)] for t in TROPHIC)/3 for l in LIGHT}
+    mean_t={t:sum(cellmean[(l,t)] for l in LIGHT)/3 for t in TROPHIC}
+    grand=sum(cellmean.values())/9
+    ss_light=n*len(TROPHIC)*sum((mean_l[l]-grand)**2 for l in LIGHT)
+    ss_trophic=n*len(LIGHT)*sum((mean_t[t]-grand)**2 for t in TROPHIC)
+    ss_interaction=n*sum(
+        (cellmean[(l,t)]-mean_l[l]-mean_t[t]+grand)**2
+        for l in LIGHT for t in TROPHIC)
+    ss_error=sum(
+        (n-1)*raw[(l,t)]["original_biomass_total_g_sample_SD"]**2
+        for l in LIGHT for t in TROPHIC)
+    df_error=len(LIGHT)*len(TROPHIC)*(n-1)
+    mse=ss_error/df_error
+    if mse<=0:raise ValueError("Original biomass residual MSE invalid")
+    effects={}
+    for key,ss,df in [
+        ("LIGHT",ss_light,len(LIGHT)-1),
+        ("TROPHIC",ss_trophic,len(TROPHIC)-1),
+        ("LIGHT_X_TROPHIC",ss_interaction,(len(LIGHT)-1)*(len(TROPHIC)-1))
+    ]:
+        F=(ss/df)/mse
+        effects[key]={"SS_g2":ss,"df":df,"F":F,
+                      "unadjusted_parametric_p_homoskedastic":fisher_f.sf(F,df,df_error)}
+    return {
+        "design":"unadjusted balanced fixed 3×3 factorial ANOVA on published original physical-trough means and within-cell sample SD",
+        "independently_assigned_physical_trough_n":n*len(raw),
+        "physical_troughs_per_cell":n,
+        "error_df":df_error,
+        "source_residual_within_cell_MSE_g2":mse,
+        "primary_original_species":TARGET,
+        "factors":effects,
+        "not_author_original_AIC_selected_GLM":True,
+        "homoskedastic_assumption_unverified":True,
+        "not_corrected_across_13_species":True,
+        "no_independent_2018_herbivore_source_joint_fit":True,
+        "not_a_reproductive_seed_fitness_effect":True,
+    }
 
 
 def source_contrasts(d,primary=TARGET):
@@ -126,6 +179,7 @@ def source_contrasts(d,primary=TARGET):
         adjusted[idx]=mx
     for c,adj in zip(comparisons,adjusted):
         c["exploratory_Holm_multiplicity_adjusted_P_three_light_pairs"]=adj
+    factorial=balanced_original_factorial_anova(raw)
     return {
         "schema":SCHEMA,
         "original_2022_primary_DOI":"10.1002/ece3.9157",
@@ -139,6 +193,7 @@ def source_contrasts(d,primary=TARGET):
         "original_source_codes_preserved_without_spectral_identity":True,
         "original_light_level_aggregate_physical_trough_descriptives":out,
         "source_original_exploratory_light_pair_contrasts":comparisons,
+        "original_54trough_Lotus_balanced_3x3_factorial_ANOVA":factorial,
         "source_original_light_code_mapping_verified_to_unlit_amber_white":False,
         "source_2018_Dryad_herbivore_rows_joined_by_original_trough":False,
         "no_reproductive_seed_or_fruit_endpoint_measured":True,
@@ -170,6 +225,7 @@ def main():
               "CI",c["exploratory_unadjusted_95pct_CI_g"],
               "P_nominal",c["exploratory_unadjusted_t_P"],
               "P_Holm_3",c["exploratory_Holm_multiplicity_adjusted_P_three_light_pairs"])
+    print("ANIC2022_LOTUS_ORIGINAL_54TROUGH_FACTORIAL_ANOVA",ans["original_54trough_Lotus_balanced_3x3_factorial_ANOVA"])
     print("ANIC2022_LOTUS_TRUE_SOURCE_54_TROUGH_CONTRAST_GATE",
           ans["source_original_light_code_mapping_verified_to_unlit_amber_white"])
 
