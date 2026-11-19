@@ -1,0 +1,65 @@
+name: ALAN authenticated Dryad 13 CSV 54-trough actual light-by-trophic source reconstruction
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - scripts/analysis/alan_penryn54_original_dryad_13csv_physical_factor_gate_20261119.py
+      - tests/test_alan_penryn54_original_dryad_13csv_physical_factor_gate_20261119.py
+      - .github/workflows/alan-penryn54-original-13csv-trough-join-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-54plot-2013-15-aphids-flowers-slugs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify 54 original true troughs, 3x3x6 treatment, exclude 2015 slugs and reject broken ID joins
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_penryn54_original_dryad_13csv_physical_factor_gate_20261119.py -v
+      - name: Re-download complete genuine original 2018 13 CSV ZIP and reconstruct 54 light x trophic assignments
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_penryn54_original_jointsource
+          python -m scripts.analysis.alan_penryn54_original_dryad_13csv_physical_factor_gate_20261119 \
+            --out /tmp/alan_penryn54_original_jointsource/true_2018_Dryad_13csv_54trough_factorial_source.json
+      - name: Do not misinterpret missing or conflicting light plot source IDs as a valid analysis
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_penryn54_original_jointsource/true_2018_Dryad_13csv_54trough_factorial_source.json'))
+          assert d['schema']=='alan_2018_original_13CSV_54trough_repeated_physical_factor_and_outcome_gate_v1'
+          assert d['original_zip_sha256']=='5dc5bc93e48758364d068c113edb84e05b81f99b22827c4c6ee0c14f42ba3130'
+          assert d['source_all_13_source_member_hashes_verified']
+          assert d['source_all_13_source_row_counts_verified']
+          assert d['original_13_source_CSV_physical_grain']['slugs2013.csv']['original_physical_unit_count']==36
+          assert d['original_13_source_CSV_physical_grain']['PeaAphid2015.csv']['original_physical_unit_count']==54
+          assert d['post_reintroduction_slugs_2015_excluded_from_authors_original_fit']
+          assert not d['source_original_plot_IDs_committed_or_exported']
+          assert not d['source_original_biological_rows_exported']
+          assert d['no_source_2016_biomass_join_yet']
+          if d['cross_file_exact_original_plot_factor_allocations_consistent']:
+            assert d['original_unique_physical_IDs_across_13_source_CSVs']==54
+            assert d['source_same_plot_different_treatment_code_conflict_count']==0
+            assert len(d['all_original_physical_light_trophic_cell_counts_only'])==9
+            assert {x['unique_original_troughs'] for x in d['all_original_physical_light_trophic_cell_counts_only']}=={6}
+            print('PENRYN54_SOURCE_ACTUAL_ORIGINAL_13_CSV_FACTORIAL_JOIN_VERIFIED')
+          else:
+            print('PENRYN54_SOURCE_13_CSV_FACTORIAL_JOIN_NOT_CONFIRMED',d['status'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-2018-Dryad13-actual-original-54trough-light-trophic-grain-provenance
+          path: /tmp/alan_penryn54_original_jointsource/true_2018_Dryad_13csv_54trough_factorial_source.json
+          retention-days: 90
+          if-no-files-found: error
