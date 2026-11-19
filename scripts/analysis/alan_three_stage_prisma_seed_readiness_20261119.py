@@ -47,6 +47,7 @@ def audit(inp):
        ("penryn_2015_2018_2022_same_54_troughs",
         "lizard_2017_2018_same_30_light_plots",
         "Lu2026_JPE_and_EE_overlap_unverified",
+        "westhavelland_2017_2025_same_1lit_1dark_sitepair",
         "Seymoure_review_and_Guenat_review_original_papers_must_deduplicate")):
         raise ValueError("Physical source independence assumptions missing")
     rows=inp.get("seed_candidates",[])
@@ -64,8 +65,11 @@ def audit(inp):
         if not r.get("independence_note") or not r.get("endpoint_candidates") or not r.get("design"):
             raise ValueError("Primary study source or endpoint not identified")
     counts=Counter(r["stage"] for r in rows)
-    if counts!={"S1":9,"S2":11}:
-        raise ValueError("Previous source paper seed lists changed")
+    if counts!={"S1":11,"S2":11}:
+        raise ValueError("Current evidence map 11 A/11 B post-hoc source paper seeds changed")
+    if (inp["counts"].get("S1_initial_seed_at_protocol_creation_20261119")!=9 or
+        inp["counts"].get("S1_added_after_initial_seed_before_PRISMA_search")!=2):
+        raise ValueError("Original nine-paper baseline plus two later known primary papers not preserved")
     if (inp["counts"]["S1_purposeful_candidate_paper_records_not_search_inclusions"]!=counts["S1"] or
         inp["counts"]["S2_purposeful_candidate_paper_records_not_search_inclusions"]!=counts["S2"]):
         raise ValueError("Seed counts must reflect known candidates, not PRISMA inclusions")
@@ -76,6 +80,11 @@ def audit(inp):
             raise ValueError("Meta-eligible independent original effects remain unassessed")
     if not any(r["study_programme_id"]=="Manfrin2025" and r["habitat"]=="aquatic_riparian" for r in rows):
         raise ValueError("2025 wetland-subsidy counterexample excluded")
+    west=[r for r in rows if r.get("physical_exposure_programme_id")=="WesthavellandDrainageDitch2012"]
+    if len(west)!=2 or {r["doi"] for r in west}!={"10.3389/fenvs.2017.00061","10.1007/s00027-025-01161-7"}:
+        raise ValueError("Two riparian papers must share one original Westhavelland field-site lighting programme")
+    if not all("one" in r["independence_note"].lower() or "ONE" in r["independence_note"] for r in west):
+        raise ValueError("Never mistake within-site streetlights or traps for independent experiment sites")
     if not any(r["study_programme_id"]=="Macgregor2019" for r in rows):
         raise ValueError("Known positive reproduction counterexample excluded")
     if not any(r["study_programme_id"]=="Farnworth2026" for r in rows):
@@ -94,6 +103,8 @@ def audit(inp):
       "original_source_2018_2022_54trough_three_papers_counted_as_one_lighting_programme":True,
       "original_source_2017_2018_30plot_two_papers_counted_as_one_lighting_programme":True,
       "two_Lu2026_publications_original_plot_overlap_unverified":True,
+      "Westhavelland_2017_2025_share_one_lit_one_dark_field_pair":True,
+      "source_A_11_seed_papers_not_11_independent_light_programmes":True,
       "S1_primary_META_ready_k":None,
       "S2_primary_META_ready_k":None,
       "Stage3_plant_specific_conspecific_pollen_compensation_ready_k":None,
