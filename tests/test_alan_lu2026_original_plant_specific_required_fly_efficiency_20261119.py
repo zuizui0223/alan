@@ -1,8 +1,13 @@
 import copy
+import io
+import hashlib
+import zipfile
+from unittest.mock import patch
 import math
 import unittest
 from scripts.analysis.alan_lu2026_original_plant_specific_required_fly_efficiency_20261119 import (
-    source_plant_q_thresholds, num, SCHEMA, AUTHOR_SHA
+    source_plant_q_thresholds, num, SCHEMA, AUTHOR_SHA,
+    source_bytes, unpack_author_workbook, OriginalSourceUnavailable, SOURCE_URLS
 )
 
 
@@ -69,6 +74,41 @@ class OriginalLuPlantQThresholdTests(unittest.TestCase):
         self.assertEqual(a["source_original_focal_plant_species"],3)
         self.assertEqual(a["original_documented_nocturnal_moth_down_fly_up_plant_n"],1)
         self.assertTrue(a["guard"]["not_equal_per_flower_visitation_effort_or_flower_availability"])
+
+    def test_official_original_nested_or_direct_ZIP_same_workbook_sha(self):
+        raw=b"original author bytes: mock verified by dynamic SHA"
+        targetsha=hashlib.sha256(raw).hexdigest()
+        inner=io.BytesIO()
+        with zipfile.ZipFile(inner,"w") as z:
+            z.writestr("Date.xlsx",raw)
+        direct=inner.getvalue()
+        outer=io.BytesIO()
+        with zipfile.ZipFile(outer,"w") as z:
+            z.writestr("ECE3-16-e74368-s001.zip",direct)
+        self.assertEqual(unpack_author_workbook(direct,original_sha=targetsha),raw)
+        self.assertEqual(unpack_author_workbook(outer.getvalue(),original_sha=targetsha),raw)
+        with self.assertRaisesRegex(ValueError,"SHA256 drift"):
+            unpack_author_workbook(direct,original_sha="0"*64)
+
+    def test_official_source_fallback_and_no_fake_source_on_all_access_failures(self):
+        attempts=[]
+        def reader(url,timeout):
+            attempts.append((url,timeout))
+            if url==SOURCE_URLS[0]:
+                raise TimeoutError("first official host times out")
+            return b"synthetic transport package"
+        with patch("scripts.analysis.alan_lu2026_original_plant_specific_required_fly_efficiency_20261119.unpack_author_workbook",return_value=b"verified original workbook"):
+            raw,meta=source_bytes(reader=reader)
+        self.assertEqual(raw,b"verified original workbook")
+        self.assertEqual(meta["source_status"] if "source_status" in meta else meta["original_source_access"],"SUCCESS")
+        self.assertEqual(meta["original_source_url"],SOURCE_URLS[1])
+        self.assertEqual(len(attempts),2)
+        def blocked(url,timeout):
+            raise TimeoutError("all official source routes currently unreachable")
+        with self.assertRaises(OriginalSourceUnavailable) as cm:
+            source_bytes(reader=blocked)
+        self.assertGreaterEqual(len(cm.exception.errors),3)
+        self.assertTrue(all(e["error_class"]=="TimeoutError" for e in cm.exception.errors))
 
     def test_source_2026_author_SHA_and_strict_data_volume_guards(self):
         self.assertEqual(AUTHOR_SHA,"ba7e15e66986f64943a38fd294e49d7128cf7719d318578f6b805d29cde8f98f")
