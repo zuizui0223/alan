@@ -53,6 +53,21 @@ class OriginalAnic2022IndependentBiomassTests(unittest.TestCase):
         self.assertFalse(result["source_2018_Dryad_herbivore_rows_joined_by_original_trough"])
         self.assertTrue(result["no_original_plot_IDs_or_species_by_trough_values_exported"])
 
+    def test_real_original_balanced_3x3_ANOVA_does_not_overstate_light_p(self):
+        out=source_contrasts(fixture())
+        anova=out["original_54trough_Lotus_balanced_3x3_factorial_ANOVA"]
+        self.assertEqual(anova["independently_assigned_physical_trough_n"],54)
+        self.assertEqual(anova["error_df"],45)
+        self.assertEqual(anova["physical_troughs_per_cell"],6)
+        f_light=anova["factors"]["LIGHT"]
+        self.assertAlmostEqual(f_light["F"],2.9757,delta=.02)
+        self.assertAlmostEqual(f_light["unadjusted_parametric_p_homoskedastic"],.06113,delta=.002)
+        self.assertEqual(anova["factors"]["LIGHT_X_TROPHIC"]["df"],4)
+        self.assertGreater(anova["factors"]["LIGHT_X_TROPHIC"]["unadjusted_parametric_p_homoskedastic"],.80)
+        self.assertTrue(anova["not_author_original_AIC_selected_GLM"])
+        self.assertTrue(anova["homoskedastic_assumption_unverified"])
+        self.assertTrue(anova["not_corrected_across_13_species"])
+
     def test_changed_physical_plot_counts_or_source_SHA_rejected(self):
         f=fixture()
         f["original_source_figshare_sha256"]="fabricated-source"
