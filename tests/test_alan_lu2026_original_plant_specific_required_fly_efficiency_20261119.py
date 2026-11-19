@@ -2,6 +2,7 @@ import copy
 import io
 import hashlib
 import zipfile
+import http.client
 from unittest.mock import patch
 import math
 import unittest
@@ -118,6 +119,16 @@ class OriginalLuPlantQThresholdTests(unittest.TestCase):
             source_bytes(reader=blocked)
         self.assertGreaterEqual(len(cm.exception.errors),3)
         self.assertTrue(all(e["error_class"]=="TimeoutError" for e in cm.exception.errors))
+
+    def test_truncated_chunked_original_zip_is_source_stop_not_partial_EBI_plant_result(self):
+        def bad_chunk_reader(url,timeout):
+            raise http.client.IncompleteRead(b"partial-original-archive")
+        with self.assertRaises(OriginalSourceUnavailable) as cm:
+            source_bytes(reader=bad_chunk_reader)
+        self.assertTrue(cm.exception.errors)
+        self.assertTrue(all(x["error_class"]=="IncompleteRead" for x in cm.exception.errors))
+        self.assertFalse(any(x.get("source_original_exact_workbook_SHA256")==AUTHOR_SHA
+                             for x in cm.exception.errors))
 
     def test_unmatched_light_blocks_do_not_impute_plant_visits_or_moth_fly_efficiency(self):
         plantrows,visits=self.original_shape()
