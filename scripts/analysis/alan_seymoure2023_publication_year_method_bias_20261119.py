@@ -100,7 +100,7 @@ def profile(rows,strict=True):
         "source_publication_count":all_papers,
         "year_stratified_source_coding":result,
         "year_specific_guild_diagnostics":year_groups,
-        "original_method_observed_studies":79-base["publication_level_DOI_aggregated_counts"]["source_studies_all_methods_blank"],
+        "original_method_observed_studies":all_papers-base["publication_level_DOI_aggregated_counts"]["source_studies_all_methods_blank"],
         "original_method_missing_studies":base["publication_level_DOI_aggregated_counts"]["source_studies_all_methods_blank"],
         "source_caveats":{
             "method_blank_is_not_natural_light_control":True,
