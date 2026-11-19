@@ -74,7 +74,11 @@ def parse_zip(raw,strict=True):
         if len(b)>MAX_BYTES:
             raise ValueError("Original source CSV unexpectedly large")
         text=b.decode("utf-8-sig",errors="replace")
-        csvsrc=csv.DictReader(io.StringIO(text))
+        # The author-original 2020 CSV uses nonstandard line endings.
+        # newline="" makes csv.reader interpret original CR/CRLF correctly
+        # without altering individual records or treating source as a
+        # fabricated CSV in a split-by-newline fallback.
+        csvsrc=csv.DictReader(io.StringIO(text,newline=""))
         if not csvsrc.fieldnames or len(set(csvsrc.fieldnames))!=len(csvsrc.fieldnames):
             raise ValueError("Original CSV column names missing/colliding")
         rows=list(csvsrc)
