@@ -97,6 +97,9 @@ def pair_sites(df, water_matched=False):
             item = {"block": block, "light_difference": float(a.light - b.light)}
             for k in cols:
                 item["d_" + k] = float(a[k] - b[k])
+            # Audit water changes even if they are not matching covariates.
+            for k in WATER_EXTRA:
+                item["d_" + k] = float(a[k] - b[k])
             # Outcome is accessed only after pair assignments are frozen.
             item["outcome_difference"] = float(
                 a.rate_difference - b.rate_difference)
@@ -133,9 +136,12 @@ def summarize_pairs(pairs, df, scales):
     low, high = np.quantile(draws_mean, [.025, .975])
     slo, shi = np.quantile(draws_slope, [.025, .975])
     # Structural stop is independent of the sign or p-value of the outcome.
+    # Baseline open water and weather must ALSO balance. A built-up-only
+    # diagnostic is not source-supported if wet-habitat baseline is different.
     safe = (len(p) >= 30 and nblocks >= 10 and
             all(abs(v) <= .25 for k, v in balance.items()
-                if k in ("built", "built0", "light0")))
+                if k in ("built", "built0", "light0", "area0", "freq0",
+                         "temp_trend", "rain_trend")))
     return {
         "status": "EXPLORATORY_COMMON_SUPPORT" if safe
                   else "SOURCE_SUPPORT_STOP",
@@ -156,6 +162,52 @@ def summarize_pairs(pairs, df, scales):
                           "not ALAN causal effect or new independent validation",
     }
 
+def same_cohort_water_adjustment(pairs):
+    """Post-hoc sensitivity: identical matched pairs, water-trend adjustment.
+
+    Baseline open-water and climate are held as covariates in BOTH models.
+    The only contrast is adding water-area and detection-frequency trends.
+    This is NOT prespecified, and must not be described as causal mediation.
+    """
+    terms = ["light_difference", "d_built", "d_built0", "d_light0",
+             "d_temp_trend", "d_rain_trend", "d_freq0", "d_area0"]
+    added = ["d_freq_trend", "d_area_trend"]
+    f = pairs.dropna(subset=terms + added + ["outcome_difference"]).copy()
+    if len(f) < 30 or f.block.nunique() < 10:
+        return {"status": "SOURCE_SUPPORT_STOP", "pairs": len(f),
+                "blocks": int(f.block.nunique())}
+    def slope(df, cols):
+        x = df[cols].to_numpy(float)
+        y = df.outcome_difference.to_numpy(float)
+        if np.linalg.matrix_rank(x) < x.shape[1]:
+            return np.nan
+        return 10. * float(np.linalg.lstsq(x, y, rcond=None)[0][0])
+    before, after = slope(f, terms), slope(f, terms + added)
+    rng = np.random.default_rng(SEED + 1)
+    groups = {k: z for k, z in f.groupby("block")}
+    keys = list(groups)
+    draws = []
+    for _ in range(1800):
+        selected = rng.choice(len(keys), len(keys), replace=True)
+        z = pd.concat([groups[keys[i]] for i in selected], ignore_index=True)
+        draws.append((slope(z, terms), slope(z, terms + added)))
+    arr = np.asarray(draws)
+    valid = np.isfinite(arr).all(axis=1)
+    ci = (np.quantile(arr[valid], [.025, .975], axis=0)
+          if valid.sum() > 500 else np.full((2, 2), np.nan))
+    return {
+        "status": "POSTHOC_SENSITIVITY_ONLY",
+        "same_matched_pairs": int(len(f)),
+        "independent_spatial_blocks": int(f.block.nunique()),
+        "model_without_water_change_slope_per_10_DN": before,
+        "model_without_water_change_cluster_95pct": ci[:, 0].tolist(),
+        "model_with_water_change_slope_per_10_DN": after,
+        "model_with_water_change_cluster_95pct": ci[:, 1].tolist(),
+        "sensitivity_difference_not_causal_water_mediation": after - before,
+        "both_models_include_baseline_water_and_climate": True,
+        "bootstrap_resamples_with_complete_rank": int(valid.sum()),
+    }
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="")
@@ -166,6 +218,9 @@ def main():
                          ("matched_development_and_water_change", True)]:
         pairs, eligible, scales = pair_sites(data, water)
         runs[label] = summarize_pairs(pairs, eligible, scales)
+        if not water:
+            runs[label]["same_cohort_regression_sensitivity"] = (
+                same_cohort_water_adjustment(pairs))
     report = {
         "source": f"{SOURCE_COMMIT}:{SOURCE_PATH}",
         "source_sha256": sha,
