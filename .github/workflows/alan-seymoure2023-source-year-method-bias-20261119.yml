@@ -1,0 +1,57 @@
+name: ALAN 79-paper publication year and method coverage audit
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - scripts/analysis/alan_seymoure2023_publication_year_method_bias_20261119.py
+      - tests/test_alan_seymoure2023_publication_year_method_bias_20261119.py
+      - .github/workflows/alan-seymoure2023-source-year-method-bias-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-year-method-coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate publication year, unknown-method and repeated-publication guards
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m unittest discover -s tests -p test_alan_seymoure2023_publication_year_method_bias_20261119.py -v
+      - name: Re-download genuine Figshare SHA source and inspect publication-year composition
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_79paper_yearmethod
+          python -m scripts.analysis.alan_seymoure2023_publication_year_method_bias_20261119 \
+            --out /tmp/alan_79paper_yearmethod/source_year_method_coverage.json
+      - name: Assert 79 publications and preserve missing-design limitation
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/alan_79paper_yearmethod/source_year_method_coverage.json'))
+          assert x['schema']=='alan_seymoure2023_original_79paper_publication_year_methods_caution_v1'
+          assert x['source_publication_count']==79
+          assert x['original_method_missing_studies']==63
+          assert x['original_method_observed_studies']==16
+          assert sum(a['publication_counts']['n_studies'] for a in x['year_stratified_source_coding'].values())==79
+          assert x['source_caveats']['multiple_yearly_observations_not_from_original']
+          assert x['source_caveats']['method_present_does_not_prove_random_light_assignment']
+          assert x['source_caveats']['no_original_study_records_redistributed']
+          print('ALAN_SOURCE_79_PAPERS_YEAR_METHOD_GATES_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-Seymoure2023-source-79papers-year-method-coverage
+          path: /tmp/alan_79paper_yearmethod/source_year_method_coverage.json
+          if-no-files-found: error
+          retention-days: 90
