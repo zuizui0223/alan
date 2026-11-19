@@ -25,6 +25,7 @@ import json
 import re
 import urllib.parse
 import urllib.request
+import urllib.error
 import zipfile
 from pathlib import Path
 
@@ -191,15 +192,37 @@ def table_plot_factor_grain(tables,strict=True):
     }
 
 
-def main():
-    ap=argparse.ArgumentParser()
-    ap.add_argument("--out",type=Path,required=True)
-    a=ap.parse_args()
-    data=get(ARCHIVE_URL)
+def original_13csv_real_source_or_stop(source_get=get):
+    """Fail closed biologically while retaining transient HTTP source status."""
+    try:
+        data=source_get(ARCHIVE_URL)
+    except (urllib.error.HTTPError,urllib.error.URLError,TimeoutError) as exc:
+        return {
+            "schema":OUT_SCHEMA,
+            "source_status":"SOURCE_STOP_ORIGINAL_DRYAD_DOWNLOAD_UNAVAILABLE",
+            "source_access_error_type":type(exc).__name__,
+            "source_access_http_code":exc.code if isinstance(exc,urllib.error.HTTPError) else None,
+            "original_dataset_DOI":SOURCE_DOI,
+            "original_dataset_version_id":SOURCE_VERSION_ID,
+            "source_expected_zip_SHA256_not_verified_in_this_run":ARCHIVE_SHA256,
+            "source_all_13_source_member_hashes_verified":False,
+            "source_all_13_source_row_counts_verified":False,
+            "cross_file_exact_original_plot_factor_allocations_consistent":False,
+            "source_plot_identity_recovered_in_memory":False,
+            "source_original_plot_IDs_committed_or_exported":False,
+            "source_original_biological_rows_exported":False,
+            "post_reintroduction_slugs_2015_excluded_from_authors_original_fit":True,
+            "eligible_original_slug_years_for_authors_2018_model":[2013,2014],
+            "physical_light_experiment_programmes":1,
+            "no_source_2016_biomass_join_yet":True,
+            "no_new_causal_medation_or_light_x_trophic_glmm_fitted":True,
+            "note":"Earlier original dataset was fetched and SHA verified in independent Actions #44523493043, but not available in THIS source job. Not a biological null.",
+        }
     tables=parse_zip_archive(data,strict=True)
     report=table_plot_factor_grain(tables,strict=True)
     report.update({
         "schema":OUT_SCHEMA,
+        "source_status":report["status"],
         "original_dataset_DOI":SOURCE_DOI,
         "original_dataset_version_id":SOURCE_VERSION_ID,
         "original_zip_sha256":ARCHIVE_SHA256,
@@ -208,12 +231,24 @@ def main():
         "physical_light_experiment_programmes":1,
         "original_54_3x3_troughs_if_consistent":54,
     })
+    return report
+
+
+def main():
+    ap=argparse.ArgumentParser()
+    ap.add_argument("--out",type=Path,required=True)
+    a=ap.parse_args()
+    report=original_13csv_real_source_or_stop()
     a.out.parent.mkdir(exist_ok=True,parents=True)
     a.out.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n")
-    print("ALAN_PENRYN54_ORIGINAL_SOURCE_FACTOR_CODES",report["original_source_factor_codes"])
-    print("ALAN_PENRYN54_ORIGINAL_SOURCE_FULL_54_PLOT_ASSIGNMENT_STATUS",report["status"])
-    print("ALAN_PENRYN54_ORIGINAL_SOURCE_PHYSICAL_CELL_COUNTS",report["all_original_physical_light_trophic_cell_counts_only"])
-    print("ALAN_PENRYN54_ORIGINAL_SOURCE_13_CSV_FILE_GRAIN",report["original_13_source_CSV_physical_grain"])
+    print("ALAN_PENRYN54_REAL_ORIGINAL_DRYAD_SOURCE_STATUS",report["source_status"])
+    if report["source_all_13_source_member_hashes_verified"]:
+        print("ALAN_PENRYN54_ORIGINAL_SOURCE_FACTOR_CODES",report["original_source_factor_codes"])
+        print("ALAN_PENRYN54_ORIGINAL_SOURCE_FULL_54_PLOT_ASSIGNMENT_STATUS",report["status"])
+        print("ALAN_PENRYN54_ORIGINAL_SOURCE_PHYSICAL_CELL_COUNTS",report["all_original_physical_light_trophic_cell_counts_only"])
+        print("ALAN_PENRYN54_ORIGINAL_SOURCE_13_CSV_FILE_GRAIN",report["original_13_source_CSV_physical_grain"])
+    else:
+        print("ALAN_PENRYN54_SOURCE_ACCESS_STOP_NO_FALSE_FIT",report["source_access_http_code"])
     print("ALAN_PENRYN54_SOURCE_FIT_STATUS",report["no_new_causal_medation_or_light_x_trophic_glmm_fitted"])
 
 
