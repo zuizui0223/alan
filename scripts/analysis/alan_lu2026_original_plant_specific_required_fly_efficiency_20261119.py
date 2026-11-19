@@ -20,6 +20,7 @@ import io
 import json
 import math
 import urllib.request
+import http.client
 import zipfile
 from pathlib import Path
 
@@ -94,7 +95,7 @@ def source_bytes(reader=None):
                   "original_source_access":"SUCCESS",
                 }
             except (urllib.error.URLError,TimeoutError,OSError,ValueError,
-                    KeyError,zipfile.BadZipFile) as exc:
+                    KeyError,zipfile.BadZipFile,http.client.HTTPException) as exc:
                 errors.append({
                   "source_type":("PMC_DIRECT" if index==0 else "EUROPEPMC" if index==1 else "PUBLISHER"),
                   "attempt_number":attempt+1,
