@@ -21,6 +21,7 @@ import io
 import json
 import math
 import re
+from statistics import stdev
 from pathlib import Path
 
 from scripts.acquisition.alan_anic2022_figshare_original_pdf_table_layout_preflight_20261119 import (
@@ -162,6 +163,8 @@ def read_original_biomass_pdf(source,strict=True):
             "original_trophic_code":trophic,
             "original_mesocosms_with_this_species":len(values),
             "original_biomass_total_g_arithmetic_mean":sum(values)/len(values),
+            "original_biomass_total_g_sample_SD":stdev(values) if len(values)>=2 else None,
+            "original_biomass_total_g_sample_SE":(stdev(values)/math.sqrt(len(values))) if len(values)>=2 else None,
             "original_biomass_total_g_min":min(values),
             "original_biomass_total_g_max":max(values),
             "not_an_original_author_adjusted_effect_or_SE":True,
