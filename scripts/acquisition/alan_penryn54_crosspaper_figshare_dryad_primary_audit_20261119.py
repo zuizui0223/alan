@@ -228,11 +228,60 @@ def get_figshare():
     return out
 
 
+def dryad_official_href(href, *, allow_files=False):
+    """Follow the HAL API link, not the absent integer 'id' metadata field."""
+    if not isinstance(href,str) or not href:
+        raise ValueError("Original Dryad HAL link missing")
+    url=urllib.parse.urljoin("https://datadryad.org",href)
+    parts=urllib.parse.urlsplit(url)
+    if parts.scheme!="https" or parts.hostname!="datadryad.org" or parts.port not in (None,443):
+        raise ValueError("Refuse nonofficial Dryad HAL source")
+    path=parts.path
+    if not path.startswith("/api/v2/"):
+        raise ValueError("Refuse guessed or non-API Dryad link")
+    if not allow_files and not re.fullmatch(r"/api/v2/versions/[0-9]+/files",path):
+        raise ValueError("Link is not a genuine original Dryad version file list")
+    if allow_files and not (re.fullmatch(r"/api/v2/files/[0-9]+/download",path) or
+                            re.fullmatch(r"/api/v2/versions/[0-9]+/files",path)):
+        raise ValueError("Link is not a genuine original Dryad file download")
+    return url
+
+
+def dryad_hal_version_file_lists(dataset,versions):
+    """Return the true official /versions/<id>/files URLs from HAL links.
+
+    Older Dryad JSON has _embedded.stash:versions with _links.stash:files,
+    but does not expose an integer 'id'. Extracting rec['id'] silently
+    yielded zero file lists, which falsely looked like inaccessible raw data.
+    """
+    candidates=[]
+    records=(versions.get("_embedded") or {}).get("stash:versions",[])
+    if not isinstance(records,list):
+        raise ValueError("Unrecognized Dryad versions HAL collection")
+    for rec in records:
+        if not isinstance(rec,dict):
+            continue
+        links=rec.get("_links") or {}
+        file_link=(links.get("stash:files") or {}).get("href")
+        if file_link:
+            candidates.append(dryad_official_href(file_link))
+        elif isinstance(rec.get("id"),int):
+            candidates.append(dryad_official_href(f"/api/v2/versions/{rec['id']}/files"))
+    cur=(dataset.get("_links") or {}).get("stash:version") or {}
+    verhref=cur.get("href","")
+    match=re.search(r"^/api/v2/versions/([0-9]+)$",urllib.parse.urlsplit(verhref).path)
+    if match:
+        candidates.append(dryad_official_href(f"/api/v2/versions/{match.group(1)}/files"))
+    return list(dict.fromkeys(candidates))
+
+
 def get_dryad():
     out={"dataset_DOI":DRYAD_DOI,"metadata":"SOURCE_STOP",
          "files":[],"source_authenticated_original_table_count":0,
          "original_light_meso_ids_jointly_matched_other_source":False}
     doi=urllib.parse.quote("doi:"+DRYAD_DOI,safe="")
+    source_dataset={}
+    source_versions={}
     for label,url in [
         ("dataset",f"{DRYAD_API}/datasets/{doi}"),
         ("versions",f"{DRYAD_API}/datasets/{doi}/versions"),
@@ -243,9 +292,11 @@ def get_dryad():
             out[label+"_metadata_status"]="VERIFIED_DRYAD_PUBLIC_API"
             out[label+"_metadata_sha256"]=hashlib.sha256(b).hexdigest()
             if label=="dataset":
+                source_dataset=data
                 out["dataset_title"]=data.get("title","")
                 out["dataset_version_metadata_keys"]=sorted(data.keys())
             if label=="versions":
+                source_versions=data
                 out["versions_metadata_keys"]=sorted(data.keys()) if isinstance(data,dict) else []
                 embedded=data.get("_embedded",{}) if isinstance(data,dict) else {}
                 ids=[]
@@ -274,12 +325,21 @@ def get_dryad():
             out[label+"_error_type"]=type(exc).__name__
             if isinstance(exc,urllib.error.HTTPError):
                 out[label+"_http_status"]=exc.code
-    for ver in out.get("resolved_version_IDs",[])[:4]:
+    # The source API returned versions without a numeric ID. The *actual*
+    # file-list path is in each HAL record's _links.stash:files.href.
+    resolved_urls=dryad_hal_version_file_lists(source_dataset,source_versions)
+    out["verified_original_version_file_list_urls"]=resolved_urls
+    out["resolved_via_original_HAL_links"]=bool(resolved_urls)
+    for file_list_url in resolved_urls[:4]:
+        ver_match=re.search(r"/versions/([0-9]+)/files",file_list_url)
+        ver=int(ver_match.group(1)) if ver_match else None
+
         try:
-            blob=pull(f"{DRYAD_API}/versions/{ver}/files",limit=2_000_000)
+            blob=pull(file_list_url,limit=2_000_000)
             doc=json.loads(blob)
             out.setdefault("verified_versions_file_index",[]).append({
                 "version_ID":ver,
+                "original_HAL_file_list_URL":file_list_url,
                 "metadata_SHA256":hashlib.sha256(blob).hexdigest(),
                 "original_file_list_keys":sorted(doc.keys()) if isinstance(doc,dict) else [],
             })
@@ -290,16 +350,27 @@ def get_dryad():
                     recs.extend(x for x in seq if isinstance(x,dict))
             for f in recs[:30]:
                 fi=f.get("id")
+                if not isinstance(fi,int):
+                    links=f.get("_links") or {}
+                    dl=(links.get("stash:download") or {}).get("href","")
+                    match=re.search(r"/files/([0-9]+)/download",urllib.parse.urlsplit(dl).path)
+                    if match: fi=int(match.group(1))
                 filename=str(f.get("path") or f.get("filename") or f.get("name") or "")
                 rawsize=f.get("size") or f.get("sizeBytes")
                 z={"original_version_ID":ver,"original_file_ID":fi,
                    "original_file_name":filename,"declared_size":rawsize,
                    "download_status":"SOURCE_STOP"}
-                if isinstance(fi,int) and filename and (rawsize is None or isinstance(rawsize,int) and 0<rawsize<=MAX_BYTES):
-                    for attempt in (
-                        f"{DRYAD_API}/files/{fi}/download",
-                        f"https://datadryad.org/downloads/file_stream/{fi}",
-                    ):
+                dl=(f.get("_links") or {}).get("stash:download") or {}
+                official_download=[]
+                if isinstance(dl.get("href"),str):
+                    try:
+                        official_download.append(dryad_official_href(dl["href"],allow_files=True))
+                    except ValueError:
+                        z["source_download_link_status"]="HAL_SOURCE_UNEXPECTED"
+                if isinstance(fi,int):
+                    official_download.append(f"{DRYAD_API}/files/{fi}/download")
+                if filename and (rawsize is None or isinstance(rawsize,int) and 0<rawsize<=MAX_BYTES):
+                    for attempt in list(dict.fromkeys(official_download)):
                         try:
                             bb=pull(attempt)
                             z["original_file_SHA256"]=hashlib.sha256(bb).hexdigest()
@@ -318,6 +389,10 @@ def get_dryad():
             out.setdefault("file_index_errors",[]).append({
                 "version_ID":ver,"error_type":type(exc).__name__,
                 **({"http_status":exc.code} if isinstance(exc,urllib.error.HTTPError) else {})})
+    out["retrieval_status"]=(
+        "RAW_ORIGINAL_TABLES_VERIFIED" if out["source_authenticated_original_table_count"]>0
+        else "FILE_METADATA_ONLY_OR_SOURCE_STOP"
+    )
     out["metadata"]="VERIFIED_DRYAD_PUBLIC_API" if out.get("dataset_metadata_status")=="VERIFIED_DRYAD_PUBLIC_API" else "SOURCE_STOP"
     return out
 
