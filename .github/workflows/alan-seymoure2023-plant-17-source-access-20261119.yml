@@ -1,0 +1,58 @@
+name: ALAN genuine 17 plant interaction papers primary source access census
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - scripts/acquisition/alan_seymoure2023_pollination_herbivory_primary_source_access_20261119.py
+      - tests/test_alan_seymoure2023_pollination_herbivory_primary_source_access_20261119.py
+      - .github/workflows/alan-seymoure2023-plant-17-source-access-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  genuine-priority-plant-source-access:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test 17-paper pollination/herbivory selection, missing metadata and duplicate study safety
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m unittest discover -s tests \
+            -p test_alan_seymoure2023_pollination_herbivory_primary_source_access_20261119.py -v
+      - name: Source-lock original Figshare 81 records and check 17 independent plant papers Crossref and Europe PMC
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_plant17_original
+          python -m scripts.acquisition.alan_seymoure2023_pollination_herbivory_primary_source_access_20261119 \
+            --out /tmp/alan_plant17_original/original_study_coverage.json
+      - name: Check selected original studies but no new fabricated true-light treatment effects
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_plant17_original/original_study_coverage.json'))
+          assert d['schema']=='alan_20261119_original_17_pollination_herbivory_paper_public_fulltext_coverage_v1'
+          assert d['original_priority_interaction_rows']==18
+          assert d['unique_original_publication_keys']==17
+          assert d['original_method_documented_priority_publications']==1
+          assert d['original_original_lighting_treatment_clusters_verified']==0
+          assert d['meta_eligible_original_effects_with_cluster_SE_verified']==0
+          assert d['scientific_stop']['source_paper_DOI_and_original_rows_not_exported']
+          print('ALAN_ORIGINAL_PLANT17_SOURCE_ACCESS_METADATA_GATES_OK',d['metadata_access_status'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-17-pollination-herbivory-paper-primary-source-coverage
+          path: /tmp/alan_plant17_original/original_study_coverage.json
+          if-no-files-found: warn
+          retention-days: 90
