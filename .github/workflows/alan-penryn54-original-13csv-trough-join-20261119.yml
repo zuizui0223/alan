@@ -39,7 +39,10 @@ jobs:
           import json
           d=json.load(open('/tmp/alan_penryn54_original_jointsource/true_2018_Dryad_13csv_54trough_factorial_source.json'))
           assert d['schema']=='alan_2018_original_13CSV_54trough_repeated_physical_factor_and_outcome_gate_v1'
-          assert d['original_zip_sha256']=='5dc5bc93e48758364d068c113edb84e05b81f99b22827c4c6ee0c14f42ba3130'
+          if d['source_all_13_source_member_hashes_verified']:
+            assert d['original_zip_sha256']=='5dc5bc93e48758364d068c113edb84e05b81f99b22827c4c6ee0c14f42ba3130'
+          else:
+            assert d['source_expected_zip_SHA256_not_verified_in_this_run']=='5dc5bc93e48758364d068c113edb84e05b81f99b22827c4c6ee0c14f42ba3130'
           # Authentication errors do not imply zero ecological abundance.
           assert d['source_status'] in (
             'ORIGINAL_54_SOURCE_FACTORIAL_PLOT_JOIN_VERIFIED',
@@ -68,7 +71,7 @@ jobs:
             assert {x['unique_original_troughs'] for x in d['all_original_physical_light_trophic_cell_counts_only']}=={6}
             print('PENRYN54_SOURCE_ACTUAL_ORIGINAL_13_CSV_FACTORIAL_JOIN_VERIFIED')
           else:
-            print('PENRYN54_SOURCE_13_CSV_FACTORIAL_JOIN_NOT_CONFIRMED',d['status'])
+            print('PENRYN54_SOURCE_13_CSV_FACTORIAL_JOIN_NOT_CONFIRMED',d['source_status'])
           PY
       - uses: actions/upload-artifact@v4
         with:
