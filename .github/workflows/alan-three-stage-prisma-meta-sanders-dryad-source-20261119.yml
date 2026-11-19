@@ -50,7 +50,7 @@ jobs:
           s=json.load(open(p+'known_seed_not_prisma_study_counts.json'))
           d=json.load(open(p+'sanders_original_csv_source_schema_and_SHA.json'))
           assert s['schema']=='alan_20261119_three_stage_PRISMA_source_seed_readiness_guard_v1'
-          assert s['S1_known_intentionally_seeded_primary_paper_records']==9
+          assert s['S1_known_intentionally_seeded_primary_paper_records']==11
           assert s['S2_known_intentionally_seeded_primary_paper_records']==11
           assert s['PRISMA_records_identified_from_database'] is None
           assert s['S1_primary_META_ready_k'] is None
