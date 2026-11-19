@@ -1,0 +1,58 @@
+name: ALAN original 2026 Swiss 16-flower seasonal window and diel petal source opportunity
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - results/all_species_forest/biotic_interactions/grognuz2026_figure4_16plant_phenology_visual_approx_source_20261119.json
+      - scripts/analysis/alan_grognuz2026_figure4_phenology_reorganization_20261119.py
+      - tests/test_alan_grognuz2026_figure4_phenology_reorganization_20261119.py
+      - .github/workflows/alan-grognuz2026-phenology-figure4-opportunity-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  real-one-study-seasonal-phenology-stage-fidelity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Guard approximate plotted effects as 1 field programme and NO true pollinator mismatch
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests \
+            -p test_alan_grognuz2026_figure4_phenology_reorganization_20261119.py -v
+      - name: Recompute 16 plant x four published approximate stage shifts with original 14 pair-years
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_grognuz_2026_source_phenology
+          python -m scripts.analysis.alan_grognuz2026_figure4_phenology_reorganization_20261119 \
+            --source results/all_species_forest/biotic_interactions/grognuz2026_figure4_16plant_phenology_visual_approx_source_20261119.json \
+            --out /tmp/alan_grognuz_2026_source_phenology/figure4_phenology_approx_stage_response_summary.json
+      - name: Gate the 120 pairs as descriptive contrasts, not 120 light installations or measured pollination
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/alan_grognuz_2026_source_phenology/figure4_phenology_approx_stage_response_summary.json'))
+          assert x['schema']=='alan_grognuz2026_original_published_16plant_phenological_opportunity_response_approx_v1'
+          assert x['evidence']['original_programme_count']==1
+          assert x['evidence']['independent_site_pair_years']==14
+          assert x['evidence']['source_flowering_species']==16
+          assert x['evidence']['pollen_or_pollinator_realized_overlap_not_measured']
+          assert x['figure4_approx_interspecies_PEAK_response_difference']['distinct_species_pair_differences']==120
+          assert x['gates']['no_global_phenology_source_meta_effect_fitted']
+          print('GROGNUZ2026_FIGURE4_ORIGINAL_STAGE_AND_OPPORTUNITY_GATES_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-Grognuz2026-16flower-14pairyear-phenology-figure4-approx-opportunity
+          path: /tmp/alan_grognuz_2026_source_phenology/figure4_phenology_approx_stage_response_summary.json
+          retention-days: 90
+          if-no-files-found: error
