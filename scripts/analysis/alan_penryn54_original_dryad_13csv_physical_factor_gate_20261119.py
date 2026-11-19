@@ -61,14 +61,14 @@ SOURCE_SLUG_FIT_YEARS=(2013,2014)
 
 
 def get(url):
-    req=urllib.request.Request(url,headers={
-      "User-Agent":"ALAN-Dryad-original-54trough-source-reproducibility/2026-11-19",
-      "Accept":"application/zip,*/*",
-    })
-    with urllib.request.urlopen(req,timeout=45) as r:
-        dat=r.read(2_000_000)
-        if len(dat)>=2_000_000:raise ValueError("Source ZIP too large")
-        return dat
+    """Use the exact official Dryad archive downloader already proven in CI.
+
+    The first independent workflow transiently returned HTTP401 because it
+    used different request headers. Do not fall back to untrusted mirrors or
+    assume an HTTP401 means original data are scientifically missing.
+    """
+    from scripts.acquisition.alan_penryn54_crosspaper_figshare_dryad_primary_audit_20261119 import pull
+    return pull(url,limit=2_000_000)
 
 
 def parse_zip_archive(data,strict=True):
