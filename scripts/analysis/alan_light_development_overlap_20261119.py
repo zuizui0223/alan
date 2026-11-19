@@ -119,7 +119,7 @@ def summarize_pairs(pairs, df, scales):
     slope = float(np.dot(x, y) / np.dot(x, x))
     mean_delta = float(np.mean(y))
     # Balance of paired pre-exposure covariates; diagnostics, not post-hoc filter.
-    balance = {k[2:]: float(p[k].mean() / scales[k[2:]])
+    balance = {k[2:]: float(p[k].mean() / scales.get(k[2:], robust_scale(df[k[2:]])))
                for k in p.columns if k.startswith("d_")}
     # Cluster bootstrap resamples spatial blocks, not individual plants/sites.
     rng = np.random.default_rng(SEED)
