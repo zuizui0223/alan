@@ -13,7 +13,7 @@ class ThreeStagePRISMASourceReadinessTests(unittest.TestCase):
 
     def test_purposeful_literature_seed_is_not_prisma_meta_inclusion(self):
         d=audit(self.data)
-        self.assertEqual(d["S1_known_intentionally_seeded_primary_paper_records"],9)
+        self.assertEqual(d["S1_known_intentionally_seeded_primary_paper_records"],11)
         self.assertEqual(d["S2_known_intentionally_seeded_primary_paper_records"],11)
         self.assertIsNone(d["S1_primary_META_ready_k"])
         self.assertIsNone(d["S2_primary_META_ready_k"])
@@ -50,6 +50,20 @@ class ThreeStagePRISMASourceReadinessTests(unittest.TestCase):
         r["seed_candidates"].append(copy.deepcopy(r["seed_candidates"][0]))
         with self.assertRaisesRegex(ValueError,"Duplicate stage"):
             audit(r)
+
+    def test_westhavelland_same_physical_site_pair_is_not_two_independent_ALAN_trials(self):
+        d=audit(self.data)
+        self.assertTrue(d["Westhavelland_2017_2025_share_one_lit_one_dark_field_pair"])
+        self.assertTrue(d["source_A_11_seed_papers_not_11_independent_light_programmes"])
+        x=copy.deepcopy(self.data)
+        x["seed_candidates"]=[r for r in x["seed_candidates"] if r["study_programme_id"]!="Manfrin2017Westhavelland"]
+        x["counts"]["S1_purposeful_candidate_paper_records_not_search_inclusions"]=10
+        with self.assertRaisesRegex(ValueError,"11 A/11 B"):
+            audit(x)
+        x=copy.deepcopy(self.data)
+        x["source_reference_id_concordance"]["westhavelland_2017_2025_same_1lit_1dark_sitepair"]=False
+        with self.assertRaisesRegex(ValueError,"source independence"):
+            audit(x)
 
     def test_publish_bias_preserve_positive_and_negative_counterexamples(self):
         r=copy.deepcopy(self.data)
