@@ -73,6 +73,17 @@ class Sanders2020OriginalALANReviewSourceTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,"checksum"):
                 zenodo_original_author_mirror(fetch)
 
+    def test_original_cr_only_line_endings_are_valid_source_not_fake_csv(self):
+        b=io.BytesIO()
+        with zipfile.ZipFile(b,"w") as z:
+            z.writestr("Sanders_et_al_datafile.csv",
+                      b"Study,Effect size,Outcome category\rA,0.35,abundance\rB,-0.12,phenology\r")
+            z.writestr("Sanders_meta__rcode.r",b"# test code only\r")
+        result=parse_zip(b.getvalue(),strict=True)
+        self.assertEqual(result["verified_original_source_tabular_rows"],2)
+        self.assertEqual(result["source_original_column_count"],3)
+        self.assertNotIn("A,0.35",str(result))
+
     def test_dont_treat_arbitrary_string_as_original_archival_zip(self):
         with self.assertRaisesRegex(ValueError,"ZIP"):
             parse_zip(b"not-a-real-original-Dryad-file",strict=True)
