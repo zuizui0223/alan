@@ -50,3 +50,16 @@ Seymoure et al. (2023) `10.1098/rstb.2022.0356` の著者Figshare（`rstb2022035
 **機構仮説**：人工夜間光は単に送粉者を減らすのでなく、照明時間・地理的配置・既存の昼夜送粉チャネル、種子捕食者の残存によって、相互作用の**正味の繁殖機能**を組み替える。ただし3原著の果実／種子／送粉成功は共通アウトカム・SE・処理単位が揃っていないため、現時点で「全種共通のALAN繁殖効果」は**SOURCE STOP**。
 
 新規スクリプト [原著17論文の真のendpoint分類](../scripts/analysis/alan_seymoure2023_primary17_endpoint_eligibility_20261119.py) は元Figshareバイトと17 DOIを照合し、偽の灯具SEを入力させない。`main`で確認済みの湿潤植物の長期記録率・Parkinson/Lu/Pageの別データの肯定結果は変えない。
+
+
+## Bennie原本配布の結果（2026-11-19）
+
+独立の実験原データ候補として[草地・マメアブラムシ原著 Bennie 2015](https://doi.org/10.1098/rstb.2014.0131)の補足資料 `rstb20140131supp1.xlsx` の真正バイトを取得しようとした。GitHub Actionsで2026-11-19に実行した[最終アクセス検証run #44475859128（SUCCESS: SOURCE STOPを正しく記録）](https://github.com/zuizui0223/alan/actions/runs/44475859128)の結果：
+
+- PMCのreader型 `/articles/PMC4375371/bin/...` は**HTTP404**。
+- PMCのinstance URLは取得バイトがXLSXでないため**ValueError**で停止。
+- 出版社の原著supplement URLは**HTTP403**。
+- NCBIの公式OA package一覧も**HTTP404**。
+- **元XLSXは今回の環境では取得できなかった。** したがって元の照明単位ID、区画ごとの花頭資源・アブラムシ・捕食者の効果量／SEを本ブランチで独立再推定したとは主張しない。元の原著の報告（bottom-up資源連鎖、top-down捕食者効果の非検出）は出版文献の出典として残す。
+
+`.github/workflows/alan-bennie2015-primary-aphid-grassland-original-20261119.yml` の**緑のCI＝原データ取得成功ではない**。原著効果のソースレベルを公刊本文に留め、一次資料の同一端点・独立照明割付・SEが満たされるまで共同メタ係数を推定しない。
