@@ -1,0 +1,56 @@
+name: ALAN Anic 2022 original 24-page Figshare numeric PDF table layout source audit
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - scripts/acquisition/alan_anic2022_figshare_original_pdf_table_layout_preflight_20261119.py
+      - tests/test_alan_anic2022_figshare_original_pdf_table_layout_preflight_20261119.py
+      - .github/workflows/alan-anic2022-figshare-original-pdf-layout-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-signed-Figshare-24page-plant-biomass-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify original source SHA and prevent numeric plant trough measurement exposure
+        run: |
+          set -euo pipefail
+          python -m pip install -q pypdf==6.1.0
+          python -m unittest discover -s tests -p test_alan_anic2022_figshare_original_pdf_table_layout_preflight_20261119.py -v
+      - name: Re-download original 2022 study Figshare PDF and inspect line/header structure
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_anic2022_rawsource
+          python -m scripts.acquisition.alan_anic2022_figshare_original_pdf_table_layout_preflight_20261119 \
+            --out /tmp/alan_anic2022_rawsource/original_24page_numeric_PDF_source_table_shapes.json
+      - name: Guard original 24-page table provenance but no phantom model fit
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_anic2022_rawsource/original_24page_numeric_PDF_source_table_shapes.json'))
+          assert d['schema']=='alan_original_anic2022_figshare_24page_numeric_PDF_table_preflight_v1'
+          assert d['original_file_SHA256']=='baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0'
+          assert d['original_24page_data_document_pages']==24
+          assert d['original_pdf_total_numeric_dense_lines']>200
+          assert not d['plant_species_x_physical_mesocosm_rows_extracted']
+          assert not d['new_original_per_species_light_x_trophic_effect_fitted']
+          assert d['PDF_source_data_not_independent_light_experiment']
+          print('ANIC2022_24P_SOURCE_LAYOUT_IS_VERIFIED_MODEL_UNFIT')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-Anic2022-original-Figshare-24page-numeric-biomass-table-structure
+          path: /tmp/alan_anic2022_rawsource/original_24page_numeric_PDF_source_table_shapes.json
+          if-no-files-found: error
+          retention-days: 90
