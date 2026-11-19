@@ -1,0 +1,96 @@
+name: ALAN one original 30-plot Lizard plant x predator lighting programme source audit
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - results/all_species_forest/biotic_interactions/alan_exeter_lizard_shared_30lightplots_crosspaper_provenance_20261119.json
+      - scripts/analysis/alan_exeter_lizard_shared30_plant_predator_crosspaper_source_20261119.py
+      - tests/test_alan_exeter_lizard_shared30_plant_predator_crosspaper_source_20261119.py
+      - .github/workflows/alan-exeter-lizard-shared30-plant-spider-source-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-thirty-field-light-installation-overlap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify original 30 independently illuminated plots and reject false 2-experiment pooling
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_exeter_lizard_shared30_plant_predator_crosspaper_source_20261119.py -v
+      - name: Recompute original research programme and light arm alias map
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_exeter_30_samefield
+          python -m scripts.analysis.alan_exeter_lizard_shared30_plant_predator_crosspaper_source_20261119 \
+            --source results/all_species_forest/biotic_interactions/alan_exeter_lizard_shared_30lightplots_crosspaper_provenance_20261119.json \
+            --out /tmp/alan_exeter_30_samefield/original_one_30lightplot_two_endpoint_source_gate.json
+      - name: Stop false plot-level mediation claim
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_exeter_30_samefield/original_one_30lightplot_two_endpoint_source_gate.json'))
+          assert d['schema']=='alan_20261119_exeter_original_same_30_lightplots_two_trophic_outcomes_source_gate_v1'
+          assert d['independently_randomized_light_field_experiments']==1
+          assert d['published_article_count']==2
+          assert d['independently_randomized_physical_field_plots']==30
+          assert d['physical_plots_per_lighting_regime']==6
+          assert d['physical_year_overlap']==[2012,2013,2014]
+          assert not d['actual_source_joint_cross_trophic_paired_model_fitted']
+          assert not d['original_plot_ID_codelist_usable_for_joint_source_model']
+          print('EXETER_LIZARD30_PLOT_AND_SOURCE_INDEPENDENCE_GATES_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-original-exeter-Lizard30-one-light-programme-two-trophic-papers
+          path: /tmp/alan_exeter_30_samefield/original_one_30lightplot_two_endpoint_source_gate.json
+          if-no-files-found: error
+          retention-days: 90
+
+  exeter-public-original-data-source-discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Query official university repository handles for original flowering and spider data entities
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_exeter_30_public_archive
+          python -m scripts.analysis.alan_exeter_lizard_shared30_plant_predator_crosspaper_source_20261119 \
+            --source results/all_species_forest/biotic_interactions/alan_exeter_lizard_shared_30lightplots_crosspaper_provenance_20261119.json \
+            --out /tmp/alan_exeter_30_public_archive/original_one30_programme_metadata.json \
+            --access /tmp/alan_exeter_30_public_archive/official_archive_access_status.json
+      - name: Archive source status without mislabeling page metadata as plot-level data
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_exeter_30_public_archive/official_archive_access_status.json'))
+          assert d['schema']=='alan_20261119_exeter_two_archives_original_30plot_joint_source_access_v1'
+          assert d['physical_independently_assigned_light_plots']==30
+          assert not d['joint_original_plant_arachnid_plot_records_verified']
+          assert not d['verified_source_joint_multi_trophic_treatment_effect_estimated']
+          assert d['metadata_success_not_raw_multitrophic_join']
+          assert d['no_original_plot_ID_or_arthropod_row_exported']
+          print('EXETER30_ORIGINAL_SOURCE_ARCHIVE_PUBLIC_ACCESS_NOT_PLOT_LEVEL_JOIN')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-exeter-Lizard30-original-two-archives-metadata-or-source-STOP
+          path: /tmp/alan_exeter_30_public_archive/*.json
+          retention-days: 90
+          if-no-files-found: warn
