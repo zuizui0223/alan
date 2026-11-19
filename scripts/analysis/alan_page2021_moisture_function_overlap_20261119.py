@@ -27,7 +27,7 @@ def load_moisture(path):
         ei=ei[ei.index.notna()]
     # Explicit duplicate consistency, preserving unmatchable names as missing.
     grouped=ei.groupby(level=0).MOIST.agg(["first","nunique"])
-    lookup=grouped.loc[grouped.nunique<=1,"first"] if False else grouped.loc[grouped["nunique"]<=1,"first"]
+    lookup=grouped.loc[grouped["nunique"]<=1,"first"]
     return lookup.dropna().to_dict()
 
 def audit(nets, moisture):
