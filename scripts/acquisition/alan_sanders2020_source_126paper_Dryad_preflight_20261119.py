@@ -26,6 +26,12 @@ PUBLISHED_EFFECTS=1304
 EXPECTED_FILES={"Sanders_et_al_datafile.csv","Sanders_meta__rcode.r"}
 BASE="https://datadryad.org/api/v2"
 MAX_BYTES=4_000_000
+ZENODO_ORIGINAL_RECORD="https://zenodo.org/api/records/3998338"
+ZENODO_EXPECTED_ORIGINAL_MD5={
+    "Sanders_et_al_datafile.csv":"665c1077ea63b2e11ededd24371ce0cf",
+    "Sanders_meta__rcode.r":"4f5025fae8097e2826c291fa4e9d46d0",
+}
+
 SOURCE_TYPE="ALAN_126paper_1304_hedges_d_source"
 
 
@@ -103,6 +109,52 @@ def parse_zip(raw,strict=True):
     return results
 
 
+def zenodo_original_author_mirror(fetch=get):
+    """Retrieve checksum-authenticated 2020 original deposited files.
+
+    Zenodo record 3998338 describes Sanders et al. same DOI as the
+    original Dryad. The metadata MD5s are checked against *independent*
+    publicly displayed source checksums; no surrogate / other paper file
+    may pass.
+    """
+    meta_raw=fetch(ZENODO_ORIGINAL_RECORD)
+    meta=json.loads(meta_raw)
+    if DATA_DOI not in json.dumps(meta,ensure_ascii=False).lower():
+        raise ValueError("Zenodo original Sanders reference lacks expected Dryad DOI")
+    files=meta.get("files",[])
+    if not isinstance(files,list):
+        raise ValueError("Zenodo original files metadata absent")
+    contents={}
+    route=[]
+    for name,md5 in ZENODO_EXPECTED_ORIGINAL_MD5.items():
+        exact=[x for x in files if x.get("key")==name or x.get("filename")==name]
+        if len(exact)!=1:
+            raise ValueError("Original Sanders Zenodo file missing or ambiguous")
+        info=exact[0]
+        upstream=str(info.get("checksum",""))
+        if upstream.lower().replace("md5:","")!=md5:
+            raise ValueError("Zenodo metadata file checksum differs from original Sanders")
+        links=info.get("links") or {}
+        url=links.get("self") or links.get("download") or ""
+        parsed=urllib.parse.urlsplit(url)
+        if parsed.scheme!="https" or parsed.hostname not in ("zenodo.org","www.zenodo.org"):
+            raise ValueError("Refuse non-Zenodo original data file link")
+        actual=fetch(url)
+        if hashlib.md5(actual).hexdigest()!=md5:
+            raise ValueError("Original Sanders file digest mismatched public MD5")
+        contents[name]=actual
+        route.append({"original_author_file":name,
+                      "original_upstream_MD5":md5,
+                      "original_download_SHA256":hashlib.sha256(actual).hexdigest(),
+                      "original_file_size":len(actual),
+                      "original_source_url_host":parsed.hostname})
+    z=io.BytesIO()
+    with zipfile.ZipFile(z,"w",compression=zipfile.ZIP_DEFLATED) as archive:
+        for name in sorted(contents):
+            archive.writestr(name,contents[name])
+    return z.getvalue(),route
+
+
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--out",type=Path,required=True)
@@ -126,7 +178,23 @@ def main():
         out["source_retrieval_route"]="authenticated_Dryad_public_dataset_zip"
     except (ValueError,zipfile.BadZipFile,urllib.error.URLError,TimeoutError) as ex:
         out["source_status"]="SOURCE_STOP"
-        out["source_stop_error_type"]=type(ex).__name__
+        out["Dryad_source_stop_error_type"]=type(ex).__name__
+        if isinstance(ex,urllib.error.HTTPError):
+            out["Dryad_source_stop_http_status"]=ex.code
+        # Exact same author original CSV/R-code in a verified Zenodo
+        # deposit, with public original MD5, not a new study/effect.
+        try:
+            b,source_files=zenodo_original_author_mirror()
+            z=parse_zip(b,strict=True)
+            out.update(z)
+            out["source_retrieval_route"]="Zenodo_record_3998338_author_original_checksum_verified"
+            out["original_Zenodo_file_checksums_verified"]=source_files
+            out["original_Zenodo_two_files_authenticated"]=True
+        except (ValueError,zipfile.BadZipFile,urllib.error.URLError,TimeoutError) as exc:
+            out["source_status"]="SOURCE_STOP"
+            out["Zenodo_source_stop_error_type"]=type(exc).__name__
+            if isinstance(exc,urllib.error.HTTPError):
+                out["Zenodo_source_stop_http_status"]=exc.code
     a.out.parent.mkdir(parents=True,exist_ok=True)
     a.out.write_text(json.dumps(out,indent=2,ensure_ascii=False)+"\n")
     print("SANDERS126_RAW_META_CSV_STATUS",out["source_status"])
