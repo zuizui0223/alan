@@ -1,0 +1,55 @@
+name: ALAN 17 source-authenticated plant interaction primary DOI bibliography
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - scripts/acquisition/alan_seymoure2023_plant17_primary_bibliography_20261119.py
+      - tests/test_alan_seymoure2023_plant17_primary_bibliography_20261119.py
+      - .github/workflows/alan-seymoure2023-plant17-primary-bibliography-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authentic-primary-bibliography:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Ensure no duplicate original paper and no fabricated original experimental estimates
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m unittest discover -s tests -p test_alan_seymoure2023_plant17_primary_bibliography_20261119.py -v
+      - name: Retrieve SHA256-pinned original Seymoure primary study bibliographies
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_original_17_bibliography
+          python -m scripts.acquisition.alan_seymoure2023_plant17_primary_bibliography_20261119 \
+            --out /tmp/alan_original_17_bibliography/source_17_paper_public_bibliography.json
+      - name: Check authentic bibliography coverage and no unobserved treatment outcome
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/alan_original_17_bibliography/source_17_paper_public_bibliography.json'))
+          assert x['schema']=='alan_seymoure2023_original_source_17plant_paper_bibliography_v1'
+          assert x['paper_count']==17
+          assert sum(v['original_2023_review_source_interaction_count'] for v in x['source_paper_level_public_bibliography'])==18
+          assert x['original_research_lighting_cluster_SEs_verified']==0
+          assert x['no_full_original_study_rows_or_experimental_data_exported']
+          assert len(set(e['doi'] for e in x['source_paper_level_public_bibliography']))==17
+          print("ALAN_ORIGINAL_17_STUDY_BIBLIOGRAPHY_GATES_PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-original-17-plant-pollination-herbivory-primary-published-DOI-citations
+          path: /tmp/alan_original_17_bibliography/source_17_paper_public_bibliography.json
+          retention-days: 90
+          if-no-files-found: error
