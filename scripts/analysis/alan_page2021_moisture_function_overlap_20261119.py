@@ -85,12 +85,41 @@ def audit(nets, moisture):
        "source_EIV_SHA256":EIV_SHA,
     }
 
+# Focal species listed in Lu et al. 2026, Ecol Evol e74368 Fig. 1.
+# These are NOT 11 independent lighting experiments; all share five pairs.
+LU_FOCAL_11=(
+    "Stellera chamaejasme","Ranunculus filiformis",
+    "Pedicularis kansuensis","Oxytropis ochrocephala",
+    "Leontopodium leontopodioides","Geum aleppicum",
+    "Dasiphora fruticosa","Cirsium setosum",
+    "Carum carvi","Bupleurum chinense","Anaphalis hancockii",
+)
+
+def lu_moisture_support(eiv):
+    found={name:float(eiv[name]) for name in LU_FOCAL_11
+           if name in eiv and 1<=float(eiv[name])<=12}
+    wet=sum(x>7 for x in found.values())
+    dry=sum(x<=7 for x in found.values())
+    eligible=wet>=4 and dry>=4
+    return {
+       "source_lu_focal_species_11":len(LU_FOCAL_11),
+       "exact_Tichy_EIV_matches":len(found),
+       "exact_matched_wet_gt7":wet,
+       "exact_matched_drier_le7":dry,
+       "species_scored_from_source_EIV":found,
+       "status":"SOURCE_TAXON_SUPPORT_ONLY" if eligible else "MOISTURE_MODERATOR_SOURCE_STOP",
+       "no_source_light_moisture_coefficient_fitted":True,
+       "five_lu_spatial_pairs_not_11_independent_light_installations":True,
+    }
+
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--eiv",required=True)
     ap.add_argument("--out",required=True)
     args=ap.parse_args()
-    report=audit(networks(get_source(),True),load_moisture(args.eiv))
+    eiv=load_moisture(args.eiv)
+    report=audit(networks(get_source(),True),eiv)
+    report['Lu2026_focal_11_species_independent_EIV_exact_name_support']=lu_moisture_support(eiv)
     p=Path(args.out);p.parent.mkdir(parents=True,exist_ok=True)
     p.write_text(json.dumps(report,ensure_ascii=False,indent=2,sort_keys=True)+"\n")
     print("PAGE_EIV_WET_FUNCTIONAL_REDUNDANCY_SUPPORT "+
