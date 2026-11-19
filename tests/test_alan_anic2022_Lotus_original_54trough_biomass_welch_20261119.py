@@ -70,7 +70,7 @@ class OriginalAnic2022IndependentBiomassTests(unittest.TestCase):
 
     def test_changed_physical_plot_counts_or_source_SHA_rejected(self):
         f=fixture()
-        f["original_source_figshare_sha256"]="fabricated-source"
+        f["source_original_figshare_sha256"]="fabricated-source"
         with self.assertRaisesRegex(ValueError,"SHA drift"):
             source_contrasts(f)
         f=fixture()
