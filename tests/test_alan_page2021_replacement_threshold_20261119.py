@@ -12,6 +12,18 @@ class VisitReplacementMath(unittest.TestCase):
         self.assertTrue(a["requires_more_than_equal_visits"])
         self.assertAlmostEqual(a["conditional_half_top_visits_shift_pollen_ratio"],(1+10./42.)/2)
 
+    def test_even_optimal_taxon_not_sufficient(self):
+        a=calculate([8,2,1],[5,1,2])
+        self.assertTrue(a["even_best_remaining_taxon_fails_equal_visit_compensation"])
+        self.assertLess(a["best_case_restored_pollen_ratio"],1.)
+        self.assertLessEqual(a["equal_visits_restored_pollen_ratio"],a["best_case_restored_pollen_ratio"])
+
+    def test_targeted_rewiring_succeeds_when_proportional_fails(self):
+        a=calculate([8,2,1],[3,1,4])
+        self.assertTrue(a["requires_more_than_equal_visits"])
+        self.assertFalse(a["even_best_remaining_taxon_fails_equal_visit_compensation"])
+        self.assertTrue(a["proportional_fails_but_best_case_could_succeed"])
+
     def test_equal_efficiency_full_compensation(self):
         a=calculate([8,2],[2,2])
         self.assertAlmostEqual(a["equal_visits_restored_pollen_ratio"],1.)
