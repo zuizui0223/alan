@@ -44,6 +44,26 @@ class OriginalSileneAndYuccaReproductionPathwayTests(unittest.TestCase):
         self.assertTrue(x["do_not_exponentiate_as_fruit_or_seed_probability_ratio"])
         self.assertNotIn("source_model_conditional_attack_odds_ratio",x)
         self.assertTrue(g["cannot_pretend_published_reproduction_link_is_actual_seed_loss_ratio"])
+
+        # Model-based necessary condition; dark-site infection rates here are
+        # hypothetical and cannot be confused with genuine Giavi plot rates.
+        thresholds=g["conditional_compensatory_pollination_thresholds"]
+        self.assertEqual(len(thresholds),4)
+        t=next(row for row in thresholds
+               if row["hypothetical_original_dark_fruit_infection_probability"]==.10)
+        OR=math.exp(1.9)
+        self.assertAlmostEqual(
+            t["minimum_adjacent_vs_dark_capsule_formation_probability_ratio_for_no_uninfected_capsule_loss"],
+            1+.1*(OR-1))
+        self.assertAlmostEqual(
+            t["model_constrained_adjacent_fruit_infection_probability"],
+            OR*.1/(.9+OR*.1))
+        self.assertAlmostEqual(
+            t["maximum_original_dark_capsule_formation_probability_where_full_rescue_is_even_possible"],
+            1/(1+.1*(OR-1)))
+        self.assertTrue(all(row["NOT_an_observed_ALAN_pollination_effect"] for row in thresholds))
+        self.assertTrue(all(row["baseline_infection_hypothetical_not_from_Giavi_original_samples"] for row in thresholds))
+
         self.assertFalse(d["primary_reproductive_effect_random_effects_meta_fitted"])
 
     def test_Wilson_skyglow_not_randomized_lamp_or_original_effect_SE(self):
