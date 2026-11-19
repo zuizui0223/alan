@@ -1,0 +1,112 @@
+{
+  "schema": "alan_penryn54_original_three_publication_source_ledger_v1",
+  "physical_experiment_id": "Penryn_54_trough_2012_2016",
+  "experimental_design": {
+    "location": "University of Exeter Penryn Campus, Cornwall, United Kingdom",
+    "physical_mesocosms": 54,
+    "light_arms": [
+      "unlit control",
+      "amber (low-pressure sodium-like)",
+      "cool-white LED"
+    ],
+    "trophic_arms": [
+      "plants only",
+      "plants + aphids and slugs",
+      "plants + aphids and slugs + predators"
+    ],
+    "n_independent_mesocosms_per_factorial_cell": 6,
+    "n_factorial_cells": 9,
+    "ground_light_lux_approx": 10,
+    "plants_per_mesocosm_initial": 72,
+    "original_plant_species": 18,
+    "predator_additions": [
+      "Pterostichus melanarius",
+      "Adalia bipunctata"
+    ],
+    "herbivores": [
+      "Acyrthosiphon pisum",
+      "Deroceras reticulatum"
+    ],
+    "study_first_year": 2012,
+    "study_last_year": 2016,
+    "not_same_as_Lizard_30_plot_experiment": true
+  },
+  "published_programme_outputs": [
+    {
+      "doi": "10.1098/rstb.2014.0131",
+      "paper_year": 2015,
+      "stage": "Lotus pedunculatus flower resource and specialist pea aphid availability",
+      "source_type": "single original experimental programme, early results",
+      "original_author_reported": "amber reduces host-plant flower availability and aphid populations; not actual predation rate",
+      "raw_original_plot_data_source_recovered": false
+    },
+    {
+      "doi": "10.1111/1365-2664.13240",
+      "paper_year": 2018,
+      "stage": "experimental light x trophic complexity effects on aphids, slugs, legume resources",
+      "published_directional_effects": [
+        {
+          "original_endpoint": "Deroceras reticulatum abundance",
+          "exposure": "white light vs unlit, predators present",
+          "author_approx_reduction_pct": 55,
+          "descriptive_relative_abundance": 0.45,
+          "original_beta_SE_unverified": true
+        },
+        {
+          "original_endpoint": "Acyrthosiphon pisum abundance",
+          "exposure": "amber light vs unlit",
+          "author_approx_reduction_pct": 17,
+          "descriptive_relative_abundance": 0.83,
+          "original_beta_SE_unverified": true
+        }
+      ],
+      "original_source_repository": "https://doi.org/10.5061/dryad.8217n76",
+      "no_actual_individual_predation_events_measured": true
+    },
+    {
+      "doi": "10.1002/ece3.9157",
+      "paper_year": 2022,
+      "stage": "plant biomass and foliar elemental content after five years",
+      "published_author_reported_tests": [
+        {
+          "original_endpoint": "Lotus pedunculatus biomass",
+          "contrast": "cool-white LED vs unlit",
+          "Tukey_p": 0.0466,
+          "source_exact_mean_SE_unverified": true
+        },
+        {
+          "original_endpoint": "Holcus lanatus shoot-to-root ratio",
+          "contrast": "cool-white LED vs unlit under herbivore addition",
+          "Tukey_p": 0.027,
+          "source_exact_mean_SE_unverified": true
+        },
+        {
+          "original_endpoint": "Lotus corniculatus foliar nitrogen",
+          "contrast": "cool-white LED vs unlit under herbivore addition",
+          "Tukey_p": 0.025,
+          "source_exact_mean_SE_unverified": true
+        },
+        {
+          "original_endpoint": "whole-community biomass",
+          "contrast": "lighting main effect",
+          "author_conclusion": "not resolved"
+        }
+      ],
+      "original_source_repository": "https://doi.org/10.6084/m9.figshare.20304039",
+      "source_original_group_sampling_not_merged_with_prior_papers": true
+    }
+  ],
+  "explicit_model_constraints": {
+    "same_original_54_troughs_and_light_conditions_across_three_papers": true,
+    "independent_original_lighting_programmes": 1,
+    "not_three_independent_ALAN_manipulations": true,
+    "white_light_slug_suppression_requires_predator_treatment": true,
+    "amber_aphid_effect_may_be_resource_mediated": true,
+    "fewer_slugs_does_not_imply_higher_net_plant_fitness": true,
+    "source_original_kill_or_predation_per_individual_unmeasured": true,
+    "outcome_is_plant_biomass_not_seed_or_fruit_fitness": true,
+    "original_plot_id_crosspaper_data_join_not_verified": true,
+    "source_original_light_x_predator_effect_beta_SE_not_yet_extracted": true,
+    "original_author_reports_conditional_effect_not_fitted_new_effect": true
+  }
+}
