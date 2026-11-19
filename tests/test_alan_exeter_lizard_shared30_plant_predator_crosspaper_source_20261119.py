@@ -43,7 +43,7 @@ class SharedThirtyLightPlotsTests(unittest.TestCase):
     def test_source_mutations_and_false_joint_fits_are_rejected(self):
         r=copy.deepcopy(self.registry)
         r["site"]["original_independently_randomized_light_plots"]=54
-        with self.assertRaisesRegex(ValueError,"30"):
+        with self.assertRaisesRegex(ValueError,"physical light-unit count"):
             validate(r)
         r=copy.deepcopy(self.registry)
         r["physical_treatment_arms"][2]["Davies2017"]="LIW"
@@ -75,7 +75,7 @@ class SharedThirtyLightPlotsTests(unittest.TestCase):
     def test_source_access_status_does_not_claim_plot_level_join(self):
         def reader(url):
             if url.endswith("/10871/27138"):
-                return b"<a href='/repository/bitstream/10871/27138/original.xlsx'>Dataset</a>",url,"text/html"
+                return b"<a href='/repository/bitstream/10871/27138/original.xlsx'>Dataset</a>","https://ore.exeter.ac.uk/repository/handle/10871/27138","text/html"
             raise urllib.error.HTTPError(url,404,"not found",None,None)
         d=source_scan(reader=reader)
         self.assertEqual(d["physical_independently_assigned_light_plots"],30)
