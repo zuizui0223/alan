@@ -1,0 +1,57 @@
+name: ALAN stage A riparian vs terrestrial independent physical programmes and process gate
+
+on:
+  push:
+    branches:
+      - analysis/alan-three-stage-prisma-meta-protocol-20261119
+    paths:
+      - config/alan_stageA_water_land_process_specific_primary_gate_20261119.json
+      - scripts/analysis/alan_stageA_wetland_land_process_source_validity_20261119.py
+      - tests/test_alan_stageA_wetland_land_process_source_validity_20261119.py
+      - .github/workflows/alan-stageA-waterland-source-independent-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  true-source-wetland-versus-land-stageA-physical-unit-guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test 6 physical experimental programmes, 7 papers and 1 lit/1 dark repeated water site
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_stageA_wetland_land_process_source_validity_20261119.py -v
+      - name: Quantify only audited published source ratios and site types
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_waterland_stageA_original_sources
+          python -m scripts.analysis.alan_stageA_wetland_land_process_source_validity_20261119 \
+            --out /tmp/alan_waterland_stageA_original_sources/stageA_waterland_source_process_without_pseudo_meta.json
+      - name: Refuse unsupported hydrological habitat effect and 12-lamp pseudoreplication
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_waterland_stageA_original_sources/stageA_waterland_source_process_without_pseudo_meta.json'))
+          assert d['schema']=='alan_20261119_water_land_six_source_programmes_distinct_process_no_meta_v1'
+          assert d['targeted_original_programme_k']==6
+          assert d['targeted_publication_n']==7
+          assert d['original_programme_habitat_k_not_a_meta_denominator']['freshwater_riparian']==2
+          assert abs(d['Westhavelland_2014_Diptera_emergence_CPUE_lit_dark_descriptive_mean_ratio']-3.72/7.84)<1e-12
+          assert not d['independent_A_wetland_by_terrestrial_meta_moderator_fit']
+          assert d['study_targeted_not_PRISMA_complete']
+          assert d['no_meta_pooled_mean_CI_or_pvalue']
+          print('ALAN_STAGE_A_TARGETED_WATER_LAND_ORIGINAL_PHYSICAL_EXPERIMENT_PROCESS_GATE_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-StageA-six-original-programmes-waterland-drift-emergence-predator-gates
+          path: /tmp/alan_waterland_stageA_original_sources/stageA_waterland_source_process_without_pseudo_meta.json
+          retention-days: 90
+          if-no-files-found: error
