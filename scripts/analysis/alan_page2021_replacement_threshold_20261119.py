@@ -63,6 +63,15 @@ def calculate(visits, efficiency):
     if impossible:
         # Equal-count replacement cannot deliver any pollen via remaining taxa.
         retained=0.
+    # Best-case upper envelope: every lost visit goes to the single remaining
+    # taxon with highest measured q. This is a bound, not observed choice.
+    best_q=max(q[i] for i in range(len(q)) if i!=j)
+    best_retained=(other_p+v[j]*best_q)/total_p
+    best_case_failure=q[j]>best_q+TOL*max(q[j],best_q,1.)
+    require(best_retained>=-TOL and math.isfinite(best_retained),
+            "invalid best-case bound")
+    require(retained<=best_retained+1e-8,
+            "proportional replacement exceeded optimal replacement bound")
     require(retained>=-TOL and math.isfinite(retained), "invalid scenario retained")
     return {
       "taxa":len(v),
@@ -75,6 +84,11 @@ def calculate(visits, efficiency):
       "requires_infinite_or_unavailable_visits":impossible,
       "required_new_visits_per_lost_visit":multiplier,
       "equal_visits_restored_pollen_ratio":retained,
+      "even_best_remaining_taxon_fails_equal_visit_compensation":best_case_failure,
+      "best_case_restored_pollen_ratio":best_retained,
+      "best_case_functional_shortfall":max(0.,1-best_retained),
+      "proportional_fails_but_best_case_could_succeed":
+          (retained<1-TOL and best_retained>=1-TOL),
       "equal_visits_functional_shortfall":max(0.,1-retained),
       "equal_visits_functional_gain":max(0.,retained-1),
       "conditional_half_top_visits_shift_pollen_ratio":(1+retained)/2,
@@ -139,6 +153,17 @@ def summary(rows):
           mean([int(x["needs_tenfold_lost_visits"]) for x in rows]),
        "unavailable_positive_q_remaining_networks":
           sum(x["requires_infinite_or_unavailable_visits"] for x in rows),
+       "even_optimal_equal_count_replacement_fails_fraction":
+          mean([int(x["even_best_remaining_taxon_fails_equal_visit_compensation"])
+                for x in rows]),
+       "even_optimal_equal_count_replacement_fails_count":
+          sum(x["even_best_remaining_taxon_fails_equal_visit_compensation"]
+              for x in rows),
+       "proportional_fails_but_optimal_could_succeed_fraction":
+          mean([int(x["proportional_fails_but_best_case_could_succeed"])
+                for x in rows]),
+       "best_case_pollen_shortfall_mean":
+          mean([x["best_case_functional_shortfall"] for x in rows]),
        "required_visit_multiplier_median_when_finite":median(numeric),
        "required_visit_multiplier_75pct_when_finite":(
           float(sorted(numeric)[int(.75*(len(numeric)-1))]) if numeric else None),
@@ -155,6 +180,9 @@ def summary(rows):
     }
 
 BOOT_KEYS=("most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction",
+           "even_optimal_equal_count_replacement_fails_fraction",
+           "proportional_fails_but_optimal_could_succeed_fraction",
+           "best_case_pollen_shortfall_mean",
            "requires_twice_visit_replacement_fraction",
            "requires_tenfold_visit_replacement_fraction",
            "relative_pollen_shortfall_after_full_numerical_replacement_mean",
