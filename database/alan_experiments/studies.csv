@@ -1,5 +1,5 @@
 study_id,doi,programme_id,status,source_basis
-Parkinson2020,10.1371/journal.pone.0240138,Parkinson2016,pilot_extracted_not_independently_verified,primary paper and author original CSV
+Parkinson2020,10.1371/journal.pone.0240138,Parkinson2016,computational_reextraction_verified_human_review_and_adjudication_pending,primary paper and author original CSV
 Anic2022,10.1002/ece3.9157,Penryn2012_2016,extracted_pending_adjudication,primary paper and Figshare original printed data table
 Giavi2021,10.1038/s41467-021-22011-8,KnopGiavi_overlap_unresolved,extracted_pending_adjudication,primary paper and Zenodo original RData
 Lu2026,10.1002/ece3.74368,Lu2024_Gannan_companion_overlap_unresolved,daytime_extracted_night_holdout,primary paper and publisher original workbook

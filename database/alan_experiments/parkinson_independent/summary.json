@@ -1,0 +1,42 @@
+{
+  "all_effect_fields_pass": true,
+  "all_36_covariances_pass": true,
+  "max_effect_absolute_difference": 3.552713678800501e-15,
+  "max_covariance_absolute_difference": 2.7755575615628914e-17,
+  "origin_family_sum_discrepancies": [
+    {
+      "mesocosm_id": "5",
+      "aquatic_as_reported": 12,
+      "aquatic_family_sum": 14,
+      "terrestrial_as_reported": 5,
+      "terrestrial_family_sum": 5
+    },
+    {
+      "mesocosm_id": "7",
+      "aquatic_as_reported": 172,
+      "aquatic_family_sum": 170,
+      "terrestrial_as_reported": 7,
+      "terrestrial_family_sum": 7
+    },
+    {
+      "mesocosm_id": "8",
+      "aquatic_as_reported": 20,
+      "aquatic_family_sum": 19,
+      "terrestrial_as_reported": 7,
+      "terrestrial_family_sum": 7
+    },
+    {
+      "mesocosm_id": "18",
+      "aquatic_as_reported": 183,
+      "aquatic_family_sum": 182,
+      "terrestrial_as_reported": 3,
+      "terrestrial_family_sum": 3
+    }
+  ],
+  "input_sha256": {
+    "Aquatic and Terrestrial Invertebrate Inputs.csv": "1988b3860a46ff25fd558fc2215b2b8424a119995a6af72a26db94f9b25fe5a6",
+    "Spider and Prey Insect Abundance.csv": "b5f5f9dff419f71597759fdbf185a6e6d509639d605fcd42ab3ff0508fdfff9a",
+    "Spider Body Mass.csv": "9ad98e27a096c47cd0aba53779c9abbf3e28b5f83ece1e3bad11f22f82b9dd2e"
+  },
+  "verification_type": "independent_agent_computational_reextraction; not human review"
+}

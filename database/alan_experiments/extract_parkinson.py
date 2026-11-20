@@ -60,7 +60,7 @@ def main():
             independent_unit='mesocosm',dispersion_unit='mesocosm',mean_lit=lit.mean(),mean_dark=dark.mean(),
             dispersion_type='SD',dispersion_lit=lit.std(ddof=1),dispersion_dark=dark.std(ddof=1),n_lit=10,n_dark=10,
             ci_level='',ci_distribution='',ci_df_lit='',ci_df_dark='',source_location='raw_data: source_manifest.csv',
-            digitized=0,extraction_date='2026-11-20',verification_status='script_reconstruction; independent re-extraction pending',
+            digitized=0,extraction_date='2026-11-20',verification_status='independent_agent_computational_reextraction_verified; human_review_pending',
             note='same 20 units across endpoints; fish assignment unresolved; no plant outcome'))
     write('effects.csv', rows)
     # Multivariate delta covariance uses SAME units for both outcomes within each arm.
