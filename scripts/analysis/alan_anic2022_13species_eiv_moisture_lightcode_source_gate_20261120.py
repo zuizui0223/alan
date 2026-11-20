@@ -87,7 +87,7 @@ def corr(x,y):
     stat=spearmanr(x,y).statistic
     return float(stat) if math.isfinite(stat) else None
 
-def phenotype_modulation(rows):
+def phenotype_modulation(rows,reps=REPS):
     matched=[z for z in rows if z["MOIST_exact"] is not None]
     contrasts={}
     for a,b in PAIRS:
@@ -132,13 +132,13 @@ def phenotype_modulation(rows):
     rng=random.Random(SEED)
     stats=[]
     stats_pair={c:[] for c in effect}
-    for _ in range(REPS):
+    for _ in range(reps):
         shuffled=values.copy();rng.shuffle(shuffled)
         rs={c:corr(shuffled,y) for c,y in effect.items()}
         require(all(v is not None for v in rs.values()),"permutation invalid")
         stats.append(max(abs(v) for v in rs.values()))
         for c,v in rs.items():stats_pair[c].append(abs(v))
-    adj={c:(1+sum(v>=abs(rho)-1e-12 for v in stats))/(REPS+1)
+    adj={c:(1+sum(v>=abs(rho)-1e-12 for v in stats))/(reps+1)
         for c,rho in observed.items()}
     raw={c:(1+sum(v>=abs(rho)-1e-12 for v in stats_pair[c]))/(REPS+1)
         for c,rho in observed.items()}
@@ -150,7 +150,7 @@ def phenotype_modulation(rows):
       "within_same_54_trough_species_covariance_unmodeled":True,
       "partial_or_phylogenetic_moisture_effect_not_estimated":True,
       "null_species_label_exchangeability_assumption_exploratory":True,
-      "permutation_replicates":REPS,
+      "permutation_replicates":reps,
       "source_species_balanced_Spearman":observed,
       "nominal_species_label_permutation_p":raw,
       "max3_absolute_rho_adjusted_permutation_p":adj,
