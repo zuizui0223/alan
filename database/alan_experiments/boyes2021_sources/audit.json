@@ -1,0 +1,22 @@
+{
+  "data_doi": "10.5285/7e7ce7c1-aa16-484f-86b1-90c5b088a64c",
+  "article_doi": "10.1126/sciadv.abi8322",
+  "source_sha256": "1502c5bb0f25487037db1e91c127fc1be754818aff21882748b11452ae2eab5a",
+  "transects": 27,
+  "sites": 2,
+  "sampling_nights": 9,
+  "formula": "Larvae ~ C(treatment, Treatment(reference=\"Unlit\")) + C(Date)",
+  "raw_years": [
+    2019
+  ],
+  "article_methods_year": 2020,
+  "year_discrepancy_unresolved": true,
+  "pearson_dispersion": 0.6335031595220811,
+  "fitting": "date fixed effects; not an exact replay of original random-intercept GLMM",
+  "cluster_interval": "small-sample-corrected date sandwich SE with t8 interval; nine clusters only",
+  "statsmodels": "0.14.6",
+  "scipy": "1.15.3",
+  "independent_experiments": 1,
+  "meta_effects_added": 0,
+  "limitation": "Counts measure short-term sweep-net availability/activity, not population mortality, consumption, or pollination; same rig per light type may limit fixture generalization."
+}

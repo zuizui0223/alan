@@ -1,0 +1,5 @@
+model,treatment,reference,log_count_ratio,SE,count_ratio,ci_lower,ci_upper,critical_value,study_id,endpoint,pooling_status
+poisson_model,HPS,Unlit,-0.10008345855700772,0.18280275955585398,0.904761904761882,0.6323132976342748,1.294602070478387,1.959963984540054,Boyes2021,short_term_sweep_net_count,not_adopted_into_effect_catalogue
+poisson_model,LED,Unlit,-0.44043957150826785,0.2048633704300146,0.6437533832343909,0.430863303989018,0.9618327079353396,1.959963984540054,Boyes2021,short_term_sweep_net_count,not_adopted_into_effect_catalogue
+date_cluster_t8,HPS,Unlit,-0.10008345855700772,0.14253938410370015,0.904761904761882,0.6513032862728219,1.2568554797149465,2.306004135204166,Boyes2021,short_term_sweep_net_count,not_adopted_into_effect_catalogue
+date_cluster_t8,LED,Unlit,-0.44043957150826785,0.24074703918472287,0.6437533832343909,0.36950048005008657,1.121563951336543,2.306004135204166,Boyes2021,short_term_sweep_net_count,not_adopted_into_effect_catalogue
