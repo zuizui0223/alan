@@ -1,0 +1,13 @@
+{
+  "record_id": 14516568,
+  "archive_checksum_verified": true,
+  "archive_selected_entries_crc_verified": true,
+  "spider_samples": 48,
+  "spider_flumes": 16,
+  "crayfish_samples": 48,
+  "crayfish_flumes": 8,
+  "main_catalogue_effects_added": 0,
+  "derived_week4_effects": 2,
+  "mixing_models_reproduced": false,
+  "companion_overlap": "Manfrin2025 check shared flumes before pooling"
+}

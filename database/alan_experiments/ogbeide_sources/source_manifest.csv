@@ -1,0 +1,3 @@
+file,sha256,source
+emergence.rds,289e9dc874724ca765aa2e8314f975ef7cf7b2cb688bdb62e8f1be9bc50d1776,Zenodo archive
+emergence_export.csv,520c0ff129d68992b7e18f8c51ba54bec63bb13ed4c438f569c903c9e4c46d46,R readRDS export of original archive object

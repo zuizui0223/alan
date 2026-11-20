@@ -1,0 +1,16 @@
+{
+  "doi": "10.1111/1365-2435.70335",
+  "data_doi": "10.5281/zenodo.14516568",
+  "source_rows": 192,
+  "independent_flumes": 16,
+  "measured_weeks": [
+    "Week 1",
+    "Week 4"
+  ],
+  "final_experiment_week": 6,
+  "light_by_crayfish_lnRR_difference": 0.7257590942802092,
+  "interaction_sampling_variance": 0.3983178944958705,
+  "catalogue_included": false,
+  "pooled": false,
+  "warning": "Source trap_day equals 4 for both d1 and d2. Do not infer calendar coverage beyond supplied sampling periods. Means use equal source effort; 6 trap observations are subsamples per flume. No inference about adult moth predation or pollination."
+}

@@ -1,8 +1,8 @@
 {
   "index_records": 521,
-  "resolved_doi_records": 500,
+  "resolved_doi_records": 501,
   "doi_filled_from_acquired_article": 1,
-  "doi_filled_from_source_adjudication": 1,
+  "doi_filled_from_source_adjudication": 2,
   "distinct_report_keys": 519,
   "same_report_duplicate_records": 2,
   "independent_experiments": "not established",

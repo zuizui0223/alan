@@ -1,0 +1,8 @@
+filename,size,md5,url,sha256
+TEF_spider.csv,213,md5:961be862c321a4b2a5214129d70764af,https://zenodo.org/api/records/14516568/files/TEF_spider.csv/content,f2d7d33c382d6b1d15be6094a94fb7224b3ba40bbfe1d2ed4cfdba03cbf363ae
+source_crayfish.csv,14520,md5:a17f1910e71ede544b88242efdedd8bc,https://zenodo.org/api/records/14516568/files/source_crayfish.csv/content,3432172684f9f8b81751021134edd3a7288c71f25670d50420883983438565d2
+ALAN_crayfish_data_code.zip,322650517,md5:b574104ef35530a15d4954a8fa3d3204,https://zenodo.org/api/records/14516568/files/ALAN_crayfish_data_code.zip/content,0cfe0d006d86537d8700eb003870fb1dd26ea95a8075b1a39798cb4f18467b23
+TEF_crayfish.csv,193,md5:796520c909daabf75b2295cc2346d6dc,https://zenodo.org/api/records/14516568/files/TEF_crayfish.csv/content,acd967f4847622d2c9255e68f24da9ac915bb02096f9a1c1202aedfc3574c180
+source_spider.csv,12917,md5:eb7562c8b3c95a796cbf29f3d89d452d,https://zenodo.org/api/records/14516568/files/source_spider.csv/content,422582399d2918c7b0e85f46374775dc7e7eef97d332011a9260ee975c06d923
+mixture_crayfish.csv,5309,md5:c78a5bbeaf325445b743b29c81249a5f,https://zenodo.org/api/records/14516568/files/mixture_crayfish.csv/content,aac315b17ad1a655481ee5652ba4c70121a3b2afecec3be038fcd7449a7b162d
+mixture_spider.csv,3981,md5:2479752fbb346a85d1b03879e492f515,https://zenodo.org/api/records/14516568/files/mixture_spider.csv/content,492235ddff4d7678d60a10ac82bbb530e82480ff48338ef835eb823094fb21f5
