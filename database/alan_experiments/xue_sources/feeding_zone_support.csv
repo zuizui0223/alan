@@ -1,0 +1,84 @@
+assay,Herbivore,plant,Light,Zone,assigned,observed,mean_signed_difference,negative
+choice,Invasive snail,Hydrilla_verticillata,ALAN,1,3,3,-0.0086666666666666,1
+choice,Invasive snail,Hydrilla_verticillata,ALAN,2,1,1,0.12000000000000005,0
+choice,Invasive snail,Hydrilla_verticillata,ALAN,3,1,1,0.06600000000000006,0
+choice,Invasive snail,Hydrilla_verticillata,No ALAN,4,3,3,0.03266666666666673,1
+choice,Invasive snail,Hydrilla_verticillata,No ALAN,6,2,2,0.19550000000000006,0
+choice,Invasive snail,Myriophyllum_aquaticum,ALAN,1,3,3,-0.26366666666666666,3
+choice,Invasive snail,Myriophyllum_aquaticum,ALAN,2,1,1,-0.639,1
+choice,Invasive snail,Myriophyllum_aquaticum,ALAN,3,1,1,0.010999999999999899,0
+choice,Invasive snail,Myriophyllum_aquaticum,No ALAN,4,3,3,-0.5636666666666666,3
+choice,Invasive snail,Myriophyllum_aquaticum,No ALAN,6,2,2,-0.36250000000000004,2
+choice,Invasive snail,Myriophyllum_spicatum,ALAN,1,3,3,0.09966666666666667,0
+choice,Invasive snail,Myriophyllum_spicatum,ALAN,2,1,1,0.211,0
+choice,Invasive snail,Myriophyllum_spicatum,ALAN,3,1,1,0.136,0
+choice,Invasive snail,Myriophyllum_spicatum,No ALAN,4,3,2,0.1915,0
+choice,Invasive snail,Myriophyllum_spicatum,No ALAN,6,2,2,0.2295,0
+choice,Invasive snail,Vallisneria_natans,ALAN,1,3,2,0.24150000000000005,0
+choice,Invasive snail,Vallisneria_natans,ALAN,2,1,1,0.24000000000000002,0
+choice,Invasive snail,Vallisneria_natans,ALAN,3,1,1,0.2,0
+choice,Invasive snail,Vallisneria_natans,No ALAN,4,3,3,0.011666666666666659,1
+choice,Invasive snail,Vallisneria_natans,No ALAN,6,2,2,0.21300000000000002,0
+choice,Native snail,Hydrilla_verticillata,ALAN,1,1,1,-0.061999999999999944,1
+choice,Native snail,Hydrilla_verticillata,ALAN,2,2,2,-0.17999999999999994,2
+choice,Native snail,Hydrilla_verticillata,ALAN,3,2,2,-0.02949999999999997,1
+choice,Native snail,Hydrilla_verticillata,No ALAN,5,2,2,0.05350000000000005,1
+choice,Native snail,Hydrilla_verticillata,No ALAN,6,3,3,0.16500000000000006,0
+choice,Native snail,Myriophyllum_aquaticum,ALAN,1,1,1,-0.2450000000000001,1
+choice,Native snail,Myriophyllum_aquaticum,ALAN,2,2,2,-0.36450000000000005,2
+choice,Native snail,Myriophyllum_aquaticum,ALAN,3,2,2,-0.14100000000000013,2
+choice,Native snail,Myriophyllum_aquaticum,No ALAN,5,2,2,-1.338,2
+choice,Native snail,Myriophyllum_aquaticum,No ALAN,6,3,3,-0.6993333333333335,3
+choice,Native snail,Myriophyllum_spicatum,ALAN,1,1,1,0.10699999999999998,0
+choice,Native snail,Myriophyllum_spicatum,ALAN,2,2,2,0.07099999999999998,1
+choice,Native snail,Myriophyllum_spicatum,ALAN,3,2,2,0.0595,0
+choice,Native snail,Myriophyllum_spicatum,No ALAN,5,2,2,0.027999999999999997,1
+choice,Native snail,Myriophyllum_spicatum,No ALAN,6,3,3,0.10666666666666667,0
+choice,Native snail,Vallisneria_natans,ALAN,1,1,1,-0.21900000000000003,1
+choice,Native snail,Vallisneria_natans,ALAN,2,2,2,0.029500000000000026,1
+choice,Native snail,Vallisneria_natans,ALAN,3,2,2,-0.007000000000000006,2
+choice,Native snail,Vallisneria_natans,No ALAN,5,2,2,-0.11199999999999999,2
+choice,Native snail,Vallisneria_natans,No ALAN,6,3,3,0.03800000000000001,1
+no_choice,Invasive snail,Hydrilla_verticillata,ALAN,1,2,2,0.16650000000000006,0
+no_choice,Invasive snail,Hydrilla_verticillata,ALAN,2,1,1,0.25000000000000006,0
+no_choice,Invasive snail,Hydrilla_verticillata,ALAN,3,2,2,0.07450000000000004,0
+no_choice,Invasive snail,Hydrilla_verticillata,No ALAN,4,2,2,0.18800000000000006,0
+no_choice,Invasive snail,Hydrilla_verticillata,No ALAN,5,1,1,0.23400000000000004,0
+no_choice,Invasive snail,Hydrilla_verticillata,No ALAN,6,2,2,0.38850000000000007,0
+no_choice,Invasive snail,Myriophyllum_aquaticum,ALAN,1,2,2,-0.258,2
+no_choice,Invasive snail,Myriophyllum_aquaticum,ALAN,3,3,3,-0.437,3
+no_choice,Invasive snail,Myriophyllum_aquaticum,No ALAN,4,2,2,-0.44600000000000006,2
+no_choice,Invasive snail,Myriophyllum_aquaticum,No ALAN,5,1,1,-0.937,1
+no_choice,Invasive snail,Myriophyllum_aquaticum,No ALAN,6,2,2,-0.5355000000000001,2
+no_choice,Invasive snail,Myriophyllum_spicatum,ALAN,1,1,1,0.08500000000000002,0
+no_choice,Invasive snail,Myriophyllum_spicatum,ALAN,2,2,2,0.07449999999999998,1
+no_choice,Invasive snail,Myriophyllum_spicatum,ALAN,3,2,2,0.1255,0
+no_choice,Invasive snail,Myriophyllum_spicatum,No ALAN,4,2,2,0.218,0
+no_choice,Invasive snail,Myriophyllum_spicatum,No ALAN,5,2,2,0.0965,0
+no_choice,Invasive snail,Myriophyllum_spicatum,No ALAN,6,1,1,0.23099999999999998,0
+no_choice,Invasive snail,Vallisneria_natans,ALAN,1,1,1,0.33,0
+no_choice,Invasive snail,Vallisneria_natans,ALAN,2,1,1,0.41000000000000003,0
+no_choice,Invasive snail,Vallisneria_natans,ALAN,3,3,3,0.28,0
+no_choice,Invasive snail,Vallisneria_natans,No ALAN,4,2,2,0.12250000000000003,0
+no_choice,Invasive snail,Vallisneria_natans,No ALAN,6,3,3,0.36033333333333334,0
+no_choice,Native snail,Hydrilla_verticillata,ALAN,1,1,1,-0.242,1
+no_choice,Native snail,Hydrilla_verticillata,ALAN,2,3,3,-0.07933333333333326,3
+no_choice,Native snail,Hydrilla_verticillata,ALAN,3,1,1,-0.36,1
+no_choice,Native snail,Hydrilla_verticillata,No ALAN,4,1,1,-0.2649999999999999,1
+no_choice,Native snail,Hydrilla_verticillata,No ALAN,5,3,3,-0.18099999999999994,3
+no_choice,Native snail,Hydrilla_verticillata,No ALAN,6,1,1,-0.017999999999999905,1
+no_choice,Native snail,Myriophyllum_aquaticum,ALAN,1,1,1,-0.371,1
+no_choice,Native snail,Myriophyllum_aquaticum,ALAN,2,1,1,-0.97,1
+no_choice,Native snail,Myriophyllum_aquaticum,ALAN,3,3,3,-0.8303333333333333,3
+no_choice,Native snail,Myriophyllum_aquaticum,No ALAN,4,1,1,-1.086,1
+no_choice,Native snail,Myriophyllum_aquaticum,No ALAN,5,2,2,-0.782,2
+no_choice,Native snail,Myriophyllum_aquaticum,No ALAN,6,2,1,-0.41000000000000014,1
+no_choice,Native snail,Myriophyllum_spicatum,ALAN,1,3,3,-0.15966666666666668,3
+no_choice,Native snail,Myriophyllum_spicatum,ALAN,2,2,2,-0.23500000000000004,2
+no_choice,Native snail,Myriophyllum_spicatum,No ALAN,4,2,2,0.014500000000000013,1
+no_choice,Native snail,Myriophyllum_spicatum,No ALAN,5,2,2,-0.1785,2
+no_choice,Native snail,Myriophyllum_spicatum,No ALAN,6,1,1,-0.302,1
+no_choice,Native snail,Vallisneria_natans,ALAN,1,2,2,-0.15249999999999997,2
+no_choice,Native snail,Vallisneria_natans,ALAN,2,3,3,-0.018333333333333313,1
+no_choice,Native snail,Vallisneria_natans,No ALAN,4,2,2,-0.07550000000000001,2
+no_choice,Native snail,Vallisneria_natans,No ALAN,5,3,3,-0.11499999999999998,3

@@ -1,0 +1,20 @@
+{
+  "buckets": 100,
+  "structural_unassigned_cells": 240,
+  "assigned_plant_measurements": 160,
+  "observed_measurements": 157,
+  "missing_assigned_measurements": 3,
+  "negative_signed_differences": 83,
+  "light_zones": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "min_observed_zones_per_arm": 2,
+  "max_observed_zones_per_arm": 3,
+  "effects_added": 0,
+  "reason": "Signed initial-minus-residual mass; no clipping, pseudocount or lnRR. Uneven zone support and baseline uncertainty require outcome-specific extraction."
+}

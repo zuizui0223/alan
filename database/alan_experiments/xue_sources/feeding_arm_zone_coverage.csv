@@ -1,0 +1,33 @@
+assay,Herbivore,plant,Light,observed_zones,assigned_zones
+choice,Invasive snail,Hydrilla_verticillata,ALAN,3,3
+choice,Invasive snail,Hydrilla_verticillata,No ALAN,2,2
+choice,Invasive snail,Myriophyllum_aquaticum,ALAN,3,3
+choice,Invasive snail,Myriophyllum_aquaticum,No ALAN,2,2
+choice,Invasive snail,Myriophyllum_spicatum,ALAN,3,3
+choice,Invasive snail,Myriophyllum_spicatum,No ALAN,2,2
+choice,Invasive snail,Vallisneria_natans,ALAN,3,3
+choice,Invasive snail,Vallisneria_natans,No ALAN,2,2
+choice,Native snail,Hydrilla_verticillata,ALAN,3,3
+choice,Native snail,Hydrilla_verticillata,No ALAN,2,2
+choice,Native snail,Myriophyllum_aquaticum,ALAN,3,3
+choice,Native snail,Myriophyllum_aquaticum,No ALAN,2,2
+choice,Native snail,Myriophyllum_spicatum,ALAN,3,3
+choice,Native snail,Myriophyllum_spicatum,No ALAN,2,2
+choice,Native snail,Vallisneria_natans,ALAN,3,3
+choice,Native snail,Vallisneria_natans,No ALAN,2,2
+no_choice,Invasive snail,Hydrilla_verticillata,ALAN,3,3
+no_choice,Invasive snail,Hydrilla_verticillata,No ALAN,3,3
+no_choice,Invasive snail,Myriophyllum_aquaticum,ALAN,2,2
+no_choice,Invasive snail,Myriophyllum_aquaticum,No ALAN,3,3
+no_choice,Invasive snail,Myriophyllum_spicatum,ALAN,3,3
+no_choice,Invasive snail,Myriophyllum_spicatum,No ALAN,3,3
+no_choice,Invasive snail,Vallisneria_natans,ALAN,3,3
+no_choice,Invasive snail,Vallisneria_natans,No ALAN,2,2
+no_choice,Native snail,Hydrilla_verticillata,ALAN,3,3
+no_choice,Native snail,Hydrilla_verticillata,No ALAN,3,3
+no_choice,Native snail,Myriophyllum_aquaticum,ALAN,3,3
+no_choice,Native snail,Myriophyllum_aquaticum,No ALAN,3,3
+no_choice,Native snail,Myriophyllum_spicatum,ALAN,2,2
+no_choice,Native snail,Myriophyllum_spicatum,No ALAN,3,3
+no_choice,Native snail,Vallisneria_natans,ALAN,2,2
+no_choice,Native snail,Vallisneria_natans,No ALAN,2,2

@@ -60,6 +60,13 @@ for key, g in identity.groupby('report_key', sort=False):
                      decision_history=';'.join(sorted(set(e['decisions'])))))
 out = pd.DataFrame(rows)
 assert out.report_key.is_unique and out.search_records.sum() == len(identity)
+versions = pd.read_csv(S / 'publication_version_links.csv').fillna('')
+assert versions.earlier_doi.is_unique
+assert not (set(versions.earlier_doi) & set(versions.final_doi)), 'Resolve chained/cyclic version links explicitly'
+assert set(versions.earlier_doi) | set(versions.final_doi) <= set(out.doi)
+version_keys = {'doi:' + r.earlier_doi: 'doi:' + r.final_doi for r in versions.itertuples()}
+out['publication_family_key'] = out.report_key.map(lambda key: version_keys.get(key, key))
+# Report reading remains version-specific. A link does not propagate reading or eligibility.
 out.to_csv(S / 'report_review_coverage.csv', index=False)
 pending = out[out.retained_for_fulltext & out.coverage.ne('primary_read_eligibility_not_final')]
 pending.to_csv(S / 'pending_primary_review.csv', index=False)
@@ -69,6 +76,9 @@ outside = [{'report_key': k, 'evidence_sources': ';'.join(v['sources']),
 pd.DataFrame(outside, columns=['report_key','evidence_sources','primary_read',
                              'catalogue_effects_present']).to_csv(S / 'supplementary_report_sources.csv', index=False)
 summary = dict(search_records=len(identity), unique_search_reports=len(out),
+               manually_linked_version_pairs=len(versions),
+               publication_families_after_verified_links=out.publication_family_key.nunique(),
+               retained_publication_families_after_verified_links=out.loc[out.retained_for_fulltext,'publication_family_key'].nunique(),
                retained_fulltext_reports=int(out.retained_for_fulltext.sum()),
                retained_reports_with_primary_read=int((out.retained_for_fulltext &
                    out.coverage.eq('primary_read_eligibility_not_final')).sum()),
@@ -76,6 +86,6 @@ summary = dict(search_records=len(identity), unique_search_reports=len(out),
                additional_source_reports_outside_search=len(outside),
                duplicate_incremental_batch_dois=sorted(set(batch.doi) & set(incremental.doi)),
                final_prisma=False, final_eligibility=False,
-               note='Exact report identity only; programmes may share plots. Registry-only leads do not establish fulltext reading. No effect count is inferred from review counts.')
+               note='Report counts retain distinct versions; manually verified publication families are separate and are not independent experiments. Programmes may share plots. Registry-only leads do not establish fulltext reading. No effect count is inferred from review counts.')
 (S / 'report_review_coverage_summary.json').write_text(json.dumps(summary, indent=2)+'\n', encoding='utf-8')
 print(json.dumps(summary, indent=2))

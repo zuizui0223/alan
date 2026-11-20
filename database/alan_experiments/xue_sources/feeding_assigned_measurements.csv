@@ -1,0 +1,161 @@
+ID,Zone,Light,Herbivore,offered_assemblage,signed_mass_difference,residual_mass,plant,assay,missing_observation,implied_initial_mass
+1,2,ALAN,Native snail,Vallisneria_natans,-0.14799999999999996,0.601,Vallisneria_natans,no_choice,False,0.453
+2,1,ALAN,Native snail,Vallisneria_natans,-0.25599999999999995,0.709,Vallisneria_natans,no_choice,False,0.453
+3,2,ALAN,Native snail,Vallisneria_natans,0.027000000000000024,0.426,Vallisneria_natans,no_choice,False,0.453
+4,1,ALAN,Native snail,Vallisneria_natans,-0.04899999999999999,0.502,Vallisneria_natans,no_choice,False,0.453
+5,2,ALAN,Native snail,Vallisneria_natans,0.066,0.387,Vallisneria_natans,no_choice,False,0.453
+21,3,ALAN,Native snail,Mixed,-0.0030000000000000027,0.456,Vallisneria_natans,choice,False,0.453
+22,2,ALAN,Native snail,Mixed,0.07500000000000001,0.378,Vallisneria_natans,choice,False,0.453
+23,3,ALAN,Native snail,Mixed,-0.01100000000000001,0.464,Vallisneria_natans,choice,False,0.453
+24,2,ALAN,Native snail,Mixed,-0.01599999999999996,0.469,Vallisneria_natans,choice,False,0.453
+25,1,ALAN,Native snail,Mixed,-0.21900000000000003,0.672,Vallisneria_natans,choice,False,0.453
+26,3,ALAN,Invasive snail,Vallisneria_natans,0.187,0.266,Vallisneria_natans,no_choice,False,0.453
+27,3,ALAN,Invasive snail,Vallisneria_natans,0.394,0.059,Vallisneria_natans,no_choice,False,0.453
+28,3,ALAN,Invasive snail,Vallisneria_natans,0.259,0.194,Vallisneria_natans,no_choice,False,0.453
+29,1,ALAN,Invasive snail,Vallisneria_natans,0.33,0.123,Vallisneria_natans,no_choice,False,0.453
+30,2,ALAN,Invasive snail,Vallisneria_natans,0.41000000000000003,0.043,Vallisneria_natans,no_choice,False,0.453
+46,1,ALAN,Invasive snail,Mixed,0.17100000000000004,0.282,Vallisneria_natans,choice,False,0.453
+47,2,ALAN,Invasive snail,Mixed,0.24000000000000002,0.213,Vallisneria_natans,choice,False,0.453
+48,1,ALAN,Invasive snail,Mixed,,,Vallisneria_natans,choice,True,
+49,1,ALAN,Invasive snail,Mixed,0.31200000000000006,0.141,Vallisneria_natans,choice,False,0.45300000000000007
+50,3,ALAN,Invasive snail,Mixed,0.2,0.253,Vallisneria_natans,choice,False,0.453
+51,5,No ALAN,Native snail,Vallisneria_natans,-0.16499999999999998,0.618,Vallisneria_natans,no_choice,False,0.453
+52,4,No ALAN,Native snail,Vallisneria_natans,-0.063,0.516,Vallisneria_natans,no_choice,False,0.453
+53,5,No ALAN,Native snail,Vallisneria_natans,-0.11699999999999994,0.57,Vallisneria_natans,no_choice,False,0.453
+54,5,No ALAN,Native snail,Vallisneria_natans,-0.063,0.516,Vallisneria_natans,no_choice,False,0.453
+55,4,No ALAN,Native snail,Vallisneria_natans,-0.08800000000000002,0.541,Vallisneria_natans,no_choice,False,0.453
+71,5,No ALAN,Native snail,Mixed,-0.185,0.638,Vallisneria_natans,choice,False,0.453
+72,6,No ALAN,Native snail,Mixed,-0.16699999999999998,0.62,Vallisneria_natans,choice,False,0.453
+73,6,No ALAN,Native snail,Mixed,0.173,0.28,Vallisneria_natans,choice,False,0.453
+74,5,No ALAN,Native snail,Mixed,-0.03899999999999998,0.492,Vallisneria_natans,choice,False,0.453
+75,6,No ALAN,Native snail,Mixed,0.10800000000000004,0.345,Vallisneria_natans,choice,False,0.453
+76,6,No ALAN,Invasive snail,Vallisneria_natans,0.41200000000000003,0.041,Vallisneria_natans,no_choice,False,0.453
+77,6,No ALAN,Invasive snail,Vallisneria_natans,0.33,0.123,Vallisneria_natans,no_choice,False,0.453
+78,4,No ALAN,Invasive snail,Vallisneria_natans,0.10600000000000004,0.347,Vallisneria_natans,no_choice,False,0.453
+79,6,No ALAN,Invasive snail,Vallisneria_natans,0.339,0.114,Vallisneria_natans,no_choice,False,0.453
+80,4,No ALAN,Invasive snail,Vallisneria_natans,0.139,0.314,Vallisneria_natans,no_choice,False,0.453
+96,4,No ALAN,Invasive snail,Mixed,-0.22000000000000003,0.673,Vallisneria_natans,choice,False,0.453
+97,6,No ALAN,Invasive snail,Mixed,0.14900000000000002,0.304,Vallisneria_natans,choice,False,0.453
+98,6,No ALAN,Invasive snail,Mixed,0.277,0.176,Vallisneria_natans,choice,False,0.453
+99,4,No ALAN,Invasive snail,Mixed,0.14500000000000002,0.308,Vallisneria_natans,choice,False,0.453
+100,4,No ALAN,Invasive snail,Mixed,0.10999999999999999,0.343,Vallisneria_natans,choice,False,0.453
+6,3,ALAN,Native snail,Hydrilla_verticillata,-0.36,0.922,Hydrilla_verticillata,no_choice,False,0.562
+7,2,ALAN,Native snail,Hydrilla_verticillata,-0.08699999999999997,0.649,Hydrilla_verticillata,no_choice,False,0.562
+8,2,ALAN,Native snail,Hydrilla_verticillata,-0.013999999999999901,0.576,Hydrilla_verticillata,no_choice,False,0.562
+9,1,ALAN,Native snail,Hydrilla_verticillata,-0.242,0.804,Hydrilla_verticillata,no_choice,False,0.562
+10,2,ALAN,Native snail,Hydrilla_verticillata,-0.1369999999999999,0.699,Hydrilla_verticillata,no_choice,False,0.562
+21,3,ALAN,Native snail,Mixed,0.05600000000000005,0.506,Hydrilla_verticillata,choice,False,0.562
+22,2,ALAN,Native snail,Mixed,-0.04499999999999993,0.607,Hydrilla_verticillata,choice,False,0.562
+23,3,ALAN,Native snail,Mixed,-0.11499999999999999,0.677,Hydrilla_verticillata,choice,False,0.562
+24,2,ALAN,Native snail,Mixed,-0.31499999999999995,0.877,Hydrilla_verticillata,choice,False,0.562
+25,1,ALAN,Native snail,Mixed,-0.061999999999999944,0.624,Hydrilla_verticillata,choice,False,0.562
+31,1,ALAN,Invasive snail,Hydrilla_verticillata,0.21500000000000008,0.347,Hydrilla_verticillata,no_choice,False,0.562
+32,3,ALAN,Invasive snail,Hydrilla_verticillata,0.10600000000000004,0.456,Hydrilla_verticillata,no_choice,False,0.562
+33,1,ALAN,Invasive snail,Hydrilla_verticillata,0.11800000000000005,0.444,Hydrilla_verticillata,no_choice,False,0.562
+34,2,ALAN,Invasive snail,Hydrilla_verticillata,0.25000000000000006,0.312,Hydrilla_verticillata,no_choice,False,0.562
+35,3,ALAN,Invasive snail,Hydrilla_verticillata,0.04300000000000004,0.519,Hydrilla_verticillata,no_choice,False,0.562
+46,1,ALAN,Invasive snail,Mixed,0.038000000000000034,0.524,Hydrilla_verticillata,choice,False,0.562
+47,2,ALAN,Invasive snail,Mixed,0.12000000000000005,0.442,Hydrilla_verticillata,choice,False,0.562
+48,1,ALAN,Invasive snail,Mixed,-0.2689999999999999,0.831,Hydrilla_verticillata,choice,False,0.562
+49,1,ALAN,Invasive snail,Mixed,0.20500000000000007,0.357,Hydrilla_verticillata,choice,False,0.562
+50,3,ALAN,Invasive snail,Mixed,0.06600000000000006,0.496,Hydrilla_verticillata,choice,False,0.562
+56,4,No ALAN,Native snail,Hydrilla_verticillata,-0.2649999999999999,0.827,Hydrilla_verticillata,no_choice,False,0.562
+57,5,No ALAN,Native snail,Hydrilla_verticillata,-0.10599999999999998,0.668,Hydrilla_verticillata,no_choice,False,0.562
+58,6,No ALAN,Native snail,Hydrilla_verticillata,-0.017999999999999905,0.58,Hydrilla_verticillata,no_choice,False,0.562
+59,5,No ALAN,Native snail,Hydrilla_verticillata,-0.04399999999999993,0.606,Hydrilla_verticillata,no_choice,False,0.562
+60,5,No ALAN,Native snail,Hydrilla_verticillata,-0.3929999999999999,0.955,Hydrilla_verticillata,no_choice,False,0.562
+71,5,No ALAN,Native snail,Mixed,0.15900000000000003,0.403,Hydrilla_verticillata,choice,False,0.562
+72,6,No ALAN,Native snail,Mixed,0.25600000000000006,0.306,Hydrilla_verticillata,choice,False,0.562
+73,6,No ALAN,Native snail,Mixed,0.11500000000000005,0.447,Hydrilla_verticillata,choice,False,0.562
+74,5,No ALAN,Native snail,Mixed,-0.051999999999999935,0.614,Hydrilla_verticillata,choice,False,0.562
+75,6,No ALAN,Native snail,Mixed,0.12400000000000005,0.438,Hydrilla_verticillata,choice,False,0.562
+81,4,No ALAN,Invasive snail,Hydrilla_verticillata,0.08800000000000008,0.474,Hydrilla_verticillata,no_choice,False,0.562
+82,6,No ALAN,Invasive snail,Hydrilla_verticillata,0.43300000000000005,0.129,Hydrilla_verticillata,no_choice,False,0.562
+83,5,No ALAN,Invasive snail,Hydrilla_verticillata,0.23400000000000004,0.328,Hydrilla_verticillata,no_choice,False,0.562
+84,4,No ALAN,Invasive snail,Hydrilla_verticillata,0.28800000000000003,0.274,Hydrilla_verticillata,no_choice,False,0.562
+85,6,No ALAN,Invasive snail,Hydrilla_verticillata,0.3440000000000001,0.218,Hydrilla_verticillata,no_choice,False,0.562
+96,4,No ALAN,Invasive snail,Mixed,0.08900000000000008,0.473,Hydrilla_verticillata,choice,False,0.562
+97,6,No ALAN,Invasive snail,Mixed,0.18700000000000006,0.375,Hydrilla_verticillata,choice,False,0.562
+98,6,No ALAN,Invasive snail,Mixed,0.20400000000000007,0.358,Hydrilla_verticillata,choice,False,0.562
+99,4,No ALAN,Invasive snail,Mixed,0.03500000000000003,0.527,Hydrilla_verticillata,choice,False,0.562
+100,4,No ALAN,Invasive snail,Mixed,-0.025999999999999912,0.588,Hydrilla_verticillata,choice,False,0.562
+11,2,ALAN,Native snail,Myriophyllum_spicatum,-0.25500000000000006,0.685,Myriophyllum_spicatum,no_choice,False,0.43
+12,1,ALAN,Native snail,Myriophyllum_spicatum,-0.10100000000000003,0.531,Myriophyllum_spicatum,no_choice,False,0.43
+13,1,ALAN,Native snail,Myriophyllum_spicatum,-0.25899999999999995,0.689,Myriophyllum_spicatum,no_choice,False,0.43
+14,1,ALAN,Native snail,Myriophyllum_spicatum,-0.11900000000000005,0.549,Myriophyllum_spicatum,no_choice,False,0.43
+15,2,ALAN,Native snail,Myriophyllum_spicatum,-0.21500000000000002,0.645,Myriophyllum_spicatum,no_choice,False,0.43
+21,3,ALAN,Native snail,Mixed,0.10099999999999998,0.329,Myriophyllum_spicatum,choice,False,0.43
+22,2,ALAN,Native snail,Mixed,0.16699999999999998,0.263,Myriophyllum_spicatum,choice,False,0.43
+23,3,ALAN,Native snail,Mixed,0.018000000000000016,0.412,Myriophyllum_spicatum,choice,False,0.43
+24,2,ALAN,Native snail,Mixed,-0.025000000000000022,0.455,Myriophyllum_spicatum,choice,False,0.43
+25,1,ALAN,Native snail,Mixed,0.10699999999999998,0.323,Myriophyllum_spicatum,choice,False,0.43
+36,2,ALAN,Invasive snail,Myriophyllum_spicatum,-0.030000000000000027,0.46,Myriophyllum_spicatum,no_choice,False,0.43
+37,3,ALAN,Invasive snail,Myriophyllum_spicatum,0.01200000000000001,0.418,Myriophyllum_spicatum,no_choice,False,0.43
+38,1,ALAN,Invasive snail,Myriophyllum_spicatum,0.08500000000000002,0.345,Myriophyllum_spicatum,no_choice,False,0.43
+39,3,ALAN,Invasive snail,Myriophyllum_spicatum,0.239,0.191,Myriophyllum_spicatum,no_choice,False,0.43
+40,2,ALAN,Invasive snail,Myriophyllum_spicatum,0.179,0.251,Myriophyllum_spicatum,no_choice,False,0.43
+46,1,ALAN,Invasive snail,Mixed,0.133,0.297,Myriophyllum_spicatum,choice,False,0.43
+47,2,ALAN,Invasive snail,Mixed,0.211,0.219,Myriophyllum_spicatum,choice,False,0.43
+48,1,ALAN,Invasive snail,Mixed,0.03199999999999997,0.398,Myriophyllum_spicatum,choice,False,0.43
+49,1,ALAN,Invasive snail,Mixed,0.134,0.296,Myriophyllum_spicatum,choice,False,0.43
+50,3,ALAN,Invasive snail,Mixed,0.136,0.294,Myriophyllum_spicatum,choice,False,0.43
+61,5,No ALAN,Native snail,Myriophyllum_spicatum,-0.13899999999999996,0.569,Myriophyllum_spicatum,no_choice,False,0.43
+62,6,No ALAN,Native snail,Myriophyllum_spicatum,-0.302,0.732,Myriophyllum_spicatum,no_choice,False,0.43
+63,5,No ALAN,Native snail,Myriophyllum_spicatum,-0.21800000000000003,0.648,Myriophyllum_spicatum,no_choice,False,0.43
+64,4,No ALAN,Native snail,Myriophyllum_spicatum,0.177,0.253,Myriophyllum_spicatum,no_choice,False,0.43
+65,4,No ALAN,Native snail,Myriophyllum_spicatum,-0.14799999999999996,0.578,Myriophyllum_spicatum,no_choice,False,0.43
+71,5,No ALAN,Native snail,Mixed,0.125,0.305,Myriophyllum_spicatum,choice,False,0.43
+72,6,No ALAN,Native snail,Mixed,0.08000000000000002,0.35,Myriophyllum_spicatum,choice,False,0.43
+73,6,No ALAN,Native snail,Mixed,0.126,0.304,Myriophyllum_spicatum,choice,False,0.43
+74,5,No ALAN,Native snail,Mixed,-0.069,0.499,Myriophyllum_spicatum,choice,False,0.43
+75,6,No ALAN,Native snail,Mixed,0.11399999999999999,0.316,Myriophyllum_spicatum,choice,False,0.43
+86,5,No ALAN,Invasive snail,Myriophyllum_spicatum,0.122,0.308,Myriophyllum_spicatum,no_choice,False,0.43
+87,6,No ALAN,Invasive snail,Myriophyllum_spicatum,0.23099999999999998,0.199,Myriophyllum_spicatum,no_choice,False,0.43
+88,5,No ALAN,Invasive snail,Myriophyllum_spicatum,0.07100000000000001,0.359,Myriophyllum_spicatum,no_choice,False,0.43
+89,4,No ALAN,Invasive snail,Myriophyllum_spicatum,0.257,0.173,Myriophyllum_spicatum,no_choice,False,0.43
+90,4,No ALAN,Invasive snail,Myriophyllum_spicatum,0.179,0.251,Myriophyllum_spicatum,no_choice,False,0.43
+96,4,No ALAN,Invasive snail,Mixed,0.205,0.225,Myriophyllum_spicatum,choice,False,0.43
+97,6,No ALAN,Invasive snail,Mixed,0.264,0.166,Myriophyllum_spicatum,choice,False,0.43000000000000005
+98,6,No ALAN,Invasive snail,Mixed,0.195,0.235,Myriophyllum_spicatum,choice,False,0.43
+99,4,No ALAN,Invasive snail,Mixed,,,Myriophyllum_spicatum,choice,True,
+100,4,No ALAN,Invasive snail,Mixed,0.178,0.252,Myriophyllum_spicatum,choice,False,0.43
+16,3,ALAN,Native snail,Myriophyllum_aquaticum,-0.583,1.795,Myriophyllum_aquaticum,no_choice,False,1.212
+17,3,ALAN,Native snail,Myriophyllum_aquaticum,-0.942,2.154,Myriophyllum_aquaticum,no_choice,False,1.212
+18,1,ALAN,Native snail,Myriophyllum_aquaticum,-0.371,1.583,Myriophyllum_aquaticum,no_choice,False,1.212
+19,3,ALAN,Native snail,Myriophyllum_aquaticum,-0.966,2.178,Myriophyllum_aquaticum,no_choice,False,1.212
+20,2,ALAN,Native snail,Myriophyllum_aquaticum,-0.97,2.182,Myriophyllum_aquaticum,no_choice,False,1.212
+21,3,ALAN,Native snail,Mixed,-0.029000000000000137,1.241,Myriophyllum_aquaticum,choice,False,1.212
+22,2,ALAN,Native snail,Mixed,-0.15900000000000003,1.371,Myriophyllum_aquaticum,choice,False,1.212
+23,3,ALAN,Native snail,Mixed,-0.2530000000000001,1.465,Myriophyllum_aquaticum,choice,False,1.212
+24,2,ALAN,Native snail,Mixed,-0.5700000000000001,1.782,Myriophyllum_aquaticum,choice,False,1.212
+25,1,ALAN,Native snail,Mixed,-0.2450000000000001,1.457,Myriophyllum_aquaticum,choice,False,1.212
+41,3,ALAN,Invasive snail,Myriophyllum_aquaticum,-0.44399999999999995,1.656,Myriophyllum_aquaticum,no_choice,False,1.212
+42,3,ALAN,Invasive snail,Myriophyllum_aquaticum,-0.6819999999999999,1.894,Myriophyllum_aquaticum,no_choice,False,1.212
+43,1,ALAN,Invasive snail,Myriophyllum_aquaticum,-0.18700000000000006,1.399,Myriophyllum_aquaticum,no_choice,False,1.212
+44,1,ALAN,Invasive snail,Myriophyllum_aquaticum,-0.32899999999999996,1.541,Myriophyllum_aquaticum,no_choice,False,1.212
+45,3,ALAN,Invasive snail,Myriophyllum_aquaticum,-0.18500000000000005,1.397,Myriophyllum_aquaticum,no_choice,False,1.212
+46,1,ALAN,Invasive snail,Mixed,-0.29899999999999993,1.511,Myriophyllum_aquaticum,choice,False,1.212
+47,2,ALAN,Invasive snail,Mixed,-0.639,1.851,Myriophyllum_aquaticum,choice,False,1.212
+48,1,ALAN,Invasive snail,Mixed,-0.262,1.474,Myriophyllum_aquaticum,choice,False,1.212
+49,1,ALAN,Invasive snail,Mixed,-0.22999999999999998,1.442,Myriophyllum_aquaticum,choice,False,1.212
+50,3,ALAN,Invasive snail,Mixed,0.010999999999999899,1.201,Myriophyllum_aquaticum,choice,False,1.212
+66,6,No ALAN,Native snail,Myriophyllum_aquaticum,,,Myriophyllum_aquaticum,no_choice,True,
+67,5,No ALAN,Native snail,Myriophyllum_aquaticum,-0.611,1.823,Myriophyllum_aquaticum,no_choice,False,1.212
+68,6,No ALAN,Native snail,Myriophyllum_aquaticum,-0.41000000000000014,1.622,Myriophyllum_aquaticum,no_choice,False,1.212
+69,4,No ALAN,Native snail,Myriophyllum_aquaticum,-1.086,2.298,Myriophyllum_aquaticum,no_choice,False,1.212
+70,5,No ALAN,Native snail,Myriophyllum_aquaticum,-0.9530000000000001,2.165,Myriophyllum_aquaticum,no_choice,False,1.212
+71,5,No ALAN,Native snail,Mixed,-1.611,2.823,Myriophyllum_aquaticum,choice,False,1.212
+72,6,No ALAN,Native snail,Mixed,-0.8430000000000002,2.055,Myriophyllum_aquaticum,choice,False,1.212
+73,6,No ALAN,Native snail,Mixed,-0.9040000000000001,2.116,Myriophyllum_aquaticum,choice,False,1.212
+74,5,No ALAN,Native snail,Mixed,-1.0650000000000002,2.277,Myriophyllum_aquaticum,choice,False,1.212
+75,6,No ALAN,Native snail,Mixed,-0.351,1.563,Myriophyllum_aquaticum,choice,False,1.212
+91,4,No ALAN,Invasive snail,Myriophyllum_aquaticum,-0.677,1.889,Myriophyllum_aquaticum,no_choice,False,1.212
+92,5,No ALAN,Invasive snail,Myriophyllum_aquaticum,-0.937,2.149,Myriophyllum_aquaticum,no_choice,False,1.212
+93,6,No ALAN,Invasive snail,Myriophyllum_aquaticum,-0.7770000000000001,1.989,Myriophyllum_aquaticum,no_choice,False,1.212
+94,4,No ALAN,Invasive snail,Myriophyllum_aquaticum,-0.21500000000000008,1.427,Myriophyllum_aquaticum,no_choice,False,1.212
+95,6,No ALAN,Invasive snail,Myriophyllum_aquaticum,-0.29400000000000004,1.506,Myriophyllum_aquaticum,no_choice,False,1.212
+96,4,No ALAN,Invasive snail,Mixed,-0.7310000000000001,1.943,Myriophyllum_aquaticum,choice,False,1.212
+97,6,No ALAN,Invasive snail,Mixed,-0.13400000000000012,1.346,Myriophyllum_aquaticum,choice,False,1.212
+98,6,No ALAN,Invasive snail,Mixed,-0.591,1.803,Myriophyllum_aquaticum,choice,False,1.212
+99,4,No ALAN,Invasive snail,Mixed,-0.31299999999999994,1.525,Myriophyllum_aquaticum,choice,False,1.212
+100,4,No ALAN,Invasive snail,Mixed,-0.647,1.859,Myriophyllum_aquaticum,choice,False,1.212
