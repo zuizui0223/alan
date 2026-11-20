@@ -64,6 +64,8 @@ def execute():
       "files":{}}
     for name,id in FILES.items():
         options=[
+           f"{URL}/stash/downloads/file_stream/{id}",
+           f"{URL}/stash/downloads/file_stream/{id}?download=1",
            f"{URL}/downloads/file_stream/{id}",
            f"{PREFIX}/files/{id}/download",
            f"{PREFIX}/files/{id}/download?download=1",
