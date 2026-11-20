@@ -84,6 +84,8 @@ Sanders2018の野外最終週14対比を追加したため、抽出台帳は10�
 
 ## 捕食・採食の追加確認
 
+更新：Maggi2020の3原表はZenodo公開版から取得し、DryadのSHA256と一致した。各2照明地点／暗地点の色素組成と最終巻貝数を補足抽出した。採食者除去による色素応答の違いの近似区間は無差を含んだ。蛍光生物量と光合成効率の原数値は含まれず、これらの相互作用効果は未推定である。ファイル間で同じl1コードが別の処理を意味するため、地点を接続しなかった。主台帳108行は変更しない。[原資料の独立監査](../../database/alan_experiments/search/maggi2020_data_check.md)、[地点単位の抽出](../../database/alan_experiments/maggi_sources/README.md)。
+
 Bennieの2018年栄養段階実験はPenryn54区画の追跡であり、新しい独立実験ではなかった。ナメクジの再導入前後を同じ期間として混ぜない。Maggi2020は照明4地点内の採食者除去実験であり、下位区画を照明の独立反復としない。双方は原数値取得または系列照合が未完了で、主台帳に追加していない。[草地の確認](../../database/alan_experiments/search/bennie2018_trophic_review.md)、[海岸の確認](../../database/alan_experiments/search/maggi2020_review.md)。
 
 Skyglow2023の室内12EcoUnitでは、活動の時空間分布に変化があっても人工餌への咬み跡の総量に明瞭な照明応答は報告されなかった。原表747行を回収し、12照明単位×4曝露期間に集計した。計画768曝露との差21件はゼロ攻撃として埋めない。咬み跡は昼夜を区別できず、成虫の蛾への捕食率ではない。照明時間の本文矛盾、室内範囲、他のEcotron論文との共有を解決するまで統合効果は計算しない。[本文確認](../../database/alan_experiments/search/skyglow2023_review.md)、[原表の支持範囲](../../database/alan_experiments/skyglow_sources/audit.json)。この追加確認後も主台帳は108効果量、統合推定は未実施である。

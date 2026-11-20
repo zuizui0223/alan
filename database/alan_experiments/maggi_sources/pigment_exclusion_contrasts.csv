@@ -1,0 +1,3 @@
+effect_id,lnRR,sampling_variance,ratio,approx_t1_lower,approx_t1_upper,n_sites_lit,n_sites_dark,main_catalogue,endpoint,estimand
+Maggi2020_CarChl_ratio_exclusion_minus_control,-0.485216031492407,0.0031672423683542696,0.6155642011461355,0.3011041367155949,1.258432680021878,2,2,False,CarChl_ratio,lnRR_exclusion_minus_lnRR_grazed
+Maggi2020_Scytonemin_exclusion_minus_control,-0.09851581617091079,0.32591814093321797,0.9061813601816602,0.0006410573546250229,1280.9534928758617,2,2,False,Scytonemin,lnRR_exclusion_minus_lnRR_grazed

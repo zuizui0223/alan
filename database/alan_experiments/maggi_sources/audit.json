@@ -1,0 +1,45 @@
+{
+  "source_doi": "10.5061/dryad.6m905qfw2",
+  "mirror": "https://zenodo.org/records/5003041",
+  "files": [
+    {
+      "file": "data_Bacteria_Family.xlsx",
+      "algorithm": "sha-256",
+      "digest": "84e91e2933bbfa2978161b337fcdb7009a9b4c5579bed9004ae4a1c4e80f9415",
+      "dryad_match": true
+    },
+    {
+      "file": "data_Littorinid_snails.xlsx",
+      "algorithm": "sha-256",
+      "digest": "3f893f87f22506adc7f84c615e88cae7231f3afaedf49f1d2c071071a8bef036",
+      "dryad_match": true
+    },
+    {
+      "file": "data_Pigments.xlsx",
+      "algorithm": "sha-256",
+      "digest": "096a8b6ba59a9630b17f1525c675f1c1ccad4e77c0f4655d5dcc8507abf98136",
+      "dryad_match": true
+    }
+  ],
+  "snail_rows": 216,
+  "snail_dates": 9,
+  "pigment_rows": 24,
+  "sites_per_arm": 2,
+  "final_snail_day": 73,
+  "excluded_snail_final_all_zero": true,
+  "pigment_effects": 4,
+  "pigment_interaction_contrasts": 2,
+  "snail_effects": 1,
+  "covariance_influence_check": true,
+  "pigment_covariance_rank": 2,
+  "cross_workbook_site_mapping": "unresolved; no cross-endpoint covariance assumed",
+  "fluorescence_biomass_available": false,
+  "main_catalogue": false,
+  "unresolved": [
+    "Maggi2018 experimental-series overlap",
+    "Pigment-site to snail-site mapping",
+    "Fluorescence biomass and yield raw observations absent from recovered sheets"
+  ],
+  "interval_method": "delta method with conservative t1; only two independent sites per arm",
+  "interpretation": "Pigment ratio and scytonemin are not biomass, grazing or predation rates."
+}

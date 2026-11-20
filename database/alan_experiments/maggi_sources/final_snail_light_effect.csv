@@ -1,0 +1,2 @@
+effect_id,lnRR,sampling_variance,ratio,approx_t1_lower,approx_t1_upper,n_sites_lit,n_sites_dark,main_catalogue,endpoint,day,mean_lit,mean_dark
+Maggi2020_day73_grazed_snails,-0.19671029424605427,1.6173469387755102,0.8214285714285714,7.884195529499358e-08,8558195.892460704,2,2,False,snail_count_grazed_quadrats,73,3.8333333333333335,4.666666666666667
