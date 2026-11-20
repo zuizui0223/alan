@@ -1,0 +1,305 @@
+{
+  "schema": "alan_Anic2022_original_13species_Kew_PlantATT_F_mechanism_source_verified_v1",
+  "original_Anic_pdf_sha256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+  "source_Kew_git_blob_sha1": "e6a1da929af81f370d2a1b79177b489e3e573a06",
+  "verified_source_run": "https://github.com/zuizui0223/alan/actions/runs/44666182807",
+  "source_plant_traits_by_species": [
+    {
+      "F_Doring": "5",
+      "F_PLANTATT": 5,
+      "Kew_taxon_aggregate_flag": "",
+      "independent_Kew_name": "Achillea millefolium",
+      "lightcode_spectral_key_not_identified": true,
+      "name_match_method": "original_exact_binomial",
+      "original_biomass_source_pdf_SHA256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+      "source_lightcode_log_biomass_ratio": {
+        "L2/L1": 0.35548948632263994,
+        "L3/L1": -0.3684932884032571,
+        "L3/L2": -0.7239827747258971
+      },
+      "source_name": "Achillea millefolium"
+    },
+    {
+      "F_Doring": "5",
+      "F_PLANTATT": 5,
+      "Kew_taxon_aggregate_flag": "",
+      "independent_Kew_name": "Agrostis capillaris",
+      "lightcode_spectral_key_not_identified": true,
+      "name_match_method": "authoritative_Kew_POWO_synonym",
+      "original_biomass_source_pdf_SHA256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+      "source_lightcode_log_biomass_ratio": {
+        "L2/L1": 0.4093517509524789,
+        "L3/L1": 0.3034408066905969,
+        "L3/L2": -0.10591094426188186
+      },
+      "source_name": "Agrostis tenuis"
+    },
+    {
+      "F_Doring": "NA",
+      "F_PLANTATT": 6,
+      "Kew_taxon_aggregate_flag": "",
+      "independent_Kew_name": "Anthoxanthum odoratum",
+      "lightcode_spectral_key_not_identified": true,
+      "name_match_method": "original_exact_binomial",
+      "original_biomass_source_pdf_SHA256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+      "source_lightcode_log_biomass_ratio": {
+        "L2/L1": 0.03038906231628557,
+        "L3/L1": 0.24097599605582998,
+        "L3/L2": 0.21058693373954432
+      },
+      "source_name": "Anthoxanthum odoratum"
+    },
+    {
+      "F_Doring": "5",
+      "F_PLANTATT": 5,
+      "Kew_taxon_aggregate_flag": "",
+      "independent_Kew_name": "Centaurea nigra",
+      "lightcode_spectral_key_not_identified": true,
+      "name_match_method": "original_exact_binomial",
+      "original_biomass_source_pdf_SHA256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+      "source_lightcode_log_biomass_ratio": {
+        "L2/L1": 0.1646649112554202,
+        "L3/L1": -0.3914869448589895,
+        "L3/L2": -0.5561518561144096
+      },
+      "source_name": "Centaurea nigra"
+    },
+    {
+      "F_Doring": "5",
+      "F_PLANTATT": 5,
+      "Kew_taxon_aggregate_flag": "",
+      "independent_Kew_name": "Dactylis glomerata",
+      "lightcode_spectral_key_not_identified": true,
+      "name_match_method": "original_exact_binomial",
+      "original_biomass_source_pdf_SHA256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+      "source_lightcode_log_biomass_ratio": {
+        "L2/L1": 0.26596444343885706,
+        "L3/L1": 0.29151754264980134,
+        "L3/L2": 0.02555309921094431
+      },
+      "source_name": "Dactylis glomerata"
+    },
+    {
+      "F_Doring": "5",
+      "F_PLANTATT": 5,
+      "Kew_taxon_aggregate_flag": "agg",
+      "independent_Kew_name": "Festuca ovina",
+      "lightcode_spectral_key_not_identified": true,
+      "name_match_method": "original_exact_binomial",
+      "original_biomass_source_pdf_SHA256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+      "source_lightcode_log_biomass_ratio": {
+        "L2/L1": -0.38672089163936296,
+        "L3/L1": -0.2155444402198028,
+        "L3/L2": 0.17117645141956025
+      },
+      "source_name": "Festuca ovina"
+    },
+    {
+      "F_Doring": "6",
+      "F_PLANTATT": 6,
+      "Kew_taxon_aggregate_flag": "",
+      "independent_Kew_name": "Holcus lanatus",
+      "lightcode_spectral_key_not_identified": true,
+      "name_match_method": "original_exact_binomial",
+      "original_biomass_source_pdf_SHA256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+      "source_lightcode_log_biomass_ratio": {
+        "L2/L1": 0.028233105167100737,
+        "L3/L1": -0.4271353052663374,
+        "L3/L2": -0.4553684104334382
+      },
+      "source_name": "Holcus lanatus"
+    },
+    {
+      "F_Doring": "4",
+      "F_PLANTATT": 4,
+      "Kew_taxon_aggregate_flag": "",
+      "independent_Kew_name": "Hypochaeris radicata",
+      "lightcode_spectral_key_not_identified": true,
+      "name_match_method": "original_exact_binomial",
+      "original_biomass_source_pdf_SHA256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+      "source_lightcode_log_biomass_ratio": {
+        "L2/L1": 0.18686308661024817,
+        "L3/L1": 0.21743501380420588,
+        "L3/L2": 0.030571927193957838
+      },
+      "source_name": "Hypochaeris radicata"
+    },
+    {
+      "F_Doring": "4",
+      "F_PLANTATT": 4,
+      "Kew_taxon_aggregate_flag": "",
+      "independent_Kew_name": "Lotus corniculatus",
+      "lightcode_spectral_key_not_identified": true,
+      "name_match_method": "original_exact_binomial",
+      "original_biomass_source_pdf_SHA256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+      "source_lightcode_log_biomass_ratio": {
+        "L2/L1": 0.4689671683420264,
+        "L3/L1": 0.27553912334314934,
+        "L3/L2": -0.19342804499887703
+      },
+      "source_name": "Lotus corniculatus"
+    },
+    {
+      "F_Doring": "8",
+      "F_PLANTATT": 8,
+      "Kew_taxon_aggregate_flag": "",
+      "independent_Kew_name": "Lotus pedunculatus",
+      "lightcode_spectral_key_not_identified": true,
+      "name_match_method": "original_exact_binomial",
+      "original_biomass_source_pdf_SHA256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+      "source_lightcode_log_biomass_ratio": {
+        "L2/L1": -0.2565283854315375,
+        "L3/L1": -0.4400702347148066,
+        "L3/L2": -0.18354184928326914
+      },
+      "source_name": "Lotus pedunculatus"
+    },
+    {
+      "F_Doring": "NA",
+      "F_PLANTATT": 5,
+      "Kew_taxon_aggregate_flag": "",
+      "independent_Kew_name": "Plantago lanceolata",
+      "lightcode_spectral_key_not_identified": true,
+      "name_match_method": "original_exact_binomial",
+      "original_biomass_source_pdf_SHA256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+      "source_lightcode_log_biomass_ratio": {
+        "L2/L1": 0.22778510543712094,
+        "L3/L1": 0.24694431286776763,
+        "L3/L2": 0.019159207430646776
+      },
+      "source_name": "Plantago lanceolata"
+    },
+    {
+      "F_Doring": "5",
+      "F_PLANTATT": 5,
+      "Kew_taxon_aggregate_flag": "",
+      "independent_Kew_name": "Prunella vulgaris",
+      "lightcode_spectral_key_not_identified": true,
+      "name_match_method": "original_exact_binomial",
+      "original_biomass_source_pdf_SHA256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+      "source_lightcode_log_biomass_ratio": {
+        "L2/L1": null,
+        "L3/L1": -0.7497451002535943,
+        "L3/L2": null
+      },
+      "source_name": "Prunella vulgaris"
+    },
+    {
+      "F_Doring": "5",
+      "F_PLANTATT": 5,
+      "Kew_taxon_aggregate_flag": "",
+      "independent_Kew_name": "Trifolium pratense",
+      "lightcode_spectral_key_not_identified": true,
+      "name_match_method": "original_exact_binomial",
+      "original_biomass_source_pdf_SHA256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+      "source_lightcode_log_biomass_ratio": {
+        "L2/L1": 0.16788913942974992,
+        "L3/L1": 0.007961846101853666,
+        "L3/L2": -0.15992729332789635
+      },
+      "source_name": "Trifolium pratense"
+    }
+  ],
+  "moisture_lightcode_falsification": {
+    "binary_wet_moisture_test_supported": false,
+    "exclude_agg_source_rho": {
+      "L2/L1": -0.7525581476032889,
+      "L3/L1": -0.5133343655837003,
+      "L3/L2": -0.05482211671282237
+    },
+    "exclude_authoritative_POWO_synonym_source_rho": {
+      "L2/L1": -0.6578654005538684,
+      "L3/L1": -0.5532049959202985,
+      "L3/L2": -0.014951486376224283
+    },
+    "max_three_preplanned_comparisons_adjusted_p": {
+      "L2/L1": 0.0766,
+      "L3/L1": 0.2358,
+      "L3/L2": 0.9992
+    },
+    "moisture_above_7_original_plant_names": 1,
+    "moisture_at_or_below_7_plant_names": 12,
+    "no_ALAN_causal_moisture_moderator_identified": true,
+    "no_realized_habitat_water_or_reproductive_endpoint": true,
+    "original_plant_names": 13,
+    "original_source_figshare_lightcode_to_color_mapping_verified": false,
+    "permutations": 4999,
+    "same_source_54_light_trophic_troughs": true,
+    "source_F_PLANTATT_range": [
+      4,
+      8
+    ],
+    "source_F_nonmissing": 13,
+    "source_F_value_counts": {
+      "4.0": 2,
+      "5.0": 8,
+      "6.0": 2,
+      "8.0": 1
+    },
+    "source_all_three_code_complete_plant_names": 12,
+    "source_phylogeny_or_plot_covariance_modeled": false,
+    "source_plant_leave_one_out_rho": {
+      "L2/L1": {
+        "Achillea millefolium": -0.6578654005538684,
+        "Agrostis tenuis": -0.6578654005538684,
+        "Anthoxanthum odoratum": -0.5756007555437079,
+        "Centaurea nigra": -0.6179947702172702,
+        "Dactylis glomerata": -0.6578654005538684,
+        "Festuca ovina": -0.7525581476032889,
+        "Holcus lanatus": -0.5756007555437079,
+        "Hypochaeris radicata": -0.7023385365808548,
+        "Lotus corniculatus": -0.5333548285313258,
+        "Lotus pedunculatus": -0.5720775535473553,
+        "Plantago lanceolata": -0.6578654005538684,
+        "Trifolium pratense": -0.6179947702172702
+      },
+      "L3/L1": {
+        "Achillea millefolium": -0.5133343655837003,
+        "Agrostis tenuis": -0.5532049959202985,
+        "Anthoxanthum odoratum": -0.6231274234326379,
+        "Centaurea nigra": -0.5133343655837003,
+        "Dactylis glomerata": -0.5532049959202985,
+        "Festuca ovina": -0.5133343655837003,
+        "Holcus lanatus": -0.3643711204817968,
+        "Hypochaeris radicata": -0.5861622372968036,
+        "Lotus corniculatus": -0.454143715383109,
+        "Lotus pedunculatus": -0.33371190623595737,
+        "Plantago lanceolata": -0.5133343655837003,
+        "Trifolium pratense": -0.5133343655837003
+      },
+      "L3/L2": {
+        "Achillea millefolium": -0.06977360308904665,
+        "Agrostis tenuis": -0.014951486376224283,
+        "Anthoxanthum odoratum": -0.27459852558048453,
+        "Centaurea nigra": -0.06977360308904665,
+        "Dactylis glomerata": -0.014951486376224283,
+        "Festuca ovina": -0.05482211671282237,
+        "Holcus lanatus": 0.10561481753095558,
+        "Hypochaeris radicata": 0.11617629928405115,
+        "Lotus corniculatus": -0.15842222629643338,
+        "Lotus pedunculatus": 0.04767312946227962,
+        "Plantago lanceolata": -0.014951486376224283,
+        "Trifolium pratense": -0.014951486376224283
+      }
+    },
+    "source_spearman_rho": {
+      "L2/L1": -0.6344020453131706,
+      "L3/L1": -0.5051719990456729,
+      "L3/L2": -0.03524455807295392
+    },
+    "source_species_label_permutation_nominal_p": {
+      "L2/L1": 0.0308,
+      "L3/L1": 0.104,
+      "L3/L2": 0.9276
+    },
+    "status": "EXPLORATORY_ORDINAL_MOISTURE_GRADIENT_ONLY",
+    "without_single_high_wet_Lotus_pedunculatus_source_rho": {
+      "L2/L1": -0.5720775535473553,
+      "L3/L1": -0.33371190623595737,
+      "L3/L2": 0.04767312946227962
+    },
+    "without_single_high_wet_source_species_n": 11
+  },
+  "no_specified_lightcode_spectral_mapping": true,
+  "not_enough_wet_species_to_confirm_moisture_moderator": true
+}
