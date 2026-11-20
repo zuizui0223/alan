@@ -1,0 +1,10 @@
+{
+  "site_years": 25,
+  "sites": 18,
+  "programmes": 7,
+  "unique_grid_years": 15,
+  "source_coordinates_sha256": "4bb19cc7aed05cc81cb3079b2455f95d757be4fd61abcefaf54e6bf02fe45b8c",
+  "source": "Open-Meteo ERA5 historical API",
+  "documentation": "https://open-meteo.com/en/docs/historical-weather-api",
+  "limitations": "Calendar-year context only; not measured plot wetness, inundation or baseline illumination. Shared grid cells are not independent climate observations. No meta-regression fitted."
+}
