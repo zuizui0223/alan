@@ -1,0 +1,24 @@
+{
+  "dataset_doi": "10.5061/dryad.wstqjq2sk",
+  "version_id": 272777,
+  "metadata_url": "https://datadryad.org/api/v2/versions/272777/files",
+  "metadata_sha256": "36410b87c053ec11ff67f04d0df9ff9cf463df48eebf1111ff7735d407331d89",
+  "files_listed": 10,
+  "raw_files_retrieved": 0,
+  "attempts": [
+    {
+      "url": "https://www.sciencedirect.com/science/article/pii/S0048969724004741",
+      "status": 403
+    },
+    {
+      "url": "https://datadryad.org/api/v2/files/2829086/download",
+      "status": 401
+    },
+    {
+      "url": "https://datadryad.org/downloads/file_stream/2829086",
+      "status": 403
+    }
+  ],
+  "zenodo_exact_doi_search_hits": 0,
+  "note": "Published digests are not locally verified raw data. Other files not individually retried."
+}

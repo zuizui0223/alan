@@ -1,4 +1,6 @@
-Current update: 160 retained reports reviewed,27 pending; eleven outside-search reports. Kirk Rhagoletis preprint current PDF read and independently reviewed: indoor one incubator per light condition, excluded from main field synthesis irrespective of direction. Version-link ambiguity and outcome denominators preserved. No effect added.
+Current update: 160 retained reports reviewed,27 pending; eleven outside-search reports. Zhou2024 cave-study dark control and Dryad nine-species CSV/README inventory verified; raw downloads401/403 and full Methods unavailable. Ten file identifiers/digests preserved, no extracted effect or completed-review increment.
+
+Previous update: 160 retained reports reviewed,27 pending; eleven outside-search reports. Kirk Rhagoletis preprint current PDF read and independently reviewed: indoor one incubator per light condition, excluded from main field synthesis irrespective of direction. Version-link ambiguity and outcome denominators preserved. No effect added.
 
 Previous update: 159 retained reports reviewed,28 pending; eleven outside-search reports. Sanders2018 field biomass audit finds30/48 records per plant and a Cage39 light-allocation conflict (population5lux; both biomass1lux). Registry now holds cross-endpoint allocation and biomass extraction; existing insect values remain conditional and unchanged. No new review count or effect added.
 
