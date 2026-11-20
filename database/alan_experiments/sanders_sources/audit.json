@@ -1,0 +1,17 @@
+{
+  "source_rows": 432,
+  "final_rows": 48,
+  "blocks": 6,
+  "final_week": 9,
+  "effects": 14,
+  "raw_csv_sha256": "88eb61e4338e4b984f78a3f0869b6ebc60123a956e12223a53d65c066aab2c2f",
+  "covariance_rank": 5,
+  "all_final_sampling_factors_one": true,
+  "pooled": false,
+  "caveats": [
+    "Final-week contrasts differ from published whole-season model.",
+    "Two endpoints and seven doses share six randomized blocks and dark controls.",
+    "Mummy abundance is not a parasitism rate or live parasitoid count.",
+    "Missing plant-biomass labels and separate greenhouse/laboratory experiments not extracted here."
+  ]
+}

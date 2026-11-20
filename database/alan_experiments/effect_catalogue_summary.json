@@ -1,7 +1,7 @@
 {
-  "extracted_effect_rows": 66,
-  "study_labels": 9,
-  "programme_labels": 8,
+  "extracted_effect_rows": 80,
+  "study_labels": 10,
+  "programme_labels": 9,
   "counts_by_study": {
     "Anic2022": 6,
     "Bennie2015": 4,
@@ -10,6 +10,7 @@
     "Lu2026": 7,
     "Parkinson2020": 6,
     "Parkinson2023": 28,
+    "Sanders2018": 14,
     "hey2020": 4,
     "xue2026": 4
   },

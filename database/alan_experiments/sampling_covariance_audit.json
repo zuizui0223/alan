@@ -1,12 +1,13 @@
 {
-  "effect_rows": 66,
-  "programmes": 8,
+  "effect_rows": 80,
+  "programmes": 9,
   "diagonal_agreement": true,
   "symmetric": true,
   "positive_semidefinite": true,
   "singular_programmes": [
     "Lu2024_Gannan_companion_overlap_unresolved",
-    "SevenPonds2022"
+    "SevenPonds2022",
+    "Sanders2016_field48"
   ],
   "fitted": false,
   "warnings": [

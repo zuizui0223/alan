@@ -23,7 +23,7 @@ def append(table, covariance, programme, habitat, role, mapping=None, select=Non
                  covariance_table=covariance,pooled=False,
                  approval_status='extracted_not_fully_adjudicated',
                  paired_units=r.get('paired_units',r.get('n_pairs','')))
-        for key in ["experiment_id", "control_group_id", "colour", "interpretation"]:
+        for key in ["experiment_id", "control_group_id", "colour", "light_lux", "interpretation"]:
             if key in r:
                 e[key]=r[key]
         rows.append(e)
@@ -56,6 +56,10 @@ append('parkinson2023_sources/effects.csv','parkinson2023_sources/covariance.csv
        'SevenPonds2022',None,'shared_dark_capture_not_population',
        dict(mean_control='mean_dark',n_control='n_dark',variance='sampling_variance'),
        select=lambda d:d.status.eq('extractable_delta_lnRR'),study='Parkinson2023')
+
+append('sanders_sources/final_effects.csv','sanders_sources/final_covariance.csv',
+       'Sanders2016_field48','outdoor_caged_foodweb_moisture_unclassified','final_week_shared_control_doses',
+       study='Sanders2018')
 
 d=pd.DataFrame(rows)
 mask=d.study_id=='Lu2026'

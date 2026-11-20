@@ -5,8 +5,8 @@
   "publication_families_after_verified_links": 518,
   "retained_publication_families_after_verified_links": 189,
   "retained_fulltext_reports": 190,
-  "retained_reports_with_primary_read": 102,
-  "pending_primary_review_reports": 88,
+  "retained_reports_with_primary_read": 106,
+  "pending_primary_review_reports": 84,
   "additional_source_reports_outside_search": 1,
   "duplicate_incremental_batch_dois": [
     "10.1186/s12862-024-02200-x"
