@@ -1,0 +1,19 @@
+{
+  "reviewed": "2026-11-20",
+  "preprint_doi": "10.32942/x2b60s",
+  "final_doi": "10.3390/ecologies4040046",
+  "files": [
+    {
+      "version": "preprint",
+      "url": "https://ecoevorxiv.org/repository/object/5715/download/11165/",
+      "bytes": 1671129,
+      "sha256": "b329ecd2bf067e00cc40dcb59f51eb9968326287cdff7f5315c36159d2e93a8d"
+    },
+    {
+      "version": "final",
+      "url": "https://ecoevorxiv.org/repository/object/5715/download/12127/",
+      "bytes": 2100440,
+      "sha256": "c8bb05c39cef6c15acb6f65f9b27b06771ce59874df551c4d323dfce6a09e0c6"
+    }
+  ]
+}
