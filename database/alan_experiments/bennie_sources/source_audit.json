@@ -1,0 +1,14 @@
+{
+  "paper_doi": "10.1098/rstb.2014.0131",
+  "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4375371/supplementaryFiles",
+  "file": "rstb20140131supp1.xlsx",
+  "sha256": "009ea860f7493cb3ccd8eb0fa12503702f30eed1c38b2b570c4e0e6eb695f412",
+  "programme_id": "Penryn2012_2016",
+  "mesocosms": 54,
+  "matched_anic_mesocosms": 54,
+  "repeated_rows": 918,
+  "blank_aphid_plant_only_not_zero": 126,
+  "programme_independent_count": 1,
+  "no_pseudocount": true,
+  "independent_verification": "pending"
+}

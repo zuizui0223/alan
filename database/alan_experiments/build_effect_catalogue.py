@@ -27,7 +27,7 @@ def append(table, covariance, programme, habitat, role, mapping=None, select=Non
     assert (ROOT/covariance).exists()
 
 append('effects_computed.csv','effect_covariance.csv','Parkinson2016','freshwater_littoral','primary')
-append('plant_sources/anic2022_effects.csv','plant_sources/anic2022_covariance.csv',
+append('plant_sources/anic2022_effects.csv','bennie_sources/programme_covariance_including_anic2022.csv',
        'Penryn2012_2016','artificial_sand_mesocosm_moisture_unclassified','factorial_stratum')
 append('giavi_sources/giavi2021_effects.csv','giavi_sources/giavi2021_covariance.csv',
        'KnopGiavi_overlap_unresolved','meadow_moisture_unclassified','overlapping_daytime_endpoints')
@@ -45,6 +45,9 @@ append('xue_sources/monoculture_effects.csv','xue_sources/monoculture_covariance
        'Xue2026_monoculture','freshwater_outdoor_mesocosm','species_within_shared_lighting_zones',
        dict(response='endpoint',mean_light='mean_lit',mean_control='mean_dark',
             n_light='n_lit',n_control='n_dark',variance='sampling_variance'))
+append('bennie_sources/final_effects.csv','bennie_sources/programme_covariance_including_anic2022.csv',
+       'Penryn2012_2016','outdoor_artificial_mesocosm_moisture_unclassified','factorial_stratum',
+       select=lambda d:d.lnRR.notna(),study='Bennie2015')
 d=pd.DataFrame(rows)
 mask=d.study_id=='Lu2026'
 d.loc[mask,'n_lit']=5

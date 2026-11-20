@@ -1,0 +1,3 @@
+endpoint,light,contrast,log_ratio_of_ratios,variance,n_per_cell,timepoint,programme_id,status
+aphid_count_3min,Amber,ALAN lnRR with predators minus ALAN lnRR without predators,0.7532645743665197,1.3157817325663521,6,2013-09-12,Penryn2012_2016,single_final_date_not_published_repeated_model
+aphid_count_3min,White,ALAN lnRR with predators minus ALAN lnRR without predators,-0.9605539530478101,1.467034480632526,6,2013-09-12,Penryn2012_2016,single_final_date_not_published_repeated_model

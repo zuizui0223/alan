@@ -1,9 +1,10 @@
 {
-  "extracted_effect_rows": 34,
-  "study_labels": 7,
+  "extracted_effect_rows": 38,
+  "study_labels": 8,
   "programme_labels": 7,
   "counts_by_study": {
     "Anic2022": 6,
+    "Bennie2015": 4,
     "Giavi2021": 4,
     "Guo2025": 3,
     "Lu2026": 7,

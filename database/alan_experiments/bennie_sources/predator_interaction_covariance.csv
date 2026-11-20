@@ -1,0 +1,5 @@
+light1,light2,sampling_covariance
+Amber,Amber,1.3157817325663521
+Amber,White,0.9323318525124411
+White,Amber,0.9323318525124411
+White,White,1.467034480632526
