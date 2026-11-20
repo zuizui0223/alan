@@ -12,6 +12,7 @@
 
 | 現行結果・管理資料 | 内容 |
 |---|---|
+| [論文用方法本文](../../manuscript/biotic_synthesis/METHODS_ja.md) | 実施済みの二段階統合、抽出単位、未完了事項 |
 | [論文用結果本文](../../manuscript/biotic_synthesis/RESULTS_compact_ja.md) | 統合推定、単一実験、反対方向の繁殖報告を区別 |
 | [起源別捕獲](capture_origin_synthesis/README.md) | 水生起源／陸生起源の相対応答。湿地／乾燥地の比較ではない |
 | [捕食者による応答修飾](aphid_predator_synthesis/README.md) | アブラムシ計数。捕食率の直接測定ではない |
