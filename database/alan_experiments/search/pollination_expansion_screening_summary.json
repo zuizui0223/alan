@@ -1,0 +1,24 @@
+{
+  "records": 51,
+  "newly_screened_records": 24,
+  "existing_linked_records": 27,
+  "counts": {
+    "background_network_separate": 1,
+    "existing_record_link": 27,
+    "fulltext_setting_needed": 1,
+    "indoor_behavior_separate": 2,
+    "observational_duplicate_candidate": 1,
+    "observational_separate": 7,
+    "primary_read_extraction_hold": 1,
+    "review_reference_tracking": 9,
+    "spectrum_comparator_fulltext_needed": 1,
+    "visual_model_fulltext_needed": 1
+  },
+  "final_eligibility": false,
+  "original_search_unchanged": true,
+  "source_manifest": "pollination_expansion_manifest.json",
+  "input_sha256": "c1a0629934f88128519bb9f316565eb84d4e4295a429bd5dac82bd471e312c5b",
+  "note": "Record-level preliminary screening; duplicates and report families remain unresolved. No effect rows added.",
+  "independent_check": "Second AI read all24 abstracts and agreed broad classification; not human double screening",
+  "duplicate_candidate_pairs": 3
+}

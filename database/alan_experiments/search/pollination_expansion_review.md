@@ -14,3 +14,14 @@ Neither abstract establishes a wet-versus-dry effect or a mechanism for the macr
 ## Boom2020 supplement retrieval
 
 The previously registered Boom2020 supplement remained unrecovered: a second EuropePMC supplementaryFiles request timed out after55seconds. A publisher-CDN attempt failed DNS resolution. No supplement contents, covariance or raw-data availability conclusion was inferred from these failures. The primary Table1 extraction remains valid, but its original variance holds remain.
+
+
+## Preliminary screening completed, 2026-11-21
+
+All24 records initially lacking an exact original/registry match were read at title/abstract level; all had abstracts in the cached response. The51-row `pollination_expansion_screening.csv` preserves27 existing links and the24 new decisions/reasons, without rewriting the acquisition snapshot. A second AI reviewer independently read the same24 abstracts and agreed the broad classifications; this is not human double screening or final eligibility.
+
+The24 consist of one already primary-read outdoor reproductive experiment (Wilson2021); eight observational records including one duplicate candidate; nine reviews/perspectives; two indoor behavior records; one observational-network/simulation record; and three requiring primary Methods to confirm physiology setting, visual-model scope, or spectral-comparison controls. No additional outdoor lighting-manipulation-plus-plant-reproduction study was established from these24 abstracts. This is not a claim that none exists outside this search or in unresolved full texts.
+
+Three duplicate candidates are retained separately in `pollination_expansion_duplicate_candidates.csv`: the AGR/MED streetlight pollen-transport report, AGR/MED moth-pollination review, and honeybee sleep preprint/final report. No family counts were collapsed based only on this preliminary match. The existing51-record search also retains previous links for other preprint/final versions.
+
+Next primary-method priorities are MED42976709 (bumblebee physiology/survival setting), MED34230463 (visual modelling versus measured population responses), and AGR44607229 (spectral attraction study; dark control unclear). Observational Ceiba reproduction and hawkmoth pollen-transfer records remain separate from experimental effect pooling. Search additions are tracked as a supplementary stream; original521-record counts and final PRISMA remain unfixed.
