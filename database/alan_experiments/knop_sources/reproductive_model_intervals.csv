@@ -1,0 +1,3 @@
+study_id,doi,endpoint,model_family,term,estimate,se,source_location,digitized,independent_site_pairs,lighting_sites,main_catalogue,variance,wald_lower,wald_upper,interval_method,cross_endpoint_covariance
+Knop2017,10.1038/nature23288,developed_fruit_count,Poisson,treatLamp:baggingOpen,-0.76,0.309,Extended Data Table 3,0,5,10,False,0.095481,-1.3656288712228766,-0.15437112877712345,normal_Wald_from_rounded_published_estimate_and_SE,unavailable
+Knop2017,10.1038/nature23288,developed_fruit_proportion,binomial,treatLamp:baggingOpen,-1.40,0.592,Extended Data Table 3,0,5,10,False,0.35046399999999994,-2.560298678847712,-0.23970132115228826,normal_Wald_from_rounded_published_estimate_and_SE,unavailable

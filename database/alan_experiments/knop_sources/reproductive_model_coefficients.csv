@@ -1,0 +1,3 @@
+study_id,doi,endpoint,model_family,term,estimate,se,source_location,digitized,independent_site_pairs,lighting_sites,main_catalogue
+Knop2017,10.1038/nature23288,developed_fruit_count,Poisson,treatLamp:baggingOpen,-0.76,0.309,Extended Data Table 3,0,5,10,False
+Knop2017,10.1038/nature23288,developed_fruit_proportion,binomial,treatLamp:baggingOpen,-1.40,0.592,Extended Data Table 3,0,5,10,False
