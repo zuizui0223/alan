@@ -39,7 +39,7 @@ jobs:
           assert x["source_original_plant_taxon_labels"]==21
           assert x["source_true_named_species"]==10
           assert x["source_original_meadow_by_plant_covariance_not_recovered"]
-          assert x["no_causal_mediation_fitted"]
+          assert x["moist_species_bias_causal_mechanism_not_estimated"]
           print("GIAVI_SOURCE_Kew_F_EXACT_NULL_GATE_SUCCESS")
           for key,val in x["two_independent_UK_F_score_sensitivities"].items():
             print("GIAVI_ORIGINAL_TRAIT",key, val["all_names_matched_source_exact"],
