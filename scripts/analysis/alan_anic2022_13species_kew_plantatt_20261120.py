@@ -53,7 +53,7 @@ def pull_kew_binary():
             "Kew original BIFloraExplorer raw CSV git object sha mismatch")
     return raw
 
-def trait_lookup(raw):
+def trait_lookup(raw,min_rows=3000):
     reader=csv.DictReader(io.StringIO(raw.decode("utf-8-sig")))
     require({"taxon_name_binom","F_PLANTATT","taxonomic_status",
              "aggregate","F_Doring"}.issubset(reader.fieldnames or []),
@@ -76,7 +76,7 @@ def trait_lookup(raw):
                   "Kew_taxonomic_status":r["taxonomic_status"].strip(),
                   "Kew_aggregate_label":r["aggregate"].strip(),
                   "F_Doring":r["F_Doring"].strip()}
-    require(count>=3000,"Kew source expected full flora rows")
+    require(count>=min_rows,"Kew source expected full flora rows")
     return m,count
 
 def original_source(path):
