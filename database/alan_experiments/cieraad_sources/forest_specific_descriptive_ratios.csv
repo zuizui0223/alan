@@ -1,0 +1,13 @@
+species,treatment,forest,response_ratio,independent_rows_per_arm,precision
+Blueberry,Green,Conifer,2.482337022487941,1,not_estimable_within_forest
+Blueberry,Green,Deciduous,1.3623482942615783,1,not_estimable_within_forest
+Blueberry,Red,Conifer,7.771712435238115,1,not_estimable_within_forest
+Blueberry,Red,Deciduous,0.9056692197134817,1,not_estimable_within_forest
+Blueberry,White,Conifer,3.4241353267978254,1,not_estimable_within_forest
+Blueberry,White,Deciduous,1.5274529833922452,1,not_estimable_within_forest
+Oak,Green,Conifer,1.1388520018033412,1,not_estimable_within_forest
+Oak,Green,Deciduous,0.8115329471591609,1,not_estimable_within_forest
+Oak,Red,Conifer,2.3423613425669307,1,not_estimable_within_forest
+Oak,Red,Deciduous,0.7995482437187023,1,not_estimable_within_forest
+Oak,White,Conifer,1.5182930108747614,1,not_estimable_within_forest
+Oak,White,Deciduous,1.1722618245966285,1,not_estimable_within_forest

@@ -2,8 +2,8 @@
   "search_records": 521,
   "unique_search_reports": 519,
   "retained_fulltext_reports": 190,
-  "retained_reports_with_primary_read": 98,
-  "pending_primary_review_reports": 92,
+  "retained_reports_with_primary_read": 100,
+  "pending_primary_review_reports": 90,
   "additional_source_reports_outside_search": 1,
   "duplicate_incremental_batch_dois": [
     "10.1186/s12862-024-02200-x"

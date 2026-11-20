@@ -1,0 +1,17 @@
+Species,Site,Treatment,Transect,fraction_leaf_area_lost
+Blueberry,Conifer,Dark,27,0.01677148691006357
+Blueberry,Conifer,Green,21,0.04163248287902268
+Blueberry,Conifer,Red,22,0.1303431733763743
+Blueberry,Conifer,White,26,0.05742784081167597
+Blueberry,Deciduous,Dark,28,0.011824881694770901
+Blueberry,Deciduous,Green,23,0.0161096074067161
+Blueberry,Deciduous,Red,24,0.010709431377707395
+Blueberry,Deciduous,White,25,0.018061950822938162
+Oak,Conifer,Dark,27,0.029353775838706055
+Oak,Conifer,Green,21,0.033429606374396945
+Oak,Conifer,Red,22,0.06875714978296024
+Oak,Conifer,White,26,0.04456763269869184
+Oak,Deciduous,Dark,28,0.03910649227646472
+Oak,Deciduous,Green,23,0.031736206930176376
+Oak,Deciduous,Red,24,0.03126752721764636
+Oak,Deciduous,White,25,0.04584304798958249

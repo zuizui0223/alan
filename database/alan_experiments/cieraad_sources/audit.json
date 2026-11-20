@@ -1,0 +1,27 @@
+{
+  "article_doi": "10.1111/1365-2664.14336",
+  "data_doi": "10.34894/VD98DG",
+  "file_id": 320748,
+  "sha1": "52153a23c24285223a2c798e8592f7da836b9c4c",
+  "sha256": "3edcc33f377752827d8e23f25a66dcc594297f418287505b587efb0cf938719d",
+  "measured_plants": {
+    "Blueberry": 188,
+    "Oak": 129
+  },
+  "independent_rows": 8,
+  "posts": 16,
+  "independent_rows_per_arm": 2,
+  "within_forest_rows_per_arm": 1,
+  "effect_rows": 6,
+  "covariance_rank": 1,
+  "catalogue_included": false,
+  "aggregation": "plant means within posts; equal post means within rows; equal forest-block means",
+  "cautions": [
+    "Conditional on measured plants; not a mortality or population endpoint.",
+    "Two forest blocks only; approximate t1 intervals provide very weak precision.",
+    "Forest-specific uncertainty cannot be estimated from one row per arm.",
+    "Shared dark rows and plant species induce covariance; six rows are not six experiments.",
+    "Light on Nature programme overlap must be adjudicated before pooling.",
+    "No measured predator, pollinator or reproductive response in this extraction."
+  ]
+}
