@@ -5,6 +5,8 @@ on:
     paths:
       - "scripts/acquisition/alan_freshwater_invertebrate_zenodo2026_source_20261120.py"
       - "scripts/acquisition/alan_freshwater_zenodo_original_workbook_schema_20261120.py"
+      - "scripts/analysis/alan_freshwater2026_three_consumer_vial_feeding.py"
+      - "tests/test_alan_freshwater_three_consumer_vial_20261120.py"
       - ".github/workflows/alan-freshwater2026-zenodo-source-20261120.yml"
   workflow_dispatch:
 permissions:
@@ -26,6 +28,12 @@ jobs:
         run: |
           python -m scripts.acquisition.alan_freshwater_zenodo_original_workbook_schema_20261120 \
             --out /tmp/alan_freshwater_zenodo_schema_20261120.json
+      - name: Test vial-unit source constraints
+        run: python -m unittest discover -s tests -p test_alan_freshwater_three_consumer_vial_20261120.py -v
+      - name: Compute complete original 3 species x 3 lux feeding means and conditional bootstrap
+        run: |
+          python -m scripts.analysis.alan_freshwater2026_three_consumer_vial_feeding \
+            --out /tmp/alan_freshwater2026_feeding_vial_bootstrap.json
       - name: Assert raw source not mislabelled as wet plant macro mechanism
         run: |
           python - <<'PY'
@@ -43,5 +51,6 @@ jobs:
           path: |
             /tmp/alan_freshwater_zenodo_source_gate_20261120.json
             /tmp/alan_freshwater_zenodo_schema_20261120.json
+            /tmp/alan_freshwater2026_feeding_vial_bootstrap.json
           if-no-files-found: error
           retention-days: 40
