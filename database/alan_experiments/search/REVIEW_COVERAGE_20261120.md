@@ -1,3 +1,5 @@
+Current update: 141 retained reports have primary Methods/Results reviewed; 47 remain pending. Biofilm v2 is reviewed but subsample variances are not eligible for pooling. Final biofilm article remains unread; outside-search report count is seven. No new finite effects.
+
 Current update: 140 retained reports have primary Methods/Results reviewed; 48 remain pending. Wang grassland preprint and published version reviewed separately; final DOI is an additional outside-search report (six total), not an additional experiment. Raw numerical extraction remains pending.
 
 Current update: 139 retained reports have primary Methods/Results reviewed; 49 remain pending. Amphibian2018 final-paper review completed; two freshwater predator preprints remain access holds with probable overlap, not merged. Final eligibility and PRISMA remain unfinished.
