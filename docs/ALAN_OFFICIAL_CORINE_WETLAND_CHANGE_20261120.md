@@ -14,3 +14,10 @@ For each of 17 pinned original inland wetland survey points, intersect actual or
 **Keep independent from the original 187 matched-pair ALAN slopes.** The 187-pair source does not contain the complete original 374 survey-site coordinates. The prior original NDVI audit found 0 paired sites with complete vegetation histories. This 17-site mapping is an authentic supplementary habitat-change measurement, not an estimate on the original 187 pairs and not a substitute for a 374-site source recovery.
 
 Reproduction: run the pinned GitHub Actions workflow and publish counts/areas only after ALL three official sources return valid polygons. The script throws an error and refuses an inferred all-zero result if the server schema, requested coverage, or geometries fail.
+
+
+## Recovering the 374 original site coordinates
+
+Added a new original-source recovery program: scripts/analysis/alan_recover_frozen187_pair_coordinates_20261120.py . It reconstructs EXACT 187 unchanged match identities from the pinned 1707-site source and joins only Git-SHA-pinned published coordinate tables: wet_annual/habitats, wet_shore/nearest_wells and seven_moth/nearest_wells. The program checks conflicting unit IDs; it prints aggregate genuine arm coverage, never approximates coordinates from the 100-km spatial block and never silently treats missing geography as (0,0).
+
+An optional --original-geo-db path consumes the authoritative local original gbif_annual/annual.duckdb /geo table, if available, and certifies 187/187 fully recovered pairs. This source is not committed publicly. The original full-187 inference remains blocked until all 374 coordinate rows and matched-arm vegetation histories are genuinely recovered.

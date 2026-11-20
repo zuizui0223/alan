@@ -20,8 +20,19 @@ jobs:
         run: python -m pip install numpy==2.1.3 pandas==2.2.3 requests==2.32.5 shapely==2.0.7 pyproj==3.7.2
       - name: Test wetland change calculations and actual source ID
         run: python -m unittest discover -s tests -p test_alan_corine_official_wetland_change_20261120.py -v
+      - name: Test fixed-pair coordinate source completeness
+        run: python -m unittest discover -s tests -p test_alan_recover_frozen187_pair_coordinates_20261120.py -v
+      - name: Audit genuine original 187-pair site mapping coverage
+        run: python scripts/analysis/alan_recover_frozen187_pair_coordinates_20261120.py --out /tmp/frozen187_geo_coverage.json
       - name: Query EEA three official original CLC-Change sources at 17 sites
         run: python scripts/analysis/alan_corine_official_wetland_change_20261120.py --out /tmp/official_cha.json --csv /tmp/official_cha.csv
+      - name: Emit source rows for exact reproducibility
+        run: |
+          python - <<'PY'
+          import json
+          z=json.load(open("/tmp/official_cha.json"))
+          print("ALAN_CHA_VERIFIED_FULL_JSON="+json.dumps(z,sort_keys=True,separators=(",",":")))
+          PY
       - name: Archive original-source numerical result and site-level summaries
         if: always()
         uses: actions/upload-artifact@v4
@@ -30,5 +41,6 @@ jobs:
           path: |
             /tmp/official_cha.json
             /tmp/official_cha.csv
+            /tmp/frozen187_geo_coverage.json
           retention-days: 30
           if-no-files-found: warn
