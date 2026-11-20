@@ -1,4 +1,6 @@
-Current update: 151 retained reports reviewed,36 pending among187 retained reports. Van de Schoot morphology final Methods/Results read; same specimens as the2025 development report. Indoor scope/shared-unit hold retained; no new pooled effect.
+Current update: 151 retained reports reviewed,36 pending. Marine beetle larval activity report DOI resolved; full Methods/Results and exposure setting remain unverified. No effect or completed-review increment.
+
+Previous update: 151 retained reports reviewed,36 pending among187 retained reports. Van de Schoot morphology final Methods/Results read; same specimens as the2025 development report. Indoor scope/shared-unit hold retained; no new pooled effect.
 
 Previous update: 150 retained reports reviewed,37 pending among187 retained reports. Koppenhagen AGR and MED identities verified as one report; this removes one duplicate pending entry, not an extraction or new review. Search records remain521; distinct reports516. See koppenhagen_identity_review.md.
 
