@@ -1,0 +1,72 @@
+{
+  "schema": "alan_lu2026_verified_fiveblock_cross_diel_targeting_null_20261120_v1",
+  "source_original_doi": "10.1002/ece3.74368",
+  "original_Lu_excel_sha256": "ba7e15e66986f64943a38fd294e49d7128cf7719d318578f6b805d29cde8f98f",
+  "source_original_independent_lit_dark_blocks": 5,
+  "source_plant_block_both_diel_matched_cells": 33,
+  "source_moth_loss_cells": 21,
+  "source_test_engine": "exact convolution of blockwise hypergeometric overlaps conditional on original block-level moth-loss and fly-gain plant counts",
+  "source_reproduction_run": "https://github.com/zuizui0223/alan/actions/runs/44656082048",
+  "source_validated_contrasts": {
+    "both_fly_gain": {
+      "comparable_plant_block_cells": 33,
+      "conditional_null_95pct_integer_range": [
+        6,
+        11
+      ],
+      "exact_one_sided_enrichment_probability": 0.8595918367346937,
+      "exact_probability_ordering_two_sided_p": 0.6843537414965986,
+      "fly_gain_cells": 14,
+      "night_moth_loss_cells": 21,
+      "null_expected_intersection": 8.809523809523808,
+      "observed_minus_conditional_null": -0.8095238095238084,
+      "observed_moth_loss_and_fly_gain_cells": 8
+    },
+    "day_fly_gain": {
+      "comparable_plant_block_cells": 33,
+      "conditional_null_95pct_integer_range": [
+        11,
+        16
+      ],
+      "exact_one_sided_enrichment_probability": 0.9521768707482992,
+      "exact_probability_ordering_two_sided_p": 0.3827891156462585,
+      "fly_gain_cells": 21,
+      "night_moth_loss_cells": 21,
+      "null_expected_intersection": 13.38095238095238,
+      "observed_minus_conditional_null": -1.3809523809523796,
+      "observed_moth_loss_and_fly_gain_cells": 12
+    },
+    "either_fly_gain": {
+      "comparable_plant_block_cells": 33,
+      "conditional_null_95pct_integer_range": [
+        14,
+        18
+      ],
+      "exact_one_sided_enrichment_probability": 0.9285714285714284,
+      "exact_probability_ordering_two_sided_p": 0.40238095238095234,
+      "fly_gain_cells": 25,
+      "night_moth_loss_cells": 21,
+      "null_expected_intersection": 16.047619047619047,
+      "observed_minus_conditional_null": -1.0476190476190474,
+      "observed_moth_loss_and_fly_gain_cells": 15
+    },
+    "night_fly_gain": {
+      "comparable_plant_block_cells": 33,
+      "conditional_null_95pct_integer_range": [
+        9,
+        14
+      ],
+      "exact_one_sided_enrichment_probability": 0.767696793002915,
+      "exact_probability_ordering_two_sided_p": 0.9999999999999996,
+      "fly_gain_cells": 18,
+      "night_moth_loss_cells": 21,
+      "null_expected_intersection": 11.476190476190474,
+      "observed_minus_conditional_null": -0.4761904761904745,
+      "observed_moth_loss_and_fly_gain_cells": 11
+    }
+  },
+  "no_plant_reproductive_outcomes_measured": true,
+  "no_ALAN_wetness_trait_moderator_estimated": true,
+  "no_fly_targeted_complementarity_evidence_at_this_level": true,
+  "source_P_value_only_conditional_plant_label_null_not_randomized_treatment_effect": true
+}
