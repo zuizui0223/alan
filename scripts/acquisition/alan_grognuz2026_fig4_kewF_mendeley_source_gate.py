@@ -54,6 +54,13 @@ PLANTS=(
     "Matricaria chamomilla",
     "Trifolium pratense",
 )
+GERMINATION_PLANTS=(
+    "Anthemis tinctoria","Cichorium intybus","Crepis capillaris",
+    "Hypochaeris radicata","Silene pratensis","Trifolium incarnatum",
+)
+PETAL_DIEL_PLANTS=("Silene noctiflora","Malva moschata")
+assert len(GERMINATION_PLANTS)==6 and len(set(GERMINATION_PLANTS))==6
+assert len(PETAL_DIEL_PLANTS)==2
 assert len(PLANTS)==16 and len(set(PLANTS))==16
 def check(ok,msg):
     if not ok:raise RuntimeError("GROGNUZ_ORIGINAL16_SOURCE_GATE_STOP: "+msg)
@@ -74,7 +81,7 @@ def kew_traits(blob):
     required={"taxon_name_binom","F_PLANTATT","F_Doring",
               "taxonomic_status","aggregate"}
     check(required.issubset(reader.fieldnames or []),"original Kew F schema changed")
-    target=set(PLANTS)
+    target=set(PLANTS)|set(GERMINATION_PLANTS)|set(PETAL_DIEL_PLANTS)
     results={};rows=0
     for line in reader:
         rows+=1
@@ -108,6 +115,27 @@ def kew_traits(blob):
              "Kew_taxonomic_status":val["original_Kew_taxonomic_status"] if val else None,
              "source_Kew_missing_or_taxon_unresolved":val is None or val["F_PLANTATT"] is None,
              "no_genus_or_synonym_trait_assigned":True})
+    # These original-study endpoints are distinct original protocols.
+    # Do NOT pool 16 seasonal taxa with 6 germination species or 2
+    # camera-monitored petal species as 24 independent light treatments.
+    def others(labels):
+        scored=[]
+        for name in labels:
+            record=results.get(name)
+            scored.append({
+              "source_species":name,
+              "exact_binomial_in_Kew":record is not None,
+              "UK_PLANTATT_F":record["F_PLANTATT"] if record else None,
+              "UK_Doring_F":record["F_Doring"] if record else None,
+              "not_imputed_from_related_species":True,
+            })
+        return {
+          "original_source_species_count":len(labels),
+          "exact_nonmissing_PLANTATT_F":sum(x["UK_PLANTATT_F"] is not None for x in scored),
+          "PLANTATT_wet_gt7":sum(x["UK_PLANTATT_F"] is not None and x["UK_PLANTATT_F"]>7 for x in scored),
+          "exact_nonmissing_Doring_F":sum(x["UK_Doring_F"] is not None for x in scored),
+          "UK_source_matched_species":scored,
+        }
     return {"source_original_Kew_rows":rows,
             "original_Kew_source_Git_blob_SHA1":K_GIT_BLOB,
             "source_published_fig4_labels":len(records),
@@ -121,7 +149,9 @@ def kew_traits(blob):
                                              x["Kew_F_Doring"]>7 for x in records),
             "F_PLANTATT_distinct_scores":sorted({x["Kew_F_PLANTATT"] for x in records if x["Kew_F_PLANTATT"] is not None}),
             "F_Doring_distinct_scores":sorted({x["Kew_F_Doring"] for x in records if x["Kew_F_Doring"] is not None}),
-            "Kew_F_are_species_habitat_indicators_not_actual_site_hydrology":True}
+            "Kew_F_are_species_habitat_indicators_not_actual_site_hydrology":True,
+            "original_germination_six_species_Kew_F":others(GERMINATION_PLANTS),
+            "original_diel_petal_two_species_Kew_F":others(PETAL_DIEL_PLANTS)}
 def probe(label,url):
     try:
         blob,final,ctype=get(url)
@@ -203,6 +233,12 @@ def run():
     check(K["source_published_fig4_labels"]==16,"Figure4 list changed")
     check(K["F_PLANTATT_scored"]==12,"original Kew exact indicator coverage changed")
     check(K["F_PLANTATT_scored_wet_gt7"]==0,"original source wet taxa unexpectedly present")
+    check(K["original_germination_six_species_Kew_F"]["exact_nonmissing_PLANTATT_F"]==4,
+          "original germination species UK score source drift")
+    check(K["original_germination_six_species_Kew_F"]["PLANTATT_wet_gt7"]==0,
+          "original germination wet source coverage unexpectedly changed")
+    check(K["original_diel_petal_two_species_Kew_F"]["exact_nonmissing_PLANTATT_F"]==2,
+          "original diel species UK score source drift")
     return {"schema":SCHEMA,"publication_doi":PAPER_DOI,
             "article_source_Agroscope_PDF":PUBPDF,
             "original_phenology_2022_paired_light_sites":6,
