@@ -5,8 +5,9 @@
   "table3_all12cells_match": true,
   "main_effects_added": 0,
   "definition": "sample-order presence normalized over all order detections",
-  "figure1_reproduction": false,
+  "figure1_full_reproduction": false,
+  "reported_MYGR_percent_change_reproduced": true,
   "site_and_date_covariance": "unresolved_no_meta_variance",
-  "paper_direction_check": "MYLU decreases under written sample-order formula unlike reported direction; do not silently replace denominator",
+  "paper_direction_check": "MYLU direction resolved by sample-prey-taxon occurrence; sample-order occurrence is a separate estimand",
   "unique_denovo": 490
 }
