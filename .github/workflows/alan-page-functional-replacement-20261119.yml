@@ -29,6 +29,12 @@ jobs:
             https://www.sci.muni.cz/botany/juice/NET/sources/EIV_Europe.csv \
             -o /tmp/EIV_Europe.csv
           echo 'ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba  /tmp/EIV_Europe.csv' | sha256sum -c -
+      - name: Test conditional null with source studies as blocks
+        run: python -m unittest discover -s tests -p test_alan_page2021_q_alignment_null_20261120.py -v
+      - name: Recompute q-V alignment against shuffled q within each original network
+        run: |
+          python -m scripts.analysis.alan_page2021_visitor_q_alignment_null_20261120 \
+            --out /tmp/alan_page_q_alignment_null_20261120.json
       - name: Refit source-pinned original Page 623 taxon rows 33 studies 72 networks
         run: |
           python -m scripts.analysis.alan_page2021_replacement_threshold_20261119 \
@@ -58,5 +64,6 @@ jobs:
           path: |
             /tmp/alan_page_replacement_20261119.json
             /tmp/alan_page_moisture_overlap_20261119.json
+            /tmp/alan_page_q_alignment_null_20261120.json
           if-no-files-found: error
           retention-days: 60
