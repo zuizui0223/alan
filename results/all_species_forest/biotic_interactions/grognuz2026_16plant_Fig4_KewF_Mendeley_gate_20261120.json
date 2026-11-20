@@ -1,6 +1,6 @@
 {
   "schema": "alan_grognuz2026_original16_Fig4_KewF_Mendeley_authorized_source_20261120_v1",
-  "source_confirmed_original_action_run": "https://github.com/zuizui0223/alan/actions/runs/44672678955",
+  "source_confirmed_original_action_run": "https://github.com/zuizui0223/alan/actions/runs/44673329871",
   "paper_DOI": "10.1016/j.biocon.2025.111650",
   "author_published_fig4_16_taxa_phenological_endpoint": "FIRST/QUARTER/PEAK/ULTIMATE dates; not flower number, cover, seed production or reproductive success",
   "source_phenology_site_context": {
@@ -243,5 +243,79 @@
   "observed_Kew_no_wet_species_does_not_prove_Swiss_no_wet_species": true,
   "original_phenology_effects_are_published_authors_result_not_reanalysis": true,
   "source_scope": "UK moisture indicator coverage audit and repository access test; no original plot/year lighting effects estimated",
-  "missing_four_source_moisture_is_not_assigned_as_dry": true
+  "missing_four_source_moisture_is_not_assigned_as_dry": true,
+  "original_additional_germination_six_species_UK_F": {
+    "PLANTATT_wet_gt7": 0,
+    "UK_source_matched_species": [
+      {
+        "UK_Doring_F": null,
+        "UK_PLANTATT_F": null,
+        "exact_binomial_in_Kew": false,
+        "not_imputed_from_related_species": true,
+        "source_species": "Anthemis tinctoria"
+      },
+      {
+        "UK_Doring_F": 4,
+        "UK_PLANTATT_F": 4,
+        "exact_binomial_in_Kew": true,
+        "not_imputed_from_related_species": true,
+        "source_species": "Cichorium intybus"
+      },
+      {
+        "UK_Doring_F": 5,
+        "UK_PLANTATT_F": 4,
+        "exact_binomial_in_Kew": true,
+        "not_imputed_from_related_species": true,
+        "source_species": "Crepis capillaris"
+      },
+      {
+        "UK_Doring_F": 4,
+        "UK_PLANTATT_F": 4,
+        "exact_binomial_in_Kew": true,
+        "not_imputed_from_related_species": true,
+        "source_species": "Hypochaeris radicata"
+      },
+      {
+        "UK_Doring_F": null,
+        "UK_PLANTATT_F": null,
+        "exact_binomial_in_Kew": false,
+        "not_imputed_from_related_species": true,
+        "source_species": "Silene pratensis"
+      },
+      {
+        "UK_Doring_F": 2,
+        "UK_PLANTATT_F": 2,
+        "exact_binomial_in_Kew": true,
+        "not_imputed_from_related_species": true,
+        "source_species": "Trifolium incarnatum"
+      }
+    ],
+    "exact_nonmissing_Doring_F": 4,
+    "exact_nonmissing_PLANTATT_F": 4,
+    "original_source_species_count": 6
+  },
+  "original_additional_petal_nyctinasty_two_species_UK_F": {
+    "PLANTATT_wet_gt7": 0,
+    "UK_source_matched_species": [
+      {
+        "UK_Doring_F": 4,
+        "UK_PLANTATT_F": 4,
+        "exact_binomial_in_Kew": true,
+        "not_imputed_from_related_species": true,
+        "source_species": "Silene noctiflora"
+      },
+      {
+        "UK_Doring_F": 4,
+        "UK_PLANTATT_F": 3,
+        "exact_binomial_in_Kew": true,
+        "not_imputed_from_related_species": true,
+        "source_species": "Malva moschata"
+      }
+    ],
+    "exact_nonmissing_Doring_F": 2,
+    "exact_nonmissing_PLANTATT_F": 2,
+    "original_source_species_count": 2
+  },
+  "three_original_phenological_stages_are_not_independent_light_studies": true,
+  "scored_wet_plant_count_across_each_distinct_study_endpoint_zero": true
 }
