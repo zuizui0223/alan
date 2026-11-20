@@ -1,0 +1,4 @@
+treatment,estimate,se,df,ci_lower,ci_upper,source,estimand,pool_status
+dark,0.393,0.33,47,-0.2713,1.06,Table1,log_insect_covariate_trend_buzz_ratio_model,hold_not_lighting_lnRR
+red,0.617,0.271,47,0.0719,1.16,Table1,log_insect_covariate_trend_buzz_ratio_model,hold_not_lighting_lnRR
+white,1.173,0.188,47,0.7959,1.55,Table1,log_insect_covariate_trend_buzz_ratio_model,hold_not_lighting_lnRR

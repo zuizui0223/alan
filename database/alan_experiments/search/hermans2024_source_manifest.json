@@ -1,0 +1,19 @@
+{
+  "primary_pdf_url": "https://edepot.wur.nl/662180",
+  "primary_pdf_sha256": "73a334f960121ec020e4432a2d17f6165b3f8ce148e5bdd7cb2018f407dc8690",
+  "dataset_doi": "10.34894/Z6PAIA",
+  "version": 1,
+  "metadata_only": true,
+  "files": [
+    {
+      "id": 425082,
+      "filename": "dataset_activity_pattern.csv",
+      "restricted": true
+    },
+    {
+      "id": 425081,
+      "filename": "dataset_per_night.csv",
+      "restricted": true
+    }
+  ]
+}
