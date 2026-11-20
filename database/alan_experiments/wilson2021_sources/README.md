@@ -1,0 +1,15 @@
+# Wilson2021: diurnal yucca-moth mutualism
+
+Primary https://doi.org/10.1093/icb/icab010. Author-hosted primary manuscript/advance-article PDF obtained from https://www.brettseymoure.com/s/2021_Wilson-et-al-ICB.pdf (linked from author publication list). Final issue-version equivalence is not verified. Methods and Results read, not merely abstract screening.
+
+The reproductive study randomized three transects within each of five San Luis Obispo sites in2019: eight lit and seven control transects. Four distance positions per transect yielded60 planned plants; two nonflowering plants affected by herbivory were excluded, leaving58. Larval analysis retained42fruiting plants and191fruits. These are nested subsamples, not58 or191 independent illuminations. The authors' “fruit set” is mature **fruit count**, without a flower denominator, not a fruit-set proportion or measured seed count. Larvae per sampled fruit condition on fruit production; missing/nonfruiting plants are not zero larva observations.
+
+A separate sixth-site capture assay used four towers over seven nights, alternating treatment at each tower. Traps, nights and captures are not independent lighting installations, and this assay does not measure visits or pollen delivery at the reproductive plants.
+
+Direct lighting is manipulated; ambient skyglow is observational. The binary lit/unlit treatment did not have strong support for fruit count. The reported positive direct-light coefficient is for the **illuminance gradient** and its interval is85%, not95%. Positive skyglow associations are not randomized effects. The larval skyglow result is described as weak, with the null in the competitive model set.
+
+`reported_coefficients.csv` retains seven Results coefficients and their exact85/95% CI levels. Methods says fixed effects were centered and scaled, and asymmetric reported intervals cannot be treated as raw-scale Wald SEs without confirmation. No coefficient was exponentiated into a simple light/dark ratio; no variance or missing binary contrast was invented. Models dropped site after singular/zero-variance fits; transect/plant dependence remains relevant. The primary PDF declares data in online supplementary material, but the publisher page returned403 and the raw supplement remains unrecovered. Shared-control and cluster variance, source scaling and final publication consistency remain holds.
+
+This moth is described as **diurnal**. Its inclusion must not be interpreted as evidence for a specifically nocturnal-moth mechanism. No wet/dry comparison is available. Prioritizing a positive result here prevents selecting only negative reproduction results; it does not establish a general beneficial effect of ALAN.
+
+Independent AI review confirmed the five focal exposure coefficients, CI levels and design definitions from the primary text. The two additional environmental coefficients were retained to preserve the full Results extraction; they are not ALAN effects. This is not human independent double extraction.

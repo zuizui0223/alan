@@ -7,7 +7,7 @@
   "retained_fulltext_reports": 187,
   "retained_reports_with_primary_read": 160,
   "pending_primary_review_reports": 27,
-  "additional_source_reports_outside_search": 13,
+  "additional_source_reports_outside_search": 14,
   "duplicate_incremental_batch_dois": [
     "10.1007/s00442-025-05750-z",
     "10.1073/pnas.2401215121",
