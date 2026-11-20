@@ -27,6 +27,18 @@ CORE_BALANCE=("built","built0","light0","area0","freq0",
               "temp_trend","rain_trend")
 PRESPECIFIED_FRACS=(.50,.25)
 
+def water_caliper(data, fraction):
+    """Nondegenerate scale if a water variable is zero-inflated (IQR=0).
+
+    Fraction must scale the fallback itself, otherwise 0.5 and 0.25
+    IQR produce IDENTICAL pair samples when the original IQR is zero.
+    """
+    finite=pd.to_numeric(data,errors="coerce").replace([np.inf,-np.inf],np.nan).dropna()
+    q=float(finite.quantile(.75)-finite.quantile(.25))
+    sd=float(finite.std()) if len(finite)>1 else 0.
+    return max(fraction*max(q,.10*sd),1e-5)
+
+
 def stricter_pairs(df, water_iqr_fraction):
     """Exact same original Hungarian algorithm, plus PRE-match water calipers."""
     if water_iqr_fraction not in PRESPECIFIED_FRACS:
@@ -37,7 +49,7 @@ def stricter_pairs(df, water_iqr_fraction):
     f=f.sort_values("unit_id").reset_index(drop=True)
     scales={k:robust_scale(f[k]) for k in cols}
     limits={k:maxgap(f[k],.5 if k=="built" else 1.) for k in cols}
-    limits.update({k:maxgap(f[k],water_iqr_fraction) for k in BASELINE_WATER})
+    limits.update({k:water_caliper(f[k],water_iqr_fraction) for k in BASELINE_WATER})
     limits["start"]=5.
     limits["span"]=10.
     f["treated"]=f.light.gt(0)
@@ -132,6 +144,8 @@ def main():
         "original_reference_blocks":30,
         "original_reference_ids_sha256":original_digest,
         "original_reference_area0_SMD":.7224709411617956,
+        "source_baseline_water_IQR":{k:float(df[k].quantile(.75)-df[k].quantile(.25)) for k in BASELINE_WATER},
+        "source_baseline_water_sd":{k:float(df[k].std()) for k in BASELINE_WATER},
         "original_reference_freq0_SMD":.7445843410774747,
         "source_is_postselected_exploratory_not_causal":True,
         "matching_outcome_blind":True,
