@@ -1,4 +1,6 @@
-Current update: 159 retained reports reviewed,28 pending; eleven outside-search reports. Owens2022 final public DOCX and spectral CSV recovered. Trap-change exclusion verified; ecological raw data and final Methods/Results remain pending. No effect or completed-review count added.
+Current update: 159 retained reports reviewed,28 pending; eleven outside-search reports. Sanders2018 field biomass audit finds30/48 records per plant and a Cage39 light-allocation conflict (population5lux; both biomass1lux). Registry now holds cross-endpoint allocation and biomass extraction; existing insect values remain conditional and unchanged. No new review count or effect added.
+
+Previous update: 159 retained reports reviewed,28 pending; eleven outside-search reports. Owens2022 final public DOCX and spectral CSV recovered. Trap-change exclusion verified; ecological raw data and final Methods/Results remain pending. No effect or completed-review count added.
 
 Previous update: 159 retained reports reviewed,28 pending; eleven outside-search reports. Wakefield2016 thesis identity confirmed from Europe PMC core metadata; full text and chapter/publication overlap unresolved. Access attempts recorded without increasing review or effect counts.
 

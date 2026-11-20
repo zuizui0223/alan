@@ -1,0 +1,15 @@
+species,light_lux,complete_block_pairs,block_ids,extraction_status
+bean,0.1,2,1;4,biomass_labels_only_allocation_conflict_and_missingness_hold
+bean,1,3,1;4;6,biomass_labels_only_allocation_conflict_and_missingness_hold
+bean,5,3,1;4;6,biomass_labels_only_allocation_conflict_and_missingness_hold
+bean,10,0,,biomass_labels_only_allocation_conflict_and_missingness_hold
+bean,20,3,1;3;4,biomass_labels_only_allocation_conflict_and_missingness_hold
+bean,50,3,1;4;6,biomass_labels_only_allocation_conflict_and_missingness_hold
+bean,100,2,1;4,biomass_labels_only_allocation_conflict_and_missingness_hold
+barley,0.1,3,1;2;3,biomass_labels_only_allocation_conflict_and_missingness_hold
+barley,1,3,1;2;5,biomass_labels_only_allocation_conflict_and_missingness_hold
+barley,5,4,1;2;4;6,biomass_labels_only_allocation_conflict_and_missingness_hold
+barley,10,4,2;3;4;6,biomass_labels_only_allocation_conflict_and_missingness_hold
+barley,20,3,1;3;5,biomass_labels_only_allocation_conflict_and_missingness_hold
+barley,50,2,1;6,biomass_labels_only_allocation_conflict_and_missingness_hold
+barley,100,5,1;2;4;5;6,biomass_labels_only_allocation_conflict_and_missingness_hold

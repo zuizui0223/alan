@@ -1,0 +1,17 @@
+species,treatment,planned_cages,recorded_cages,missing_cages,basis
+bean,0.1,6,4,2,population_design_ID_link_not_corrected_biomass_allocation
+bean,1,6,4,2,population_design_ID_link_not_corrected_biomass_allocation
+bean,10,6,2,4,population_design_ID_link_not_corrected_biomass_allocation
+bean,100,6,4,2,population_design_ID_link_not_corrected_biomass_allocation
+bean,20,6,4,2,population_design_ID_link_not_corrected_biomass_allocation
+bean,5,6,5,1,population_design_ID_link_not_corrected_biomass_allocation
+bean,50,6,3,3,population_design_ID_link_not_corrected_biomass_allocation
+bean,c,6,4,2,population_design_ID_link_not_corrected_biomass_allocation
+barley,0.1,6,3,3,population_design_ID_link_not_corrected_biomass_allocation
+barley,1,6,2,4,population_design_ID_link_not_corrected_biomass_allocation
+barley,10,6,4,2,population_design_ID_link_not_corrected_biomass_allocation
+barley,100,6,5,1,population_design_ID_link_not_corrected_biomass_allocation
+barley,20,6,3,3,population_design_ID_link_not_corrected_biomass_allocation
+barley,5,6,5,1,population_design_ID_link_not_corrected_biomass_allocation
+barley,50,6,2,4,population_design_ID_link_not_corrected_biomass_allocation
+barley,c,6,6,0,population_design_ID_link_not_corrected_biomass_allocation

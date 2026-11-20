@@ -1,0 +1,19 @@
+{
+  "design_cages": 48,
+  "recorded_by_species": {
+    "barley": 30,
+    "bean": 30
+  },
+  "both_species_recorded": 23,
+  "neither_species_recorded": 11,
+  "archive_sha256": "42be9ca8f37d4cb43ed25924a7c55f4715f7c9e591ac7eb1e8ed3a2ff842e3c8",
+  "member_sha256": {
+    "data/ALANIntensityPlantbiomass_field_bean.csv": "655fda7526644d7945d5e44a766d077895d777b51f356befd3df5584a00a6af7",
+    "data/ALANIntensityPlantbiomass_field_barley.csv": "abaa03342cb408b0e3ea9b4575fc5d9a7928c65b43d25277c212786aef3fdbb8"
+  },
+  "allocation_matches_population_data": false,
+  "allocation_conflict_records": 2,
+  "imputed_values": 0,
+  "effect_estimates_added": 0,
+  "source_reason": "Author data description: missing biomass due to loss of labels; randomness not established."
+}
