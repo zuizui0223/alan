@@ -1,0 +1,13 @@
+{
+  "activity_rows": 320,
+  "sites": 8,
+  "passes_total": 57558,
+  "feeding_rows": 40,
+  "buzz_total": 2681.0,
+  "contrast_count": 12,
+  "covariance_rank": 7,
+  "max_original_ratio_rounding_error": 0.00482758620689655,
+  "dark_first_confounding_resolved": false,
+  "successful_captures_measured": false,
+  "adopted_main_effects": 0
+}

@@ -9,3 +9,5 @@ Pipistrellus feeding buzz counts increased under orange/white/green light, but b
 Data DOI: https://doi.org/10.5523/bris.31dvq1elivhby2dap2tm0zgz94 . Retrieval failed at redirect; no raw data obtained. Bristol/UWE PDF routes returned403. Quantitative extraction pending; primary reading complete.
 
 Cached AGR:IND606206224 title, ordered six authors, journal24(12),pages5909–5918,year2018 match the publisher and MED:30288876. Resolve both search records to10.1111/gcb.14462, not two studies. Raw search records remain intact.
+
+Update2026-11-20: direct data-server URLs recovered both CSVs and README after redirect failure. The preceding access statement is historical. See [paired extraction and independent check](../zeale_sources/README.md);12 supplementary contrasts, no main-catalogue adoption.

@@ -1,0 +1,20 @@
+[
+  {
+    "file": "bat_activity_data.csv",
+    "url": "https://data.bris.ac.uk/datasets/31dvq1elivhby2dap2tm0zgz94/bat_activity_data.csv",
+    "bytes": 15356,
+    "sha256": "caa6cd00e32501390d1a7f0ed13d5bdee1e4515de4beb35138b224f28c0a5140"
+  },
+  {
+    "file": "bat_telemetry_data.csv",
+    "url": "https://data.bris.ac.uk/datasets/31dvq1elivhby2dap2tm0zgz94/bat_telemetry_data.csv",
+    "bytes": 12055,
+    "sha256": "7344178de3fabea40b2754672cd5394b993b6d67d2639b7d77e402139ccdb73b"
+  },
+  {
+    "file": "readme.txt",
+    "url": "https://data.bris.ac.uk/datasets/31dvq1elivhby2dap2tm0zgz94/readme.txt",
+    "bytes": 531,
+    "sha256": "d19a39c7efd308ce1bfa7ded868832754846716ecf97e464bcffe974c6f55d31"
+  }
+]
