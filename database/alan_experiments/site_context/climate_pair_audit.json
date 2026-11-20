@@ -1,0 +1,9 @@
+{
+  "pairs": 6,
+  "same_grid_pairs": 5,
+  "boundary_pairs": [
+    3
+  ],
+  "annual_source_sha256": "50785320e8f46a9da43ca4e1f005ce257115cf12db9b8727cbf0b18b2982a3be",
+  "conclusion": "No within-pair climate adjustment adopted. Neither equal-grid equality nor boundary difference proves actual plot climate. All input sites retained; no reanalysis or imputation."
+}

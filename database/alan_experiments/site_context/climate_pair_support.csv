@@ -1,0 +1,7 @@
+pair,year,lit_site_id,dark_site_id,lit_grid_lat,lit_grid_lon,dark_grid_lat,dark_grid_lon,requested_site_separation_km,grid_centre_separation_km,same_grid,lit_minus_dark_temperature_C,lit_minus_dark_precipitation_mm,interpretation
+1,2016,Giavi_pair1_illuminated,Giavi_pair1_dark,46.75,7.5,46.75,7.5,0.683856837388429,0.0,True,0.0,0.0,shared_coarse_context_not_measured_equality
+2,2016,Giavi_pair2_illuminated,Giavi_pair2_dark,46.75,7.5,46.75,7.5,1.0679499916204784,0.0,True,0.0,0.0,shared_coarse_context_not_measured_equality
+3,2016,Giavi_pair3_illuminated,Giavi_pair3_dark,46.5,7.5,46.75,7.5,1.8099734090436788,27.798731661139367,False,-3.897814207650273,328.5,grid_boundary_contrast_not_verified_plot_climate
+4,2016,Giavi_pair4_illuminated,Giavi_pair4_dark,46.5,7.5,46.5,7.5,2.5781580484953106,0.0,True,0.0,0.0,shared_coarse_context_not_measured_equality
+5,2016,Giavi_pair5_illuminated,Giavi_pair5_dark,46.75,7.5,46.75,7.5,0.6075409715437381,0.0,True,0.0,0.0,shared_coarse_context_not_measured_equality
+6,2016,Giavi_pair6_illuminated,Giavi_pair6_dark,46.75,7.5,46.75,7.5,1.25544848476259,0.0,True,0.0,0.0,shared_coarse_context_not_measured_equality

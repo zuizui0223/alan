@@ -24,3 +24,11 @@ Calendar years follow the primary coordinate table, including every year in2012â
 Reproduce with `python database/alan_experiments/site_context/acquire_annual_climate.py`; cached raw responses are reused. No effect-level averaging across years/sites, wet/dry classification or meta-regression is performed. Hey/Guo and absent Sanders coordinates remain unfilled. Source attribution: ERA5 reanalysis distributed through Open-Meteo; API documentation linked above. This adds climate context, not a completed environmental-moderator analysis.
 
 Independent agent verification matched18 raw hashes, all9,142 daily records and25 annual aggregates. Eight site-years contain365days and17 contain366days. Maximum recomputation differences were1.78e-15 degrees C and1.36e-12mm. Source coordinates, requested years, returned grids, units and grid distances also matched. This is computational validation, not independent meteorological observation.
+
+## Within-pair spatial support
+
+`climate_pair_support.csv` audits all six Giavi2016 meadow pairs against the returned ERA5 grids. Five pairs share one grid cell within each pair: their identical climate values do not establish identical local conditions. Pair3 spans two cells. Its requested points are1.810km apart, while returned cell centres are27.799km apart. The annual lit-minus-dark differences are-3.898 degrees C and+328.5mm. These are grid-context contrasts, not measured plot differences or treatment effects. Real topographic climatic variation may exist, but these data cannot resolve the within-pair contrast.
+
+No within-pair climate adjustment is adopted from these values. No point is deleted, snapped to its paired point, or assigned a corrected value. The annual context remains useful at its stated coarse support; it cannot establish climate matching of the illumination/control plots. Reproduce with `python database/alan_experiments/site_context/audit_climate_pair_support.py`; the audit hashes its annual source. A later finer-scale source requires explicit spatial and temporal validation rather than selection for agreement with the light response.
+
+Independent agent recalculation matched all six pair assignments, differences, distances and the annual-input hash. This verifies the spatial-support audit, not local meteorological accuracy.
