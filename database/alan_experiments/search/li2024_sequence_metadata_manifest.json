@@ -1,0 +1,22 @@
+[
+  {
+    "accession": "PRJNA971512",
+    "metadata_url": "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJNA971512&result=read_run&fields=study_accession,sample_accession,run_accession,scientific_name,sample_title&format=tsv",
+    "local_cache": "..\\gbif_annual\\alan_experiment_sources\\PRJNA971512_ena_runs.tsv",
+    "sha256": "2ae2e7849256c15ea05ef746e758c5e5bf24f4003b96af0e4d614988180ad881",
+    "runs": 200,
+    "unique_samples": 200,
+    "independent_lighting_n": null,
+    "sequence_files_downloaded": false
+  },
+  {
+    "accession": "PRJNA893212",
+    "metadata_url": "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJNA893212&result=read_run&fields=study_accession,sample_accession,run_accession,scientific_name,sample_title&format=tsv",
+    "local_cache": "..\\gbif_annual\\alan_experiment_sources\\PRJNA893212_ena_runs.tsv",
+    "sha256": "ab506b972783fef31c5250aa1592b66eccafeaed73c9c2d79c57bd7707e643d7",
+    "runs": 29,
+    "unique_samples": 29,
+    "independent_lighting_n": null,
+    "sequence_files_downloaded": false
+  }
+]

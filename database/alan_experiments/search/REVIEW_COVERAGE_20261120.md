@@ -1,4 +1,6 @@
-Current update: 155 retained reports reviewed,32 pending; eleven outside-search reports. Foster2021 primary manuscript Methods/Results read; orientation is measured but increased competition is extrapolated. Excluded from interaction pools; no finite effect added. Bailey supplement recheck adds no new review.
+Current update: 155 retained reports reviewed,32 pending; eleven outside-search reports. Li2024 sequence metadata recovered for incubation and field archives; independent lighting n and full Methods unresolved. No finite effect or completed-review increment.
+
+Previous update: 155 retained reports reviewed,32 pending; eleven outside-search reports. Foster2021 primary manuscript Methods/Results read; orientation is measured but increased competition is extrapolated. Excluded from interaction pools; no finite effect added. Bailey supplement recheck adds no new review.
 
 Previous update: 154 retained reports reviewed,33 pending; eleven outside-search reports. New MAFIS crab primary Methods/Results recovered and model contrasts transcribed separately. Block-night mapping unresolved; no pooled effect added.
 
