@@ -1,12 +1,12 @@
 {
   "search_records": 521,
-  "unique_search_reports": 517,
+  "unique_search_reports": 516,
   "manually_linked_version_pairs": 3,
-  "publication_families_after_verified_links": 514,
-  "retained_publication_families_after_verified_links": 186,
-  "retained_fulltext_reports": 188,
+  "publication_families_after_verified_links": 513,
+  "retained_publication_families_after_verified_links": 185,
+  "retained_fulltext_reports": 187,
   "retained_reports_with_primary_read": 150,
-  "pending_primary_review_reports": 38,
+  "pending_primary_review_reports": 37,
   "additional_source_reports_outside_search": 10,
   "duplicate_incremental_batch_dois": [
     "10.1073/pnas.2401215121",
