@@ -1,0 +1,26 @@
+{
+  "input_sha256": {
+    "C:\\Users\\zuizui\\Documents\\Codex\\2026-11-05\\new-chat\\work\\alan\\database\\alan_experiments\\cieraad_sources\\descriptive_effects.csv": "75e5299417cd750bb807a2f3f8d2c26f6128dce42390ac9a848834c4fd350fae",
+    "C:\\Users\\zuizui\\Documents\\Codex\\2026-11-05\\new-chat\\work\\alan\\database\\alan_experiments\\cieraad_sources\\effect_covariance.csv": "aeaff892b3b1bd26d7dc50a4257a02c3a7a31c75cb02bff47120ac0e93349f77",
+    "C:\\Users\\zuizui\\Documents\\Codex\\2026-11-05\\new-chat\\work\\alan\\database\\alan_experiments\\beech_sources\\installation_effects.csv": "ada2f241f4d0684e6a30fe890caffde5a0bdcf022dcef17fc25b29565c82f884",
+    "C:\\Users\\zuizui\\Documents\\Codex\\2026-11-05\\new-chat\\work\\alan\\database\\alan_experiments\\beech_sources\\installation_covariance.csv": "9cce7d81723eb751dcfed69c490b17db29c0533dcbc65efede6204dd6af28e49",
+    "C:\\Users\\zuizui\\Documents\\Codex\\2026-11-05\\new-chat\\work\\gbif_annual\\alan_experiment_sources\\hongkong2025\\Herb_Psyc.csv": "31b2d1d2e6f80b6611bde4f30f335167882cc1bef6a7db9ecb07adf8a2fa55bc",
+    "C:\\Users\\zuizui\\Documents\\Codex\\2026-11-05\\new-chat\\work\\gbif_annual\\alan_experiment_sources\\hongkong2025\\Herb_Aporosa.csv": "9e97943ae6ff3ed8bfd4ba5be08ec58d6e760d568e2f0b296695a8a6d0172e4e"
+  },
+  "covariance_ranks": [
+    1,
+    1,
+    2
+  ],
+  "final_eligibility": false,
+  "main_catalogue_changed": false,
+  "wetness_moderator_estimated": false,
+  "endpoint": "terminal unconditional leaf-damage fractions in retained samples",
+  "estimand": "equal log-contrast mean over each programme observed species-light menu",
+  "limitations": [
+    "2/2/4 clusters; uncertain delta sampling variances",
+    "Different species, spectra, dose menus, durations and leaf aggregation",
+    "Plant attrition and programme adjudication incomplete",
+    "No predation, chemical mediation or pollination mechanism estimated"
+  ]
+}

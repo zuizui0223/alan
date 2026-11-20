@@ -68,6 +68,7 @@ audit=dict(catalogue_rows=len(d),candidate_rows_before_final_adjudication=105,
            pooled_estimates_scope='finally_adjudicated_main_endpoint_groups_only',
            exploratory_derived_capture_synthesis='capture_origin_synthesis/pooled_estimates.csv',
            exploratory_derived_aphid_predator_synthesis='aphid_predator_synthesis/pooled_estimate.csv',
+           exploratory_derived_leaf_damage_synthesis='leaf_damage_synthesis/pooled_estimate.csv',
            exclusions_are_not_literature_exclusions=True,
            warning='105 rows are not105 independent studies; sum/parts and doses overlap. Programme labels still require adjudication. Species moisture is not site wetness.')
 (ROOT/'synthesis_support_audit.json').write_text(json.dumps(audit,indent=2)+'\n')
