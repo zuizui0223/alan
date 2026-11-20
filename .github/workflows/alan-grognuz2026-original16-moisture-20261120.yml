@@ -38,6 +38,10 @@ jobs:
           assert k["source_published_fig4_labels"]==16
           assert k["F_PLANTATT_scored"]==12
           assert k["F_PLANTATT_scored_wet_gt7"]==0
+          assert k["original_germination_six_species_Kew_F"]["exact_nonmissing_PLANTATT_F"]==4
+          assert k["original_germination_six_species_Kew_F"]["PLANTATT_wet_gt7"]==0
+          assert k["original_diel_petal_two_species_Kew_F"]["exact_nonmissing_PLANTATT_F"]==2
+          assert k["original_diel_petal_two_species_Kew_F"]["PLANTATT_wet_gt7"]==0
           assert not q["original_ALAN_plant_phenology_moisture_moderator_computed"]
           assert not q["wet_vs_drier_species_comparison_supported"]
           assert q["Mendeley_original_file_source_audit"]["source_raw_experimental_phenology_rows_downloaded"]==False
