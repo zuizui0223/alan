@@ -1,0 +1,25 @@
+# Fulltext design review batch 7 — 2026-11-20
+
+Four additional cached primary Methods/Results inspected. Source XML SHA256 values are in `fulltext_batch7_sources.csv`. This batch establishes no new quantitative inclusions and adds no effect sizes. Total assembled review records: 94, including 90 read reports and four access holds. This is not completed PRISMA or dual human screening.
+
+## Drought is a competing modifier, not evidence to discard
+
+[Wei et al., 2023](https://doi.org/10.3389/fpls.2023.1263795) used six outdoor lighting plots (three lit, three dark), with drought and well-watered pots within each plot, for Euonymus japonicus and Rosa hybrida. Mean soil water contents were 12.33% and 19.20%. The authors report a greater reduction of Euonymus net photosynthesis under ALAN during drought (31.27%) than under no drought (15.53%); the interaction was not clear for Rosa. These are author-reported percentages, not independently extracted effect sizes. Photosynthesis, oxidative markers and pigments are not biomass, reproductive success or plant recording rates. Keep as an endpoint-scope hold; do not expand eligibility merely to obtain a moisture effect. A separate physiological evidence layer would require an explicit consistent scope amendment and broader retrieval of such studies. Figure SDs need verification at plot level before weighting. Raw data are offered on request, not supplied in the reviewed article.
+
+## Earthworms and germination: useful mechanism, inadequate lighting replication
+
+[Mittmannsgruber et al., 2024](https://doi.org/10.1186/s12862-024-02200-x) crossed ALAN, earthworms, seed mixture and sowing depth in 96 pots. The pots occupied two greenhouse tables; the dark treatment used an opaque cover, and table locations were exchanged after four weeks. This does not establish 48 independent lighting units per arm. Humidity and day length also differed. Reported germination reduction and taller surviving ragweed plants are distinct outcomes; final growth used pots with surviving plants. Five pots with no remaining live worms were excluded. Hold pending exposure-unit/design assessment, despite supplementary raw data availability. Do not equate moving tables with independent replication.
+
+## Native–invasive competition: exposure history matters
+
+[Zhang et al., 2026](https://doi.org/10.1098/rspb.2026.0507) randomized four greenhouse compartments per ALAN arm and included 480 pots, eight target invasive species, native mixtures and two nutrient levels. Pots were rotated among compartments within light arms every three weeks; harvest compartment does not alone encode full exposure history. Each species initially occupies one compartment per light arm. Preserve the eight-compartment structure and reconstruct rotations before species-level variances. Six target plants died and were excluded. The paper's flowering measure combines buds, open flowers and mature fruits; it is not fruit set or seed production. Invasive proportional biomass responded in opposite directions under high and low nutrients, while the ALAN effect on target absolute biomass and flowering remained uncertain in the reported models.
+
+The stated [Figshare collection](https://doi.org/10.6084/m9.figshare.c.8737270) was checked via public API: collection 8737270 contains article 33994525, whose current file list contains only `rspb20260507_si_001.pdf` (file 69338092, 644351 bytes). No separate raw dataset appeared in that listing. This is an access/data-availability finding, not proof that data do not exist elsewhere.
+
+## Ground predators: captures are not attacks
+
+[Brown et al., 2023](https://doi.org/10.1016/j.isci.2023.106203) sampled 10 lit and 10 interspersed dark pitfall stations on a mown forest pathway, with five days before, five during and five after lighting. This is a candidate replicated field comparison. Table 1 gives during-light total capture means 18.92 versus 10.88; the temporal/replicate basis of SEs must be verified before treating these as independent-station precision. Guild and family Tables 3–4 compare before/during/after at lit stations; they do not provide the simultaneous guild-specific dark control needed for a direct ALAN contrast. Do not substitute before-light counts for the concurrent dark arm without explicitly changing the estimand. Family-level raw data are on author request. Wolf-spider/ground-beetle captures and trophic assignments do not measure attacks on adult moths or predation rate. Flying arthropods were excluded, limiting direct linkage to flower visitors.
+
+## Implication for completion
+
+The new papers broaden potential pathways (drought physiology, earthworm–seed interactions, plant competition, ground-predator activity), but none supplies a validated new estimate of ALAN → adult moth predation → pollination → wet-plant decline. Preserve contrary directions and design holds. The effect catalogue remains 9 papers / 8 programmes / 66 finite extracted effects; the fulltext review and effect catalogue are different stages.

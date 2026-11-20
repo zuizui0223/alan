@@ -8,7 +8,7 @@ ROOT=Path(__file__).resolve().parent
 CACHE=ROOT.parents[2]/'gbif_annual/alan_experiment_sources/fulltexts_20261120'
 parts=[]
 access_holds={'PMC12404802','PMC10613549','PMC10613533','PMC8220282'}
-for i in [1,2,3,4,5,6]:
+for i in [1,2,3,4,5,6,7]:
     p=ROOT/f'search/fulltext_batch{i}.csv'
     d=pd.read_csv(p).fillna('')
     d['title']=d.title.map(lambda s:' '.join(s.split()))
