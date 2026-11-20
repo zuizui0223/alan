@@ -1,0 +1,3 @@
+variant,programmes,source_contrasts,log_ratio,ratio,lower,upper,tau2_REML,q,mKH_variance,df,status,estimand
+source_defined_menu_mean_counts,2,9,1.905633756272796,6.72366744406855,0.04570230123025127,989.1778462241512,0.1195706958402922,1.0,0.15430687466327128,1,exploratory_not_final_adjudication,origin_response_of_fixed_menu_arithmetic_mean_captures
+family_counts_excluding_Ephydridae,2,9,1.9286555991679772,6.88025420158834,0.0375877402990979,1259.3972795861348,0.14339372310571677,1.0000000000000002,0.16811219708004974,1,exploratory_not_final_adjudication,origin_response_of_fixed_menu_arithmetic_mean_captures

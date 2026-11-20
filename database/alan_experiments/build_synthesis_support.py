@@ -65,6 +65,8 @@ audit=dict(catalogue_rows=len(d),candidate_rows_before_final_adjudication=105,
            candidate_groups=len(summary),programme_labels=d.programme_id.nunique(),
            finite_effects_with_species_moisture=10,moisture_taxa=5,moisture_programmes=3,
            fully_adjudicated_effects=0,pooled_estimates=0,
+           pooled_estimates_scope='finally_adjudicated_main_endpoint_groups_only',
+           exploratory_derived_capture_synthesis='capture_origin_synthesis/pooled_estimates.csv',
            exclusions_are_not_literature_exclusions=True,
            warning='105 rows are not105 independent studies; sum/parts and doses overlap. Programme labels still require adjudication. Species moisture is not site wetness.')
 (ROOT/'synthesis_support_audit.json').write_text(json.dumps(audit,indent=2)+'\n')

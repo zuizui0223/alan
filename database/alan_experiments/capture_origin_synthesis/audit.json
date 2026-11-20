@@ -1,0 +1,39 @@
+{
+  "variants": {
+    "source_defined_menu_mean_counts": {
+      "covariance_min_eigenvalue": 0.11043147304628463,
+      "analytic_tau2": 0.1195706958402922,
+      "numerical_tau2": 0.11957069599218113,
+      "source_units": 50,
+      "cross_programme_covariance": 0.0
+    },
+    "family_counts_excluding_Ephydridae": {
+      "covariance_min_eigenvalue": 0.1114596322496973,
+      "analytic_tau2": 0.14339372310571677,
+      "numerical_tau2": 0.14339372297166272,
+      "source_units": 50,
+      "cross_programme_covariance": 0.0
+    }
+  },
+  "source_defined_estimates_and_covariance_reproduced": true,
+  "input_sha256": {
+    "C:\\Users\\zuizui\\Documents\\Codex\\2026-11-05\\new-chat\\work\\gbif_annual\\alan_experiment_sources\\parkinson2020\\Aquatic and Terrestrial Invertebrate Inputs.csv": "1988b3860a46ff25fd558fc2215b2b8424a119995a6af72a26db94f9b25fe5a6",
+    "database\\alan_experiments\\parkinson2023_sources\\trap_units.csv": "caaa04b8fac43d6911ff63deac558aacba2fb1105b4b99b5e097950fefb3d020",
+    "database\\alan_experiments\\parkinson2023_sources\\taxon_counts.csv": "122709d436fdd9c571d3336feef1df20abf013408e0a07db8bf4f13ba7e5dca0",
+    "database\\alan_experiments\\capture_origin_contrasts.csv": "7a40415e63a05886959e5feb2333f8c710fc3386dfbc25addd792d3caec39ecc",
+    "database\\alan_experiments\\capture_origin_contrast_covariance.csv": "aac069c64ddb3eb95b8a6d7c526549eafc4152c53b14de994f930a4b17824bf8"
+  },
+  "covariance_method": "independent-arm centered delta scores, shared controls retained",
+  "interval_method": "modified Knapp-Hartung max(1,q), t1",
+  "master_catalogue_changed": false,
+  "final_eligibility": false,
+  "limitations": [
+    "Two programmes in Michigan; no broad geographic inference",
+    "Treatment menus differ; not a common spectrum or irradiance effect",
+    "Ephydridae exclusion resolves one documented conflict, not a universal taxonomic validation",
+    "Arithmetic capture-menu mean is not the geometric mean of contrast ratios",
+    "Fish allocation identity unavailable in Parkinson2016",
+    "Three traps per treatment cell and possible attraction interference in SevenPonds2022",
+    "Capture is not emergence, predation, pollination or plant decline"
+  ]
+}

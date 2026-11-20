@@ -1,0 +1,5 @@
+programme_id,unit_id,habitat,colour,aquatic,terrestrial,ephydridae,conflicting_origin,family_aquatic,family_terrestrial
+Parkinson2016,5,freshwater_littoral,dark,12.0,5.0,0.0,aquatic,14.0,5.0
+Parkinson2016,7,freshwater_littoral,original_treatment,172.0,7.0,0.0,aquatic,170.0,7.0
+Parkinson2016,8,freshwater_littoral,dark,20.0,7.0,0.0,aquatic,19.0,7.0
+Parkinson2016,18,freshwater_littoral,original_treatment,183.0,3.0,2.0,aquatic,182.0,3.0

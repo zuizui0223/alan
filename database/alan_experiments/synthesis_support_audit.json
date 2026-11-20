@@ -10,6 +10,8 @@
   "moisture_programmes": 3,
   "fully_adjudicated_effects": 0,
   "pooled_estimates": 0,
+  "pooled_estimates_scope": "finally_adjudicated_main_endpoint_groups_only",
+  "exploratory_derived_capture_synthesis": "capture_origin_synthesis/pooled_estimates.csv",
   "exclusions_are_not_literature_exclusions": true,
   "warning": "105 rows are not105 independent studies; sum/parts and doses overlap. Programme labels still require adjudication. Species moisture is not site wetness."
 }
