@@ -1,0 +1,26 @@
+{
+  "derived_coordinates_from_block_or_nearest_distance": false,
+  "original_187_pair_vegetation_possible": false,
+  "original_local_geo_coverage": null,
+  "original_local_geo_source_supplied": false,
+  "publicly_recoverable_coordinate_coverage": {
+    "available_original_coordinate_sites": 109,
+    "frozen_blocks": 30,
+    "frozen_pairs": 187,
+    "matched_bright_arm_coordinates": 3,
+    "matched_comparison_arm_coordinates": 1,
+    "matched_pairs_both_coordinate_blocks": 0,
+    "matched_pairs_both_coordinates": 0,
+    "unique_original_matched_sites": 374
+  },
+  "recovery_source_git_blobs": {
+    "results/all_species_forest/seven_moth/nearest_wells.csv": "f36def0fefdff9ea3c4486183cc0804a84e1116a",
+    "results/all_species_forest/wet_annual/habitats.csv": "6c464c2c2d2a9ddc71a95cab912175c263a90ff0",
+    "results/all_species_forest/wet_shore/nearest_wells.csv": "142bafb45550f73124e6342d694d2871ad3b5f15"
+  },
+  "source_frozen_panel_sha256": "4d151698e0da5ee754326220d3bb817b141da00770299e7f8910366d8771e74f",
+  "status": "ORIGINAL_GEO_DB_REQUIRED_FOR_FULL_187_PAIR_SPATIAL_OVERLAY",
+  "survey_coordinates_published_in_result": false,
+  "verified_run_url": "https://github.com/zuizui0223/alan/actions/runs/44668673040",
+  "recorded_at_utc": "2026-11-20"
+}
