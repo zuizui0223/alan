@@ -1,0 +1,11 @@
+{
+  "doi": "10.1098/rstb.2022.0366",
+  "data_collection": "10.6084/m9.figshare.c.6858054",
+  "download_url": "https://ndownloader.figshare.com/files/42504285",
+  "sha256": "6fb6269122e721316e7e67c0c7f61dd6a606b3a8b946f33c727d48a471a0f18c",
+  "total_units": 12,
+  "repeated_phases": 3,
+  "extreme_units_per_arm": 2,
+  "covariance_eigenvalue_min": -2.0346050561901668e-16,
+  "warning": "8 outcomes from 4 chambers, not 8 studies; intermediate doses not in extreme contrast; indoor mesocosm scope and shared programme require review; no pooled estimate"
+}

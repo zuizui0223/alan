@@ -1,0 +1,25 @@
+Light,Zone,Species,biomass_g,n_surviving_cylinders
+ALAN,1,Hydrilla_verticillata,0.24433333333333332,3
+ALAN,1,Myriophyllum_aquaticum,1.792,3
+ALAN,1,Myriophyllum_spicatum,0.37933333333333336,3
+ALAN,1,Vallisneria_natans,0.561,3
+ALAN,2,Hydrilla_verticillata,0.17433333333333334,3
+ALAN,2,Myriophyllum_aquaticum,2.1343333333333336,3
+ALAN,2,Myriophyllum_spicatum,0.39575,4
+ALAN,2,Vallisneria_natans,0.6676666666666665,3
+ALAN,3,Hydrilla_verticillata,0.22833333333333336,3
+ALAN,3,Myriophyllum_aquaticum,2.1775,4
+ALAN,3,Myriophyllum_spicatum,0.6086666666666667,3
+ALAN,3,Vallisneria_natans,0.663,4
+No ALAN,4,Hydrilla_verticillata,0.17166666666666666,3
+No ALAN,4,Myriophyllum_aquaticum,0.9393333333333334,3
+No ALAN,4,Myriophyllum_spicatum,0.4836666666666667,3
+No ALAN,4,Vallisneria_natans,0.6243333333333333,3
+No ALAN,5,Hydrilla_verticillata,0.22125,4
+No ALAN,5,Myriophyllum_aquaticum,1.808,3
+No ALAN,5,Myriophyllum_spicatum,0.5883333333333333,3
+No ALAN,5,Vallisneria_natans,0.54725,4
+No ALAN,6,Hydrilla_verticillata,0.219,2
+No ALAN,6,Myriophyllum_aquaticum,1.1356666666666668,3
+No ALAN,6,Myriophyllum_spicatum,0.5767500000000001,4
+No ALAN,6,Vallisneria_natans,0.5736666666666667,3

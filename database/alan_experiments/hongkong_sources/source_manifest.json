@@ -1,0 +1,32 @@
+[
+  {
+    "filename": "Nephila_Count.csv",
+    "sha256": "ea1ac926d099f145744e1fc842c4494209a4948b7f20f85c3c31edb88dd9939c",
+    "bytes": 2838,
+    "source_doi": "10.6084/m9.figshare.27273918.v1"
+  },
+  {
+    "filename": "Herb_Psyc.csv",
+    "sha256": "31b2d1d2e6f80b6611bde4f30f335167882cc1bef6a7db9ecb07adf8a2fa55bc",
+    "bytes": 2646,
+    "source_doi": "10.6084/m9.figshare.27273918.v1"
+  },
+  {
+    "filename": "Herb_Aporosa.csv",
+    "sha256": "9e97943ae6ff3ed8bfd4ba5be08ec58d6e760d568e2f0b296695a8a6d0172e4e",
+    "bytes": 2748,
+    "source_doi": "10.6084/m9.figshare.27273918.v1"
+  },
+  {
+    "filename": "Spider_herbivory_to_ALAN_subtropical.zip",
+    "sha256": "6e1976cf8c744d40d14149a90d9b9da33744288313839d6dcfa5803a54a8c059",
+    "bytes": 24453,
+    "source_doi": "10.6084/m9.figshare.27273918.v1"
+  },
+  {
+    "filename": "figshare_metadata.json",
+    "sha256": "75590fc3d83ba84eef8979918466b0b0e3373fb06dec8277a24ff8ac89ec0edc",
+    "bytes": 6773,
+    "source_doi": "10.6084/m9.figshare.27273918.v1"
+  }
+]
