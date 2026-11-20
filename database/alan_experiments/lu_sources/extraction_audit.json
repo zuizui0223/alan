@@ -1,0 +1,46 @@
+{
+  "doi": "10.1002/ece3.74368",
+  "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13645961/supplementaryFiles",
+  "hashes": {
+    "Date.xlsx": "ba7e15e66986f64943a38fd294e49d7128cf7719d318578f6b805d29cde8f98f",
+    "fullText.xml": "a91aa6eda9596b2e1380294260ed862c7ba639c8579875bffb76b38995c90b86",
+    "R analysis-ECE.R": "10be729a21c8ea34aae8e04f6a53f3bb17175c794da2b2f228364044ac7dc988",
+    "supplementaryFiles.zip": "4a8bcb64f1f151daac4e8aa1687421c4d9de59624308e977bb549eb6a5fb4cca"
+  },
+  "rows": 400,
+  "duplicate_key_rows": 6,
+  "unique_session_keys": 397,
+  "guild_sum_discrepancy_rows": 23,
+  "block_row_counts": [
+    18,
+    19,
+    20,
+    21,
+    22
+  ],
+  "totals_by_diel": {
+    "Diurnal": {
+      "abundance": 3381,
+      "D_abundance": 1298,
+      "H_abundance": 1314,
+      "L_abundance": 123,
+      "C_abundance": 231,
+      "O_abundance": 423,
+      "three_orders_DHC": 2843
+    },
+    "Nocturnal": {
+      "abundance": 2160,
+      "D_abundance": 205,
+      "H_abundance": 51,
+      "L_abundance": 1195,
+      "C_abundance": 269,
+      "O_abundance": 428,
+      "three_orders_DHC": 525
+    }
+  },
+  "no_imputation": true,
+  "no_cross_sheet_merging": true,
+  "independent_blocks": 5,
+  "nominal_session_minutes": 20,
+  "meta_analysis_eligible": false
+}

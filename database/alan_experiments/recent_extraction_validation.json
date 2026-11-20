@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "source": "Hey2020",
+      "effects": 4,
+      "covariance_entries": 16,
+      "missing_root_individuals": 1
+    },
+    {
+      "source": "Lu2026",
+      "effects": 7,
+      "covariance_entries": 49,
+      "independent_pairs": 5,
+      "daytime_sessions": 200
+    }
+  ],
+  "scope": "independent computational cross-check of original workbook arithmetic and dependence",
+  "not_verified": [
+    "human dual extraction",
+    "source discrepancy resolution",
+    "full eligibility adjudication"
+  ]
+}

@@ -1,0 +1,7 @@
+source_excel_row,time,sampling_time,treatment,block,repeat,abundance,D_abundance,H_abundance,L_abundance,C_abundance,O_abundance
+10,1,Nocturnal,Lit,5,2,3,0,0,1,1,1
+11,1,Nocturnal,Lit,5,2,6,3,0,0,2,1
+114,1,Nocturnal,Unlit,4,3,13,0,0,7,0,6
+115,1,Nocturnal,Unlit,4,3,5,0,0,4,1,0
+119,1,Nocturnal,Unlit,4,4,12,1,0,3,4,4
+120,1,Nocturnal,Unlit,4,4,4,1,0,1,0,2

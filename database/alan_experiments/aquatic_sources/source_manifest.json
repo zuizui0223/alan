@@ -1,0 +1,37 @@
+[
+  {
+    "filename": "meyer2013.pdf",
+    "cache_path": "..\\gbif_annual\\alan_experiment_sources\\aquatic\\meyer2013.pdf",
+    "sha256": "012608695f0ab108bb47fa0f111f8e78d3f93e750bcd490934b1d680e92d3187"
+  },
+  {
+    "filename": "appendix-D.htm",
+    "cache_path": "..\\gbif_annual\\alan_experiment_sources\\aquatic\\appendix-D.htm",
+    "sha256": "4222091612efa0ec6ef9417ae339670c8b95a7a00720d0726e89749e31ba821d"
+  },
+  {
+    "filename": "appendix-A.htm",
+    "cache_path": "..\\gbif_annual\\alan_experiment_sources\\aquatic\\appendix-A.htm",
+    "sha256": "80565cdaacac41c073ef33026bd23b417416f4f659ac6df3f8d1428be877d0b3"
+  },
+  {
+    "filename": "ogbeide_zenodo.json",
+    "cache_path": "..\\gbif_annual\\alan_experiment_sources\\aquatic\\ogbeide_zenodo.json",
+    "sha256": "18d4cc921bbb459af2bb489134fce6a64509a5ea066df7250d1cda55e61c35f8"
+  },
+  {
+    "filename": "mixture_spider.csv",
+    "cache_path": "..\\gbif_annual\\alan_experiment_sources\\aquatic\\mixture_spider.csv",
+    "sha256": "492235ddff4d7678d60a10ac82bbb530e82480ff48338ef835eb823094fb21f5"
+  },
+  {
+    "filename": "source_spider.csv",
+    "cache_path": "..\\gbif_annual\\alan_experiment_sources\\aquatic\\source_spider.csv",
+    "sha256": "422582399d2918c7b0e85f46374775dc7e7eef97d332011a9260ee975c06d923"
+  },
+  {
+    "filename": "sullivan_files.json",
+    "cache_path": "..\\gbif_annual\\alan_experiment_sources\\aquatic\\sullivan_files.json",
+    "sha256": "5d55d3845d66591dd34cfe5713263a4f056f607704990d3f32863bbe7e09d262"
+  }
+]

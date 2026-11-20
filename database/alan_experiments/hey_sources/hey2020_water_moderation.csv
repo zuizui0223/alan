@@ -1,0 +1,3 @@
+density,contrast,estimate,variance,se,interpretation
+Low,watered_minus_ambient_rain_lnRR,-1.2224671147847868,0.3484064286312062,0.5902596281562937,within_study_water_addition_moderation_not_wet_vs_dry_habitat
+High,watered_minus_ambient_rain_lnRR,-0.06506268405445541,0.1074906832255949,0.3278577179594754,within_study_water_addition_moderation_not_wet_vs_dry_habitat
