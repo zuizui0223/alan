@@ -1,0 +1,14 @@
+[
+  {
+    "file": "primary.pdf",
+    "url": "https://archimer.ifremer.fr/doc/01074/118553/132576.pdf",
+    "bytes": 1206454,
+    "sha256": "4c1875f51b9b9a0c85ed702d70a9949c47334d0761ecaba5978b272e2a74513f"
+  },
+  {
+    "file": "supplement.docx",
+    "url": "https://archimer.ifremer.fr/doc/01074/118553/132577.docx",
+    "bytes": 39221,
+    "sha256": "cf0d5ceba619d76ffa52ac346d420b92ac44aa85d2ab0b01c1b218d2764ab1f7"
+  }
+]

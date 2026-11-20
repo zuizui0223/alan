@@ -1,0 +1,13 @@
+source_table,endpoint,comparison_as_reported,estimate,reported_standard_error,reported_statistic,reported_tukey_p,source_location,use_for_meta,hold
+8,PAM_yield_assay_stage_label_conflict,Cleaned lit – Cleaned dark,0.0969,0.0356,2.7163,0.0328,Archimer_supplement_docx,False,source_labels_and_raw_data_unresolved
+8,PAM_yield_assay_stage_label_conflict,Uncleaned dark – Cleaned dark,0.0702,0.0295,2.3757,0.0798,Archimer_supplement_docx,False,source_labels_and_raw_data_unresolved
+8,PAM_yield_assay_stage_label_conflict,Uncleaned lit - Cleaned dark,0.0025,0.0363,0.0688,0.9998,Archimer_supplement_docx,False,source_labels_and_raw_data_unresolved
+8,PAM_yield_assay_stage_label_conflict,Uncleaned dark – Cleaned lit,-0.0266,0.0338,-0.7885,0.8569,Archimer_supplement_docx,False,source_labels_and_raw_data_unresolved
+8,PAM_yield_assay_stage_label_conflict,Uncleaned lit - Cleaned lit,-0.0944,0.0282,-3.3424,0.0046,Archimer_supplement_docx,False,source_labels_and_raw_data_unresolved
+8,PAM_yield_assay_stage_label_conflict,Uncleaned lit - Uncleaned dark,-0.0677,0.0345,-1.9589,0.1992,Archimer_supplement_docx,False,source_labels_and_raw_data_unresolved
+11,leaf_length,Cleaned lit – Cleaned dark,-24.084,13.311,-1.809,0.2574,Archimer_supplement_docx,False,source_labels_and_raw_data_unresolved
+11,leaf_length,Uncleaned dark – Cleaned dark,-2.592,9.543,-0.272,0.9926,Archimer_supplement_docx,False,source_labels_and_raw_data_unresolved
+11,leaf_length,Uncleaned lit - Cleaned dark,7.897,13.311,0.593,0.9308,Archimer_supplement_docx,False,source_labels_and_raw_data_unresolved
+11,leaf_length,Uncleaned dark – Cleaned lit,21.492,13.528,1.589,0.3719,Archimer_supplement_docx,False,source_labels_and_raw_data_unresolved
+11,leaf_length,Uncleaned lit - Cleaned lit,31.981,9.233,3.464,0.0027,Archimer_supplement_docx,False,source_labels_and_raw_data_unresolved
+11,leaf_length,Uncleaned lit - Uncleaned dark,10.489,13.528,0.775,0.8593,Archimer_supplement_docx,False,source_labels_and_raw_data_unresolved

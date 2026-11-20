@@ -1,0 +1,19 @@
+{
+  "primary_version": "institutional journal pre-proof",
+  "doi": "10.1016/j.marenvres.2026.108273",
+  "lighting_plots": 6,
+  "lit_plots": 3,
+  "dark_plots": 3,
+  "quadrats_per_plot": 6,
+  "cleaned_quadrats_per_plot": 3,
+  "epibiota_removal": "every two weeks in field",
+  "allocation": "alternating lighting plots; random assignment not established",
+  "raw_unit_data_acquired": false,
+  "reported_pairwise_rows": 12,
+  "oxygen_tables_2_and_3_identical_below_header": true,
+  "leaf_length_posthoc_conflict": true,
+  "PAM_stage_label_conflict": true,
+  "independent_studies_added_to_pooled_analysis": 0,
+  "main_catalogue_effects_added": 0,
+  "note": "Signed oxygen fluxes cannot be treated as ordinary positive lnRR outcomes; no SE reconstructed from rounded t values."
+}
