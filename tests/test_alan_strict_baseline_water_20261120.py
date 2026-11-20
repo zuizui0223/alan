@@ -54,6 +54,8 @@ class TestStrict(unittest.TestCase):
         p,_,_,limits=m.stricter_pairs(x,.5)
         self.assertLess(limits["area0"],m.maxgap(x.area0,1.))
         self.assertLess(limits["freq0"],m.maxgap(x.freq0,1.))
+        self.assertLess(m.water_caliper(x.area0,.25),m.water_caliper(x.area0,.50))
+        self.assertLess(m.water_caliper(pd.Series([0.]*90+[10.]*10),.25),m.water_caliper(pd.Series([0.]*90+[10.]*10),.50))
         with self.assertRaisesRegex(ValueError,"PRESPECIFIED"):
             m.stricter_pairs(x,.75)
 
