@@ -1,0 +1,11 @@
+{
+  "doi": "10.1038/srep15232",
+  "source_file": "..\\gbif_annual\\alan_experiment_sources\\fulltexts_20261120\\PMC4607942.xml",
+  "sha256": "38721396227b7c4b886b93158061abcf88d4630325f651c96b0779aec8f10d41",
+  "source_bytes": 42035,
+  "reported_summary_rows": 8,
+  "meta_effects_added": 0,
+  "digitized": false,
+  "independent_ai_review": true,
+  "human_duplicate_extraction": false
+}
