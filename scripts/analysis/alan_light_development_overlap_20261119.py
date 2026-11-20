@@ -94,7 +94,9 @@ def pair_sites(df, water_matched=False):
             if ci >= len(low) or not acceptable[ri, ci]:
                 continue
             a, b = high.iloc[ri], low.iloc[ci]
-            item = {"block": block, "light_difference": float(a.light - b.light)}
+            item = {"block": block, "light_difference": float(a.light - b.light),
+                    "bright_site_id": int(a.unit_id),
+                    "comparison_site_id": int(b.unit_id)}
             for k in cols:
                 item["d_" + k] = float(a[k] - b[k])
             # Audit water changes even if they are not matching covariates.
