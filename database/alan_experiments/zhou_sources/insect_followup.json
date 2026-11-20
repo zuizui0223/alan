@@ -1,0 +1,13 @@
+{
+  "checked": "2026-11-20",
+  "repository": "congz007/light_project",
+  "head": "cc45e9f18bb4f683bd3ca24ef038204e26325837",
+  "tree_truncated": false,
+  "missing_path": "data/Drymass_funnel.csv",
+  "present_at_head": false,
+  "path_history_query": "https://api.github.com/repos/congz007/light_project/commits?path=data%2FDrymass_funnel.csv&per_page=100",
+  "path_history_results": 0,
+  "scope": "Default-branch exact-path history only; does not rule out renamed files, other branches or deposits",
+  "related_report_doi": "10.17520/biods.2022067",
+  "related_report_read_status": "publisher abstract only; fulltext and linked PDF HTTP403"
+}
