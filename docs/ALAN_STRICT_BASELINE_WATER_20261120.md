@@ -14,9 +14,13 @@ Additional test using the EXACT source SHA-verified 1707-site original frozen
 - Require light-change difference >=1 DN/decade, 0.5 IQR built-change
   caliper, 1 IQR baseline built/light calipers, survey start <=5y,
   timespan <=10y, and the same unchanged standardized distance.
-- The PRIMARY new pre-exposure restriction is absolute baseline water-area
-  and water-frequency differences each <=0.5 original IQR; a stricter
-  <=0.25 original IQR is prespecified SENSITIVITY (not tuned on effects).
+- The PRIMARY new pre-exposure restriction is baseline water-area and
+  detection-frequency absolute differences each <=0.5 x scale, and stricter
+  <=0.25 x scale is prespecified SENSITIVITY (not tuned on effects).
+  The scale is max(empirical IQR, 0.1 empirical SD); this handles
+  strongly zero-inflated baseline water, for which raw IQR can be zero.
+  Each fraction multiplies the SAME robust scale so the two calipers
+  cannot collapse to identical thresholds due to the zero-IQR floor.
 - Independently audit the effective number of pairs and spatial blocks,
   actual SMD on built, light0, initial water, climate, and original guard
   (>30 pairs, >10 spatial blocks, every critical |SMD|<=0.25).
