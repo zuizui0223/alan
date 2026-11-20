@@ -15,3 +15,7 @@ The 14 label differences are not a partition contradiction. All 18 by 18 shared-
 Mesocosm IDs join the water-quality and invertebrate sheets to the colonization sheet one-to-one for all36 mesocosms; light assignments agree. Metadata explicitly defines Mesocosm as an individual identifier and Block as a spatial group of four mesocosms. This supports using the source-labelled block mapping for those response tables. An independent reader also confirmed lid/toad treatment agreement for these36-ID joins. The audit exports `verified_block_label_map.csv` and `verified_mesocosm_join_support.csv` and checks the full324-element shared-membership matrix.
 
 This removes the sheet-label obstruction; it does not independently verify the physical lamp layout, fix the juvenile calendar-year discrepancy, or finish indoor Methods review. No effect was extracted and primary-review counts are unchanged. The previous request for a layout to resolve mere label differences is superseded by this data-level check; a physical lighting-design check remains separate.
+
+## Group-level descriptive extraction
+
+After the label audit, four response variables were summarized across four lit/five natural-light groups. See [descriptive results](../amphibian_sources/DESCRIPTIVE_RESULTS.md). These are source-data summaries with no inferred variance or catalogue adoption. They do not resolve the unfinished indoor review.
