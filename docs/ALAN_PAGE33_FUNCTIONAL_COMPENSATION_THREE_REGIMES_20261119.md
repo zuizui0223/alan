@@ -50,6 +50,23 @@ Across all 72, the mean positive-only pollen deficit under *proportional* full-v
 
 Study-cluster bootstraps are descriptive uncertainty, not significance from 72 independent experiments. Missing source q sampling SE and removal-induced q changes are outside the intervals.
 
+## 2026-11-20 falsification: is the apparent vulnerability more than random q allocation?
+
+A new conditional benchmark **permutes source-measured single-visit efficiency q among visitor taxa in each plant network**, holding the original visitation rates V, plant source, and the q distribution fixed. This tests *alignment of visitor dominance with effectiveness*, not ALAN or an actual intervention. The original 33 studies remain the bootstrap clusters.
+
+[Verified original 623-row null run #44655725882](https://github.com/zuizui0223/alan/actions/runs/44655725882) / [new conditional randomization code](../scripts/analysis/alan_page2021_visitor_q_alignment_null_20261120.py) / [verbatim compact JSON](../results/all_species_forest/biotic_interactions/page_visitation_q_permutation_null_20261120.json).
+
+| Potential failure | Observed source networks | Expected if same q values randomly assigned to visitors | Difference (network-weighted) | Original-study bootstrap interval for **study-weighted** excess |
+|---|---:|---:|---:|---:|
+| Best remaining taxon still insufficient | 21/72 = **29.2%** | **24.7%** | +4.4 percentage points | **[−7.4,+21.5]** percentage points |
+| Proportional numerical replacement insufficient | 39/72 = **54.2%** | **47.5%** | +6.6 percentage points | **[−3.8,+26.8]** percentage points |
+
+Study-weighted point differences are +6.55 and +11.78 percentage points respectively, so the point and interval must not be juxtaposed as if computed using identical weighting.
+
+When random assignments are restricted **within** each original pollinator guild (only 62 networks permit real permutations), the expected best-case failure rises to 30.0% (observed 29.2%), and proportional failure expectation rises to 51.6% (observed 54.2%). Both descriptive study-cluster excess intervals cross zero. The null exchangeability assumption is a mathematical comparator, not biological evidence that pollinator species can be swapped.
+
+**Revised claim**: the 21/18/33 partition is a valid consequence of heterogeneous observed per-visit efficiencies, but the observed frequency–efficiency alignment is NOT demonstrated to generate excess vulnerability beyond a conditional random-label null. Do not elevate those percentages into "ecologically unexpected function loss under ALAN" or a special wetland-specific susceptibility. The original Page source did not measure illumination, real pollinator removal, compensatory insect behavior, or plant fitness.
+
 ## Can we connect functional compensation to the observed ALAN wetness bias?
 
 **Not with the present original studies.** An exact-name audit against independent European Tichy EIV MOIST (official source SHA256 ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba) yielded:
