@@ -1,0 +1,12 @@
+{
+  "doi": "10.47193/mafis4012027010103",
+  "publisher_pdf": "https://ojs.inidep.edu.ar/index.php/mafis/en/article/view/627/639",
+  "pdf_sha256": "3221d71de4dcc45329e0889a4e16a3e1f81f8ef1933e5608e0714380a2005e3f",
+  "verification": "Primary PDF Table2 and Methods checked against existing two-row extraction; independent AI review agrees",
+  "new_reports_added": 0,
+  "new_meta_effects_added": 0,
+  "raw_data": "Author request only; no contact initiated",
+  "primary_model": "MCH only; night random intercept; block-adjusted contrasts not published",
+  "replication_hold": "Spring3blocks x4nights vs9replicates; summer4blocks x5nights vs23replicates; summer223crabs exceeds stated maximum200",
+  "scope": "Two deployment periods, not independently replicated seasons; no wet-dry comparison"
+}
