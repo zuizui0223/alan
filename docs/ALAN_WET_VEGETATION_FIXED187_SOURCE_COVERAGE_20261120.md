@@ -12,3 +12,16 @@ Crucial limitation: existing wetland NDVI covers only 18 original mapped wetland
 
 Run script: scripts/analysis/alan_wet_vegetation_identical_pairs_20261120.py
 Run tests: tests/test_alan_wet_vegetation_identical_pairs_20261120.py
+
+
+## Executed original-source result (2026-11-20)
+
+The actual source-pinned GitHub Actions run https://github.com/zuizui0223/alan/actions/runs/44666908447 PASSED all 3 new guards and data processing; its immutable result artifact is https://github.com/zuizui0223/alan/actions/runs/44666908447/artifacts/14597874040 (ZIP SHA256 afa3fb2c03e225c7d3c00be3ec80d6f3171b92156af059de58620a47ab7bd489).
+
+- Original 187 development-matched pairs / 30 blocks unchanged.
+- 17 long-running QA-valid inland-wetland vegetation sites.
+- Within the original 187 pairs, just **1 bright-arm site and 0 comparison-arm sites** have these independent long-running mapped-wetland NDVI observations.
+- **0 original matched pairs, 0 blocks** have both wetland vegetation histories. Result: VEGETATION_SOURCE_SUPPORT_STOP; **no vegetation-adjusted ALAN effect estimable**. Do not describe this as evidence ruling out vegetated-wetland loss.
+- The previously verified same-187-pair open-water sensitivity still has coefficient -3.475 versus -3.498, confidence intervals spanning zero and failed initial-water balance; no added primary causal claim.
+
+Numerical source-signed output committed at results/all_species_forest/wet_falsification/wetland_vegetation_fixed187_20261120.json.
