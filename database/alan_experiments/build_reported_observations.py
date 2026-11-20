@@ -10,6 +10,9 @@ SOURCES = [
     ('Liu2022', 'liu2022_sources/reported_tests.csv', 'likelihood_ratio_test', 'Liu2022_Konstanz', 15),
     ('Wilson2021', 'wilson2021_sources/reported_coefficients.csv', 'reported_model_coefficient', None, 7),
     ('Nunez2026', 'search/nunez2026_model_contrasts.csv', 'reported_model_odds_ratio', 'Nunez2026_MCH', 2),
+    ('Brown2023', 'brown2023_sources/reported_arm_summaries.csv', 'arm_summary', 'Brown2016_pitfalls', 36),
+    ('Sanders2015', 'sanders2015_sources/reported_summaries.csv', 'reported_summary', None, 8),
+    ('Owens2022', 'owens2022_sources/field_arm_counts.csv', 'original_data_binary_arm_summary', 'Owens2020_field_mating', 2),
 ]
 
 def read(name):
@@ -34,6 +37,8 @@ def build():
             eid = experiment_id
             if study_id == 'Wilson2021':
                 eid = 'Wilson2019_capture' if row['endpoint'].endswith('_trap_count') else 'Wilson2019_reproduction'
+            if study_id == 'Sanders2015':
+                eid = 'Sanders2015_plant_only' if row['window'].startswith('2015') else 'Sanders2014_community'
             study, experiment = studies[study_id], experiments[eid]
             assert experiment['study_id'] == study_id
             assert experiment['programme_id'] == study['programme_id']
@@ -42,10 +47,13 @@ def build():
             oid = study_id + '_' + hashlib.sha256(payload.encode()).hexdigest()[:16]
             observations.append(dict(observation_id=oid, study_id=study_id, experiment_id=eid,
                 programme_id=study['programme_id'], doi=study['doi'], statistic_type=kind,
-                endpoint=row['endpoint'], source_file=source, source_csv_line=line,
-                source_location=row['source_location'], source_values_json=payload,
+                endpoint=row.get('endpoint', row.get('response', 'field_mating_success')),
+                source_file=source, source_csv_line=line,
+                source_location=row.get('source_location', row.get('table', 'original_workbook_field_post_trials')),
+                source_values_json=payload,
                 pooling_status='not_in_effect_catalogue_not_poolable_as_registered',
-                dependence_group=eid, final_eligibility='not_adjudicated'))
+                dependence_group=study['programme_id'] if study_id == 'Sanders2015' else eid,
+                final_eligibility='not_adjudicated'))
             assert json.loads(observations[-1]['source_values_json']) == row
             links[(study_id, eid)] = dict(study_id=study_id, experiment_id=eid,
                 programme_id=study['programme_id'], doi=study['doi'])
