@@ -39,3 +39,28 @@ This test requires no mapping coordinates or new vegetation data. It does not
 claim that wetlands were unaffected: vegetated wetland loss, drainage, hydrology
 and nighttime spectral exposure remain unobserved. See other main diagnostics
 for the 0/187 verified geographic overlap with original 2000-2023 wetland NDVI.
+
+
+## Executed source-authentic numerical results (2026-11-20)
+
+Four unit tests and the frozen-original-source numerical replay passed:
+https://github.com/zuizui0223/alan/actions/runs/44672675032
+Signed ZIP SHA256 f0a68917d2249eb59a18488c08c6545ce86780c59f0629d50eecc25f9a2f2fa6.
+Full transparent coefficients, matching IDs digests, critical balance, block-bootstrap CIs:
+[strict baseline-water report](../results/all_species_forest/wet_falsification/strict_baseline_water_20261120.json).
+
+| Source audit | Original development-matched | Baseline water caliper 0.5 × robust scale | Baseline water caliper 0.25 × robust scale |
+|---|---:|---:|---:|
+| Matched source pairs / spatial blocks | 187 / 30 | **133 / 26** | **128 / 25** |
+| Standardized baseline water area difference | +0.722 | **+0.015** | **+0.010** |
+| Standardized baseline water frequency difference | +0.745 | **+0.017** | **+0.008** |
+| Paired recording-rate mean (pp / decade) | -2.476 | -1.896 [-4.174, +0.235] | -1.687 [-4.149, +0.337] |
+| Conditional slope without annual water trends (pp / 10 DN) | -3.475 | -1.149 | -0.977 |
+| Conditional slope with annual water trends (pp / 10 DN) | -3.498 | **-1.186 [-4.323, +1.893]** | **-1.067 [-4.037, +1.968]** |
+| Baseline-water source common-support gate | STOP | **EXPLORATORY_COMMON_SUPPORT** | **EXPLORATORY_COMMON_SUPPORT** |
+
+Here the two actual baseline water calipers are distinct: area thresholds 0.827 / 0.413 percentage points; water-detection frequency thresholds 0.848 / 0.424 percentage points. The original source's 0.5/0.25 calipers were initially inadvertently identical due a zero-IQR fallback under the matched eligible sample, which was detected and corrected in tests before freezing these numerical results. Data-table marginal IQRs are nonzero, but the matching eligible subset can be zero-inflated. The two final strict samples are different.
+
+**Interpretation**: Post-outcome-selection data and CIs spanning zero preclude a light-specific confirmed effect. The sign remains negative with more comparable *initial* water. Its point magnitude decreases when different sites are matched, but that between-sample contrast does **not** estimate hydrological mediation or causal attenuation. The balance gate checks baseline covariates; contemporaneous open-water trends remain unbalanced and adding their slopes within a fixed 133/128 cohort barely changes the point coefficient. Crucially, neither exercise controls **vegetated-wetland area** on the original 187 pairs (0 original paired sites with independently measured NDVI), so source verification is still required before claiming that explanation has been excluded.
+
+Methods and quantities are supplemental Results only, not grounds to revise the primary discovery-stage wet-affinity +0.534 candidate trait contrast.
