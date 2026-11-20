@@ -1,0 +1,21 @@
+{
+  "source_file": "external_cache/gbif_annual/EIV_Europe.csv",
+  "sha256": "ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba",
+  "source_role": "same author-distributed CSV snapshot as macro trait analysis; version identified by SHA256, not assumed latest Zenodo release",
+  "source_url": "https://www.sci.muni.cz/botany/juice/NET/sources/EIV_Europe.csv",
+  "publication_doi": "10.1111/jvs.13168",
+  "provenance_record": "results/all_species_forest/decline_traits/README.md",
+  "endpoint_rows": 16,
+  "unique_taxon_labels": 8,
+  "exact_moisture_taxa": 4,
+  "finite_moisture_effect_rows": 6,
+  "finite_moisture_species": 3,
+  "finite_moisture_programmes": 2,
+  "excluded_from_this_join": "community biomass and mixed-flora visits have no single plant species; animal habitat not inferred from plant EIV",
+  "not_done": [
+    "synonym matching",
+    "community weighted moisture",
+    "site water distance",
+    "moisture meta-regression"
+  ]
+}

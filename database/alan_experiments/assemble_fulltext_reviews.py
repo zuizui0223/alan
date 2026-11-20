@@ -7,9 +7,10 @@ import pandas as pd
 ROOT=Path(__file__).resolve().parent
 CACHE=ROOT.parents[2]/'gbif_annual/alan_experiment_sources/fulltexts_20261120'
 parts=[]
-for i in [1,2,3]:
+for i in [1,2,3,4,5]:
     p=ROOT/f'search/fulltext_batch{i}.csv'
     d=pd.read_csv(p).fillna('')
+    d['title']=d.title.map(lambda s:' '.join(s.split()))
     assert d.pmcid.is_unique
     for r in d.itertuples():
         article=ET.parse(CACHE/(r.pmcid+'.xml')).getroot()

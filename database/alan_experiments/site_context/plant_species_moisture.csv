@@ -1,0 +1,9 @@
+source_species,taxon_status,EIV_MOIST,join_method
+Asclepias syriaca,species_as_reported,5.1,exact_binomial
+Hydrilla verticillata,species_as_reported,12.0,exact_binomial
+Myriophyllum aquaticum,species_as_reported,,no_value_no_imputation
+Myriophyllum spicatum,species_as_reported,11.9,exact_binomial
+Vallisneria natans,species_as_reported,,no_value_no_imputation
+Lotus pedunculatus,species_as_reported,7.9,exact_binomial
+Psychotria asiatica,species_as_reported,,no_value_no_imputation
+Aporosa,genus_only_conflicting_source_species,,withheld_taxonomic_identity_conflict

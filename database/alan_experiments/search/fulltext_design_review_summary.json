@@ -1,12 +1,12 @@
 {
-  "reviewed_reports": 50,
+  "reviewed_reports": 80,
   "decisions": {
-    "hold_independence_or_scope": 28,
-    "eligible_design_pending_extraction": 12,
-    "separate_indoor_behavior": 4,
-    "separate_observational": 3,
+    "hold_independence_or_scope": 45,
+    "eligible_design_pending_extraction": 20,
+    "separate_indoor_behavior": 6,
+    "separate_observational": 5,
     "separate_spectrum": 2,
-    "reference_or_duplicate": 1
+    "reference_or_duplicate": 2
   },
   "quantitative_inclusions_established": 0,
   "interpretation": "Methods/Results design review only; no effect extraction by this review. Additional earlier fulltext audits remain in incremental table and source notes; this is not final PRISMA.",
