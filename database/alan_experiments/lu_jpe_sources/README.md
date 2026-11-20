@@ -2,7 +2,11 @@
 
 Primary DOI https://doi.org/10.1093/jpe/rtag160 . On2026-11-21 the indexed publisher landing page exposed its own signed DOCX link, which downloaded successfully (198613bytes). The unsigned asset returned403. Full main PDF remains unrecovered. This is supplementary-table review, not full Methods review, final inclusion, or an additional independent experiment confirmed against Lu ECE2026.
 
-`extract_supplement.py` preserves all47 numeric table rows: S2(18), S3(5), S4a(12), S4b(12). Merged Word cells are expanded into the applicable species/response labels. Strings, direction, SE, df and reported P are preserved, without inventing a sample size or sampling covariance. The table rows are dependent reported statistics, not47 meta effects.
+`extract_supplement.py` preserves all47 numeric table rows: S2(18), S3(5), S4a(12), S4b(12). Blank repeated-label cells are retained as in the Word table. Strings, direction, SE, df and reported P are preserved, without inventing a sample size or sampling covariance. The table rows are dependent reported statistics, not47 meta effects.
+
+`plot_reported_contrasts.py` forward-fills species/response labels within S4b into a separate derived table, reverses Unlit−Lit to Lit−Unlit, and calculates approximate marginal95% t intervals from rounded SE/df. No multiplicity adjustment, raw-scale back-transformation, or covariance imputation is made. The supplemental figure is a single-report display, not a meta-analysis. Source tables remain unchanged.
+
+2026-11-21 main-source follow-up: Crossref metadata supplied the accepted-manuscript PDF URL https://academic.oup.com/jpe/advance-article-pdf/doi/10.1093/jpe/rtag160/68754751/rtag160.pdf . Direct retrieval returned403; the web reader returned an inaccessible publisher watermark redirect, whose issued link returned400. Crossref metadata is cached externally as `lu_jpe2026/crossref.json`. This establishes the publisher file location, not fulltext access or verification of Methods. Do not repeat this failed route without new access information.
 
 S2 compares pollination access within unlit conditions, not ALAN effects. Its note specifies arcsine square-root seed-set transformation and FDR-adjusted post-hoc P. S4b does not independently state the seed-set scale; application of that transformation to S4 requires the main Methods. Neither table's seed coefficients should be called percentages, percentage-point changes or lnRR.
 

@@ -1,0 +1,11 @@
+{
+  "source_sha256": "15ecfed9d4092c264b62cd762a7c36808d8f58de5b80ab243916c48112d3c5d1",
+  "source_rows": 12,
+  "derived_rows": 12,
+  "sign_change": "Estimate negated; SE/df unchanged",
+  "label_handling": "Blank species/response cells forward-filled within S4b only; source table CSV unchanged",
+  "intervals": "t(0.975, reported df) times reported SE; approximate, marginal, not adjusted",
+  "no_meta_analysis": true,
+  "no_between_species_test": true,
+  "covariance_not_imputed": true
+}
