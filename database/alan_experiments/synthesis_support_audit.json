@@ -1,0 +1,15 @@
+{
+  "catalogue_rows": 108,
+  "candidate_rows_before_final_adjudication": 105,
+  "excluded_duplicate_time_summaries": 2,
+  "source_total_inconsistency_rows": 1,
+  "candidate_groups": 19,
+  "programme_labels": 10,
+  "finite_effects_with_species_moisture": 10,
+  "moisture_taxa": 5,
+  "moisture_programmes": 3,
+  "fully_adjudicated_effects": 0,
+  "pooled_estimates": 0,
+  "exclusions_are_not_literature_exclusions": true,
+  "warning": "105 rows are not105 independent studies; sum/parts and doses overlap. Programme labels still require adjudication. Species moisture is not site wetness."
+}

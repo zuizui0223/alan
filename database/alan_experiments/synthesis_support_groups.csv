@@ -1,0 +1,20 @@
+candidate_group,catalogue_rows,candidate_rows,paper_labels,programme_labels,programmes,excluded_supplementary_time_rows,source_unresolved_rows,rows_with_species_moisture,taxa_with_species_moisture,programmes_with_species_moisture,adjudication,pooled_estimate_available
+all_invertebrate_capture,8,8,1,1,SevenPonds2022,0,0,0,0,0,pending; candidate does not mean accepted,False
+aphid_abundance,11,11,2,2,Penryn2012_2016;Sanders2016_field48,0,0,0,0,0,pending; candidate does not mean accepted,False
+aquatic_origin_capture,9,9,2,2,Parkinson2016;SevenPonds2022,0,0,0,0,0,pending; candidate does not mean accepted,False
+cicadellidae_capture,4,4,1,1,SevenPonds2022,0,0,0,0,0,pending; candidate does not mean accepted,False
+community_dry_biomass_including_dead,4,4,1,1,Lizard2012_2015_30plots,0,0,0,0,0,pending; candidate does not mean accepted,False
+community_living_dry_biomass,10,10,2,2,Lizard2012_2015_30plots;Penryn2012_2016,0,0,0,0,0,pending; candidate does not mean accepted,False
+day_visits_Coleoptera,2,2,2,2,KnopGiavi_overlap_unresolved;Lu2024_Gannan_companion_overlap_unresolved,0,0,0,0,0,pending; candidate does not mean accepted,False
+day_visits_Diptera,2,2,2,2,KnopGiavi_overlap_unresolved;Lu2024_Gannan_companion_overlap_unresolved,0,0,0,0,0,pending; candidate does not mean accepted,False
+day_visits_Hymenoptera,2,2,2,2,KnopGiavi_overlap_unresolved;Lu2024_Gannan_companion_overlap_unresolved,0,0,0,0,0,pending; candidate does not mean accepted,False
+day_visits_additional_taxa,2,2,1,1,Lu2024_Gannan_companion_overlap_unresolved,0,0,0,0,0,pending; candidate does not mean accepted,False
+day_visits_source_total_unresolved,1,0,0,0,,0,1,0,0,0,pending; candidate does not mean accepted,False
+day_visits_three_order_sum,2,2,2,2,KnopGiavi_overlap_unresolved;Lu2024_Gannan_companion_overlap_unresolved,0,0,0,0,0,pending; candidate does not mean accepted,False
+dead_plant_material,4,4,1,1,Lizard2012_2015_30plots,0,0,0,0,0,pending; candidate does not mean accepted,False
+plant_herbivory,2,2,1,1,Guo2024_HongKong,0,0,0,0,0,pending; candidate does not mean accepted,False
+species_dry_biomass,24,24,3,3,Hey2017_Blandy;Lizard2012_2015_30plots;Xue2026_monoculture,0,0,10,5,3,pending; candidate does not mean accepted,False
+spider_abundance,3,2,2,2,Guo2024_HongKong;Parkinson2016,1,0,0,0,0,pending; candidate does not mean accepted,False
+standing_mummy_count_not_parasitism_rate,7,7,1,1,Sanders2016_field48,0,0,0,0,0,pending; candidate does not mean accepted,False
+terrestrial_origin_capture,9,9,2,2,Parkinson2016;SevenPonds2022,0,0,0,0,0,pending; candidate does not mean accepted,False
+web_prey_count_not_predation_rate,2,1,1,1,Parkinson2016,1,0,0,0,0,pending; candidate does not mean accepted,False
