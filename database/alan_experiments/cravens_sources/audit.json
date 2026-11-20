@@ -1,0 +1,12 @@
+{
+  "raw_rows": 3694,
+  "samples": 188,
+  "dates": 52,
+  "table3_all12cells_match": true,
+  "main_effects_added": 0,
+  "definition": "sample-order presence normalized over all order detections",
+  "figure1_reproduction": false,
+  "site_and_date_covariance": "unresolved_no_meta_variance",
+  "paper_direction_check": "MYLU decreases under written sample-order formula unlike reported direction; do not silently replace denominator",
+  "unique_denovo": 490
+}

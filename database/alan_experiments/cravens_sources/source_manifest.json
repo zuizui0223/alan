@@ -1,0 +1,16 @@
+[
+  {
+    "file": "Cravens_et_al_2017_rep_seqs.fna",
+    "source": "https://zenodo.org/api/records/4994918/files/Cravens_et_al_2017_rep_seqs.fna/content",
+    "bytes": 586843,
+    "md5": "md5:5f7efec3a9ebe154312aa9a25b409a66",
+    "sha256": "e0185cf588d6284d93fb3ed7e87afbb9c3928fbb7833e30b20d2ffd63ef1971e"
+  },
+  {
+    "file": "Cravens_et_al_2017_data.xlsx",
+    "source": "https://zenodo.org/api/records/4994918/files/Cravens_et_al_2017_data.xlsx/content",
+    "bytes": 423666,
+    "md5": "md5:27b685b709a83695c0120bcb795c7950",
+    "sha256": "216d21f07b28a79a865ead5fd330d8e309a77831acd962ff468d80acbaa4692e"
+  }
+]
