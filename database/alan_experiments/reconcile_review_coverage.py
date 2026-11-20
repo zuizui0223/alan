@@ -43,7 +43,10 @@ for x in studies.itertuples():
 # Supplement-only and indexed-section inspections are not complete reviews.
 partial = pd.read_csv(S / 'partial_report_reviews.csv').fillna('')
 assert partial.doi.is_unique and partial.doi.ne('').all()
-assert set(partial.review_status) <= {'supplement_tables_only', 'indexed_primary_sections_only'}
+assert set(partial.review_status) <= {
+    'supplement_tables_only', 'indexed_primary_sections_only',
+    'preprint_main_and_published_supplement_only',
+}
 partial_status = {'doi:' + r.doi.lower(): r.review_status for r in partial.itertuples()}
 for x in partial.itertuples():
     add(x.doi, x.source_note, read=False, extracted=False, decision=x.decision)
