@@ -1,0 +1,3 @@
+effect_id,lnRR,sampling_variance,ratio,approximate_t5_lower,approximate_t5_upper,main_catalogue,programme_id,estimand
+Bennie2018_slug_period_predator_Amber,0.10528590037778575,0.09095554602127837,1.1110282083373446,0.5117230644205477,2.4122103644459547,False,Penryn2012_2016,secondary_equal_month_period_mean
+Bennie2018_slug_period_predator_White,-0.39676927043607146,0.17075771476425866,0.6724891708668137,0.23246706904524084,1.9454010703129867,False,Penryn2012_2016,secondary_equal_month_period_mean

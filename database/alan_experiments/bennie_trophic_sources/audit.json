@@ -1,0 +1,100 @@
+{
+  "files": [
+    {
+      "file": "CNratio.csv",
+      "algorithm": "md5",
+      "digest": "5296aee5ae9fa7d18e3f80e52488f21d",
+      "dryad_match": true
+    },
+    {
+      "file": "lotus_p_2013.csv",
+      "algorithm": "md5",
+      "digest": "0f859b2bcd0c30bb48ca256bc0d39956",
+      "dryad_match": true
+    },
+    {
+      "file": "lotus_p_2014.csv",
+      "algorithm": "md5",
+      "digest": "9ebd809f6420688050d37ad13ba9a40f",
+      "dryad_match": true
+    },
+    {
+      "file": "lotus_p_2015.csv",
+      "algorithm": "md5",
+      "digest": "27336a611e62fdb3cd3f7576d1cb31c7",
+      "dryad_match": true
+    },
+    {
+      "file": "PeaAphid2013.csv",
+      "algorithm": "md5",
+      "digest": "4d27982df6a70bedb7f5715cf9c3f8da",
+      "dryad_match": true
+    },
+    {
+      "file": "PeaAphid2014.csv",
+      "algorithm": "md5",
+      "digest": "31d2334568b823ada5c9e3090c7d64ec",
+      "dryad_match": true
+    },
+    {
+      "file": "PeaAphid2015.csv",
+      "algorithm": "md5",
+      "digest": "a00556af32ba88f9b743823c75caa1c9",
+      "dryad_match": true
+    },
+    {
+      "file": "point_quadrat_110713.csv",
+      "algorithm": "md5",
+      "digest": "8684291a88ad5326a8fc2502c36252b1",
+      "dryad_match": true
+    },
+    {
+      "file": "point_quadrat_220715.csv",
+      "algorithm": "md5",
+      "digest": "b8398de03c25864c2cd3cc1fc36a7d14",
+      "dryad_match": true
+    },
+    {
+      "file": "point_quadrat_240714.csv",
+      "algorithm": "md5",
+      "digest": "545798cb5bd0c2a9e7ed4e4400005867",
+      "dryad_match": true
+    },
+    {
+      "file": "slugs2013.csv",
+      "algorithm": "md5",
+      "digest": "826b69f685552564effb7509d2c9263a",
+      "dryad_match": true
+    },
+    {
+      "file": "slugs2014.csv",
+      "algorithm": "md5",
+      "digest": "58da789c5b90327d8db54d78e64ff17a",
+      "dryad_match": true
+    },
+    {
+      "file": "slugs2015.csv",
+      "algorithm": "md5",
+      "digest": "16abccb6080c07d41bd92cf89f975dc0",
+      "dryad_match": true
+    }
+  ],
+  "mirror": "https://zenodo.org/records/4988926",
+  "paper_doi": "10.1111/1365-2664.13240",
+  "slug_mesocosms": 36,
+  "months_per_unit": 15,
+  "independent_units_per_cell": 6,
+  "period": "June2013-November2013 and January2014-September2014; December2013 not supplied",
+  "zero_final_dark_groups": 2,
+  "finite_primary_final_lnRR": 0,
+  "secondary_period_lnRR": 4,
+  "dependent_predator_contrasts": 2,
+  "matched_existing_programme_plots": 36,
+  "repeated_2013_aphid_endpoint_rows_matched": 54,
+  "new_independent_programmes": 0,
+  "intermediate_2013_aphid_value_discrepancies": 2,
+  "compared_2013_aphid_plot_dates": 378,
+  "covariance_structure": "independent randomized mesocosm arms; shared dark arms; not paired by plot letter",
+  "main_catalogue": false,
+  "interpretation": "Counts, not attack rate; equal-month period mean is not author longitudinal GLMM."
+}

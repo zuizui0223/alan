@@ -1,0 +1,5 @@
+trophic,light,mean_lit,mean_dark,mean_difference,mean_difference_variance,lnRR_status,n_lit,n_dark
+Grazer,Amber,0.3333333333333333,0.0,0.3333333333333333,0.1111111111111111,undefined_zero_dark_mean,6,6
+Grazer,White,0.3333333333333333,0.0,0.3333333333333333,0.1111111111111111,undefined_zero_dark_mean,6,6
+Predator,Amber,0.6666666666666666,0.0,0.6666666666666666,0.4444444444444444,undefined_zero_dark_mean,6,6
+Predator,White,0.0,0.0,0.0,0.0,undefined_zero_dark_mean,6,6
