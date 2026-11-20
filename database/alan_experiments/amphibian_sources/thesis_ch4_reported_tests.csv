@@ -1,0 +1,4 @@
+report_id,experiment_id,endpoint,term,statistic_type,statistic,df,p_reported,source_location,coefficient,standard_error,catalogue_adopted
+Dananay2018Thesis,Dananay2016Predator,survival_to_metamorphosis,light,t,-0.52,8,0.61,printed_p72,,,False
+Dananay2018Thesis,Dananay2016Predator,survival_to_metamorphosis,light_by_predator,t,0.85,28,0.40,printed_p72,,,False
+Dananay2018Thesis,Dananay2016Predator,survival_to_metamorphosis,predator,t,-4.37,28,0.002,printed_p72_inconsistent_t_p_pair,,,False
