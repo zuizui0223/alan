@@ -6,3 +6,4 @@ Hey2017_Blandy,4,4,0.00930398288664764,hey_sources/hey2020_biomass_covariance.cs
 Lu2024_Gannan_companion_overlap_unresolved,7,4,-1.0166446539981045e-16,lu_sources/daytime_effect_covariance.csv,False
 Guo2024_HongKong,3,3,0.034508371425677045,hongkong_sources/final_effect_covariance.csv,True
 Xue2026_monoculture,4,4,3.2872187840079003e-07,xue_sources/monoculture_covariance.csv,True
+SevenPonds2022,28,19,-8.211115894156338e-16,parkinson2023_sources/covariance.csv,False

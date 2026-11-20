@@ -18,7 +18,8 @@ for programme,g in d.groupby('programme_id',sort=False):
     path=g.covariance_table.iloc[0]
     c=pd.read_csv(ROOT/path)
     if 'effect_id_1' in c:
-        block=c.pivot(index='effect_id_1',columns='effect_id_2',values='sampling_covariance')
+        value='sampling_covariance' if 'sampling_covariance' in c else 'covariance'
+        block=c.pivot(index='effect_id_1',columns='effect_id_2',values=value)
     elif 'effect_id_i' in c:
         block=c.pivot(index='effect_id_i',columns='effect_id_j',values='covariance')
     else:

@@ -1,0 +1,15 @@
+{
+  "contrasts": 9,
+  "programmes": 2,
+  "positive_point_estimates": 9,
+  "pooled": false,
+  "limitations": [
+    "Nine contrasts arise from two programmes, not nine studies.",
+    "Both programmes are freshwater shoreline experiments in Michigan.",
+    "Origin is organism life-history origin, not trap habitat wetness.",
+    "Capture reflects attraction/interception, not emergence or population growth.",
+    "Delta-method normal intervals are descriptive; 2023 cells have only three traps.",
+    "Temporal windows, lamp characteristics and ecological settings differ.",
+    "All colours and placements retained; controls and endpoints are correlated."
+  ]
+}

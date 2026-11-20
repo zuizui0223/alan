@@ -18,11 +18,14 @@ def append(table, covariance, programme, habitat, role, mapping=None, select=Non
             e['effect_id']=study+('_day_' if study=='Lu2026' else '_')+r.endpoint
         if not e['study_id']:
             e['study_id']=study
-        e.update(programme_id=programme,habitat=habitat,
+        e.update(programme_id=programme,habitat=r.get("habitat", "") if habitat is None else habitat,
                  analysis_role=r.get('analysis_role',role),source_table=table,
                  covariance_table=covariance,pooled=False,
                  approval_status='extracted_not_fully_adjudicated',
                  paired_units=r.get('paired_units',r.get('n_pairs','')))
+        for key in ["experiment_id", "control_group_id", "colour", "interpretation"]:
+            if key in r:
+                e[key]=r[key]
         rows.append(e)
     assert (ROOT/covariance).exists()
 
@@ -48,6 +51,12 @@ append('xue_sources/monoculture_effects.csv','xue_sources/monoculture_covariance
 append('bennie_sources/final_effects.csv','bennie_sources/programme_covariance_including_anic2022.csv',
        'Penryn2012_2016','outdoor_artificial_mesocosm_moisture_unclassified','factorial_stratum',
        select=lambda d:d.lnRR.notna(),study='Bennie2015')
+
+append('parkinson2023_sources/effects.csv','parkinson2023_sources/covariance.csv',
+       'SevenPonds2022',None,'shared_dark_capture_not_population',
+       dict(mean_control='mean_dark',n_control='n_dark',variance='sampling_variance'),
+       select=lambda d:d.status.eq('extractable_delta_lnRR'),study='Parkinson2023')
+
 d=pd.DataFrame(rows)
 mask=d.study_id=='Lu2026'
 d.loc[mask,'n_lit']=5
