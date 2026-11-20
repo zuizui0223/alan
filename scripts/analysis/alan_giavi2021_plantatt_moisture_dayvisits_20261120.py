@@ -36,6 +36,24 @@ def source_name(label):
         return None
     a=label.split("_")
     return " ".join(a) if len(a)==2 and all(a) else None
+def add_doring_only_records(raw,trait_map):
+    import io
+    source=csv.DictReader(io.StringIO(raw.decode("latin1")))
+    for row in source:
+        original_name=row["taxon_name_binom"].strip()
+        f=row["F_Doring"].strip()
+        if f in ("","NA"):continue
+        try:value=float(f)
+        except ValueError:continue
+        if not (math.isfinite(value) and 1<=value<=12):continue
+        if original_name not in trait_map:
+            # Original PLANTATT F is unavailable; keep it NULL.
+            trait_map[original_name]={
+                "F_PLANTATT":None,"F_Doring":f,
+                "Kew_taxonomic_status":row["taxonomic_status"].strip(),
+                "Kew_aggregate_label":row["aggregate"].strip()}
+    return trait_map
+
 def matches(rows,traits):
     out=[]
     for r in rows:
@@ -120,7 +138,7 @@ def analyze(records,traits):
 def main():
     p=argparse.ArgumentParser();p.add_argument("--out",required=True)
     a=p.parse_args()
-    b=pull_kew_binary();z,n=trait_lookup(b)
+    b=pull_kew_binary();z,n=trait_lookup(b);z=add_doring_only_records(b,z)
     result=analyze(source(),z)
     result["original_Kew_plant_rows"]=n
     path=Path(a.out);path.parent.mkdir(parents=True,exist_ok=True)
