@@ -1,0 +1,9 @@
+{
+  "clusters": 9,
+  "endpoints": 4,
+  "covariance_entries": 16,
+  "minimum_eigenvalue": 0.015970060259318537,
+  "main_catalogue_modified": false,
+  "final_eligibility": false,
+  "interpretation": "Conditional approximate delta intervals; independent source-labelled groups assumed"
+}

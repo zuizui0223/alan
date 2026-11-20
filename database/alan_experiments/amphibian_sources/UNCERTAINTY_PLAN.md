@@ -1,0 +1,9 @@
+# Conditional uncertainty specification, 2026-11-20
+
+Written before calculating intervals. Keep the previously fixed four response means and their treatment mixture. Use the nine source-labelled spatial groups as clusters (four lit, five natural light); assume independent groups and independent arms. This is conditional on those groups being the illumination units described by the supplement/metadata; final eligibility and physical mapping review remain separate. No data-driven endpoint selection, zero replacement, outlier removal or treatment reweighting.
+
+For each endpoint j, y_j=log(mean_lit_j/mean_dark_j). For each arm, estimate the sample covariance S of its four group-level endpoint means with denominator n-1. Sampling covariance is V_jk=S_lit_jk/(n_lit*mean_lit_j*mean_lit_k)+S_dark_jk/(n_dark*mean_dark_j*mean_dark_k). Retain all16 entries; outcomes are not independent experiments. For an individual endpoint, let v_lit and v_dark be its variance contributions; Welch-Satterthwaite df=(v_lit+v_dark)^2/[v_lit^2/(n_lit-1)+v_dark^2/(n_dark-1)]. Report exponentiated y plus/minus t_(.975,df)*sqrt(V_jj) as approximate, conditional95% intervals. Do not describe this as a pooled meta-analysis or exact small-sample coverage.
+
+Use uncorrected log ratios of the observed arithmetic group means, matching the descriptive estimand. Small clusters and skewed sparse counts make delta approximations uncertain. The endpoint labelled NonPredatorTotal remains an unresolved original label. Algal last-date and invertebrate two-date sum remain separate sampling windows. No combined ecological effect, mediation coefficient or main-catalogue adoption.
+
+Verify matrix symmetry, positive semidefiniteness, equality of diagonals to independent scalar calculations, and unchanged point ratios. An independent reader/calculation will check the four outputs before interpretation.
