@@ -1,0 +1,19 @@
+{
+  "study_doi": "10.1098/rspb.2023.0153",
+  "status": "hold_raw_access",
+  "effects_computed": 0,
+  "edi_package": "knb-lter-hbr.368.2",
+  "edi_doi": "10.6073/pasta/71525c9c724db0a21249584afca9ddbd",
+  "portal": "Turnstile; not bypassed",
+  "public_metadata_api": "403 explicitly unauthorized; no further access attempts",
+  "supplement": "original DOCX downloaded; model tables and figures not plot-round attack counts",
+  "required": [
+    "plot IDs and treatment/pair assignment",
+    "round ID",
+    "number recovered per plot-round",
+    "number with arthropod attack marks",
+    "separate vertebrate marks if available"
+  ],
+  "independent_pairs": 4,
+  "final_round": "2021-07-24/2021-07-27"
+}

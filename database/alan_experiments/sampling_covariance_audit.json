@@ -1,0 +1,17 @@
+{
+  "effect_rows": 38,
+  "programmes": 7,
+  "diagonal_agreement": true,
+  "symmetric": true,
+  "positive_semidefinite": true,
+  "singular_programmes": [
+    "Lu2024_Gannan_companion_overlap_unresolved"
+  ],
+  "fitted": false,
+  "warnings": [
+    "Cross-programme sampling covariance set to zero conditional on current programme identity audit.",
+    "Shared totals and guild subsets can be linearly dependent; select a defined endpoint before fitting.",
+    "Supplementary time means must not enter beside the same endpoint final-time effect as independent observations.",
+    "Full rank does not establish eligibility, independence or valid moisture moderator support."
+  ]
+}

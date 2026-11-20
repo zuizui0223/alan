@@ -1,0 +1,18 @@
+{
+  "doi": "10.1098/rstb.2022.0361",
+  "collection": "10.6084/m9.figshare.c.6856475",
+  "source_file": "rstb20220361_si_004.xlsx",
+  "sha256": "1e39be30482475d04643cce942a568ee6e99814ac2773deeb43ab792b03aef86",
+  "retrieval_date": "2026-11-20",
+  "source_api": "https://api.figshare.com/v2/articles/24212174",
+  "raw_total": 4699,
+  "raw_five_family_total": 4475,
+  "summary_five_family_total": 4465,
+  "top5_sheet_total": 4448,
+  "trap_units": 30,
+  "contrasts": 40,
+  "valid_lnRR": 28,
+  "covariance_rows": 784,
+  "covariance_min_eigenvalue": -6.110708823510334e-16,
+  "caveat": "Small n=3; delta method exploratory; biomass held owing to cross-sheet discrepancies; no independent second extraction."
+}

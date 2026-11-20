@@ -1,0 +1,5 @@
+round,start,end,hours,n_lit_plots,n_dark_plots,primary_final,raw_status
+1,2021-06-12,2021-06-15,72,4,4,0,not_retrieved
+2,2021-06-25,2021-06-28,72,4,4,0,not_retrieved
+3,2021-07-10,2021-07-13,72,4,4,0,not_retrieved
+4,2021-07-24,2021-07-27,72,4,4,1,not_retrieved

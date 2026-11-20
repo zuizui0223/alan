@@ -1,0 +1,8 @@
+programme_id,effects,rank,min_eigenvalue,source,full_rank
+Parkinson2016,6,6,0.004016353322096778,effect_covariance.csv,True
+Penryn2012_2016,10,10,0.007963041406024475,bennie_sources/programme_covariance_including_anic2022.csv,True
+KnopGiavi_overlap_unresolved,4,4,1.1935039399833952e-06,giavi_sources/giavi2021_covariance.csv,True
+Hey2017_Blandy,4,4,0.00930398288664764,hey_sources/hey2020_biomass_covariance.csv,True
+Lu2024_Gannan_companion_overlap_unresolved,7,4,-1.0166446539981045e-16,lu_sources/daytime_effect_covariance.csv,False
+Guo2024_HongKong,3,3,0.034508371425677045,hongkong_sources/final_effect_covariance.csv,True
+Xue2026_monoculture,4,4,3.2872187840079003e-07,xue_sources/monoculture_covariance.csv,True
