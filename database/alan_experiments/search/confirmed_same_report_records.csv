@@ -1,3 +1,5 @@
 record_id,original_doi,resolved_doi,doi_evidence,pmcid,report_key,title,decision,records_sharing_report_key
 PMC:PMC13645961,,10.1002/ece3.74368,acquired_article_metadata,PMC13645961,doi:10.1002/ece3.74368,Artificial Light at Night Alters Both of Nocturnal and Diurnal Pollination Networks in Alpine Meadows,fulltext_needed,2
+MED:42525495,10.1111/gcb.71029,10.1111/gcb.71029,index_metadata,PMC13421007,doi:10.1111/gcb.71029,Artificial Light at Night Drives Asymmetric Biological Allocation of Soil Carbon and Nitrogen by Fragmenting Micro-Food Webs.,fulltext_needed,2
 MED:42851410,10.1002/ece3.74368,10.1002/ece3.74368,index_metadata,,doi:10.1002/ece3.74368,Artificial Light at Night Alters Both of Nocturnal and Diurnal Pollination Networks in Alpine Meadows.,fulltext_needed,2
+AGR:IND609539107,,10.1111/gcb.71029,source_verified_adjudication,PMC13421007,doi:10.1111/gcb.71029,Artificial Light at Night Drives Asymmetric Biological Allocation of Soil Carbon and Nitrogen by Fragmenting Micro‐Food Webs,fulltext_needed,2

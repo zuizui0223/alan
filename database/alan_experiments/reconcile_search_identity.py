@@ -15,15 +15,21 @@ verified=a[a.status=='retrieved_body_pending_fulltext_review']
 pmc_to_doi={r.pmcid:r.xml_doi for r in verified.itertuples() if r.xml_doi}
 def norm(s):
     return s.strip().lower().removeprefix('https://doi.org/').removeprefix('http://dx.doi.org/')
+manual=pd.read_csv(ROOT/"identity_adjudications.csv").fillna("").set_index("record_id")
+assert manual.index.is_unique and set(manual.index)<=set(d.record_id)
 rows=[]
 for r in d.itertuples():
     original=norm(r.doi)
     fulltext=norm(pmc_to_doi.get(r.pmcid,''))
     assert not (original and fulltext and original!=fulltext),(r.record_id,original,fulltext)
-    resolved=original or fulltext
+    override=manual.loc[r.record_id] if r.record_id in manual.index else None
+    adjudicated=norm(override.resolved_doi) if override is not None else ''
+    assert not (adjudicated and (original or fulltext) and adjudicated!=(original or fulltext))
+    resolved=original or fulltext or adjudicated
+    pmcid=r.pmcid or (override.pmcid if override is not None else '')
     rows.append(dict(record_id=r.record_id,original_doi=original,resolved_doi=resolved,
-        doi_evidence='index_metadata' if original else ('acquired_article_metadata' if fulltext else 'unresolved'),
-        pmcid=r.pmcid,report_key='doi:'+resolved if resolved else ('pmc:'+r.pmcid if r.pmcid else r.record_id),
+        doi_evidence='index_metadata' if original else ('acquired_article_metadata' if fulltext else ('source_verified_adjudication' if adjudicated else 'unresolved')),
+        pmcid=pmcid,report_key='doi:'+resolved if resolved else ('pmc:'+r.pmcid if r.pmcid else r.record_id),
         title=r.title,decision=r.decision))
 out=pd.DataFrame(rows)
 out['records_sharing_report_key']=out.groupby('report_key').record_id.transform('size')
@@ -31,6 +37,7 @@ out.to_csv(ROOT/'record_identity_crosswalk.csv',index=False)
 out[out.records_sharing_report_key>1].to_csv(ROOT/'confirmed_same_report_records.csv',index=False)
 summary=dict(index_records=len(out),resolved_doi_records=int(out.resolved_doi.ne('').sum()),
  doi_filled_from_acquired_article=int((out.doi_evidence=='acquired_article_metadata').sum()),
+ doi_filled_from_source_adjudication=int((out.doi_evidence=='source_verified_adjudication').sum()),
  distinct_report_keys=out.report_key.nunique(),
  same_report_duplicate_records=len(out)-out.report_key.nunique(),
  independent_experiments='not established',

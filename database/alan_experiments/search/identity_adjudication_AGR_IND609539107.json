@@ -1,0 +1,132 @@
+{
+  "version": "6.9",
+  "hitCount": 1,
+  "request": {
+    "queryString": "EXT_ID:IND609539107 AND SRC:AGR",
+    "internalQuery": "EXT_ID:IND609539107 AND SRC:AGR",
+    "resultType": "CORE",
+    "cursorMark": "*",
+    "pageSize": 25,
+    "sort": "",
+    "synonym": false
+  },
+  "resultList": {
+    "result": [
+      {
+        "id": "IND609539107",
+        "source": "AGR",
+        "title": "Artificial Light at Night Drives Asymmetric Biological Allocation of Soil Carbon and Nitrogen by Fragmenting Micro\u2010Food Webs",
+        "authorString": "Liu M, Hou M, Xu X, Ma D, Liu Y, Wang Y, Pang K, Wang Z, Liu Y, Xiao L.",
+        "authorList": {
+          "author": [
+            {
+              "fullName": "Liu M",
+              "lastName": "Liu",
+              "firstName": "Min",
+              "initials": "M"
+            },
+            {
+              "fullName": "Hou M",
+              "lastName": "Hou",
+              "firstName": "Meng",
+              "initials": "M"
+            },
+            {
+              "fullName": "Xu X",
+              "lastName": "Xu",
+              "firstName": "Xingliang",
+              "initials": "X"
+            },
+            {
+              "fullName": "Ma D",
+              "lastName": "Ma",
+              "firstName": "Di",
+              "initials": "D"
+            },
+            {
+              "fullName": "Liu Y",
+              "lastName": "Liu",
+              "firstName": "Yuanyuan",
+              "initials": "Y"
+            },
+            {
+              "fullName": "Wang Y",
+              "lastName": "Wang",
+              "firstName": "Yueqi",
+              "initials": "Y"
+            },
+            {
+              "fullName": "Pang K",
+              "lastName": "Pang",
+              "firstName": "Kaiqi",
+              "initials": "K"
+            },
+            {
+              "fullName": "Wang Z",
+              "lastName": "Wang",
+              "firstName": "Zhihui",
+              "initials": "Z"
+            },
+            {
+              "fullName": "Liu Y",
+              "lastName": "Liu",
+              "firstName": "Yanjie",
+              "initials": "Y"
+            },
+            {
+              "fullName": "Xiao L",
+              "lastName": "Xiao",
+              "firstName": "L\u00fc",
+              "initials": "L"
+            }
+          ]
+        },
+        "journalInfo": {
+          "issue": "8",
+          "volume": "32",
+          "journalIssueId": 4264418,
+          "dateOfPublication": "2026 Aug",
+          "monthOfPublication": 8,
+          "yearOfPublication": 2026,
+          "journal": {
+            "medlineAbbreviation": "Global change biology.",
+            "title": "Global Change Biology",
+            "issn": "1354-1013"
+          },
+          "printPublicationDate": "2026-08-01"
+        },
+        "pubYear": "2026",
+        "pageInfo": "71029",
+        "abstractText": "Artificial light at night (ALAN) is an increasingly pervasive global change driver, yet its effects on the interconnected biogeochemical cycling of soil carbon (C) and nitrogen (N) remain poorly understood. Here, we conducted an in situ dual\u2010isotope (\u00b9\u00b3C\u2010CO\u2082 pulse labelling and \u00b9\u2075N addition) experiment combined with multitrophic microbial network analysis in a semi\u2010arid meadow steppe to explore the impact of ALAN on belowground C and N cycling and the underlying mechanisms. We found that ALAN significantly accelerated the turnover of newly fixed plant C, a process primarily fueled by the increased root\u2010derived C input from ALAN\u2010stimulated plant biomass (the bottom\u2010up C\u2010pump). Concurrently, while this plant\u2010driven C surplus primarily fueled elevated soil respiration, ALAN substantially enhanced microbial \u00b9\u2075N retention, resulting in a pronounced asymmetric biological allocation of assimilated C and N within the biotic pools. This stoichiometric divergence was underpinned by a physiological shift toward a conservative microbial N retention strategy, whereby soil microorganisms increased N retention efficiency to counterbalance the stoichiometric C surpluses induced by enhanced plant inputs. Crucially, we found that this enhanced biological N retention was predicted not by microbial taxonomic diversity but was closely associated with a directional trend toward reduced micro\u2010food web structural connectivity. This fragmented network architecture potentially altered top\u2010down trophic controls, which compounded the plant\u2010driven stoichiometric imbalance by limiting predator\u2010mediated N mineralization and thereby promoting relative N retention within the microbial biomass. Our findings highlight light pollution as an underappreciated global change driver that specifically accelerates plant\u2010mediated bottom\u2010up C loss while simultaneously promoting microbial N retention via fragmented micro\u2010food webs in increasingly illuminated ecosystems.",
+        "language": "eng",
+        "pubModel": "Undetermined",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "isOpenAccess": "N",
+        "inEPMC": "N",
+        "inPMC": "N",
+        "citedByCount": 0,
+        "hasReferences": "N",
+        "hasTextMinedTerms": "Y",
+        "hasDbCrossReferences": "N",
+        "hasPDF": "N",
+        "hasBook": "N",
+        "hasSuppl": "N",
+        "hasLabsLinks": "N",
+        "hasData": "N",
+        "authMan": "N",
+        "epmcAuthMan": "N",
+        "nihAuthMan": "N",
+        "hasTMAccessionNumbers": "N",
+        "dateOfCompletion": "2026-08-29",
+        "dateOfCreation": "2026-08-29",
+        "firstPublicationDate": "2026-08-01",
+        "firstIndexDate": "2026-09-16",
+        "hasEvaluations": "N"
+      }
+    ]
+  }
+}

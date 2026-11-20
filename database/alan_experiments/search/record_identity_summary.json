@@ -1,9 +1,10 @@
 {
   "index_records": 521,
-  "resolved_doi_records": 499,
+  "resolved_doi_records": 500,
   "doi_filled_from_acquired_article": 1,
-  "distinct_report_keys": 520,
-  "same_report_duplicate_records": 1,
+  "doi_filled_from_source_adjudication": 1,
+  "distinct_report_keys": 519,
+  "same_report_duplicate_records": 2,
   "independent_experiments": "not established",
   "warning": "Exact DOI/PMCID report identity only; unmatched title duplicates, preprint-journal versions and shared experiments still require review. No screening decisions overwritten."
 }
