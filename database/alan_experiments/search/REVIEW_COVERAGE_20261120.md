@@ -1,4 +1,6 @@
-Current update: 148 retained reports reviewed,40 pending; nine outside-search reports. Degen2016 Methods/Results reviewed; spatial comparisons among lit lamps are excluded from the light-versus-dark catalogue. No effects added; final eligibility remains unfinished.
+Current update: 148 retained reports reviewed,40 pending. Firebaugh thesis chapters1-2 reviewed as related grey literature; journal2016 final Methods/Results remain unread. Binary counts retained separately with unresolved independent units; no pooled effect added.
+
+Previous update: 148 retained reports reviewed,40 pending; nine outside-search reports. Degen2016 Methods/Results reviewed; spatial comparisons among lit lamps are excluded from the light-versus-dark catalogue. No effects added; final eligibility remains unfinished.
 
 Previous update: 147 retained reports reviewed,41 pending; nine outside-search reports. OConnor2019 Methods/Results read and printed statistical conflict visually verified. Preexposure/shared-arena laboratory predation cannot be pooled as contemporaneous field ALAN predation. Robert2021 partial field-trap evidence retained as access hold; no title-only exclusion. No effects added.
 
