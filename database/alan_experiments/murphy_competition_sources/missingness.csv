@@ -1,0 +1,11 @@
+sheet,arm,variable,rows,missing
+plants,L,Dry Mass Na,120,13
+plants,L,Dry Mass Ex,120,1
+plants,NL,Dry Mass Na,120,12
+plants,NL,Dry Mass Ex,120,3
+chemistry,L,%N,195,0
+chemistry,L,%C,195,0
+chemistry,L,C:N,195,0
+chemistry,NL,%N,202,0
+chemistry,NL,%C,202,0
+chemistry,NL,C:N,202,0

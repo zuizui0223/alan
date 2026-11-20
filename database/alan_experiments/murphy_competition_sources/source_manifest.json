@@ -1,0 +1,16 @@
+[
+  {
+    "file": "Murphy et al. data 2025 ALAN competition.xlsx",
+    "url": "https://zenodo.org/api/records/17479452/files/Murphy%20et%20al.%20data%202025%20ALAN%20competition.xlsx/content",
+    "bytes": 105929,
+    "md5_verified": true,
+    "sha256": "746d4287866411a366478434b67b791541290603544b67423521db9fdf4b8f95"
+  },
+  {
+    "file": "READ ME.docx",
+    "url": "https://zenodo.org/api/records/17479452/files/READ%20ME.docx/content",
+    "bytes": 19429,
+    "md5_verified": true,
+    "sha256": "cbc0be78890466c10f0530d3e1305c8099d5028358cadf02bd0f845c6cad55ed"
+  }
+]

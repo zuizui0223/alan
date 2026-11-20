@@ -1,0 +1,16 @@
+{
+  "plant_rows": 240,
+  "chemistry_rows": 397,
+  "unique_pot_keys": 240,
+  "treatment_cells": 24,
+  "chemistry_rows_matched_to_pots": 397,
+  "independent_light_rooms_per_arm": 1,
+  "chemistry_distinct_pot_status_keys": 379,
+  "chemistry_rows_with_duplicated_keys": 36,
+  "chemistry_duplicated_key_groups": 18,
+  "missing_pot_status_keys_relative_to_two_per_pot": 101,
+  "missing_rows_are_not_absence": true,
+  "sampling_variance_for_replicated_light_effect_estimable": false,
+  "effects_added_to_main_catalogue": 0,
+  "decision": "retain_context_exclude_replicated_light_pooling"
+}
