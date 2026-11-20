@@ -4,6 +4,7 @@ on:
     branches: [analysis/alan-functional-compensation-20261119]
     paths:
       - "scripts/acquisition/alan_freshwater_invertebrate_zenodo2026_source_20261120.py"
+      - "scripts/acquisition/alan_freshwater_zenodo_original_workbook_schema_20261120.py"
       - ".github/workflows/alan-freshwater2026-zenodo-source-20261120.yml"
   workflow_dispatch:
 permissions:
@@ -21,6 +22,10 @@ jobs:
         run: |
           python -m scripts.acquisition.alan_freshwater_invertebrate_zenodo2026_source_20261120 \
             --out /tmp/alan_freshwater_zenodo_source_gate_20261120.json
+      - name: Inspect official original 2026 six-sheet Excel layout, pinned SHA
+        run: |
+          python -m scripts.acquisition.alan_freshwater_zenodo_original_workbook_schema_20261120 \
+            --out /tmp/alan_freshwater_zenodo_schema_20261120.json
       - name: Assert raw source not mislabelled as wet plant macro mechanism
         run: |
           python - <<'PY'
@@ -35,6 +40,8 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: alan-freshwater2026-three-consumer-original-source
-          path: /tmp/alan_freshwater_zenodo_source_gate_20261120.json
+          path: |
+            /tmp/alan_freshwater_zenodo_source_gate_20261120.json
+            /tmp/alan_freshwater_zenodo_schema_20261120.json
           if-no-files-found: error
           retention-days: 40
