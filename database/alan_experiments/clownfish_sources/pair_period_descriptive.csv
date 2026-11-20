@@ -1,0 +1,12 @@
+pair id,treat,period,clutches,mean_hatch_proportion
+ALAN 2,ALAN,impact,1,0.0
+ALAN 2,ALAN,recovery,1,1.0
+ALAN 5,ALAN,impact,3,0.0
+ALAN 5,ALAN,recovery,3,0.6722035586666667
+ALAN 7,ALAN,recovery,1,1.0
+Control 10,Control,impact,3,0.9669640336666667
+Control 10,Control,recovery,2,0.9162277655
+Control 11,Control,impact,1,1.0
+Control 12,Control,impact,3,0.712173523
+Control 12,Control,recovery,1,1.0
+Control 8,Control,recovery,1,0.5

@@ -1,0 +1,14 @@
+{
+  "sheet_rows": {
+    "Spawning interval": 30,
+    "Fertilisation": 28,
+    "Hatch rate": 20
+  },
+  "all_proportion_checks_pass": true,
+  "main_effects_added": 0,
+  "lnRR_zero_handling": "undefined_no_pseudocount",
+  "missing_pairs": "not_imputed_as_zero",
+  "scope": "indoor_context_only",
+  "pair_period_means": "observed_clutches_only_not_intention_to_treat_or_final_time",
+  "final_eligibility": false
+}

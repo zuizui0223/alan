@@ -1,0 +1,20 @@
+[
+  {
+    "file": "primary.pdf",
+    "url": "https://static1.squarespace.com/static/5eed14bc3077a438e884d488/t/5f4472d80858461c765da329/1598321368928/Fobert%2Bet%2Bal.%2B2019_Artificial%2Blight%2Bat%2Bnight%2Bcauses%2Breproductive%2Bfailure%2Bin%2Bclownfish_BiolLett.pdf",
+    "bytes": 271897,
+    "sha256": "b6af429d276756e0441258ef52a75ebd6c3f438fdc8aa4ae32a8930ed55ab225"
+  },
+  {
+    "file": "supplement1.pdf",
+    "url": "https://ndownloader.figshare.com/files/16172882",
+    "bytes": 10870379,
+    "sha256": "00c5991e5f9bcb4aa7d8a5aeedca1c66fe55ed2cebdf69a10590aaad7c736a0d"
+  },
+  {
+    "file": "supplement2.pdf",
+    "url": "https://ndownloader.figshare.com/files/16172879",
+    "bytes": 97703,
+    "sha256": "5bb57382686de17086d6c49a374628c519152b0cad9fdf4c41d1ac2af873a7a2"
+  }
+]

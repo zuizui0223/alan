@@ -1,0 +1,13 @@
+sheet,treatment,period,records,observed_pairs,pair_ids
+Spawning interval,alan,impact,4,2,A2;A5
+Spawning interval,alan,recovery,8,2,A2;A5
+Spawning interval,control,impact,7,4,C10;C11;C12;C8
+Spawning interval,control,recovery,11,3,C10;C12;C8
+Fertilisation,alan,impact,5,2,ALAN 2;ALAN 5
+Fertilisation,alan,recovery,6,3,ALAN 2;ALAN 5;ALAN 7
+Fertilisation,control,impact,11,4,Control 10;Control 11;Control 12;Control 8
+Fertilisation,control,recovery,6,3,Control 10;Control 12;Control 8
+Hatch rate,alan,impact,4,2,ALAN 2;ALAN 5
+Hatch rate,alan,recovery,5,3,ALAN 2;ALAN 5;ALAN 7
+Hatch rate,control,impact,7,3,Control 10;Control 11;Control 12
+Hatch rate,control,recovery,4,3,Control 10;Control 12;Control 8
