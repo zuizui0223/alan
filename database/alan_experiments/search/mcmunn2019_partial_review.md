@@ -1,3 +1,5 @@
+> Historical access note: superseded on 2026-11-20 by [primary Methods/Results audit](mcmunn2019_design_review.md). The assay is fixed-duration, not time-to-event.
+
 # McMunn2019: abstract confirmed, full Methods still pending
 
 [Primary article](https://doi.org/10.1093/ee/nvz103) and [author laboratory summary](https://yanglab.ucdavis.edu/2019/07/31/artificial-light-increases-local-predator-abundance-predation-rates-and-herbivory/) describe a field study, immobilized-fly predation and plant herbivory. These make it a relevant candidate; they do not establish the independent lighting-unit counts or effect variances.
