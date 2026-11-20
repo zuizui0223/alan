@@ -240,7 +240,8 @@
     "original_phenology_raw_rows_retrieved": false
   },
   "original_species_moisture_by_light_slope_fitted": false,
-  "observed_Kew_no_wet_species_does_not_prove_Swiss_no_wet_species": false,
+  "observed_Kew_no_wet_species_does_not_prove_Swiss_no_wet_species": true,
   "original_phenology_effects_are_published_authors_result_not_reanalysis": true,
-  "source_scope": "UK moisture indicator coverage audit and repository access test; no original plot/year lighting effects estimated"
+  "source_scope": "UK moisture indicator coverage audit and repository access test; no original plot/year lighting effects estimated",
+  "missing_four_source_moisture_is_not_assigned_as_dry": true
 }
