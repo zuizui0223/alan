@@ -1,0 +1,42 @@
+name: ALAN herbivory-pollination 171-study original supplementary source gate
+on:
+  push:
+    branches: [analysis/alan-functional-compensation-20261119]
+    paths:
+      - 'scripts/acquisition/alan_herbivory171_original_supplement_20261120.py'
+      - '.github/workflows/alan-herbivory171-original-supplement-20261120.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-171-study-appendix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify publicly archived PMC original supplementary ZIP by CRC and SHA
+        run: |
+          python -m scripts.acquisition.alan_herbivory171_original_supplement_20261120 \
+            --out /tmp/alan_herbivory171_original_source_gate_20261120.json
+      - name: Gate against fabricated wetness meta coefficients
+        run: |
+          python - <<'PY'
+          import json
+          j=json.load(open('/tmp/alan_herbivory171_original_source_gate_20261120.json'))
+          assert j['schema']=='alan_herbivory_pollinator_171_original_source_gate_20261120_v1'
+          assert j['source_reported_original_studies']==171
+          assert not j['source_has_ALAN_manipulation']
+          assert not j['source_original_raw_effect_cases_loaded']
+          assert not j['plant_moisture_by_ALAN_moderator_fitted']
+          assert not j['plant_moisture_by_herbivore_moderator_fitted']
+          print('ORIGINAL_META_SOURCE_GATE',j['status'],j.get('machine_readable_candidate_files'),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-herbivory171-pollination-macro-source-gate
+          path: /tmp/alan_herbivory171_original_source_gate_20261120.json
+          retention-days: 40
+          if-no-files-found: error
