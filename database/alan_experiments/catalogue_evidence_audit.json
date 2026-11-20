@@ -23,10 +23,11 @@
   "effect_values_changed": 0,
   "input_sha256": {
     "effect_catalogue.csv": "ce0b1e74a65b957f1016eeb91e00b6147ccbe70bbd11ca63a86fa15443120e23",
-    "studies.csv": "463331f8a0e06c84122e3728dd834edf1369e455356782602fcdbd725ccaf656",
+    "studies.csv": "b792d34215045818716e02546a6d22d40021f7fb4352020ad53de80ae1823ef7",
     "site_context/catalogue_coordinate_coverage.csv": "654e5e4e0873789cd4d26f420b32fcb0991f4488fd17684fc77b91994e02058a",
     "site_context/plant_moisture_effect_support.csv": "beb0bada3bdb7ddac8ec93970b44a319f027800efd9f9369a3e1064a7e1c7a31",
-    "experiments.csv": "e2c04eff20ef1252b5b68f5230743da1fdae51ac53dbe26a8e60af90ec905eac"
+    "experiments.csv": "987c93f577a8813157881d02aa25a711f9bd6e0906f15a21805a31be3230cf7b",
+    "reported_experiment_studies.csv": "3cfb3938c82cbd75e33f420de6c5c51204d72601c235ab6bde730a64cbd4425b"
   },
   "limitation": "Coverage is not approval or statistical independence. Unmapped EIV is not dry habitat. Coordinates do not establish measured site wetness. Current catalogue experiments registered; outside-catalogue experiments, full site links and final adjudication remain incomplete."
 }

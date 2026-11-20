@@ -32,7 +32,15 @@ def build():
     assert set(evidence.experiment_id.dropna()) <= set(experiments.experiment_id)
     registry_programme = experiments.set_index("experiment_id").programme_id
     assert evidence.experiment_id.map(registry_programme).eq(evidence.programme_id).all()
-    evidence[["study_id", "experiment_id", "programme_id", "doi"]].drop_duplicates().to_csv(ROOT / "experiment_studies.csv", index=False)
+    links = evidence[["study_id", "experiment_id", "programme_id", "doi"]].drop_duplicates()
+    reported_links = pd.read_csv(ROOT / "reported_experiment_studies.csv")
+    assert reported_links.study_id.isin(studies.study_id).all()
+    assert reported_links.experiment_id.isin(experiments.experiment_id).all()
+    assert reported_links.experiment_id.map(registry_programme).eq(reported_links.programme_id).all()
+    assert reported_links.study_id.map(studies.set_index("study_id").doi).eq(reported_links.doi).all()
+    links = pd.concat([links, reported_links], ignore_index=True).drop_duplicates()
+    assert not links.duplicated(["study_id", "experiment_id"]).any()
+    links.to_csv(ROOT / "experiment_studies.csv", index=False)
     evidence["experiment_row_present"] = evidence.experiment_id.isin(experiments.experiment_id)
     evidence["environmental_moderator_readiness"] = "not_established_by_coordinate_presence"
     evidence["final_eligibility"] = "not_adjudicated"
@@ -51,7 +59,7 @@ def build():
         programmes_with_numeric_species_moisture=int(evidence.loc[evidence.EIV_MOIST.notna(), "programme_id"].nunique()),
         study_status_counts=evidence.groupby("study_review_status").size().to_dict(),
         effect_rows_added=0, effect_values_changed=0,
-        input_sha256={name:hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in FILES},
+        input_sha256={name:hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in FILES + ["reported_experiment_studies.csv"]},
         limitation="Coverage is not approval or statistical independence. Unmapped EIV is not dry habitat. Coordinates do not establish measured site wetness. Current catalogue experiments registered; outside-catalogue experiments, full site links and final adjudication remain incomplete.")
     (ROOT / "catalogue_evidence_audit.json").write_text(json.dumps(summary, indent=2)+"\n", encoding="utf-8")
     print(json.dumps({k:v for k,v in summary.items() if k not in ["study_status_counts", "input_sha256"]}, indent=2))

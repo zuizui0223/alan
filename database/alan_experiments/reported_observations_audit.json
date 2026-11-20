@@ -1,0 +1,13 @@
+{
+  "observation_rows": 40,
+  "studies": 4,
+  "experiment_links": 5,
+  "source_sha256": {
+    "boom2020_sources/reported_arm_summaries.csv": "e94a072c44c94d7992d281937fea9fa1d346dfd240598f07fd2a262ed25a658d",
+    "liu2022_sources/reported_tests.csv": "a8286463a184ff330e9b66f0952a8482f4d7a4c373d733262307b01474938909",
+    "wilson2021_sources/reported_coefficients.csv": "e07f11fa024e8ee94070bec5a7acb61427cface21d53b5657c29c599ef3599f0",
+    "search/nunez2026_model_contrasts.csv": "e8d017245160a35469f7c1fef76af66c93015ee38e4dd5896cab7b1d56f90cf8"
+  },
+  "added_meta_effects": 0,
+  "limitation": "Reported arms, tests and coefficients are not independent effects. Shared dependence groups are labels, not estimated covariance. Source values remain strings without scale conversion. This is partial registration, not exhaustive extraction or final adoption."
+}
