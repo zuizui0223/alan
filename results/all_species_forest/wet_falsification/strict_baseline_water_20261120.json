@@ -1,0 +1,178 @@
+{
+  "comparisons": [
+    {
+      "all_critical_SMD_within_0_25": true,
+      "caliper_fraction_IQR": 0.5,
+      "caliper_water_area0": 0.8269643416833425,
+      "caliper_water_freq0": 0.8478622064687639,
+      "critical_baseline_SMD": {
+        "area0": 0.015093854095105922,
+        "built": 0.03783165942957112,
+        "built0": 0.06444486546075286,
+        "freq0": 0.01728517153251984,
+        "light0": 0.030428571428571426,
+        "rain_trend": -0.17635963188415188,
+        "temp_trend": -0.10051470303789782
+      },
+      "match": {
+        "all_matched_covariate_SMD": {
+          "area0": 0.015093854095105922,
+          "area_trend": -0.6028982297738197,
+          "built": 0.03783165942957112,
+          "built0": 0.06444486546075286,
+          "days": -0.03388608402417477,
+          "effort": -0.11497846908377081,
+          "freq0": 0.01728517153251984,
+          "freq_trend": -0.3287886714120265,
+          "light0": 0.030428571428571426,
+          "rain_trend": -0.17635963188415188,
+          "span": -0.08114285714285714,
+          "spring": -0.15132841107257133,
+          "start": 0.030428571428571426,
+          "summer": 0.07882766028504183,
+          "temp_trend": -0.10051470303789782
+        },
+        "baseline_built_SMD": 0.06444486546075286,
+        "baseline_light_SMD": 0.030428571428571426,
+        "built_change_SMD": 0.03783165942957112,
+        "candidate_minus_reference_trend_pair_difference_pp_per_decade": -1.8958915152693125,
+        "independent_spatial_blocks": 26,
+        "interpretation": "postselected wet-decline groups and historical site trends; not ALAN causal effect or new independent validation",
+        "light_slope_contrast_median_DN_per_decade": 5.649651062495022,
+        "matched_pairs": 133,
+        "mean_pair_difference_cluster_bootstrap_95pct": [
+          -4.173886811076189,
+          0.23499123495522217
+        ],
+        "slope_per_10_DN_brightening_pp_per_decade": -1.546755434782996,
+        "slope_per_10_DN_cluster_bootstrap_95pct": [
+          -4.652928525690464,
+          1.287546836637853
+        ],
+        "source_eligible_sites": 1707,
+        "status": "EXPLORATORY_COMMON_SUPPORT"
+      },
+      "matched_id_set_sha256": "9192066d546900a3536c160e714c42849f00a7b6ced9e52d11aaa90b3993304a",
+      "same_subset_nested_water_change_sensitivity": {
+        "bootstrap_resamples_with_complete_rank": 1800,
+        "both_models_include_baseline_water_and_climate": true,
+        "independent_spatial_blocks": 26,
+        "model_with_water_change_cluster_95pct": [
+          -4.323347858456751,
+          1.8928021008963234
+        ],
+        "model_with_water_change_slope_per_10_DN": -1.1855648853632859,
+        "model_without_water_change_cluster_95pct": [
+          -4.222950238308794,
+          1.961067750863057
+        ],
+        "model_without_water_change_slope_per_10_DN": -1.148661594970493,
+        "same_matched_pairs": 133,
+        "sensitivity_difference_not_causal_water_mediation": -0.03690329039279283,
+        "status": "POSTHOC_SENSITIVITY_ONLY"
+      },
+      "scientific_claim_gate": "EXPLORATORY_SOURCE_SUPPORTED_ONLY",
+      "source_postselected_58_vs_305_plants": true,
+      "subset_not_same_187_pairs": true
+    },
+    {
+      "all_critical_SMD_within_0_25": true,
+      "caliper_fraction_IQR": 0.25,
+      "caliper_water_area0": 0.41348217084167127,
+      "caliper_water_freq0": 0.42393110323438193,
+      "critical_baseline_SMD": {
+        "area0": 0.00989705777679173,
+        "built": 0.027168679870298515,
+        "built0": 0.05022872890622123,
+        "freq0": 0.007693555735392909,
+        "light0": 0.028396918402777777,
+        "rain_trend": -0.15030989687469473,
+        "temp_trend": -0.16072071236785035
+      },
+      "match": {
+        "all_matched_covariate_SMD": {
+          "area0": 0.00989705777679173,
+          "area_trend": -0.5331730014226925,
+          "built": 0.027168679870298515,
+          "built0": 0.05022872890622123,
+          "days": -0.03154691787154549,
+          "effort": -0.13450863871243182,
+          "freq0": 0.007693555735392909,
+          "freq_trend": -0.6017626483341728,
+          "light0": 0.028396918402777777,
+          "rain_trend": -0.15030989687469473,
+          "span": -0.13173828125,
+          "spring": -0.16781186356737224,
+          "start": 0.0526953125,
+          "summer": 0.053383788928893165,
+          "temp_trend": -0.16072071236785035
+        },
+        "baseline_built_SMD": 0.05022872890622123,
+        "baseline_light_SMD": 0.028396918402777777,
+        "built_change_SMD": 0.027168679870298515,
+        "candidate_minus_reference_trend_pair_difference_pp_per_decade": -1.6873263911450485,
+        "independent_spatial_blocks": 25,
+        "interpretation": "postselected wet-decline groups and historical site trends; not ALAN causal effect or new independent validation",
+        "light_slope_contrast_median_DN_per_decade": 5.320944322635965,
+        "matched_pairs": 128,
+        "mean_pair_difference_cluster_bootstrap_95pct": [
+          -4.148893981882081,
+          0.3367884799738071
+        ],
+        "slope_per_10_DN_brightening_pp_per_decade": -1.1274409271112789,
+        "slope_per_10_DN_cluster_bootstrap_95pct": [
+          -4.056452916237006,
+          1.3973363915629975
+        ],
+        "source_eligible_sites": 1707,
+        "status": "EXPLORATORY_COMMON_SUPPORT"
+      },
+      "matched_id_set_sha256": "538643491d1aa1a4bef0bc0e0313d35d34422461e4cf3336d72be46c2ba9d55b",
+      "same_subset_nested_water_change_sensitivity": {
+        "bootstrap_resamples_with_complete_rank": 1800,
+        "both_models_include_baseline_water_and_climate": true,
+        "independent_spatial_blocks": 25,
+        "model_with_water_change_cluster_95pct": [
+          -4.0366001561658855,
+          1.9675566515363028
+        ],
+        "model_with_water_change_slope_per_10_DN": -1.0667259736171044,
+        "model_without_water_change_cluster_95pct": [
+          -3.996361215707712,
+          2.0123964405626285
+        ],
+        "model_without_water_change_slope_per_10_DN": -0.9771342986652669,
+        "same_matched_pairs": 128,
+        "sensitivity_difference_not_causal_water_mediation": -0.08959167495183751,
+        "status": "POSTHOC_SENSITIVITY_ONLY"
+      },
+      "scientific_claim_gate": "EXPLORATORY_SOURCE_SUPPORTED_ONLY",
+      "source_postselected_58_vs_305_plants": true,
+      "subset_not_same_187_pairs": true
+    }
+  ],
+  "dataset": "6a9a484:results/all_species_forest/wet_water/coordinate_trends.csv.gz",
+  "matching_outcome_blind": true,
+  "original_reference_area0_SMD": 0.7224709411617956,
+  "original_reference_blocks": 30,
+  "original_reference_freq0_SMD": 0.7445843410774747,
+  "original_reference_ids_sha256": "bcc517d332d02c65690db724a7f9887a97fe91c97cf9b4169fe18dde1fbc30cc",
+  "original_reference_pairs": 187,
+  "prespecified_order": "primary 0.5 IQR baseline water, sensitivity 0.25 IQR",
+  "source_baseline_water_IQR": {
+    "area0": 1.653928683366685,
+    "freq0": 1.6957244129375277
+  },
+  "source_baseline_water_sd": {
+    "area0": 10.264323451264712,
+    "freq0": 10.04186621288593
+  },
+  "source_is_postselected_exploratory_not_causal": true,
+  "source_sha256": "4d151698e0da5ee754326220d3bb817b141da00770299e7f8910366d8771e74f",
+  "water_sensitivity_not_causal_mediation": true,
+  "executed_run_url": "https://github.com/zuizui0223/alan/actions/runs/44672675032",
+  "executed_artifact_url": "https://github.com/zuizui0223/alan/actions/runs/44672675032/artifacts/14600143341",
+  "executed_artifact_zip_sha256": "f0a68917d2249eb59a18488c08c6545ce86780c59f0629d50eecc25f9a2f2fa6",
+  "source_extraction_date": "2026-11-20",
+  "source_support_disposition": "Exploratory only: both CIs span zero; 187-pair reference had failed baseline-water balance; cohort changes are not mediation"
+}
