@@ -1,0 +1,22 @@
+{
+  "article_doi": "10.1038/s41598-020-68667-y",
+  "article_xml_sha256": "aa1d636525c9d6c8282f8c6dbddfff76a389b370e4b9710c75dec35f1ffa954c",
+  "supplement_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7368033/supplementaryFiles",
+  "supplement_sha256": "4abc92a40624dc74478bd501a1e77be2643146199898c663fc2d44e12a23f33c",
+  "supplement_content": "Matlab video tracking code, not field raw observations or fitted model objects",
+  "coefficients": 7,
+  "outcomes": 3,
+  "independent_meadows": 8,
+  "lit_meadows": 4,
+  "dark_meadows": 4,
+  "adjacent_sectors_share_lit_meadows": true,
+  "raw_observations_recovered": false,
+  "model_rerun": false,
+  "limitations": [
+    "Link not explicit in paper; no default link silently assigned",
+    "Relative reproduction denominator description ambiguous",
+    "Site random effect may refer to sectors rather than shared meadows; unresolved",
+    "Contrasts share controls and outcomes; missing covariance not zero",
+    "Relationship to other Swiss meadow programmes unresolved"
+  ]
+}

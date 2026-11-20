@@ -1,0 +1,8 @@
+species,endpoint,contrast,estimate,se,reported_p,source_location,scale,sampling_covariance,pooling_status
+Epilobium angustifolium,selected_capsule_at_least_four_seeds,Adjacent_minus_Dark,-0.03,0.922,0.975,Table1(a),original_binomial_model_coefficient_link_not_explicit,not_recovered,hold_not_lnRR
+Epilobium angustifolium,selected_capsule_at_least_four_seeds,Illuminated_minus_Dark,-1.37,0.726,0.058,Table1(a),original_binomial_model_coefficient_link_not_explicit,not_recovered,hold_not_lnRR
+Silene latifolia,capsule_infection,Illuminated_minus_Adjacent,-1.14,0.363,0.002,Table1(b),original_binomial_model_coefficient_link_not_explicit,not_recovered,hold_not_lnRR
+Silene latifolia,capsule_infection,Dark_minus_Adjacent,-1.9,0.576,< 0.001,Table1(b),original_binomial_model_coefficient_link_not_explicit,not_recovered,hold_not_lnRR
+Silene latifolia,relative_reproductive_rate_denominator_hold,Illuminated_minus_Adjacent,0.69,0.371,0.063,Table1(c),original_binomial_model_coefficient_link_not_explicit,not_recovered,hold_not_lnRR
+Silene latifolia,relative_reproductive_rate_denominator_hold,Dark_minus_Adjacent,1.04,0.499,0.037,Table1(c),original_binomial_model_coefficient_link_not_explicit,not_recovered,hold_not_lnRR
+Silene latifolia,capsule_infection,Illuminated_minus_Dark,0.76,0.521,0.145,Results: seed predation paragraph,original_binomial_model_coefficient_link_not_explicit,not_recovered,hold_not_lnRR

@@ -9,8 +9,9 @@ The screening sheet previously retained stale pre-extraction eligibility labels 
 | Knop2017 |0|2|Lighting-by-all-visitor-access interactions in fruit count/proportion; two dependent outcomes|
 | Macgregor2019 |0|0|Reported positive full-night effect on seed-setting success; numeric model coefficient/SE unavailable|
 | Lu2026 JPE |0|0|Abstract-level reproductive findings; full Methods/variance not verified|
+| Giavi2020 |0|7|Three field outcomes; dependent rebasings; reproductive denominator and meadow/sector random-effect definitions unresolved|
 
-These are neither13 independent effects nor five independent programmes. Four plus seven raw rows agree with the current catalogue. Knop's two coefficient estimates are separate from it. Shared endpoints, controls, sites and report overlap remain explicitly relevant.
+These six listed reports are neither independent programmes nor an exhaustive final selection. Four plus seven raw rows agree with the current catalogue. Knop's two and Giavi2020's seven reported model coefficients are separate from it and are not nine independent reproductive effects. Shared endpoints, controls, sites and report overlap remain explicitly relevant. Giavi2020 was already read in screening batch1 but omitted from this narrower extraction inventory; its addition does not increase the primary-review count. See [coefficient extraction and denominator audit](giavi2020_sources/README.md).
 
 ## Comparability
 
