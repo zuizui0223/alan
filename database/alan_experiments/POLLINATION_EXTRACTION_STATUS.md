@@ -22,4 +22,6 @@ Macgregor source script `FinalScripts.R`, lines575–590, specifies binomial `gl
 
 Source links: [Giavi original data](https://doi.org/10.5281/zenodo.4540407), [Lu original supplement](https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13645961/supplementaryFiles), [Knop extraction](knop_sources/REPRODUCTIVE_INTERACTION.md), [Macgregor primary article](https://eprints.whiterose.ac.uk/id/eprint/149121/1/Macgregor_et_al_2019_Ecosphere.pdf), [Macgregor author archive](https://zenodo.org/records/1743917), [NERC record](https://nora.nerc.ac.uk/id/eprint/522598/).
 
+Independent review confirmed the outcome distinctions. The148 undamaged successful capsules are across all treatments, not the full-night comparison alone. Code lines49/197 set LitUnlit reference to Lit: a future Unlit coefficient must be sign-reversed for a light/dark direction. Binomial coefficients are log odds ratios, not lnRR. The primary code includes a run intercept but not a plot or reused-individual intercept in these main models; a usage-count covariate does not remove all repeated-individual dependence.
+
 Current boundary: no new pooled pollination estimate, no inferred zero effects for missing extraction, and no wet-versus-dry reproductive moderator estimate. Resolving numeric reproductive contrasts and their dependence is required before that synthesis.

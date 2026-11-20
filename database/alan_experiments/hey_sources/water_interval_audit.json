@@ -1,0 +1,12 @@
+{
+  "input_sha256": "56ccb0eccc35e7fb0dec05031017c17f149f5bfb378f115acd8e42f0583a912a",
+  "n_plots_by_arm": {
+    "Lit": 5,
+    "Control": 5
+  },
+  "matched_existing_estimates_and_variances": true,
+  "missing_pot_handling": "existing available-individual mean retained, not zero-filled",
+  "interpretation": "water-addition modification of light biomass response; not habitat wetness",
+  "model": "first-order delta variance with Welch-Satterthwaite t intervals",
+  "final_eligibility": false
+}
