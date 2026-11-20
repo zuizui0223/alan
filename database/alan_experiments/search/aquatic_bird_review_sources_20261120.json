@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-20",
+  "lake_access": [
+    {
+      "name": "published",
+      "url": "https://www.nature.com/articles/s41598-026-60447-4.pdf",
+      "status": 200,
+      "bytes": 2747911
+    },
+    {
+      "name": "preprint",
+      "url": "https://assets-eu.researchsquare.com/files/rs-8666965/v1/bfd8563e-5f1d-4762-af54-ac1f18c69c75.pdf",
+      "status": 200,
+      "bytes": 4325727
+    },
+    {
+      "name": "zenodo_metadata",
+      "url": "https://zenodo.org/api/records/19249192",
+      "status": 200,
+      "bytes": 4323
+    },
+    {
+      "name": "original_data",
+      "url": "https://zenodo.org/api/records/19249192/files/ALAN%20data%20set.xlsx/content",
+      "status": 200,
+      "bytes": 42492,
+      "md5": "037689309905516e3f9a291bd8e6b560",
+      "metadata_checksum_matched": true
+    }
+  ],
+  "lake_pdf_sha256": "254a3c54f588352303f93e7bc6bc2afc1a6a4bc17c9b978757ce1619d8ecc80d",
+  "bird_compilation_sha256": "884b477906bef0beb718371c31a522b59503cec87cc1fa15e04192cf0e228f6c",
+  "bird_zero_index_pages": [
+    384,
+    385,
+    386,
+    387,
+    388,
+    389
+  ],
+  "bird_fulltext_source": "Original article pages in government compilation",
+  "new_full_reviews": 2,
+  "new_effects": 0
+}
