@@ -1,4 +1,6 @@
-Current update: 151 retained reports reviewed,36 pending. Luo2021 emergence/prey-timing evidence retained as full-text/design hold; reported three conditions do not establish a complete predator factorial or consumption effect. No effect added.
+Current update: 152 retained reports reviewed,35 pending. Westby2020 author-uploaded journal Methods/Results read; single site then single chamber per arm precludes independent replicated lighting support. Observational wild-egg series kept separate; no finite pooled effect added.
+
+Previous update: 151 retained reports reviewed,36 pending. Luo2021 emergence/prey-timing evidence retained as full-text/design hold; reported three conditions do not establish a complete predator factorial or consumption effect. No effect added.
 
 Previous update: 151 retained reports reviewed,36 pending. Marine beetle larval activity report DOI resolved; full Methods/Results and exposure setting remain unverified. No effect or completed-review increment.
 
