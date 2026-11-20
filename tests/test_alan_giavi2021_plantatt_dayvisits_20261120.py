@@ -1,7 +1,7 @@
 """Original six-meadow source name and exact ordinal null guard."""
 import unittest
 from scripts.analysis.alan_giavi2021_plantatt_moisture_dayvisits_20261120 import (
- source_name,exact,matched_rows,add_doring_only_records
+ source_name,exact,matches,add_doring_only_records
 )
 class TestGiaviNames(unittest.TestCase):
     def test_exact_name_keeps_sp_substring_in_real_binomial(self):
