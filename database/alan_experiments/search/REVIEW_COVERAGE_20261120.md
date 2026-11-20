@@ -1,4 +1,6 @@
-Current update: 155 retained reports reviewed,32 pending; eleven outside-search reports. Li2024 sequence metadata recovered for incubation and field archives; independent lighting n and full Methods unresolved. No finite effect or completed-review increment.
+Current update: 156 retained reports reviewed,31 pending; eleven outside-search reports. Mastomys2024 primary PDF read: ALAN treatments indoor and fixed-order, excluded from field interaction pooling. Vardi-Naim2026 outdoor survival remains full-text/design hold. No finite effect added.
+
+Previous update: 155 retained reports reviewed,32 pending; eleven outside-search reports. Li2024 sequence metadata recovered for incubation and field archives; independent lighting n and full Methods unresolved. No finite effect or completed-review increment.
 
 Previous update: 155 retained reports reviewed,32 pending; eleven outside-search reports. Foster2021 primary manuscript Methods/Results read; orientation is measured but increased competition is extrapolated. Excluded from interaction pools; no finite effect added. Bailey supplement recheck adds no new review.
 
