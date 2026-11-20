@@ -1,0 +1,21 @@
+{
+  "raw_plot_years": 120,
+  "final_year": 2015,
+  "independent_plots": 30,
+  "plots_per_arm": 6,
+  "material_columns": 15,
+  "all_contrasts": 68,
+  "finite_effects": 28,
+  "zero_arm_contrasts": 40,
+  "covariance_rank": 25,
+  "historical_total_discrepancies": 1,
+  "final_totals_verified": true,
+  "cautions": [
+    "No pairing inferred from plot names; arms comprise randomized independent plots.",
+    "Live biomass, dead matter and total including dead are different, overlapping outcomes.",
+    "Common multiplicative mass/area conversion cancels from lnRR and delta covariance.",
+    "Absolute source mass units not relabelled as g per square metre.",
+    "All zero-arm endpoints retained; no pseudocount or significance selection.",
+    "Final2015 differs from author longitudinal models and earlier years."
+  ]
+}

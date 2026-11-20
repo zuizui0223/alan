@@ -8,3 +8,4 @@ Guo2024_HongKong,3,3,0.034508371425677045,hongkong_sources/final_effect_covarian
 Xue2026_monoculture,4,4,3.2872187840079003e-07,xue_sources/monoculture_covariance.csv,True
 SevenPonds2022,28,19,-8.211115894156338e-16,parkinson2023_sources/covariance.csv,False
 Sanders2016_field48,14,5,-1.9614394673882384e-15,sanders_sources/final_covariance.csv,False
+Lizard2012_2015_30plots,28,25,-4.144931182629315e-17,grassland_sources/final_covariance.csv,False

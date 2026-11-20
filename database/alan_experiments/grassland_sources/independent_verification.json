@@ -1,0 +1,11 @@
+{
+  "source": "original archive workbook",
+  "contrasts_checked": 68,
+  "finite_estimates_and_variances_checked": 28,
+  "covariance_cells_checked": 784,
+  "multiplicative_scale_invariance_checked": [
+    1,
+    4
+  ],
+  "all_passed": true
+}

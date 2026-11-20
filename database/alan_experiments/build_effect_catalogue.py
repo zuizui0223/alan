@@ -23,7 +23,7 @@ def append(table, covariance, programme, habitat, role, mapping=None, select=Non
                  covariance_table=covariance,pooled=False,
                  approval_status='extracted_not_fully_adjudicated',
                  paired_units=r.get('paired_units',r.get('n_pairs','')))
-        for key in ["experiment_id", "control_group_id", "colour", "light_lux", "interpretation"]:
+        for key in ["experiment_id", "control_group_id", "colour", "light_lux", "interpretation", "mean_units", "material", "treatment_code"]:
             if key in r:
                 e[key]=r[key]
         rows.append(e)
@@ -60,6 +60,10 @@ append('parkinson2023_sources/effects.csv','parkinson2023_sources/covariance.csv
 append('sanders_sources/final_effects.csv','sanders_sources/final_covariance.csv',
        'Sanders2016_field48','outdoor_caged_foodweb_moisture_unclassified','final_week_shared_control_doses',
        study='Sanders2018')
+
+append('grassland_sources/final_effects.csv','grassland_sources/final_covariance.csv',
+       'Lizard2012_2015_30plots','natural_grassland_reported_poorly_drained_gley',
+       'final_year_shared_dark_overlapping_material_endpoints',study='Bennie2018')
 
 d=pd.DataFrame(rows)
 mask=d.study_id=='Lu2026'
