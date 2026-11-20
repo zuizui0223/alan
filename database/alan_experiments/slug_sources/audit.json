@@ -1,0 +1,24 @@
+{
+  "doi": "10.1016/j.isci.2025.112770",
+  "data_doi": "10.17632/z6xd3dnf7n.1",
+  "wild_rows": 550,
+  "wild_unique_labels": 549,
+  "wild_duplicate_labels": [
+    {
+      "P_PL_LABEL": "23-08600",
+      "S_STU.SI": "MARTEN"
+    },
+    {
+      "P_PL_LABEL": "23-08600",
+      "S_STU.SI": "HORNET"
+    }
+  ],
+  "potted_rows": 416,
+  "potted_unique_labels": 151,
+  "potted_unique_label_date": 270,
+  "potted_negative_proportion_changes": 49,
+  "potted_missing_leaf_values": 1045,
+  "laboratory_excluded": true,
+  "unobserved_sites_not_zero": true,
+  "authors_clipping_preserved": true
+}

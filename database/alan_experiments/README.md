@@ -6,7 +6,9 @@
 
 長期の増光に伴い記録率が低下した植物候補に湿潤性が高い種が偏る、という観察的発見を出発点にする。一次照明実験を自前で検索・採択・抽出し、どの生態段階の効果が湿潤条件で変わるかを検定する。独立な実験で機構の構成要素が成立することと、マクロ結果の媒介機構を同定することは区別する。
 
-最新監査対象main: `7a108aa`（PR89、PR87も含む）。旧台帳16行は独立16研究ではなく、非照明研究と同一実験の複数応答を含む。今回、著者原CSVを再取得してハッシュ検証した1実験（20メソコスム）から4主要endpoint、2補足endpointを抽出した。複数実験を統合するメタ解析、湿潤対乾燥メタ回帰はまだ行っていない。旧台帳のNOは当時の共通endpoint統合未準備を表し、将来の採択を一律拒否するものではない。
+2026-11-20の更新では、`effect_catalogue.csv`に7研究ラベル・34対比を収録した。これは採択確定した34独立実験ではなく、共有区画の複数応答・補足時点を含む抽出済み台帳である。`studies.csv`には別途保留中の土壌・ナメクジ研究も記録する。Cesarzの室内メソコスムとナメクジの限定標本の抽出は別フォルダに保持し、共通台帳にはまだ加えていない。複数実験を統合するメタ解析、湿潤対乾燥メタ回帰は未実施。旧台帳のNOは当時の共通endpoint統合未準備を表し、将来の採択を一律拒否するものではない。
+
+`effects.csv`と`experiments.csv`は初回Parkinson抽出の計算入力を保持する。新しい研究の原単位・対応共分散は各`*_sources/`内にあり、共通一覧は`build_effect_catalogue.py`で生成する。元の1研究用計算に対応デザインの効果をそのまま流し込まない。研究・実験・効果量の全体スキーマへの統合と環境変数付与は未完了である。
 
 原CSVの数的不整合を修正せず保持する。3回平均のクモ・網獲物は過去のリポ結果との照合用。本DBの一次時点規則では最終日2016-08-04を主要にし、期間平均は補足とする。これらを同時に独立効果として統合しない。
 
@@ -20,7 +22,7 @@
 
 ## 検索と採択
 
-WoS Core CollectionとScopusは未実行。`prisma_log.csv`の空欄は未取得であってゼロ件ではない。Web検索・既存台帳・引用追跡は対象を限定した予備探索。実検索時に各DBの正確な検索式・検索日・対象範囲・export・レコードID・重複処理・全文除外理由を保存する。PRISMA図は実際の件数が確定してから作る。
+WoS Core CollectionとScopusは未実行。`prisma_log.csv`の空欄は未取得であってゼロ件ではない。EuropePMC補助検索521レコードのタイトル・抄録を予備選別し、192件を全文確認候補とした。検索式・API原応答ハッシュ・レコードID・判断理由は`search/`に保存している。DOI欠損などによる重複候補が残るため、521や192を独立研究数としない。取得済み全文のMethods・Resultsに基づく判定を進め、取得不能を範囲外として除外しない。PRISMA図は実際の件数が確定してから作る。
 
 予定検索の概念式：("artificial light at night" OR "ALAN" OR "light pollution" OR "street light*" OR "streetlight*" OR "night-time light*" OR "nocturnal illumination") AND (experiment* OR manipulat* OR mesocosm* OR "field trial") AND (insect* OR arthropod* OR spider* OR predator* OR pollinat* OR "flower visit*" OR "fruit set" OR "seed set" OR plant* OR macrophyte* OR herbivor* OR "aquatic insect*" OR emergence)。DBのフィールド指定・ワイルドカード仕様を実行時に確認する。
 

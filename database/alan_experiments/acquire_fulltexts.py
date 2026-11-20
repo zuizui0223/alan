@@ -34,7 +34,13 @@ def acquire(row,cache):
             raw=path.read_bytes()
         else:
             for attempt in range(3):
-                response=requests.get(url,timeout=45)
+                try:
+                    response=requests.get(url,timeout=45)
+                except (requests.Timeout,requests.ConnectionError):
+                    if attempt==2:
+                        raise
+                    time.sleep(1+attempt)
+                    continue
                 if response.status_code in (429,500,502,503,504) and attempt<2:
                     time.sleep(1+attempt)
                     continue

@@ -1,0 +1,9 @@
+{
+  "records": 192,
+  "status_counts": {
+    "retrieved_body_pending_fulltext_review": 58,
+    "retrieval_failed_not_excluded": 50,
+    "publisher_or_repository_retrieval_needed": 84
+  },
+  "interpretation": "retrieval only; not fulltext eligibility decisions"
+}

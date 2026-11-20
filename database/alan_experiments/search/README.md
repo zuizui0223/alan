@@ -20,6 +20,14 @@
 
 ## ファイルと再現
 
+### 全文取得と本文による同定の更新
+
+初回取得処理は192候補について完了し、本文XML58件、通信・取得失敗50件、PMCIDがなく出版社等から取得が必要な84件だった。失敗のうち39件は通信の時間切れであり、除外判定ではない。初回の状態は`fulltext_acquisition_pass1.csv`と対応summaryに固定し、再取得の結果は`fulltext_acquisition.csv`へ更新する。全文の採択判定とは分離する。
+
+初回取得本文のDOIを索引と照合した結果、欠損DOI1件を補完し、521索引レコード中1件の同一報告重複を確認した。現時点の完全一致による報告キーは520。これはタイトル重複・プレプリントと最終論文・実験共有をすべて解決した最終研究数ではない。`record_identity_crosswalk.csv`に元DOI・補完の根拠・報告キーを残す。検索時の元件数や選別判断は上書きしない。
+
+本文のMethods・Resultsから確認した暫定判定は`fulltext_decisions_incremental.csv`に保存し、分担確認の表は`fulltext_batch*.csv`として追加する。暫定採択候補と、効果量が検証済みで統合可能な研究を区別する。
+
 - `europepmc_manifest.json`：取得時の検索条件・件数。`screened=0`は取得時点の状態を保持する。
 - `europepmc_pages.csv`：APIリクエストと生応答SHA。
 - `europepmc_records.csv`：書誌情報と出典ID。抄録本文は外部キャッシュのみ。
