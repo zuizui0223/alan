@@ -161,7 +161,9 @@ def run():
                   "concurrent_flower_F_slope_times_visit_flower_association":algebra,
                   "within_source_fitted_on_identical_true_plant_pairs":True,
                   "this_is_algebra_not_causal_mediation":True}
-            if key in ("all_scored_true_plant_pairs","same_meadow_wet_drier_overlap_only"):
+            # Apply source-level 2^number-of-meadows exchangeability
+            # diagnostic to ALL three cohorts, not just a favorable subset.
+            if z.site.nunique()>=2:
                 models["visits"]["site_signflip_flower_adjusted"]=site_signflip(z,trait)
                 models["visits"]["site_signflip_not_flower_adjusted"]=site_signflip(z,trait,flower=False)
                 models["flower_cover"]["exact_meadow_signflip_source_flower_F"]=(
