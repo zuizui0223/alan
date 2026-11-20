@@ -1,2 +1,3 @@
 earlier_doi,final_doi,publication_family,decision,basis,evidence_file
 10.64898/2025.12.01.691521,10.1002/ecy.70458,Xue2023_Dongting_macrophyte,manual_same_experimental_report_versions,Ordered authors species station dates sample sizes and community numerical results match; bioRxiv published field still NA,database/alan_experiments/xue_sources/VERSION_AND_FEEDING_AUDIT.md
+10.1101/2022.10.06.511092,10.1073/pnas.2401215121,Degen2018_Grossseelheim_radar,manual_same_experimental_report_versions,Same dates site lamp array radius and95flights94males; author data record references preprint and final title; bioRxiv publishedNA,database/alan_experiments/search/moth_radar_version_review.md

@@ -1,3 +1,5 @@
+Current update: 142 retained reports reviewed, 46 pending. Two verified within-search version pairs yield515 publication families (186 retained); reports remain517 (188 retained). Moth radar versions are one experimental programme, with different endpoint denominators. No pooled effect added.
+
 Current update: 141 retained reports have primary Methods/Results reviewed; 47 remain pending. Biofilm v2 is reviewed but subsample variances are not eligible for pooling. Final biofilm article remains unread; outside-search report count is seven. No new finite effects.
 
 Current update: 140 retained reports have primary Methods/Results reviewed; 48 remain pending. Wang grassland preprint and published version reviewed separately; final DOI is an additional outside-search report (six total), not an additional experiment. Raw numerical extraction remains pending.

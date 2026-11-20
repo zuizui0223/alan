@@ -1,0 +1,14 @@
+[
+  {
+    "filename": "preprint.xml",
+    "url": "https://www.biorxiv.org/content/early/2022/10/08/2022.10.06.511092.source.xml",
+    "bytes": 119199,
+    "sha256": "9d8d4a95925f19ecf98385d8fb1cb77eea124ed11d528fcdc9a917a5ae50b3b6"
+  },
+  {
+    "filename": "metadata.json",
+    "url": "https://api.biorxiv.org/details/biorxiv/10.1101/2022.10.06.511092/na/json",
+    "bytes": 2133,
+    "sha256": "71b43c6f16fe08d115d56f90de9ef370ff77bc9978ba566e58b0f505e39e2d73"
+  }
+]
