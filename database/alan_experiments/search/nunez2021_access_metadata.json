@@ -1,0 +1,13 @@
+{
+  "retrieved": "2026-11-20",
+  "source": "https://ri.conicet.gov.ar/server/api/pid/find?id=11336/162034",
+  "handle": "11336/162034",
+  "uuid": "16194212-3d65-438c-8a3e-2add475b4257",
+  "title": "Artificial light at night may increase the predation pressure in a salt marsh keystone species",
+  "rights": [
+    "info:eu-repo/semantics/restrictedAccess"
+  ],
+  "doi": "10.1016/j.marenvres.2021.105285",
+  "primary_fulltext_read": false,
+  "abstract_only": true
+}
