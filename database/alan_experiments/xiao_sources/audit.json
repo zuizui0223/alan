@@ -1,0 +1,32 @@
+{
+  "doi": "10.1098/rspb.2024.2811",
+  "data_doi": "10.5061/dryad.1rn8pk143",
+  "zenodo_record": 14000092,
+  "figshare_article": 29118899,
+  "recovered_files": 2,
+  "raw_workbooks_verified": 0,
+  "raw_workbooks_required": 2,
+  "effects_extracted": 0,
+  "main_catalogue_changed": false,
+  "download_recheck": {
+    "url": "https://datadryad.org/api/v2/files/4051567/download",
+    "status": 401,
+    "content_type": "application/json; charset=utf-8",
+    "bytes": 56
+  },
+  "species": 12,
+  "exact_numeric_moisture_species": 4,
+  "exact_nonnumeric_moisture_species": 2,
+  "wet_comparison_labels": 363,
+  "wet_candidate_labels": 58,
+  "exact_wet_candidate_species": 0,
+  "exact_wet_reference_species": 0,
+  "species_join": "exact binomial only; no synonym imputation",
+  "moisture_is_species_affinity_not_greenhouse_condition": true,
+  "constraints": [
+    "Code and supplement are not raw observation tables",
+    "Three paired light compartments for growth; pots are subsamples",
+    "Separate feeding assay one compartment pair is not replicated at the lighting level",
+    "Species overlap cannot identify the response direction without raw effects"
+  ]
+}

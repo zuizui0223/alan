@@ -1,0 +1,13 @@
+source_species,status_in_China,source_location,exact_EIV_name,EIV_MOIST_raw,EIV_MOIST,wet_macro_source_name_match,wet_macro_accepted_name_match,wet_macro_candidate_match,wet_macro_reference_match,experimental_effect_available
+Chenopodium acuminatum,native,primary_table_1,False,,,False,False,False,False,False
+Amaranthus retroflexus,invasive,primary_table_1,True,4.6,4.6,False,False,False,False,False
+Artemisia annua,native,primary_table_1,True,4.1,4.1,False,False,False,False,False
+Bidens maximowicziana,native,primary_table_1,False,,,False,False,False,False,False
+Ambrosia artemisiifolia,invasive,primary_table_1,True,4.0,4.0,False,False,False,False,False
+Bidens pilosa,invasive,primary_table_1,False,,,False,False,False,False,False
+Hordeum brevisubulatum,native,primary_table_1,False,,,False,False,False,False,False
+Leymus chinensis,native,primary_table_1,False,,,False,False,False,False,False
+Cenchrus spinifex,invasive,primary_table_1,True,1.5,1.5,False,False,False,False,False
+Lolium perenne,invasive,primary_table_1,True,x,,False,False,False,False,False
+Solanum septemlobum,native,primary_table_1,False,,,False,False,False,False,False
+Datura stramonium,invasive,primary_table_1,True,x,,False,False,False,False,False
