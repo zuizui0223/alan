@@ -1,0 +1,15 @@
+{
+  "checked_utc": "2026-11-20T14:27:40.629110+00:00",
+  "metadata_url": "https://api.figshare.com/v2/articles/34371465",
+  "download_url": "https://ndownloader.figshare.com/files/69959493",
+  "repository_doi": "10.25405/ncl.34371465.v1",
+  "article_doi": "10.1002/ecs2.2550",
+  "bytes": 1876465,
+  "sha256": "e9e3d45791912f4b6164980612c2761430eef4b51a067eb89f9618a94d9efa01",
+  "pages": 16,
+  "matches_previous_pdf_bytes": false,
+  "contents": "Main published article only; final page refers to external supporting information. Appendix S1 not included.",
+  "supplement_url": "https://esajournals.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fecs2.2550&file=ecs22550-sup-0001-AppendixS1.pdf",
+  "supplement_access_status": "web tool HTTP403",
+  "numeric_effects_added": 0
+}
