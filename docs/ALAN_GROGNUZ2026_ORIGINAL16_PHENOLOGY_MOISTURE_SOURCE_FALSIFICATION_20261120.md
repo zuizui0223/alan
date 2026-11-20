@@ -20,7 +20,7 @@ This audit asks whether [Grognuz, Gisler & Knop (2026), *Biological Conservation
 
 ## New original Fig. 4 × independently maintained Kew plant-moisture trait audit
 
-[Successful first original data+source gate CI #44672678955](https://github.com/zuizui0223/alan/actions/runs/44672678955), 3 synthetic source tests PASS, original figure label list validated against author article. [Saved exact 16-source-name, F values and API statuses](../results/all_species_forest/biotic_interactions/grognuz2026_16plant_Fig4_KewF_Mendeley_gate_20261120.json).
+[Successful first original data+source gate CI #44673329871](https://github.com/zuizui0223/alan/actions/runs/44673329871), 3 synthetic source tests PASS, original figure label list validated against author article. [Saved exact 16-source-name, F values and API statuses](../results/all_species_forest/biotic_interactions/grognuz2026_16plant_Fig4_KewF_Mendeley_gate_20261120.json).
 
 RBG Kew [BIFloraExplorer *raw* British–Irish vascular plant trait CSV](https://github.com/RBGKew/BIFloraExplorer/blob/master/data-raw/BI_MAIN.csv), authentic source Git blob SHA1 \`e6a1da929af81f370d2a1b79177b489e3e573a06\`, **3,227 plant-taxon rows**, exact original \`taxon_name_binom\` only. UK moisture \`F_PLANTATT\` versus independently compiled \`F_Doring\` retained **separately**, not pooled or silently filled. An F score is a regional ecological preference indicator, NOT a measured local Swiss water table.
 
@@ -43,6 +43,20 @@ All 12 truly scored original UK plant taxa are **nonwet F≤5 on the PLANTATT in
 This is a strong **design-based negative source-support result**: the original study can establish ALAN-driven phenology changes for the source *wildflower-strip assemblage*, and may eventually test **variation within UK F=2–5**, but it simply does **not** contain a UK-defined wet group F>7 with which to estimate wet-versus-drier experimental sensitivity. It cannot validate or refute the main wet-species macro bias.
 
 Neither 108 plot measurements nor 16 independently modelled plant response coefficients can create four wet species that are absent from the scored original source. Formal \`light × F\` or \`light × wet\` phenology coefficients are **NOT fitted**.
+
+### 同じ原著の発芽・花弁の日周運動まで形質を照合
+
+[追加原本検証CI #44673329871 SUCCESS](https://github.com/zuizui0223/alan/actions/runs/44673329871)で、著者論文中の別々の実験ステージも英国Kewの同じ真正原CSVから独立に検索した。
+
+| 元研究の別々の応答 | 原論文の植物種 | PLANTATT水分値を確実に照合できた種 | F>7の湿潤種 |
+|---|---:|---:|---:|
+| 開花フェノロジー（FIRST/QUARTER/PEAK/ULTIMATE） | **16** | **12** | **0** |
+| 発芽タイミング（別のトレー／種子実験） | **6** | **4** | **0** |
+| 花弁の開閉時刻（日周運動・短期/長期光曝露） | **2** | **2** | **0** |
+
+発芽で形質値があったのは *Cichorium intybus*（F4）、*Crepis capillaris*（F4）、*Hypochaeris radicata*（F4）、*Trifolium incarnatum*（F2）の4種。*Anthemis tinctoria* と *Silene pratensis* は真正Kew二名法値がないため乾性に割り当てない。花弁開閉の *Silene noctiflora*（F4）と *Malva moschata*（F3）は双方スコアを得たが、いずれも元の英国指標では湿潤性7超ではない。
+
+**16+6+2=24独立植物種とはならない**。実験プロトコルは別々で、植物種の重複（例：*Malva moschata*）もあり、ランプ実験の物理単位は根本的に共有しうる。また原著の12/16開花タイミング変化を「湿潤植物が繁殖を落とした」ことと混同しない。
 
 ### Source Mendeley public API was actually tested
 
