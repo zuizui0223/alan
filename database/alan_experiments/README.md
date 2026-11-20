@@ -72,3 +72,7 @@ python -m unittest discover -s tests -p test_alan_experiment_db.py
 ## 現時点の整理を優先した追加作業
 
 [生物間相互作用の総括](../../docs/ALAN_BIOTIC_CURRENT_SYNTHESIS_20261120.md)を先に作成。送粉5報、捕食者5報の予備監査は既知論文を含むので単純加算しない。`plant_sources/`には新規Anic2022の1実験54区画・6対比の予備抽出を分離保存した。`effects.csv`のParkinsonとはまだ統合していない（応答が異なる）。原論文の実験単位・共有対照を保つ。独立再抽出・湿潤分類・多研究のメタ回帰は未完了。
+
+## 2026-11-20 補助検索と対応実験の抽出
+
+EuropePMCの補助検索521レコードを取得・予備選別し、192件を全文確認へ残した。WoS/Scopusは入口403で未実行、独立研究数・最終採択は未確定。[検索式・選別・重複候補](search/README.md)。Giavi2021の12草地6明暗ペアから、著者選択21植物への昼間訪花4応答を対応共分散付きで別表に抽出した。[測定対象・注意点](giavi_sources/README.md)。既存の花量調整モデルや全植物への訪花とは異なる。光×水分を操作した新候補も[全文確認ノート](../../docs/ALAN_MOISTURE_FACTORIAL_SCREEN_20261120.md)に残した。メタ統合と湿潤性効果の推定はまだ未完。

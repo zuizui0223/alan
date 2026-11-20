@@ -1,0 +1,14 @@
+{
+  "database": "Europe PMC",
+  "role": "supplementary_index_search",
+  "query": "(TITLE_ABS:\"artificial light at night\" OR TITLE_ABS:\"light pollution\" OR TITLE_ABS:\"street lighting\" OR TITLE_ABS:\"nocturnal illumination\") AND (experiment* OR manipulat* OR mesocosm*) AND (plant* OR insect* OR arthropod* OR pollinat* OR spider* OR herbivor* OR predator* OR emergence) AND FIRST_PDATE:[1900-01-01 TO 2026-11-20]",
+  "endpoint": "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+  "started_utc": "2026-11-20T03:31:19.615975+00:00",
+  "completed_utc": "2026-11-20T03:31:26.857927+00:00",
+  "raw_hits": 521,
+  "doi_deduplicated_records": 521,
+  "screened": 0,
+  "scope_limit": "Europe PMC is biomedical/life-science biased; not WoS or Scopus; title/abstract light terms; 1900 onward",
+  "cutoff": "2026-11-20",
+  "abstracts_in_external_cache_only": true
+}

@@ -1,4 +1,5 @@
 search_id,date,database,query,status,hits,note
 pilot_existing_registry,2026-11-20,alan source registry at 3f53bb6,All 16 endpoint rows reviewed,targeted_pilot_not_systematic,16,16 rows are not 16 papers or independent studies; no deduplicated PRISMA total
-wos_planned,,Web of Science Core Collection,,not_executed,,Requires actual export and exact database-specific query; do not report zero
-scopus_planned,,Scopus,,not_executed,,Requires actual export and exact database-specific query; do not report zero
+wos_planned,2026-11-20,Web of Science Core Collection,,not_executed_access_403,,Browser search entry returned HTTP403; no authenticated search/export; not zero hits
+scopus_planned,2026-11-20,Scopus,,not_executed_access_403,,Browser search entry returned HTTP403; no authenticated search/export; not zero hits
+europepmc_supplement_20261120,2026-11-20,Europe PMC,"(TITLE_ABS:""artificial light at night"" OR TITLE_ABS:""light pollution"" OR TITLE_ABS:""street lighting"" OR TITLE_ABS:""nocturnal illumination"") AND (experiment* OR manipulat* OR mesocosm*) AND (plant* OR insect* OR arthropod* OR pollinat* OR spider* OR herbivor* OR predator* OR emergence) AND FIRST_PDATE:[1900-01-01 TO 2026-11-20]",retrieved_and_AI_title_abstract_screened_fulltext_pending,521,Supplementary index only; 192 fulltext-needed records; 28 possible title-duplicate records unresolved; not 521 independent studies

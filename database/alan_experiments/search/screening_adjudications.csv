@@ -1,0 +1,28 @@
+record_id,decision,reason,reviewer,basis
+MED:23720524,separate_spectrum,Wavelength-only comparison retained in required spectrum-only stratum,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:29210222,separate_spectrum,LED versus HPS comparison retained; dark-control eligibility requires full text,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:25780239,separate_spectrum,Lamp replacement comparison retained in spectrum-only stratum,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+AGR:IND605713042,separate_spectrum,Streetlamp replacement observation retained in spectrum-only stratum,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:42774743,separate_observational,Polarization and ambient illumination gradient retained as environmental mechanism evidence,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:41651394,fulltext_needed,Semi-natural wild-rodent mortality may meet population endpoint; scope adjudication retains for full text,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:40584600,fulltext_needed,Wild fish offspring quality is potentially relevant population reproduction; verify setting,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:41246390,fulltext_needed,Outdoor nesting success may meet population endpoint; verify manipulation rather than exclude taxon,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:39595252,fulltext_needed,Wild bird activity timing may meet outdoor activity endpoint; verify design and scope,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:40509875,fulltext_needed,Bird body condition potentially relevant growth endpoint; verify setting,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:39577187,fulltext_needed,Rodent pest activity includes outdoor conditions; verify manipulation and ecosystem relevance,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:41099232,fulltext_needed,Natural and artificial conditions require fulltext setting check before excluding ecological activity,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:36518635,fulltext_needed,Wild frog breeding behavior may meet outdoor reproductive endpoint; verify design,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:38837957,fulltext_needed,Coastal lighting reduction and seabird mortality potentially meet outdoor population endpoint,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:34102892,fulltext_needed,Wild fish survival and growth meet potential outdoor population response; not excluded by taxon,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:31964308,separate_indoor,Laboratory lizard growth/reproduction retained separately as original indoor ecological experiment,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:38395158,fulltext_needed,Soil community alteration may contribute plant ecosystem pathway; fulltext scope assessment required,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:27759087,fulltext_needed,Free-living nestling body mass may meet growth endpoint; verify independent lighting units,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:27355354,fulltext_needed,Wild-bird avoidance may meet outdoor activity endpoint; verify design,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:31288686,fulltext_needed,Fish reproductive failure retained pending setting and control verification,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:32023896,fulltext_needed,Coral settlement and early survival retained for habitat-response scope assessment,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:26337732,fulltext_needed,Free-living bird sleep experiment retained pending outdoor activity scope assessment,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:25780240,fulltext_needed,Wild songbird fitness experiment retained; taxon alone not exclusion,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:28280562,fulltext_needed,Outdoor bird vocal activity experiment with dark controls retained for scope assessment,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:28973942,fulltext_needed,Bird migration activity under lighting intervention potentially meets outdoor endpoint,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:25334014,fulltext_needed,Shearwater grounding experiment retained as potential population mortality response,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending
+MED:27293795,fulltext_needed,Nearshore turtle activity response retained for outdoor ecosystem scope assessment,root_scope_review,conservative title/reason scope reconciliation; eligibility remains pending

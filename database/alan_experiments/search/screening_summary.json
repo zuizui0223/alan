@@ -1,0 +1,28 @@
+{
+  "raw_index_records": 521,
+  "doi_deduplicated_records": 521,
+  "title_abstract_screened_records": 521,
+  "decision_counts": {
+    "fulltext_needed": 192,
+    "separate_observational": 52,
+    "reference_mining": 84,
+    "separate_indoor": 55,
+    "exclude": 134,
+    "separate_spectrum": 4
+  },
+  "evidence_counts": {
+    "title_abstract": 486,
+    "title_only": 35
+  },
+  "possible_title_duplicate_records": 28,
+  "unique_studies": "not_yet_established",
+  "explicit_scope_adjudications": 27,
+  "review_method": "AI-assisted individual title/abstract screening; no human dual review claimed",
+  "fulltext_eligibility": "pending",
+  "WoS": "not_executed; browser endpoint returned 403",
+  "Scopus": "not_executed; browser endpoint returned 403",
+  "no_missing_abstract_auto_exclusion": true,
+  "raw_response_sha256": [
+    "331d8662a78cee49b7ed73908e3345dd316eeecc6665f48ea8361e0573d6f120"
+  ]
+}

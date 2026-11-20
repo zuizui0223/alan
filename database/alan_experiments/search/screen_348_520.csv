@@ -1,0 +1,174 @@
+record_id,decision,reason,evidence_basis,reviewer
+MED:35650413,fulltext_needed,Field insect community and courtship exposure; verify dark control versus spectrum-only design,title_abstract,agent_predator_sources
+MED:38662868,exclude,Human cardiovascular greenspace review; no ecological ALAN manipulation,title_abstract,agent_predator_sources
+MED:32962545,separate_indoor,Indoor aviary host-parasite physiology experiment; outside outdoor arthropod/plant synthesis,title_abstract,agent_predator_sources
+MED:29021171,fulltext_needed,Manipulated light and warming in aphid-ladybeetle interaction; setting and independent units needed,title_abstract,agent_predator_sources
+MED:37445680,exclude,Human skin pollution review; no relevant ecological response,title_abstract,agent_predator_sources
+MED:29599655,reference_mining,Review of nocturnal plant-pollinator communication with ALAN implications,title_abstract,agent_predator_sources
+MED:29806740,reference_mining,Review of ALAN effects on laboratory and wild animal behaviour,title_abstract,agent_predator_sources
+MED:38863619,exclude,Human mental-health pollution review,title_abstract,agent_predator_sources
+MED:38612481,exclude,Zebrafish probiotic constipation model; not target ecological endpoint,title_abstract,agent_predator_sources
+MED:34038438,fulltext_needed,Field bat streetlight retrofit; verify low-light control eligibility and predator activity endpoint,title_abstract,agent_predator_sources
+PPR:PPR599406,exclude,Dark-sky policy document analysis without organism experiment,title_abstract,agent_predator_sources
+MED:38387289,exclude,Broiler gut inflammation and dietary tryptophan experiment; not ecological target,title_abstract,agent_predator_sources
+MED:31789364,fulltext_needed,Open-field ALAN dark-control arthropod predation herbivory experiment,title_abstract,agent_predator_sources
+MED:32224903,separate_observational,Urban pigeon foraging sites compared observationally; no lighting manipulation,title_abstract,agent_predator_sources
+AGR:IND605892917,fulltext_needed,Manipulative field bat-insect diet experiment with natural dark comparison,title_abstract,agent_predator_sources
+MED:32638000,fulltext_needed,Mosquito common-garden ALAN diapause experiment; setting needs verification,title_abstract,agent_predator_sources
+MED:27759087,exclude,Nestling bird body mass and oxidative physiology without target interaction response,title_abstract,agent_predator_sources
+MED:25780244,reference_mining,Title indicates biological ALAN research synthesis; inspect references,title_only,agent_predator_sources
+MED:35163595,exclude,Mouse weight and intestinal microbiota laboratory model,title_abstract,agent_predator_sources
+MED:38728351,exclude,Heavy-metal soil pollution; light pollution means low contamination not illumination,title_abstract,agent_predator_sources
+MED:30746151,separate_indoor,Controlled toad activity and energy physiology exposure; not field interaction outcome,title_abstract,agent_predator_sources
+PPR:PPR447507,fulltext_needed,Preprint of insect-friendly light field experiment; link publication duplicate and verify dark control,title_abstract,agent_predator_sources
+MED:36183041,exclude,Sky brightness measurement-device development without biological outcomes,title_abstract,agent_predator_sources
+MED:30051829,fulltext_needed,Outdoor mesocosm ALAN includes periphyton biomass and ecological interaction tests,title_abstract,agent_predator_sources
+MED:27355354,exclude,Great-tit light exposure and roost avoidance; no target arthropod or plant response,title_abstract,agent_predator_sources
+MED:38387361,exclude,Human cancer survivorship built-environment review,title_abstract,agent_predator_sources
+MED:33450951,exclude,Lighting professional policy framework; no original ecological manipulation,title_abstract,agent_predator_sources
+MED:32250796,fulltext_needed,Experimental lighting of bat underpasses; assess predator activity endpoint and setting,title_abstract,agent_predator_sources
+MED:32211243,separate_observational,Existing lit and unlit bridge sections natural comparison; no experimental manipulation stated,title_abstract,agent_predator_sources
+MED:33482918,fulltext_needed,Experimentally illuminated forest edge bat flight behaviour; verify dark control and endpoint scope,title_abstract,agent_predator_sources
+MED:31288686,exclude,Clownfish reproductive physiology outside plant/arthropod interaction scope,title_abstract,agent_predator_sources
+MED:27069618,separate_observational,Wild bird endocrine correlations along rural-urban light gradient,title_abstract,agent_predator_sources
+MED:30720239,separate_indoor,Crickets reared under controlled daily light cycles; immune physiology,title_abstract,agent_predator_sources
+MED:30057304,fulltext_needed,Mesocosm field light-intensity experiment on aphid-parasitoid food web,title_abstract,agent_predator_sources
+MED:31213184,separate_indoor,Captive great-tit roost choice and physiological light experiments,title_abstract,agent_predator_sources
+MED:31396569,exclude,Coral molecular transcriptome physiology rather than target plant/arthropod interaction,title_abstract,agent_predator_sources
+MED:34026035,fulltext_needed,Experimental light-dark bat foraging habitat comparison; predator activity endpoint,title_abstract,agent_predator_sources
+MED:35958085,fulltext_needed,Firefly mating study includes field light manipulations as well as laboratory component,title_abstract,agent_predator_sources
+MED:33784873,separate_observational,Remote-sensing grasshopper outbreak response to existing city lights,title_abstract,agent_predator_sources
+AGR:IND606303089,reference_mining,Review of insect ALAN mechanisms ecology and evolution,title_abstract,agent_predator_sources
+MED:31993201,separate_observational,Comparative hormone database associations with anthropogenic exposure,title_abstract,agent_predator_sources
+MED:28886232,reference_mining,Title concerns experimental-design research synthesis; abstract absent,title_only,agent_predator_sources
+MED:29766666,separate_indoor,Controlled zebra-finch light-spectrum physiology and rest experiment,title_abstract,agent_predator_sources
+MED:30682607,separate_indoor,Gastropod predation behaviour manipulation conducted in laboratory; field part observational,title_abstract,agent_predator_sources
+MED:36903981,exclude,Natural moonlight exposure; explicitly distinguishes from artificial light pollution,title_abstract,agent_predator_sources
+MED:34460492,reference_mining,Review of ecological light measurement methods; no primary effect extraction,title_abstract,agent_predator_sources
+MED:33601058,reference_mining,Evolutionary-trap research agenda for insects and light pollution,title_abstract,agent_predator_sources
+AGR:IND606206224,fulltext_needed,Experimental hedgerow illumination with dark controls and bat activity,title_abstract,agent_predator_sources
+MED:29531261,separate_observational,Cactus geographic range overlap with satellite light; no manipulation,title_abstract,agent_predator_sources
+MED:33719334,separate_indoor,Reared moth mating and antennal gene assays under controlled monochromatic light,title_abstract,agent_predator_sources
+MED:30697332,fulltext_needed,Field insect attraction to polarized reflectors and lamp spectra; dark-control eligibility needs verification,title_abstract,agent_predator_sources
+MED:30288876,fulltext_needed,Experimental hedgerow illumination and bat activity; duplicate-index link to AGR record needed,title_abstract,agent_predator_sources
+MED:26888917,reference_mining,Synthesis of circadian health effects in wildlife and humans,title_abstract,agent_predator_sources
+MED:33607160,separate_indoor,Explicit laboratory experiments on firefly larval development and movement,title_abstract,agent_predator_sources
+MED:25780232,separate_observational,Urban versus forest blackbird light loggers; no experimental illumination,title_abstract,agent_predator_sources
+MED:31766468,exclude,Road lighting sensor/control engineering without biological outcomes,title_abstract,agent_predator_sources
+MED:25644403,separate_observational,Stratified urban bat gap surveys and scenario model; no light manipulation,title_abstract,agent_predator_sources
+MED:31150872,separate_indoor,Laboratory perch-gammarid predation under light and habitat complexity,title_abstract,agent_predator_sources
+MED:29439549,reference_mining,Review of butterfly behavioural ecology and unnatural light,title_abstract,agent_predator_sources
+MED:28956858,exclude,Fish retinal photoreceptor clock physiology; no target interaction endpoint,title_abstract,agent_predator_sources
+MED:27072407,separate_indoor,Reared moth populations tested for flight-to-light under standardized common-garden conditions,title_abstract,agent_predator_sources
+MED:29593108,separate_indoor,Controlled great-tit circadian entrainment experiment,title_abstract,agent_predator_sources
+MED:25926694,fulltext_needed,Manipulated nocturnal lighting of marine settlement communities; verify target taxa and control,title_abstract,agent_predator_sources
+MED:29414377,fulltext_needed,Random-order field light/dark/baseline treatments at 15 weta stations,title_abstract,agent_predator_sources
+MED:31534852,separate_observational,Wildlife camera comparison of existing reflective marker sites; no manipulation stated,title_abstract,agent_predator_sources
+AGR:IND607253612,fulltext_needed,Urban streetlight retrofit with insect outcomes; verify dark/low control versus spectrum-only eligibility,title_abstract,agent_predator_sources
+MED:30936314,exclude,Night-sky radiometry and city emission model without biological response,title_abstract,agent_predator_sources
+MED:31940788,exclude,Airborne particulate pollution; not artificial night illumination,title_abstract,agent_predator_sources
+MED:29117235,exclude,Wetland spectral irradiance measurements without biological response manipulation,title_abstract,agent_predator_sources
+MED:35895595,exclude,Soil heavy-metal pollution; not artificial light exposure,title_abstract,agent_predator_sources
+MED:31419678,reference_mining,Review of pollinator risk from ALAN and radiofrequency radiation,title_abstract,agent_predator_sources
+MED:33901213,separate_observational,Reanalysis of published nestling growth and urban exposure; no new light manipulation,title_abstract,agent_predator_sources
+MED:32201267,exclude,Male-mouse pain and neuroinflammation experiment outside ecological target,title_abstract,agent_predator_sources
+MED:32858779,separate_indoor,Explicit laboratory daylength-ALAN parasitoid experiment plus model,title_abstract,agent_predator_sources
+MED:29316469,exclude,Numerical skyglow photoreceptor simulation rather than biological experiment,title_abstract,agent_predator_sources
+AGR:IND605194694,reference_mining,Synthesis of ecological ALAN effects on wild plants,title_abstract,agent_predator_sources
+MED:29761669,fulltext_needed,Four-year field light/dark slug response; nonreplicated site design needs assessment,title_abstract,agent_predator_sources
+MED:26472251,fulltext_needed,Outdoor plant-aphid-parasitoid mesocosm experiment with biomass and abundance outcomes,title_abstract,agent_predator_sources
+MED:32023896,exclude,Coral early-life physiology and settlement outside target plant/arthropod interaction scope,title_abstract,agent_predator_sources
+MED:24236115,separate_indoor,Captive primate sequential light exposure physiology and feeding,title_abstract,agent_predator_sources
+MED:30147142,reference_mining,Synthesis of vehicle headlight ecological implications,title_abstract,agent_predator_sources
+MED:32649703,exclude,Automated insect trap validation; lighting effects not experimentally tested,title_abstract,agent_predator_sources
+MED:28566484,fulltext_needed,Eight field sites with experimental spectra and dark control bat activity,title_abstract,agent_predator_sources
+ETH:701381,fulltext_needed,Thesis reports experimental insect lighting; truncated abstract and control design require full text,title_abstract,agent_predator_sources
+MED:32066704,exclude,Human mental-health circadian review,title_abstract,agent_predator_sources
+MED:34011693,exclude,Human obesity risk-factor review,title_abstract,agent_predator_sources
+MED:35055667,exclude,Farmland soil bacterial response to consolidation and metals; no ALAN,title_abstract,agent_predator_sources
+MED:30058288,separate_indoor,Individually exposed great-tit reproductive histology and gene expression,title_abstract,agent_predator_sources
+MED:30564519,reference_mining,Ecological review of urban temporal stabilization including light and resources,title_abstract,agent_predator_sources
+MED:23407836,separate_indoor,Captive blackbird reproductive physiology after controlled night illumination,title_abstract,agent_predator_sources
+AGR:IND500740777,fulltext_needed,Bat-fruit interaction includes field illuminated plants; distinguish manipulation from observation and captive component,title_abstract,agent_predator_sources
+MED:35883709,exclude,Mouse spatial memory and neuroinflammation experiment,title_abstract,agent_predator_sources
+MED:26337732,exclude,Wild-bird sleep experiment without target plant/arthropod interaction,title_abstract,agent_predator_sources
+MED:25780242,fulltext_needed,Field ditch illumination affects photoautotrophs and sediment function; assess endpoint scope and nonreplication,title_abstract,agent_predator_sources
+MED:27646716,fulltext_needed,Manipulative field firefly abundance courtship mating and dispersal experiments,title_abstract,agent_predator_sources
+MED:25914438,reference_mining,Review of nocturnal moth pollination and light pollution,title_abstract,agent_predator_sources
+MED:32424552,exclude,Daytime solar-reflector polarization and surface-temperature experiments; not ALAN,title_abstract,agent_predator_sources
+MED:25780240,exclude,Songbird reproductive life-history experiment without target interaction endpoint,title_abstract,agent_predator_sources
+MED:35782417,exclude,Human bipolar-disorder mechanistic hypothesis,title_abstract,agent_predator_sources
+MED:26035530,separate_observational,Seabird tracking and satellite light associations; no lighting manipulation,title_abstract,agent_predator_sources
+MED:25815748,fulltext_needed,Mayfly bridge study includes field experiments on polarized and unpolarized light; verify dark controls,title_abstract,agent_predator_sources
+MED:25780236,reference_mining,Bat-light review plus observational survey; mine primary references only,title_abstract,agent_predator_sources
+MED:29415023,fulltext_needed,Experimental firefly light-spectrum alarm signalling; setting and control need verification,title_abstract,agent_predator_sources
+MED:29097992,exclude,Mammalian metabolism and human health circadian review,title_abstract,agent_predator_sources
+MED:31766418,exclude,Drone light-pollution sensor calibration; no ecological endpoint,title_abstract,agent_predator_sources
+MED:34903736,exclude,Natural airglow/space-weather monitoring; no biological light manipulation,title_abstract,agent_predator_sources
+MED:25239105,reference_mining,Broad ecological synthesis of altered natural light cycles,title_abstract,agent_predator_sources
+MED:34940658,exclude,Rat cardiac-arrhythmia pharmaceutical experiment,title_abstract,agent_predator_sources
+MED:26703233,exclude,Great-tit melatonin/activity dose response; no target ecological interaction,title_abstract,agent_predator_sources
+MED:32973715,exclude,High-fat-diet rat fatty-liver microbiota experiment,title_abstract,agent_predator_sources
+AGR:IND605713042,exclude,Mercury-vapour versus LED retrofit only; no dark or explicit lower-intensity control,title_abstract,agent_predator_sources
+MED:28250209,fulltext_needed,Moth feeding under artificial light versus dark; experimental setting needs verification,title_abstract,agent_predator_sources
+MED:30377506,fulltext_needed,Field bat light-on/off experiment includes foraging and dark controls,title_abstract,agent_predator_sources
+MED:29291103,fulltext_needed,Field beacon on/off manipulation of mayfly escape and oviposition environment,title_abstract,agent_predator_sources
+MED:27990328,exclude,Natural fungal bioluminescence experiment; no anthropogenic night-light manipulation,title_abstract,agent_predator_sources
+MED:27293751,reference_mining,Migration conservation physiology synthesis including light pollution,title_abstract,agent_predator_sources
+MED:25360638,separate_observational,Bat activity along existing light-intensity gradient,title_abstract,agent_predator_sources
+ETH:669162,fulltext_needed,Thesis includes experimentally illuminated stream invertebrate drift and fish-prey experiments,title_abstract,agent_predator_sources
+MED:19540116,fulltext_needed,Experimental lights along bat commuting routes; verify control and predator activity endpoint,title_abstract,agent_predator_sources
+MED:31417105,separate_observational,Urban wildlife-light mapping with laboratory mouse calibration; no outdoor light manipulation,title_abstract,agent_predator_sources
+MED:28751661,exclude,Cloud-skyglow photometry methods without biological response,title_abstract,agent_predator_sources
+MED:23671566,exclude,Urban lightscape aerial mapping without organismal manipulation,title_abstract,agent_predator_sources
+MED:26728786,separate_indoor,Laboratory mosquito transcriptomic exposure experiment,title_abstract,agent_predator_sources
+MED:23825199,reference_mining,Review of moonlight chronobiology includes artificial night light,title_abstract,agent_predator_sources
+MED:27358370,separate_observational,Thirteen-year tree budburst matched to satellite light; no illumination manipulation,title_abstract,agent_predator_sources
+MED:28553258,reference_mining,Review of monthly biological rhythms with ALAN context,title_abstract,agent_predator_sources
+MED:33130170,exclude,Human sleep environmental exposure review,title_abstract,agent_predator_sources
+MED:24688857,fulltext_needed,Experimental stream flume light gradient and gammarid activity; nonreplication and dark control need assessment,title_abstract,agent_predator_sources
+MED:28280562,exclude,Songbird dawn chorus timing experiment; no target interaction endpoint,title_abstract,agent_predator_sources
+MED:21270021,exclude,Hamster immune physiology experiment outside target ecological scope,title_abstract,agent_predator_sources
+MED:26339552,exclude,Captive peahen vigilance and sleep; no target ecological interaction response,title_abstract,agent_predator_sources
+MED:28745147,exclude,Captive blue-tit activity rhythms; outside target endpoint scope,title_abstract,agent_predator_sources
+MED:25780239,exclude,Sodium versus metal-halide spectrum retrofit with no dark or explicit low-light control,title_abstract,agent_predator_sources
+MED:30446844,fulltext_needed,Bat lit-unlit field comparisons include foraging-related activity; allocation needs full text,title_abstract,agent_predator_sources
+MED:31139944,fulltext_needed,Manipulative bat prey-selection study compares localized artificial light with natural dark,title_abstract,agent_predator_sources
+MED:26541085,exclude,Retinal health review focused on vertebrate/human pathology,title_abstract,agent_predator_sources
+MED:28140399,exclude,Human mood and neural circadian health review,title_abstract,agent_predator_sources
+MED:31159391,exclude,Satellite light socioeconomic driver analysis without biological manipulation,title_abstract,agent_predator_sources
+MED:25076137,exclude,Car-surface polarized reflectance field experiment; artificial nighttime illumination not stated,title_abstract,agent_predator_sources
+MED:28973942,exclude,Migratory bird disorientation at urban light installation; no target plant/arthropod interaction,title_abstract,agent_predator_sources
+MED:25780235,separate_indoor,Cricket constant-light melatonin supplementation physiology experiment plus review,title_abstract,agent_predator_sources
+MED:26311159,exclude,Songbird stress hormone response to experimental light; target interaction not measured,title_abstract,agent_predator_sources
+AGR:IND601216481,fulltext_needed,Manipulative field bat-moth prey selection with dark comparison and diet quantities,title_abstract,agent_predator_sources
+MED:16481568,exclude,Illumination spectra and visual-contrast calculations rather than ecological ALAN treatment response,title_abstract,agent_predator_sources
+MED:23441205,exclude,Skyglow radiative-transfer visual-perception model; no organism experiment,title_abstract,agent_predator_sources
+PPR:PPR112420,exclude,Preprint of insect trap-method validation without ALAN manipulation,title_abstract,agent_predator_sources
+MED:25334014,exclude,Shearwater grounding experiment outside plant/arthropod interaction scope,title_abstract,agent_predator_sources
+MED:21399694,exclude,Cloud amplification of sky luminance measurements without biological outcome,title_abstract,agent_predator_sources
+MED:28170099,fulltext_needed,Field light-noise experiments test frog-biting midge attraction and feeding interaction,title_abstract,agent_predator_sources
+MED:28186138,exclude,Underwater irradiance mapping without biological treatment response,title_abstract,agent_predator_sources
+MED:25904319,reference_mining,Review of multimodal sensory pollution and ecological interactions,title_abstract,agent_predator_sources
+MED:23720524,exclude,Short-versus-long wavelength moth attraction comparison; dark control not part of stated contrast,title_abstract,agent_predator_sources
+MED:24348919,fulltext_needed,Field nocturnal illumination of basil suppresses pathogen sporulation and disease; plant interaction endpoint,title_abstract,agent_predator_sources
+MED:24147405,fulltext_needed,Stream light-addition experiment reports spider and aquatic-terrestrial flux changes,title_abstract,agent_predator_sources
+MED:25456047,exclude,Neuroendocrine immune photoperiod review; ALAN only future research suggestion,title_abstract,agent_predator_sources
+MED:27146262,fulltext_needed,Experimental streetlight array and moth movement; verify dark/low control beyond lamp-position comparison,title_abstract,agent_predator_sources
+MED:23802034,separate_indoor,Laboratory Drosophila simulated-jetlag entrainment experiment,title_abstract,agent_predator_sources
+MED:24475197,separate_observational,Citizen-science moth abundance versus garden/urban habitat; no manipulation,title_abstract,agent_predator_sources
+MED:22624023,fulltext_needed,Wild-bird nest illumination changes food-provisioning rate; assess prey-interaction eligibility,title_abstract,agent_predator_sources
+MED:27293795,exclude,Sea turtle dispersal orientation experiment; no target arthropod/plant interaction measured,title_abstract,agent_predator_sources
+MED:23861808,exclude,Lamp-spectrum impact indices and radiative modelling without organism response experiment,title_abstract,agent_predator_sources
+MED:26954939,exclude,Human adolescent homicide neighbourhood case-control study,title_abstract,agent_predator_sources
+MED:29210222,exclude,LED-versus-HPS light-trap spectrum comparison without dark control,title_abstract,agent_predator_sources
+MED:23462874,exclude,Rat dopamine neurons and Parkinson disease model,title_abstract,agent_predator_sources
+AGR:IND604667252,separate_observational,Gecko field light use and species removal; light preference test is captive rather than outdoor illumination manipulation,title_abstract,agent_predator_sources
+MED:27780095,fulltext_needed,Field underwater LED manipulation includes fish predation and invertebrate prey assemblages,title_abstract,agent_predator_sources
+MED:28601036,fulltext_needed,Beach light/dark experiment includes ghost crab abundance and predatory behaviour,title_abstract,agent_predator_sources
+MED:24473093,exclude,Rat retinal/neurotoxin Parkinson disease experiment,title_abstract,agent_predator_sources
+MED:23940759,separate_observational,Blackbird dawn song along urban light/noise gradient,title_abstract,agent_predator_sources
+AGR:IND44457243,exclude,Solar-panel polarized sunlight attraction rather than ALAN; duplicate-index link needed,title_abstract,agent_predator_sources
+MED:20455911,exclude,Solar-panel polarization experiment without artificial nighttime illumination,title_abstract,agent_predator_sources
+MED:19699746,exclude,Reflected-light polarization thresholds; no artificial night-light versus dark treatment,title_abstract,agent_predator_sources
+MED:15325001,exclude,Human circadian cancer-health hypothesis and laboratory rodent evidence,title_abstract,agent_predator_sources

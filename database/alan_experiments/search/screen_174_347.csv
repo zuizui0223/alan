@@ -1,0 +1,175 @@
+record_id,decision,reason,evidence_basis,reviewer
+MED:36846342,separate_indoor,Controlled beetle light-dark and temperature treatments; locomotion and oviposition under captive conditions,title_abstract,agent_plant_sources
+PPR:PPR555580,fulltext_needed,Field harmonic-radar moth orientation manipulation; verify dark comparison and preprint duplication,title_abstract,agent_plant_sources
+MED:38830420,fulltext_needed,Seven experimentally illuminated forest-edge sites; insect activity and bat-prey timing,title_abstract,agent_plant_sources
+MED:40650820,separate_indoor,Male glow-worm arena phototaxis trials; no outdoor community endpoint,title_abstract,agent_plant_sources
+MED:41898526,exclude,Rat liver physiology and melatonin treatment outside target taxa and endpoints,title_abstract,agent_plant_sources
+MED:39532897,separate_indoor,Honey bee foragers held in incubated cages; sleep endpoints,title_abstract,agent_plant_sources
+MED:41099232,exclude,Rodent diel activity; no plant-arthropod interaction endpoint,title_abstract,agent_plant_sources
+MED:36275461,separate_observational,Seabird groundings correlated with city illumination without manipulation,title_abstract,agent_plant_sources
+MED:39378082,reference_mining,Article commentary on harmonic radar; primary experimental report must be identified,title_only,agent_plant_sources
+MED:41339276,reference_mining,Review of metabolic circadian physiology; no extractable primary field experiment,title_abstract,agent_plant_sources
+MED:33727549,fulltext_needed,Experimental streetlights in natural plant-pollinator communities; plant-specific daytime visits,title_abstract,agent_plant_sources
+MED:38238414,exclude,Captive lemur locomotion outside target taxa and interactions,title_abstract,agent_plant_sources
+MED:42345845,exclude,Laboratory mouse immune physiology outside scope,title_abstract,agent_plant_sources
+MED:38177874,reference_mining,Cardiovascular ALAN review; no primary ecological effect extraction,title_abstract,agent_plant_sources
+MED:39496720,exclude,Twilight sky-brightness measurements with no biological response,title_abstract,agent_plant_sources
+MED:39449703,exclude,Fruit bat vitamin D and temporal activity; no manipulated ALAN plant interaction,title_abstract,agent_plant_sources
+MED:38016568,fulltext_needed,Eighteen stream mesocosms; ALAN by flow reduction and litter-invertebrate response,title_abstract,agent_plant_sources
+MED:33838441,exclude,Songbird molecular and cardiovascular physiology outside target endpoints,title_abstract,agent_plant_sources
+MED:33304237,reference_mining,Broad flora-fauna ALAN review useful for primary reference tracing,title_abstract,agent_plant_sources
+MED:38395158,exclude,Bacterial soil communities; microbial-only response outside plant-arthropod scope,title_abstract,agent_plant_sources
+MED:37312543,fulltext_needed,Marine isopod antipredator lighting trials; setting and dark controls require full text,title_abstract,agent_plant_sources
+MED:38822081,fulltext_needed,Field and street insect attraction experiments; verify dark control versus luminaires only,title_abstract,agent_plant_sources
+MED:34265558,fulltext_needed,Wild bat light manipulation with insect prey timing; relevant predator-prey interaction,title_abstract,agent_plant_sources
+MED:36518635,exclude,Frog breeding communication without plant or arthropod interaction response,title_abstract,agent_plant_sources
+PPR:PPR787993,exclude,Captive frog sexual communication outside target interaction outcomes,title_abstract,agent_plant_sources
+MED:35583661,reference_mining,Marine ALAN review for primary study tracing,title_abstract,agent_plant_sources
+MED:36232659,separate_indoor,Controlled cricket light pulses and gene-expression endpoint,title_abstract,agent_plant_sources
+MED:41510794,separate_indoor,Drosophila flavonoid feeding and blue-light aging laboratory experiment,title_abstract,agent_plant_sources
+MED:40126035,reference_mining,Avian telemetry conservation overview; no direct ALAN treatment effects,title_abstract,agent_plant_sources
+MED:36182961,exclude,Rodent fitness experiment outside target taxa and interaction outcomes,title_abstract,agent_plant_sources
+AGR:IND608114041,fulltext_needed,Outdoor lit versus dark mosquito oviposition mesocosms; natural populations and freshwater habitat,title_abstract,agent_plant_sources
+MED:35304351,reference_mining,Review of ALAN and photoperiod-driven seasonality,title_abstract,agent_plant_sources
+MED:37404704,reference_mining,Urbanization avian breeding synthesis; reference tracing only,title_abstract,agent_plant_sources
+MED:36349582,separate_observational,Insect-substitute abundance manipulated along existing streetlight distances; ALAN not independently assigned,title_abstract,agent_plant_sources
+MED:38622174,reference_mining,"Day-night insect activity meta-analysis; primary citations only, not ALAN manipulation effects",title_abstract,agent_plant_sources
+AGR:IND608156393,fulltext_needed,Common-garden ALAN by nutrients and competition in 17 plant species,title_abstract,agent_plant_sources
+MED:38461989,separate_indoor,Mosquito strains in controlled photoperiod diapause and RNA-seq treatments,title_abstract,agent_plant_sources
+MED:34731290,reference_mining,Review of circadian clocks and immune effects,title_abstract,agent_plant_sources
+MED:37900748,fulltext_needed,Field block ALAN by drought experiment in two plant species,title_abstract,agent_plant_sources
+PPR:PPR695636,fulltext_needed,Two-year plantation lighting manipulation and understory plant traits; preprint and control design to verify,title_abstract,agent_plant_sources
+MED:33659060,exclude,Fish thyroid hormones without target ecological interaction response,title_abstract,agent_plant_sources
+MED:33069264,separate_indoor,Caged mosquito human-arm biting assay,title_abstract,agent_plant_sources
+AGR:IND608754560,fulltext_needed,Reef ALAN manipulation with predator guild composition; verify relevant invertebrate-predator endpoint,title_abstract,agent_plant_sources
+MED:38837957,exclude,Seabird stranding mitigation without target plant-arthropod interaction,title_abstract,agent_plant_sources
+MED:34295533,fulltext_needed,Fly diapause includes lab manipulation and outdoor cages; determine whether outdoor ALAN assigned,title_abstract,agent_plant_sources
+MED:36274987,exclude,Visual-scene modeling method without measured manipulation response,title_abstract,agent_plant_sources
+MED:34102892,exclude,Coral reef fish growth and survival without measured target interaction,title_abstract,agent_plant_sources
+PPR:PPR861284,fulltext_needed,Odonate polarization choice experiment; verify nighttime ALAN manipulation versus daytime polarized traps,title_abstract,agent_plant_sources
+MED:36998760,exclude,Bat melatonin physiology without predator-prey response,title_abstract,agent_plant_sources
+MED:36834801,reference_mining,Review of hormone and metabolic circadian disruption,title_abstract,agent_plant_sources
+MED:37379325,fulltext_needed,Title-only policy-oriented article; confirm article type and relevant citations,title_only,agent_plant_sources
+MED:33031444,fulltext_needed,Replicated lake littoral ALAN experiment with insects spiders and web prey,title_abstract,agent_plant_sources
+MED:37008009,separate_indoor,Cricket nocturnal pulse and constant-light laboratory behavior trials,title_abstract,agent_plant_sources
+PPR:PPR584275,fulltext_needed,Field annual-herb ALAN experiment with morphology phenology and reproductive capacity; check publication duplicate,title_abstract,agent_plant_sources
+MED:38107586,separate_observational,Urban firefly habitats and extinction-site survey; no ALAN assignment,title_abstract,agent_plant_sources
+MED:39422781,separate_indoor,Explicit laboratory Anopheles feeding assay after light pulse,title_abstract,agent_plant_sources
+MED:37391536,separate_observational,Seagrass natural coastal ALAN gradient followed by common conditions; no assigned initial ALAN,title_abstract,agent_plant_sources
+MED:35886376,reference_mining,"Human-health scoping-review protocol, no primary ecological experiment",title_abstract,agent_plant_sources
+MED:41154514,reference_mining,"Environmental nephrotoxicity review, no primary target experiment",title_abstract,agent_plant_sources
+MED:33757351,separate_observational,Sentinel-chicken WNV risk modeled against ambient ALAN,title_abstract,agent_plant_sources
+MED:38310930,reference_mining,Avian endocrine-circadian review,title_abstract,agent_plant_sources
+MED:34367577,separate_observational,Urban alley streetlight and plant-presence surveys,title_abstract,agent_plant_sources
+MED:35870531,fulltext_needed,Forty-week tree ALAN manipulation and crossed herbivore colonization histories,title_abstract,agent_plant_sources
+MED:34547907,separate_indoor,Cricket lifelong light exposure and activity in anechoic chambers,title_abstract,agent_plant_sources
+MED:33965828,fulltext_needed,Long-term freshwater amphipod light-dark experiment with leaf consumption and growth; setting to verify,title_abstract,agent_plant_sources
+MED:31964308,exclude,Laboratory lizard growth and reproduction without measured target interaction,title_abstract,agent_plant_sources
+MED:34169964,reference_mining,Conceptual synthesis of geographic pervasiveness of ALAN impacts,title_abstract,agent_plant_sources
+MED:35014268,separate_indoor,Controlled Daphnia life-table and kairomone lighting experiment,title_abstract,agent_plant_sources
+MED:38310939,reference_mining,Endocrine-disruption review in teleosts and amphibians,title_abstract,agent_plant_sources
+MED:36518620,separate_indoor,Drosophila common-rearing and lifelong light activity treatments,title_abstract,agent_plant_sources
+MED:37334657,exclude,Spectroradiometer instrument development without biological treatment response,title_abstract,agent_plant_sources
+MED:36713313,separate_observational,Satellite ALAN linked with USA phenology observations,title_abstract,agent_plant_sources
+MED:36574892,separate_indoor,Gecko-cricket light learning in laboratory setting,title_abstract,agent_plant_sources
+MED:37299812,exclude,Wireless light-pollution sensing network without biological response,title_abstract,agent_plant_sources
+MED:30519447,reference_mining,Nocturnal insect ALAN review and synthesis,title_abstract,agent_plant_sources
+MED:40559987,exclude,Heavy-metal contamination; light pollution denotes low contamination not illumination,title_abstract,agent_plant_sources
+MED:35091579,exclude,Captive great tit molecular and physiological response outside scope,title_abstract,agent_plant_sources
+MED:38049435,separate_observational,Remote-sensed migration stopover density against skyglow,title_abstract,agent_plant_sources
+MED:33013700,reference_mining,Review/hypothesis on ALAN and coronavirus emergence,title_abstract,agent_plant_sources
+MED:34460484,exclude,Light measurement imaging method without organism response,title_abstract,agent_plant_sources
+MED:36928766,separate_observational,Urban bird assemblage surveys against noise and light gradients,title_abstract,agent_plant_sources
+MED:36447780,fulltext_needed,Lake enclosure ALAN manipulation with fish foraging and zooplankton community,title_abstract,agent_plant_sources
+MED:38768208,separate_observational,Corvid roost monitoring across urban disturbance levels,title_abstract,agent_plant_sources
+PPR:PPR160687,separate_observational,Preprint of sentinel-chicken ALAN risk modeling; no light assignment,title_abstract,agent_plant_sources
+MED:35892207,separate_indoor,Laboratory simulated moonlight and ALAN on gastropod-barnacle foraging,title_abstract,agent_plant_sources
+MED:38691060,separate_indoor,Individual mantid chamber trials under simulated moonlight and dusk,title_abstract,agent_plant_sources
+AGR:IND608023533,fulltext_needed,Moth common-garden diapause experiment; determine indoor versus outdoor setting,title_abstract,agent_plant_sources
+MED:37072046,exclude,Rodent locomotion under dim light without target interaction,title_abstract,agent_plant_sources
+MED:37463922,separate_observational,eBird raptor occurrence correlated with urban ALAN,title_abstract,agent_plant_sources
+MED:35741350,separate_observational,Urban bat-insect relationship at selected ambient light and clutter sites,title_abstract,agent_plant_sources
+MED:38353271,exclude,Grass mouse locomotion without measured plant-arthropod interaction,title_abstract,agent_plant_sources
+MED:33341922,reference_mining,Integrative mollusk light-pollution review,title_abstract,agent_plant_sources
+MED:33053643,exclude,Coral prokaryotic microbiome only; outside target taxa and endpoints,title_abstract,agent_plant_sources
+MED:36584184,reference_mining,Systematic review of flicker perception thresholds,title_abstract,agent_plant_sources
+MED:37428654,reference_mining,Air eutrophication conceptual synthesis; no original ALAN experiment,title_abstract,agent_plant_sources
+MED:36009695,separate_indoor,Controlled laboratory salamander-fly prey experiment,title_abstract,agent_plant_sources
+MED:34520685,separate_indoor,Hawkmoth feeding on printed artificial flowers in controlled illumination,title_abstract,agent_plant_sources
+MED:32300179,fulltext_needed,Field lit and control toad enclosures with insect food intake,title_abstract,agent_plant_sources
+MED:38021272,exclude,Creative timekeeping and environmental design without experimental ecological response,title_abstract,agent_plant_sources
+PPR:PPR679189,fulltext_needed,Photosynthetic biofilm ALAN by biocide experiment; setting and producer scope require full text,title_abstract,agent_plant_sources
+MED:34157871,fulltext_needed,Microalgal and diatom ALAN versus dark growth experiment; verify outdoor setting and producer scope,title_abstract,agent_plant_sources
+MED:30718668,exclude,Sky photometry measurements without biological response,title_abstract,agent_plant_sources
+MED:35364173,fulltext_needed,Field multigenerational aphid-parasitoid communities under seven spectra and natural dark,title_abstract,agent_plant_sources
+PPR:PPR760849,exclude,Seabird stranding preprint outside target interactions,title_abstract,agent_plant_sources
+MED:35037664,fulltext_needed,Insect trap method paper; determine whether original lit-dark field response data included,title_abstract,agent_plant_sources
+MED:38276820,reference_mining,Firefly diversity threats and conservation review,title_abstract,agent_plant_sources
+MED:38702772,reference_mining,Human rural physical activity review; outside ecological primary extraction,title_abstract,agent_plant_sources
+MED:32673556,fulltext_needed,Glow-worm simulated streetlight field experiment on mate attraction,title_abstract,agent_plant_sources
+MED:34788329,separate_observational,Firefly red-list distribution and threat assessment; no light manipulation,title_abstract,agent_plant_sources
+MED:38247830,reference_mining,Human circadian nutrition and exercise review,title_abstract,agent_plant_sources
+MED:41204164,exclude,Human multimorbidity cohort outside ecological target outcomes,title_abstract,agent_plant_sources
+MED:34580222,separate_observational,Urban flight phenology and photoperiod reaction norms; ALAN not experimental factor described,title_abstract,agent_plant_sources
+MED:36058247,reference_mining,Nocturnal insect colour-vision review,title_abstract,agent_plant_sources
+MED:31215409,exclude,Small mammal movement and conspecific interaction without target plant-arthropod outcome,title_abstract,agent_plant_sources
+MED:32533357,fulltext_needed,Field split-plot ALAN by soil moisture and plant density; milkweed growth and defense,title_abstract,agent_plant_sources
+PPR:PPR674049,fulltext_needed,Artificial-channel biofilm ALAN by biocide study; verify setting and duplicate of related preprint,title_abstract,agent_plant_sources
+MED:37965299,exclude,Turtle hatchling sea finding outside target taxa and interaction endpoints,title_abstract,agent_plant_sources
+AGR:IND606857749,fulltext_needed,In situ high-shore ALAN by grazer manipulation and epilithic producer community,title_abstract,agent_plant_sources
+MED:29656458,reference_mining,Review of ecological community responses to ALAN,title_abstract,agent_plant_sources
+MED:34491450,separate_observational,Kestrel ectoparasites along urban-rural gradient without ALAN assignment,title_abstract,agent_plant_sources
+PPR:PPR957911,fulltext_needed,Grassland multifactor experiment includes light pollution; verify isolated ALAN contrast and preprint duplicate,title_abstract,agent_plant_sources
+MED:36555063,fulltext_needed,Ornamental field lamps with explicit unlit area and insect captures,title_abstract,agent_plant_sources
+MED:32681056,fulltext_needed,Field phytometers under direct adjacent and dark sites; reproduction and seed predation,title_abstract,agent_plant_sources
+MED:31863538,exclude,Passerine breeding timing experiment without measured target interaction response,title_abstract,agent_plant_sources
+AGR:IND605872012,fulltext_needed,Long-term natural grassland light experiment; plant cover biomass and phenology,title_abstract,agent_plant_sources
+MED:36064311,reference_mining,"Cancer epigenetics evidence summary, not primary ecological experiment",title_abstract,agent_plant_sources
+MED:34609502,reference_mining,Environmental cardiovascular expert review,title_abstract,agent_plant_sources
+MED:29545373,reference_mining,Endocrine ALAN behavior and fitness review,title_abstract,agent_plant_sources
+MED:37822753,exclude,Environmental pollution measurement instrument without biological outcome,title_abstract,agent_plant_sources
+MED:32751525,separate_observational,Hedgehog movement telemetry against existing ambient illumination,title_abstract,agent_plant_sources
+MED:32382408,exclude,Literary history of illumination and sleep; no ecological data,title_abstract,agent_plant_sources
+MED:35580711,fulltext_needed,Freshwater shredder ALAN behavior and stress experiment; determine outdoor versus indoor setting,title_abstract,agent_plant_sources
+MED:35324966,exclude,Seabird highway fallout before-after light technology change outside target endpoints,title_abstract,agent_plant_sources
+MED:37554033,exclude,Natural dim-light bee colour vision; no ALAN ecological treatment described,title_abstract,agent_plant_sources
+MED:38242447,separate_indoor,Ant ALAN manipulation conducted in laboratory; field component observational,title_abstract,agent_plant_sources
+MED:37082326,reference_mining,Pollination pollution meta-analysis; primary citations only,title_abstract,agent_plant_sources
+MED:36200451,reference_mining,Review of insect diapause manipulation methods,title_abstract,agent_plant_sources
+MED:31936535,separate_indoor,Explicit indoor microbial leaf-litter microcosm experiment,title_abstract,agent_plant_sources
+MED:37112221,reference_mining,Smart transportation technology review outside ecological evidence,title_abstract,agent_plant_sources
+MED:31337318,exclude,Sparrow virus competence without directly measured arthropod ecological outcome,title_abstract,agent_plant_sources
+MED:36721045,separate_observational,Shorebird escape responses under varying ambient illumination; assignment not described,title_abstract,agent_plant_sources
+MED:36555831,reference_mining,Melatonin anxiety-treatment review,title_abstract,agent_plant_sources
+MED:30237438,exclude,Guppy behavior and learning without target interaction response,title_abstract,agent_plant_sources
+MED:30324009,separate_indoor,Reared orb-web spiders under controlled lifelong light treatments,title_abstract,agent_plant_sources
+MED:33304523,fulltext_needed,Moth bat-playback light-trap study; need comparable dark-control design rather than lab-field confounding,title_abstract,agent_plant_sources
+MED:30371014,reference_mining,Editorial introduction to cross-taxa ALAN topic; no abstract,title_only,agent_plant_sources
+MED:38392548,separate_indoor,Moth phototaxis and flight-performance testing under controlled spectra,title_abstract,agent_plant_sources
+MED:34329592,fulltext_needed,Dung beetle field orientation experiments at light and dark sites; verify manipulated exposure,title_abstract,agent_plant_sources
+MED:39048615,exclude,Retracted mining-environment paper without ALAN manipulation,title_abstract,agent_plant_sources
+MED:37308664,separate_indoor,Cocooned parasitoid larval wavelength-avoidance assay,title_abstract,agent_plant_sources
+MED:36268694,exclude,Aged mouse immune response and longevity outside ecological target,title_abstract,agent_plant_sources
+MED:35344112,reference_mining,Water bug pollution review; useful primary citation tracing,title_abstract,agent_plant_sources
+MED:33270747,exclude,Solar-panel reflected polarization experiment rather than artificial nighttime illumination,title_abstract,agent_plant_sources
+MED:29686874,exclude,Fish hormonal biomarkers without target ecological interaction outcome,title_abstract,agent_plant_sources
+MED:38928401,exclude,Broiler intestinal injury and microbiome outside target taxa,title_abstract,agent_plant_sources
+MED:35573206,separate_indoor,Explicit indoor monarch flight simulator under light trespass,title_abstract,agent_plant_sources
+MED:25780243,fulltext_needed,Original artificial grassland light by predator experiment with aphids and host flower heads,title_abstract,agent_plant_sources
+MED:25360250,fulltext_needed,Moth caterpillar light treatments and life history; setting and independent light units require full text,title_abstract,agent_plant_sources
+MED:35440233,reference_mining,Conceptual synthesis on spatial evidence for insect declines,title_abstract,agent_plant_sources
+MED:31426235,fulltext_needed,Reef fish ALAN experiment includes nocturnal predation; verify predator taxa and relevant interaction scope,title_abstract,agent_plant_sources
+MED:38539895,reference_mining,Review of retinal oxidative stress and human health,title_abstract,agent_plant_sources
+MED:28562607,fulltext_needed,Coastal bat light on-off manipulation includes feeding buzzes; verify predator-prey response and replication,title_abstract,agent_plant_sources
+MED:34556717,exclude,Seabird flight avoidance outside target taxa and ecological interactions,title_abstract,agent_plant_sources
+MED:32354129,exclude,Hedgehog supplementary-food activity without natural arthropod interaction measurement,title_abstract,agent_plant_sources
+MED:33431565,reference_mining,Global moth trends synthesis and new time-series; no experimental ALAN contrast,title_abstract,agent_plant_sources
+MED:38341450,exclude,Firefly species classification method without illumination treatment response,title_abstract,agent_plant_sources
+PPR:PPR849436,separate_indoor,Drosophila neuronal-clock experiment using novel controlled light regimes,title_abstract,agent_plant_sources
+MED:33259480,exclude,Retracted publication; ambient urban-rural insect lighting survey,title_abstract,agent_plant_sources
+MED:34873189,fulltext_needed,Lake enclosure skyglow system method; verify whether biological outcomes reported,title_abstract,agent_plant_sources
+MED:33477042,exclude,Fish tissue metabolites under predator threat without target arthropod interaction response,title_abstract,agent_plant_sources
+MED:29952126,exclude,Songbird extra-pair paternity outside target taxa and interactions,title_abstract,agent_plant_sources
+MED:34442300,fulltext_needed,Field glow-worm mating proxy under dark and illuminated conditions; assignment unclear,title_abstract,agent_plant_sources
+MED:33640601,fulltext_needed,Replicated field salt-marsh crab ALAN tethering and enclosure predation experiment,title_abstract,agent_plant_sources
+MED:30884876,separate_indoor,Explicit indoor leaf-litter microcosm with Pb and ALAN,title_abstract,agent_plant_sources

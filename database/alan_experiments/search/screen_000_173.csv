@@ -1,0 +1,175 @@
+record_id,decision,reason,evidence_basis,reviewer
+MED:42656194,fulltext_needed,Semi-natural field larvae experiment with explicit unlit control and development/survival endpoints,title_abstract,agent_primary_evidence
+PMC:PMC13645961,fulltext_needed,Relevant alpine pollination title; abstract missing; possible duplicate of record 5,title_only,agent_primary_evidence
+MED:42553693,separate_observational,Paired city policy comparison using satellite observations; no randomized lighting manipulation described,title_abstract,agent_primary_evidence
+MED:42525495,fulltext_needed,In situ meadow ALAN experiment includes plant biomass and soil food-web responses,title_abstract,agent_primary_evidence
+MED:42516911,fulltext_needed,Predation-risk physiology linked to field lighting history; verify manipulation and assay setting,title_abstract,agent_primary_evidence
+MED:42851410,fulltext_needed,Explicit field illuminated-unlit pollination-network comparison; possible duplicate of record 1,title_abstract,agent_primary_evidence
+MED:42768113,fulltext_needed,Lakeside road-light mitigation trial; verify dark or low-light comparator beyond spectra,title_abstract,agent_primary_evidence
+MED:41484111,separate_observational,Multi-city phenology records linked to satellite light; observational association,title_abstract,agent_primary_evidence
+AGR:IND609433645,reference_mining,Review synthesizing amphibian ALAN studies; reference mining only,title_abstract,agent_primary_evidence
+MED:41252178,separate_indoor,Abstract explicitly specifies controlled indoor caterpillar exposure,title_abstract,agent_primary_evidence
+AGR:IND609539107,fulltext_needed,In situ meadow plant and micro-food-web experiment; possible duplicate of record 3,title_abstract,agent_primary_evidence
+MED:41651394,exclude,Rodent immune endocrine and mortality study outside plant arthropod or interaction endpoints,title_abstract,agent_primary_evidence
+PPR:PPR1256473,reference_mining,Literature review of lunar interactions with ALAN; no new eligible experiment,title_abstract,agent_primary_evidence
+MED:40987336,separate_indoor,Explicit 19-day laboratory Daphnia-flatworm population experiment,title_abstract,agent_primary_evidence
+MED:42732912,fulltext_needed,Macrophyte-snail community mesocosms with no-ALAN comparison; verify setting and replication,title_abstract,agent_primary_evidence
+MED:41357530,separate_observational,Eddy covariance and light metrics across sites; no experimental ALAN assignment,title_abstract,agent_primary_evidence
+MED:42947418,fulltext_needed,Explicit greenhouse factorial ALAN experiment with plant biomass and flowering,title_abstract,agent_primary_evidence
+MED:42813203,separate_observational,Construction after-control-impact comparison; ALAN exposure association rather than assigned lighting,title_abstract,agent_primary_evidence
+MED:40851285,fulltext_needed,Three-site forest lighting field experiment with darkness and arthropod trapping,title_abstract,agent_primary_evidence
+MED:42710882,separate_observational,Population-level predictions of salmon migration benefit from ALAN reduction; manipulation not established,title_abstract,agent_primary_evidence
+MED:41085731,fulltext_needed,Light-naive forest plots experimentally lit against controls; herbivory and spider growth,title_abstract,agent_primary_evidence
+MED:40502694,reference_mining,Critical review and conceptual eco-evolutionary framework,title_abstract,agent_primary_evidence
+MED:40858251,separate_indoor,Clock-gene knockout Drosophila activity and sleep assays; controlled mechanistic laboratory experiment,title_abstract,agent_primary_evidence
+MED:41290156,fulltext_needed,Cricket ALAN developmental and reproduction treatments; verify outdoor versus laboratory setting,title_abstract,agent_primary_evidence
+MED:41677743,separate_indoor,Plants explicitly placed in growth room for nocturnal illumination physiology,title_abstract,agent_primary_evidence
+MED:42184954,fulltext_needed,Two-year field experiments on monarch larvae and milkweed hosts,title_abstract,agent_primary_evidence
+MED:42505781,separate_observational,Forest-edge versus interior light trapping and environmental associations,title_abstract,agent_primary_evidence
+MED:40662860,fulltext_needed,Field light-noise manipulation with predator and mate attraction; verify scope and comparator,title_abstract,agent_primary_evidence
+AGR:IND609403897,fulltext_needed,Paired field light manipulation with flower timing and emergence responses,title_abstract,agent_primary_evidence
+AGR:IND609422657,fulltext_needed,Forest LED-dark experiment with arthropod catches; possible duplicate of record 18,title_abstract,agent_primary_evidence
+MED:40584600,exclude,Fish embryonic quality and parental care study outside plant arthropod interaction pathway,title_abstract,agent_primary_evidence
+MED:41394199,separate_indoor,Historical Daphnia populations explicitly exposed under laboratory conditions,title_abstract,agent_primary_evidence
+PPR:PPR1277181,fulltext_needed,Field moth-pollinated phytometers under array point and unlit treatments; preprint,title_abstract,agent_primary_evidence
+MED:41825463,exclude,Human cardiovascular scientific statement outside ecological scope,title_abstract,agent_primary_evidence
+MED:39878880,fulltext_needed,Streetlight color-brightness manipulation and arthropod captures; dark comparator uncertain,title_abstract,agent_primary_evidence
+MED:41921131,reference_mining,Avian ALAN meta-analysis; original references only,title_abstract,agent_primary_evidence
+MED:40773521,fulltext_needed,Amphipod light-level behavioral experiment; setting and independent unit require full text,title_abstract,agent_primary_evidence
+MED:42980097,exclude,Human cardiometabolic circadian review outside ecological scope,title_only,agent_primary_evidence
+MED:41509565,separate_observational,Observations of bird foraging on light-associated insect aggregations; no manipulation,title_abstract,agent_primary_evidence
+AGR:IND609469613,fulltext_needed,Moth split-brood rearing under dynamic continuous and dark light; setting unclear,title_abstract,agent_primary_evidence
+MED:42480391,fulltext_needed,In situ seagrass illumination crossed with epibiota removal,title_abstract,agent_primary_evidence
+PPR:PPR1299214,fulltext_needed,Dragonfly larval ALAN-rearing and tracking experiment; setting unclear; possible duplicate 43,title_abstract,agent_primary_evidence
+MED:42774743,exclude,Polarizing-surface choice and ambient light-gradient exposure; not nocturnal ALAN manipulation,title_abstract,agent_primary_evidence
+PPR:PPR1287892,fulltext_needed,Dragonfly larval ALAN-rearing and tracking experiment; setting unclear; possible duplicate 41,title_abstract,agent_primary_evidence
+MED:41084910,exclude,Carcinogenesis and melatonin review outside ecological scope,title_only,agent_primary_evidence
+MED:42413369,fulltext_needed,Subtidal community settlement panels with ALAN versus unlit control,title_abstract,agent_primary_evidence
+MED:42505846,exclude,Monochromatic insect transcriptomics only; no requested ecological response endpoint,title_abstract,agent_primary_evidence
+MED:41567926,separate_observational,Pollen monitoring and satellite ALAN associations; no light manipulation,title_abstract,agent_primary_evidence
+MED:40546966,fulltext_needed,Includes experimentally illuminated wild slug communities and herbivory; separate captive component,title_abstract,agent_primary_evidence
+MED:40576833,fulltext_needed,Includes field earthworm lighting experiment with litter and soil responses; separate room component,title_abstract,agent_primary_evidence
+MED:41681467,exclude,Newt thyroid histology outside plant arthropod interaction endpoints,title_only,agent_primary_evidence
+MED:42293955,exclude,Human psychosocial scoping review outside ecological scope,title_only,agent_primary_evidence
+AGR:IND609462058,fulltext_needed,Marine beetle larval activity with dark comparison; exposure setting unresolved,title_abstract,agent_primary_evidence
+MED:42409951,fulltext_needed,Lake ALAN illumination with fish and zooplankton responses and natural-dark comparison,title_abstract,agent_primary_evidence
+MED:39974285,separate_observational,Existing streetlamp-exposed versus unexposed tree leaves; manipulation not described,title_abstract,agent_primary_evidence
+MED:41133383,fulltext_needed,Caddisfly light-by-predation-cue experiment; setting requires full text,title_abstract,agent_primary_evidence
+MED:40897317,fulltext_needed,ALAN algae conditioning and subsequent snail herbivory; verify experimental setting,title_abstract,agent_primary_evidence
+MED:41465689,fulltext_needed,Both indoor and field moth orientation assays; isolate eligible field component,title_abstract,agent_primary_evidence
+AGR:IND609471227,fulltext_needed,Six-week 16-stream mesocosm ALAN-by-crayfish manipulation with spider diet responses,title_abstract,agent_primary_evidence
+MED:40410247,fulltext_needed,Moth split-brood light treatments and dark control; rearing setting unresolved,title_abstract,agent_primary_evidence
+PPR:PPR1232781,fulltext_needed,Macrophyte-snail mesocosms; preprint likely overlaps published record 14,title_abstract,agent_primary_evidence
+MED:38243160,fulltext_needed,Greenhouse light-by-earthworm pot experiment with plant germination and growth,title_abstract,agent_primary_evidence
+MED:41078975,fulltext_needed,Crayfish light-dark activity and choice experiment; setting unresolved,title_abstract,agent_primary_evidence
+MED:41029479,separate_observational,Streetlight-associated plane tree leaf comparisons; no light manipulation described,title_abstract,agent_primary_evidence
+MED:37899020,reference_mining,Review and trophic-network conceptual modeling; no new primary ALAN field experiment,title_abstract,agent_primary_evidence
+MED:37899018,separate_observational,Prairie moth survey related to skyglow local light and vegetation,title_abstract,agent_primary_evidence
+MED:42380750,exclude,Human circalunar clock arguments outside ecological scope,title_only,agent_primary_evidence
+MED:37899012,reference_mining,Freshwater light-pollution synthesis and remedies; reference mining,title_abstract,agent_primary_evidence
+MED:37899007,reference_mining,Temperate and tropical reef ALAN literature synthesis,title_abstract,agent_primary_evidence
+MED:38433890,reference_mining,Conceptual framework of urban wildlife light-pollution responses,title_abstract,agent_primary_evidence
+MED:39199494,exclude,Human mental-health narrative review outside ecological scope,title_only,agent_primary_evidence
+MED:42744155,reference_mining,Synthesis of urban insect responses including ALAN,title_abstract,agent_primary_evidence
+MED:39378094,fulltext_needed,Experimental streetlight field tracking of moth movement; verify unlit comparator,title_abstract,agent_primary_evidence
+MED:39551153,separate_indoor,Abstract explicitly identifies laboratory mosquito lifespan and reproduction experiments,title_abstract,agent_primary_evidence
+MED:41089890,fulltext_needed,Moth rearing under lights simulating outdoors; actual setting needs verification,title_abstract,agent_primary_evidence
+MED:37899008,reference_mining,Theme-issue introduction and synthesis rather than primary experiment,title_abstract,agent_primary_evidence
+MED:40581777,exclude,Bird urban gut-microbiome topic outside plant arthropod or measured interaction endpoints,title_only,agent_primary_evidence
+MED:39421325,fulltext_needed,Seaweed ALAN-by-warming experiment with dark comparator; setting unresolved,title_abstract,agent_primary_evidence
+MED:40943008,exclude,Streetlight engineering and energy system implementation without ecological endpoints,title_only,agent_primary_evidence
+MED:37899016,reference_mining,Review and framework of ALAN species-interaction studies,title_abstract,agent_primary_evidence
+MED:42652464,fulltext_needed,Includes semi-field moth mating assay with dark control; separate lab component,title_abstract,agent_primary_evidence
+MED:36876132,fulltext_needed,Field landscape-light before-during-after arthropod community study; verify independent controls,title_abstract,agent_primary_evidence
+MED:41246390,exclude,Loggerhead nesting topic outside plant arthropod interaction endpoints,title_only,agent_primary_evidence
+MED:42925369,exclude,Human heart-failure exposomics outside ecological scope,title_only,agent_primary_evidence
+MED:42652513,fulltext_needed,Nocturnal polarized-light aggregation under shed conditions; verify dark comparator and ecological eligibility,title_abstract,agent_primary_evidence
+MED:41742902,separate_indoor,Manipulation explicitly laboratory isopod assays; field distribution component observational,title_abstract,agent_primary_evidence
+MED:39893719,fulltext_needed,Amphipod light-dark herbivory experiment; experimental setting unresolved,title_abstract,agent_primary_evidence
+AGR:IND609384358,fulltext_needed,Plant competition under ambient versus ALAN treatments; location and replication need full text,title_abstract,agent_primary_evidence
+MED:42034985,reference_mining,Review of avian dark-night physiology and reproduction,title_abstract,agent_primary_evidence
+AGR:IND609070141,fulltext_needed,Field before-during-after underpass lighting experiment; verify ecological scope and controls,title_abstract,agent_primary_evidence
+MED:42943047,separate_observational,Urban-rural remote-sensing phenology models; no experimental lighting assignment,title_abstract,agent_primary_evidence
+MED:37899015,reference_mining,Opinion overview of streetlight mitigation and interaction networks,title_abstract,agent_primary_evidence
+PPR:PPR1078868,fulltext_needed,Lighting-rig preprint includes hedgerow arthropod feasibility trial; check control design,title_abstract,agent_primary_evidence
+MED:37899014,fulltext_needed,Controlled Ecotron community and plant-soil experiment; determine indoor stratum at full text,title_abstract,agent_primary_evidence
+MED:39979329,fulltext_needed,Parasitoid-wasp lighting BACI mitigation study; verify dark versus spectrum-only comparator,title_abstract,agent_primary_evidence
+MED:41201502,reference_mining,Review of lepidopteran orientation mechanisms and environmental challenges,title_abstract,agent_primary_evidence
+MED:40592456,exclude,Bird social-context circadian response outside plant arthropod interaction endpoints,title_only,agent_primary_evidence
+MED:39161952,fulltext_needed,Abstract claims field surveys and paired experiments; verify actual manipulation rather than observational pairing,title_abstract,agent_primary_evidence
+MED:41064985,reference_mining,Review of ALAN and migratory birds including ecological interactions,title_abstract,agent_primary_evidence
+MED:39595252,exclude,Great tit vocal timing study outside plant arthropod interaction endpoints,title_only,agent_primary_evidence
+MED:37899013,fulltext_needed,Pond littoral and riparian randomized wavelength treatments include dark control,title_abstract,agent_primary_evidence
+MED:39617753,exclude,Streetlight energy production and economic engineering without biological endpoints,title_only,agent_primary_evidence
+MED:37835640,fulltext_needed,Sea urchin ALAN experiment includes food consumption; verify setting and interaction scope,title_abstract,agent_primary_evidence
+AGR:IND609368879,fulltext_needed,Dummy-caterpillar attacks versus lamp distance; verify experimental light assignment versus existing gradient,title_abstract,agent_primary_evidence
+AGR:IND607959057,fulltext_needed,Six-month field plant light-spectrum experiment with dark controls and herbivory,title_abstract,agent_primary_evidence
+AGR:IND609285147,fulltext_needed,Woodland ant community illumination and unlit controls; null effects retained,title_abstract,agent_primary_evidence
+MED:42182019,exclude,Microbial metabolites and human metabolic disease outside ecological scope,title_only,agent_primary_evidence
+MED:41605992,exclude,Natural moonlight vertical-migration observations without artificial-light treatment,title_abstract,agent_primary_evidence
+MED:40509875,exclude,Great tit body condition and physiology outside target interaction endpoints,title_only,agent_primary_evidence
+MED:37899022,fulltext_needed,Model grassland communities with ALAN-dark treatments; title-abstract does not settle indoor setting,title_abstract,agent_primary_evidence
+MED:39758007,separate_indoor,Terrarium isopod behavioral assays explicitly described; no outdoor component,title_abstract,agent_primary_evidence
+MED:40301522,fulltext_needed,Oyster light-cycle and ALAN valve behavior; verify setting and eligible ecological scope,title_abstract,agent_primary_evidence
+MED:37228454,reference_mining,Cross-realm ALAN framework and case-study synthesis,title_abstract,agent_primary_evidence
+MED:38873751,exclude,Nocturnal rodent behavior outside plant arthropod interaction endpoints,title_only,agent_primary_evidence
+MED:41590352,exclude,Human liver cancer topic outside ecological scope,title_only,agent_primary_evidence
+PPR:PPR1116992,fulltext_needed,Fly developmental light-dark experiment; setting unresolved; preprint,title_abstract,agent_primary_evidence
+MED:42938379,exclude,C elegans lipid lifespan molecular study outside plant arthropod interaction endpoints,title_only,agent_primary_evidence
+MED:41982399,fulltext_needed,Field-observed isopod aggregation experimentally induced by light; controls need verification,title_abstract,agent_primary_evidence
+MED:35949540,fulltext_needed,Five-year field grassland mesocosms with herbivore-predator and ALAN factors,title_abstract,agent_primary_evidence
+MED:37899011,reference_mining,Conceptual appraisal of ALAN and disease vectors,title_abstract,agent_primary_evidence
+MED:37188683,separate_observational,Global coral spawning observations linked to light-pollution atlas,title_abstract,agent_primary_evidence
+MED:38628122,fulltext_needed,Kelp-urchin grazing ALAN-by-warming manipulation; confirm setting and units,title_abstract,agent_primary_evidence
+MED:39226923,fulltext_needed,Spider brain response to ALAN; check whether any eligible outdoor ecological endpoint exists,title_abstract,agent_primary_evidence
+MED:41668654,reference_mining,Review of nocturnal flowers pollinators and ALAN,title_abstract,agent_primary_evidence
+MED:40495818,fulltext_needed,Greenhouse ALAN-by-herbivory factorial with invasive and native plants,title_abstract,agent_primary_evidence
+MED:34433571,fulltext_needed,Includes experimental caterpillar feeding component separate from observational abundance comparison,title_abstract,agent_primary_evidence
+MED:40626044,exclude,Avian embryo clock-gene ontogeny outside target ecological endpoints,title_only,agent_primary_evidence
+PPR:PPR1223577,fulltext_needed,Semi-natural plant mesocosms with colored streetlight and dark control; preprint,title_abstract,agent_primary_evidence
+MED:38287057,exclude,Mosquito clock-gene expression endpoint only; no requested ecological response,title_abstract,agent_primary_evidence
+MED:37899021,fulltext_needed,Barley-aphid ALAN experiment with full partial and dark nights; setting unresolved,title_abstract,agent_primary_evidence
+MED:40991714,exclude,Human menstrual lunar synchronization outside ecological scope,title_only,agent_primary_evidence
+MED:40864818,exclude,Human cardiovascular and melatonin review outside ecological scope,title_only,agent_primary_evidence
+MED:40991961,reference_mining,Mosquito environmental physiology review including ALAN,title_abstract,agent_primary_evidence
+MED:37899019,fulltext_needed,Ecotron insect community movement and predation experiment; indoor status needs full text,title_abstract,agent_primary_evidence
+MED:37927782,fulltext_needed,Duckweed light-dark boxes with natural daylight; verify setting and one-box-per-treatment limitation,title_abstract,agent_primary_evidence
+AGR:IND608397383,fulltext_needed,Grassland field ALAN-by-fauna exclusion study on springtail density and richness,title_abstract,agent_primary_evidence
+MED:37899009,fulltext_needed,Mussel and barnacle larval ALAN exposure; setting unresolved; barnacles within arthropod scope,title_abstract,agent_primary_evidence
+MED:40396451,fulltext_needed,Owl prey-detection light-noise manipulation; verify field versus captive setting,title_abstract,agent_primary_evidence
+MED:37899017,fulltext_needed,Long-term forest-edge experimental lighting with dark control and invertebrate communities,title_abstract,agent_primary_evidence
+MED:38278253,fulltext_needed,Field bat-roost illumination including dark control; retain for predator activity scope review,title_abstract,agent_primary_evidence
+MED:39532146,fulltext_needed,Moth pulse-light experiments; setting and baseline-dark comparison unresolved,title_abstract,agent_primary_evidence
+MED:37990566,exclude,Teleost learning and behavior following embryonic light outside target ecological endpoints,title_only,agent_primary_evidence
+MED:41253822,fulltext_needed,In situ oyster ALAN dataset; verify ecological scope and one-table-per-treatment limitation,title_abstract,agent_primary_evidence
+MED:39692005,fulltext_needed,Reef field ALAN versus dark predatory-fish community response,title_abstract,agent_primary_evidence
+MED:36883276,fulltext_needed,Forest ALAN-dark experiment with dummy-caterpillar attacks and predator-parasitoid abundance,title_abstract,agent_primary_evidence
+MED:34769843,separate_observational,Bat site satellite illumination assessment and historical declines; no assigned illumination experiment,title_abstract,agent_primary_evidence
+MED:41668668,reference_mining,Review of insect multisensory odor tracking and pollution,title_abstract,agent_primary_evidence
+MED:40596070,exclude,Blackout study of sky brightness without organism response,title_only,agent_primary_evidence
+MED:38839205,exclude,Human cardiology pollution seminar outside ecological scope,title_only,agent_primary_evidence
+MED:36661993,fulltext_needed,Mosquito rearing light-dark experiment with activity and nutrient responses; setting unresolved,title_abstract,agent_primary_evidence
+MED:40931758,separate_indoor,Opsin RNAi pharmacological and phototaxis mechanistic assays; laboratory behavior only,title_abstract,agent_primary_evidence
+MED:41204658,exclude,Human industrialization and health mismatch review outside ecological scope,title_abstract,agent_primary_evidence
+MED:40860767,fulltext_needed,Amphipod-prey light-by-risk manipulation; setting unresolved,title_abstract,agent_primary_evidence
+MED:39577187,exclude,Rodent pest response topic outside plant arthropod interaction endpoints,title_only,agent_primary_evidence
+MED:38550967,separate_observational,Nightjar abundance modeled against ALAN and urbanization; no manipulation,title_abstract,agent_primary_evidence
+MED:33304586,fulltext_needed,Simulated reef mesocosm lobster ALAN control experiment; null result retained,title_abstract,agent_primary_evidence
+MED:40800166,fulltext_needed,Drosophila common-garden ALAN exposure; setting requires full text,title_abstract,agent_primary_evidence
+MED:37108420,reference_mining,Neuroendocrine ALAN review; reference mining not effect extraction,title_abstract,agent_primary_evidence
+MED:38664063,reference_mining,Explicit non-systematic review of insect winter survival and reproduction,title_abstract,agent_primary_evidence
+MED:40182072,exclude,Marsupial endocrine immune physiology outside target ecological endpoints,title_only,agent_primary_evidence
+MED:41065801,separate_indoor,Moth pupil imaging and controlled light-pulse physiological assays only,title_abstract,agent_primary_evidence
+MED:39338687,exclude,Technical-economic streetlighting assessment without biological endpoint,title_only,agent_primary_evidence
+AGR:IND609085322,fulltext_needed,Forest potted-beech dimming-dark experiment with leaf traits and herbivory,title_abstract,agent_primary_evidence
+MED:40092147,exclude,Bird feather corticosterone urbanization study outside target interaction endpoint,title_only,agent_primary_evidence
+MED:39539570,separate_indoor,Frog signaling and mate choice explicitly tested in laboratory,title_abstract,agent_primary_evidence
+MED:37899023,separate_observational,Mountain lion distribution models against light and human disturbance,title_abstract,agent_primary_evidence
+MED:38289905,reference_mining,Essay on biological rhythms and chemical pollution; reference mining only,title_abstract,agent_primary_evidence
+MED:42503309,exclude,Fish photoperiod swimming physiology without measured grazing interaction,title_abstract,agent_primary_evidence
+MED:41861066,exclude,Human hypertension position paper outside ecological scope,title_only,agent_primary_evidence
+MED:38580701,fulltext_needed,Open-water experimental illumination with fish and Chaoborus spatial responses,title_abstract,agent_primary_evidence
+AGR:IND606162232,fulltext_needed,Three-year plant-herbivore-predator mesocosms under streetlight simulations,title_abstract,agent_primary_evidence
+MED:38252321,reference_mining,Review of cricket circadian behavior and illumination,title_abstract,agent_primary_evidence
+MED:38777636,reference_mining,Perspective proposing blackouts as natural experiments; not completed primary trial,title_abstract,agent_primary_evidence
+MED:41668662,reference_mining,Review of teleost visual navigation and environmental changes,title_abstract,agent_primary_evidence
