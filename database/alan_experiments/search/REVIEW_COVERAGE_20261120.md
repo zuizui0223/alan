@@ -1,4 +1,6 @@
-Current update: 150 retained reports reviewed,38 pending. McNaughton2021 retrofit comparator and full-text access remain unresolved; partial indexed Results do not establish completed review. No effect or review-count increment.
+Current update: 150 retained reports reviewed,38 pending. Tsugane2026 community experiment remains a full-text/design hold; predator attraction is not verified predation. No finite effect or completed-review increment.
+
+Previous update: 150 retained reports reviewed,38 pending. McNaughton2021 retrofit comparator and full-text access remain unresolved; partial indexed Results do not establish completed review. No effect or review-count increment.
 
 Previous update: 150 retained reports reviewed,38 pending; ten outside-search reports. Cravens physiology dataset metadata verified; workbook download requires authentication and final Methods/Results remain unreviewed. No effect added.
 
