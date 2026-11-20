@@ -1,0 +1,26 @@
+{
+  "raw_data_acquired": false,
+  "dryad_file_id": 32962,
+  "dataverse_ids": [
+    4106,
+    4107
+  ],
+  "dataverse_restricted": true,
+  "metadata_manifest": [
+    {
+      "file": "metadata.json",
+      "bytes": 7003,
+      "sha256": "e97ab8a21925778aeceaa0450232d00a7a814a6e7ff2ed01b1b8bf78e6f83e75"
+    },
+    {
+      "file": "files.json",
+      "bytes": 1873,
+      "sha256": "8618c485c309165eb681aef3dded8925199f38cdbb514347388319b5998c5384"
+    },
+    {
+      "file": "dataverse_metadata.bin",
+      "bytes": 4972,
+      "sha256": "5704606ede7fba770ba130a225b6033a943b9b510ff389d21a353afeeb036b5b"
+    }
+  ]
+}
