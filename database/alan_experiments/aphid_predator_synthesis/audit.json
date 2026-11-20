@@ -1,0 +1,31 @@
+{
+  "programmes": 2,
+  "contrasts": 4,
+  "master_catalogue_changed": false,
+  "final_eligibility": false,
+  "input_sha256": {
+    "bennie_trophic_sources\\joint_predator_contrasts.csv": "14c51d4f82b2bc8255111f6ae821f7eed16f6ec1655cdf2c16e733841ccd2166",
+    "bennie_trophic_sources\\joint_predator_contrast_covariance.csv": "a1fff83557330a142e952b51f0f3fde533f9f96946a6865d6fad055670070833",
+    "warming_sources\\unheated_predator_contrasts.csv": "87096567d61cab303db7e611a0e3b8545f391a1851da2fab2500d0a562b51f46",
+    "warming_sources\\unheated_predator_contrasts_covariance.csv": "fa8067dde2e687f55366e1c1623d23408c8ddcf36a8cff64253ecea7683539aa"
+  },
+  "analytic_tau2": 0.0,
+  "numerical_tau2": 0.0,
+  "covariance_min_eigenvalue": 0.004116872838899749,
+  "aggregation": "equal log-contrast weights within observed experimental menus",
+  "interval": "modified Knapp-Hartung max(1,q), t1",
+  "nonpooled_endpoints": [
+    "slug_period_mean",
+    "plant_final_biomass",
+    "aquatic_insect_emergence",
+    "pigment_ratio"
+  ],
+  "limitations": [
+    "Two programmes only, differing lights, predators, observation methods and durations",
+    "Penryn 2013 is final first-report observation, not programme-terminal follow-up",
+    "Sampling counts versus whole-cage census require comparable treatment-relative detection",
+    "Miller non-warmed subset only; warmed treatment allocation unresolved",
+    "Final sampled counts or census, not consumption rates",
+    "No wetness moderator, pollination result, or contemporaneous plant mediation"
+  ]
+}

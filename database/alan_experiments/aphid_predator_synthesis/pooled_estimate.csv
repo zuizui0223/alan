@@ -1,0 +1,2 @@
+log_ratio,ratio,lower,upper,tau2_REML,q,mKH_variance,df,programmes,dependent_contrasts,status,endpoint
+-0.43459907259326613,0.6475242252509924,0.001940693302385097,216.0504299013125,0.0,0.11495940437365561,0.20909187157173492,1,2,4,exploratory_not_final_adjudication,predator_modification_of_final_aphid_count_illumination_response
