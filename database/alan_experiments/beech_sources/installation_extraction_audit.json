@@ -1,0 +1,21 @@
+{
+  "source_leaf_rows": 855,
+  "selected_leaf_rows": 840,
+  "extra_spectral_leaf_rows": 15,
+  "installation_rows": 8,
+  "sites": 2,
+  "contrasts": 9,
+  "covariance_rank": 1,
+  "control_shared": true,
+  "endpoints_share_leaves": true,
+  "leaf_or_tree_replication_used_for_precision": false,
+  "original_GLMM_reproduced": false,
+  "main_catalogue_additions": 0,
+  "conditional_endpoint": "mean leaf percent among damaged leaves within each installation",
+  "all_leaf_endpoint": "unweighted mean leaf percent including zeros; not total-area-weighted loss",
+  "limitations": [
+    "Two site pairs only; t1 delta intervals are approximate.",
+    "No general dose-response threshold or causal chemical mediation estimated.",
+    "Shared Swiss programme overlap unresolved."
+  ]
+}
