@@ -1,0 +1,15 @@
+{
+  "doi": "10.1098/rsos.220468",
+  "source_url": "https://doi.org/10.6084/m9.figshare.20407632",
+  "source_sha256": "bef0a1e6b7452d18fb7e6e1c0e38013c68f16e6758d51f2aff424be6ca0d4749",
+  "source_rows": 42,
+  "excluded_pre_rows": 8,
+  "post_trials": 34,
+  "dates": 14,
+  "dates_with_both_arms": 13,
+  "descriptive_unadjusted_risk_ratio": 0.5277777777777778,
+  "descriptive_unadjusted_risk_difference": -0.2982456140350877,
+  "variance": null,
+  "meta_pool_eligible": false,
+  "limitation": "Date clustering and individual reuse unresolved; raw proportions are not adjusted model coefficients."
+}
