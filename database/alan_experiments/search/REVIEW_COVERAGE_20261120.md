@@ -1,4 +1,6 @@
-Current update: 159 retained reports reviewed,28 pending; eleven outside-search reports. Wakefield2016 thesis identity confirmed from Europe PMC core metadata; full text and chapter/publication overlap unresolved. Access attempts recorded without increasing review or effect counts.
+Current update: 159 retained reports reviewed,28 pending; eleven outside-search reports. Owens2022 final public DOCX and spectral CSV recovered. Trap-change exclusion verified; ecological raw data and final Methods/Results remain pending. No effect or completed-review count added.
+
+Previous update: 159 retained reports reviewed,28 pending; eleven outside-search reports. Wakefield2016 thesis identity confirmed from Europe PMC core metadata; full text and chapter/publication overlap unresolved. Access attempts recorded without increasing review or effect counts.
 
 Previous update: 159 retained reports reviewed,28 pending; eleven outside-search reports. Otomys2025 primary Methods/Results read: indoor fixed-sequence activity experiment, excluded from field interaction synthesis independently of nonsignificant outcomes. No finite effect added.
 

@@ -23,3 +23,7 @@ The preprint prints an irradiance of 1.37 x 10^20 photons cm^-2 s^-1 at 60.8 cm.
 ## Decision
 
 Field experiment with a dark control: do not exclude as spectrum-only. Retain as capture/behaviour evidence pending final-version and independent-unit data recovery. No rows added to the main effect catalogue; no interspecific mechanism or wet-versus-dry effect inferred. An independent reading of preprint pp.5–7 confirmed these design and variance holds.
+
+## Final supplement recovery
+
+The two public final-version supplements were recovered and inspected after the preprint review. [Supplement audit](FINAL_SUPPLEMENT_REVIEW.md) confirms the trap-change exclusion and identifies the CSV as spectra rather than ecological observations. Final Methods/Results and quantitative extraction remain pending.
