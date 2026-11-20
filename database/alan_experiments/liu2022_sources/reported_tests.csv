@@ -1,0 +1,16 @@
+term,df,chi_square,reported_p,endpoint,source_location,status
+Origin (O),1,1.323,0.25,sqrt_aboveground_pot_biomass,Table 1 p3679,reported_LR_test_not_signed_effect
+Commonness (C),1,5.155,0.023,sqrt_aboveground_pot_biomass,Table 1 p3679,reported_LR_test_not_signed_effect
+ALAN (L),1,0.191,0.662,sqrt_aboveground_pot_biomass,Table 1 p3679,reported_LR_test_not_signed_effect
+Insect (I),1,1.207,0.272,sqrt_aboveground_pot_biomass,Table 1 p3679,reported_LR_test_not_signed_effect
+O × C,1,1.215,0.271,sqrt_aboveground_pot_biomass,Table 1 p3679,reported_LR_test_not_signed_effect
+O × L,1,3.095,0.079,sqrt_aboveground_pot_biomass,Table 1 p3679,reported_LR_test_not_signed_effect
+O × I,1,0.21,0.647,sqrt_aboveground_pot_biomass,Table 1 p3679,reported_LR_test_not_signed_effect
+C × L,1,6.779,0.009,sqrt_aboveground_pot_biomass,Table 1 p3679,reported_LR_test_not_signed_effect
+C × I,1,0.297,0.586,sqrt_aboveground_pot_biomass,Table 1 p3679,reported_LR_test_not_signed_effect
+L × I,1,0.009,0.927,sqrt_aboveground_pot_biomass,Table 1 p3679,reported_LR_test_not_signed_effect
+C × L × I,1,0.054,0.817,sqrt_aboveground_pot_biomass,Table 1 p3679,reported_LR_test_not_signed_effect
+O × L × I,1,0.428,0.513,sqrt_aboveground_pot_biomass,Table 1 p3679,reported_LR_test_not_signed_effect
+O × C × I,1,0.609,0.435,sqrt_aboveground_pot_biomass,Table 1 p3679,reported_LR_test_not_signed_effect
+O × C × L,1,0.811,0.368,sqrt_aboveground_pot_biomass,Table 1 p3679,reported_LR_test_not_signed_effect
+O × C × L × I,1,0.352,0.553,sqrt_aboveground_pot_biomass,Table 1 p3679,reported_LR_test_not_signed_effect

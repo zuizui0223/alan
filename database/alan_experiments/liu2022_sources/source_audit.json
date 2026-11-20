@@ -1,0 +1,14 @@
+{
+  "doi": "10.1111/gcb.16126",
+  "data_doi": "10.5061/dryad.547d7wmb0",
+  "primary_sha256": "c0744d75f0341dfc23610a9a596b934ecafc80babd2e0d38aded3f8a6c24caa8",
+  "text_sha256": "238f3fd98cb8387b5d7cdaaef9c23c077434a0eed9056bc443dddca522da6471",
+  "independent_cages": 20,
+  "cages_per_factorial_cell": 5,
+  "reported_tests": 15,
+  "effects_added": 0,
+  "raw_download_status": "Dryad files 1343897 and 1343899 returned HTTP401 on 2026-11-20",
+  "code_archive": "Zenodo6007775 contains analysis Rmd, not raw CSV",
+  "coordinates": "Printed sexagesimal minutes/seconds invalid; not geocoded",
+  "pot_count": "Methods total660 conflicts with 13x35+7x34=693; unresolved"
+}
