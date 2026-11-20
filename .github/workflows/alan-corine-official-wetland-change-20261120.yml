@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install pinned numerical/geospatial libraries
-        run: python -m pip install numpy==2.1.3 pandas==2.2.3 requests==2.32.5 shapely==2.0.7 pyproj==3.7.2
+        run: python -m pip install numpy==2.1.3 pandas==2.2.3 requests==2.32.5 shapely==2.0.7 pyproj==3.7.2 scipy==1.15.2
       - name: Test wetland change calculations and actual source ID
         run: python -m unittest discover -s tests -p test_alan_corine_official_wetland_change_20261120.py -v
       - name: Test fixed-pair coordinate source completeness
