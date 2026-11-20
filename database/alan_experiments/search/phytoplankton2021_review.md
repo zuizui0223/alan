@@ -1,0 +1,7 @@
+# Phytoplankton2021: light-box replication
+
+[Primary Methods/Results](https://pmc.ncbi.nlm.nih.gov/articles/PMC8220282/) read on2026-11-20. Two concurrent laboratory culture experiments compared dark nights with green/red/white ALAN, with five flasks per condition. Each light treatment occupied one light-proof box; within-box flask rotation does not replicate lighting. A pilot reallocated colours to boxes but used another irradiance standard; it cannot silently supply independent replicates for the main experiment.
+
+Night irradiance was standardized at0.023 W/m², giving different lux by spectrum. Single-species endpoints were measured on day18; natural-assemblage endpoints on day12. Responses differed by spectrum and endpoint: community cell counts increased whereas normalized richness decreased; white-light single-species responses were not distinguishable from dark controls. Community composition does not directly measure competition or trophic rates.
+
+Hold quantitative meta-analysis for indoor scope and independent lighting replication. Forty flasks are not40 independent lighting installations. The printed source longitude is malformed; do not silently correct it for environmental extraction, and collection location is not necessarily experimental location. [Original data locator](https://doi.org/10.5061/dryad.vdncjsxtn) is recorded; raw numerical extraction has not been performed.

@@ -1,0 +1,12 @@
+[
+  {
+    "url": "https://datadryad.org/api/v2/files/54082/download",
+    "status": 401,
+    "bytes": 56
+  },
+  {
+    "url": "https://datadryad.org/downloads/file_stream/54082",
+    "status": 403,
+    "bytes": 118
+  }
+]
