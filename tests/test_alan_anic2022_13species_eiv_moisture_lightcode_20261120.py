@@ -13,20 +13,20 @@ class MOISTGates(unittest.TestCase):
     def test_sparse_wet_species_stop_even_if_rho_seems_strong(self):
         x=[species(i,4.+i/10) for i in range(10)]
         x += [species(10,8.),species(11,8.5),species(12,9.)]
-        y=phenotype_modulation(x)
+        y=phenotype_modulation(x,reps=199)
         self.assertEqual(y["status"],"SOURCE_MOISTURE_MODERATOR_COMMON_SUPPORT_STOP")
         self.assertIsNone(y["multiple_contrast_confirmatory_inference"])
 
     def test_unknown_moisture_never_called_dry(self):
         x=[species(i,float(5+i/2)) for i in range(10)]
         x+=[species(10,None),species(11,None),species(12,None)]
-        y=phenotype_modulation(x)
+        y=phenotype_modulation(x,reps=199)
         self.assertEqual(y["matched_original_plants"],10)
         self.assertNotEqual(y.get("matched_original_plants"),13)
 
     def test_three_source_light_codes_are_not_relabelled_light_intensity(self):
         x=[species(i,2.5+i*.7) for i in range(13)]
-        y=phenotype_modulation(x)
+        y=phenotype_modulation(x,reps=199)
         self.assertIn("descriptive_by_original_light_code",y)
         self.assertTrue(all(k in y["descriptive_by_original_light_code"]
                             for k in ("L2/L1","L3/L1","L3/L2")))
