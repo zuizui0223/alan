@@ -23,6 +23,18 @@ class GiaviOriginalModel(unittest.TestCase):
         self.assertEqual(e["source_true_site_pairs"],3)
         self.assertAlmostEqual(e["beta_F_per_ordinal_point"],-.25,places=8)
         self.assertAlmostEqual(e["beta_delta_log1p_flower"],.7,places=8)
+    def test_floral_resource_FWL_partition_is_exact_not_causal(self):
+        df=fixture()
+        unadj=estimate(df,"F_PLANTATT","visits",False)
+        adjusted=estimate(df,"F_PLANTATT","visits",True)
+        floral=estimate(df,"F_PLANTATT","flower",False)
+        self.assertIsNotNone(floral)
+        self.assertAlmostEqual(
+            unadj["beta_F_per_ordinal_point"]-
+            adjusted["beta_F_per_ordinal_point"],
+            adjusted["beta_delta_log1p_flower"]*
+            floral["beta_F_per_ordinal_point"],places=9)
+
     def test_one_real_meadow_flip_for_all_plant_repeats(self):
         df=fixture()
         e=site_signflip(df,"F_Doring","visits",True)
