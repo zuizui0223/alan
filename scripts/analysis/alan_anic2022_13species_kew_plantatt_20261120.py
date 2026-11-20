@@ -54,7 +54,7 @@ def pull_kew_binary():
     return raw
 
 def trait_lookup(raw,min_rows=3000):
-    reader=csv.DictReader(io.StringIO(raw.decode("utf-8-sig")))
+    reader=csv.DictReader(io.StringIO(raw.decode("latin1")))
     require({"taxon_name_binom","F_PLANTATT","taxonomic_status",
              "aggregate","F_Doring"}.issubset(reader.fieldnames or []),
             "Kew raw plant naming/F columns changed")
