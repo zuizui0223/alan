@@ -1,0 +1,26 @@
+[
+  {
+    "file": "DISCONNECTED_alldata.xlsx",
+    "source": "https://datadryad.org/api/v2/files/4397522/download",
+    "expected_bytes": 94696,
+    "expected_sha256": "496dcfa07436619084dc677317525dc674775e9965a0fdfb482cfa1cb4d8977f",
+    "downloaded": false,
+    "access_status": "API401; public4397522_403"
+  },
+  {
+    "file": "README.md",
+    "source": "https://datadryad.org/api/v2/files/4397523/download",
+    "expected_bytes": 5348,
+    "expected_sha256": "d80b4fa4a3171205f7faf06112cb16ca870f751897c0697516db9a0968eb98c8",
+    "downloaded": false,
+    "access_status": "API401"
+  },
+  {
+    "file": "Disc_macroR1.R",
+    "source": "https://raw.githubusercontent.com/GSBurg/Disconnected/d5480b9d5d626291bc3975c70d066377aaf5b684/Disc_macroR1.R",
+    "expected_bytes": 61304,
+    "expected_sha256": "ba09a62145fce103acf74cc4b7893970fd03ae51458fce9946fc6f9fb63b9690",
+    "downloaded": true,
+    "access_status": "200; pinned commit verified"
+  }
+]

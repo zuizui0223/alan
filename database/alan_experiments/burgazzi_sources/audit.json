@@ -1,0 +1,19 @@
+{
+  "study_id": "Burgazzi2026",
+  "doi": "10.1002/ecog.07758",
+  "primary_methods_results_read": true,
+  "independent_flumes": 18,
+  "header_blocks": 6,
+  "treatment_start": "2021-08-01",
+  "benthos_final_day": 22,
+  "drift_times": 4,
+  "downstream_drift_is_derived_sum": true,
+  "raw_workbook_retrieved": false,
+  "finite_effects_added": 0,
+  "potential_programme_overlap_doi": "10.1016/j.scitotenv.2023.168836",
+  "overlap_resolved": false,
+  "predation_measured": false,
+  "emergence_measured": false,
+  "pollination_measured": false,
+  "main_catalogue_changed": false
+}
