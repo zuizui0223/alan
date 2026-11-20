@@ -9,3 +9,5 @@ Five underpasses followed the same schedule: dark June2018–May2019, lit June20
 The binary response is confirmed crossing among detections. Probable crossings, turn-backs and unknown behaviour are coded zero, so this is not pure refusal probability. Individuals are not uniquely marked, and group sightings can be collapsed. Pooled three-year totals do not supply treatment-specific effects.
 
 Reported reductions depend on taxon and season; no pooled universal avoidance conclusion. The study measures movement, not prey capture or pollination. Watercourses at two sites do not establish a wet/dry treatment interaction. Retain as a field movement study with temporal-confounding limitations, pending suitable extraction; do not add it to predation pools. Raw data are available on request according to the publisher, not recovered here. No author contact made.
+
+Extraction flag: section2.3 describes speed as time/distance, whereas section2.4 uses m/s. Verify raw calculation before extracting speed effects; do not silently correct the text. Independent agent corroborated the design and denominator limits.
