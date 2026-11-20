@@ -1,0 +1,13 @@
+species,endpoint,term,reported_code,reported_threshold,source_location,status
+E. japonicus,ΦPSII,ALAN_x_drought,*,p<0.05,Table1,physiology_outside_core_meta_scope
+E. japonicus,ETR,ALAN_x_drought,*,p<0.05,Table1,physiology_outside_core_meta_scope
+E. japonicus,qp,ALAN_x_drought,ns,not_significant_threshold_not_exact_p,Table1,physiology_outside_core_meta_scope
+E. japonicus,Pn,ALAN_x_drought,*,p<0.05,Table1,physiology_outside_core_meta_scope
+E. japonicus,Gs,ALAN_x_drought,ns,not_significant_threshold_not_exact_p,Table1,physiology_outside_core_meta_scope
+E. japonicus,Ls,ALAN_x_drought,ns,not_significant_threshold_not_exact_p,Table1,physiology_outside_core_meta_scope
+R. hybrida,ΦPSII,ALAN_x_drought,ns,not_significant_threshold_not_exact_p,Table1,physiology_outside_core_meta_scope
+R. hybrida,ETR,ALAN_x_drought,ns,not_significant_threshold_not_exact_p,Table1,physiology_outside_core_meta_scope
+R. hybrida,qp,ALAN_x_drought,ns,not_significant_threshold_not_exact_p,Table1,physiology_outside_core_meta_scope
+R. hybrida,Pn,ALAN_x_drought,ns,not_significant_threshold_not_exact_p,Table1,physiology_outside_core_meta_scope
+R. hybrida,Gs,ALAN_x_drought,ns,not_significant_threshold_not_exact_p,Table1,physiology_outside_core_meta_scope
+R. hybrida,Ls,ALAN_x_drought,ns,not_significant_threshold_not_exact_p,Table1,physiology_outside_core_meta_scope

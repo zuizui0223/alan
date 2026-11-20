@@ -1,0 +1,10 @@
+{
+  "doi": "10.3389/fpls.2023.1263795",
+  "source_sha256": "104ce5aa7ca79ce09243b16f5ad1ebbc2f7670465d1bc8bec180b8b25eb25f11",
+  "reported_interaction_tests": 12,
+  "reported_percentages": 6,
+  "independent_lit_plots": 3,
+  "independent_dark_plots": 3,
+  "meta_effects_added": 0,
+  "scope": "physiology_only_separate_from_core_growth_reproduction_meta"
+}
