@@ -1,0 +1,21 @@
+{
+  "data_doi": "10.16904/envidat.628",
+  "sha256": "b7c0c7a81315db06951cabcfcb070f926236a42d1f05c0b93b65333cad88e78d",
+  "chemistry_rows": 56,
+  "herbivory_rows": 855,
+  "herbivory_tree_ids": 57,
+  "target_tree_ids": 56,
+  "target_leaf_rows": 840,
+  "extra_tree": "Alpthal63",
+  "extra_treatment": "2200_100",
+  "extra_leaf_rows": 15,
+  "target_installation_ids": 8,
+  "sites": 2,
+  "effects_added": 0,
+  "caveats": [
+    "Dose treatment labels are instrument settings, not measured lux.",
+    "Trees and leaves share installation; do not use n56 or n840 for lighting replication.",
+    "Damage probability and severity conditional on damage are separate endpoints.",
+    "Extra spectral treatment retained separately rather than silently discarded."
+  ]
+}

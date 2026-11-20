@@ -1,0 +1,10 @@
+Site,Site_ID,Treatment (color_intensity),stated_experiment_treatment,trees,leaves,damaged_leaves
+Alpthal,A02,2200_100,False,1,15,3
+Alpthal,A05,4000_50,True,7,105,37
+Alpthal,A08,control,True,7,105,44
+Alpthal,A13,4000_100,True,7,105,30
+Alpthal,A15,4000_30,True,7,105,29
+Birmensdorf,BD02,4000_100,True,7,105,21
+Birmensdorf,BD06,control,True,7,105,39
+Birmensdorf,BD10,4000_50,True,7,105,41
+Birmensdorf,BD15,4000_30,True,7,105,43
