@@ -1,0 +1,11 @@
+programme_id,catalogue_rows,coordinate_records,records_with_numeric_coordinates,has_site_coordinate,site_ids,coordinate_role,note
+Guo2024_HongKong,3,4,0,False,,,Site-coordinate presence is not plot geolocation or ready moderator data
+Hey2017_Blandy,4,1,0,False,,,Site-coordinate presence is not plot geolocation or ready moderator data
+KnopGiavi_overlap_unresolved,4,12,12,True,Giavi_pair1_dark;Giavi_pair2_dark;Giavi_pair3_dark;Giavi_pair4_dark;Giavi_pair5_dark;Giavi_pair6_dark;Giavi_pair1_illuminated;Giavi_pair2_illuminated;Giavi_pair3_illuminated;Giavi_pair4_illuminated;Giavi_pair5_illuminated;Giavi_pair6_illuminated,site,Site-coordinate presence is not plot geolocation or ready moderator data
+Lizard2012_2015_30plots,28,1,1,True,Lizard_NNR_grassland,site,Site-coordinate presence is not plot geolocation or ready moderator data
+Lu2024_Gannan_companion_overlap_unresolved,7,1,1,True,Gansu_Gannan_station,site,Site-coordinate presence is not plot geolocation or ready moderator data
+Parkinson2016,6,1,1,True,Haven_Hill_Lake_littoral,site,Site-coordinate presence is not plot geolocation or ready moderator data
+Penryn2012_2016,10,1,1,True,Penryn_campus,site,Site-coordinate presence is not plot geolocation or ready moderator data
+Sanders2016_field48,14,0,0,False,,,Site-coordinate presence is not plot geolocation or ready moderator data
+SevenPonds2022,28,1,1,True,Waterfowl_Pond_Seven_Ponds,site,Site-coordinate presence is not plot geolocation or ready moderator data
+Xue2026_monoculture,4,1,1,True,Dongting_Lake_Wetland_Station,site,Site-coordinate presence is not plot geolocation or ready moderator data
