@@ -1,0 +1,16 @@
+response,family,term,estimate,reported_plus_minus,reported_p,source,status
+log(Abundance),Gaussian,Period (Night),-0.99,0.38,0.01*,Supplement Table S1,author_model_coefficient_coding_and_joint_covariance_unresolved
+log(Abundance),Gaussian,Group (ALAN),0.17,0.49,0.74,Supplement Table S1,author_model_coefficient_coding_and_joint_covariance_unresolved
+log(Abundance),Gaussian,Period x Group,0.19,0.53,0.73,Supplement Table S1,author_model_coefficient_coding_and_joint_covariance_unresolved
+log(Species.Richness),Gaussian,Period (Night),-0.77,0.13,<0.001***,Supplement Table S1,author_model_coefficient_coding_and_joint_covariance_unresolved
+log(Species.Richness),Gaussian,Group (ALAN),0.06,0.16,0.69,Supplement Table S1,author_model_coefficient_coding_and_joint_covariance_unresolved
+log(Species.Richness),Gaussian,Period x Group,0.25,0.18,0.18,Supplement Table S1,author_model_coefficient_coding_and_joint_covariance_unresolved
+log(Species.Incidences),Gaussian,Period (Night),-1.06,0.15,<0.001***,Supplement Table S1,author_model_coefficient_coding_and_joint_covariance_unresolved
+log(Species.Incidences),Gaussian,Group (ALAN),0.05,0.15,0.71,Supplement Table S1,author_model_coefficient_coding_and_joint_covariance_unresolved
+log(Species.Incidences),Gaussian,Period x Group,0.26,0.21,0.22,Supplement Table S1,author_model_coefficient_coding_and_joint_covariance_unresolved
+Proportion.Protein.Removed,"Beta, with logit link",Period (Night),-1.86,0.29,<0.001***,Supplement Table S1,author_model_coefficient_coding_and_joint_covariance_unresolved
+Proportion.Protein.Removed,"Beta, with logit link",Group (ALAN),0.34,0.44,0.45,Supplement Table S1,author_model_coefficient_coding_and_joint_covariance_unresolved
+Proportion.Protein.Removed,"Beta, with logit link",Period x Group,-0.07,0.38,0.85,Supplement Table S1,author_model_coefficient_coding_and_joint_covariance_unresolved
+Recruitment.Rate,Gaussian,Period (Night),0.3,0.27,0.26,Supplement Table S1,author_model_coefficient_coding_and_joint_covariance_unresolved
+Recruitment.Rate,Gaussian,Group (ALAN),0.15,0.27,0.58,Supplement Table S1,author_model_coefficient_coding_and_joint_covariance_unresolved
+Recruitment.Rate,Gaussian,Period x Group,-0.1,0.38,0.79,Supplement Table S1,author_model_coefficient_coding_and_joint_covariance_unresolved

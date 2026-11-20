@@ -1,0 +1,18 @@
+{
+  "doi": "10.1016/j.biocon.2025.111439",
+  "reported_coefficient_rows": 15,
+  "meta_effects_added": 0,
+  "plots_total": 20,
+  "plots_per_arm": 10,
+  "design": "alternating spatial assignment",
+  "cautions": [
+    "Repeated dates, bait stations and images are not independent illumination units.",
+    "Table S2 dates and diel labels disagree with main Methods.",
+    "Table S1 reference-level wording does not resolve contrast coding.",
+    "Coefficient covariance unavailable; do not sum Group and interaction variances.",
+    "Log-transformed response coefficient is not automatically arithmetic-mean lnRR.",
+    "Protein-removal beta-logit coefficient is not lnRR.",
+    "Dead insect bait removal is scavenging/resource removal, not live moth attack.",
+    "Original plot-level data described as available on request; no author contact made."
+  ]
+}
