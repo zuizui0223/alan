@@ -81,7 +81,7 @@ def read_group(sheet, spec):
               f"source exposure group source vial sample changed {spec['species']} lux={al} {len(ids[al])} != {require}")
         check(len(group[al])>=require//2,"too few measured original vials")
         check(mean(group[al])>0,"nonpositive source response")
-    return group,{str(k):{"original_vials":len(ids[k]),"observed_feeding_vials":len(group[k]),
+    return group,{str(int(k)):{"original_vials":len(ids[k]),"observed_feeding_vials":len(group[k]),
                           "missing_feeding_vials":missing[k]}
                  for k in (0.,1.,10.)}
 
