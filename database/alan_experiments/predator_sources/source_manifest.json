@@ -1,0 +1,10 @@
+[
+  {
+    "study_id": "Brown2023",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9982679/fullTextXML",
+    "filename": "PMC9982679.xml",
+    "sha256": "f7ed71e328a1cabf31d184970dc46c81f1819ca6449b5c89996021cfdac668b1",
+    "type": "primary_fulltext_not_raw_data",
+    "retrieved": "2026-11-20"
+  }
+]

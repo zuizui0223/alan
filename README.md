@@ -146,3 +146,5 @@ After joining geographically overlapping source sites *without double counting*,
 ### 自前の照明実験DB（2026-11-20、予備抽出）
 
 湿潤種の偏りから導いた機構候補を独立実験で検証するための[プロトコル・データ・現在地](database/alan_experiments/README.md)。原著6報＋関連1報の予備確認、著者原データ1実験の4主要・2補足endpoint、依存性を保持した共分散を保存。系統的検索と湿潤性メタ回帰は未完了。既存メタ解析の抽出値は転用しない。
+
+[生物間相互作用の現時点の総括（2026-11-20）](docs/ALAN_BIOTIC_CURRENT_SYNTHESIS_20261120.md)：光による資源・訪花者の再配分の証拠、湿潤植物への未接続部分、クモの正負両作用、反例・無効果を整理。メタ解析全体の目標は継続中。
