@@ -38,3 +38,20 @@ Files retain site means, all component weights, 11-by-11 sampling covariance,
 [Guo raw source](https://doi.org/10.6084/m9.figshare.27273918.v1).
 [Independent calculation](../search/leaf_damage_meta_review.md).
 The main 108-effect catalogue is unchanged; this is an exploratory supplement.
+
+## Direct support for the macro cohort
+
+`plant_scope.csv` checks accepted-binomial exact matches against the fixed
+58-candidate/305-comparator labels (361 distinct accepted taxa). None of the
+four resolved experimental names matches that set. Aporosa remains unresolved
+and is not coded as absent. This does not rule out future synonym matching.
+European EIV MOIST is numeric for Fagus sylvatica (5.5) and Quercus robur (5.7),
+non-numeric `x` for Vaccinium myrtillus, and unmatched for Psychotria asiatica.
+These values are species indicators, not measured experimental-site moisture.
+Consequently, the pooled result cannot directly establish or reject a
+herbivory mechanism for the wet-decline candidates.
+
+Reproduce the support audit and forest plot with
+`python database/alan_experiments/leaf_damage_synthesis/check_scope_and_plot.py`.
+The plot is exported as PNG, SVG and PDF under
+`manuscript/biotic_synthesis/figures/leaf_damage_meta.*`.

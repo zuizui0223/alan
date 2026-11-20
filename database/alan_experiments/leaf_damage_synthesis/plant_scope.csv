@@ -1,0 +1,6 @@
+programme,source_taxon,species_resolved,eiv_exact_match,moist_as_reported,moist_numeric,candidate_label_matches,comparison_label_matches,match_status
+Cieraad2023,Quercus robur,True,True,5.7,5.7,0.0,0.0,exact_accepted_name_only
+Cieraad2023,Vaccinium myrtillus,True,True,x,,0.0,0.0,exact_accepted_name_only
+Ceppi2025,Fagus sylvatica,True,True,5.5,5.5,0.0,0.0,exact_accepted_name_only
+Guo2025,Psychotria asiatica,True,False,,,0.0,0.0,exact_accepted_name_only
+Guo2025,Aporosa,False,False,,,,,unresolved_not_absence

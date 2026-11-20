@@ -1,0 +1,17 @@
+{
+  "experimental_taxon_units": 5,
+  "resolved_binomials": 4,
+  "unresolved_genus_units": 1,
+  "resolved_binomials_matching_wet_cohort": 0,
+  "numeric_moisture_taxa": 2,
+  "candidate_labels": 58,
+  "comparison_labels": 305,
+  "accepted_cohort_taxa": 361,
+  "scope": "exact accepted-binomial matches; no synonym resolution or missing-to-absence inference",
+  "directly_tests_wet_decline_candidates": false,
+  "input_sha256": {
+    "C:\\Users\\zuizui\\Documents\\Codex\\2026-11-05\\new-chat\\work\\gbif_annual\\EIV_Europe.csv": "ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba",
+    "C:\\Users\\zuizui\\Documents\\Codex\\2026-11-05\\new-chat\\work\\alan\\results\\all_species_forest\\wet_reproduction\\species.csv": "9dc41780779cd2611c194f70690e4a9ee501da75dbb07c4804dc17234bed11f4"
+  },
+  "conclusion": "General experimental leaf-damage evidence; cannot reject or establish a wet-plant mechanism"
+}

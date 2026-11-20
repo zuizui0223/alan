@@ -36,3 +36,18 @@ Each programme averages a different menu of species, spectra, doses, durations a
 Only two forest/site blocks support each Dutch/Swiss covariance, with rank-one contrast covariance; the four HK sites likewise provide weak variance estimation. REML and modified KH account for neither full uncertainty in these estimated covariance matrices nor bias from retention of measurable leaves/plants. The broad interval covers substantial decreases and increases. Absence of other Dutch/Swiss reports prevents within-this-synthesis duplicate programmes, but does not finish the overall provenance adjudication or systematic search.
 
 Final-round HK selection is fixed rather than chosen for direction; its earlier-season signal differs. Keep Aporosa at genus level pending conflicting source-name resolution. Do not convert no records into zero damage, generalize to unmeasured species, or claim this establishes moisture modification, spider predation, chemical mediation, pollination decline or the cause of the macro-level wet-affinity association. Final systematic eligibility remains false; the result can enter a clearly labelled exploratory Results subsection without becoming the main wet-versus-dry test.
+
+## Independent wet-cohort and trait-scope check
+
+Re-read `EIV_Europe.csv` with Latin-1 encoding and species index, and `results/all_species_forest/wet_reproduction/species.csv`. The latter contains 363 labels: 58 candidate and 305 comparison rows, representing 361 distinct accepted names. Exact-binomial results:
+
+| Experimental species | EIV MOIST | Exact source-name matches | Exact accepted-name matches |
+|---|---|---:|---:|
+| Fagus sylvatica | 5.5 | 0 | 0 |
+| Quercus robur | 5.7 | 0 | 0 |
+| Vaccinium myrtillus | x: nonnumeric | 0 | 0 |
+| Psychotria asiatica | No exact EIV entry | 0 | 0 |
+
+Aporosa remains unresolved at species level because of the source-name conflict. Its trait/cohort match is **unassessed**, not a confirmed absence. No synonym resolution was performed. The Vaccinium `x` and missing Psychotria entry must not be encoded as dry habitat affinity or numeric zero. Fagus and Quercus numeric moisture affinities do not identify experimental soil moisture or proximity to water.
+
+The leaf-damage synthesis therefore contains no exact-name overlap among its four resolved species with this specific wet-candidate/comparison cohort, and it does not compare high versus low moisture affinity or wet versus dry experimental settings. Its imprecise pooled response is neither a direct test nor a causal refutation of the proposed mechanism behind the wet-plant macroassociation. It provides a separate assessment of recorded leaf damage under the selected illumination menus. The unresolved Aporosa identification and incomplete trait coverage further limit any transfer to that macrocohort.
