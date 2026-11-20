@@ -1,0 +1,19 @@
+[
+  {
+    "url": "https://datadryad.org/api/v2/files/54705/download",
+    "status": 401,
+    "bytes": 56,
+    "final_url": "https://datadryad.org/api/v2/files/54705/download"
+  },
+  {
+    "url": "https://datadryad.org/downloads/file_stream/54705",
+    "status": 403,
+    "bytes": 118,
+    "final_url": "https://datadryad.org/downloads/file_stream/54705"
+  },
+  {
+    "url": "https://besjournals.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2F1365-2664.13240&file=jpe13240-sup-0001-SupInfo.docx",
+    "status": 403,
+    "bytes": 5931
+  }
+]

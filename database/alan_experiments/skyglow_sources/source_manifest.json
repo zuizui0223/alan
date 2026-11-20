@@ -1,0 +1,14 @@
+[
+  {
+    "file": "df_move.csv",
+    "bytes": 4892223,
+    "checksum": "md5:c917b931fa41cb073c0b42e9972cceb8",
+    "url": "https://zenodo.org/api/records/8017438/files/df_move.csv/content"
+  },
+  {
+    "file": "df_bites.csv",
+    "bytes": 26597,
+    "checksum": "md5:68bba83bfdd412b52133c290fcf9794e",
+    "url": "https://zenodo.org/api/records/8017438/files/df_bites.csv/content"
+  }
+]

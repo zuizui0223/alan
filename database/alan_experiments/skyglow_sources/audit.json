@@ -1,0 +1,18 @@
+{
+  "raw_rows": 747,
+  "lighting_units": 12,
+  "dose_levels": 10,
+  "unit_intervals": 48,
+  "planned_dummy_exposures": 768,
+  "unrepresented_dummy_exposures": 21,
+  "missing_values_in_observed_rows": 0,
+  "duplicate_observation_keys": 0,
+  "checksum_agreement": true,
+  "effects_extracted": 0,
+  "cautions": [
+    "Missing exposures are not zero bites.",
+    "Repeated intervals and dummies are not independent lighting units.",
+    "Artificial prey attacks are not adult moth mortality.",
+    "Lighting timing, indoor scope and shared programme require adjudication."
+  ]
+}
