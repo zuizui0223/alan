@@ -7,6 +7,7 @@ on:
     paths:
       - scripts/analysis/alan_xue2026_original6zone_native_invader_divergence.py
       - scripts/acquisition/alan_xue2026_original_workbook_replay.py
+      - scripts/acquisition/alan_xue2026_original_community_fixture_source_gate.py
       - tests/test_alan_xue2026_original6zone_native_invader_divergence.py
       - .github/workflows/alan-xue2026-original6zone-native-invader.yml
   workflow_dispatch:
@@ -38,6 +39,9 @@ jobs:
       - name: Independently retry exact original ScienceDB XLSX source and replay all zone means
         run: |
           python -m scripts.acquisition.alan_xue2026_original_workbook_replay             --out /tmp/alan_xue2026_original_workbook_second_fetch_receipt.json
+      - name: Verify original ScienceDB mixed-community 57 pots and audit real lighting fixture IDs
+        run: |
+          python -m scripts.acquisition.alan_xue2026_original_community_fixture_source_gate             --out /tmp/alan_xue2026_original_community_57_fixture_receipt.json
       - name: Source-proof and physical-unit gate
         run: |
           python - <<'PY'
@@ -63,5 +67,6 @@ jobs:
           path: |
             /tmp/alan_xue2026_original_zone_invasive_native.json
             /tmp/alan_xue2026_original_workbook_second_fetch_receipt.json
+            /tmp/alan_xue2026_original_community_57_fixture_receipt.json
           if-no-files-found: error
           retention-days: 75
