@@ -1,0 +1,15 @@
+{
+  "source_sha256": "c9cc7ea119c6a99bcfee2b6956c76988c73cf776f20944f5570d00101c3e3abe",
+  "source_bytes": 198613,
+  "table_rows": {
+    "S2": 18,
+    "S3": 5,
+    "S4a": 12,
+    "S4b": 12
+  },
+  "landing_page": "https://academic.oup.com/jpe/advance-article/doi/10.1093/jpe/rtag160/8731923?searchresult=1",
+  "publisher_supplement_path": "https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/jpe/PAP/10.1093_jpe_rtag160/1/rtag160_supplementary_data.docx",
+  "acquisition": "Publisher-issued signed supplementary link returned200 on2026-11-21; unsigned path403. Main PDF not recovered. Web reader unsupported DOCX type; downloaded original signed link.",
+  "effect_catalogue_rows_added": 0,
+  "full_primary_article_read": false
+}

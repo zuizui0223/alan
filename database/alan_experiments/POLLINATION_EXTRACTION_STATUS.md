@@ -8,7 +8,7 @@ The screening sheet previously retained stale pre-extraction eligibility labels 
 | Lu2026 ECE |7|0|Daytime source-row means; total, five guilds and three-order sum overlap|
 | Knop2017 |0|2|Lighting-by-all-visitor-access interactions in fruit count/proportion; two dependent outcomes|
 | Macgregor2019 |0|0|Reported positive full-night effect on seed-setting success; numeric model coefficient/SE unavailable|
-| Lu2026 JPE |0|0|Abstract-level reproductive findings; full Methods/variance not verified|
+| Lu2026 JPE |0|12|Supplement S4b lighting contrasts with SE/df; access conditions separated; full Methods, independent n and scale remain unverified|
 | Giavi2020 |0|7|Three field outcomes; dependent rebasings; reproductive denominator and meadow/sector random-effect definitions unresolved|
 | Boom2020 |0|0|16 reported arm summaries; fruit set, seed infestation, conditional seed set and estimated output; site covariance missing|
 | Wilson2021 |0|7|Mixed capture, mature-fruit counts and conditional larvae; standardized coefficients with85/95%CI; experimental vs observational exposure separated|
@@ -28,6 +28,8 @@ Source links: [Giavi original data](https://doi.org/10.5281/zenodo.4540407), [Lu
 Independent review confirmed the outcome distinctions. The148 undamaged successful capsules are across all treatments, not the full-night comparison alone. Code lines49/197 set LitUnlit reference to Lit: a future Unlit coefficient must be sign-reversed for a light/dark direction. Binomial coefficients are log odds ratios, not lnRR. The primary code includes a run intercept but not a plot or reused-individual intercept in these main models; a usage-count covariate does not remove all repeated-individual dependence.
 
 Current boundary: no new pooled pollination estimate, no inferred zero effects for missing extraction, and no wet-versus-dry reproductive moderator estimate. Resolving numeric reproductive contrasts and their dependence is required before that synthesis.
+
+2026-11-21 update: publisher supplementary DOCX recovered through the landing page's signed link. S4b contains12 lighting contrasts, S4a12 omnibus tests, S218 dark-condition access comparisons and S35 visitation estimates. These47 reported rows are not47 independent effects. P. kansuensis seed set differs in the nocturnal-only contrast(Unlit−Lit0.1332,SE0.0429,P.0025), but not clearly in Open(0.0445,SE0.0319,P.166). Do not equate nocturnal-only loss with overall reproductive decline or infer daytime compensation from the nonsignificant Open contrast. Main Methods are still unavailable; no primary-fulltext count or pooled estimate was increased. [Supplement extraction and scale limitations](lu_jpe_sources/README.md).
 
 ## Additional repository check
 

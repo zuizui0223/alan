@@ -1,0 +1,6 @@
+Time,Order,Estimate,SE,df,t value,p value,source_table,doi,status
+Nocturnal,Total,-0.170,0.631,41.2,-0.269,0.789,S3,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+Nocturnal,Diptera,0.557,0.241,25.5,2.31,0.0292,S3,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+Nocturnal,Lepidoptera,-1.06,0.490,32.9,-2.15,0.0387,S3,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+Nocturnal,Coleoptera,0.427,0.235,25.7,1.82,0.0811,S3,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+Nocturnal,Others,-0.141,0.213,40.4,-0.661,0.512,S3,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified

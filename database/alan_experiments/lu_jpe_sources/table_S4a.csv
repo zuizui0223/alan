@@ -1,0 +1,13 @@
+Species,Response,Effect,F,P,source_table,doi,status
+P. kansuensis,Pollen number,Light,8.38,0.0046,S4a,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Pollination,110.01,<0.001,S4a,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Light × Pollination,4.83,0.0099,S4a,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,Seed set,Light,2.71,0.1031,S4a,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Pollination,176.33,<0.001,S4a,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Light × Pollination,6.11,0.0031,S4a,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+E. regelii,Pollen number,Light,0.15,0.7006,S4a,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Pollination,47.16,<0.001,S4a,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Light × Pollination,0.47,0.6270,S4a,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,Seed set,Light,0.016,0.8993,S4a,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Pollination,11.35,<0.001,S4a,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Light × Pollination,0.060,0.9414,S4a,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified

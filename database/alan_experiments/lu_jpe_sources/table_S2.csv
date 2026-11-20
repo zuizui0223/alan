@@ -1,0 +1,19 @@
+Species,Response,Contrast,Estimate,SE,df,t value,p value,source_table,doi,status
+P. kansuensis,Pollen number,Open - Diurnal,41.06,3.65,56.2,11.244,<0.0001,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Open - Nocturnal,50.30,3.66,56.0,13.728,<0.0001,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Diurnal - Nocturnal,9.24,2.87,53.7,3.215,0.0022,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,Seed set,Open - Diurnal,0.261,0.0375,58.5,6.957,<0.0001,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Open - Nocturnal,0.454,0.0342,56.8,13.277,<0.0001,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Open - Bagged,0.701,0.0342,57.3,20.516,<0.0001,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Diurnal - Nocturnal,0.193,0.0403,60.3,4.785,<0.0001,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Diurnal - Bagged,0.440,0.0400,59.3,10.994,<0.0001,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Nocturnal - Bagged,0.247,0.0370,59.4,6.680,<0.0001,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+E. regelii,Pollen number,Open - Diurnal,0.525,4.02,48,0.130,0.897,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Open - Nocturnal,20.442,4.02,48,5.081,<0.0001,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Diurnal - Nocturnal,19.917,4.02,48,4.950,<0.0001,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,Seed set,Open - Diurnal,0.0086,0.0310,51.1,0.278,0.782,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Open - Nocturnal,0.1017,0.0324,51.6,3.140,0.016,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Open - Bagged,0.0865,0.0305,50.8,2.837,0.016,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Diurnal - Nocturnal,0.0931,0.0337,51.8,2.757,0.016,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Diurnal - Bagged,0.0779,0.0319,50.4,2.442,0.027,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Nocturnal - Bagged,-0.0152,0.0333,52.0,-0.457,0.780,S2,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified

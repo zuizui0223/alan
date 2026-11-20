@@ -1,0 +1,13 @@
+Species,Response,Pollination treatment,Contrast,Estimate,SE,df,t value,p value,source_table,doi,status
+P. kansuensis,Pollen number,Open,Unlit - Lit,14.59,4.87,104,2.997,0.0034,S4b,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Diurnal,Unlit - Lit,-2.79,3.73,101,-0.747,0.457,S4b,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Nocturnal,Unlit - Lit,10.16,4.48,102,2.265,0.026,S4b,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,Seed set,Open,Unlit - Lit,0.0445,0.0319,92.8,1.397,0.166,S4b,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Diurnal,Unlit - Lit,-0.0686,0.0401,96.8,-1.713,0.090,S4b,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Nocturnal,Unlit - Lit,0.1332,0.0429,95.5,3.109,0.0025,S4b,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+E. regelii,Pollen number,Open,Unlit - Lit,0.303,3.62,100,0.084,0.934,S4b,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Diurnal,Unlit - Lit,-3.738,3.81,102,-0.981,0.329,S4b,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Nocturnal,Unlit - Lit,0.983,3.57,100,0.275,0.784,S4b,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,Seed set,Open,Unlit - Lit,-0.0094,0.0308,80.9,-0.305,0.761,S4b,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Diurnal,Unlit - Lit,0.0062,0.0333,81.5,0.186,0.853,S4b,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
+,,Nocturnal,Unlit - Lit,-0.0040,0.0340,80.9,-0.118,0.907,S4b,10.1093/jpe/rtag160,reported_only_main_methods_and_dependence_unverified
