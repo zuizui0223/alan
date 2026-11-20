@@ -1,0 +1,18 @@
+material,source_species,taxon_status,source_location
+Anthoxanthum,Anthoxanthum odoratum,species_as_reported,Primary Methods 2.1 dominant grasses
+Agrostis,Agrostis tenuis,species_as_reported,Primary Introduction and Methods 2.1; synonym not substituted
+Holcus,Holcus lanatus,species_as_reported,Primary Introduction and Methods 2.1
+Cirsium,Cirsium palustre,species_as_reported,Primary Methods 2.1 local forbs
+Dead,,non_species_endpoint,Workbook dead material
+Cynosurus,Cynosurus,genus_only_unresolved,Workbook abbreviation; no species resolution in inspected Methods
+Lotus,Lotus pedunculatus,species_as_reported,Primary Methods 2.1 local forbs
+Fissidens,Fissidens,genus_only_unresolved,Workbook abbreviation
+Lolium,Lolium,genus_only_unresolved,Workbook abbreviation
+Trifolium repens,Trifolium repens,species_as_reported,Workbook and Primary Methods 2.1
+Cerastium,Cerastium,genus_only_unresolved,Workbook abbreviation
+Ranunculus,Ranunculus acris,species_as_reported,Primary Methods 2.1 local forbs
+Leontodon,Leontodon hispidus,species_as_reported,Primary Methods 2.1 local forbs
+Rhytidiadelphus,Rhytidiadelphus,genus_only_unresolved,Workbook abbreviation
+Plantago,Plantago,genus_only_source_spelling_unresolved,Primary prints Plantago lanceolate; no silent correction
+total,,non_species_endpoint,Workbook total includes dead material
+live_total,,non_species_endpoint,Derived sum of living material columns

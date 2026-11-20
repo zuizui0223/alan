@@ -29,15 +29,25 @@ for endpoint,species,status in [('psychotria_herbivory','Psychotria asiatica','s
                                ('aporosa_herbivory','Aporosa','genus_only_conflicting_source_species')]:
     rows.append(dict(effect_id='Guo2025_'+endpoint,study_id='Guo2025',source_species=species,
                      taxon_status=status,source_table='hongkong_sources/final_effects_paired.csv'))
+crosswalk=pd.read_csv(ROOT/'grassland_sources/plant_taxon_crosswalk.csv').fillna('')
+grass=pd.read_csv(ROOT/'grassland_sources/all_final_contrasts.csv')
+assert crosswalk.material.is_unique and set(grass.material)==set(crosswalk.material)
+grass=grass.merge(crosswalk,on='material',validate='many_to_one')
+for r in grass[grass.taxon_status!='non_species_endpoint'].itertuples():
+    rows.append(dict(effect_id=r.effect_id,study_id=r.study_id,source_species=r.source_species,
+                     taxon_status=r.taxon_status,source_table='grassland_sources/all_final_contrasts.csv'))
 d=pd.DataFrame(rows)
 assert d.effect_id.is_unique
 d['EIV_MOIST']=d.source_species.map(moist)
+d['EIV_MOIST_raw']=d.source_species.map(eiv.MOIST)
+d['exact_taxon_in_EIV']=d.source_species.isin(eiv.index)
 d['join_method']=d.EIV_MOIST.notna().map({True:'exact_binomial',False:'no_value_no_imputation'})
-d.loc[d.taxon_status!='species_as_reported','join_method']='withheld_taxonomic_identity_conflict'
+d.loc[d.exact_taxon_in_EIV & d.EIV_MOIST.isna(),'join_method']='exact_taxon_non_numeric_indicator'
+d.loc[d.taxon_status!='species_as_reported','join_method']='withheld_'+d.loc[d.taxon_status!='species_as_reported','taxon_status']
 assert d.loc[d.taxon_status!='species_as_reported','EIV_MOIST'].isna().all()
 d['species_affinity_not_site_condition']=True
 d.to_csv(OUT/'plant_endpoint_moisture.csv',index=False)
-taxa=d[['source_species','taxon_status','EIV_MOIST','join_method']].drop_duplicates()
+taxa=d[['source_species','taxon_status','EIV_MOIST_raw','EIV_MOIST','exact_taxon_in_EIV','join_method']].drop_duplicates()
 taxa.to_csv(OUT/'plant_species_moisture.csv',index=False)
 catalogue=pd.read_csv(ROOT/'effect_catalogue.csv')
 support=d.merge(catalogue[['effect_id','programme_id','endpoint','lnRR','sampling_variance']],
@@ -45,6 +55,9 @@ support=d.merge(catalogue[['effect_id','programme_id','endpoint','lnRR','samplin
 support['finite_effect_with_moisture']=support[['EIV_MOIST','lnRR','sampling_variance']].notna().all(axis=1)
 support.to_csv(OUT/'plant_moisture_effect_support.csv',index=False)
 finite=support[support.finite_effect_with_moisture]
+by_programme=finite.groupby('programme_id').agg(effect_rows=('effect_id','size'),
+    plant_species=('source_species','nunique'),moist_min=('EIV_MOIST','min'),moist_max=('EIV_MOIST','max'))
+by_programme.to_csv(OUT/'plant_moisture_programme_support.csv')
 summary=dict(source_file='external_cache/gbif_annual/EIV_Europe.csv',
     sha256=hashlib.sha256(src.read_bytes()).hexdigest(),
     source_role='same author-distributed CSV snapshot as macro trait analysis; version identified by SHA256, not assumed latest Zenodo release',
@@ -56,6 +69,7 @@ summary=dict(source_file='external_cache/gbif_annual/EIV_Europe.csv',
     finite_moisture_effect_rows=len(finite),
     finite_moisture_species=finite.source_species.nunique(),
     finite_moisture_programmes=finite.programme_id.nunique(),
+    programmes_with_multiple_moisture_species=int(by_programme.plant_species.gt(1).sum()),
     excluded_from_this_join='community biomass and mixed-flora visits have no single plant species; animal habitat not inferred from plant EIV',
     not_done=['synonym matching','community weighted moisture','site water distance','moisture meta-regression'])
 (OUT/'plant_moisture_manifest.json').write_text(json.dumps(summary,indent=2)+'\n',encoding='utf-8')

@@ -1,9 +1,22 @@
-source_species,taxon_status,EIV_MOIST,join_method
-Asclepias syriaca,species_as_reported,5.1,exact_binomial
-Hydrilla verticillata,species_as_reported,12.0,exact_binomial
-Myriophyllum aquaticum,species_as_reported,,no_value_no_imputation
-Myriophyllum spicatum,species_as_reported,11.9,exact_binomial
-Vallisneria natans,species_as_reported,,no_value_no_imputation
-Lotus pedunculatus,species_as_reported,7.9,exact_binomial
-Psychotria asiatica,species_as_reported,,no_value_no_imputation
-Aporosa,genus_only_conflicting_source_species,,withheld_taxonomic_identity_conflict
+source_species,taxon_status,EIV_MOIST_raw,EIV_MOIST,exact_taxon_in_EIV,join_method
+Asclepias syriaca,species_as_reported,5.1,5.1,True,exact_binomial
+Hydrilla verticillata,species_as_reported,12.0,12.0,True,exact_binomial
+Myriophyllum aquaticum,species_as_reported,,,False,no_value_no_imputation
+Myriophyllum spicatum,species_as_reported,11.9,11.9,True,exact_binomial
+Vallisneria natans,species_as_reported,,,False,no_value_no_imputation
+Lotus pedunculatus,species_as_reported,7.9,7.9,True,exact_binomial
+Psychotria asiatica,species_as_reported,,,False,no_value_no_imputation
+Aporosa,genus_only_conflicting_source_species,,,False,withheld_genus_only_conflicting_source_species
+Anthoxanthum odoratum,species_as_reported,,,False,no_value_no_imputation
+Agrostis tenuis,species_as_reported,,,False,no_value_no_imputation
+Holcus lanatus,species_as_reported,x,,True,exact_taxon_non_numeric_indicator
+Cirsium palustre,species_as_reported,8.1,8.1,True,exact_binomial
+Cynosurus,genus_only_unresolved,,,False,withheld_genus_only_unresolved
+Fissidens,genus_only_unresolved,,,False,withheld_genus_only_unresolved
+Lolium,genus_only_unresolved,,,False,withheld_genus_only_unresolved
+Trifolium repens,species_as_reported,x,,True,exact_taxon_non_numeric_indicator
+Cerastium,genus_only_unresolved,,,False,withheld_genus_only_unresolved
+Ranunculus acris,species_as_reported,,,False,no_value_no_imputation
+Leontodon hispidus,species_as_reported,4.5,4.5,True,exact_binomial
+Rhytidiadelphus,genus_only_unresolved,,,False,withheld_genus_only_unresolved
+Plantago,genus_only_source_spelling_unresolved,,,False,withheld_genus_only_source_spelling_unresolved
