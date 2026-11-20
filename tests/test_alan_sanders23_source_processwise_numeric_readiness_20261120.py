@@ -106,7 +106,7 @@ class SandersOriginalStageProcessNumericReadinessTests(unittest.TestCase):
             self.assertTrue(sub["not_a_confirmed_independent_field_illumination_programme_count"])
             self.assertTrue(sub["not_an_original_verified_same_endpoint_meta_sample"])
         self.assertTrue(x["no_same_study_multiarm_shared_control_covariance_derived"])
-        self.assertTrue(x["original_raw_meta_effect_rows_or_Study_ID_exported"])
+        self.assertFalse(x["original_raw_meta_effect_rows_or_Study_ID_exported"])
 
 if __name__=="__main__":
     unittest.main()
