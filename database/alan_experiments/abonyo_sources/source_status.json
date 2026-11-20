@@ -1,0 +1,45 @@
+{
+  "dataset_doi": "10.5061/dryad.95x69p8r8",
+  "version": 265287,
+  "checked": "2026-11-20",
+  "biomass_download_http_status": 401,
+  "workbooks_downloaded": 0,
+  "files": [
+    {
+      "path": "Flower_number.xlsx",
+      "size": 17335,
+      "digest": "ca08e894b1087d221e133e7a5ac631b95667a2091ef5a47e877e8ab4b128613d",
+      "digestType": "sha-256"
+    },
+    {
+      "path": "Flowered_plants.xlsx",
+      "size": 16894,
+      "digest": "33a290a6d1f0a9458a007797c079ed2e5a614ccb036afd142eef0ca63edfa857",
+      "digestType": "sha-256"
+    },
+    {
+      "path": "Height.xlsx",
+      "size": 17753,
+      "digest": "627e01929f83022456fcc88dad27fb70f9a27e289ae73f72d9f047cd17aa9e8d",
+      "digestType": "sha-256"
+    },
+    {
+      "path": "README.md",
+      "size": 12622,
+      "digest": "9623af7533d14461c686666ac2042c83f6ae795a6b83397949db46a24caf500b",
+      "digestType": "sha-256"
+    },
+    {
+      "path": "Root-Shoot_ratio.xlsx",
+      "size": 17505,
+      "digest": "7da1236b9628c426934ff165d070916cad02c3f4ffbd3c766bb11f53f3fc85c4",
+      "digestType": "sha-256"
+    },
+    {
+      "path": "Total_biomass.xlsx",
+      "size": 19608,
+      "digest": "9a46943d223361fe44989ca33904f17130e7a1491a773dc10859dd06236db4e0",
+      "digestType": "sha-256"
+    }
+  ]
+}

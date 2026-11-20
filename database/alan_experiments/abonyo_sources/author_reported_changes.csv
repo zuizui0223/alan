@@ -1,0 +1,13 @@
+endpoint,plant_group,nutrients,competition,light_percent_change,source_location,standard_error,independent_n_for_contrast,catalogue_adopted
+total_dry_biomass,invasive_alien,high,absent,61.1,Results3_Fig1a,,,False
+total_dry_biomass,naturalized_noninvasive_alien,high,absent,131.4,Results3_Fig1a,,,False
+total_dry_biomass,native,high,absent,-34.0,Results3_Fig1a,,,False
+total_dry_biomass,invasive_alien,high,present,68.6,Results3_Fig1a,,,False
+total_dry_biomass,naturalized_noninvasive_alien,high,present,52.0,Results3_Fig1a_abstract_reports51.9,,,False
+total_dry_biomass,native,high,present,35.4,Results3_Fig1a,,,False
+flowering_fraction,invasive_alien,low,averaged,-32.7,Results3_Fig2a,,,False
+flowering_fraction,invasive_alien,high,averaged,-24.0,Results3_Fig2a,,,False
+flowering_fraction,naturalized_noninvasive_alien,low,averaged,-16.7,Results3_Fig2a,,,False
+flowering_fraction,naturalized_noninvasive_alien,high,averaged,22.4,Results3_Fig2a,,,False
+flowering_fraction,native,low,averaged,31.3,Results3_Fig2a,,,False
+flowering_fraction,native,high,averaged,5.7,Results3_Fig2a,,,False
