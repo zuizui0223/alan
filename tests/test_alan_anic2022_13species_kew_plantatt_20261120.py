@@ -11,7 +11,7 @@ class TestPLANTATT(unittest.TestCase):
   def test_read_original_F_not_plant_nitrogen(self):
     h="taxon_name_binom,F_PLANTATT,F_Doring,taxonomic_status,aggregate\n"
     rows="Lotus pedunculatus,8,8,Accepted,\nLotus corniculatus,4,4,Accepted,\n"
-    out,n=trait_lookup((h+rows)*1)
+    out,n=trait_lookup(h+rows,min_rows=2)
     self.assertEqual(out["Lotus pedunculatus"]["F_PLANTATT"],8)
     self.assertEqual(out["Lotus corniculatus"]["F_PLANTATT"],4)
     self.assertEqual(n,2)
