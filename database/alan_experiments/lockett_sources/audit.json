@@ -1,0 +1,25 @@
+{
+  "doi": "10.1016/j.envpol.2022.119803",
+  "data_doi": "10.17632/pfrrkgs878.1",
+  "source_files_verified": 4,
+  "harvest_trees": 23,
+  "final_harvest_plots": 23,
+  "initial_harvest_plots": 18,
+  "shared_initial_plot_groups": 5,
+  "conflicting_biomass_treatment_rows": 4,
+  "growth_and_pca_labels_agree": true,
+  "psyllid_rows": 182,
+  "psyllid_trees": 93,
+  "psyllid_current_light_missing": 53,
+  "psyllid_use4alan_yes": 117,
+  "main_catalogue_changed": false,
+  "effects_extracted": 0,
+  "decision": "hold_treatment_labels_and_crossed_exposure_units",
+  "constraints": [
+    "Labels preserved as reported, no majority-vote correction",
+    "One tree per harvest plot does not remove shared initial-plot exposure",
+    "Psyllid bags nested in trees and crossed plots are not independent light replicates",
+    "Missing current treatment or omitted reproductive trials are not zero responses",
+    "Lerp production is not pollination, predation, or plant reproductive output"
+  ]
+}

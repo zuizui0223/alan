@@ -1,0 +1,5 @@
+tree,plot,light_treatment,ALAN_treatment,total_dryweight,plot1,plot38,light_treatment1,light_treatment38,swaptype,treatment,biomass_growth_label_conflict,pca_light_label,biomass_pca_label_conflict,growth_pca_label_conflict,shared_origin_among_harvested
+91,5,Dark,No ALAN,274.1,16,5,light,light,light_light,ALAN,True,light,True,False,True
+14,7,Dark,No ALAN,232.1,3,7,light,light,light_light,ALAN,True,light,True,False,True
+7,6,Light,ALAN,202.71,2,6,dark,dark,dark_dark,No ALAN,True,dark,True,False,True
+60,8,Light,ALAN,280.06,10,8,dark,dark,dark_dark,No ALAN,True,dark,True,False,False

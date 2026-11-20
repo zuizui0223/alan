@@ -1,0 +1,24 @@
+tree,plot,light_treatment,ALAN_treatment,total_dryweight,plot1,plot38,light_treatment1,light_treatment38,swaptype,treatment,biomass_growth_label_conflict,pca_light_label,biomass_pca_label_conflict,growth_pca_label_conflict,shared_origin_among_harvested
+76,2,Dark,No ALAN,292.06,13,2,dark,dark,dark_dark,No ALAN,False,dark,False,False,True
+35,4,Dark,No ALAN,105.56,6,4,dark,dark,dark_dark,No ALAN,False,dark,False,False,False
+91,5,Dark,No ALAN,274.1,16,5,light,light,light_light,ALAN,True,light,True,False,True
+14,7,Dark,No ALAN,232.1,3,7,light,light,light_light,ALAN,True,light,True,False,True
+45,10,Dark,No ALAN,262.14,8,10,dark,dark,dark_dark,No ALAN,False,dark,False,False,False
+101,12,Dark,No ALAN,296.82,17,12,dark,dark,dark_dark,No ALAN,False,dark,False,False,False
+9,13,Dark,No ALAN,137.81,2,13,dark,dark,dark_dark,No ALAN,False,dark,False,False,True
+73,15,Dark,No ALAN,329.5,13,15,dark,dark,dark_dark,No ALAN,False,dark,False,False,True
+67,17,Dark,No ALAN,239.16,12,17,dark,dark,dark_dark,No ALAN,False,dark,False,False,False
+133,19,Dark,No ALAN,181.95,23,19,dark,dark,dark_dark,No ALAN,False,dark,False,False,False
+109,23,Dark,No ALAN,329.42,19,23,dark,dark,dark_dark,No ALAN,False,dark,False,False,False
+142,1,Light,ALAN,81.06,24,1,light,light,light_light,ALAN,False,light,False,False,False
+61,3,Light,ALAN,198.28,11,3,light,light,light_light,ALAN,False,light,False,False,False
+5,9,Light,ALAN,198.73,1,9,light,light,light_light,ALAN,False,light,False,False,True
+7,6,Light,ALAN,202.71,2,6,dark,dark,dark_dark,No ALAN,True,dark,True,False,True
+60,8,Light,ALAN,280.06,10,8,dark,dark,dark_dark,No ALAN,True,dark,True,False,False
+15,11,Light,ALAN,196.92,3,11,light,light,light_light,ALAN,False,light,False,False,True
+25,14,Light,ALAN,197.93,5,14,light,light,light_light,ALAN,False,light,False,False,False
+53,16,Light,ALAN,172.88,9,16,light,light,light_light,ALAN,False,light,False,False,False
+96,18,Light,ALAN,199.73,16,18,light,light,light_light,ALAN,False,light,False,False,True
+129,20,Light,ALAN,322.23,22,20,light,light,light_light,ALAN,False,light,False,False,False
+115,22,Light,ALAN,136.33,20,22,light,light,light_light,ALAN,False,light,False,False,False
+6,24,Light,ALAN,71.8,1,24,light,light,light_light,ALAN,False,light,False,False,True

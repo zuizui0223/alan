@@ -1,0 +1,5 @@
+ID,tree,bag,plot1,plot2,ALANprior,ALANtrmt,Use4ALAN,FAILED,MISTIMED
+14N,14,N,3,7.0,Light,Light,No,NO,YES
+14S,14,S,3,,Light,,,YES,NO
+60N,60,N,10,8.0,Dark,Dark,Yes,NO,NO
+60S,60,S,10,8.0,Dark,Dark,No,NO,YES
