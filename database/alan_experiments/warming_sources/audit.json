@@ -1,0 +1,41 @@
+{
+  "source_md5": "85935aca65b83672b6b48fd3266d2fed",
+  "dryad_digest_match": true,
+  "source_doi": "10.5061/dryad.h7k26",
+  "mirror": "https://zenodo.org/records/4962533",
+  "paper_doi": "10.1098/rspb.2017.1195",
+  "raw_rows": 48,
+  "unique_cages": 48,
+  "block_rule": "ceil(Row/2); neighbouring rows in Methods",
+  "anomalous_allocation_cells": [
+    {
+      "block": 4,
+      "Pred.": "CM",
+      "Warm": "Y",
+      "light": "Y",
+      "observed_n": 0
+    },
+    {
+      "block": 4,
+      "Pred.": "N",
+      "Warm": "Y",
+      "light": "Y",
+      "observed_n": 2
+    }
+  ],
+  "extracted_stratum": "Warm N only",
+  "unheated_rows": 24,
+  "n_blocks": 4,
+  "finite_light_effects": 3,
+  "dependent_predator_contrasts": 2,
+  "scalar_variance_check": true,
+  "contrast_influence_covariance_check": true,
+  "heated_stratum_held": true,
+  "main_catalogue": false,
+  "limitations": [
+    "Four blocks; delta-method t3 intervals are approximate.",
+    "Unheated stratum only; no warming interaction estimate.",
+    "Final abundance is not observed predation rate.",
+    "No correction of allocation labels; adjudication pending."
+  ]
+}
