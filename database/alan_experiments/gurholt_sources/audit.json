@@ -1,0 +1,15 @@
+{
+  "rows": 294,
+  "individual_labels": 96,
+  "cohort_individual_key_unique": true,
+  "cohort_cage_combinations": 30,
+  "reused_cage_labels": 8,
+  "treatment_conflicts": 1,
+  "rows_missing_all_six_selected_observations": 43,
+  "adult_mass_paired_rows": 121,
+  "adult_mass_scale_ratio_min": 999.9999999999999,
+  "adult_mass_scale_ratio_max": 1000.0000000000001,
+  "full_methods_read": false,
+  "missing_as_death": false,
+  "effects_extracted": 0
+}

@@ -1,0 +1,26 @@
+{
+  "retrieved": "2026-11-20",
+  "dataset_doi": "10.7298/PARD-TT61",
+  "files": [
+    {
+      "file": "Gurholt_ALAN_Life_History_README_2026.txt.Rmd",
+      "url": "https://ecommons.cornell.edu/server/api/core/bitstreams/957ea676-5fc4-4890-85f9-c2997b0cda96/content",
+      "bytes": 4718,
+      "md5": "9c1918eb9ae281f15e689c0c1316f7e0"
+    },
+    {
+      "file": "Gurholt_Ecology_Script.Rmd",
+      "url": "https://ecommons.cornell.edu/server/api/core/bitstreams/41f4b854-af6c-4524-8894-51d27866c55a/content",
+      "bytes": 47859,
+      "md5": "dbeca7604794b8c04e7ed7b0fcd756df"
+    },
+    {
+      "file": "Gurholt_Ecology_Raw_Data.csv",
+      "url": "https://ecommons.cornell.edu/server/api/core/bitstreams/872f922a-63af-4442-8175-b14edaa8a6ae/content",
+      "bytes": 47706,
+      "md5": "e666e41643f7357c22fbea8345d83574"
+    }
+  ],
+  "paper_doi": "10.1002/ecy.70382",
+  "paper_read": "abstract only; full Methods/Results pending"
+}
