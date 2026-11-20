@@ -1,0 +1,7 @@
+effect_id,endpoint,treatment,n_blocks,mean_lit,mean_dark,scale,estimate,sampling_variance,lower,upper,status
+Li2026_SN_L_Seeds,Seeds,L,3,272.6666666666667,39.5,lnRR,1.9319493760275612,0.7443465069575368,-1.780186570069812,5.644085322124934,descriptive_preprint_complete_species_subset_not_catalogue
+Li2026_SN_P_Seeds,Seeds,P,3,80.16666666666667,39.5,lnRR,0.7078071289706301,0.4706235588087575,-2.243899067979773,3.659513325921033,descriptive_preprint_complete_species_subset_not_catalogue
+Li2026_SN_L_Fruit,Fruit,L,3,4.333333333333333,0.5,lnRR,2.159484249353372,0.8939842209072979,-1.9087056949019696,6.227674193608713,descriptive_preprint_complete_species_subset_not_catalogue
+Li2026_SN_P_Fruit,Fruit,P,3,1.5,0.5,lnRR,1.0986122886681098,0.7777777777777777,-2.6959707448816257,4.893195322217845,descriptive_preprint_complete_species_subset_not_catalogue
+Li2026_SN_L_pollinated,pollinated,L,3,0.8333333333333334,0.3333333333333333,risk_difference,0.5,0.08333333333333334,-0.742068855859773,1.742068855859773,descriptive_preprint_complete_species_subset_not_catalogue
+Li2026_SN_P_pollinated,pollinated,P,3,0.8333333333333334,0.3333333333333333,risk_difference,0.5,0.08333333333333334,-0.742068855859773,1.742068855859773,descriptive_preprint_complete_species_subset_not_catalogue

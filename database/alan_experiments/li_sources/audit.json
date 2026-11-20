@@ -1,0 +1,29 @@
+{
+  "preprint_doi": "10.64898/2026.07.10.737511",
+  "source_blob": "b616aca5beeba1457549841477d61ca4f796a147",
+  "source_sha256": "7d0311a2507fafe8e3f469196ac2efb17abc30960084aed384557cbcf7e33162",
+  "source_rows": 79,
+  "paper_planned_plants": 90,
+  "rows_by_species": {
+    "ML": 44,
+    "SN": 18,
+    "ZC": 17
+  },
+  "missing_seed_outcomes": 1,
+  "duplicate_label_rows": 12,
+  "complete_species_codes": [
+    "SN"
+  ],
+  "effect_rows": 6,
+  "independent_blocks": 3,
+  "covariance_rank": 2,
+  "catalogue_included": false,
+  "holds": [
+    "Preprint; species codes matched by paper species initials.",
+    "ML and ZC row/label discrepancies unresolved; no relabelling or zero imputation.",
+    "SN complete cells do not resolve entire study audit; three blocks and approximate intervals.",
+    "Lighting arrangement also changes lamp count; no direct moth or day/night pollination measurement.",
+    "Published plant-level model uncertainty not substituted for block-level uncertainty.",
+    "Raw data not redistributed; public author README labels data for peer review only."
+  ]
+}
