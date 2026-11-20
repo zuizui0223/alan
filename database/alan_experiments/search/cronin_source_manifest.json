@@ -1,0 +1,19 @@
+{
+  "source_doi": "10.5463/thesis.758",
+  "related_article": "10.1093/jeb/voaf092",
+  "dryad": "10.5061/dryad.stqjq2cf5",
+  "local_sha256": {
+    "metadata.json": "750c3ee0b59e3b8b6d517dfae6225f889679e89f4724a433427d3823c7a5d04f",
+    "files.json": "0ced452f14e9c21f389a1ef12c40ee2f7e1b5877ffe3c5ff79acf9bff7cec433",
+    "thesis.pdf": "cb9c4dc6891e7e74a3e1e2ce0bd659c09605b1e6626eff791dcdd6799aee3cad",
+    "thesis.txt": "59235b5db599410027efcf5f7fcaf15db30027da2d60c2ef3e5585afe5f672f4"
+  },
+  "raw_download_status": {
+    "code.R": 401,
+    "data.csv": 401,
+    "README.md": 401
+  },
+  "raw_data_read": false,
+  "final_article_methods_results_read": false,
+  "thesis_chapter_methods_results_read": true
+}
