@@ -1,3 +1,4 @@
 record_id,resolved_doi,pmcid,basis,primary_url,review_date
 AGR:IND609539107,10.1111/gcb.71029,PMC13421007,"Exact article title, complete ordered author list, journal Global Change Biology volume32 issue8 and 2026 year agree between EuropePMC AGR core record and primary PMC article header.",https://pmc.ncbi.nlm.nih.gov/articles/PMC13421007/,2026-11-20
 AGR:IND609471227,10.1111/1365-2435.70335,,Exact title ordered10authors journalvolume40issue6 pages1740-1754 and2026 agree with primary publisher article; original cached AGR metadata used.,https://besjournals.onlinelibrary.wiley.com/doi/10.1111/1365-2435.70335,2026-11-20
+AGR:IND609403897,10.1016/j.biocon.2025.111650,,Exact title ordered3authors journal BiologicalConservation volume314 article111650 and2026 agree with cached AGR and primary institutional PDF.,https://ira.agroscope.ch/de-CH/Page/Einzelpublikation/Download?einzelpublikationId=68011,2026-11-20

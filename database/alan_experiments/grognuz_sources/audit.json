@@ -1,0 +1,18 @@
+{
+  "version_retrieved": 1,
+  "version_cited_by_final_article": 2,
+  "v2_landing_http_status": 200,
+  "v2_embedded_dataset_status": 404,
+  "germination_rows": 6336,
+  "species_codes": 11,
+  "sites": 16,
+  "days": 36,
+  "DOY_min": 132,
+  "DOY_max": 167,
+  "paper_sown_species": 22,
+  "paper_selected_species": 6,
+  "v1_codes_passing_stated_minimum_support": 9,
+  "same_site_labels_in_slug2025": 16,
+  "catalogue_effects_added": 0,
+  "hold": "Version1 to final-paper reconciliation; timing is not measured pollinator mismatch; potential same programme as slug experiment."
+}
