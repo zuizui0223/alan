@@ -1,3 +1,5 @@
+Current update: 139 retained reports have primary Methods/Results reviewed; 49 remain pending. Amphibian2018 final-paper review completed; two freshwater predator preprints remain access holds with probable overlap, not merged. Final eligibility and PRISMA remain unfinished.
+
 # 検索記録と本文確認の照合（2026-11-20）
 
 **最新更新（Abonyo/Oduor2024確認後）**：対象188報告＝本文確認138＋未確認50。AGR:IND608156393を巻号・ページ・著者で同定し、方法・結果を確認した。研究数517・出版系列516・検索レコード521は不変。下記の137／51は直前の履歴。

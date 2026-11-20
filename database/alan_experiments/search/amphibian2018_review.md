@@ -1,4 +1,6 @@
-# Amphibian2018: original data recovered; field phase reviewed
+# Amphibian2018: original data recovered; review history
+
+Current update: final-article indoor and outdoor Methods/Results have now been read; see [full scope audit](amphibian2018_full_scope_review.md). Earlier partial-review statements below are historical. Conditional raw summaries do not imply final catalogue adoption.
 
 [Primary paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC6053935/) field Methods/Results read through indexed primary text; indoor Methods review remains incomplete. Initially40 outdoor mesocosms formed ten lighting groups. One illuminated group was removed, leaving four lit/five natural-light groups, each with four lid×toad treatments. A lamp served a group, not a single mesocosm. Lids altered both colonization and received illuminance, so their interaction is not a pure colonization mechanism.
 
