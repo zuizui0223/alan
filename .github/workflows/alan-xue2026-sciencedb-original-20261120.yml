@@ -1,0 +1,46 @@
+name: ALAN Xue 2026 real live macrophyte ScienceDB source and unit audit
+on:
+  push:
+    branches: [analysis/alan-xue-live-macrophyte-source-20261120]
+    paths:
+      - "scripts/acquisition/alan_xue2026_original_sciencedb_source_gate.py"
+      - ".github/workflows/alan-xue2026-sciencedb-original-20261120.yml"
+      - "tests/test_alan_xue2026_sciencedb_source_gate.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-Xue-source-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test true source metadata gate and pseudo-replication stops
+        run: python -m unittest discover -s tests -p 'test_alan_xue2026_sciencedb_source_gate.py' -v
+      - name: Access original ScienceDB DOI 35715 API and inspect genuine file schema
+        run: |
+          python -m scripts.acquisition.alan_xue2026_original_sciencedb_source_gate \
+            --out /tmp/alan_xue2026_original_source_gate.json
+      - name: Do not promote a published 48-percent-versus-87-percent ratio as a new effect
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/alan_xue2026_original_source_gate.json'))
+          assert a['schema']=='alan_Xue2026_ScienceDB_35715_original_source_and_experimental_unit_gate_v1'
+          assert not a['source_species_level_light_by_herbivory_effect_fitted']
+          assert not a['wet_affinity_trait_moderator_fitted']
+          assert a['published_experiment_1_zone_count']==6
+          assert a['published_experiment_3_mesocosms']==60
+          assert a['source_original_data_not_fabricated']
+          print('XUE_REAL_ORIGINAL_SOURCE_STATUS',a['status'])
+          print('PUBLISHED_FILE_METADATA_COUNT',len(a['source_files']))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-xue2026-sciencedb-original-public-source-gate
+          path: /tmp/alan_xue2026_original_source_gate.json
+          retention-days: 45
+          if-no-files-found: error
