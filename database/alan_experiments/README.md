@@ -22,6 +22,10 @@
 
 `effect_catalogue_summary.json` の `pooled_estimates: 0` は共通台帳の生成処理が統合を行わないことを示す。上記の別処理による3統合が未実施という意味ではない。独立再抽出、最終採択、湿潤性調節変数、全体スキーマへの統合は未完了。
 
+108対比の原共分散表10件を `catalogue_covariance.csv` に正規化した。2,006行は対角と両方向の組を含む共分散要素であり、効果量件数ではない。Bennie2015とAnic2022の論文間共分散を保持し、Lu・香港の応答名行列は共通effect_idへ照合した。全108対比の対角分散、対称性、数値的な半正定値性を検査し、入力ハッシュとブロック別件数を `catalogue_covariance_audit.json` に保存する。
+
+異なる原表ブロック間の9,658組（順序付き）は未収録で、ゼロ共分散や独立性を意味しない。共有設備・地点の未解決な重複を、この整備によって解消したとは扱わない。最終採択・全DBの研究／実験対応・台帳外効果量の統合も引き続き未完了。再生成は `python database/alan_experiments/assemble_catalogue_covariance.py`。元の研究別共分散と効果量は変更しない。
+
 `effects.csv`と`experiments.csv`は初回Parkinson抽出の計算入力を保持する。新しい研究の原単位・対応共分散は各`*_sources/`内にあり、共通一覧は`build_effect_catalogue.py`で生成する。元の1研究用計算に対応デザインの効果をそのまま流し込まない。研究・実験・効果量の全体スキーマへの統合と環境変数付与は未完了である。
 
 Parkinson2020の6対比と36共分散は、既存抽出器を使わない[独立した計算再抽出](parkinson_independent/REVIEW.md)と一致した。これはAIによる計算検証で、人による二重抽出完了ではない。[原著の実験単位・解釈の確認](parkinson_design_review.md)も分離した。

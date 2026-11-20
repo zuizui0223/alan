@@ -1,0 +1,83 @@
+{
+  "effect_rows": 108,
+  "source_blocks": 10,
+  "covariance_entries": 2006,
+  "unrepresented_ordered_pairs": 9658,
+  "missing_cross_block_pairs": "unknown_not_zero; independence_not_adjudicated",
+  "blocks": [
+    {
+      "programme_id": "Parkinson2016",
+      "effects": 6,
+      "covariance_entries": 36,
+      "minimum_eigenvalue": 0.004016353322096778
+    },
+    {
+      "programme_id": "Penryn2012_2016",
+      "effects": 10,
+      "covariance_entries": 100,
+      "minimum_eigenvalue": 0.007963041406024475
+    },
+    {
+      "programme_id": "KnopGiavi_overlap_unresolved",
+      "effects": 4,
+      "covariance_entries": 16,
+      "minimum_eigenvalue": 1.1935039399833952e-06
+    },
+    {
+      "programme_id": "Hey2017_Blandy",
+      "effects": 4,
+      "covariance_entries": 16,
+      "minimum_eigenvalue": 0.00930398288664764
+    },
+    {
+      "programme_id": "Lu2024_Gannan_companion_overlap_unresolved",
+      "effects": 7,
+      "covariance_entries": 49,
+      "minimum_eigenvalue": -1.0166446539981045e-16
+    },
+    {
+      "programme_id": "Guo2024_HongKong",
+      "effects": 3,
+      "covariance_entries": 9,
+      "minimum_eigenvalue": 0.034508371425677045
+    },
+    {
+      "programme_id": "Xue2026_monoculture",
+      "effects": 4,
+      "covariance_entries": 16,
+      "minimum_eigenvalue": 3.2872187840079003e-07
+    },
+    {
+      "programme_id": "SevenPonds2022",
+      "effects": 28,
+      "covariance_entries": 784,
+      "minimum_eigenvalue": -6.796234140743776e-16
+    },
+    {
+      "programme_id": "Sanders2016_field48",
+      "effects": 14,
+      "covariance_entries": 196,
+      "minimum_eigenvalue": -1.7453351633389241e-15
+    },
+    {
+      "programme_id": "Lizard2012_2015_30plots",
+      "effects": 28,
+      "covariance_entries": 784,
+      "minimum_eigenvalue": -4.780037614855287e-17
+    }
+  ],
+  "input_sha256": {
+    "effect_covariance.csv": "ccda4718e7a8a42462fe4ec68e5e25a4f78dff6741b058a43cf48d52a0df1589",
+    "bennie_sources/programme_covariance_including_anic2022.csv": "94c3571d96008edee15dd1f60d718a58c2b49fcc555f12b7c6c0f2f6d84f8614",
+    "giavi_sources/giavi2021_covariance.csv": "a7644c692dda6f99a94dcbca5539992341478d50e1ce658d4f7227af382a8df9",
+    "hey_sources/hey2020_biomass_covariance.csv": "ec29fd95a38d57364aaa3563dc52e447b998d09feec57f08068b7458109299cf",
+    "lu_sources/daytime_effect_covariance.csv": "6cd05b2ba5873486388cda2087afe3283beb8e3de084a60782a94d9df5a29515",
+    "hongkong_sources/final_effect_covariance.csv": "7618794623d689f6fd4f79d954ce342dd5556f26042d493d4449013353a007f3",
+    "xue_sources/monoculture_covariance.csv": "0bba4e33f12f81b1d6e4ebb615a72537a97e99eb3c30fd4a2347161bde2e8a2c",
+    "parkinson2023_sources/covariance.csv": "3582839da79022ab3c7927c8f22c6796684af13de0bc5ab844bcd9583afda556",
+    "sanders_sources/final_covariance.csv": "9c17ebc766c8b88e4604d54d2b95799aed6e68f178803e07f5743853eb2ee31c",
+    "grassland_sources/final_covariance.csv": "14b0099369a490da24bacf70b28d2476921ec4d3ebbd893240e3b1b5d1a12d8c",
+    "effect_catalogue.csv": "578cdcf302381ec5576c44a8c794962e02a27d8ad240f791ccdbd86f87a233e5"
+  },
+  "limitation": "Source design assumptions retained. Numerical PSD does not validate sampling independence. No pooled estimate or eligibility decision added."
+}
