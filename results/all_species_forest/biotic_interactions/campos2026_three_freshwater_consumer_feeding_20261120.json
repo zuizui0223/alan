@@ -1,0 +1,289 @@
+{
+  "schema": "alan_Campos2026_3taxa_original_vial_effects_20261120_verified",
+  "source_DOI": "10.5281/zenodo.19022243",
+  "article_DOI": "10.3389/fevo.2026.1830790",
+  "source_XLSX_sha256": "b5c36d9b4c184a3f563388d56a9072fcfe9fa8c988600e9979054402083a7d6d",
+  "verified_original_CI": "https://github.com/zuizui0223/alan/actions/runs/44660510047",
+  "source_experiment_studies": 1,
+  "measured_lux": [
+    0,
+    1,
+    10
+  ],
+  "response_original_conditioned_dead_alder_leaf_consumption": true,
+  "plant_survival_or_reproduction_measured": false,
+  "source_species_vial_effects": {
+    "Chironomus riparius": {
+      "animals_per_vial": 10,
+      "duration_days": 14,
+      "log_ratio_to_zero_by_lux": {
+        "1": -0.6889502734702359,
+        "10": -0.8588910065235035
+      },
+      "mean_feed_by_lux": {
+        "0": 0.114230852,
+        "1": 0.05735563785714286,
+        "10": 0.04839180164285715
+      },
+      "original_response_unit": "mg conditioned alder leaf consumed / number of surviving organisms / day",
+      "ratio_to_zero_by_lux": {
+        "1": 0.502102863218974,
+        "10": 0.42363162661920045
+      },
+      "source_bootstrap_reps": 4999,
+      "source_sheet": "feeding rates C. riparius",
+      "species": "Chironomus riparius",
+      "vial_bootstrap_95pct_log_ratio": {
+        "1": [
+          -1.0263566070772137,
+          -0.3961989977907773
+        ],
+        "10": [
+          -1.2360977055963296,
+          -0.5257384084596567
+        ]
+      },
+      "vial_bootstrap_95pct_ratio": {
+        "1": [
+          0.3583100495938685,
+          0.6728727824164059
+        ],
+        "10": [
+          0.290515686579272,
+          0.5911187161136334
+        ]
+      },
+      "vial_cohort": {
+        "0": {
+          "missing_feeding_vials": 0,
+          "observed_feeding_vials": 15,
+          "original_vials": 15
+        },
+        "1": {
+          "missing_feeding_vials": 1,
+          "observed_feeding_vials": 14,
+          "original_vials": 15
+        },
+        "10": {
+          "missing_feeding_vials": 1,
+          "observed_feeding_vials": 14,
+          "original_vials": 15
+        }
+      },
+      "vials_expected_per_lux": 15
+    },
+    "Potamopyrgus antipodarum": {
+      "animals_per_vial": 10,
+      "duration_days": 7,
+      "log_ratio_to_zero_by_lux": {
+        "1": 0.2885182923568181,
+        "10": 0.20977676629007705
+      },
+      "mean_feed_by_lux": {
+        "0": 0.0887298223,
+        "1": 0.11840540129999999,
+        "10": 0.1094396017
+      },
+      "original_response_unit": "mg conditioned alder leaf consumed / number of surviving organisms / day",
+      "ratio_to_zero_by_lux": {
+        "1": 1.334448759512505,
+        "10": 1.2334026921633992
+      },
+      "source_bootstrap_reps": 4999,
+      "source_sheet": "feeding rates P. antipodarum",
+      "species": "Potamopyrgus antipodarum",
+      "vial_bootstrap_95pct_log_ratio": {
+        "1": [
+          0.07542699490423181,
+          0.48513255577547393
+        ],
+        "10": [
+          -0.006210976433237329,
+          0.4193364220586291
+        ]
+      },
+      "vial_bootstrap_95pct_ratio": {
+        "1": [
+          1.0783445002008232,
+          1.6243903168918794
+        ],
+        "10": [
+          0.993808271810144,
+          1.5209519505155957
+        ]
+      },
+      "vial_cohort": {
+        "0": {
+          "missing_feeding_vials": 0,
+          "observed_feeding_vials": 10,
+          "original_vials": 10
+        },
+        "1": {
+          "missing_feeding_vials": 0,
+          "observed_feeding_vials": 10,
+          "original_vials": 10
+        },
+        "10": {
+          "missing_feeding_vials": 0,
+          "observed_feeding_vials": 10,
+          "original_vials": 10
+        }
+      },
+      "vials_expected_per_lux": 10
+    },
+    "Sericostoma vittatum": {
+      "animals_per_vial": 1,
+      "duration_days": 7,
+      "log_ratio_to_zero_by_lux": {
+        "1": 0.0880816553147148,
+        "10": 0.0032063108245661376
+      },
+      "mean_feed_by_lux": {
+        "0": 0.06475254999999999,
+        "1": 0.0707147894736842,
+        "10": 0.0649605
+      },
+      "original_response_unit": "mg conditioned alder leaf consumed / mg organism wet mass / day",
+      "ratio_to_zero_by_lux": {
+        "1": 1.0920772923025304,
+        "10": 1.003211456537233
+      },
+      "source_bootstrap_reps": 4999,
+      "source_sheet": "feeding rates S. vittatum",
+      "species": "Sericostoma vittatum",
+      "vial_bootstrap_95pct_log_ratio": {
+        "1": [
+          -0.14517062883470197,
+          0.2998534166018485
+        ],
+        "10": [
+          -0.31640881359940365,
+          0.25654289321559137
+        ]
+      },
+      "vial_bootstrap_95pct_ratio": {
+        "1": [
+          0.8648747079563761,
+          1.349660955186256
+        ],
+        "10": [
+          0.728761461664648,
+          1.2924542021274839
+        ]
+      },
+      "vial_cohort": {
+        "0": {
+          "missing_feeding_vials": 0,
+          "observed_feeding_vials": 20,
+          "original_vials": 20
+        },
+        "1": {
+          "missing_feeding_vials": 1,
+          "observed_feeding_vials": 19,
+          "original_vials": 20
+        },
+        "10": {
+          "missing_feeding_vials": 2,
+          "observed_feeding_vials": 18,
+          "original_vials": 20
+        }
+      },
+      "vials_expected_per_lux": 20
+    }
+  },
+  "cross_species_ratio_of_ratios": {
+    "Potamopyrgus antipodarum__minus__Chironomus riparius": {
+      "1": {
+        "contrast_exposure_time_differs_between_species": true,
+        "log_ratio_of_response_ratios": 0.9774685658270539,
+        "ratio_of_response_ratios": 2.6577198762766927,
+        "vial_bootstrap_95pct_log_ratio": [
+          0.6010144892918212,
+          1.3802899672881315
+        ],
+        "vial_bootstrap_95pct_ratio": [
+          1.8239682583709695,
+          3.976054386063323
+        ]
+      },
+      "10": {
+        "contrast_exposure_time_differs_between_species": true,
+        "log_ratio_of_response_ratios": 1.0686677728135805,
+        "ratio_of_response_ratios": 2.911498138150333,
+        "vial_bootstrap_95pct_log_ratio": [
+          0.6685885863670588,
+          1.5081461435940346
+        ],
+        "vial_bootstrap_95pct_ratio": [
+          1.95148102903093,
+          4.518346659325515
+        ]
+      }
+    },
+    "Potamopyrgus antipodarum__minus__Sericostoma vittatum": {
+      "1": {
+        "contrast_exposure_time_differs_between_species": false,
+        "log_ratio_of_response_ratios": 0.2004366370421033,
+        "ratio_of_response_ratios": 1.22193618429604,
+        "vial_bootstrap_95pct_log_ratio": [
+          -0.10071407474756172,
+          0.5066389812359708
+        ],
+        "vial_bootstrap_95pct_ratio": [
+          0.9041915271197327,
+          1.6597035154000772
+        ]
+      },
+      "10": {
+        "contrast_exposure_time_differs_between_species": false,
+        "log_ratio_of_response_ratios": 0.20657045546551092,
+        "ratio_of_response_ratios": 1.2294543529444062,
+        "vial_bootstrap_95pct_log_ratio": [
+          -0.13118337733523336,
+          0.5852458625133307
+        ],
+        "vial_bootstrap_95pct_ratio": [
+          0.8770569272814643,
+          1.7954323608916263
+        ]
+      }
+    },
+    "Sericostoma vittatum__minus__Chironomus riparius": {
+      "1": {
+        "contrast_exposure_time_differs_between_species": true,
+        "log_ratio_of_response_ratios": 0.7770319287849506,
+        "ratio_of_response_ratios": 2.175007099742947,
+        "vial_bootstrap_95pct_log_ratio": [
+          0.4020830821422725,
+          1.170275080668992
+        ],
+        "vial_bootstrap_95pct_ratio": [
+          1.4949355299630716,
+          3.222879068333256
+        ]
+      },
+      "10": {
+        "contrast_exposure_time_differs_between_species": true,
+        "log_ratio_of_response_ratios": 0.8620973173480696,
+        "ratio_of_response_ratios": 2.3681221927252682,
+        "vial_bootstrap_95pct_log_ratio": [
+          0.40809247079562866,
+          1.317196279735987
+        ],
+        "vial_bootstrap_95pct_ratio": [
+          1.5039462258443888,
+          3.7329405703796827
+        ]
+      }
+    }
+  },
+  "based_on_original_vial_replicates": true,
+  "independent_light_fixture_replication_not_verified": true,
+  "important_limitations": [
+    "Different source feeding denominators: Sericostoma per organism wet weight; Chironomus and Potamopyrgus per animal",
+    "Chironomus exposure 14 days; other two species 7 days",
+    "All specimens are animals consuming conditioned dead alder leaves, not live wetland plants",
+    "Source only one paper/experiment; can provide comparative species response but no independent multi-study meta-analysis",
+    "No MOIST plant species trait, pollen delivery or seed production in experiment"
+  ]
+}
