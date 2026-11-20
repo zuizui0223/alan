@@ -50,6 +50,8 @@ fig.text(.5,.03,'One report, dependent contrasts; approximate marginal 95% t int
 fig.tight_layout(rect=(0,.11,1,.94))
 for ext in ['png','pdf','svg']:
     fig.savefig(OUT / ('lu_jpe_access_contrasts.'+ext),dpi=180)
+svg = OUT / 'lu_jpe_access_contrasts.svg'
+svg.write_text('\n'.join(line.rstrip() for line in svg.read_text(encoding='utf-8').splitlines())+'\n', encoding='utf-8')
 audit=dict(source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),
     source_rows=12, derived_rows=len(derived), sign_change='Estimate negated; SE/df unchanged',
     label_handling='Blank species/response cells forward-filled within S4b only; source table CSV unchanged',
