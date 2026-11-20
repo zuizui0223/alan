@@ -1,3 +1,5 @@
+Current update: 144 retained reports reviewed,44 pending. Daufel original workbook recovered and independently checked; two conditional oviposition estimates remain outside the catalogue because daily completeness and single-egg total differ from the paper. Existing pooled results unchanged.
+
 Current update: 143 retained reports reviewed, 45 pending. Castrop plant preprint reviewed; ten author-reported percentage contrasts lack extracted variance and remain outside the finite-effect catalogue. Raw access and shared lighting-row support unresolved.
 
 Current update: 142 retained reports reviewed, 46 pending. Two verified within-search version pairs yield515 publication families (186 retained); reports remain517 (188 retained). Moth radar versions are one experimental programme, with different endpoint denominators. No pooled effect added.

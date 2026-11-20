@@ -1,0 +1,12 @@
+{
+  "url": "https://ndownloader.figshare.com/files/34168284",
+  "filename": "ALAN_mozzie_data2021.xlsx",
+  "md5": "25f019f1bc48709ff8861326b8327b17",
+  "sha256": "9adb12ffe212ccca77a8455a3910a67e004ef325fc77476bec54968ecd266fdc",
+  "bytes": 40582,
+  "missing_daily_cells": 32,
+  "missing_filled": false,
+  "inference": "paired_delta_t7_conditional_source_cumulative",
+  "published_poisson_model_reproduced": false,
+  "final_adoption": false
+}
