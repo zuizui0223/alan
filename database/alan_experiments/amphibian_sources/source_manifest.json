@@ -1,0 +1,19 @@
+{
+  "data_record": "https://zenodo.org/records/4932781",
+  "dryad_doi": "10.5061/dryad.pq54gh5",
+  "supplement_article": "https://api.figshare.com/v2/articles/6668306",
+  "files": [
+    {
+      "file": "original.xlsx",
+      "bytes": 40950,
+      "sha256": "a150af8b28e6424cf8f3c02b5678ed8a0669648bb7706540b3b5476f648ddc53"
+    },
+    {
+      "file": "rspb20180367_si_001.docx",
+      "bytes": 318719,
+      "sha256": "3e983a27edb1c7316891bf80ef01573e766ce2a8e31375a856f23ca514e4b4ca"
+    }
+  ],
+  "supplement_title_says_increases_growth_main_title_says_decreases": true,
+  "full_primary_article_read": false
+}

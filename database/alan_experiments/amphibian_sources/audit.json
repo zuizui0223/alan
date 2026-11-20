@@ -1,0 +1,22 @@
+{
+  "source_doi": "10.5061/dryad.pq54gh5",
+  "zenodo_record": "4932781",
+  "original_filename": "All data for dryad_Final_2018_05_23.xlsx",
+  "md5": "4c54998fd893d7a766b34ffb9ea2af8b",
+  "mirror_bytes_identical": true,
+  "sheets": 16,
+  "outdoor_mesocosms": 36,
+  "toad_mesocosms": 18,
+  "colonization_sheet_light_groups": 4,
+  "colonization_sheet_dark_groups": 5,
+  "mismatching_toad_vs_colonization_group_labels": 14,
+  "long_format_years": [
+    2017
+  ],
+  "effects_extracted": 0,
+  "unresolved": [
+    "Group labels differ across response sheets; resolve physical lighting assignment from layout.",
+    "Long-format calendar year differs from the primary field year; preserve rather than repair.",
+    "Indoor phase eligibility and illumination independence require Methods review."
+  ]
+}

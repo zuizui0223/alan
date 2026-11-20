@@ -1,0 +1,19 @@
+Mesocosm,LightTreat_toad,Block_toad,LightTreat_colonization,Block_colonization,group_labels_match
+2,Light,A,Present,A,True
+4,Light,A,Present,A,True
+6,No Light,B,Absent,F,False
+7,No Light,B,Absent,F,False
+10,No Light,C,Absent,B,False
+11,No Light,C,Absent,B,False
+18,No Light,E,Absent,C,False
+19,No Light,E,Absent,C,False
+21,Light,F,Present,G,False
+22,Light,F,Present,G,False
+26,Light,G,Present,D,False
+27,Light,G,Present,D,False
+29,No Light,H,Absent,H,True
+30,No Light,H,Absent,H,True
+33,No Light,I,Absent,E,False
+35,No Light,I,Absent,E,False
+38,Light,J,Present,I,False
+40,Light,J,Present,I,False

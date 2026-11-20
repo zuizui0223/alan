@@ -115,3 +115,10 @@ Holcus lanatusとTrifolium repensは指標原表の値がxであり、未収録�
 果実の持ち去りは植物の繁殖に関係する相互作用だが、種子散布成功とは異なる応答である。Lewanzik2014の野外実験では同じ14株を明暗で調査しており、果実を独立反復にした分散は用いない。報告値から得た12組の条件付き持ち去り時間差は別形式で保存した。主lnRR台帳は108行のままである。
 
 ナメクジの照明研究では、反復単位は照明区1圃場・暗区1圃場であり、24トラップや4年の測定を照明の独立反復にはしない。Westhavellandの他論文との設備共有も記録した。捕獲増加を食害増加・生存率上昇・捕食圧低下の測定結果と読み替えない。[果実食](../../database/alan_experiments/search/frugivory2014_review.md)、[植食者](../../database/alan_experiments/search/slugs2018_review.md)。
+
+
+## 両生類実験の原データ回収と照明単位の確認
+
+Dryadの両生類実験ワークブックをZenodo公開版から回収し、Dryadメタデータのサイズ・MD5と一致を確認した。36水槽の生態系データ、18水槽の幼生データ、室内幼体の反復測定など16シートを検査した。照明は水槽群に共有され、野外は照明4群・自然光5群である。18水槽中14水槽で応答シート間のBlock表記が異なるため、シートをまたぐ共分散や照明反復数の推定にそのまま利用しない。長形式の年表記と本文の実験年にも差がある。
+
+付表は取得できたが、水槽IDと照明群の対応は解決していない。室内部分の本文確認も未完了のため、全文確認済み121報の数へ追加せず、効果量も主台帳へ加えていない。[原資料レビュー](../../database/alan_experiments/search/amphibian2018_review.md)、[群ラベル照合](../../database/alan_experiments/amphibian_sources/group_label_crosswalk.csv)、[取得・検証](../../database/alan_experiments/amphibian_sources/audit.json)。
