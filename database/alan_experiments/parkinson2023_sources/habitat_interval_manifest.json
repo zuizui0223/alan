@@ -1,0 +1,13 @@
+{
+  "inputs_sha256": {
+    "trap_units.csv": "caaa04b8fac43d6911ff63deac558aacba2fb1105b4b99b5e097950fefb3d020",
+    "habitat_moderation.csv": "9463c739d5406384359a8c301e8aedbc4d58f74ac451f3d265edb570ae1da8a9"
+  },
+  "contrasts": 20,
+  "finite_intervals": 12,
+  "independent_programmes": 1,
+  "intervals_are_approximate": true,
+  "multiplicity_adjusted": false,
+  "shared_control_covariance": "habitat_moderation_covariance.csv",
+  "caveat": "n=3 per cell; delta normality and Welch df approximation uncertain; shared controls and overlapping endpoints; not wet/dry biome inference"
+}
