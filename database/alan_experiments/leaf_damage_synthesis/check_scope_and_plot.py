@@ -70,5 +70,7 @@ fig.text(.26,.85,'Estimate and approximate 95% interval',fontsize=10)
 fig.text(.03,.055,'11 dependent contrasts; species and lighting menus averaged within programmes.\nPaired delta t intervals within programmes; REML + modified Knapp–Hartung t2 for pooling.\nNo verified overlap with the wet-decline cohort among four resolved plant names.',fontsize=9)
 target=REPO/'manuscript/biotic_synthesis/figures';target.mkdir(exist_ok=True)
 for suffix in ['png','pdf','svg']:fig.savefig(target/f'leaf_damage_meta.{suffix}',dpi=180)
+svg=target/'leaf_damage_meta.svg'
+svg.write_text('\n'.join(line.rstrip() for line in svg.read_text(encoding='utf-8').splitlines())+'\n',encoding='utf-8')
 plt.close(fig)
 print(json.dumps(audit,indent=2))
