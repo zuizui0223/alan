@@ -1,4 +1,6 @@
-Current update: 146 retained reports reviewed,42 pending; nine outside-search reports. The final ALANizer biological paper's indexed Methods/Results are now read. Its216samples do not match268near/far values in the public table; exact inclusion mapping remains unresolved. Final methods-paper version still unread. No effects added.
+Current update: 147 retained reports reviewed,41 pending; nine outside-search reports. OConnor2019 Methods/Results read and printed statistical conflict visually verified. Preexposure/shared-arena laboratory predation cannot be pooled as contemporaneous field ALAN predation. Robert2021 partial field-trap evidence retained as access hold; no title-only exclusion. No effects added.
+
+Previous update: 146 retained reports reviewed,42 pending; nine outside-search reports. The final ALANizer biological paper's indexed Methods/Results are now read. Its216samples do not match268near/far values in the public table; exact inclusion mapping remains unresolved. Final methods-paper version still unread. No effects added.
 
 Previous update: 146 retained reports reviewed,42 pending. ALANizer v2methods/validation and linked134-row biomass source audited;8records differ from planned allocation but all match corrected metadata. Final methods and biological articles identified as two outside-search leads (nine total); neither final Methods/Results read. No effects added. Shredder2021/2022 remain access holds.
 

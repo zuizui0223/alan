@@ -1,0 +1,12 @@
+{
+  "doi": "10.1016/j.marpolbul.2019.05.038",
+  "source_url": "https://www.neralaus.com/s/O_Connor-et-al-2019_Live-fast-die-young_Marine-Pollution-Bulletin.pdf",
+  "sha256": {
+    "primary.pdf": "84aa20c55843261b1471677c5336a961c57d1184b9200b9e49d961f88cf70627",
+    "primary.txt": "211c0983be1b20d7b5f86ec7c456a2f79b76d5a362c125ca856a34e0d9ca5519"
+  },
+  "methods_results_read": true,
+  "printed_p_098_visually_verified": true,
+  "raw_data_obtained": false,
+  "finite_effects_added": 0
+}
