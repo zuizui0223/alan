@@ -1,0 +1,12 @@
+{
+  "doi": "10.1007/s00442-025-05750-z",
+  "pmcid": "PMC12205020",
+  "supplement_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12205020/supplementaryFiles",
+  "supplement_sha256": "bc3e7a9d17d99feea3a4f46e8bc7066bd38bf40b2f20839da8aa6019add9a006",
+  "primary_xml_sha256": "4dec8f88f5e3ed2c82151c4c0f12b1c2fcc311fdb9773bb37e5ac774a40ad35c",
+  "table_rows": 4,
+  "main_effects_added": 0,
+  "primary_read_count_increment": 0,
+  "raw_data": "author_request_not_recovered",
+  "supplementary_content": "8figures and TableS1; no raw mesocosm data"
+}

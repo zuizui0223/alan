@@ -1,0 +1,5 @@
+day,term,numerator_df,sum_sq,mean_sq,F,reported_p,endpoint,source_location,status
+29,Treatment,1,1157.8,1157.84,1.2279,0.3,author_cumulative_soil_respiration,Supplement Table S1,reported_test_not_signed_effect
+29,Treatment:Survival,2,3091.7,1545.84,1.6394,0.2531,author_cumulative_soil_respiration,Supplement Table S1,reported_test_not_signed_effect
+36,Treatment,1,957.7,957.67,0.5562,0.4771,author_cumulative_soil_respiration,Supplement Table S1,reported_test_not_signed_effect
+36,Treatment:Survival,2,5591.1,2795.56,1.6238,0.2559,author_cumulative_soil_respiration,Supplement Table S1,reported_test_not_signed_effect
