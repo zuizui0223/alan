@@ -1,4 +1,6 @@
-Current update: 149 retained reports reviewed,39 pending. Stone2009 primary Methods/Results reviewed; timing summary retained outside pools pending paired data. No predation effect inferred from acoustic passes.
+Current update: 150 retained reports reviewed,38 pending. Silva2017 primary Methods/Results and crab table extracted. Interval summaries retained outside pools until night/block dependence can be reconstructed; no predation-rate effect inferred.
+
+Previous update: 149 retained reports reviewed,39 pending. Stone2009 primary Methods/Results reviewed; timing summary retained outside pools pending paired data. No predation effect inferred from acoustic passes.
 
 Previous update: 148 retained reports reviewed,40 pending. Firebaugh thesis chapters1-2 reviewed as related grey literature; journal2016 final Methods/Results remain unread. Binary counts retained separately with unresolved independent units; no pooled effect added.
 

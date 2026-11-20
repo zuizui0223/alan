@@ -1,0 +1,13 @@
+response,arm,mean,sd,observation_intervals,nights,blocks,source_location,in_pool
+entries,dark,0.8,1.2,45,9,9,Table4,false
+entries,yellow,6.3,6.7,45,9,9,Table4,false
+entries,orange,2.6,2.6,45,9,9,Table4,false
+entries,red,2.3,2.2,45,9,9,Table4,false
+attacks,dark,0,,45,9,9,Table4,false
+attacks,yellow,1.6,2.2,45,9,9,Table4,false
+attacks,orange,0.3,0.9,45,9,9,Table4,false
+attacks,red,0.2,0.8,45,9,9,Table4,false
+pursuits,dark,0,,45,9,9,Table4,false
+pursuits,yellow,1.4,2.1,45,9,9,Table4,false
+pursuits,orange,0.3,0.7,45,9,9,Table4,false
+pursuits,red,0.4,0.9,45,9,9,Table4,false
