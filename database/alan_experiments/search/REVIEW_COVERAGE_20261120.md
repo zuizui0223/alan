@@ -1,4 +1,6 @@
-Current update: 154 retained reports reviewed,33 pending. Xu2024 indexed preview checked; full exclusion design and independent lighting units remain unverified. Preprint/final exclusion-result discrepancy retained; no finite effect or completed-review increment.
+Current update: 154 retained reports reviewed,33 pending; eleven outside-search reports. New MAFIS crab primary Methods/Results recovered and model contrasts transcribed separately. Block-night mapping unresolved; no pooled effect added.
+
+Previous update: 154 retained reports reviewed,33 pending. Xu2024 indexed preview checked; full exclusion design and independent lighting units remain unverified. Preprint/final exclusion-result discrepancy retained; no finite effect or completed-review increment.
 
 Previous update: 154 retained reports reviewed,33 pending. Sordello2025 underpass Methods/Results read; five sites share a year-confounded dark-lit-dark schedule. Movement evidence remains separate from predation; no finite pooled effect added.
 
