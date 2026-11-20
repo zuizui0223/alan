@@ -1,0 +1,37 @@
+{
+  "complete_growth_rows": 174,
+  "move_to_day7_days": {
+    "7": 174
+  },
+  "hatch_to_day7_days": {
+    "8": 136,
+    "7": 36,
+    "-357": 1,
+    "10": 1
+  },
+  "stage_counts": {
+    "first instar": 119,
+    "second instar": 54,
+    "unknown": 1
+  },
+  "treatment_conflicts_in_growth_subset": 0,
+  "nonpositive_mass_increments": 0,
+  "cohort_cage_means_not_independent_installations": 22,
+  "fixed_divisor_invariance_checks": [
+    {
+      "cohort": 1,
+      "max_absolute_difference": 2.0816681711721685e-16
+    },
+    {
+      "cohort": 2,
+      "max_absolute_difference": 8.673617379884035e-18
+    },
+    {
+      "cohort": 3,
+      "max_absolute_difference": 1.734723475976807e-18
+    }
+  ],
+  "initial_weighing_date_verified": false,
+  "physical_cage_reuse_resolved": false,
+  "adopted_effects": 0
+}

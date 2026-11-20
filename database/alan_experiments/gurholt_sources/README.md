@@ -1,4 +1,4 @@
-# Gurholt et al. 2026: original data recovered, design pending
+# Gurholt et al. 2026: primary paper and original data recovered, extraction pending
 
 [Paper](https://doi.org/10.1002/ecy.70382), [Cornell original deposit](https://doi.org/10.7298/PARD-TT61). Retrieved2026-11-20. Original294-row data, author README and RMarkdown analysis were obtained through the public institutional repository; deposited byte counts and MD5 checksums match. At initial acquisition the main article and supplement were unread. The dated primary-paper update below supersedes that access hold; original observations and earlier audit findings remain preserved.
 
@@ -41,3 +41,13 @@ The13-page published PDF was recovered from the [corresponding research laborato
 The abstract's wording about consistently faster growth is therefore insufficient for a significance claim across endpoints/models. Register as a primary-read field experiment with raw data; keep effect extraction pending explicit endpoint/cohort selection, allocation discrepancy and sample-count reconciliation. Do not exclude because some directions are positive, and do not interpret higher fresh mass without higher dry mass as enhanced biomass production or population growth.
 
 Independent primary-paper review confirmed the design and counts above. It also found Fig.2 fresh-mass p=.002 versus Results text .010, and host-by-light wing-area p=.031 versus text .035. Initial-stage/move dates in the raw data include second-instar/next-day records despite the Methods description of first-instar/same-day transfer. These are additional reconciliation items, not silently corrected data.
+
+## Growth interval adjudication, 2026-11-20
+
+`audit_growth_intervals.py` verifies the unchanged deposited file checksum and exports all174 complete initial/day7 mass rows and22 cohort-cage means. All174 recorded day7 dates are exactly7days after the move date. Intervals from hatch are7days (36),8days (136),10days (1), and -357days (1). The negative interval is cohort1 ML2H: hatch2023-06-22 but move2022-06-23 and measurement2022-06-30. Original dates remain unchanged; the correct year cannot be inferred from arithmetic alone. Initial weighing has no separately recorded date, so this confirms the move-to-measurement interval, not the actual initial-weighing interval.
+
+Normalized move stages are first instar119, second instar54, unknown1. All mass increments are positive. The previously identified cohort3 ML4L treatment conflict has neither mass and is absent from the growth subset; all174 complete growth rows agree between Treatment and Cage prefix. Therefore that specific conflict is NOT a reason to block this endpoint, although it remains relevant to other endpoints.
+
+On identical cohort-cage aggregation, dividing every mass increment by6 or7 yields identical log mean ratios and delta-method variances (maximum numerical difference2.1e-16). This is an algebra verification, not an adopted effect or validation of sampling independence. Do not divide by hatch-to-measurement intervals: the initial measurement was not established as hatch mass, and one hatch interval is invalid. The remaining growth extraction questions are endpoint/cohort selection, stage composition, initial weighing time, and dependence of reused physical cages. The22 cohort-cage means are not22 independently installed lamps. No effect was added to the main catalogue or pooled model.
+
+An independent reader separately reproduced the174 complete rows, both interval distributions, stage counts, absence of treatment conflicts, and positivity of increments, and agreed with the common-divisor invariance argument. Reproduction: `python database/alan_experiments/gurholt_sources/audit_growth_intervals.py`. Row-level provenance is in `growth_interval_rows.csv`; summary and algebra checks are in `growth_interval_audit.json`.
