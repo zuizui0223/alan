@@ -1,0 +1,163 @@
+[
+  {
+    "file": "Dusk_species_richness.csv",
+    "bytes": 1999,
+    "md5": "md5:813acccc73e40620634a1cc321180e8b",
+    "sha256": "8dbd36b9685a01b4b98269ed10e081b0d7c4ad9f675dac4fe9f184185363d476",
+    "url": "https://zenodo.org/api/records/14266460/files/Dusk_species_richness.csv/content"
+  },
+  {
+    "file": "Prolonged_site&treatment.csv",
+    "bytes": 206,
+    "md5": "md5:17776c8a3f4c1b28555c16a93131d325",
+    "sha256": "9f864a90f6163ef9a1ca28bfbc6e59f34fc4cf4ab752cca8be7aedee11a4aabb",
+    "url": "https://zenodo.org/api/records/14266460/files/Prolonged_site&treatment.csv/content"
+  },
+  {
+    "file": "Temporal_niche_short.csv",
+    "bytes": 256,
+    "md5": "md5:eb76dc74acc86eecb35cfb4b82e377f7",
+    "sha256": "40ea83e56462b6aba5190ea82c362e96335744fba6c6886d37da7fb2057f1943",
+    "url": "https://zenodo.org/api/records/14266460/files/Temporal_niche_short.csv/content"
+  },
+  {
+    "file": "Trophic_guild_Short.csv",
+    "bytes": 426,
+    "md5": "md5:6c3145416a8473f44ffbe3b310e9db1c",
+    "sha256": "d827aadca18232256ed345d52bd1a1c14c200c75120106ce60cd2bde23dfb3c8",
+    "url": "https://zenodo.org/api/records/14266460/files/Trophic_guild_Short.csv/content"
+  },
+  {
+    "file": "Trophic_guild_Prolonged.csv",
+    "bytes": 504,
+    "md5": "md5:c1e14cdd25902870d6d5b207c36086c8",
+    "sha256": "e72eaa9e7cb4f959531f8f571328cc11b405d1489a6097c640cd73547b5fb7d8",
+    "url": "https://zenodo.org/api/records/14266460/files/Trophic_guild_Prolonged.csv/content"
+  },
+  {
+    "file": "Troph_Baseline-Prolonged_change.csv",
+    "bytes": 314,
+    "md5": "md5:72c36c2a034c66cac8a7c63e16a3cb4e",
+    "sha256": "b247341f09f1da2aee02e9fc610750a29d6dbb52d292dc82acc928d8bdff0077",
+    "url": "https://zenodo.org/api/records/14266460/files/Troph_Baseline-Prolonged_change.csv/content"
+  },
+  {
+    "file": "Mobility_Baseline-Prolonged_change.csv",
+    "bytes": 322,
+    "md5": "md5:c59e859ffba4f4894e92f6b043fe7a3b",
+    "sha256": "038ddf535ac4105ff05a03199dcfab3191824bf724dbf7dd63570fe52dafcb19",
+    "url": "https://zenodo.org/api/records/14266460/files/Mobility_Baseline-Prolonged_change.csv/content"
+  },
+  {
+    "file": "Raw_fish_video_survey_data.xlsx",
+    "bytes": 48017,
+    "md5": "md5:697c58ba860245e2b0bd0a148b8e56f6",
+    "sha256": "d46254a11092f90d1d0e15dd5cea3135db25acad8dbb74e02132f0c3c1a6ad81",
+    "url": "https://zenodo.org/api/records/14266460/files/Raw_fish_video_survey_data.xlsx/content"
+  },
+  {
+    "file": "Night_presabs_community.csv",
+    "bytes": 14554,
+    "md5": "md5:13f6123f150c4d07d1cf2dbd4e99f7f6",
+    "sha256": "c4cda5017e32ec25ea8783ffe31f969fa96108e0b793982febae5ddfab5a8ed0",
+    "url": "https://zenodo.org/api/records/14266460/files/Night_presabs_community.csv/content"
+  },
+  {
+    "file": "Short-term_site&treatment.csv",
+    "bytes": 168,
+    "md5": "md5:f9d8845adcf4e0fcc6338a25fdfa93f6",
+    "sha256": "5c10c64853c7553ed505a3d8b233279c065bf5c415d7a9018048fc559e55b60a",
+    "url": "https://zenodo.org/api/records/14266460/files/Short-term_site&treatment.csv/content"
+  },
+  {
+    "file": "Temp_Baseline-Prolonged_change.csv",
+    "bytes": 298,
+    "md5": "md5:01fbaf434c74ffb50c283ff3a7abfde5",
+    "sha256": "4822f1698f888dd1c53be187abc7eed635e2ac5b0827fd7bb77c3e10f82cc5f1",
+    "url": "https://zenodo.org/api/records/14266460/files/Temp_Baseline-Prolonged_change.csv/content"
+  },
+  {
+    "file": "Temporal_niche_Prolonged_Percent_diff.csv",
+    "bytes": 510,
+    "md5": "md5:20c3923bf16d76cec1fafc28300647bd",
+    "sha256": "4697e1dc00bf0c4a7e4cdc14d28dd53493c3a821e4cac1a5b28c001a6ba748fb",
+    "url": "https://zenodo.org/api/records/14266460/files/Temporal_niche_Prolonged_Percent_diff.csv/content"
+  },
+  {
+    "file": "Taxonomy_Short.csv",
+    "bytes": 451,
+    "md5": "md5:9b7501eded688e0182f6d551b0406254",
+    "sha256": "cdfa9e7be5273c0aefcd0c9ac1350bf65ee65a19f0251cce0bfe3ca9e0c86b7a",
+    "url": "https://zenodo.org/api/records/14266460/files/Taxonomy_Short.csv/content"
+  },
+  {
+    "file": "Temporal_niche_prolonged.csv",
+    "bytes": 310,
+    "md5": "md5:1c9252c9def7e59d0b9b5031c7f0005f",
+    "sha256": "1b5a74f5e4f08bddada8a9bfa81ba0b3552b2cb47b20ca985bd84de7d8411fc1",
+    "url": "https://zenodo.org/api/records/14266460/files/Temporal_niche_prolonged.csv/content"
+  },
+  {
+    "file": "Luxdf.csv",
+    "bytes": 3447,
+    "md5": "md5:b8274bee052d633bc926d4381f29f907",
+    "sha256": "b35c0f4aba24c74fc04070b1190694bcbb665b4b6c7a65126a01b6dafe2576ff",
+    "url": "https://zenodo.org/api/records/14266460/files/Luxdf.csv/content"
+  },
+  {
+    "file": "Raw_ALAN_lux_data.xlsx",
+    "bytes": 14033,
+    "md5": "md5:3185ca3706787d871b37b18fb1ac2e55",
+    "sha256": "e506646d8d6d0b7eb768621e69b1ea67757919368a9e892bbce1fac843094334",
+    "url": "https://zenodo.org/api/records/14266460/files/Raw_ALAN_lux_data.xlsx/content"
+  },
+  {
+    "file": "Taxonomy_Prolonged.csv",
+    "bytes": 788,
+    "md5": "md5:5162b8b430c2fd8a1982ec28d2a7fc47",
+    "sha256": "30eeba2c1be0fa0edaecd0ad2d37373c965f26e2b3c0534907f74dee3f5bf0a8",
+    "url": "https://zenodo.org/api/records/14266460/files/Taxonomy_Prolonged.csv/content"
+  },
+  {
+    "file": "Trophic_guild_Prolonged_Percent_diff.csv",
+    "bytes": 2450,
+    "md5": "md5:d710e8661e15f770f12fcfffe42ff257",
+    "sha256": "7f20aa604c757c5efd49da8b989ac3053ad1950e67ab80b2397e48fe3874996f",
+    "url": "https://zenodo.org/api/records/14266460/files/Trophic_guild_Prolonged_Percent_diff.csv/content"
+  },
+  {
+    "file": "ALAN_community_analyses_R_code.R",
+    "bytes": 59464,
+    "md5": "md5:0da93fccc3a8c1297e8a0d3ad1f823dd",
+    "sha256": "7b12fcead71cc7599acf223d298c8e5b65d8de219b980ae5d166b874e55cf225",
+    "url": "https://zenodo.org/api/records/14266460/files/ALAN_community_analyses_R_code.R/content"
+  },
+  {
+    "file": "Raw_fish_video_survey_data_summary.pdf",
+    "bytes": 107055,
+    "md5": "md5:dc254f98f064d74385ea49b1ed33b720",
+    "sha256": "f014dd92560a3989d2e1f0a2c20ee3245987c8ac43d54f04375b69cc04a217d8",
+    "url": "https://zenodo.org/api/records/14266460/files/Raw_fish_video_survey_data_summary.pdf/content"
+  },
+  {
+    "file": "Mobility_Prolonged_Percent_diff.csv",
+    "bytes": 892,
+    "md5": "md5:99e9b5f7cd6367e8bd90135981f32f5a",
+    "sha256": "2630f57ac43df790663d109c25eef42cb82a4601a0bfdbc0260255874a99b22c",
+    "url": "https://zenodo.org/api/records/14266460/files/Mobility_Prolonged_Percent_diff.csv/content"
+  },
+  {
+    "file": "Mobility_Prolonged.csv",
+    "bytes": 335,
+    "md5": "md5:3b22bb1bde184d96e1c529aa8ba9c4ba",
+    "sha256": "2f55525b8583940447fc0f6bff9ce57396ed3e5808c15a353bce629a8ea881e0",
+    "url": "https://zenodo.org/api/records/14266460/files/Mobility_Prolonged.csv/content"
+  },
+  {
+    "file": "Mobility_short.csv",
+    "bytes": 280,
+    "md5": "md5:230e1e75208d266606e000ff8102cd90",
+    "sha256": "b4d10a40e880335be86d9e2a492ff999a4f033ed056270a130d9405d18b8c60a",
+    "url": "https://zenodo.org/api/records/14266460/files/Mobility_short.csv/content"
+  }
+]

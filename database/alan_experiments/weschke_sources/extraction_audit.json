@@ -1,0 +1,13 @@
+{
+  "source_doi": "10.5281/zenodo.14266460",
+  "verified_small_files": 23,
+  "source_rows_compared": 120,
+  "discrepant_cells": 1,
+  "site_count": 20,
+  "finite_lnRR": 4,
+  "undefined_zero_arm": 2,
+  "response": "number of detected taxon labels per trophic guild; not individuals or predation",
+  "baseline_adjusted": false,
+  "final_eligibility": false,
+  "catalogue_added": 0
+}

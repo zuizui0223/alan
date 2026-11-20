@@ -1,12 +1,12 @@
 {
   "search_records": 521,
-  "unique_search_reports": 518,
+  "unique_search_reports": 517,
   "manually_linked_version_pairs": 1,
-  "publication_families_after_verified_links": 517,
-  "retained_publication_families_after_verified_links": 188,
-  "retained_fulltext_reports": 189,
+  "publication_families_after_verified_links": 516,
+  "retained_publication_families_after_verified_links": 187,
+  "retained_fulltext_reports": 188,
   "retained_reports_with_primary_read": 137,
-  "pending_primary_review_reports": 52,
+  "pending_primary_review_reports": 51,
   "additional_source_reports_outside_search": 5,
   "duplicate_incremental_batch_dois": [
     "10.1098/rspb.2021.0525",
@@ -14,6 +14,7 @@
     "10.1098/rspb.2025.1600",
     "10.1098/rstb.2022.0359",
     "10.1098/rstb.2022.0363",
+    "10.1111/gcb.70002",
     "10.1186/s12862-024-02200-x"
   ],
   "final_prisma": false,

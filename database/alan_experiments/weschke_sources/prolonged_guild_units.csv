@@ -1,0 +1,21 @@
+source_excel_column,site,Treatment,Piscivores,Herbivores/detritivores,Invertivores (mobile),Invertivores (sessile),Omnivores,Planktivores
+8,Interconti-far,ALAN,2,0,3,2,0,4
+11,Lara Tipanier,ALAN,1,0,0,0,1,2
+14,Cooks dive deep,ALAN,1,1,2,0,1,3
+17,Cooks Pass deep,ALAN,1,0,2,0,2,6
+20,Sam,ALAN,0,1,3,0,0,4
+23,Daphne,ALAN,1,0,2,0,0,2
+26,Back Row Far Right,ALAN,0,0,4,0,1,2
+29,Ben & Marianne Hilton,ALAN,0,0,2,0,0,2
+30,Infront PB,ALAN,0,0,1,0,0,2
+31,Cooks pharmacy,ALAN,1,0,2,0,0,0
+34,Gerrits,Control,1,0,0,0,0,3
+37,PB Near,Control,0,0,1,0,0,2
+40,ML Site,Control,0,0,2,0,0,0
+43,Rivermouth 1,Control,0,0,1,0,1,2
+46,Rivermouth 2,Control,0,0,1,0,0,2
+49,Cooks Dive Shallow,Control,1,0,2,0,0,2
+52,Cooks Pass Shallow,Control,0,0,2,0,0,2
+55,3 Rocks,Control,1,0,0,0,0,2
+56,Club Med Far,Control,0,0,0,0,0,1
+57,Back row purple,Control,0,0,3,0,0,1
