@@ -19,8 +19,14 @@
       "url": "https://ecommons.cornell.edu/server/api/core/bitstreams/872f922a-63af-4442-8175-b14edaa8a6ae/content",
       "bytes": 47706,
       "md5": "e666e41643f7357c22fbea8345d83574"
+    },
+    {
+      "file": "primary.pdf",
+      "url": "https://agrawal.eeb.cornell.edu/wp-content/uploads/2026/07/Gurholt-Ecology-2026-Gurholt-Light-pollution-at-night-impacts-monarch-butterfly-growth-and-performance.pdf",
+      "bytes": 4933867,
+      "sha256": "72e459465ca343511cf52864b0fd1c9e786cae9510c953b8f7867bdbeab61774"
     }
   ],
   "paper_doi": "10.1002/ecy.70382",
-  "paper_read": "abstract only; full Methods/Results pending"
+  "paper_read": "Version of record Methods and Results read; supplementary appendix not recovered"
 }

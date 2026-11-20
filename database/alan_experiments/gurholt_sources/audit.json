@@ -9,7 +9,7 @@
   "adult_mass_paired_rows": 121,
   "adult_mass_scale_ratio_min": 999.9999999999999,
   "adult_mass_scale_ratio_max": 1000.0000000000001,
-  "full_methods_read": false,
+  "full_methods_read": true,
   "missing_as_death": false,
   "effects_extracted": 0
 }

@@ -31,7 +31,7 @@ a=dict(rows=len(d),individual_labels=d.Individual.nunique(),cohort_individual_ke
        reused_cage_labels=d.Cage.nunique(),treatment_conflicts=len(conflict),
        rows_missing_all_six_selected_observations=len(noobs),
        adult_mass_paired_rows=len(paired),adult_mass_scale_ratio_min=float(ratio.min()),
-       adult_mass_scale_ratio_max=float(ratio.max()),full_methods_read=False,
+       adult_mass_scale_ratio_max=float(ratio.max()),full_methods_read=True,
        missing_as_death=False,effects_extracted=0)
 (OUT/'audit.json').write_text(json.dumps(a,indent=2)+'\n')
 print(json.dumps(a,indent=2))
