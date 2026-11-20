@@ -1,0 +1,150 @@
+{
+  "schema": "alan_Xue2026_two_independently_replayed_author_original_ScienceDB_workbooks_v1",
+  "verified_source_workflow": "https://github.com/zuizui0223/alan/actions/runs/44675385835",
+  "original_ScienceDB_DOI": "10.57760/sciencedb.35715",
+  "source_original_monoculture_cylinders": 77,
+  "original_3lit_3dark_independent_zones": 6,
+  "original_community_containers": 57,
+  "original_community_2x3_arms": 6,
+  "new_species_effects_estimated_only_on_monoculture_true_zone_units": true,
+  "community_new_lamp_level_pvalue_unavailable": true,
+  "original_monoculture_xlsx_source_replay": {
+    "author_original_workbook_SHA_verified_this_run": true,
+    "expected_original_XLSX_SHA256": "8a18f7a30fe8e4656495db511f4e19b0f7e97657233111ba175c7c4007ed4f39",
+    "no_new_plant_effect_fitted_from_unverified_bytes": true,
+    "observed_SHA256": "8a18f7a30fe8e4656495db511f4e19b0f7e97657233111ba175c7c4007ed4f39",
+    "official_original_dataset": "10.57760/sciencedb.35715",
+    "original_extracted_24_cells_git_verified": true,
+    "original_source_url": "https://www.scidb.cn/api/sdb-download-service/downloadFileMole?fileId=721cbfeb236f2d2fc05bdaa21f9b23d6",
+    "original_surviving_cylinder_records_validated_this_run": true,
+    "retrieved_original_file_bytes": 14053,
+    "schema": "alan_Xue2026_original_source_second_independent_ScienceDB_workbook_replay_v1",
+    "source_independent_light_zones": 6,
+    "source_numeric_zone_means_identical_to_original_this_run": true,
+    "source_original_24_zone_plant_cells": 24,
+    "source_original_3_ALAN_and_3_dark_zones_confirmed": true,
+    "source_original_77_records": 77,
+    "status": "ORIGINAL_WORKBOOK_77_CYLINDERS_24_ZONE_CELLS_IDENTICAL"
+  },
+  "original_mixed_community_xlsx_source_replay": {
+    "author_original_xlsx_source_url": "https://www.scidb.cn/api/sdb-download-service/downloadFileMole?fileId=c10ee136b42f743bcf291e328ed840ed",
+    "explicit_original_lighting_unit_candidate_column_names": [],
+    "no_new_inferential_light_x_invasive_snail_coefficient_fitted": true,
+    "no_original_raw_container_measurements_committed": true,
+    "observed_original_SHA256": "24b6cd24c40403803cdf5fa9d9251c46383a585bbd8da168d8917a81be2644ad",
+    "original_community_2x3_group_means_verified": true,
+    "original_community_57_source_rows_verified": true,
+    "original_community_columns": [
+      "ID",
+      "Rand",
+      "Light",
+      "Herbivore",
+      "Invasive_total_biomass",
+      "Native_total_biomass",
+      "Invasive_proportional_biomass"
+    ],
+    "original_community_xlsx_SHA256_expected": "24b6cd24c40403803cdf5fa9d9251c46383a585bbd8da168d8917a81be2644ad",
+    "original_group_means_exact_to_pinned_repo": [
+      {
+        "original_endpoint": "Native_total_biomass",
+        "original_individual_mesocosms_observed": 10,
+        "original_mean_g": 2.0202,
+        "original_source_herbivore": "Invasive snail",
+        "original_source_light": "ALAN"
+      },
+      {
+        "original_endpoint": "Invasive_total_biomass",
+        "original_individual_mesocosms_observed": 10,
+        "original_mean_g": 13.361,
+        "original_source_herbivore": "Invasive snail",
+        "original_source_light": "ALAN"
+      },
+      {
+        "original_endpoint": "Native_total_biomass",
+        "original_individual_mesocosms_observed": 7,
+        "original_mean_g": 16.761142857142854,
+        "original_source_herbivore": "Native snail",
+        "original_source_light": "ALAN"
+      },
+      {
+        "original_endpoint": "Invasive_total_biomass",
+        "original_individual_mesocosms_observed": 7,
+        "original_mean_g": 18.023857142857143,
+        "original_source_herbivore": "Native snail",
+        "original_source_light": "ALAN"
+      },
+      {
+        "original_endpoint": "Native_total_biomass",
+        "original_individual_mesocosms_observed": 10,
+        "original_mean_g": 15.8137,
+        "original_source_herbivore": "No snail",
+        "original_source_light": "ALAN"
+      },
+      {
+        "original_endpoint": "Invasive_total_biomass",
+        "original_individual_mesocosms_observed": 10,
+        "original_mean_g": 13.9344,
+        "original_source_herbivore": "No snail",
+        "original_source_light": "ALAN"
+      },
+      {
+        "original_endpoint": "Native_total_biomass",
+        "original_individual_mesocosms_observed": 10,
+        "original_mean_g": 8.301200000000001,
+        "original_source_herbivore": "Invasive snail",
+        "original_source_light": "No ALAN"
+      },
+      {
+        "original_endpoint": "Invasive_total_biomass",
+        "original_individual_mesocosms_observed": 10,
+        "original_mean_g": 12.1598,
+        "original_source_herbivore": "Invasive snail",
+        "original_source_light": "No ALAN"
+      },
+      {
+        "original_endpoint": "Native_total_biomass",
+        "original_individual_mesocosms_observed": 10,
+        "original_mean_g": 15.410199999999998,
+        "original_source_herbivore": "Native snail",
+        "original_source_light": "No ALAN"
+      },
+      {
+        "original_endpoint": "Invasive_total_biomass",
+        "original_individual_mesocosms_observed": 10,
+        "original_mean_g": 17.1755,
+        "original_source_herbivore": "Native snail",
+        "original_source_light": "No ALAN"
+      },
+      {
+        "original_endpoint": "Native_total_biomass",
+        "original_individual_mesocosms_observed": 10,
+        "original_mean_g": 15.963199999999997,
+        "original_source_herbivore": "No snail",
+        "original_source_light": "No ALAN"
+      },
+      {
+        "original_endpoint": "Invasive_total_biomass",
+        "original_individual_mesocosms_observed": 10,
+        "original_mean_g": 14.8887,
+        "original_source_herbivore": "No snail",
+        "original_source_light": "No ALAN"
+      }
+    ],
+    "original_light_herbivore_observed_container_sizes": {
+      "ALAN | Invasive snail": 10,
+      "ALAN | Native snail": 7,
+      "ALAN | No snail": 10,
+      "No ALAN | Invasive snail": 10,
+      "No ALAN | Native snail": 10,
+      "No ALAN | No snail": 10
+    },
+    "original_metadata_source_DOI_fixed": true,
+    "original_sciencedb_doi": "10.57760/sciencedb.35715",
+    "retrieved_bytes": 13486,
+    "schema": "alan_Xue2026_original_community_57containers_fixture_source_gate_v1",
+    "source_community_57_containers_not_57_independent_lights": true,
+    "source_group_missingness_not_zero_imputed": true,
+    "status": "SOURCE_57_CONTAINERS_AND_12_MEANS_VERIFIED_LIGHT_FIXTURE_UNRESOLVED",
+    "true_independent_lighting_fixture_units_VERIFIED": false
+  }
+}
