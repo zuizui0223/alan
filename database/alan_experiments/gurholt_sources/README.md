@@ -51,3 +51,17 @@ Normalized move stages are first instar119, second instar54, unknown1. All mass 
 On identical cohort-cage aggregation, dividing every mass increment by6 or7 yields identical log mean ratios and delta-method variances (maximum numerical difference2.1e-16). This is an algebra verification, not an adopted effect or validation of sampling independence. Do not divide by hatch-to-measurement intervals: the initial measurement was not established as hatch mass, and one hatch interval is invalid. The remaining growth extraction questions are endpoint/cohort selection, stage composition, initial weighing time, and dependence of reused physical cages. The22 cohort-cage means are not22 independently installed lamps. No effect was added to the main catalogue or pooled model.
 
 An independent reader separately reproduced the174 complete rows, both interval distributions, stage counts, absence of treatment conflicts, and positivity of increments, and agreed with the common-divisor invariance argument. Reproduction: `python database/alan_experiments/gurholt_sources/audit_growth_intervals.py`. Row-level provenance is in `growth_interval_rows.csv`; summary and algebra checks are in `growth_interval_audit.json`.
+
+## Descriptive cohort mass-gain contrasts
+
+`extract_cohort_mass_gain.py` now extracts the observed mass increment (follow-up minus initial) among complete records. It uses equal weights for cage means, no day divisor, and all three supported cohorts. It does not correct original dates, substitute adult columns, infer survival or resolve host/stage composition. Cohort4 has no complete pair and is not assigned a zero effect.
+
+| Cohort | Complete individuals | Cages per arm | Lit/dark ratio | Approximate95% interval |
+|---|---:|---:|---:|---:|
+|1|57|3|1.073|0.975–1.181|
+|2|46|4|1.321|1.015–1.718|
+|3|71|4|1.036|0.791–1.357|
+
+Intervals use between-cage delta variance and Welch-type degrees of freedom within each cohort; no multiplicity correction. They are not the author's adjusted model intervals. Cohort2's interval excluding1 is not an independent replication of a general lighting benefit. Cohort1 is mostly second instar at transfer; cohorts2/3 mix host species. Selection into two observed weighings and host/stage imbalance remain possible explanations of the descriptive contrast.
+
+All three cohorts were conducted in2023 and reuse cage labels. Their cross-cohort covariance is unknown, not zero; no pooled estimate is computed. These are three dependent comparisons from one programme, not three new studies. The main catalogue remains unchanged. Independent recalculation reproduced all174 complete rows, per-arm cage/sample support and all three mean ratios from the original file. Outputs retain cage means and source hash for audit.

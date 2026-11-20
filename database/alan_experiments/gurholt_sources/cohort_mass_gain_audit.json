@@ -1,0 +1,26 @@
+{
+  "source_sha256": "94f8a1f13cd5c4090c26a661af1190cf2865fc275d9aeccda409bcb61b772143",
+  "complete_rows": 174,
+  "cohort_cage_rows": 22,
+  "supported_cohorts": [
+    1,
+    2,
+    3
+  ],
+  "unsupported_cohorts": [
+    4
+  ],
+  "reused_cage_labels": 8,
+  "cross_cohort_covariance": "not_assumed_zero_not_estimated",
+  "grouping": "equal_weight_cage_means_not_individuals",
+  "day_divisor": "none",
+  "caveats": [
+    "Conditional on observed initial and followup masses; missing is not death or zero",
+    "Different stages and host composition retained; no covariate-adjusted causal claim",
+    "Alternating light allocation; repeated physical cages and date errors unresolved",
+    "Approximate delta/Welch intervals describe cage variation within each cohort",
+    "No survival, adult performance, pollination or population growth inference"
+  ],
+  "main_catalogue_rows_added": 0,
+  "independent_programmes_added": 0
+}

@@ -21,3 +21,5 @@
 
 再生成：`python database/alan_experiments/summarize_endpoint_coverage.py`。
 [行単位の対応表](../../database/alan_experiments/endpoint_coverage.csv)、[入力ハッシュと件数検証](../../database/alan_experiments/endpoint_coverage_audit.json)。
+
+台帳外の補足として、[同一区画の捕食者対比](PENRYN_RESULTS_ja.md)と[幼虫の記録上の体重増加](MONARCH_DEVELOPMENT_ja.md)を保持する。これらの対比数を108行や独立研究数へ単純加算しない。
