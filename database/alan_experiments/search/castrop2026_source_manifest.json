@@ -1,0 +1,14 @@
+[
+  {
+    "filename": "preprint.xml",
+    "url": "https://www.biorxiv.org/content/early/2026/02/17/2026.02.16.703286.source.xml",
+    "bytes": 90767,
+    "sha256": "b6017923d36d24e4afcc27335f08848a128f048c17c8cef0be4a3b290efa8c1a"
+  },
+  {
+    "filename": "metadata.json",
+    "url": "https://api.biorxiv.org/details/biorxiv/10.64898/2026.02.16.703286/na/json",
+    "bytes": 1971,
+    "sha256": "88654de28628f512466d1cbc8b002c9fc82424e525959b09d7016636fb0073c4"
+  }
+]

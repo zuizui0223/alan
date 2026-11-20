@@ -1,0 +1,11 @@
+species,response,period,light,comparator,reported_percent_change,source_location,extracted_variance,eligible_for_meta
+Hypochaeris radicata,leaf_length,29_days,red,dark,11,Results3.1,,False
+Rumex acetosa,leaf_length,29_days,red,dark,8,Results3.1,,False
+Rumex acetosa,petiole_length,29_days,red,dark,34,Results3.1,,False
+both_species,transpiration,night_22_or29_days,red,dark,104,Results3.2,,False
+both_species,transpiration,night_22_or29_days,white,dark,57,Results3.2,,False
+Rumex acetosa,transpiration,day_22_or29_days,green,dark,-36,Results3.3,,False
+Rumex acetosa,transpiration,day_22_or29_days,red,dark,-27,Results3.3,,False
+Rumex acetosa,transpiration,day_22_or29_days,white,dark,-50,Results3.3,,False
+Hypochaeris radicata,photosynthetic_rate,day_22_or29_days,green,dark,28,Results3.3,,False
+Rumex acetosa,photosynthetic_rate,day_22_or29_days,green,dark,-32,Results3.3,,False
