@@ -34,6 +34,38 @@ def retrieve(url):
             raise ValueError("NOT_ZIP_CONTENT")
         return blob,res.geturl()
 
+def inspect_docx(blob):
+    """Inspect only archived OOXML table structure/section titles; not raw data."""
+    from xml.etree import ElementTree as ET
+    W="{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+    with zipfile.ZipFile(io.BytesIO(blob)) as z:
+        if z.testzip() is not None:raise ValueError("BAD_DOCX_ARCHIVE_CRC")
+        root=ET.fromstring(z.read("word/document.xml"))
+        body=root.find(f".//{W}body")
+        if body is None:raise RuntimeError("NO_WORD_BODY")
+        def plain(elem):
+            return "".join(t.text or "" for t in elem.iter(f"{W}t")).strip()
+        tables=body.findall(f".//{W}tbl")
+        table_info=[]
+        for t in tables:
+            rows=t.findall(f"./{W}tr")
+            cells=lambda tr:[plain(v)[:110] for v in tr.findall(f"./{W}tc")]
+            table_info.append({
+              "row_count":len(rows),
+              "first_row_cell_headings":cells(rows[0])[:20] if rows else [],
+              "second_row_cells":cells(rows[1])[:8] if len(rows)>1 else []
+            })
+        paragraphs=[plain(p) for p in body.findall(f"./{W}p")]
+        headings=[p[:160] for p in paragraphs if p and (
+                  p.startswith("Appendix") or p.startswith("Table") or
+                  p.startswith("Fig") or "data" in p.lower())][:30]
+        return {"type":"source_docx","paragraphs":len(paragraphs),
+            "tables":len(tables),"tables_row_counts":[t["row_count"] for t in table_info],
+            "tables_headers_preview":table_info[:12],
+            "titles_data_references":headings,
+            "images_or_drawings_are_not_effect_size_rows":True,
+            "study_level_meta_raw_case_data_not_inferred_from_manuscript_text":True}
+
 def inspect_zip(blob,max_depth=1,depth=0):
     out=[]
     with zipfile.ZipFile(io.BytesIO(blob)) as z:
@@ -64,6 +96,11 @@ def inspect_zip(blob,max_depth=1,depth=0):
                         item["status"]="NO_WELL_FORMED_DELIMITED_HEADER"
                 except UnicodeError:
                     item["status"]="TEXT_ENCODING_NOT_UTF8"
+            elif typ==".docx":
+                b=z.read(info)
+                item["sha256"]=hashlib.sha256(b).hexdigest()
+                item["status"]="ORIGINAL_WORD_SUPPLEMENT_STRUCTURE"
+                item["layout"]=inspect_docx(b)
             elif typ==".zip" and depth<max_depth:
                 inner=z.read(info)
                 if zipfile.is_zipfile(io.BytesIO(inner)):
