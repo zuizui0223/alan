@@ -50,3 +50,7 @@ API再実行時に索引が変われば件数や順序も変わり得る。既�
 実験語の必須条件を外した追加検索で51レコードを取得した。元のレコードID一致26、既存の補助登録DOI一致1、同定確認待ち24。24件は新規採択研究数ではなく、追加検索の全件選別も未完了である。元521件の履歴と最終PRISMAを上書きしない。[検索条件・照合・優先候補](pollination_expansion_review.md)。
 
 2026-11-21、上記24件のタイトル・抄録予備選別を実施。分類・理由・版重複候補3組は`pollination_expansion_screening.csv`と`pollination_expansion_duplicate_candidates.csv`。本文で設計を確認する候補3件が残り、最終採択ではない。
+
+## 資料確認の最新照合（2026-11-21）
+
+`reconcile_review_coverage.py`は補足表のみ／本文一部を読んだ報告を`partial_report_reviews.csv`から取り込み、方法・結果の確認完了へ昇格させない。元検索521レコード・516報告・全文確認対象187・確認記録160・未完了27は不変。元検索外の追跡18報告は確認記録12・未完了6（部分確認2を含む）となった。Knop2017の既存原著確認を集計へ接続した訂正を含み、新規論文取得の件数ではない。[論文用の暫定検索記録](../../../manuscript/biotic_synthesis/SEARCH_STATUS_ja.md)。採択・最終PRISMAのフラグは引き続きfalse。

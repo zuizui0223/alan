@@ -40,6 +40,14 @@ for x in studies.itertuples():
     add(x.doi, 'studies.csv:' + x.study_id, read=extracted, extracted=extracted,
         decision=x.status)
 
+# Supplement-only and indexed-section inspections are not complete reviews.
+partial = pd.read_csv(S / 'partial_report_reviews.csv').fillna('')
+assert partial.doi.is_unique and partial.doi.ne('').all()
+assert set(partial.review_status) <= {'supplement_tables_only', 'indexed_primary_sections_only'}
+partial_status = {'doi:' + r.doi.lower(): r.review_status for r in partial.itertuples()}
+for x in partial.itertuples():
+    add(x.doi, x.source_note, read=False, extracted=False, decision=x.decision)
+
 # Non-DOI reports keep their actual indexed key, never a fabricated DOI.
 non_doi_path = S / 'non_doi_report_reviews.csv'
 if non_doi_path.exists():
@@ -84,10 +92,13 @@ out.to_csv(S / 'report_review_coverage.csv', index=False)
 pending = out[out.retained_for_fulltext & out.coverage.ne('primary_read_eligibility_not_final')]
 pending.to_csv(S / 'pending_primary_review.csv', index=False)
 outside = [{'report_key': k, 'evidence_sources': ';'.join(v['sources']),
-            'primary_read': v['read'], 'catalogue_effects_present': v['extracted']}
+            'primary_read': v['read'], 'catalogue_effects_present': v['extracted'],
+            'partial_review_status': partial_status.get(k, ''),
+            'decision_history': ';'.join(sorted(set(v['decisions'])))}
            for k, v in evidence.items() if k not in set(out.report_key)]
 pd.DataFrame(outside, columns=['report_key','evidence_sources','primary_read',
-                             'catalogue_effects_present']).to_csv(S / 'supplementary_report_sources.csv', index=False)
+                             'catalogue_effects_present','partial_review_status',
+                             'decision_history']).to_csv(S / 'supplementary_report_sources.csv', index=False)
 summary = dict(search_records=len(identity), unique_search_reports=len(out),
                manually_linked_version_pairs=len(versions),
                publication_families_after_verified_links=out.publication_family_key.nunique(),
@@ -97,6 +108,9 @@ summary = dict(search_records=len(identity), unique_search_reports=len(out),
                    out.coverage.eq('primary_read_eligibility_not_final')).sum()),
                pending_primary_review_reports=len(pending),
                additional_source_reports_outside_search=len(outside),
+               outside_search_primary_read=sum(r['primary_read'] for r in outside),
+               outside_search_pending_full_review=sum(not r['primary_read'] for r in outside),
+               outside_search_partial_inspections=sum(bool(r['partial_review_status']) for r in outside),
                duplicate_incremental_batch_dois=sorted(set(batch.doi) & set(incremental.doi)),
                final_prisma=False, final_eligibility=False,
                note='Report counts retain distinct versions; manually verified publication families are separate and are not independent experiments. Programmes may share plots. Registry-only leads do not establish fulltext reading. No effect count is inferred from review counts.')
