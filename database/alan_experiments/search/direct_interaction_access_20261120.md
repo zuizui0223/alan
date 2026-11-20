@@ -23,3 +23,8 @@ Both reports remain pending primary review. No adoption/exclusion decision, effe
 ## Follow-up retrieval on 2026-11-20
 
 Exact-title, author and institutional searches for Sanders2022 did not recover a primary manuscript or raw dataset. DataCite exact-phrase lookup returned unrelated records only; the Exeter discovery endpoint returned HTTP202 with an empty body, and SSRN4003271 was inaccessible through the web tool. These are retrieval outcomes, not evidence that raw data do not exist. The report remains pending; no effect size or experiment-independence claim was added.
+
+
+## Superseding data recovery,2026-11-21
+
+The original Sanders spectral dataset and author Methods have now been recovered at https://doi.org/10.5285/dfe9a1ed-fc98-4abd-8040-6ee9f01cfcd0. The earlier inability to find raw data is no longer the current state. Final article full-text review remains pending. Complete56-cage aphid-excluded sentinel biomass supports14correlated exploratory contrasts; the50-cage insect cohort disagrees with the description's retained sample. See [source audit](../sanders2022_sources/README.md). Laboratory attacks remain separate from outdoor outcomes. This update does not mark the final article fully read or add pooled effects.

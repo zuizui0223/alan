@@ -1,0 +1,23 @@
+# Spectral food-web experiment: original data recovered, source cohorts separated
+
+Primary data: Sanders D, van Veen FJF, Gaston KJ (2021), *Insect population dynamics, parasitism and behaviour in response to different spectra of artificial light at night*. NERC EDS Environmental Information Data Centre, https://doi.org/10.5285/dfe9a1ed-fc98-4abd-8040-6ee9f01cfcd0. Open Government Licence; retain this attribution when reusing source_biomass.csv. Original archive: https://data-package.ceh.ac.uk/data/dfe9a1ed-fc98-4abd-8040-6ee9f01cfcd0.zip, retrieved2026-11-21. ALANSpectraDescription.docx supplies primary author Methods. Candidate associated article: https://doi.org/10.1016/j.scitotenv.2022.154893; full article Methods/Results still unread. The new data recovery supersedes the earlier inability to locate data, not the article-access hold.
+
+## Distinct experiments and responses
+
+The2017 Penryn field programme used seven blocks with dark and seven near-monochromatic light treatments. Most treatments have photon flux around7.1 micromol/m²/s; UV has2.4, so colour contrasts are not all flux-matched. The field experiment differs in year, cage design and treatment scheme from the2016 intensity study and2014 cages. Shared location alone is not evidence of reused experimental units.
+
+At week10, two-week-old Vicia faba plants were placed inside the mesocosms in netted cages to exclude aphids, then harvested three weeks later. Biomass is therefore a sentinel growth response around week13, not final-week17 food-web biomass or growth under herbivory. Netting excludes aphids according to the source, not demonstrably every insect. These observations do not identify a purely physiological pathway or trophic mediation.
+
+Spectra_biomass.csv has56 cages, all seven blocks×eight treatments represented, and no missing/nonpositive aboveground or root masses. Fourteen log response ratios (seven lit/dark contrasts×two organs) use paired-block delta-method variances and t6 approximate intervals. Their14×14 covariance matrix preserves shared controls and within-plant organ dependence and has rank at most6. Intervals are unadjusted exploratory intervals, not14 independent tests. Neither dose monotonicity nor a wet/dry effect is estimated.
+
+Aboveground biomass ratios range0.919–1.594. Green versus dark is1.594 with unadjusted interval1.210–2.100; the other aboveground intervals and all root intervals include1. This does not establish green differs from all other colours. All contrasts, including null-compatible and opposite-direction responses, are retained. No selective pooling or change to the existing108-row effect catalogue was made.
+
+## Cross-endpoint audit
+
+The insect file has50cages×17weeks=850rows with unique cage-week keys. Shared50cages have matching treatment/block labels in biomass and insect files. Six biomass cages have no insect time series:1(G),22(R),33(C),47(Uv),51(Uv),52(G). The description implies52retained insect cages (green6,red6,UV5,others7); the raw file has green5 and dark6. Its column description also says cage IDs1–48, conflicting with the56-cage biomass table. These inconsistencies remain unresolved. No absent insect trajectory is replaced by zero, and no biomass cage is excluded solely because its insect trajectory is missing.
+
+The attack-rate and behavioural files describe separate controlled-temperature laboratory experiments. Successful attacks inferred from mummies after two weeks are not immediate observed strikes. They are not added to the outdoor plant experiment or used as its mediating covariate. Hyperparasitoid sampling is conditional on sufficient mummies and sampled weeks; missing samples are not zero hyperparasitism. Field Abundance.factor must be applied as documented before any population analysis.
+
+Run `python database/alan_experiments/sanders2022_sources/extract_biomass.py SOURCE_DIRECTORY`. Source hashes, retained cohort counts, model definition and software-independent covariance checks are recorded. Original biomass, allocation crosswalk, all14 effects and the full covariance are retained. An independent AI review confirmed56complete biomass records,50insect cages, shared allocation consistency and endpoint timing; this is not human duplicate extraction. Final article comparison, excluded-insect cohort explanation, exact site context and final meta-analysis eligibility remain pending.
+
+Independent numerical recomputation using the16 arm×organ mean covariance and a Jacobian matched all14 estimates and t6 intervals to1.34e-15 and the full covariance to9.76e-17; rank6. The saved biomass table matches all source cells, including the six cages without insect trajectories.

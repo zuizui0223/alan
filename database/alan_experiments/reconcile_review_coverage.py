@@ -46,6 +46,7 @@ assert partial.doi.is_unique and partial.doi.ne('').all()
 assert set(partial.review_status) <= {
     'supplement_tables_only', 'indexed_primary_sections_only',
     'preprint_main_and_published_supplement_only',
+    'author_dataset_methods_and_raw_only',
 }
 partial_status = {'doi:' + r.doi.lower(): r.review_status for r in partial.itertuples()}
 for x in partial.itertuples():

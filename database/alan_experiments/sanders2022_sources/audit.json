@@ -1,0 +1,54 @@
+{
+  "dataset_doi": "10.5285/dfe9a1ed-fc98-4abd-8040-6ee9f01cfcd0",
+  "candidate_article_doi": "10.1016/j.scitotenv.2022.154893",
+  "final_article_read": false,
+  "biomass_cages": 56,
+  "biomass_blocks": 7,
+  "biomass_missing": 0,
+  "insect_cages": 50,
+  "insect_cage_weeks": 850,
+  "observed_insect_cages_by_treatment": {
+    "Bl": 7,
+    "C": 6,
+    "G": 5,
+    "O": 7,
+    "P": 7,
+    "R": 6,
+    "Ub": 7,
+    "Uv": 5
+  },
+  "description_expected_cages_by_treatment": {
+    "Bl": 7,
+    "C": 7,
+    "G": 6,
+    "O": 7,
+    "P": 7,
+    "R": 6,
+    "Ub": 7,
+    "Uv": 5
+  },
+  "biomass_only_cages": [
+    1,
+    22,
+    33,
+    47,
+    51,
+    52
+  ],
+  "allocation_conflicts_in_shared_cages": 0,
+  "extracted_biomass_contrasts": 14,
+  "covariance_rank": 6,
+  "covariance_method": "paired_block_delta_lnRR; t6 intervals",
+  "independent_programmes": 1,
+  "added_catalogue_effects": 0,
+  "source_sha256": {
+    "ALANSpectraDescription.docx": "6fb2441ef145760985822260eac66cfff087c52d500c16ad1b96321241a79511",
+    "original.zip": "e4dfbc1bac3238f4c878354c888a9379bdf0c287ed33144ec50aacd091d5c40c",
+    "Spectra_attackrate.csv": "7a75ea3c296bd7282fb857fecd0195ce575430443a62ef4b171ec9a8f87a82b2",
+    "Spectra_beh.csv": "4722db9aa98ad31eab4152b9ce8887a185180a35e7ed601104add25d0d5be225",
+    "Spectra_biomass.csv": "78881e502b5ad569b3a36fc9ab51dae9dc24adf8719f0a99a31ac3616be2c77f",
+    "Spectra_fieldexperiment.csv": "bb633fcedfa194bc4ea9c9ec107fd8a2bb49254e62060ca6be5a1f938c136cff",
+    "Spectra_hyper.csv": "d93181edfdb616cb60d6312902ae8145f27a4c56114732263172186f6766cf5a"
+  },
+  "limitation": "Sentinel plants exclude aphids; not final17week yield or a predator-removal contrast. Insect exclusions unresolved. UV photon flux differs from other colours."
+}
