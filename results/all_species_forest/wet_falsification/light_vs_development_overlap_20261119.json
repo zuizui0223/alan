@@ -1,0 +1,106 @@
+{
+  "frozen_matching_algorithm": "within-block Hungarian no-replacement; built change within 0.5 IQR; light difference >=1 DN/decade; baseline built and light within IQR; start <=5y; span <=10y",
+  "run": {
+    "matched_development": {
+      "all_matched_covariate_SMD": {
+        "area0": 0.7224709411617956,
+        "area_trend": -0.8056181654983291,
+        "built": 0.03308607339522498,
+        "built0": 0.04658986507316322,
+        "days": 0.02220571124013379,
+        "effort": -0.07771617743440822,
+        "freq0": 0.7445843410774747,
+        "freq_trend": -0.7145226752233517,
+        "light0": 0.05190002970885323,
+        "rain_trend": -0.16132799628593603,
+        "span": -0.13706417112299465,
+        "spring": -0.1760097949608027,
+        "start": 0.0937807486631016,
+        "summer": 0.09283029599198195,
+        "temp_trend": -0.12278499392423899
+      },
+      "baseline_built_SMD": 0.04658986507316322,
+      "baseline_light_SMD": 0.05190002970885323,
+      "built_change_SMD": 0.03308607339522498,
+      "candidate_minus_reference_trend_pair_difference_pp_per_decade": -2.4764370472622725,
+      "independent_spatial_blocks": 30,
+      "interpretation": "postselected wet-decline groups and historical site trends; not ALAN causal effect or new independent validation",
+      "light_slope_contrast_median_DN_per_decade": 4.579630945897309,
+      "matched_pairs": 187,
+      "mean_pair_difference_cluster_bootstrap_95pct": [
+        -5.290737365153461,
+        -0.23681023065180642
+      ],
+      "same_cohort_regression_sensitivity": {
+        "bootstrap_resamples_with_complete_rank": 1800,
+        "both_models_include_baseline_water_and_climate": true,
+        "independent_spatial_blocks": 30,
+        "model_with_water_change_cluster_95pct": [
+          -7.052022978014046,
+          0.6095188070779366
+        ],
+        "model_with_water_change_slope_per_10_DN": -3.497903839375435,
+        "model_without_water_change_cluster_95pct": [
+          -7.286558946584264,
+          0.5984029685446195
+        ],
+        "model_without_water_change_slope_per_10_DN": -3.4748352407820033,
+        "same_matched_pairs": 187,
+        "sensitivity_difference_not_causal_water_mediation": -0.023068598593431577,
+        "status": "POSTHOC_SENSITIVITY_ONLY"
+      },
+      "slope_per_10_DN_brightening_pp_per_decade": -3.351126420669513,
+      "slope_per_10_DN_cluster_bootstrap_95pct": [
+        -8.528543188601112,
+        0.5511268727427261
+      ],
+      "source_eligible_sites": 1707,
+      "status": "SOURCE_SUPPORT_STOP"
+    },
+    "matched_development_and_water_change": {
+      "all_matched_covariate_SMD": {
+        "area0": 0.360146412132859,
+        "area_trend": 0.010946401416785793,
+        "built": 0.023354854581237698,
+        "built0": 0.06401535580064856,
+        "days": 0.11216906934396859,
+        "effort": -0.1419111034262782,
+        "freq0": 0.3598397558949304,
+        "freq_trend": 0.013008073111711168,
+        "light0": 0.06639814814814815,
+        "rain_trend": -0.09721248698807139,
+        "span": -0.11833333333333333,
+        "spring": -0.19640114501926917,
+        "start": -0.023666666666666666,
+        "summer": 0.11430794722423086,
+        "temp_trend": -0.2783752844699092
+      },
+      "baseline_built_SMD": 0.06401535580064856,
+      "baseline_light_SMD": 0.06639814814814815,
+      "built_change_SMD": 0.023354854581237698,
+      "candidate_minus_reference_trend_pair_difference_pp_per_decade": -1.0197669959163325,
+      "independent_spatial_blocks": 25,
+      "interpretation": "postselected wet-decline groups and historical site trends; not ALAN causal effect or new independent validation",
+      "light_slope_contrast_median_DN_per_decade": 5.795164826608106,
+      "matched_pairs": 114,
+      "mean_pair_difference_cluster_bootstrap_95pct": [
+        -2.9865334064773017,
+        1.6525474313318806
+      ],
+      "slope_per_10_DN_brightening_pp_per_decade": -1.7237554846786245,
+      "slope_per_10_DN_cluster_bootstrap_95pct": [
+        -4.809468756253054,
+        1.4131250589595312
+      ],
+      "source_eligible_sites": 1707,
+      "status": "SOURCE_SUPPORT_STOP"
+    }
+  },
+  "sample_description": "same existing 58 postselected moist-decliners and 305 wet comparison species; no new plant records",
+  "source": "6a9a484:results/all_species_forest/wet_water/coordinate_trends.csv.gz",
+  "source_sha256": "4d151698e0da5ee754326220d3bb817b141da00770299e7f8910366d8771e74f",
+  "verified_actions_url": "https://github.com/zuizui0223/alan/actions/runs/44528843759",
+  "verified_utc": "2026-11-19",
+  "sensitive_physical_site_coordinates_in_result": false,
+  "promote_to_main": false
+}
