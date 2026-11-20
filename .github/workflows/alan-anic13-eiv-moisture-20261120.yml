@@ -4,6 +4,7 @@ on:
     branches: [analysis/alan-predator-guild-switch-edi-20261118]
     paths:
       - "scripts/analysis/alan_anic2022_13species_eiv_moisture_lightcode_source_gate_20261120.py"
+      - "scripts/analysis/alan_anic2022_13plant_eiv_name_support_audit_20261120.py"
       - "tests/test_alan_anic2022_13species_eiv_moisture_lightcode_20261120.py"
       - ".github/workflows/alan-anic13-eiv-moisture-20261120.yml"
   workflow_dispatch:
@@ -38,6 +39,12 @@ jobs:
           python -m scripts.analysis.alan_anic2022_13species_eiv_moisture_lightcode_source_gate_20261120 \
             --eiv /tmp/ALAN_Original_EIV_Europe.csv \
             --out /tmp/ALAN_Anic2022_13plants_moisture_source_gate.json
+      - name: Check unscored original plant names against literal EIV source labels
+        run: |
+          python -m scripts.analysis.alan_anic2022_13plant_eiv_name_support_audit_20261120 \
+            --source /tmp/ALAN_Anic2022_13plants_moisture_source_gate.json \
+            --eiv /tmp/ALAN_Original_EIV_Europe.csv \
+            --out /tmp/ALAN_Anic2022_EIV_unmatched_taxa_source_labels.json
       - name: Guard experimental light treatments and do not claim causal wet-specific ALAN
         run: |
           python - <<'PY'
@@ -53,6 +60,8 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: alan-original-Anic13-54trough-MOIST-x-light-code-source
-          path: /tmp/ALAN_Anic2022_13plants_moisture_source_gate.json
+          path: |
+            /tmp/ALAN_Anic2022_13plants_moisture_source_gate.json
+            /tmp/ALAN_Anic2022_EIV_unmatched_taxa_source_labels.json
           if-no-files-found: error
           retention-days: 45
