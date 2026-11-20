@@ -1,4 +1,6 @@
-Current update: 157 retained reports reviewed,30 pending; eleven outside-search reports. Hermans2024 primary PDF read and Table1 slopes transcribed separately. Capture attempts distinguished from predation success; raw data restricted and programme overlap pending. No pooled effect added.
+Current update: 158 retained reports reviewed,29 pending; eleven outside-search reports. Bhardwaj2020 accepted manuscript Methods/Results and independent review completed. Eleven reused physical sites distinguished from sixteen assignments; acoustic activity is not predation. Movement extraction held; no finite effect added.
+
+Previous update: 157 retained reports reviewed,30 pending; eleven outside-search reports. Hermans2024 primary PDF read and Table1 slopes transcribed separately. Capture attempts distinguished from predation success; raw data restricted and programme overlap pending. No pooled effect added.
 
 Previous update: 156 retained reports reviewed,31 pending; eleven outside-search reports. Mastomys2024 primary PDF read: ALAN treatments indoor and fixed-order, excluded from field interaction pooling. Vardi-Naim2026 outdoor survival remains full-text/design hold. No finite effect added.
 
