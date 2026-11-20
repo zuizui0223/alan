@@ -1,0 +1,15 @@
+{
+  "preprint_doi": "10.21203/rs.3.rs-4458491/v1",
+  "final_doi": "10.1093/beheco/arag108",
+  "local_sha256": {
+    "preprint.pdf": "f44e69e213bd73b0d1895b6d363ebb5b243c17b1319d9ccefc4403a1f2273666",
+    "preprint.txt": "8addea4eefdcab3804c06b8bc41209707c36bf386402e49ed22f6e1febfce5d1",
+    "primary_bioc.xml": "a37b552c55e8d40131ef0290f856dd2045e0422316a1997a93906be44349fd86",
+    "primary.txt": "c7eb091ee694aff41c419c1315541ae6c4f238d2e2c53a08a9c31db5a71f08ea"
+  },
+  "methods_results_read_both": true,
+  "raw_data_downloaded": false,
+  "alan_manipulation": false,
+  "effects_added": 0,
+  "source_api": "https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_xml/PMC13595255/ascii"
+}

@@ -1,4 +1,6 @@
-Current update: 144 retained reports reviewed,44 pending. Daufel original workbook recovered and independently checked; two conditional oviposition estimates remain outside the catalogue because daily completeness and single-egg total differ from the paper. Existing pooled results unchanged.
+Current update: 145 retained reports reviewed,43 pending. Odonate polarization preprint and final Methods/Results reviewed; both excluded from ALAN manipulation synthesis because observations used natural sunlight at11-14h. A third within-search version pair yields514 publication families; retained families186 and reports188 unchanged. Final species models weaken several preprint preference claims. No pooled effects added; final eligibility remains unfinished.
+
+Previous update: 144 retained reports reviewed,44 pending. Daufel original workbook recovered and independently checked; two conditional oviposition estimates remain outside the catalogue because daily completeness and single-egg total differ from the paper. Existing pooled results unchanged.
 
 Current update: 143 retained reports reviewed, 45 pending. Castrop plant preprint reviewed; ten author-reported percentage contrasts lack extracted variance and remain outside the finite-effect catalogue. Raw access and shared lighting-row support unresolved.
 
