@@ -1,0 +1,47 @@
+name: ALAN Lu original five-block conditional fly-moth overlap
+
+on:
+  push:
+    branches: [analysis/alan-functional-compensation-20261119]
+    paths:
+      - "scripts/analysis/alan_lu2026_sameflower_conditional_overlap_20261120.py"
+      - "tests/test_alan_lu2026_sameflower_conditional_overlap_20261120.py"
+      - ".github/workflows/alan-lu2026-conditional-overlap-20261120.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-lu-5block-exact-null:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Audit source-independent mathematical exact tests
+        run: python -m unittest discover -s tests -p test_alan_lu2026_sameflower_conditional_overlap_20261120.py -v
+      - name: Extract official Lu 2026 original 1606 network rows and run exact null
+        run: |
+          python -m scripts.analysis.alan_lu2026_sameflower_conditional_overlap_20261120 \
+             --out /tmp/alan_lu2026_conditional_fly_moth_overlap.json
+      - name: Reject pseudo independent plants and functional pollen claims
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/alan_lu2026_conditional_fly_moth_overlap.json'))
+          assert r['original_author_excel_sha256']=='ba7e15e66986f64943a38fd294e49d7128cf7719d318578f6b805d29cde8f98f'
+          assert r['experimental_independent_light_pairs']==5
+          assert r['original_same_plant_both_diel_paired_cells']==33
+          assert r['source_unseen_plant_visits_never_imputed_as_zeros']
+          assert r['no_direct_functional_pollen_or_seed_delivery_tested']
+          print('LU_5_INDEPENDENT_LIGHT_PAIR_SOURCE_AND_EVIDENCE_GATE_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-lu2026-fiveblock-fly-moth-exact-overlap
+          path: /tmp/alan_lu2026_conditional_fly_moth_overlap.json
+          retention-days: 45
+          if-no-files-found: error
