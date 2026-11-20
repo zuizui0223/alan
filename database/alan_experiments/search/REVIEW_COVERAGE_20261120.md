@@ -1,3 +1,5 @@
+Current update: 140 retained reports have primary Methods/Results reviewed; 48 remain pending. Wang grassland preprint and published version reviewed separately; final DOI is an additional outside-search report (six total), not an additional experiment. Raw numerical extraction remains pending.
+
 Current update: 139 retained reports have primary Methods/Results reviewed; 49 remain pending. Amphibian2018 final-paper review completed; two freshwater predator preprints remain access holds with probable overlap, not merged. Final eligibility and PRISMA remain unfinished.
 
 # 検索記録と本文確認の照合（2026-11-20）
