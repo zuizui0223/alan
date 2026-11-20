@@ -1,0 +1,144 @@
+{
+  "product": "JRC_GSW_v1.5_monthlyhistory",
+  "source_guide": "https://storage.googleapis.com/water-world/downloads_ancillary/DataUsersGuidev2024_v.5.pdf",
+  "input_coordinates_sha256": "4bb19cc7aed05cc81cb3079b2455f95d757be4fd61abcefaf54e6bf02fe45b8c",
+  "site_months": 5,
+  "sites": 3,
+  "input_windows": [
+    {
+      "site_id": "Waterfowl_Pond_Seven_Ponds",
+      "month": "2022-06",
+      "url": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/monthlyhistory/VER1-5/2022/2022_06/monthlyhistory_90W_50N_v1_5_2022_06.tif",
+      "retrieved_utc": "2026-11-20T14:32:20.035020+00:00",
+      "bbox": [
+        -83.22997222222223,
+        42.89088888888889,
+        -83.14997222222222,
+        42.97088888888889
+      ],
+      "window": [
+        27080,
+        28116,
+        321,
+        321
+      ],
+      "source_nodata": null,
+      "source_crs": "EPSG:4326",
+      "native_resolution": [
+        0.00025,
+        0.00025
+      ],
+      "sha256": "92dee7f11019c14bb49bfc23d538e523f0cb919642dba975c2e8e3931f3ce54a"
+    },
+    {
+      "site_id": "Dongting_Lake_Wetland_Station",
+      "month": "2023-05",
+      "url": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/monthlyhistory/VER1-5/2023/2023_05/monthlyhistory_110E_30N_v1_5_2023_05.tif",
+      "retrieved_utc": "2026-11-20T14:32:22.398985+00:00",
+      "bbox": [
+        112.75999999999999,
+        29.46,
+        112.84,
+        29.54
+      ],
+      "window": [
+        11039,
+        1839,
+        321,
+        321
+      ],
+      "source_nodata": null,
+      "source_crs": "EPSG:4326",
+      "native_resolution": [
+        0.00025,
+        0.00025
+      ],
+      "sha256": "373fa364373040b706b68e964a6a27aa3b55deac81bba45fc624ba01db6e5f99"
+    },
+    {
+      "site_id": "Dongting_Lake_Wetland_Station",
+      "month": "2023-06",
+      "url": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/monthlyhistory/VER1-5/2023/2023_06/monthlyhistory_110E_30N_v1_5_2023_06.tif",
+      "retrieved_utc": "2026-11-20T14:32:23.540901+00:00",
+      "bbox": [
+        112.75999999999999,
+        29.46,
+        112.84,
+        29.54
+      ],
+      "window": [
+        11039,
+        1839,
+        321,
+        321
+      ],
+      "source_nodata": null,
+      "source_crs": "EPSG:4326",
+      "native_resolution": [
+        0.00025,
+        0.00025
+      ],
+      "sha256": "a478104bf49bf86b3c133062243e245c70a96525cd2e5d246464ed75b1edb113"
+    },
+    {
+      "site_id": "Gansu_Gannan_station",
+      "month": "2024-07",
+      "url": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/monthlyhistory/VER1-5/2024/2024_07/monthlyhistory_100E_40N_v1_5_2024_07.tif",
+      "retrieved_utc": "2026-11-20T14:32:24.607120+00:00",
+      "bbox": [
+        101.82666666666665,
+        33.626666666666665,
+        101.90666666666667,
+        33.70666666666666
+      ],
+      "window": [
+        7306,
+        25173,
+        321,
+        321
+      ],
+      "source_nodata": null,
+      "source_crs": "EPSG:4326",
+      "native_resolution": [
+        0.00025,
+        0.00025
+      ],
+      "sha256": "c1f505288b881a5353b319d6c777ac70f452b8c0c457462e7237a09e6da93338"
+    },
+    {
+      "site_id": "Gansu_Gannan_station",
+      "month": "2024-08",
+      "url": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/monthlyhistory/VER1-5/2024/2024_08/monthlyhistory_100E_40N_v1_5_2024_08.tif",
+      "retrieved_utc": "2026-11-20T14:32:25.631529+00:00",
+      "bbox": [
+        101.82666666666665,
+        33.626666666666665,
+        101.90666666666667,
+        33.70666666666666
+      ],
+      "window": [
+        7306,
+        25173,
+        321,
+        321
+      ],
+      "source_nodata": null,
+      "source_crs": "EPSG:4326",
+      "native_resolution": [
+        0.00025,
+        0.00025
+      ],
+      "sha256": "14e4db2f112a49eb8245f28302b89f4e6d304aad757778a01ce5a339e6f42c70"
+    }
+  ],
+  "no_observation_codes": [
+    0,
+    255
+  ],
+  "valid_codes": [
+    1,
+    2
+  ],
+  "water_code": 2,
+  "limitation": "Monthly detection not hydroperiod; kilometre context not plot moisture. No effect-model adjustment or additional experimental replication."
+}

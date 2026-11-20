@@ -32,3 +32,23 @@ Independent agent verification matched18 raw hashes, all9,142 daily records and2
 No within-pair climate adjustment is adopted from these values. No point is deleted, snapped to its paired point, or assigned a corrected value. The annual context remains useful at its stated coarse support; it cannot establish climate matching of the illumination/control plots. Reproduce with `python database/alan_experiments/site_context/audit_climate_pair_support.py`; the audit hashes its annual source. A later finer-scale source requires explicit spatial and temporal validation rather than selection for agreement with the light response.
 
 Independent agent recalculation matched all six pair assignments, differences, distances and the annual-input hash. This verifies the spatial-support audit, not local meteorological accuracy.
+
+## Experiment-month surface-water context acquired
+
+`acquire_monthly_water.py` downloaded native-grid windows of JRC GSWv1.5 Monthly History for three representative sites and five experiment months. Product and file patterns follow the [official download instructions](https://global-surface-water.appspot.com/gsw/Download_Instructions.html); classes follow the [v5 guide](https://storage.googleapis.com/water-world/downloads_ancillary/DataUsersGuidev2024_v.5.pdf). Source URLs, windows, timestamps and hashes are retained in `monthly_water_audit.json`; raw clips are cached outside Git. Attribution: European Commission JRC/Copernicus, Pekel et al.2016, DOI10.1038/nature20584.
+
+`monthly_water_context.csv` contains10 buffer summaries (1km and2km), not10 experimental replicates. Distances are WGS84 geodesic distances to pixel centres; relative pixel-area weights use cosine latitude. Codes0/255 are unobserved,1 is observed nonwater,2 detected water. All complete buffer circles lie within acquired windows. Observed-only fractions are retained for audit, while the comparison column is blank below95% mapped-area coverage; this threshold is an operational screen, not a validated ecological cutoff.
+
+| Representative site/month | Valid area,1km/2km | Water fraction,1km/2km |
+|---|---:|---:|
+| SevenPonds,2022-06 |100%/100%|4.816%/1.304%|
+| Dongting station,2023-05 |33.547%/31.180%|Withheld: insufficient coverage|
+| Dongting station,2023-06 |100%/100%|61.160%/55.445%|
+| Gannan station,2024-07 |100%/100%|0%/0%|
+| Gannan station,2024-08 |100%/100%|0%/0%|
+
+These are same-month landscape detection summaries, not experimental water levels, hydroperiod or water-surface exposure at the lamp. Dongting's May observed-only fraction near90% cannot be compared with June's55–61% as a measured loss of water: missingness differs sharply. Gannan's zero detected water does not establish dry soil or exclude small/vegetated wet habitats. Dongting and Gannan coordinates have minute precision; no fine-scale nearest-shore distance is inferred. The SevenPonds coordinate is shared by littoral and riparian trap treatments, so these values cannot distinguish those treatments. Water in experimental cylinders is not estimated from the surrounding landscape.
+
+No biological effect is recalculated and no wet/dry meta-regression is fitted. These three programmes also measure different biological endpoints. Earlier experiments and unlocated sites remain unresolved; long-term occurrence is not silently substituted for their experiment-month hydrology. The acquisition fills five same-month context records, not the full environmental-moderator requirement.
+
+Independent computational review used site-centred azimuthal-equidistant coordinates and reproduced all10 pixel counts, weighted fractions and coverage decisions. All five clip hashes and the coordinate-table hash matched. This validates extraction, not observed local soil or water conditions.
