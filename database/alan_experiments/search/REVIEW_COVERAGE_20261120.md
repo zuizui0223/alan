@@ -1,4 +1,6 @@
-Current update: 159 retained reports reviewed,28 pending; eleven outside-search reports. Sanders2018 field biomass audit finds30/48 records per plant and a Cage39 light-allocation conflict (population5lux; both biomass1lux). Registry now holds cross-endpoint allocation and biomass extraction; existing insect values remain conditional and unchanged. No new review count or effect added.
+Current update: 160 retained reports reviewed,27 pending; eleven outside-search reports. Kirk Rhagoletis preprint current PDF read and independently reviewed: indoor one incubator per light condition, excluded from main field synthesis irrespective of direction. Version-link ambiguity and outcome denominators preserved. No effect added.
+
+Previous update: 159 retained reports reviewed,28 pending; eleven outside-search reports. Sanders2018 field biomass audit finds30/48 records per plant and a Cage39 light-allocation conflict (population5lux; both biomass1lux). Registry now holds cross-endpoint allocation and biomass extraction; existing insect values remain conditional and unchanged. No new review count or effect added.
 
 Previous update: 159 retained reports reviewed,28 pending; eleven outside-search reports. Owens2022 final public DOCX and spectral CSV recovered. Trap-change exclusion verified; ecological raw data and final Methods/Results remain pending. No effect or completed-review count added.
 

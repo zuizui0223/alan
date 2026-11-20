@@ -50,7 +50,7 @@ Parkinson2020の6対比と36共分散は、既存抽出器を使わない[独立
 
 ## 検索と採択
 
-WoS Core CollectionとScopusは未実行。`prisma_log.csv`の空欄は未取得であってゼロ件ではない。EuropePMC補助検索521レコードのタイトル・抄録を予備選別し、当初192件を全文確認候補とした。現在は書誌同定・重複照合後の187報（185出版ファミリー）を追跡し、159報の本文確認済み・28報保留となっている。出版ファミリーも独立実験数ではない。検索式・API原応答ハッシュ・レコードID・判断理由は`search/`に保存している。DOI欠損などによる重複候補が残るため、521や192を独立研究数としない。取得済み全文のMethods・Resultsに基づく判定を進め、取得不能を範囲外として除外しない。PRISMA図は実際の件数が確定してから作る。
+WoS Core CollectionとScopusは未実行。`prisma_log.csv`の空欄は未取得であってゼロ件ではない。EuropePMC補助検索521レコードのタイトル・抄録を予備選別し、当初192件を全文確認候補とした。現在は書誌同定・重複照合後の187報（185出版ファミリー）を追跡し、160報の本文確認済み・27報保留となっている。出版ファミリーも独立実験数ではない。検索式・API原応答ハッシュ・レコードID・判断理由は`search/`に保存している。DOI欠損などによる重複候補が残るため、521や192を独立研究数としない。取得済み全文のMethods・Resultsに基づく判定を進め、取得不能を範囲外として除外しない。PRISMA図は実際の件数が確定してから作る。
 
 予定検索の概念式：("artificial light at night" OR "ALAN" OR "light pollution" OR "street light*" OR "streetlight*" OR "night-time light*" OR "nocturnal illumination") AND (experiment* OR manipulat* OR mesocosm* OR "field trial") AND (insect* OR arthropod* OR spider* OR predator* OR pollinat* OR "flower visit*" OR "fruit set" OR "seed set" OR plant* OR macrophyte* OR herbivor* OR "aquatic insect*" OR emergence)。DBのフィールド指定・ワイルドカード仕様を実行時に確認する。
 
