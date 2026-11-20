@@ -1,0 +1,49 @@
+{
+  "paper_doi": "10.1002/ecs2.2550",
+  "date": "2026-11-20",
+  "discovery": "supplementary targeted search: Macgregor 2019 street lighting moth pollination seed set Dryad data",
+  "search_origin": "outside existing indexed search; not WoS or Scopus",
+  "primary_pdf_url": "https://eprints.whiterose.ac.uk/id/eprint/149121/1/Macgregor_et_al_2019_Ecosphere.pdf",
+  "primary_pdf_sha256": "e0f83cc2086f2f494f175b0d1eee8495cf9153dd62f9ca7f35338ff9e5f1ad1c",
+  "zenodo_record": 1743917,
+  "archive_checksum": "md5:26c45205c4bcef4576be592d54893615",
+  "archive_files": [
+    "CallumJMacgregor-BioassayPaper-b94e461/CheckConvergenceFunction.R",
+    "CallumJMacgregor-BioassayPaper-b94e461/CheckResidsFunction.R",
+    "CallumJMacgregor-BioassayPaper-b94e461/FinalScripts.R",
+    "CallumJMacgregor-BioassayPaper-b94e461/MultiplotFunction.R",
+    "CallumJMacgregor-BioassayPaper-b94e461/PowerAnalysis.R",
+    "CallumJMacgregor-BioassayPaper-b94e461/sim.glmm.R"
+  ],
+  "csv_inputs_referenced": [
+    "Data\\\\SeedCount.csv",
+    "Data\\\\SeedSetBinom.csv",
+    "Data\\\\SeedSetYN.csv"
+  ],
+  "csv_inputs_present": false,
+  "missing_sourced_helper": "OverdispersalFunction.R",
+  "public_roots_checked": [
+    "https://github.com/CallumJMacgregor/BioassayPaper/tree/master",
+    "https://github.com/CallumJMacgregor/Chapter-3/tree/master"
+  ],
+  "public_roots_raw_csv_present": false,
+  "supplement_url": "https://esajournals.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fecs2.2550&file=ecs22550-sup-0001-AppendixS1.pdf",
+  "supplement_status": 403,
+  "extracted_effects": 0,
+  "main_catalogue": false,
+  "units": {
+    "physical_plots": 5,
+    "rotating_runs": 4,
+    "individual_female_plants": 169,
+    "flowers": 417,
+    "successful_flowers": 194,
+    "damaged_successful_flowers": 46,
+    "conditional_seed_sample": 148
+  },
+  "blockers": [
+    "Raw plant/plot/run linkage unavailable",
+    "Repeated plants and rotating plots require dependence model",
+    "Seed outcomes are conditional; damaged capsules not zero-filled",
+    "No signed lighting coefficient and SE extracted from primary summary"
+  ]
+}
