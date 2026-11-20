@@ -1,5 +1,7 @@
 # ALANizer: recoverable field biomass and treatment-label audit
 
+**Update:** Final biological Methods/Results subsequently read through publisher-indexed text. Public biomass values do not match the paper's sample count or total. See [reconciliation](FINAL_REPORT_RECONCILIATION.md). The chronological account below describes the initial recovery; numerical adoption remains on hold.
+
 2026-11-20. No effect estimates or new pooled results. This audit recovers biological data linked by a methods report; it does not count the methods paper as an independent biological experiment.
 
 ## Primary sources and versions

@@ -17,6 +17,12 @@
   "metadata_rows_without_biomass": 262,
   "metadata_actual_known_without_biomass": 13,
   "complete_three_arm_sites": 11,
+  "raw_near_far_values": 268,
+  "raw_total_mass_sum": 556.9298000000001,
+  "paper_reported_samples": 216,
+  "paper_reported_mass_g": 531.4,
+  "paper_reported_individuals": 10211,
+  "exact_paper_sample_subset_verified": false,
   "finite_effects_added": 0,
-  "hold": "Final biological Methods/Results, mass units, exclusions, trap identity and repeated-period modelling pending; missing samples are not zeros"
+  "hold": "Final indexed Methods/Results read; paper216samples differs from raw268trap values. Exact sample exclusions and raw mass-unit mapping unresolved; no subset chosen to force agreement"
 }

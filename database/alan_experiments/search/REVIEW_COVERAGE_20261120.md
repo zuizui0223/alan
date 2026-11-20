@@ -1,4 +1,6 @@
-Current update: 146 retained reports reviewed,42 pending. ALANizer v2methods/validation and linked134-row biomass source audited;8records differ from planned allocation but all match corrected metadata. Final methods and biological articles identified as two outside-search leads (nine total); neither final Methods/Results read. No effects added. Shredder2021/2022 remain access holds.
+Current update: 146 retained reports reviewed,42 pending; nine outside-search reports. The final ALANizer biological paper's indexed Methods/Results are now read. Its216samples do not match268near/far values in the public table; exact inclusion mapping remains unresolved. Final methods-paper version still unread. No effects added.
+
+Previous update: 146 retained reports reviewed,42 pending. ALANizer v2methods/validation and linked134-row biomass source audited;8records differ from planned allocation but all match corrected metadata. Final methods and biological articles identified as two outside-search leads (nine total); neither final Methods/Results read. No effects added. Shredder2021/2022 remain access holds.
 
 Previous update: 145 retained reports reviewed,43 pending. Odonate polarization preprint and final Methods/Results reviewed; both excluded from ALAN manipulation synthesis because observations used natural sunlight at11-14h. A third within-search version pair yields514 publication families; retained families186 and reports188 unchanged. Final species models weaken several preprint preference claims. No pooled effects added; final eligibility remains unfinished.
 

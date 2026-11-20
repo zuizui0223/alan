@@ -42,7 +42,18 @@ audit = dict(
     metadata_rows_without_biomass=int(unmatched._merge.eq('left_only').sum()),
     metadata_actual_known_without_biomass=int((unmatched._merge.eq('left_only') & unmatched.Treatment.notna()).sum()),
     complete_three_arm_sites=int(support.gt(0).all(axis=1).sum()),
+    raw_near_far_values=int(b[['Near','Far']].size),
+    raw_total_mass_sum=float(b.Total.sum()),
+    paper_reported_samples=216,
+    paper_reported_mass_g=531.4,
+    paper_reported_individuals=10211,
+    exact_paper_sample_subset_verified=False,
     finite_effects_added=0,
-    hold='Final biological Methods/Results, mass units, exclusions, trap identity and repeated-period modelling pending; missing samples are not zeros')
+    hold='Final indexed Methods/Results read; paper216samples differs from raw268trap values. Exact sample exclusions and raw mass-unit mapping unresolved; no subset chosen to force agreement')
+(HERE/'paper_data_reconciliation.csv').write_text(
+    'quantity,raw_file_value,paper_reported_value,status\n'
+    f'near_far_sample_values,{b[["Near","Far"]].size},216,subset_not_verified\n'
+    f'mass_sum,{b.Total.sum():.7f},531.4,raw_units_and_subset_not_verified\n'
+    'individual_count,,10211,classification_files_not_read\n', encoding='utf-8')
 (HERE/'audit.json').write_text(json.dumps(audit,indent=2)+'\n',encoding='utf-8')
 print(json.dumps(audit,indent=2))

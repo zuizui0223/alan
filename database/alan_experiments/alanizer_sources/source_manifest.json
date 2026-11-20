@@ -9,5 +9,6 @@
     "biomass.csv": "7d952d562149e61efe985ed3b43fa4c80ccafdad0b4a8d039807846dbaa3207e"
   },
   "final_methods_read": false,
-  "final_biological_methods_read": false
+  "final_biological_methods_read": true,
+  "final_biological_access": "publisher-indexed Methods2-2.2 Results3-3.2.3; direct403; no finalPDF"
 }

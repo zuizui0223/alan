@@ -1,0 +1,4 @@
+quantity,raw_file_value,paper_reported_value,status
+near_far_sample_values,268,216,subset_not_verified
+mass_sum,556.9298000,531.4,raw_units_and_subset_not_verified
+individual_count,,10211,classification_files_not_read
