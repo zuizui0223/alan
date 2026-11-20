@@ -1,0 +1,17 @@
+{
+  "checked_on": "2026-11-20",
+  "doi": "10.1007/s00442-018-4300-6",
+  "dataset_doi": "10.5061/dryad.dd627hd",
+  "version_id": 23102,
+  "file_id": 80166,
+  "declared_name": "Cravens_and_Boyles_2018_data.xlsx",
+  "declared_bytes": 1852183,
+  "declared_md5": "71e9fffa705caca965ac7bbdeceea419",
+  "workbook_recovered": false,
+  "public_download_status": 403,
+  "api_download_status": 401,
+  "metadata_sha256": {
+    "metadata.json": "6061f9e8b8695d66a8d88bdc7d8ba8aaa48c727d1f30d82a54af0402893b49dd",
+    "files.json": "8c9b6baa54e58debd96e842c2d3a743ffcefd55789c6f662de70cf856ad5b11e"
+  }
+}

@@ -1,4 +1,6 @@
-Current update: 150 retained reports reviewed,38 pending; ten outside-search reports. Farnworth2018 remains a full-text access hold. A related rodent report is a programme-overlap lead only; no review-count inflation or effects added.
+Current update: 150 retained reports reviewed,38 pending; ten outside-search reports. Cravens physiology dataset metadata verified; workbook download requires authentication and final Methods/Results remain unreviewed. No effect added.
+
+Previous update: 150 retained reports reviewed,38 pending; ten outside-search reports. Farnworth2018 remains a full-text access hold. A related rodent report is a programme-overlap lead only; no review-count inflation or effects added.
 
 Previous update: 150 retained reports reviewed,38 pending. Silva2017 primary Methods/Results and crab table extracted. Interval summaries retained outside pools until night/block dependence can be reconstructed; no predation-rate effect inferred.
 
