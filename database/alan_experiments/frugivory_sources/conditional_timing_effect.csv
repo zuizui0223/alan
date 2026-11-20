@@ -1,0 +1,2 @@
+effect_id,effect_metric,estimate,approximate_standard_error,approximate_variance,approximate_lower,approximate_upper,paired_n,df,conditional_on_harvest,provenance,main_lnRR_catalogue,pooled
+Lewanzik2014_conditional_harvest_time,paired_mean_difference_minutes,112,27.31707317073171,746.2224866151103,51.875527334319436,172.12447266568057,12,11,True,rounded_author_summary_not_raw_reanalysis,False,False

@@ -1,0 +1,12 @@
+{
+  "doi": "10.1111/1365-2664.12206",
+  "source_location": "Results and Fig3b; dissertation Chapter2",
+  "mean_dark_minutes": 84,
+  "mean_lit_minutes": 196,
+  "sd_dark": 42,
+  "sd_lit": 82,
+  "paired_n": 12,
+  "reported_signed_t_dark_minus_lit": -4.1,
+  "raw_data_recovered": false,
+  "conditional_on_harvest": true
+}
