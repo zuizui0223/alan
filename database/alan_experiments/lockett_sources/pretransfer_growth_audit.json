@@ -1,0 +1,21 @@
+{
+  "raw_sha256": "1fa52d08889ba2f3272cb97349f5d1b96b58d243133cf4665090054cba4bf39f",
+  "original_trees": 144,
+  "plots": 24,
+  "pretransfer_week": 18,
+  "baseline_week": 1,
+  "recorded_poor_condition_flags_not_excluded": 6,
+  "rows_imputed": 0,
+  "author_flagged_138_analysis_reproduced": false,
+  "within_plot_time_covariance_retained": true,
+  "scalar_score_variance_agreement": true,
+  "main_catalogue_changed": false,
+  "final_harvest_label_conflict_resolved": false,
+  "limitations": [
+    "Supplementary pre-transfer window, not terminal endpoint replacement",
+    "Full recorded cohort, not living biomass or randomized intent-to-treat estimate",
+    "Systematic checkerboard lighting; no random lighting allocation or invented plot pairing",
+    "Independent plot-error assumption, spatial dependence not estimated",
+    "Approximate delta-method interval, t11; no predation or pollination mediation"
+  ]
+}
