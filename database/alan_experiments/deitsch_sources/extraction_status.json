@@ -1,6 +1,6 @@
 {
   "study_doi": "10.1098/rspb.2023.0153",
-  "status": "hold_raw_access",
+  "status": "hold_raw_access_numeric_discrepancy_and_repeated_plot_variance",
   "effects_computed": 0,
   "edi_package": "knb-lter-hbr.368.2",
   "edi_doi": "10.6073/pasta/71525c9c724db0a21249584afca9ddbd",
@@ -12,8 +12,13 @@
     "round ID",
     "number recovered per plot-round",
     "number with arthropod attack marks",
-    "separate vertebrate marks if available"
+    "separate vertebrate marks if available",
+    "resolve text versus Figure3 arm means",
+    "resolve Table1 treatment reference coding",
+    "retain dependence among four periods within each plot"
   ],
   "independent_pairs": 4,
-  "final_round": "2021-07-24/2021-07-27"
+  "final_round": "2021-07-24/2021-07-27",
+  "reported_summary_rows_preserved": 6,
+  "independent_recheck": "Methods and page5 image confirmed text-caption mismatch and treatment coding ambiguity"
 }

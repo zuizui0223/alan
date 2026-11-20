@@ -1,0 +1,7 @@
+source_location,statistic,arm,estimate,dispersion,dispersion_type,reported_n,independent_plots_per_arm,scale,adopted
+Results3a,mean_attack_fraction,control,0.44,0.11,SD,16,4,fraction,False
+Results3a,mean_attack_fraction,experimental,0.53,0.09,SD,16,4,fraction,False
+Figure3_caption,mean_attack_percentage,control,45.0,10.0,caption_unspecified,16,4,percent,False
+Figure3_caption,mean_attack_percentage,experimental,56.0,9.0,caption_unspecified,16,4,percent,False
+Results3a,mean_paired_attack_ratio,experimental_over_control,1.27,0.34,SD,16,4,ratio,False
+Table1,treatment_control_coefficient,printed_control_label,0.09,0.03,adjusted_SE,,4,untransformed_fraction_coefficient,False
