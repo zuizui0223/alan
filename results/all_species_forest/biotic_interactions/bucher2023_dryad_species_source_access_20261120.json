@@ -1,0 +1,102 @@
+{
+  "article": "10.1098/rstb.2022.0358",
+  "doi": "10.5061/dryad.hhmgqnknt",
+  "dryad_url": "https://datadryad.org/dataset/doi:10.5061/dryad.hhmgqnknt",
+  "files": {
+    "ALAN_biomass.csv": {
+      "endpoint_trials": [
+        {
+          "endpoint": "https://datadryad.org/downloads/file_stream/2619567",
+          "error_type": "HTTPError",
+          "status_code": 403
+        },
+        {
+          "endpoint": "https://datadryad.org/api/v2/files/2619567/download",
+          "error_type": "HTTPError",
+          "status_code": 401
+        },
+        {
+          "endpoint": "https://datadryad.org/api/v2/files/2619567/download?download=1",
+          "error_type": "HTTPError",
+          "status_code": 401
+        }
+      ],
+      "status": "SOURCE_ACCESS_STOP"
+    },
+    "ALAN_specis_biomass.csv": {
+      "endpoint_trials": [
+        {
+          "endpoint": "https://datadryad.org/downloads/file_stream/2619566",
+          "error_type": "HTTPError",
+          "status_code": 403
+        },
+        {
+          "endpoint": "https://datadryad.org/api/v2/files/2619566/download",
+          "error_type": "HTTPError",
+          "status_code": 401
+        },
+        {
+          "endpoint": "https://datadryad.org/api/v2/files/2619566/download?download=1",
+          "error_type": "HTTPError",
+          "status_code": 401
+        }
+      ],
+      "status": "SOURCE_ACCESS_STOP"
+    },
+    "ALAN_traits.csv": {
+      "endpoint_trials": [
+        {
+          "endpoint": "https://datadryad.org/downloads/file_stream/2619568",
+          "error_type": "HTTPError",
+          "status_code": 403
+        },
+        {
+          "endpoint": "https://datadryad.org/api/v2/files/2619568/download",
+          "error_type": "HTTPError",
+          "status_code": 401
+        },
+        {
+          "endpoint": "https://datadryad.org/api/v2/files/2619568/download?download=1",
+          "error_type": "HTTPError",
+          "status_code": 401
+        }
+      ],
+      "status": "SOURCE_ACCESS_STOP"
+    },
+    "README.md": {
+      "endpoint_trials": [
+        {
+          "endpoint": "https://datadryad.org/downloads/file_stream/2619572",
+          "error_type": "HTTPError",
+          "status_code": 403
+        },
+        {
+          "endpoint": "https://datadryad.org/api/v2/files/2619572/download",
+          "error_type": "HTTPError",
+          "status_code": 401
+        },
+        {
+          "endpoint": "https://datadryad.org/api/v2/files/2619572/download?download=1",
+          "error_type": "HTTPError",
+          "status_code": 401
+        }
+      ],
+      "status": "SOURCE_ACCESS_STOP"
+    }
+  },
+  "original_ecotron_units_not_independent_plants_or_harvest_rows": true,
+  "original_raw_rows_committed_to_git": false,
+  "published_file_identifiers": {
+    "ALAN_biomass.csv": 2619567,
+    "ALAN_specis_biomass.csv": 2619566,
+    "ALAN_traits.csv": 2619568,
+    "README.md": 2619572
+  },
+  "schema": "alan_bucher2023_dryad_original_species_source_gate_20261120_v1",
+  "species_light_interaction_fitted": false,
+  "status": "SOURCE_ACCESS_INCOMPLETE_STOP",
+  "wet_trait_coefficient_fitted": false,
+  "verified_github_run": "https://github.com/zuizui0223/alan/actions/runs/44657052979",
+  "source_literature_metadata_verified": true,
+  "no_biological_effect_estimated": true
+}
