@@ -1,0 +1,23 @@
+{
+  "physical_mesocosms": 54,
+  "programme_count": 1,
+  "study_labels": 3,
+  "effects": 14,
+  "joint_covariance_cells": 196,
+  "predator_contrasts": 6,
+  "contrast_covariance_cells": 36,
+  "existing_100_cell_submatrix_verified": true,
+  "slug_16_cell_submatrix_verified": true,
+  "independent_centered_score_check": true,
+  "min_eigenvalue": 0.00786320353522923,
+  "rank": 14,
+  "main_catalogue_unchanged": true,
+  "new_independent_experiments": 0,
+  "pooled_estimates": 0,
+  "limitations": [
+    "Different response periods; no concurrent chain or mediation estimate",
+    "Slug period mean remains supplementary, not final endpoint",
+    "Empirical covariance from six plots per cell; approximate t5 intervals",
+    "Intermediate aphid version discrepancies retained separately"
+  ]
+}

@@ -17,3 +17,13 @@ The supplementary period analysis averages15 supplied monthly counts within each
 Four lighting lnRRs and two predator-presence contrasts use arm means of these mesocosm averages. Shared dark-arm covariance is retained. Conservative delta-method t5 intervals are approximate. The predator-contrast ratio is1.111 (0.512–2.412) for amber and0.672 (0.232–1.945) for white. Neither interval excludes1. White lighting's mean-count ratio is0.905 without predators and0.609 with predators. This period summary differs from the author's longitudinal GLMM; it does not refute or reproduce that model's reported test.
 
 Run `python database/alan_experiments/bennie_trophic_sources/extract_slugs.py`. `audit.json` records identities and exclusions; `programme_crosswalk.csv` anchors physical units; final-zero and period results remain separate. These effects stay outside the108-row main catalogue. Any later joint analysis with Penryn aphids/plants must reconstruct their shared-mesocosm covariance rather than count the papers as separate experiments.
+
+## Joint sampling covariance now available
+
+`assemble_joint_covariance.py` connects the four2013 aphid effects, six2016 plant-biomass effects and four supplementary slug-period effects by physical mesocosm. It creates14-by-14 sampling covariance (196cells), including cross-endpoint covariance, and six predator contrasts with their6-by-6 covariance. This completes the shared-unit covariance step for these specific endpoints; it does not change main-catalogue eligibility or add an independent experiment.
+
+The existing100-cell aphid/plant submatrix and16-cell slug submatrix are reproduced. A separate centered-score Gram calculation on54 mesocosms agrees with all196cells and the36contrast cells. The matrix is positive definite without a ridge adjustment. These checks validate calculation and bookkeeping, not biological mediation or the completeness of the literature search.
+
+The plant-biomass predator contrasts are1.060 (approximate95% interval0.697–1.612) for amber and1.076 (0.648–1.787) for white. All six contrasts have intervals containing1. Their times differ: aphids September2013, slugs15observedmonths2013–2014, plants final2016. Do not interpret the combined covariance as evidence of a contemporaneous causal chain or pool the three endpoints into a common biological effect.
+
+`plot_joint_contrasts.py` writes the [publication figure](../../../manuscript/biotic_synthesis/figures/penryn_predator_contrasts.png) in PNG/SVG/PDF. It shows study-specific contrasts, not a meta-analytic diamond. Regenerate extraction, joint covariance and plot in that order.
