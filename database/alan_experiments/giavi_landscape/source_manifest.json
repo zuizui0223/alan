@@ -1,0 +1,32 @@
+{
+  "source_url": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/Aggregated/VER1-5/occurrence/occurrence_0E_50N_v1_5_2024.tif",
+  "version": "GSW1.5",
+  "period": "1984-2024",
+  "temporal_role": "longterm_background_not_2016",
+  "http_range_probe": "bytes=0-16383",
+  "http_status": 206,
+  "etag": "3c5029eeb0604ea5bd84cfd18c37cdc7-1",
+  "last_modified": "Tue, 10 Nov 2026 14:34:35 GMT",
+  "remote_total_bytes": "bytes 0-16383/41967829",
+  "requested_bbox_wgs84": [
+    7.30443,
+    46.52872,
+    7.71897,
+    46.8777
+  ],
+  "source_window": [
+    29217,
+    12489,
+    1659,
+    1397
+  ],
+  "native_pixel_degrees": [
+    0.00025,
+    0.00025
+  ],
+  "nominal_resolution_m": 30,
+  "source_crs": "EPSG:4326",
+  "source_nodata_tag": null,
+  "explicit_nodata_from_guide": 255,
+  "window_sha256": "8f2e686011b4178bb28316f1dca80ff3c9b4a19311a99fc44f849119aec1fd9e"
+}

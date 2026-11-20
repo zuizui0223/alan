@@ -1,8 +1,10 @@
 {
-  "reviewed_reports": 80,
+  "screened_records": 90,
+  "reviewed_reports": 86,
+  "access_held_records": 4,
   "decisions": {
-    "hold_independence_or_scope": 45,
-    "eligible_design_pending_extraction": 20,
+    "hold_independence_or_scope": 50,
+    "eligible_design_pending_extraction": 25,
     "separate_indoor_behavior": 6,
     "separate_observational": 5,
     "separate_spectrum": 2,

@@ -1,0 +1,24 @@
+{
+  "study": "Knop2017",
+  "doi": "10.1038/nature23288",
+  "retrieved": "2026-11-20",
+  "sources": [
+    {
+      "url": "https://www.nature.com/articles/nature23288",
+      "file": "article.html",
+      "sha256": "1f13207e0678efd1c728a29784e07fee47e5505348240ee734259f606295ff27"
+    },
+    {
+      "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fnature23288/MediaObjects/41586_2017_BFnature23288_MOESM5_ESM.pdf",
+      "file": "supplement.pdf",
+      "sha256": "9924b816d89791d24a2fc15c82eb45a6ee1a09d86babc8de7051950b9a2a030f"
+    },
+    {
+      "url": "https://planesynormas.mma.gob.cl/archivos/2021/proyectos/ANTECEDENTES_ENTREGADOS_POR_ROC-OIKONOS.pdf",
+      "file": "primary_compilation.pdf",
+      "original_article_zero_index_pages": "171-186",
+      "note": "Original Nature paper reproduced in government-hosted compilation, not secondary summary",
+      "sha256": "884b477906bef0beb718371c31a522b59503cec87cc1fa15e04192cf0e228f6c"
+    }
+  ]
+}

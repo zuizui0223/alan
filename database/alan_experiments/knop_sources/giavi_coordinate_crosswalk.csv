@@ -1,0 +1,13 @@
+giavi_site,giavi_year,knop_nearest_site,knop_year,knop_pair,knop_treatment,distance_m,within_50m,interpretation
+Giavi_pair1_dark,2016,9,2015,1,dark,0.6,True,probable same meadow; coordinate proximity not definitive identity
+Giavi_pair2_dark,2016,1,2015,4,dark,21.6,True,probable same meadow; coordinate proximity not definitive identity
+Giavi_pair3_dark,2016,11,2015,5,dark,24.0,True,probable same meadow; coordinate proximity not definitive identity
+Giavi_pair4_dark,2016,13,2015,7,dark,33.93,True,probable same meadow; coordinate proximity not definitive identity
+Giavi_pair5_dark,2016,14,2015,2,illuminated,19842.05,False,no near coordinate match
+Giavi_pair6_dark,2016,14,2015,2,illuminated,15646.62,False,no near coordinate match
+Giavi_pair1_illuminated,2016,2,2015,1,illuminated,14.3,True,probable same meadow; coordinate proximity not definitive identity
+Giavi_pair2_illuminated,2016,4,2015,3,illuminated,6.71,True,probable same meadow; coordinate proximity not definitive identity
+Giavi_pair3_illuminated,2016,16,2015,6,illuminated,3.96,True,probable same meadow; coordinate proximity not definitive identity
+Giavi_pair4_illuminated,2016,15,2015,5,illuminated,5.82,True,probable same meadow; coordinate proximity not definitive identity
+Giavi_pair5_illuminated,2016,14,2015,2,illuminated,20376.69,False,no near coordinate match
+Giavi_pair6_illuminated,2016,14,2015,2,illuminated,16520.26,False,no near coordinate match
