@@ -1,0 +1,19 @@
+{
+  "input_sha256": {
+    "database\\alan_experiments\\capture_origin_synthesis\\programme_estimates.csv": "94a0a14e2c91d3de7223e5798a55c47fc246de0daa1d12af4fac66294136db87",
+    "database\\alan_experiments\\capture_origin_synthesis\\pooled_estimates.csv": "0411135adbe709fca2f83de63a4c910a0883e3c1a56dad7740ecf724d2de43e6",
+    "database\\alan_experiments\\aphid_predator_synthesis\\programme_estimates.csv": "bb6821697ed332b8ee5a55e236e9adae4030dee0f03b159d1a65a9c6d99ef009",
+    "database\\alan_experiments\\aphid_predator_synthesis\\pooled_estimate.csv": "84fe3483034ca6d77b1b2e5a3f26142dd982ced8d412a29882f1138d4fca6ab5",
+    "database\\alan_experiments\\leaf_damage_synthesis\\programme_estimates.csv": "ae11e3fc9731ab8ba9699a8d65d1cacb74aeb11d0cdd25702dca212442dc16d4",
+    "database\\alan_experiments\\leaf_damage_synthesis\\pooled_estimate.csv": "97d5a6ca30f93cc3295e406f1ec7be2904ff3684436c2a90e19c67a6aaf8b3dd"
+  },
+  "plotted_rows": 10,
+  "pooled_rows": 3,
+  "refit": false,
+  "status": "exploratory_not_final_adjudication",
+  "capture_programme_intervals": "not displayed; no new interval constructed",
+  "common_axis_limits": [
+    0.001,
+    2000
+  ]
+}
