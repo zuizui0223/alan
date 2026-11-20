@@ -1,0 +1,15 @@
+trait,family,scale,reported_observations,estimate,lower95,upper95,lower90,upper90,independent_lit_plots,independent_dark_plots,interval_type,source_location,pooled,digitized
+specific_leaf_area,Gaussian,sqrt_trait,20,0.63,0.067,1.181,0.171,1.084,10,10,Bayesian_credible,bioRxiv_v2_Table2_pdf_page32,False,0
+primary_branch_number,negative_binomial,link_not_explicit,200,0.06,-0.11,0.237,-0.08,0.203,10,10,Bayesian_credible,bioRxiv_v2_Table2_pdf_page32,False,0
+secondary_branch_number,negative_binomial,link_not_explicit,200,-0.637,-1.322,-0.006,-1.183,-0.111,10,10,Bayesian_credible,bioRxiv_v2_Table2_pdf_page32,False,0
+aboveground_biomass_fraction,beta,link_not_explicit,97,0.081,-0.007,0.17,0.007,0.155,10,10,Bayesian_credible,bioRxiv_v2_Table2_pdf_page32,False,0
+height,gamma,link_not_explicit,200,0.001,-0.004,0.004,-0.003,0.003,10,10,Bayesian_credible,bioRxiv_v2_Table2_pdf_page32,False,0
+total_biomass,gamma,link_not_explicit,97,0.006,-0.139,0.153,-0.114,0.124,10,10,Bayesian_credible,bioRxiv_v2_Table2_pdf_page32,False,0
+budding_date,Gaussian,days_ALAN_minus_dark,200,-3.588,-4.954,-2.243,-4.713,-2.464,10,10,Bayesian_credible,bioRxiv_v2_Table2_pdf_page32,False,0
+blooming_date,Gaussian,days_ALAN_minus_dark,200,-5.494,-7.673,-3.457,-7.294,-3.785,10,10,Bayesian_credible,bioRxiv_v2_Table2_pdf_page32,False,0
+fruiting_date,Gaussian,days_ALAN_minus_dark,200,-3.335,-5.107,-1.583,-4.814,-1.885,10,10,Bayesian_credible,bioRxiv_v2_Table2_pdf_page32,False,0
+seed_maturity_date,Gaussian,days_ALAN_minus_dark,200,-4.526,-6.609,-2.462,-6.259,-2.784,10,10,Bayesian_credible,bioRxiv_v2_Table2_pdf_page32,False,0
+top_inflorescence_length,Gaussian,reported_trait_scale,200,0.836,0.255,1.429,0.348,1.329,10,10,Bayesian_credible,bioRxiv_v2_Table2_pdf_page32,False,0
+undeveloped_top_inflorescence_proportion,binomial,link_not_explicit,20,-1.92,-3.786,-0.48,-3.421,-0.693,10,10,Bayesian_credible,bioRxiv_v2_Table2_pdf_page32,False,0
+inflorescence_biomass_fraction,beta,link_not_explicit,97,0.02,-0.264,0.299,-0.215,0.254,10,10,Bayesian_credible,bioRxiv_v2_Table2_pdf_page32,False,0
+fruiting_inflorescence_number,negative_binomial,link_not_explicit,200,-0.285,-0.628,0.05,-0.567,-0.008,10,10,Bayesian_credible,bioRxiv_v2_Table2_pdf_page32,False,0

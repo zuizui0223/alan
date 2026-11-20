@@ -1,0 +1,20 @@
+[
+  {
+    "file": "preprint_v2.xml",
+    "url": "https://www.biorxiv.org/content/early/2025/08/21/2022.12.11.519667.source.xml",
+    "bytes": 151393,
+    "sha256": "2c36502f887912c1398377f4e8bf9ac2fcabbc652528dbb07556248ec4c886d3"
+  },
+  {
+    "file": "preprint_v2.pdf",
+    "url": "https://www.biorxiv.org/content/biorxiv/early/2025/08/21/2022.12.11.519667.full.pdf",
+    "bytes": 783602,
+    "sha256": "b075917640f0cbf1dc1191c66060f2749210e66030882b136de48d2539aa50fa"
+  },
+  {
+    "file": "biorxiv.json",
+    "url": "https://api.biorxiv.org/details/biorxiv/10.1101/2022.12.11.519667",
+    "bytes": 4118,
+    "sha256": "98c7219ba51ad7fabb7861c5fc2a31e36a0cd70c8e5d1217b572f0f23f805d34"
+  }
+]
