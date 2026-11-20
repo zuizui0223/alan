@@ -1,0 +1,310 @@
+{
+  "no_assumed_zero_for_unreported_plants": true,
+  "original_flower_abundance_is_measured_and_must_be_adjusted": true,
+  "original_matched_site_repeat_plant_any_guild": 193,
+  "original_matched_site_repeat_plant_insectguild": 579,
+  "original_source_missing_flower_abundance_rows": 0,
+  "original_source_missing_visit_rows": 0,
+  "original_source_zero_flower_abundance_rows": 0,
+  "original_source_zero_visit_rows": 1441,
+  "schema": "alan_Giavi2021_true_Zenodo_original6meadow_pair_floral_resource_source_gate_v1",
+  "source_meadow_moisture_support": {
+    "F_Doring": {
+      "meadows_with_2_wet_and_2_drier": 2,
+      "meadows_with_any_wet_and_drier": 2,
+      "source_meadows_with_scored_species": 6,
+      "source_unique_scored_species_with_2plus_meadow_arms": 5
+    },
+    "F_PLANTATT": {
+      "meadows_with_2_wet_and_2_drier": 1,
+      "meadows_with_any_wet_and_drier": 2,
+      "source_meadows_with_scored_species": 6,
+      "source_unique_scored_species_with_2plus_meadow_arms": 4
+    }
+  },
+  "source_original_ALAN_plant_moisture_mechanism_causal_mediation_fitted": false,
+  "source_original_RData_md5": "f60b21d82c163cbb53520fda0bc61985",
+  "source_original_column_names": [
+    "treatment",
+    "plant",
+    "insect_group",
+    "site",
+    "repeate",
+    "plab",
+    "dVis",
+    "pair"
+  ],
+  "source_original_distinct_meadow_pairs": 6,
+  "source_original_insect_groups": [
+    "Coleoptera",
+    "Diptera",
+    "Hymenoptera"
+  ],
+  "source_original_plant_lookup": {
+    "Angelica_sylvestris": {
+      "F_Doring": 8,
+      "F_PLANTATT": 8,
+      "fully_resolved_binomial": "Angelica sylvestris",
+      "original_meadow_pairs_both_arms": 2,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Angelica_sylvestris",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Centaurea_sp": {
+      "F_Doring": null,
+      "F_PLANTATT": null,
+      "fully_resolved_binomial": null,
+      "original_meadow_pairs_both_arms": 0,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Centaurea_sp",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Cirsium_oleraceum": {
+      "F_Doring": 7,
+      "F_PLANTATT": null,
+      "fully_resolved_binomial": "Cirsium oleraceum",
+      "original_meadow_pairs_both_arms": 6,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Cirsium_oleraceum",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Crepis_sp": {
+      "F_Doring": null,
+      "F_PLANTATT": null,
+      "fully_resolved_binomial": null,
+      "original_meadow_pairs_both_arms": 2,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Crepis_sp",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Daucus_carota": {
+      "F_Doring": 4,
+      "F_PLANTATT": 4,
+      "fully_resolved_binomial": "Daucus carota",
+      "original_meadow_pairs_both_arms": 1,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Daucus_carota",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Epilobium_sp": {
+      "F_Doring": null,
+      "F_PLANTATT": null,
+      "fully_resolved_binomial": null,
+      "original_meadow_pairs_both_arms": 5,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Epilobium_sp",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Erigeron_annuus_s.l.": {
+      "F_Doring": null,
+      "F_PLANTATT": null,
+      "fully_resolved_binomial": null,
+      "original_meadow_pairs_both_arms": 1,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Erigeron_annuus_s.l.",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Filipendula_ulmaria": {
+      "F_Doring": 8,
+      "F_PLANTATT": 8,
+      "fully_resolved_binomial": "Filipendula ulmaria",
+      "original_meadow_pairs_both_arms": 2,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Filipendula_ulmaria",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Galium_sp": {
+      "F_Doring": null,
+      "F_PLANTATT": null,
+      "fully_resolved_binomial": null,
+      "original_meadow_pairs_both_arms": 5,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Galium_sp",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Geranium_molle": {
+      "F_Doring": 4,
+      "F_PLANTATT": 5,
+      "fully_resolved_binomial": "Geranium molle",
+      "original_meadow_pairs_both_arms": 0,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Geranium_molle",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Geranium_sp": {
+      "F_Doring": null,
+      "F_PLANTATT": null,
+      "fully_resolved_binomial": null,
+      "original_meadow_pairs_both_arms": 5,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Geranium_sp",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Geranium_sylvaticum": {
+      "F_Doring": 6,
+      "F_PLANTATT": 5,
+      "fully_resolved_binomial": "Geranium sylvaticum",
+      "original_meadow_pairs_both_arms": 1,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Geranium_sylvaticum",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Heracleum_sphondylium": {
+      "F_Doring": 5,
+      "F_PLANTATT": 5,
+      "fully_resolved_binomial": "Heracleum sphondylium",
+      "original_meadow_pairs_both_arms": 1,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Heracleum_sphondylium",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Knautia_dipsacifolia": {
+      "F_Doring": null,
+      "F_PLANTATT": null,
+      "fully_resolved_binomial": "Knautia dipsacifolia",
+      "original_meadow_pairs_both_arms": 3,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Knautia_dipsacifolia",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Leontodon_sp": {
+      "F_Doring": null,
+      "F_PLANTATT": null,
+      "fully_resolved_binomial": null,
+      "original_meadow_pairs_both_arms": 4,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Leontodon_sp",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Lotus_corniculatus": {
+      "F_Doring": 4,
+      "F_PLANTATT": 4,
+      "fully_resolved_binomial": "Lotus corniculatus",
+      "original_meadow_pairs_both_arms": 6,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Lotus_corniculatus",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Ranunculus_sp": {
+      "F_Doring": null,
+      "F_PLANTATT": null,
+      "fully_resolved_binomial": null,
+      "original_meadow_pairs_both_arms": 5,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Ranunculus_sp",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Rubus_sp": {
+      "F_Doring": null,
+      "F_PLANTATT": null,
+      "fully_resolved_binomial": null,
+      "original_meadow_pairs_both_arms": 6,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Rubus_sp",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Stachys_sp": {
+      "F_Doring": null,
+      "F_PLANTATT": null,
+      "fully_resolved_binomial": null,
+      "original_meadow_pairs_both_arms": 3,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Stachys_sp",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Trifolium_pratense": {
+      "F_Doring": 5,
+      "F_PLANTATT": 5,
+      "fully_resolved_binomial": "Trifolium pratense",
+      "original_meadow_pairs_both_arms": 5,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Trifolium_pratense",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    },
+    "Valeriana_officinalis_aggr.": {
+      "F_Doring": null,
+      "F_PLANTATT": null,
+      "fully_resolved_binomial": null,
+      "original_meadow_pairs_both_arms": 4,
+      "original_plant_is_not_independent_lamp": true,
+      "original_source_plant_label": "Valeriana_officinalis_aggr.",
+      "source_original_sampled_light_arms": [
+        "C",
+        "T"
+      ]
+    }
+  },
+  "source_original_plant_taxon_labels": 21,
+  "source_original_rows": 1884,
+  "source_original_sampling_repeats": 37,
+  "source_original_treatment_levels": [
+    "C",
+    "T"
+  ],
+  "source_raw_plant_visitation_records_not_committed": true,
+  "within_site_wetness_response_model_fitted": false,
+  "verified_original_Zenodo_source_run": "https://github.com/zuizui0223/alan/actions/runs/44667379311",
+  "original_six_meadow_pairs_not_1884_independent_lamp_replicates": true,
+  "biological_source_moisture_moderator_common_support_below_threshold": true,
+  "source_original_raw_data_not_exported": true
+}
