@@ -1,4 +1,6 @@
-Current update: 151 retained reports reviewed,36 pending. Marine beetle larval activity report DOI resolved; full Methods/Results and exposure setting remain unverified. No effect or completed-review increment.
+Current update: 151 retained reports reviewed,36 pending. Luo2021 emergence/prey-timing evidence retained as full-text/design hold; reported three conditions do not establish a complete predator factorial or consumption effect. No effect added.
+
+Previous update: 151 retained reports reviewed,36 pending. Marine beetle larval activity report DOI resolved; full Methods/Results and exposure setting remain unverified. No effect or completed-review increment.
 
 Previous update: 151 retained reports reviewed,36 pending among187 retained reports. Van de Schoot morphology final Methods/Results read; same specimens as the2025 development report. Indoor scope/shared-unit hold retained; no new pooled effect.
 
