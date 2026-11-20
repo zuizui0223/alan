@@ -63,3 +63,5 @@ max(1,q)による修正Knapp–Hartung区間を用いた。
 一次出典：[Parkinson2020](https://doi.org/10.1371/journal.pone.0240138)、
 [Parkinson2023](https://doi.org/10.1098/rstb.2022.0361)。
 [独立した資料・計算確認](../search/capture_origin_meta_review.md)。
+
+2026-11-21：同じ池の2022年6–9月7夜を扱う新しい報告を発見した。既存の6月3日との標本重複が疑われるため、第三の独立実験として追加しない。原データの地点・日付照合と反復共分散が必要で、現行の統合推定は変更しない。[出典・重複判定の留保](../search/parkinson2026_overlap_review.md)。
