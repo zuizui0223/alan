@@ -342,7 +342,7 @@
   },
   "verified_actions_run_url": "https://github.com/zuizui0223/alan/actions/runs/44673292597",
   "verified_original_artifact_url": "https://github.com/zuizui0223/alan/actions/runs/44673292597/artifacts/14600139114",
-  "verified_artifact_zip_sha256": null,
+  "verified_artifact_zip_sha256": "ee11488f6eb0179acc8aacfc6ee028d5d6219c2ea5131a54e4e4f9721dd0c37b",
   "verified_at_utc": "2026-11-20",
   "source_qualifier": "Original wetlands at 2000 CORINE 411/412 point positions; no causal ALAN or original 187-pair vegetation adjustment"
 }
