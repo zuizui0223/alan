@@ -11,6 +11,10 @@ Ten assigned records: 5 eligible designs pending extraction, 1 indoor ecological
 - Soil isotope allocation: [PMC original](https://pmc.ncbi.nlm.nih.gov/articles/PMC13421007/). Five plots per arm; retain null plant isotope recovery alongside soil effects. Do not reinterpret correlation-network edges as observed interactions.
 - Xiao: see existing verified repository screen; greenhouse growth design eligible pending original-data access.
 
+## Subsequent data acquisition (2026-11-21)
+
+For soil isotope allocation (10.1111/gcb.71029), the [author summary dataset has now been recovered and audited](../soil_isotope2026_sources/README.md). Its 14 treatment–time rows contain 17 mean/SE endpoints, preserved as 238 source records. No plot-level identifiers, independent n, units, or covariance are supplied in that file; no new pooled effects have been added. This updates the original screening's extraction status without adding a newly read paper or an independent study.
+
 ## Access holds
 
 PMC12404802, PMC10613549, PMC10613533 and PMC8220282: PMC HTML blocked by browser checks and no usable publisher Methods/Results obtained. Their hypotheses, direction and replication remain unclassified.
