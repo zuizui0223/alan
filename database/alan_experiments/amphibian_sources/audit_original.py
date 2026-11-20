@@ -26,6 +26,31 @@ mapping={'Light':'Present','No Light':'Absent'}
 assert check.LightTreat_toad.map(mapping).eq(check.LightTreat_colonization).all()
 check['group_labels_match']=check.Block_toad.str.upper().eq(check.Block_colonization.str.upper())
 check.to_csv(OUT/'group_label_crosswalk.csv',index=False)
+# A renamed block is not a contradictory partition. Verify every pair of
+# shared mesocosms, not just a guessed alphabetical correspondence.
+block_map=check[['Block_toad','Block_colonization']].drop_duplicates()
+assert len(block_map)==9
+assert block_map.Block_toad.is_unique and block_map.Block_colonization.is_unique
+same_toad=check.Block_toad.to_numpy()[:,None]==check.Block_toad.to_numpy()[None,:]
+same_colon=check.Block_colonization.to_numpy()[:,None]==check.Block_colonization.to_numpy()[None,:]
+assert (same_toad==same_colon).all()
+block_map.to_csv(OUT/'verified_block_label_map.csv',index=False)
+# Export source-labelled joins only. This does not certify physical lamp layout.
+join_audit=[]
+for sheet in ['lengthofmeta','toadmesocosmwaterquality','InvertPipeSample']:
+    frame=pd.read_excel(book,sheet)
+    assert frame.Mesocosm.is_unique
+    joined=frame.merge(colon[['Mesocosm','Block','LightTreat']],on='Mesocosm',
+                       validate='one_to_one',suffixes=('_source','_colonization'),indicator=True)
+    assert len(joined)==len(frame) and joined['_merge'].eq('both').all()
+    assert joined.LightTreat_source.replace(mapping).eq(joined.LightTreat_colonization).all()
+    if 'Block_source' in joined:
+        mapped=joined.Block_source.str.upper().map(dict(zip(block_map.Block_toad,block_map.Block_colonization)))
+        assert mapped.eq(joined.Block_colonization).all()
+    join_audit.append(dict(sheet=sheet,rows=len(frame),unique_mesocosm_join=True,
+                           illumination_labels_agree=True,physical_lamp_layout_verified=False))
+pd.DataFrame(join_audit).to_csv(OUT/'verified_mesocosm_join_support.csv',index=False)
+
 groups=colon.groupby(['Block','LightTreat']).size().reset_index(name='mesocosms')
 assert groups.mesocosms.eq(4).all() and len(groups)==9
 groups.to_csv(OUT/'colonization_sheet_groups.csv',index=False)
@@ -36,8 +61,10 @@ audit=dict(source_doi='10.5061/dryad.pq54gh5',zenodo_record='4932781',
            colonization_sheet_light_groups=4,colonization_sheet_dark_groups=5,
            mismatching_toad_vs_colonization_group_labels=int((~check.group_labels_match).sum()),
            long_format_years=sorted(pd.to_datetime(long.Date).dt.year.unique().tolist()),
+           block_map_bijective=True,shared_mesocosm_partition_identical=True,
+           shared_mesocosm_pairs_checked=int(same_toad.size),physical_lamp_layout_verified=False,
            effects_extracted=0,
-           unresolved=['Group labels differ across response sheets; resolve physical lighting assignment from layout.',
+           unresolved=['Block names are a verified bijective renaming on shared mesocosms; physical lamp layout remains unverified.',
                        'Long-format calendar year differs from the primary field year; preserve rather than repair.',
                        'Indoor phase eligibility and illumination independence require Methods review.'])
 (OUT/'audit.json').write_text(json.dumps(audit,indent=2)+'\n')

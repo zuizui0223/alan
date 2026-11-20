@@ -13,9 +13,13 @@
   "long_format_years": [
     2017
   ],
+  "block_map_bijective": true,
+  "shared_mesocosm_partition_identical": true,
+  "shared_mesocosm_pairs_checked": 324,
+  "physical_lamp_layout_verified": false,
   "effects_extracted": 0,
   "unresolved": [
-    "Group labels differ across response sheets; resolve physical lighting assignment from layout.",
+    "Block names are a verified bijective renaming on shared mesocosms; physical lamp layout remains unverified.",
     "Long-format calendar year differs from the primary field year; preserve rather than repair.",
     "Indoor phase eligibility and illumination independence require Methods review."
   ]
