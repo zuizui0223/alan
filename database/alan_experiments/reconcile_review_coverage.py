@@ -40,6 +40,19 @@ for x in studies.itertuples():
     add(x.doi, 'studies.csv:' + x.study_id, read=extracted, extracted=extracted,
         decision=x.status)
 
+# Non-DOI reports keep their actual indexed key, never a fabricated DOI.
+non_doi_path = S / 'non_doi_report_reviews.csv'
+if non_doi_path.exists():
+    non_doi = pd.read_csv(non_doi_path).fillna('')
+    assert non_doi.report_key.is_unique
+    assert set(non_doi.report_key) <= set(identity.report_key)
+    for x in non_doi.itertuples():
+        assert not x.report_key.startswith('doi:')
+        e = evidence.setdefault(x.report_key, dict(sources=[], decisions=[], read=False, extracted=False))
+        e['sources'].append(x.source_note)
+        e['decisions'].append(x.decision)
+        e['read'] |= x.review_status == 'methods_and_results_read'
+
 rows = []
 for key, g in identity.groupby('report_key', sort=False):
     e = evidence.get(key, dict(sources=[], decisions=[], read=False, extracted=False))
