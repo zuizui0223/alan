@@ -28,6 +28,11 @@ def build():
     cols = ["effect_id", "source_species", "taxon_status", "EIV_MOIST", "EIV_MOIST_raw", "join_method", "species_affinity_not_site_condition"]
     evidence = evidence.merge(linked_moisture[cols], on="effect_id", how="left", validate="one_to_one")
     evidence["species_moisture_status"] = np.where(evidence.EIV_MOIST.notna(), "numeric_species_affinity_not_site_wetness", np.where(evidence.effect_id.isin(linked_moisture.effect_id), "endpoint_mapped_numeric_moisture_unavailable", "no_single_species_mapping_in_current_join"))
+    assert experiments.experiment_id.is_unique
+    assert set(evidence.experiment_id.dropna()) <= set(experiments.experiment_id)
+    registry_programme = experiments.set_index("experiment_id").programme_id
+    assert evidence.experiment_id.map(registry_programme).eq(evidence.programme_id).all()
+    evidence[["study_id", "experiment_id", "programme_id", "doi"]].drop_duplicates().to_csv(ROOT / "experiment_studies.csv", index=False)
     evidence["experiment_row_present"] = evidence.experiment_id.isin(experiments.experiment_id)
     evidence["environmental_moderator_readiness"] = "not_established_by_coordinate_presence"
     evidence["final_eligibility"] = "not_adjudicated"
@@ -47,7 +52,7 @@ def build():
         study_status_counts=evidence.groupby("study_review_status").size().to_dict(),
         effect_rows_added=0, effect_values_changed=0,
         input_sha256={name:hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in FILES},
-        limitation="Coverage is not approval or statistical independence. Unmapped EIV is not dry habitat. Coordinates do not establish measured site wetness. Structured experiment records remain incomplete.")
+        limitation="Coverage is not approval or statistical independence. Unmapped EIV is not dry habitat. Coordinates do not establish measured site wetness. Current catalogue experiments registered; outside-catalogue experiments, full site links and final adjudication remain incomplete.")
     (ROOT / "catalogue_evidence_audit.json").write_text(json.dumps(summary, indent=2)+"\n", encoding="utf-8")
     print(json.dumps({k:v for k,v in summary.items() if k not in ["study_status_counts", "input_sha256"]}, indent=2))
 

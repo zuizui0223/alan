@@ -3,8 +3,8 @@
   "studies": 11,
   "programmes": 10,
   "study_doi_linked_rows": 108,
-  "rows_with_experiment_id": 98,
-  "rows_with_experiment_table_record": 6,
+  "rows_with_experiment_id": 108,
+  "rows_with_experiment_table_record": 108,
   "programme_labels_with_coordinates": 7,
   "rows_with_numeric_species_moisture": 10,
   "species_with_numeric_moisture": 5,
@@ -22,11 +22,11 @@
   "effect_rows_added": 0,
   "effect_values_changed": 0,
   "input_sha256": {
-    "effect_catalogue.csv": "578cdcf302381ec5576c44a8c794962e02a27d8ad240f791ccdbd86f87a233e5",
+    "effect_catalogue.csv": "ce0b1e74a65b957f1016eeb91e00b6147ccbe70bbd11ca63a86fa15443120e23",
     "studies.csv": "c9308fb59ddf8bcbbba2cba1776ea171e01c8050e30239470be57d3ee818e3f4",
     "site_context/catalogue_coordinate_coverage.csv": "654e5e4e0873789cd4d26f420b32fcb0991f4488fd17684fc77b91994e02058a",
     "site_context/plant_moisture_effect_support.csv": "beb0bada3bdb7ddac8ec93970b44a319f027800efd9f9369a3e1064a7e1c7a31",
-    "experiments.csv": "77f650f89ecd9c6a4d9db6ac21219cf521cb7ea16fa610f410d95efa896cfbf5"
+    "experiments.csv": "e2c04eff20ef1252b5b68f5230743da1fdae51ac53dbe26a8e60af90ec905eac"
   },
-  "limitation": "Coverage is not approval or statistical independence. Unmapped EIV is not dry habitat. Coordinates do not establish measured site wetness. Structured experiment records remain incomplete."
+  "limitation": "Coverage is not approval or statistical independence. Unmapped EIV is not dry habitat. Coordinates do not establish measured site wetness. Current catalogue experiments registered; outside-catalogue experiments, full site links and final adjudication remain incomplete."
 }

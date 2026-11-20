@@ -77,7 +77,7 @@
     "parkinson2023_sources/covariance.csv": "3582839da79022ab3c7927c8f22c6796684af13de0bc5ab844bcd9583afda556",
     "sanders_sources/final_covariance.csv": "9c17ebc766c8b88e4604d54d2b95799aed6e68f178803e07f5743853eb2ee31c",
     "grassland_sources/final_covariance.csv": "14b0099369a490da24bacf70b28d2476921ec4d3ebbd893240e3b1b5d1a12d8c",
-    "effect_catalogue.csv": "578cdcf302381ec5576c44a8c794962e02a27d8ad240f791ccdbd86f87a233e5"
+    "effect_catalogue.csv": "ce0b1e74a65b957f1016eeb91e00b6147ccbe70bbd11ca63a86fa15443120e23"
   },
   "limitation": "Source design assumptions retained. Numerical PSD does not validate sampling independence. No pooled estimate or eligibility decision added."
 }

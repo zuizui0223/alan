@@ -66,6 +66,11 @@ append('grassland_sources/final_effects.csv','grassland_sources/final_covariance
        'final_year_shared_dark_overlapping_material_endpoints',study='Bennie2018')
 
 d=pd.DataFrame(rows)
+# Administrative experiment IDs; retain source-table values and all estimates.
+for study, experiment in {"Lu2026": "Lu2024_Gannan_field", "Guo2025": "Guo2024_HongKong_field"}.items():
+    mask = d.study_id.eq(study)
+    assert d.loc[mask, "experiment_id"].isna().all()
+    d.loc[mask, "experiment_id"] = experiment
 mask=d.study_id=='Lu2026'
 d.loc[mask,'n_lit']=5
 d.loc[mask,'n_dark']=5
