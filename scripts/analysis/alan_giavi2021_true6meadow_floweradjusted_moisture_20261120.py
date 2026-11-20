@@ -147,6 +147,17 @@ def run():
             # outcome, NOT a proven causal mediator of experimental ALAN.
             floral=estimate(z,trait,"flower",False)
             models["flower_cover"]={"lit_minus_dark_log1p_flower_as_response":floral}
+            # Influence diagnostic: dropping a plant removes ALL its source
+            # site x sample records, not just a selectively chosen row.
+            if key=="all_scored_true_plant_pairs":
+                models["flower_cover"]["leave_one_original_plant_out_F_flower"]={
+                    plant:(lambda v:v["beta_F_per_ordinal_point"] if v else None)(
+                        estimate(z.loc[z.plant!=plant],trait,"flower",False))
+                    for plant in sorted(z.plant.unique())}
+                models["visits"]["leave_one_original_plant_out_adjusted_F_visits"]={
+                    plant:(lambda v:v["beta_F_per_ordinal_point"] if v else None)(
+                        estimate(z.loc[z.plant!=plant],trait,"visits",True))
+                    for plant in sorted(z.plant.unique())}
             total_raw=models["visits"]["not_flower_adjusted"]
             total_adj=models["visits"]["flower_adjusted"]
             if floral and total_raw and total_adj:
