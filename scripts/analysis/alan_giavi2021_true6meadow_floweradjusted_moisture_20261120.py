@@ -143,9 +143,33 @@ def run():
             for g in ("visits",*("v_"+x for x in GUILDS)):
                 models[g]={"not_flower_adjusted":estimate(z,trait,g,False),
                            "flower_adjusted":estimate(z,trait,g,True)}
+            # The plant floral-resource proxy is a separate observational
+            # outcome, NOT a proven causal mediator of experimental ALAN.
+            floral=estimate(z,trait,"flower",False)
+            models["flower_cover"]={"lit_minus_dark_log1p_flower_as_response":floral}
+            total_raw=models["visits"]["not_flower_adjusted"]
+            total_adj=models["visits"]["flower_adjusted"]
+            if floral and total_raw and total_adj:
+                algebra=float(floral["beta_F_per_ordinal_point"]*
+                              total_adj["beta_delta_log1p_flower"])
+                differential=(total_raw["beta_F_per_ordinal_point"]-
+                              total_adj["beta_F_per_ordinal_point"])
+                check(abs(algebra-differential)<1e-8,
+                      "original same-cohort OLS FWL floral decomposition not exact")
+                models["flower_cover"]["FWL_association_partition"]={
+                  "unadjusted_F_slope_minus_flower_adjusted_F_slope":differential,
+                  "concurrent_flower_F_slope_times_visit_flower_association":algebra,
+                  "within_source_fitted_on_identical_true_plant_pairs":True,
+                  "this_is_algebra_not_causal_mediation":True}
             if key in ("all_scored_true_plant_pairs","same_meadow_wet_drier_overlap_only"):
                 models["visits"]["site_signflip_flower_adjusted"]=site_signflip(z,trait)
                 models["visits"]["site_signflip_not_flower_adjusted"]=site_signflip(z,trait,flower=False)
+                models["flower_cover"]["exact_meadow_signflip_source_flower_F"]=(
+                    site_signflip(z,trait,response="flower",flower=False))
+                models["flower_cover"]["leave_one_true_meadow_out_F_flower"]={
+                    site:(lambda r:r["beta_F_per_ordinal_point"] if r else None)(
+                       estimate(z.loc[z.site!=site],trait,"flower",False))
+                    for site in sorted(z.site.unique())}
                 models["visits"]["leave_true_meadow_out_F_betas"]={
                     site:(lambda r:r["beta_F_per_ordinal_point"] if r else None)(
                         estimate(z.loc[z.site!=site],trait,"visits",True))
@@ -159,6 +183,7 @@ def run():
       "Kew_trait_git_blob_SHA1":RAW_GIT_BLOB,"Kew_source_rows":n,
       "original_source":proof,"source_named_plant_traits":labels,"trait_results":out,
       "no_193_independent_randomized_treatments":True,
+      "causal_mediation_from_concurrent_floral_cover_not_identified":True,
       "observed_daytime_visits_only_not_pollen_or_seed":True,
       "unobserved_plant_arm_not_assumed_zero":True,
       "cannot_establish_wet_plant_macro_mechanism":True}
