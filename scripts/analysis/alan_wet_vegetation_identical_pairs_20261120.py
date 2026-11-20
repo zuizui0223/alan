@@ -84,7 +84,13 @@ def slope(data,columns):
     return 10*float(np.linalg.lstsq(x,data.outcome_difference.to_numpy(float),rcond=None)[0][0])
 
 def nested_on_same_pairs(pairs):
-    x=pairs.dropna(subset=TERMS+WATER+VEG+["outcome_difference"]).copy()
+    required=TERMS+WATER+VEG+["outcome_difference"]
+    missing=sorted(set(required)-set(pairs))
+    if missing:
+        return {"same_subset_pairs":int(len(pairs)), "blocks":int(pairs.block.nunique()),
+                "status":"VEGETATION_SOURCE_SUPPORT_STOP",
+                "missing_required_covariates":missing}
+    x=pairs.dropna(subset=required).copy()
     status=dict(same_subset_pairs=int(len(x)),blocks=int(x.block.nunique()))
     if len(x)<30 or x.block.nunique()<10 or len(x)<=len(TERMS+WATER+VEG)+5:
         return {**status,"status":"VEGETATION_SOURCE_SUPPORT_STOP"}
