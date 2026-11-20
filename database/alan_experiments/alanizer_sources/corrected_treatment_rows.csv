@@ -1,0 +1,9 @@
+StartDate,Site,Near,Far,Treatment_biomass,Total,Treatment_metadata,PrescribedTreatment,Folder,LabelledSite,_merge,planned_actual_disagreement
+2023-07-01,9,2.6647,0.9795,W,3.6442,W,A,9.0,9.0,both,True
+2023-07-11,9,3.7199,2.1258,A,5.8457,A,W,9.0,9.0,both,True
+2023-08-10,8,1.9765,2.4548,W,4.4313,W,C,8.0,8.0,both,True
+2023-08-10,9,3.8448,1.3393,W,5.1841,W,A,9.0,9.0,both,True
+2023-08-15,8,2.9621,1.8894,C,4.8515,C,W,8.0,8.0,both,True
+2023-08-20,9,0.54,0.3376,A,0.8776,A,W,9.0,9.0,both,True
+2023-08-25,3,1.4867,0.5501,W,2.0368,W,A,3.0,3.0,both,True
+2023-08-30,9,0.6262,0.3914,W,1.0176,W,A,9.0,9.0,both,True

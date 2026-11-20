@@ -1,0 +1,22 @@
+{
+  "source": "https://doi.org/10.5281/zenodo.15170657",
+  "input_sha256": {
+    "metadata.csv": "3f08e9ef7ea0b025973111fe6b365e2e6b1ce3b448d4edfd65f52811c7a85f24",
+    "biomass.csv": "7d952d562149e61efe985ed3b43fa4c80ccafdad0b4a8d039807846dbaa3207e"
+  },
+  "metadata_rows": 396,
+  "metadata_sites": 12,
+  "metadata_dates": 33,
+  "metadata_actual_treatment_missing": 249,
+  "biomass_rows": 134,
+  "biomass_sites": 12,
+  "biomass_start_date": "2023-07-01",
+  "biomass_last_start_date": "2023-11-28",
+  "all_biomass_rows_match_actual_treatment": true,
+  "planned_actual_disagreements_in_biomass": 8,
+  "metadata_rows_without_biomass": 262,
+  "metadata_actual_known_without_biomass": 13,
+  "complete_three_arm_sites": 11,
+  "finite_effects_added": 0,
+  "hold": "Final biological Methods/Results, mass units, exclusions, trap identity and repeated-period modelling pending; missing samples are not zeros"
+}

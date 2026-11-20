@@ -1,0 +1,13 @@
+{
+  "cache_relative_to_repo": "..\\gbif_annual\\alan_experiment_sources\\alanizer",
+  "sha256": {
+    "v2.xml": "9a89702ba38e6c89dcdc55c452a1ac0620f8c3e8c5e04fddaae9c91bbe5e65f6",
+    "v2.txt": "5be85fedb32a3b3f7373e87c34cfa05cc766df51919f846eb3a8892c69847c5d",
+    "metadata.json": "d4a4860a8b55e967ab0e7e1757ba3a476c5e38c8415322f601eec3811ddeb429",
+    "zenodo_metadata.json": "6bce96ced22273aae013e7aa7dc0d962e6814dcb229e8f75cefcc487915a375c",
+    "metadata.csv": "3f08e9ef7ea0b025973111fe6b365e2e6b1ce3b448d4edfd65f52811c7a85f24",
+    "biomass.csv": "7d952d562149e61efe985ed3b43fa4c80ccafdad0b4a8d039807846dbaa3207e"
+  },
+  "final_methods_read": false,
+  "final_biological_methods_read": false
+}
