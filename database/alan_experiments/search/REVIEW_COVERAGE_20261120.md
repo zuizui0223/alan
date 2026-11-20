@@ -1,4 +1,6 @@
-Current update: 153 retained reports reviewed,34 pending. Merckx2023 Methods/Results read; indoor single-room-per-arm diapause evidence kept outside field-interaction pooling. No overwinter survival or pollination effect inferred. AGR key retained pending detailed identity metadata.
+Current update: 154 retained reports reviewed,33 pending. Sordello2025 underpass Methods/Results read; five sites share a year-confounded dark-lit-dark schedule. Movement evidence remains separate from predation; no finite pooled effect added.
+
+Previous update: 153 retained reports reviewed,34 pending. Merckx2023 Methods/Results read; indoor single-room-per-arm diapause evidence kept outside field-interaction pooling. No overwinter survival or pollination effect inferred. AGR key retained pending detailed identity metadata.
 
 Previous update: 152 retained reports reviewed,35 pending. Westby2020 author-uploaded journal Methods/Results read; single site then single chamber per arm precludes independent replicated lighting support. Observational wild-egg series kept separate; no finite pooled effect added.
 
