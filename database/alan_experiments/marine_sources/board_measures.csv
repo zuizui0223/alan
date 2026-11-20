@@ -1,0 +1,847 @@
+Treatment,Board,Measure,Taxon,value
+Control,C1,% cover,Algae,0.0
+Control,C1,% cover,Botrylloides leachii,5.0
+Control,C1,% cover,Botryllus schlosseri,0.0
+Control,C1,% cover,Conopeum reticulum,0.0
+Control,C1,% cover,Conopeum seurati,0.0
+Control,C1,% cover,Cryptosula pallasiana,0.0
+Control,C1,% cover,Electra sp.,2.5
+Control,C1,% cover,Patinella verrucaria,0.0
+Control,C1,% cover,Plumularia setacea,0.0
+Control,C1,% cover,Schizomavella sp.,0.0
+Control,C1,number of individuals,Amphibalanus improvisus,0.0
+Control,C1,number of individuals,Amphilochidae sp.,0.0
+Control,C1,number of individuals,Ancula gibbosa,0.0
+Control,C1,number of individuals,Anomia ephippium,0.0
+Control,C1,number of individuals,Aora gracilis,0.0
+Control,C1,number of individuals,Ascidiella scabra,0.0
+Control,C1,number of individuals,Asellopsis hispida,0.0
+Control,C1,number of individuals,Balanus balanus,0.0
+Control,C1,number of individuals,Botrylloides violaceus,0.0
+Control,C1,number of individuals,Carcinus maenas,0.0
+Control,C1,number of individuals,Circeis sp.,0.0
+Control,C1,number of individuals,Corophium sp.,0.0
+Control,C1,number of individuals,Cyclopoida sp.,0.0
+Control,C1,number of individuals,Diarthrodes nobilis,0.0
+Control,C1,number of individuals,Didemnidae spp.,0.0
+Control,C1,number of individuals,Diosaccus tenuicornis,0.0
+Control,C1,number of individuals,Doridicola agilis,0.0
+Control,C1,number of individuals,Ectopleura larynx,0.0
+Control,C1,number of individuals,Entoprocta,0.0
+Control,C1,number of individuals,Kirchenpaueria pinnata,6.0
+Control,C1,number of individuals,Laophonte setosa,2.0
+Control,C1,number of individuals,Leptocythere pellucida,0.0
+Control,C1,number of individuals,Lichenoporidae sp.,0.0
+Control,C1,number of individuals,Mesochra lilljeborgii,0.0
+Control,C1,number of individuals,Metis ignea,0.0
+Control,C1,number of individuals,Molgula sp.,0.0
+Control,C1,number of individuals,Nematoda spp.,1.0
+Control,C1,number of individuals,Nereis sp.,0.0
+Control,C1,number of individuals,Nototropis swammerdamei,0.0
+Control,C1,number of individuals,Phoxichilidium femoratum,0.0
+Control,C1,number of individuals,Protula tubularia,0.0
+Control,C1,number of individuals,Spirobranchus lamarcki,6.0
+Control,C1,number of individuals,Spirorbinae sp.,1.0
+Control,C1,number of individuals,Tergipedidae sp.,0.0
+Control,C1,number of individuals,Tisbe furcata,0.0
+Control,C1,number of individuals,Tubularia indivisa,0.0
+Control,C1,number of individuals,Unciola crenatipalma,0.0
+Control,C2,% cover,Algae,0.0
+Control,C2,% cover,Botrylloides leachii,2.5
+Control,C2,% cover,Botryllus schlosseri,0.0
+Control,C2,% cover,Conopeum reticulum,0.0
+Control,C2,% cover,Conopeum seurati,0.0
+Control,C2,% cover,Cryptosula pallasiana,0.0
+Control,C2,% cover,Electra sp.,4.0
+Control,C2,% cover,Patinella verrucaria,0.5
+Control,C2,% cover,Plumularia setacea,1.5
+Control,C2,% cover,Schizomavella sp.,0.0
+Control,C2,number of individuals,Amphibalanus improvisus,0.0
+Control,C2,number of individuals,Amphilochidae sp.,0.0
+Control,C2,number of individuals,Ancula gibbosa,1.0
+Control,C2,number of individuals,Anomia ephippium,1.0
+Control,C2,number of individuals,Aora gracilis,0.0
+Control,C2,number of individuals,Ascidiella scabra,0.0
+Control,C2,number of individuals,Asellopsis hispida,0.0
+Control,C2,number of individuals,Balanus balanus,6.0
+Control,C2,number of individuals,Botrylloides violaceus,0.0
+Control,C2,number of individuals,Carcinus maenas,0.0
+Control,C2,number of individuals,Circeis sp.,0.0
+Control,C2,number of individuals,Corophium sp.,1.0
+Control,C2,number of individuals,Cyclopoida sp.,0.0
+Control,C2,number of individuals,Diarthrodes nobilis,1.0
+Control,C2,number of individuals,Didemnidae spp.,47.0
+Control,C2,number of individuals,Diosaccus tenuicornis,0.0
+Control,C2,number of individuals,Doridicola agilis,0.0
+Control,C2,number of individuals,Ectopleura larynx,17.0
+Control,C2,number of individuals,Entoprocta,5.0
+Control,C2,number of individuals,Kirchenpaueria pinnata,53.0
+Control,C2,number of individuals,Laophonte setosa,36.0
+Control,C2,number of individuals,Leptocythere pellucida,1.0
+Control,C2,number of individuals,Lichenoporidae sp.,0.0
+Control,C2,number of individuals,Mesochra lilljeborgii,0.0
+Control,C2,number of individuals,Metis ignea,8.0
+Control,C2,number of individuals,Molgula sp.,5.0
+Control,C2,number of individuals,Nematoda spp.,0.0
+Control,C2,number of individuals,Nereis sp.,0.0
+Control,C2,number of individuals,Nototropis swammerdamei,0.0
+Control,C2,number of individuals,Phoxichilidium femoratum,0.0
+Control,C2,number of individuals,Protula tubularia,0.0
+Control,C2,number of individuals,Spirobranchus lamarcki,6.0
+Control,C2,number of individuals,Spirorbinae sp.,1.0
+Control,C2,number of individuals,Tergipedidae sp.,0.0
+Control,C2,number of individuals,Tisbe furcata,0.0
+Control,C2,number of individuals,Tubularia indivisa,0.0
+Control,C2,number of individuals,Unciola crenatipalma,0.0
+Control,C3,% cover,Algae,5.0
+Control,C3,% cover,Botrylloides leachii,1.5
+Control,C3,% cover,Botryllus schlosseri,0.0
+Control,C3,% cover,Conopeum reticulum,0.0
+Control,C3,% cover,Conopeum seurati,0.0
+Control,C3,% cover,Cryptosula pallasiana,0.0
+Control,C3,% cover,Electra sp.,5.0
+Control,C3,% cover,Patinella verrucaria,0.0
+Control,C3,% cover,Plumularia setacea,20.5
+Control,C3,% cover,Schizomavella sp.,0.0
+Control,C3,number of individuals,Amphibalanus improvisus,0.0
+Control,C3,number of individuals,Amphilochidae sp.,0.0
+Control,C3,number of individuals,Ancula gibbosa,0.0
+Control,C3,number of individuals,Anomia ephippium,2.0
+Control,C3,number of individuals,Aora gracilis,0.0
+Control,C3,number of individuals,Ascidiella scabra,0.0
+Control,C3,number of individuals,Asellopsis hispida,0.0
+Control,C3,number of individuals,Balanus balanus,2.0
+Control,C3,number of individuals,Botrylloides violaceus,0.0
+Control,C3,number of individuals,Carcinus maenas,0.0
+Control,C3,number of individuals,Circeis sp.,0.0
+Control,C3,number of individuals,Corophium sp.,0.0
+Control,C3,number of individuals,Cyclopoida sp.,0.0
+Control,C3,number of individuals,Diarthrodes nobilis,0.0
+Control,C3,number of individuals,Didemnidae spp.,0.0
+Control,C3,number of individuals,Diosaccus tenuicornis,2.0
+Control,C3,number of individuals,Doridicola agilis,0.0
+Control,C3,number of individuals,Ectopleura larynx,0.0
+Control,C3,number of individuals,Entoprocta,13.0
+Control,C3,number of individuals,Kirchenpaueria pinnata,128.0
+Control,C3,number of individuals,Laophonte setosa,8.0
+Control,C3,number of individuals,Leptocythere pellucida,0.0
+Control,C3,number of individuals,Lichenoporidae sp.,0.0
+Control,C3,number of individuals,Mesochra lilljeborgii,1.0
+Control,C3,number of individuals,Metis ignea,2.0
+Control,C3,number of individuals,Molgula sp.,0.0
+Control,C3,number of individuals,Nematoda spp.,0.0
+Control,C3,number of individuals,Nereis sp.,0.0
+Control,C3,number of individuals,Nototropis swammerdamei,0.0
+Control,C3,number of individuals,Phoxichilidium femoratum,0.0
+Control,C3,number of individuals,Protula tubularia,0.0
+Control,C3,number of individuals,Spirobranchus lamarcki,8.0
+Control,C3,number of individuals,Spirorbinae sp.,1.0
+Control,C3,number of individuals,Tergipedidae sp.,0.0
+Control,C3,number of individuals,Tisbe furcata,0.0
+Control,C3,number of individuals,Tubularia indivisa,0.0
+Control,C3,number of individuals,Unciola crenatipalma,0.0
+Control,C4,% cover,Algae,0.0
+Control,C4,% cover,Botrylloides leachii,12.5
+Control,C4,% cover,Botryllus schlosseri,0.0
+Control,C4,% cover,Conopeum reticulum,0.0
+Control,C4,% cover,Conopeum seurati,0.0
+Control,C4,% cover,Cryptosula pallasiana,0.0
+Control,C4,% cover,Electra sp.,0.5
+Control,C4,% cover,Patinella verrucaria,0.0
+Control,C4,% cover,Plumularia setacea,17.5
+Control,C4,% cover,Schizomavella sp.,0.0
+Control,C4,number of individuals,Amphibalanus improvisus,0.0
+Control,C4,number of individuals,Amphilochidae sp.,0.0
+Control,C4,number of individuals,Ancula gibbosa,0.0
+Control,C4,number of individuals,Anomia ephippium,1.0
+Control,C4,number of individuals,Aora gracilis,0.0
+Control,C4,number of individuals,Ascidiella scabra,0.0
+Control,C4,number of individuals,Asellopsis hispida,0.0
+Control,C4,number of individuals,Balanus balanus,0.0
+Control,C4,number of individuals,Botrylloides violaceus,0.0
+Control,C4,number of individuals,Carcinus maenas,0.0
+Control,C4,number of individuals,Circeis sp.,0.0
+Control,C4,number of individuals,Corophium sp.,1.0
+Control,C4,number of individuals,Cyclopoida sp.,0.0
+Control,C4,number of individuals,Diarthrodes nobilis,0.0
+Control,C4,number of individuals,Didemnidae spp.,0.0
+Control,C4,number of individuals,Diosaccus tenuicornis,1.0
+Control,C4,number of individuals,Doridicola agilis,0.0
+Control,C4,number of individuals,Ectopleura larynx,6.0
+Control,C4,number of individuals,Entoprocta,0.0
+Control,C4,number of individuals,Kirchenpaueria pinnata,175.0
+Control,C4,number of individuals,Laophonte setosa,9.0
+Control,C4,number of individuals,Leptocythere pellucida,3.0
+Control,C4,number of individuals,Lichenoporidae sp.,0.0
+Control,C4,number of individuals,Mesochra lilljeborgii,0.0
+Control,C4,number of individuals,Metis ignea,2.0
+Control,C4,number of individuals,Molgula sp.,2.0
+Control,C4,number of individuals,Nematoda spp.,0.0
+Control,C4,number of individuals,Nereis sp.,0.0
+Control,C4,number of individuals,Nototropis swammerdamei,0.0
+Control,C4,number of individuals,Phoxichilidium femoratum,0.0
+Control,C4,number of individuals,Protula tubularia,0.0
+Control,C4,number of individuals,Spirobranchus lamarcki,19.0
+Control,C4,number of individuals,Spirorbinae sp.,0.0
+Control,C4,number of individuals,Tergipedidae sp.,0.0
+Control,C4,number of individuals,Tisbe furcata,0.0
+Control,C4,number of individuals,Tubularia indivisa,0.0
+Control,C4,number of individuals,Unciola crenatipalma,0.0
+Control,C5,% cover,Algae,5.0
+Control,C5,% cover,Botrylloides leachii,80.0
+Control,C5,% cover,Botryllus schlosseri,0.0
+Control,C5,% cover,Conopeum reticulum,0.0
+Control,C5,% cover,Conopeum seurati,0.0
+Control,C5,% cover,Cryptosula pallasiana,0.0
+Control,C5,% cover,Electra sp.,5.0
+Control,C5,% cover,Patinella verrucaria,2.0
+Control,C5,% cover,Plumularia setacea,30.0
+Control,C5,% cover,Schizomavella sp.,0.0
+Control,C5,number of individuals,Amphibalanus improvisus,0.0
+Control,C5,number of individuals,Amphilochidae sp.,0.0
+Control,C5,number of individuals,Ancula gibbosa,0.0
+Control,C5,number of individuals,Anomia ephippium,2.0
+Control,C5,number of individuals,Aora gracilis,0.0
+Control,C5,number of individuals,Ascidiella scabra,1.0
+Control,C5,number of individuals,Asellopsis hispida,0.0
+Control,C5,number of individuals,Balanus balanus,7.0
+Control,C5,number of individuals,Botrylloides violaceus,0.0
+Control,C5,number of individuals,Carcinus maenas,0.0
+Control,C5,number of individuals,Circeis sp.,1.0
+Control,C5,number of individuals,Corophium sp.,0.0
+Control,C5,number of individuals,Cyclopoida sp.,0.0
+Control,C5,number of individuals,Diarthrodes nobilis,0.0
+Control,C5,number of individuals,Didemnidae spp.,0.0
+Control,C5,number of individuals,Diosaccus tenuicornis,1.0
+Control,C5,number of individuals,Doridicola agilis,0.0
+Control,C5,number of individuals,Ectopleura larynx,2.0
+Control,C5,number of individuals,Entoprocta,0.0
+Control,C5,number of individuals,Kirchenpaueria pinnata,91.0
+Control,C5,number of individuals,Laophonte setosa,14.0
+Control,C5,number of individuals,Leptocythere pellucida,3.0
+Control,C5,number of individuals,Lichenoporidae sp.,0.0
+Control,C5,number of individuals,Mesochra lilljeborgii,1.0
+Control,C5,number of individuals,Metis ignea,4.0
+Control,C5,number of individuals,Molgula sp.,36.0
+Control,C5,number of individuals,Nematoda spp.,0.0
+Control,C5,number of individuals,Nereis sp.,0.0
+Control,C5,number of individuals,Nototropis swammerdamei,1.0
+Control,C5,number of individuals,Phoxichilidium femoratum,0.0
+Control,C5,number of individuals,Protula tubularia,0.0
+Control,C5,number of individuals,Spirobranchus lamarcki,23.0
+Control,C5,number of individuals,Spirorbinae sp.,0.0
+Control,C5,number of individuals,Tergipedidae sp.,0.0
+Control,C5,number of individuals,Tisbe furcata,0.0
+Control,C5,number of individuals,Tubularia indivisa,0.0
+Control,C5,number of individuals,Unciola crenatipalma,0.0
+Control,C6,% cover,Algae,0.0
+Control,C6,% cover,Botrylloides leachii,50.0
+Control,C6,% cover,Botryllus schlosseri,0.0
+Control,C6,% cover,Conopeum reticulum,0.0
+Control,C6,% cover,Conopeum seurati,0.0
+Control,C6,% cover,Cryptosula pallasiana,0.0
+Control,C6,% cover,Electra sp.,0.0
+Control,C6,% cover,Patinella verrucaria,0.0
+Control,C6,% cover,Plumularia setacea,40.0
+Control,C6,% cover,Schizomavella sp.,0.0
+Control,C6,number of individuals,Amphibalanus improvisus,0.0
+Control,C6,number of individuals,Amphilochidae sp.,0.0
+Control,C6,number of individuals,Ancula gibbosa,0.0
+Control,C6,number of individuals,Anomia ephippium,3.0
+Control,C6,number of individuals,Aora gracilis,2.0
+Control,C6,number of individuals,Ascidiella scabra,0.0
+Control,C6,number of individuals,Asellopsis hispida,1.0
+Control,C6,number of individuals,Balanus balanus,3.0
+Control,C6,number of individuals,Botrylloides violaceus,0.0
+Control,C6,number of individuals,Carcinus maenas,1.0
+Control,C6,number of individuals,Circeis sp.,0.0
+Control,C6,number of individuals,Corophium sp.,0.0
+Control,C6,number of individuals,Cyclopoida sp.,1.0
+Control,C6,number of individuals,Diarthrodes nobilis,0.0
+Control,C6,number of individuals,Didemnidae spp.,0.0
+Control,C6,number of individuals,Diosaccus tenuicornis,0.0
+Control,C6,number of individuals,Doridicola agilis,4.0
+Control,C6,number of individuals,Ectopleura larynx,27.0
+Control,C6,number of individuals,Entoprocta,0.0
+Control,C6,number of individuals,Kirchenpaueria pinnata,223.0
+Control,C6,number of individuals,Laophonte setosa,24.0
+Control,C6,number of individuals,Leptocythere pellucida,4.0
+Control,C6,number of individuals,Lichenoporidae sp.,0.0
+Control,C6,number of individuals,Mesochra lilljeborgii,0.0
+Control,C6,number of individuals,Metis ignea,11.0
+Control,C6,number of individuals,Molgula sp.,0.0
+Control,C6,number of individuals,Nematoda spp.,0.0
+Control,C6,number of individuals,Nereis sp.,0.0
+Control,C6,number of individuals,Nototropis swammerdamei,0.0
+Control,C6,number of individuals,Phoxichilidium femoratum,0.0
+Control,C6,number of individuals,Protula tubularia,0.0
+Control,C6,number of individuals,Spirobranchus lamarcki,3.0
+Control,C6,number of individuals,Spirorbinae sp.,0.0
+Control,C6,number of individuals,Tergipedidae sp.,2.0
+Control,C6,number of individuals,Tisbe furcata,1.0
+Control,C6,number of individuals,Tubularia indivisa,0.0
+Control,C6,number of individuals,Unciola crenatipalma,0.0
+High,H1,% cover,Algae,5.0
+High,H1,% cover,Botrylloides leachii,0.0
+High,H1,% cover,Botryllus schlosseri,0.0
+High,H1,% cover,Conopeum reticulum,0.0
+High,H1,% cover,Conopeum seurati,0.0
+High,H1,% cover,Cryptosula pallasiana,0.5
+High,H1,% cover,Electra sp.,12.5
+High,H1,% cover,Patinella verrucaria,0.0
+High,H1,% cover,Plumularia setacea,3.0
+High,H1,% cover,Schizomavella sp.,1.5
+High,H1,number of individuals,Amphibalanus improvisus,0.0
+High,H1,number of individuals,Amphilochidae sp.,0.0
+High,H1,number of individuals,Ancula gibbosa,0.0
+High,H1,number of individuals,Anomia ephippium,1.0
+High,H1,number of individuals,Aora gracilis,0.0
+High,H1,number of individuals,Ascidiella scabra,0.0
+High,H1,number of individuals,Asellopsis hispida,0.0
+High,H1,number of individuals,Balanus balanus,1.0
+High,H1,number of individuals,Botrylloides violaceus,0.0
+High,H1,number of individuals,Carcinus maenas,0.0
+High,H1,number of individuals,Circeis sp.,0.0
+High,H1,number of individuals,Corophium sp.,0.0
+High,H1,number of individuals,Cyclopoida sp.,0.0
+High,H1,number of individuals,Diarthrodes nobilis,0.0
+High,H1,number of individuals,Didemnidae spp.,0.0
+High,H1,number of individuals,Diosaccus tenuicornis,0.0
+High,H1,number of individuals,Doridicola agilis,0.0
+High,H1,number of individuals,Ectopleura larynx,16.0
+High,H1,number of individuals,Entoprocta,0.0
+High,H1,number of individuals,Kirchenpaueria pinnata,52.0
+High,H1,number of individuals,Laophonte setosa,6.0
+High,H1,number of individuals,Leptocythere pellucida,1.0
+High,H1,number of individuals,Lichenoporidae sp.,0.0
+High,H1,number of individuals,Mesochra lilljeborgii,0.0
+High,H1,number of individuals,Metis ignea,3.0
+High,H1,number of individuals,Molgula sp.,0.0
+High,H1,number of individuals,Nematoda spp.,0.0
+High,H1,number of individuals,Nereis sp.,0.0
+High,H1,number of individuals,Nototropis swammerdamei,0.0
+High,H1,number of individuals,Phoxichilidium femoratum,0.0
+High,H1,number of individuals,Protula tubularia,0.0
+High,H1,number of individuals,Spirobranchus lamarcki,24.0
+High,H1,number of individuals,Spirorbinae sp.,0.0
+High,H1,number of individuals,Tergipedidae sp.,0.0
+High,H1,number of individuals,Tisbe furcata,0.0
+High,H1,number of individuals,Tubularia indivisa,0.0
+High,H1,number of individuals,Unciola crenatipalma,0.0
+High,H2,% cover,Algae,0.0
+High,H2,% cover,Botrylloides leachii,7.75
+High,H2,% cover,Botryllus schlosseri,0.5
+High,H2,% cover,Conopeum reticulum,2.5
+High,H2,% cover,Conopeum seurati,0.0
+High,H2,% cover,Cryptosula pallasiana,0.0
+High,H2,% cover,Electra sp.,4.0
+High,H2,% cover,Patinella verrucaria,0.0
+High,H2,% cover,Plumularia setacea,0.75
+High,H2,% cover,Schizomavella sp.,0.5
+High,H2,number of individuals,Amphibalanus improvisus,0.0
+High,H2,number of individuals,Amphilochidae sp.,0.0
+High,H2,number of individuals,Ancula gibbosa,0.0
+High,H2,number of individuals,Anomia ephippium,0.0
+High,H2,number of individuals,Aora gracilis,0.0
+High,H2,number of individuals,Ascidiella scabra,0.0
+High,H2,number of individuals,Asellopsis hispida,0.0
+High,H2,number of individuals,Balanus balanus,5.0
+High,H2,number of individuals,Botrylloides violaceus,0.0
+High,H2,number of individuals,Carcinus maenas,0.0
+High,H2,number of individuals,Circeis sp.,0.0
+High,H2,number of individuals,Corophium sp.,1.0
+High,H2,number of individuals,Cyclopoida sp.,0.0
+High,H2,number of individuals,Diarthrodes nobilis,0.0
+High,H2,number of individuals,Didemnidae spp.,0.0
+High,H2,number of individuals,Diosaccus tenuicornis,0.0
+High,H2,number of individuals,Doridicola agilis,0.0
+High,H2,number of individuals,Ectopleura larynx,0.0
+High,H2,number of individuals,Entoprocta,0.0
+High,H2,number of individuals,Kirchenpaueria pinnata,93.0
+High,H2,number of individuals,Laophonte setosa,12.0
+High,H2,number of individuals,Leptocythere pellucida,0.0
+High,H2,number of individuals,Lichenoporidae sp.,0.0
+High,H2,number of individuals,Mesochra lilljeborgii,0.0
+High,H2,number of individuals,Metis ignea,18.0
+High,H2,number of individuals,Molgula sp.,0.0
+High,H2,number of individuals,Nematoda spp.,0.0
+High,H2,number of individuals,Nereis sp.,2.0
+High,H2,number of individuals,Nototropis swammerdamei,0.0
+High,H2,number of individuals,Phoxichilidium femoratum,0.0
+High,H2,number of individuals,Protula tubularia,1.0
+High,H2,number of individuals,Spirobranchus lamarcki,32.0
+High,H2,number of individuals,Spirorbinae sp.,0.0
+High,H2,number of individuals,Tergipedidae sp.,0.0
+High,H2,number of individuals,Tisbe furcata,0.0
+High,H2,number of individuals,Tubularia indivisa,1.0
+High,H2,number of individuals,Unciola crenatipalma,0.0
+High,H3,% cover,Algae,52.5
+High,H3,% cover,Botrylloides leachii,0.0
+High,H3,% cover,Botryllus schlosseri,0.0
+High,H3,% cover,Conopeum reticulum,0.0
+High,H3,% cover,Conopeum seurati,5.0
+High,H3,% cover,Cryptosula pallasiana,0.0
+High,H3,% cover,Electra sp.,0.0
+High,H3,% cover,Patinella verrucaria,0.0
+High,H3,% cover,Plumularia setacea,10.0
+High,H3,% cover,Schizomavella sp.,0.0
+High,H3,number of individuals,Amphibalanus improvisus,0.0
+High,H3,number of individuals,Amphilochidae sp.,1.0
+High,H3,number of individuals,Ancula gibbosa,0.0
+High,H3,number of individuals,Anomia ephippium,0.0
+High,H3,number of individuals,Aora gracilis,0.0
+High,H3,number of individuals,Ascidiella scabra,0.0
+High,H3,number of individuals,Asellopsis hispida,0.0
+High,H3,number of individuals,Balanus balanus,0.0
+High,H3,number of individuals,Botrylloides violaceus,1.0
+High,H3,number of individuals,Carcinus maenas,0.0
+High,H3,number of individuals,Circeis sp.,0.0
+High,H3,number of individuals,Corophium sp.,1.0
+High,H3,number of individuals,Cyclopoida sp.,0.0
+High,H3,number of individuals,Diarthrodes nobilis,0.0
+High,H3,number of individuals,Didemnidae spp.,0.0
+High,H3,number of individuals,Diosaccus tenuicornis,0.0
+High,H3,number of individuals,Doridicola agilis,0.0
+High,H3,number of individuals,Ectopleura larynx,0.0
+High,H3,number of individuals,Entoprocta,0.0
+High,H3,number of individuals,Kirchenpaueria pinnata,198.0
+High,H3,number of individuals,Laophonte setosa,11.0
+High,H3,number of individuals,Leptocythere pellucida,2.0
+High,H3,number of individuals,Lichenoporidae sp.,1.0
+High,H3,number of individuals,Mesochra lilljeborgii,0.0
+High,H3,number of individuals,Metis ignea,17.0
+High,H3,number of individuals,Molgula sp.,0.0
+High,H3,number of individuals,Nematoda spp.,0.0
+High,H3,number of individuals,Nereis sp.,2.0
+High,H3,number of individuals,Nototropis swammerdamei,0.0
+High,H3,number of individuals,Phoxichilidium femoratum,0.0
+High,H3,number of individuals,Protula tubularia,0.0
+High,H3,number of individuals,Spirobranchus lamarcki,23.0
+High,H3,number of individuals,Spirorbinae sp.,0.0
+High,H3,number of individuals,Tergipedidae sp.,0.0
+High,H3,number of individuals,Tisbe furcata,0.0
+High,H3,number of individuals,Tubularia indivisa,0.0
+High,H3,number of individuals,Unciola crenatipalma,0.0
+High,H4,% cover,Algae,0.0
+High,H4,% cover,Botrylloides leachii,0.0
+High,H4,% cover,Botryllus schlosseri,0.0
+High,H4,% cover,Conopeum reticulum,2.5
+High,H4,% cover,Conopeum seurati,0.0
+High,H4,% cover,Cryptosula pallasiana,2.5
+High,H4,% cover,Electra sp.,12.5
+High,H4,% cover,Patinella verrucaria,0.0
+High,H4,% cover,Plumularia setacea,2.0
+High,H4,% cover,Schizomavella sp.,0.0
+High,H4,number of individuals,Amphibalanus improvisus,0.0
+High,H4,number of individuals,Amphilochidae sp.,0.0
+High,H4,number of individuals,Ancula gibbosa,0.0
+High,H4,number of individuals,Anomia ephippium,0.0
+High,H4,number of individuals,Aora gracilis,0.0
+High,H4,number of individuals,Ascidiella scabra,0.0
+High,H4,number of individuals,Asellopsis hispida,0.0
+High,H4,number of individuals,Balanus balanus,2.0
+High,H4,number of individuals,Botrylloides violaceus,0.0
+High,H4,number of individuals,Carcinus maenas,0.0
+High,H4,number of individuals,Circeis sp.,0.0
+High,H4,number of individuals,Corophium sp.,4.0
+High,H4,number of individuals,Cyclopoida sp.,0.0
+High,H4,number of individuals,Diarthrodes nobilis,0.0
+High,H4,number of individuals,Didemnidae spp.,0.0
+High,H4,number of individuals,Diosaccus tenuicornis,0.0
+High,H4,number of individuals,Doridicola agilis,0.0
+High,H4,number of individuals,Ectopleura larynx,0.0
+High,H4,number of individuals,Entoprocta,1.0
+High,H4,number of individuals,Kirchenpaueria pinnata,74.0
+High,H4,number of individuals,Laophonte setosa,19.0
+High,H4,number of individuals,Leptocythere pellucida,0.0
+High,H4,number of individuals,Lichenoporidae sp.,0.0
+High,H4,number of individuals,Mesochra lilljeborgii,0.0
+High,H4,number of individuals,Metis ignea,3.0
+High,H4,number of individuals,Molgula sp.,2.0
+High,H4,number of individuals,Nematoda spp.,0.0
+High,H4,number of individuals,Nereis sp.,0.0
+High,H4,number of individuals,Nototropis swammerdamei,0.0
+High,H4,number of individuals,Phoxichilidium femoratum,0.0
+High,H4,number of individuals,Protula tubularia,1.0
+High,H4,number of individuals,Spirobranchus lamarcki,24.0
+High,H4,number of individuals,Spirorbinae sp.,0.0
+High,H4,number of individuals,Tergipedidae sp.,0.0
+High,H4,number of individuals,Tisbe furcata,0.0
+High,H4,number of individuals,Tubularia indivisa,0.0
+High,H4,number of individuals,Unciola crenatipalma,0.0
+High,H5,% cover,Algae,10.0
+High,H5,% cover,Botrylloides leachii,0.0
+High,H5,% cover,Botryllus schlosseri,0.0
+High,H5,% cover,Conopeum reticulum,1.0
+High,H5,% cover,Conopeum seurati,0.0
+High,H5,% cover,Cryptosula pallasiana,0.0
+High,H5,% cover,Electra sp.,4.0
+High,H5,% cover,Patinella verrucaria,0.5
+High,H5,% cover,Plumularia setacea,10.0
+High,H5,% cover,Schizomavella sp.,2.5
+High,H5,number of individuals,Amphibalanus improvisus,0.0
+High,H5,number of individuals,Amphilochidae sp.,0.0
+High,H5,number of individuals,Ancula gibbosa,0.0
+High,H5,number of individuals,Anomia ephippium,1.0
+High,H5,number of individuals,Aora gracilis,0.0
+High,H5,number of individuals,Ascidiella scabra,0.0
+High,H5,number of individuals,Asellopsis hispida,0.0
+High,H5,number of individuals,Balanus balanus,0.0
+High,H5,number of individuals,Botrylloides violaceus,0.0
+High,H5,number of individuals,Carcinus maenas,1.0
+High,H5,number of individuals,Circeis sp.,0.0
+High,H5,number of individuals,Corophium sp.,2.0
+High,H5,number of individuals,Cyclopoida sp.,0.0
+High,H5,number of individuals,Diarthrodes nobilis,0.0
+High,H5,number of individuals,Didemnidae spp.,0.0
+High,H5,number of individuals,Diosaccus tenuicornis,0.0
+High,H5,number of individuals,Doridicola agilis,0.0
+High,H5,number of individuals,Ectopleura larynx,0.0
+High,H5,number of individuals,Entoprocta,0.0
+High,H5,number of individuals,Kirchenpaueria pinnata,90.0
+High,H5,number of individuals,Laophonte setosa,22.0
+High,H5,number of individuals,Leptocythere pellucida,2.0
+High,H5,number of individuals,Lichenoporidae sp.,0.0
+High,H5,number of individuals,Mesochra lilljeborgii,0.0
+High,H5,number of individuals,Metis ignea,28.0
+High,H5,number of individuals,Molgula sp.,6.0
+High,H5,number of individuals,Nematoda spp.,0.0
+High,H5,number of individuals,Nereis sp.,0.0
+High,H5,number of individuals,Nototropis swammerdamei,0.0
+High,H5,number of individuals,Phoxichilidium femoratum,0.0
+High,H5,number of individuals,Protula tubularia,0.0
+High,H5,number of individuals,Spirobranchus lamarcki,39.0
+High,H5,number of individuals,Spirorbinae sp.,0.0
+High,H5,number of individuals,Tergipedidae sp.,0.0
+High,H5,number of individuals,Tisbe furcata,0.0
+High,H5,number of individuals,Tubularia indivisa,0.0
+High,H5,number of individuals,Unciola crenatipalma,0.0
+High,H6,% cover,Algae,0.0
+High,H6,% cover,Botrylloides leachii,0.0
+High,H6,% cover,Botryllus schlosseri,0.0
+High,H6,% cover,Conopeum reticulum,0.0
+High,H6,% cover,Conopeum seurati,0.0
+High,H6,% cover,Cryptosula pallasiana,0.0
+High,H6,% cover,Electra sp.,5.5
+High,H6,% cover,Patinella verrucaria,0.5
+High,H6,% cover,Plumularia setacea,8.0
+High,H6,% cover,Schizomavella sp.,0.5
+High,H6,number of individuals,Amphibalanus improvisus,0.0
+High,H6,number of individuals,Amphilochidae sp.,0.0
+High,H6,number of individuals,Ancula gibbosa,0.0
+High,H6,number of individuals,Anomia ephippium,1.0
+High,H6,number of individuals,Aora gracilis,0.0
+High,H6,number of individuals,Ascidiella scabra,0.0
+High,H6,number of individuals,Asellopsis hispida,0.0
+High,H6,number of individuals,Balanus balanus,2.0
+High,H6,number of individuals,Botrylloides violaceus,0.0
+High,H6,number of individuals,Carcinus maenas,0.0
+High,H6,number of individuals,Circeis sp.,0.0
+High,H6,number of individuals,Corophium sp.,2.0
+High,H6,number of individuals,Cyclopoida sp.,0.0
+High,H6,number of individuals,Diarthrodes nobilis,0.0
+High,H6,number of individuals,Didemnidae spp.,0.0
+High,H6,number of individuals,Diosaccus tenuicornis,0.0
+High,H6,number of individuals,Doridicola agilis,0.0
+High,H6,number of individuals,Ectopleura larynx,0.0
+High,H6,number of individuals,Entoprocta,0.0
+High,H6,number of individuals,Kirchenpaueria pinnata,46.0
+High,H6,number of individuals,Laophonte setosa,2.0
+High,H6,number of individuals,Leptocythere pellucida,0.0
+High,H6,number of individuals,Lichenoporidae sp.,0.0
+High,H6,number of individuals,Mesochra lilljeborgii,0.0
+High,H6,number of individuals,Metis ignea,3.0
+High,H6,number of individuals,Molgula sp.,1.0
+High,H6,number of individuals,Nematoda spp.,0.0
+High,H6,number of individuals,Nereis sp.,0.0
+High,H6,number of individuals,Nototropis swammerdamei,0.0
+High,H6,number of individuals,Phoxichilidium femoratum,0.0
+High,H6,number of individuals,Protula tubularia,0.0
+High,H6,number of individuals,Spirobranchus lamarcki,25.0
+High,H6,number of individuals,Spirorbinae sp.,9.0
+High,H6,number of individuals,Tergipedidae sp.,0.0
+High,H6,number of individuals,Tisbe furcata,0.0
+High,H6,number of individuals,Tubularia indivisa,0.0
+High,H6,number of individuals,Unciola crenatipalma,0.0
+Low,L1,% cover,Algae,0.0
+Low,L1,% cover,Botrylloides leachii,1.5
+Low,L1,% cover,Botryllus schlosseri,0.0
+Low,L1,% cover,Conopeum reticulum,0.0
+Low,L1,% cover,Conopeum seurati,35.0
+Low,L1,% cover,Cryptosula pallasiana,0.0
+Low,L1,% cover,Electra sp.,7.5
+Low,L1,% cover,Patinella verrucaria,1.0
+Low,L1,% cover,Plumularia setacea,5.0
+Low,L1,% cover,Schizomavella sp.,0.0
+Low,L1,number of individuals,Amphibalanus improvisus,0.0
+Low,L1,number of individuals,Amphilochidae sp.,0.0
+Low,L1,number of individuals,Ancula gibbosa,0.0
+Low,L1,number of individuals,Anomia ephippium,1.0
+Low,L1,number of individuals,Aora gracilis,0.0
+Low,L1,number of individuals,Ascidiella scabra,0.0
+Low,L1,number of individuals,Asellopsis hispida,0.0
+Low,L1,number of individuals,Balanus balanus,1.0
+Low,L1,number of individuals,Botrylloides violaceus,0.0
+Low,L1,number of individuals,Carcinus maenas,0.0
+Low,L1,number of individuals,Circeis sp.,0.0
+Low,L1,number of individuals,Corophium sp.,0.0
+Low,L1,number of individuals,Cyclopoida sp.,0.0
+Low,L1,number of individuals,Diarthrodes nobilis,0.0
+Low,L1,number of individuals,Didemnidae spp.,0.0
+Low,L1,number of individuals,Diosaccus tenuicornis,0.0
+Low,L1,number of individuals,Doridicola agilis,0.0
+Low,L1,number of individuals,Ectopleura larynx,0.0
+Low,L1,number of individuals,Entoprocta,0.0
+Low,L1,number of individuals,Kirchenpaueria pinnata,133.0
+Low,L1,number of individuals,Laophonte setosa,2.0
+Low,L1,number of individuals,Leptocythere pellucida,1.0
+Low,L1,number of individuals,Lichenoporidae sp.,0.0
+Low,L1,number of individuals,Mesochra lilljeborgii,0.0
+Low,L1,number of individuals,Metis ignea,5.0
+Low,L1,number of individuals,Molgula sp.,28.0
+Low,L1,number of individuals,Nematoda spp.,0.0
+Low,L1,number of individuals,Nereis sp.,0.0
+Low,L1,number of individuals,Nototropis swammerdamei,0.0
+Low,L1,number of individuals,Phoxichilidium femoratum,0.0
+Low,L1,number of individuals,Protula tubularia,0.0
+Low,L1,number of individuals,Spirobranchus lamarcki,20.0
+Low,L1,number of individuals,Spirorbinae sp.,1.0
+Low,L1,number of individuals,Tergipedidae sp.,0.0
+Low,L1,number of individuals,Tisbe furcata,0.0
+Low,L1,number of individuals,Tubularia indivisa,0.0
+Low,L1,number of individuals,Unciola crenatipalma,0.0
+Low,L2,% cover,Algae,0.0
+Low,L2,% cover,Botrylloides leachii,2.5
+Low,L2,% cover,Botryllus schlosseri,0.0
+Low,L2,% cover,Conopeum reticulum,0.0
+Low,L2,% cover,Conopeum seurati,0.0
+Low,L2,% cover,Cryptosula pallasiana,0.0
+Low,L2,% cover,Electra sp.,6.0
+Low,L2,% cover,Patinella verrucaria,1.0
+Low,L2,% cover,Plumularia setacea,15.0
+Low,L2,% cover,Schizomavella sp.,0.0
+Low,L2,number of individuals,Amphibalanus improvisus,0.0
+Low,L2,number of individuals,Amphilochidae sp.,0.0
+Low,L2,number of individuals,Ancula gibbosa,0.0
+Low,L2,number of individuals,Anomia ephippium,1.0
+Low,L2,number of individuals,Aora gracilis,0.0
+Low,L2,number of individuals,Ascidiella scabra,0.0
+Low,L2,number of individuals,Asellopsis hispida,0.0
+Low,L2,number of individuals,Balanus balanus,1.0
+Low,L2,number of individuals,Botrylloides violaceus,0.0
+Low,L2,number of individuals,Carcinus maenas,0.0
+Low,L2,number of individuals,Circeis sp.,0.0
+Low,L2,number of individuals,Corophium sp.,0.0
+Low,L2,number of individuals,Cyclopoida sp.,0.0
+Low,L2,number of individuals,Diarthrodes nobilis,0.0
+Low,L2,number of individuals,Didemnidae spp.,0.0
+Low,L2,number of individuals,Diosaccus tenuicornis,0.0
+Low,L2,number of individuals,Doridicola agilis,0.0
+Low,L2,number of individuals,Ectopleura larynx,19.0
+Low,L2,number of individuals,Entoprocta,0.0
+Low,L2,number of individuals,Kirchenpaueria pinnata,137.0
+Low,L2,number of individuals,Laophonte setosa,5.0
+Low,L2,number of individuals,Leptocythere pellucida,0.0
+Low,L2,number of individuals,Lichenoporidae sp.,0.0
+Low,L2,number of individuals,Mesochra lilljeborgii,0.0
+Low,L2,number of individuals,Metis ignea,1.0
+Low,L2,number of individuals,Molgula sp.,5.0
+Low,L2,number of individuals,Nematoda spp.,0.0
+Low,L2,number of individuals,Nereis sp.,0.0
+Low,L2,number of individuals,Nototropis swammerdamei,0.0
+Low,L2,number of individuals,Phoxichilidium femoratum,0.0
+Low,L2,number of individuals,Protula tubularia,0.0
+Low,L2,number of individuals,Spirobranchus lamarcki,27.0
+Low,L2,number of individuals,Spirorbinae sp.,1.0
+Low,L2,number of individuals,Tergipedidae sp.,0.0
+Low,L2,number of individuals,Tisbe furcata,0.0
+Low,L2,number of individuals,Tubularia indivisa,0.0
+Low,L2,number of individuals,Unciola crenatipalma,0.0
+Low,L3,% cover,Algae,0.0
+Low,L3,% cover,Botrylloides leachii,1.0
+Low,L3,% cover,Botryllus schlosseri,0.0
+Low,L3,% cover,Conopeum reticulum,0.0
+Low,L3,% cover,Conopeum seurati,0.0
+Low,L3,% cover,Cryptosula pallasiana,0.0
+Low,L3,% cover,Electra sp.,7.5
+Low,L3,% cover,Patinella verrucaria,0.5
+Low,L3,% cover,Plumularia setacea,7.5
+Low,L3,% cover,Schizomavella sp.,0.0
+Low,L3,number of individuals,Amphibalanus improvisus,1.0
+Low,L3,number of individuals,Amphilochidae sp.,0.0
+Low,L3,number of individuals,Ancula gibbosa,0.0
+Low,L3,number of individuals,Anomia ephippium,0.0
+Low,L3,number of individuals,Aora gracilis,0.0
+Low,L3,number of individuals,Ascidiella scabra,0.0
+Low,L3,number of individuals,Asellopsis hispida,0.0
+Low,L3,number of individuals,Balanus balanus,0.0
+Low,L3,number of individuals,Botrylloides violaceus,0.0
+Low,L3,number of individuals,Carcinus maenas,0.0
+Low,L3,number of individuals,Circeis sp.,0.0
+Low,L3,number of individuals,Corophium sp.,1.0
+Low,L3,number of individuals,Cyclopoida sp.,0.0
+Low,L3,number of individuals,Diarthrodes nobilis,0.0
+Low,L3,number of individuals,Didemnidae spp.,0.0
+Low,L3,number of individuals,Diosaccus tenuicornis,0.0
+Low,L3,number of individuals,Doridicola agilis,0.0
+Low,L3,number of individuals,Ectopleura larynx,8.0
+Low,L3,number of individuals,Entoprocta,0.0
+Low,L3,number of individuals,Kirchenpaueria pinnata,14.0
+Low,L3,number of individuals,Laophonte setosa,18.0
+Low,L3,number of individuals,Leptocythere pellucida,1.0
+Low,L3,number of individuals,Lichenoporidae sp.,0.0
+Low,L3,number of individuals,Mesochra lilljeborgii,0.0
+Low,L3,number of individuals,Metis ignea,1.0
+Low,L3,number of individuals,Molgula sp.,0.0
+Low,L3,number of individuals,Nematoda spp.,0.0
+Low,L3,number of individuals,Nereis sp.,0.0
+Low,L3,number of individuals,Nototropis swammerdamei,0.0
+Low,L3,number of individuals,Phoxichilidium femoratum,0.0
+Low,L3,number of individuals,Protula tubularia,0.0
+Low,L3,number of individuals,Spirobranchus lamarcki,17.0
+Low,L3,number of individuals,Spirorbinae sp.,0.0
+Low,L3,number of individuals,Tergipedidae sp.,0.0
+Low,L3,number of individuals,Tisbe furcata,0.0
+Low,L3,number of individuals,Tubularia indivisa,0.0
+Low,L3,number of individuals,Unciola crenatipalma,0.0
+Low,L4,% cover,Algae,0.0
+Low,L4,% cover,Botrylloides leachii,6.5
+Low,L4,% cover,Botryllus schlosseri,0.0
+Low,L4,% cover,Conopeum reticulum,0.0
+Low,L4,% cover,Conopeum seurati,0.0
+Low,L4,% cover,Cryptosula pallasiana,0.0
+Low,L4,% cover,Electra sp.,5.0
+Low,L4,% cover,Patinella verrucaria,0.0
+Low,L4,% cover,Plumularia setacea,6.0
+Low,L4,% cover,Schizomavella sp.,0.0
+Low,L4,number of individuals,Amphibalanus improvisus,0.0
+Low,L4,number of individuals,Amphilochidae sp.,0.0
+Low,L4,number of individuals,Ancula gibbosa,0.0
+Low,L4,number of individuals,Anomia ephippium,2.0
+Low,L4,number of individuals,Aora gracilis,0.0
+Low,L4,number of individuals,Ascidiella scabra,0.0
+Low,L4,number of individuals,Asellopsis hispida,0.0
+Low,L4,number of individuals,Balanus balanus,3.0
+Low,L4,number of individuals,Botrylloides violaceus,0.0
+Low,L4,number of individuals,Carcinus maenas,0.0
+Low,L4,number of individuals,Circeis sp.,0.0
+Low,L4,number of individuals,Corophium sp.,0.0
+Low,L4,number of individuals,Cyclopoida sp.,0.0
+Low,L4,number of individuals,Diarthrodes nobilis,0.0
+Low,L4,number of individuals,Didemnidae spp.,0.0
+Low,L4,number of individuals,Diosaccus tenuicornis,0.0
+Low,L4,number of individuals,Doridicola agilis,0.0
+Low,L4,number of individuals,Ectopleura larynx,3.0
+Low,L4,number of individuals,Entoprocta,0.0
+Low,L4,number of individuals,Kirchenpaueria pinnata,122.0
+Low,L4,number of individuals,Laophonte setosa,13.0
+Low,L4,number of individuals,Leptocythere pellucida,0.0
+Low,L4,number of individuals,Lichenoporidae sp.,1.0
+Low,L4,number of individuals,Mesochra lilljeborgii,0.0
+Low,L4,number of individuals,Metis ignea,3.0
+Low,L4,number of individuals,Molgula sp.,3.0
+Low,L4,number of individuals,Nematoda spp.,0.0
+Low,L4,number of individuals,Nereis sp.,0.0
+Low,L4,number of individuals,Nototropis swammerdamei,0.0
+Low,L4,number of individuals,Phoxichilidium femoratum,1.0
+Low,L4,number of individuals,Protula tubularia,0.0
+Low,L4,number of individuals,Spirobranchus lamarcki,49.0
+Low,L4,number of individuals,Spirorbinae sp.,0.0
+Low,L4,number of individuals,Tergipedidae sp.,0.0
+Low,L4,number of individuals,Tisbe furcata,0.0
+Low,L4,number of individuals,Tubularia indivisa,0.0
+Low,L4,number of individuals,Unciola crenatipalma,2.0
+Low,L5,% cover,Algae,5.0
+Low,L5,% cover,Botrylloides leachii,0.25
+Low,L5,% cover,Botryllus schlosseri,0.0
+Low,L5,% cover,Conopeum reticulum,0.0
+Low,L5,% cover,Conopeum seurati,0.0
+Low,L5,% cover,Cryptosula pallasiana,0.0
+Low,L5,% cover,Electra sp.,7.5
+Low,L5,% cover,Patinella verrucaria,0.0
+Low,L5,% cover,Plumularia setacea,10.0
+Low,L5,% cover,Schizomavella sp.,1.0
+Low,L5,number of individuals,Amphibalanus improvisus,0.0
+Low,L5,number of individuals,Amphilochidae sp.,0.0
+Low,L5,number of individuals,Ancula gibbosa,0.0
+Low,L5,number of individuals,Anomia ephippium,0.0
+Low,L5,number of individuals,Aora gracilis,0.0
+Low,L5,number of individuals,Ascidiella scabra,0.0
+Low,L5,number of individuals,Asellopsis hispida,0.0
+Low,L5,number of individuals,Balanus balanus,0.0
+Low,L5,number of individuals,Botrylloides violaceus,0.0
+Low,L5,number of individuals,Carcinus maenas,0.0
+Low,L5,number of individuals,Circeis sp.,0.0
+Low,L5,number of individuals,Corophium sp.,1.0
+Low,L5,number of individuals,Cyclopoida sp.,0.0
+Low,L5,number of individuals,Diarthrodes nobilis,0.0
+Low,L5,number of individuals,Didemnidae spp.,0.0
+Low,L5,number of individuals,Diosaccus tenuicornis,0.0
+Low,L5,number of individuals,Doridicola agilis,0.0
+Low,L5,number of individuals,Ectopleura larynx,0.0
+Low,L5,number of individuals,Entoprocta,1.0
+Low,L5,number of individuals,Kirchenpaueria pinnata,125.0
+Low,L5,number of individuals,Laophonte setosa,17.0
+Low,L5,number of individuals,Leptocythere pellucida,2.0
+Low,L5,number of individuals,Lichenoporidae sp.,0.0
+Low,L5,number of individuals,Mesochra lilljeborgii,0.0
+Low,L5,number of individuals,Metis ignea,11.0
+Low,L5,number of individuals,Molgula sp.,3.0
+Low,L5,number of individuals,Nematoda spp.,0.0
+Low,L5,number of individuals,Nereis sp.,0.0
+Low,L5,number of individuals,Nototropis swammerdamei,0.0
+Low,L5,number of individuals,Phoxichilidium femoratum,0.0
+Low,L5,number of individuals,Protula tubularia,0.0
+Low,L5,number of individuals,Spirobranchus lamarcki,25.0
+Low,L5,number of individuals,Spirorbinae sp.,3.0
+Low,L5,number of individuals,Tergipedidae sp.,0.0
+Low,L5,number of individuals,Tisbe furcata,0.0
+Low,L5,number of individuals,Tubularia indivisa,0.0
+Low,L5,number of individuals,Unciola crenatipalma,0.0
+Low,L6,% cover,Algae,0.0
+Low,L6,% cover,Botrylloides leachii,0.0
+Low,L6,% cover,Botryllus schlosseri,0.0
+Low,L6,% cover,Conopeum reticulum,0.0
+Low,L6,% cover,Conopeum seurati,0.0
+Low,L6,% cover,Cryptosula pallasiana,0.0
+Low,L6,% cover,Electra sp.,3.5
+Low,L6,% cover,Patinella verrucaria,1.5
+Low,L6,% cover,Plumularia setacea,7.5
+Low,L6,% cover,Schizomavella sp.,0.0
+Low,L6,number of individuals,Amphibalanus improvisus,0.0
+Low,L6,number of individuals,Amphilochidae sp.,0.0
+Low,L6,number of individuals,Ancula gibbosa,0.0
+Low,L6,number of individuals,Anomia ephippium,1.0
+Low,L6,number of individuals,Aora gracilis,0.0
+Low,L6,number of individuals,Ascidiella scabra,0.0
+Low,L6,number of individuals,Asellopsis hispida,0.0
+Low,L6,number of individuals,Balanus balanus,7.0
+Low,L6,number of individuals,Botrylloides violaceus,0.0
+Low,L6,number of individuals,Carcinus maenas,0.0
+Low,L6,number of individuals,Circeis sp.,0.0
+Low,L6,number of individuals,Corophium sp.,0.0
+Low,L6,number of individuals,Cyclopoida sp.,0.0
+Low,L6,number of individuals,Diarthrodes nobilis,0.0
+Low,L6,number of individuals,Didemnidae spp.,0.0
+Low,L6,number of individuals,Diosaccus tenuicornis,0.0
+Low,L6,number of individuals,Doridicola agilis,0.0
+Low,L6,number of individuals,Ectopleura larynx,4.0
+Low,L6,number of individuals,Entoprocta,0.0
+Low,L6,number of individuals,Kirchenpaueria pinnata,63.0
+Low,L6,number of individuals,Laophonte setosa,13.0
+Low,L6,number of individuals,Leptocythere pellucida,1.0
+Low,L6,number of individuals,Lichenoporidae sp.,0.0
+Low,L6,number of individuals,Mesochra lilljeborgii,0.0
+Low,L6,number of individuals,Metis ignea,4.0
+Low,L6,number of individuals,Molgula sp.,8.0
+Low,L6,number of individuals,Nematoda spp.,0.0
+Low,L6,number of individuals,Nereis sp.,0.0
+Low,L6,number of individuals,Nototropis swammerdamei,0.0
+Low,L6,number of individuals,Phoxichilidium femoratum,0.0
+Low,L6,number of individuals,Protula tubularia,0.0
+Low,L6,number of individuals,Spirobranchus lamarcki,41.0
+Low,L6,number of individuals,Spirorbinae sp.,0.0
+Low,L6,number of individuals,Tergipedidae sp.,0.0
+Low,L6,number of individuals,Tisbe furcata,0.0
+Low,L6,number of individuals,Tubularia indivisa,0.0
+Low,L6,number of individuals,Unciola crenatipalma,0.0

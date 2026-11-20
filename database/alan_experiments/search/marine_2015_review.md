@@ -17,3 +17,8 @@ The [Bolton2017 primary paper](https://doi.org/10.1016/j.scitotenv.2016.10.037),
 ## Access record
 
 Requests retrieved the full PMC HTML (140,225 bytes) via the `?pdf=1` URL, despite a browser challenge at the bare URL. Local cache: `../gbif_annual/alan_experiment_sources/marine2015/article.html` and `article.txt`. EuropePMC XML timed out. Supplement endpoint: `https://pmc.ncbi.nlm.nih.gov/articles/instance/4424621/bin/rsbl20150080supp3.csv`; its 200 response was HTML (1,817 bytes), not data. Do not treat HTTP success as successful CSV retrieval.
+
+
+## Subsequent recovery
+
+BioStudies accession S-EPMC4424621 supplied all three original supplements, with file sizes matching its metadata. The earlier PMC HTML response remains an access history, not the current data availability. See [board-level extraction](../marine_sources/README.md): all47 taxa and94 contrasts retained;35 finite lnRR contrasts; exposure-timing hold remains.

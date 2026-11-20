@@ -1,0 +1,27 @@
+{
+  "raw_rows": 1692,
+  "boards": 18,
+  "boards_per_arm": 6,
+  "panels_per_board": 2,
+  "measured_taxa": 47,
+  "cover_taxa": 10,
+  "count_taxa": 37,
+  "all_contrasts": 94,
+  "finite_lnRR": 35,
+  "status_counts": {
+    "zero_arm_mean_no_lnRR": 59,
+    "finite_descriptive_exposure_hold": 35
+  },
+  "difference_contrasts": 94,
+  "zero_variance_difference": 11,
+  "covariance_rank": 15,
+  "catalogue_added": 0,
+  "cautions": [
+    "All taxa retained; no significance or occurrence threshold used.",
+    "All boards retained, including author-discussed outlier.",
+    "No fabricated panel IDs; two panel measurements aggregate within each board.",
+    "Methods dawn-on dusk-off wording conflicts with nocturnal description.",
+    "Cover and numerical counts are separate scales; no global pooled effect.",
+    "Zero treatment or control means are not replaced with pseudocounts."
+  ]
+}
