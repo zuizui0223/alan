@@ -1,0 +1,4 @@
+record_id,doi,primary_status,decision,review_date,review_file
+MED:34230463,10.1038/s41467-021-24394-0,methods_results_read,separate_visual_model,2026-11-21,pollination_expansion_methods_review.md
+AGR:IND44607229,10.1016/j.biocon.2011.06.004,methods_results_read,separate_spectrum_only,2026-11-21,pollination_expansion_methods_review.md
+MED:42976709,10.1016/j.ecoenv.2026.121011,publisher403_methods_unread,hold_setting_and_independent_units,2026-11-21,pollination_expansion_methods_review.md

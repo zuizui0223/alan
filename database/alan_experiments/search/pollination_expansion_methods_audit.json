@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-21",
+  "sources": [
+    {
+      "doi": "10.1038/s41467-021-24394-0",
+      "cached_file": "briolat2021/primary.xml",
+      "sha256": "5a0c394c8d7e2193c7cfe9aeedc9df0d1f43fd449d82b69d866133a0ed3c223e",
+      "size_bytes": 95684
+    },
+    {
+      "doi": "10.1016/j.biocon.2011.06.004",
+      "cached_file": "vLangevelde2011/primary.pdf",
+      "sha256": "818f6b47d3cb28ac2dfb6c930d37c3d5d0f97ccc383548c1410d919c8f99fea6",
+      "size_bytes": 324137
+    }
+  ],
+  "effects_added": 0,
+  "third_report": "10.1016/j.ecoenv.2026.121011 publisher403 methods_unread"
+}

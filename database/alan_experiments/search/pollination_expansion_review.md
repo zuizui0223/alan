@@ -25,3 +25,7 @@ The24 consist of one already primary-read outdoor reproductive experiment (Wilso
 Three duplicate candidates are retained separately in `pollination_expansion_duplicate_candidates.csv`: the AGR/MED streetlight pollen-transport report, AGR/MED moth-pollination review, and honeybee sleep preprint/final report. No family counts were collapsed based only on this preliminary match. The existing51-record search also retains previous links for other preprint/final versions.
 
 Next primary-method priorities are MED42976709 (bumblebee physiology/survival setting), MED34230463 (visual modelling versus measured population responses), and AGR44607229 (spectral attraction study; dark control unclear). Observational Ceiba reproduction and hawkmoth pollen-transfer records remain separate from experimental effect pooling. Search additions are tracked as a supplementary stream; original521-record counts and final PRISMA remain unfixed.
+
+## Primary-method follow-up, 2026-11-21
+
+Two of the three method priorities are now read: Briolat2021 is a visual-mechanism model and vanLangevelde2011 is a six-spectrum capture experiment without a dark comparator. Both remain separate from the ecological light/dark effect pool. Shi2026 methods remain unread after publisher403. See [source-level review](pollination_expansion_methods_review.md) and `pollination_expansion_fulltext_followup.csv`; historical abstract screening is not overwritten.
