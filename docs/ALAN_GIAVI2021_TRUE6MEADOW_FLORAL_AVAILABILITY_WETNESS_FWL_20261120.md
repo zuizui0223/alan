@@ -23,7 +23,7 @@ The original authors had already controlled flower abundance in their insect-gro
 
 ### Source-verified main descriptive results
 
-[CI #44668882270 SUCCESS, all synthetic and provenance checks](https://github.com/zuizui0223/alan/actions/runs/44668882270). [Verbatim full aggregate source output](../results/all_species_forest/biotic_interactions/giavi2021_original6meadow_flower_FWL_wetness_20261120.json).
+[CI #44669315284 SUCCESS (final source and whole-plant leave-one-out)](https://github.com/zuizui0223/alan/actions/runs/44669315284). [Verbatim full aggregate source output](../results/all_species_forest/biotic_interactions/giavi2021_original6meadow_flower_FWL_wetness_20261120.json).
 
 | Original separate trait | PLANTATT F | Döring F |
 |---|---:|---:|
@@ -54,6 +54,17 @@ With only same-meadow source sites that have both wet and drier plants (two phys
 - Döring: 6 plants / 22 rows, visit β_F −0.098 before, +0.169 after floral adjustment; flower β_F −0.479; two-site flip adjusted visits p=1.
 
 Thus the descriptive association may be driven by **flower resource availability** or correlated site/plant composition; the design cannot distinguish those paths from a treatment-induced change in flower production/phenology. In the true matched source, the main flower-abundance correlation is not immune to cross-site confounding or different phenological survey coverage.
+
+### 最終感度分析：元の植物1種を丸ごと除く
+
+[真正原本からの最終source CI #44669315284（成功）](https://github.com/zuizui0223/alan/actions/runs/44669315284) では、植物種ごとにすべての調査日・草地記録を除去してから係数を再推定した。花量差への湿潤性の負方向はどの植物を除いても維持される。
+
+| 元形質 | 全植物の花量差 β_F | 1植物種除外後の β_F 範囲 | 除外した種の数 |
+|---|---:|---:|---:|
+| PLANTATT F | −0.769 | **−0.933〜−0.641** | 7 |
+| Döring F | −0.646 | **−0.847〜−0.506** | 8 |
+
+したがって花量との対応が**単独の1植物種のみ**で生じたとは考えにくい。ただし共通支持のある湿潤種は元々2種・真の湿乾共観測は2草地なので、「全湿潤植物に普遍的な効果」とは認めない。一方、**花量を調整した後の訪花数 β_F は、1種を除くと正負が入れ替わる**（PLANTATT −0.165〜+0.612、Döring −0.097〜+0.139）。この不安定性こそ、訪花者固有の湿潤性感受性をResultsで主張しない理由である。
 
 ## How to place it in manuscript
 
