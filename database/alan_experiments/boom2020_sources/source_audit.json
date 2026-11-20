@@ -1,0 +1,12 @@
+{
+  "doi": "10.1038/s41598-020-75471-1",
+  "pmcid": "PMC7591485",
+  "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7591485/fullTextXML",
+  "xml_sha256": "182dafe1e99fef5453ecf0d1d1401361fe949fd8d8617ae040588fd19795154f",
+  "rows": 16,
+  "meta_effects_added": 0,
+  "independent_units": "4sites x4randomized treatment transects",
+  "programme": "Light on Nature; cross-report/site overlap unresolved",
+  "variance_hold": "Within-site light-dark covariance absent; do not use organ counts as independent n",
+  "reproductive_output": "Product of three proportions and average ovule count, not observed seeds per flower"
+}

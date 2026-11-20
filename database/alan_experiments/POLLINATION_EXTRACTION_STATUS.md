@@ -10,8 +10,9 @@ The screening sheet previously retained stale pre-extraction eligibility labels 
 | Macgregor2019 |0|0|Reported positive full-night effect on seed-setting success; numeric model coefficient/SE unavailable|
 | Lu2026 JPE |0|0|Abstract-level reproductive findings; full Methods/variance not verified|
 | Giavi2020 |0|7|Three field outcomes; dependent rebasings; reproductive denominator and meadow/sector random-effect definitions unresolved|
+| Boom2020 |0|0|16 reported arm summaries; fruit set, seed infestation, conditional seed set and estimated output; site covariance missing|
 
-These six listed reports are neither independent programmes nor an exhaustive final selection. Four plus seven raw rows agree with the current catalogue. Knop's two and Giavi2020's seven reported model coefficients are separate from it and are not nine independent reproductive effects. Shared endpoints, controls, sites and report overlap remain explicitly relevant. Giavi2020 was already read in screening batch1 but omitted from this narrower extraction inventory; its addition does not increase the primary-review count. See [coefficient extraction and denominator audit](giavi2020_sources/README.md).
+These seven listed reports are neither independent programmes nor an exhaustive final selection. Four plus seven raw rows agree with the current catalogue. Knop's two and Giavi2020's seven reported model coefficients are separate from it and are not nine independent reproductive effects. Shared endpoints, controls, sites and report overlap remain explicitly relevant. Giavi2020 was already read in screening batch1 but omitted from this narrower extraction inventory; its addition does not increase the primary-review count. See [coefficient extraction and denominator audit](giavi2020_sources/README.md).
 
 ## Comparability
 
@@ -30,3 +31,5 @@ Current boundary: no new pooled pollination estimate, no inferred zero effects f
 ## Additional repository check
 
 Newcastle's public Figshare record34371465 (repository DOI10.25405/ncl.34371465.v1) yielded one16-page PDF, file69959493, downloaded successfully. It is the main article, not AppendixS1 or raw data; the last page points to external supporting information. Its bytes differ from the previously cached PDF, so it is not labelled an identical file. The publisher's identified `ecs22550-sup-0001-AppendixS1.pdf` link still returned403. Exact source, hash and size are in [the acquisition audit](macgregor_sources/newcastle_source_audit.json). This closes the new repository route as a source of numeric coefficients; it does not complete extraction or add a study/effect. Lu JPE's publisher page also returned403 on recheck. No access-restricted source was replaced with a numerical value inferred from its abstract.
+
+Boom2020 was recovered by supplementary literature searching outside the indexed search set. It adds one primary-read report, not a new pooled effect or independent Light on Nature programme. See [source extraction](boom2020_sources/README.md).

@@ -1,0 +1,17 @@
+treatment,endpoint,mean,SE,reported_organ_count,site_blocks,source_location,status
+Dark,flower_fruit_set,0.73,0.071,689,4,Table1,paired_covariance_and_SE_aggregation_hold
+Dark,fruit_infestation,0.28,0.06,497,4,Table1,paired_covariance_and_SE_aggregation_hold
+Dark,fertilized_ovules_uninfested_fruit,0.56,0.024,28348,4,Table1,paired_covariance_and_SE_aggregation_hold
+Dark,estimated_seeds_per_flower,117.0,40.0,,4,Table1,paired_covariance_and_SE_aggregation_hold
+White,flower_fruit_set,0.78,0.024,680,4,Table1,paired_covariance_and_SE_aggregation_hold
+White,fruit_infestation,0.44,0.073,518,4,Table1,paired_covariance_and_SE_aggregation_hold
+White,fertilized_ovules_uninfested_fruit,0.49,0.027,23822,4,Table1,paired_covariance_and_SE_aggregation_hold
+White,estimated_seeds_per_flower,86.0,28.0,,4,Table1,paired_covariance_and_SE_aggregation_hold
+Green,flower_fruit_set,0.75,0.054,596,4,Table1,paired_covariance_and_SE_aggregation_hold
+Green,fruit_infestation,0.53,0.079,429,4,Table1,paired_covariance_and_SE_aggregation_hold
+Green,fertilized_ovules_uninfested_fruit,0.43,0.026,29127,4,Table1,paired_covariance_and_SE_aggregation_hold
+Green,estimated_seeds_per_flower,61.0,20.0,,4,Table1,paired_covariance_and_SE_aggregation_hold
+Red,flower_fruit_set,0.71,0.064,663,4,Table1,paired_covariance_and_SE_aggregation_hold
+Red,fruit_infestation,0.33,0.043,514,4,Table1,paired_covariance_and_SE_aggregation_hold
+Red,fertilized_ovules_uninfested_fruit,0.47,0.025,27650,4,Table1,paired_covariance_and_SE_aggregation_hold
+Red,estimated_seeds_per_flower,90.0,28.0,,4,Table1,paired_covariance_and_SE_aggregation_hold
