@@ -1,6 +1,6 @@
 {
   "schema": "alan_Giavi2021_original6meadow_flower_FWL_source_verified_compact_20261120_v1",
-  "verified_CI_url": "https://github.com/zuizui0223/alan/actions/runs/44668882270",
+  "verified_CI_url": "https://github.com/zuizui0223/alan/actions/runs/44669315284",
   "original_Giavi_Zenodo_RData_MD5": "f60b21d82c163cbb53520fda0bc61985",
   "original_Kew_BIFloraExplorer_Git_blob_SHA1": "e6a1da929af81f370d2a1b79177b489e3e573a06",
   "source_total_original_visitation_rows": 1884,
@@ -34,6 +34,16 @@
                 "observed_beta": -0.6459040480760607,
                 "true_original_meadows": 6,
                 "two_sided_abs_extreme_fraction": 0.25
+              },
+              "leave_one_original_plant_out_F_flower": {
+                "Angelica_sylvestris": -0.6816434818930834,
+                "Cirsium_oleraceum": -0.7665966939655967,
+                "Daucus_carota": -0.5060749538880482,
+                "Filipendula_ulmaria": -0.5854429994920916,
+                "Geranium_sylvaticum": -0.6871824200783143,
+                "Heracleum_sphondylium": -0.678994947419314,
+                "Lotus_corniculatus": -0.8474364854783449,
+                "Trifolium_pratense": -0.7319285972778433
               },
               "leave_one_true_meadow_out_F_flower": {
                 "1": -0.8016929642798452,
@@ -130,6 +140,16 @@
                 "source_matched_plant_pair_records": 77,
                 "source_true_site_pairs": 6,
                 "unique_source_species": 8
+              },
+              "leave_one_original_plant_out_adjusted_F_visits": {
+                "Angelica_sylvestris": -0.08794672115222019,
+                "Cirsium_oleraceum": 0.08331409340509591,
+                "Daucus_carota": -0.019673434522449358,
+                "Filipendula_ulmaria": -0.014191813151887618,
+                "Geranium_sylvaticum": -0.03817863362866477,
+                "Heracleum_sphondylium": -0.09680246184875246,
+                "Lotus_corniculatus": -0.04638163420918507,
+                "Trifolium_pratense": 0.13893259340648587
               },
               "leave_true_meadow_out_F_betas": {
                 "1": 0.005207707288901308,
@@ -491,6 +511,15 @@
                 "true_original_meadows": 6,
                 "two_sided_abs_extreme_fraction": 0.03125
               },
+              "leave_one_original_plant_out_F_flower": {
+                "Angelica_sylvestris": -0.8230445053239936,
+                "Daucus_carota": -0.6853216207788129,
+                "Filipendula_ulmaria": -0.6412830128300884,
+                "Geranium_sylvaticum": -0.7580291055763437,
+                "Heracleum_sphondylium": -0.9325309963811307,
+                "Lotus_corniculatus": -0.6534068223657207,
+                "Trifolium_pratense": -0.7068398159099077
+              },
               "leave_one_true_meadow_out_F_flower": {
                 "1": -1.316974429330182,
                 "2": -0.690360281410801,
@@ -586,6 +615,15 @@
                 "source_matched_plant_pair_records": 53,
                 "source_true_site_pairs": 6,
                 "unique_source_species": 7
+              },
+              "leave_one_original_plant_out_adjusted_F_visits": {
+                "Angelica_sylvestris": 0.05401776060479174,
+                "Daucus_carota": -0.054453109850636935,
+                "Filipendula_ulmaria": 0.3049970390310087,
+                "Geranium_sylvaticum": 0.09641191865219922,
+                "Heracleum_sphondylium": -0.16495251721539606,
+                "Lotus_corniculatus": 0.6122337193884997,
+                "Trifolium_pratense": 0.3589224671351082
               },
               "leave_true_meadow_out_F_betas": {
                 "1": 0.23985358186200856,
@@ -928,6 +966,19 @@
         "source_wet_species_gt7": 2,
         "status": "SOURCE_WET_DRY_COMMON_SUPPORT_STOP"
       }
+    }
+  },
+  "source_leave_entire_plant_out_flower_F_negative_for_both_indicators": true,
+  "LOO_plant_flower_F_ranges": {
+    "F_Doring": {
+      "min": -0.8474364854783449,
+      "max": -0.5060749538880482,
+      "species_removed": 8
+    },
+    "F_PLANTATT": {
+      "min": -0.9325309963811307,
+      "max": -0.6412830128300884,
+      "species_removed": 7
     }
   }
 }
