@@ -1,9 +1,0 @@
-response,unit,arm,mean,se,source_doi,source_location,status
-male_flash_patterns,patterns_per_minute,dark,0.64,0.14,10.21203/rs.3.rs-1171399/v1,Results_pages6_7,reported_only_independent_variance_unresolved
-male_flash_patterns,patterns_per_minute,blue,0.12,0.03,10.21203/rs.3.rs-1171399/v1,Results_pages6_7,reported_only_independent_variance_unresolved
-male_flash_patterns,patterns_per_minute,amber,0.03,0.01,10.21203/rs.3.rs-1171399/v1,Results_pages6_7,reported_only_independent_variance_unresolved
-male_flash_patterns,patterns_per_minute,red,0.17,0.04,10.21203/rs.3.rs-1171399/v1,Results_pages6_7,reported_only_independent_variance_unresolved
-flying_insect_capture,individuals_per_cm2_per_trial_day,dark,0.05,0.02,10.21203/rs.3.rs-1171399/v1,Results_pages6_7,reported_only_independent_variance_unresolved
-flying_insect_capture,individuals_per_cm2_per_trial_day,blue,0.45,0.09,10.21203/rs.3.rs-1171399/v1,Results_pages6_7,reported_only_independent_variance_unresolved
-flying_insect_capture,individuals_per_cm2_per_trial_day,amber,0.46,0.1,10.21203/rs.3.rs-1171399/v1,Results_pages6_7,reported_only_independent_variance_unresolved
-flying_insect_capture,individuals_per_cm2_per_trial_day,red,0.19,0.04,10.21203/rs.3.rs-1171399/v1,Results_pages6_7,reported_only_independent_variance_unresolved

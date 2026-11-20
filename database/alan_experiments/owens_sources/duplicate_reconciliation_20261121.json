@@ -1,0 +1,11 @@
+{
+  "canonical_folder": "owens_sources",
+  "alias_folder": "owens_spectrum2022_sources",
+  "matched_reported_rows": 8,
+  "matched_supplement_files": 2,
+  "additional_studies": 0,
+  "additional_effects": 0,
+  "canonical_csv_sha256": "e3f065372d73c4d24446e9cbf6376617f1c248fd66f89c7d5a3e69dd6b91d29c",
+  "duplicate_csv_sha256": "a9c6df040748ec55e33c825e1bc8cf8a8c6eca3f9bd9195a46e291c5198c4138",
+  "note": "Repeated retrieval/extraction, not new evidence; no catalogue or pooled-study count was inflated. Raw copies remain in external cache; tracked duplicate removed after exact numeric and supplement-hash matching."
+}
