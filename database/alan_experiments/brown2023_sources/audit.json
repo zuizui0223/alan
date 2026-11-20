@@ -1,0 +1,12 @@
+{
+  "doi": "10.1016/j.isci.2023.106203",
+  "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9982679/fullTextXML",
+  "sha256": "f7ed71e328a1cabf31d184970dc46c81f1819ca6449b5c89996021cfdac668b1",
+  "arm_rows": 36,
+  "unresolved_checks": 7,
+  "eligible_meta_effects_added": 0,
+  "independent_unit": "station; repeated dates not independent",
+  "comparison_scope": "Table1 includes concurrent dark; Tables3and4 lit stations across periods only",
+  "SE_aggregation": "not established as station-mean SE",
+  "raw_data": "author_request_only_not_obtained"
+}

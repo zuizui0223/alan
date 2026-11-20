@@ -1,0 +1,8 @@
+table,endpoint,comparison,arithmetic_value,reported_value,source_cell,status
+tbl3,Detritivore,During-Post,0.1,0.06,0.06 (−0.10 | 0.23),clarify_model_adjustment_or_source_discrepancy_do_not_correct
+tbl3,Detritivore,Pre-Post,0.1,0.06,0.06 (−0.10 | 0.23),clarify_model_adjustment_or_source_discrepancy_do_not_correct
+tbl3,Herbivore,During-Post,-1.2,-0.82,−0.82 (−1.57 | −0.07) ∗,clarify_model_adjustment_or_source_discrepancy_do_not_correct
+tbl4,Formicidae,During-Post,6.36,6.63,6.63 (5.61 | 7.11) ∗,clarify_model_adjustment_or_source_discrepancy_do_not_correct
+tbl3,sum_of_listed_groups,During,18.669999999999998,18.92,Table1 all-arthropod mean,clarify_common_denominator_or_source_discrepancy_do_not_correct
+tbl4,sum_of_listed_groups,During,25.4,18.92,Table1 all-arthropod mean,clarify_common_denominator_or_source_discrepancy_do_not_correct
+tbl3,sum_of_listed_groups,Post,7.81,8.06,Table1 all-arthropod mean,clarify_common_denominator_or_source_discrepancy_do_not_correct
