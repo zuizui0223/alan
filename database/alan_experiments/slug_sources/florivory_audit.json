@@ -1,0 +1,11 @@
+{
+  "input_sha256": "00c0ca24a1d8267452d3c64f4362998904e79d3867f660d0f05994810f19e708",
+  "endpoint": "mean damage over observed flowers, including undamaged flowers",
+  "rows": 2,
+  "independent_programmes": 1,
+  "source_holds_preserved": true,
+  "missing_flowers": "not imputed as undamaged",
+  "dependence": "One shared site pair across species at different dates; no zero cross-species covariance assumed",
+  "scope": "retained sampled flowers; not whole-plant loss, attack rate, pollination or seed production",
+  "meta_effects_added": 0
+}

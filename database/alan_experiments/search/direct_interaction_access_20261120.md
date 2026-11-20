@@ -19,3 +19,7 @@ Next use an accessible primary manuscript/raw-data deposit; determine parasitoid
 ## Database consequence
 
 Both reports remain pending primary review. No adoption/exclusion decision, effect catalogue row or study count increment is justified by this access audit. Main wet-affinity result and three exploratory meta-analyses are unchanged.
+
+## Follow-up retrieval on 2026-11-20
+
+Exact-title, author and institutional searches for Sanders2022 did not recover a primary manuscript or raw dataset. DataCite exact-phrase lookup returned unrelated records only; the Exeter discovery endpoint returned HTTP202 with an empty body, and SSRN4003271 was inaccessible through the web tool. These are retrieval outcomes, not evidence that raw data do not exist. The report remains pending; no effect size or experiment-independence claim was added.
