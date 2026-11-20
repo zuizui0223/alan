@@ -1,0 +1,15 @@
+{
+  "spider_csv_rows": 60,
+  "pan_trap_csv_rows": 20,
+  "individual_body_mass_csv_rows": 60,
+  "independent_original_mesocosms": 20,
+  "lit_mesocosms": 10,
+  "control_mesocosms": 10,
+  "raw_pan_invertebrate_total": 1992,
+  "published_article_total_stated_1990": 1990,
+  "raw_sum_differs_from_published_by": 2,
+  "spider_repeated_observed_count_total": 645,
+  "spider_body_mass_has_no_mesocosm_ID_so_not_analysed_as_independent_unit": true,
+  "mesocosms_with_two_aquatic_taxon_families_exceed_source_aquatic_total": 1,
+  "family_mismatch_count_is_retained_not_repaired": true
+}

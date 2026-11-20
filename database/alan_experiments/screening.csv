@@ -1,0 +1,8 @@
+study_id,doi,programme_id,setting,status,reason
+Parkinson2020,10.1371/journal.pone.0240138,Parkinson2016,outdoor_mesocosm,pilot_extracted,20 mesocosms; four primary outcomes; no plant reproduction
+Manfrin2017,10.3389/fenvs.2017.00061,Westhavelland,outdoor_nonreplicated_BACI,design_specific_pending,one lit and one dark reach; not trap-level independent replication
+Manfrin2025,10.1007/s00027-025-01161-7,Westhavelland,outdoor_nonreplicated,raw_data_not_acquired,same facility; repeated dates not independent light sites
+Giavi2021,10.1038/s41467-021-22011-8,KnopGiavi_overlap_unresolved,outdoor_paired,raw_extraction_pending,six pairs; wetness classification unresolved
+Knop2017,10.1038/nature23288,KnopGiavi_overlap_unresolved,outdoor,full_design_crosswalk_pending,related primary paper; not counted independent of Giavi yet
+Bennie2017,10.1111/1365-2664.12927,Lizard_grassland,outdoor,raw_extraction_pending,poorly drained gley soil; four light arms share dark control
+Bucher2023,10.1098/rstb.2022.0358,iDiv_Ecotron,indoor_community,separate_setting_not_primary,12 chambers; middle doses single chamber; not dry outdoor comparator

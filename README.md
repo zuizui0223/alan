@@ -142,3 +142,7 @@ After joining geographically overlapping source sites *without double counting*,
 湿潤な両群について植物の34項目と地点環境の12項目を比較し、別地域での候補種の識別も検証した。[撹乱・遷移・塩分・繁殖・開花期を含む要因探索](results/all_species_forest/wet_drivers/README.md)
 
 淡水湿地と地図で判別できる範囲で、年ごとの水面変化・植生・夜間光と、両群の同じ地点での記録率を照合した。[冠水・水面後退、草刈り後の植生回復と比較可能な地点数](results/all_species_forest/wet_annual/README.md)
+
+### 自前の照明実験DB（2026-11-20、予備抽出）
+
+湿潤種の偏りから導いた機構候補を独立実験で検証するための[プロトコル・データ・現在地](database/alan_experiments/README.md)。原著6報＋関連1報の予備確認、著者原データ1実験の4主要・2補足endpoint、依存性を保持した共分散を保存。系統的検索と湿潤性メタ回帰は未完了。既存メタ解析の抽出値は転用しない。

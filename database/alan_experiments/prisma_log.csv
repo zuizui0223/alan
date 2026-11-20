@@ -1,0 +1,4 @@
+search_id,date,database,query,status,hits,note
+pilot_existing_registry,2026-11-20,alan source registry at 3f53bb6,All 16 endpoint rows reviewed,targeted_pilot_not_systematic,16,16 rows are not 16 papers or independent studies; no deduplicated PRISMA total
+wos_planned,,Web of Science Core Collection,,not_executed,,Requires actual export and exact database-specific query; do not report zero
+scopus_planned,,Scopus,,not_executed,,Requires actual export and exact database-specific query; do not report zero

@@ -1,0 +1,2 @@
+experiment_id,study_id,programme_id,site_id,habitat,setting,independent_unit,n_lit,n_dark,latitude,longitude,coordinate_source,coordinate_uncertainty_m,baseline_light,water_distance,climate,notes
+Parkinson2016_lake,Parkinson2020,Parkinson2016,HavenHillLake,freshwater_littoral,outdoor_mesocosm,mesocosm,10,10,42.645922222222225,-83.55374444444445,primary Methods Study site; lake coordinate not individual plot,,,,,Satellite moderators not extracted; fish factorial labels unresolved; non-ALAN includes skyglow
