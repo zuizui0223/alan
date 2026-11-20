@@ -1,0 +1,122 @@
+{
+  "article_doi": "10.1093/aob/mcaf258",
+  "machine_readable_candidate_files": 0,
+  "official_source_download_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13095882/supplementaryFiles",
+  "original_supplement_identifier": "mcaf258_supplementary_data.zip",
+  "original_zip_CRC_checked": true,
+  "paper_meta_effect_not_an_ALAN_wet_species_moderator": true,
+  "plant_moisture_by_ALAN_moderator_fitted": false,
+  "plant_moisture_by_herbivore_moderator_fitted": false,
+  "resolved_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13095882/supplementaryFiles",
+  "schema": "alan_herbivory_pollinator_171_original_source_gate_20261120_v1",
+  "source_has_ALAN_manipulation": false,
+  "source_members": [
+    {
+      "bytes": 236055,
+      "crc32": "c9487c1b",
+      "extension": ".zip",
+      "name": "mcaf258_supplementary_data.zip",
+      "nested": [
+        {
+          "bytes": 250940,
+          "crc32": "22b09e38",
+          "extension": ".docx",
+          "layout": {
+            "images_or_drawings_are_not_effect_size_rows": true,
+            "paragraphs": 28,
+            "study_level_meta_raw_case_data_not_inferred_from_manuscript_text": true,
+            "tables": 0,
+            "tables_headers_preview": [],
+            "tables_row_counts": [],
+            "titles_data_references": [
+              "Appendix S1. Sensitivity and bias analysis",
+              "Figure S1. Sensitivity analysis in which each study was removed sequentially and the analysis rerun. Small dots with lines represent effect sizes and their 95% ",
+              "Figure S2. Sensitivity analysis in which one study case per study was randomly selected to perform the random-effects meta-analysis. This random sampling was re",
+              "Figure S3. Funnel plot illustrating the relationship between effect size and precision, with dot size proportional to the inverse of the standard error.",
+              "Figure S4. Cumulative mean effect size of herbivory on reproduction across years. The dashed vertical line indicates no effect of herbivory. Bars represent 95% "
+            ],
+            "type": "source_docx"
+          },
+          "name": "Appendix S1.docx",
+          "sha256": "f3fdb621edfb202fe1931bbdab10c80f084ab463822dd398cff1fd586e66e658",
+          "status": "ORIGINAL_WORD_SUPPLEMENT_STRUCTURE"
+        },
+        {
+          "bytes": 13254,
+          "crc32": "e2ea1d1b",
+          "extension": ".docx",
+          "layout": {
+            "images_or_drawings_are_not_effect_size_rows": true,
+            "paragraphs": 3,
+            "study_level_meta_raw_case_data_not_inferred_from_manuscript_text": true,
+            "tables": 1,
+            "tables_headers_preview": [
+              {
+                "first_row_cell_headings": [
+                  "Moderators",
+                  "QM",
+                  "p-value"
+                ],
+                "row_count": 8,
+                "second_row_cells": [
+                  "Measurement",
+                  "15.41",
+                  "<0.001"
+                ]
+              }
+            ],
+            "tables_row_counts": [
+              8
+            ],
+            "titles_data_references": [
+              "Table S1. Statistics (QM and p-value) for type of measurement (floral traits, pollinator attraction, and plant reproductive success), tissue damaged (roots, lea"
+            ],
+            "type": "source_docx"
+          },
+          "name": "Appendix S2.docx",
+          "sha256": "20be8df5f88ff9bab3cbe516f1bb271ba70cbab614bf28b5d33a3f84ce2d5ab4",
+          "status": "ORIGINAL_WORD_SUPPLEMENT_STRUCTURE"
+        }
+      ],
+      "status": "NESTED_ZIP_VERIFIED"
+    },
+    {
+      "bytes": 35343,
+      "crc32": "dc7f853c",
+      "extension": ".jpg",
+      "name": "mcaf258f1.jpg",
+      "status": "ORIGINAL_BINARY_DOCUMENT_NOT_A_CSV"
+    },
+    {
+      "bytes": 2673,
+      "crc32": "4e469f60",
+      "extension": ".gif",
+      "name": "mcaf258f2.gif",
+      "status": "ORIGINAL_BINARY_DOCUMENT_NOT_A_CSV"
+    },
+    {
+      "bytes": 48694,
+      "crc32": "2dadbb3d",
+      "extension": ".jpg",
+      "name": "mcaf258f2.jpg",
+      "status": "ORIGINAL_BINARY_DOCUMENT_NOT_A_CSV"
+    },
+    {
+      "bytes": 2132,
+      "crc32": "a379a477",
+      "extension": ".gif",
+      "name": "mcaf258f1.gif",
+      "status": "ORIGINAL_BINARY_DOCUMENT_NOT_A_CSV"
+    }
+  ],
+  "source_original_raw_effect_cases_loaded": false,
+  "source_reported_aggregate_effect_cells": 1348,
+  "source_reported_original_studies": 171,
+  "source_urls_tried": [],
+  "status": "PUBLISHED_ARCHIVE_SOURCE_VERIFIED",
+  "zip_SHA256": "ac2747f207818b1db8e37b02e45bfe7f9b15fdc18bb6d47b349cd093fee4e086",
+  "zip_bytes": 308191,
+  "verified_original_source_CI": "https://github.com/zuizui0223/alan/actions/runs/44659515692",
+  "not_original_1348_effect_records": true,
+  "exact_study_level_new_meta_coefficient_estimated": false
+}
