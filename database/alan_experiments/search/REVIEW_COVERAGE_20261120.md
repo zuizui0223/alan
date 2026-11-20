@@ -1,4 +1,6 @@
-Current update: 150 retained reports reviewed,38 pending. Silva2017 primary Methods/Results and crab table extracted. Interval summaries retained outside pools until night/block dependence can be reconstructed; no predation-rate effect inferred.
+Current update: 150 retained reports reviewed,38 pending; ten outside-search reports. Farnworth2018 remains a full-text access hold. A related rodent report is a programme-overlap lead only; no review-count inflation or effects added.
+
+Previous update: 150 retained reports reviewed,38 pending. Silva2017 primary Methods/Results and crab table extracted. Interval summaries retained outside pools until night/block dependence can be reconstructed; no predation-rate effect inferred.
 
 Previous update: 149 retained reports reviewed,39 pending. Stone2009 primary Methods/Results reviewed; timing summary retained outside pools pending paired data. No predation effect inferred from acoustic passes.
 
