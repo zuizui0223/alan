@@ -1,0 +1,15 @@
+{
+  "query": "(TITLE_ABS:\"artificial light at night\" OR TITLE_ABS:\"light pollution\" OR TITLE_ABS:streetlight*) AND (TITLE_ABS:pollinat* OR TITLE_ABS:\"seed set\" OR TITLE_ABS:\"fruit set\" OR TITLE_ABS:\"fruit infestation\") AND FIRST_PDATE:[1900-01-01 TO 2026-11-20]",
+  "search_date": "2026-11-20",
+  "response_sha256": "634f13b7a2571921be1cabffc529698ea9c26250cbded26bdea0652f5a2038d3",
+  "hit_count": 51,
+  "returned_records": 51,
+  "identity_counts": {
+    "identity_review_needed": 24,
+    "original_record_id": 26,
+    "supplementary_registry_doi": 1
+  },
+  "final_screening": false,
+  "original_521_records_unchanged": true,
+  "note": "Exact IDs/DOIs only; unmatched records are not necessarily new papers or eligible experiments. Supplemental search removes experiment/manipulation term requirement."
+}
