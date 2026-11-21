@@ -1,0 +1,4 @@
+response,term,F_original,df1_original,df2_original,p_original,source_location,design,effect_size_status
+at_least_one_male_in_dummy_trap,presence of light,6.489,1,110,0.012,Table 2,field_six_shared_sites_repeated_nights,coefficient_and_covariance_unavailable
+at_least_one_male_in_dummy_trap,position,7.683,1,110,0.007,Table 2,field_six_shared_sites_repeated_nights,coefficient_and_covariance_unavailable
+at_least_one_male_in_dummy_trap,presence × position,5.767,1,110,0.018,Table 2,field_six_shared_sites_repeated_nights,coefficient_and_covariance_unavailable

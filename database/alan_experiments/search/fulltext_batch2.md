@@ -31,3 +31,6 @@ PMC5802884は拘束したAquatica fictaの短時間発光試験で、暗区が�
 ## 完了・未完了の区別
 
 16件・一意PMCID・指定列を検証済み。今回新たに効果量を計算した研究は0件。n欄は独立照明単位を優先し、共有サイトでは同じ6地点が両条件に現れるため独立群として足し合わせない。データ取得先を示しただけの記録を抽出済みデータとして統合しない。
+
+
+Follow-up 2026-11-21: [Elgert2020 field-test extraction](../elgert2020_sources/README.md) preserves three original model tests and separates the indoor glowing assay. The ordinary Dryad download returned 403; signed field contrasts/covariance remain unavailable. No newly read paper or pooled effect is added.

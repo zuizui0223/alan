@@ -1,0 +1,14 @@
+{
+  "article_doi": "10.1098/rspb.2020.0806",
+  "dataset_doi": "10.5061/dryad.2z34tmphw",
+  "source_sha256": "2740e717739695d21ac2215d339c714e18979f14eb342419371786e21678d6fd",
+  "reported_tests": 3,
+  "sites": 6,
+  "lit_trials": 38,
+  "control_trials": 19,
+  "dummies_per_trial": 2,
+  "raw_download_url": "https://datadryad.org/downloads/file_stream/356519",
+  "raw_download_status": 403,
+  "raw_data_acquired": false,
+  "new_meta_effects": 0
+}
