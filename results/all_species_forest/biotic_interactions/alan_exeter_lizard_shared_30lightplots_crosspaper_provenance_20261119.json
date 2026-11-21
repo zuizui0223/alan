@@ -1,0 +1,180 @@
+{
+  "schema": "alan_exeter_lizard_2012_shared_30_light_plot_programme_cross_trophic_20261119_v1",
+  "programme_id": "ExeterLizardLED30_2012_2015",
+  "evidence_type": "same physical randomized light installations across two different published outcome papers",
+  "site": {
+    "name": "Lizard National Nature Reserve, Cornwall UK",
+    "coordinates_published_by_Davies2017": {
+      "lat": 50.035159,
+      "long": -5.206489
+    },
+    "vegetation": "unfertilized semi-natural grassland, dominated by Agrostis tenuis, Anthoxanthum odoratum, Holcus lanatus",
+    "original_field_preexperiment_baseline_2011": true,
+    "physical_plot_area_m2": 16,
+    "original_independently_randomized_light_plots": 30,
+    "shared_field_years": [
+      2012,
+      2013,
+      2014
+    ]
+  },
+  "source_linkage_evidence": {
+    "physical_plot_dimensions_identical": true,
+    "coordinates_same_field_rounded_consistently": true,
+    "light_switch_on_April_2012_in_both": true,
+    "light_rig_height_m": 1,
+    "plot_replicates_per_light_arm": 6,
+    "lighting_arms_match_exact_physical_lux_and_color": true,
+    "source_published_plot_ID_codelist_crosspaper_verified": false,
+    "paper_publication_count": 2,
+    "independent_light_experiment_count": 1,
+    "source_pair_same_lamps_claim_supported_by_methods": true,
+    "original_exact_plot_ID_and_effect_covariance_not_yet_verified": true
+  },
+  "physical_treatment_arms": [
+    {
+      "canonical": "CONTROL",
+      "Bennie2018": "C",
+      "Davies2017": "unlit control",
+      "nominal_lux": 0,
+      "replicate_physical_plots": 6,
+      "night_schedule": "unlit dummy structure"
+    },
+    {
+      "canonical": "HIW",
+      "Bennie2018": "HIW",
+      "Davies2017": "HIW",
+      "measured_lux": 29.6,
+      "source_SE_lux": 1.2,
+      "replicate_physical_plots": 6,
+      "night_schedule": "dusk-to-dawn cool white"
+    },
+    {
+      "canonical": "LIW",
+      "Bennie2018": "LIW",
+      "Davies2017": "DW",
+      "measured_lux": 14.6,
+      "source_SE_lux": 0.3,
+      "replicate_physical_plots": 6,
+      "night_schedule": "dusk-to-dawn 50pct dimmed white"
+    },
+    {
+      "canonical": "LIWT",
+      "Bennie2018": "LIWT",
+      "Davies2017": "DWT",
+      "measured_lux": 14.4,
+      "source_SE_lux": 0.8,
+      "replicate_physical_plots": 6,
+      "night_schedule": "dusk-to-dawn white except midnight to 04:00 switched off"
+    },
+    {
+      "canonical": "AMB",
+      "Bennie2018": "AMB",
+      "Davies2017": "AMB",
+      "measured_lux": 18.2,
+      "source_SE_lux": 1.3,
+      "replicate_physical_plots": 6,
+      "night_schedule": "dusk-to-dawn 588nm peak amber"
+    }
+  ],
+  "publications": [
+    {
+      "doi": "10.1111/1365-2664.12927",
+      "title": "Artificial light at night alters grassland vegetation species composition and phenology",
+      "authors": "Bennie et al.",
+      "publication_year": 2018,
+      "original_years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "experiment_lit_years": [
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "baseline_years": [
+        2011
+      ],
+      "data_access_publication": "http://hdl.handle.net/10871/27138",
+      "original_access_expected": "Exeter Open Research archive",
+      "primary_open_fulltext": "https://besjournals.onlinelibrary.wiley.com/doi/10.1111/1365-2664.12927",
+      "trophic_stage": "vascular_plants_flowering_and_cover_biomass",
+      "measurements": [
+        "three_dominant_grass_species_mean_flowering_DOY",
+        "all_species_plant_cover",
+        "grass_species_biomass"
+      ],
+      "original_species_analyzed_flowering": [
+        "Agrostis tenuis",
+        "Anthoxanthum odoratum",
+        "Holcus lanatus"
+      ],
+      "sampling": "biweekly Apr-Sep; three grass flowering stage2 weighted mean Julian dates; cover one annual time point 2011–2015",
+      "published_positive_and_null_results": "Variable flowering date year × ALAN including 2013 A. tenuis 4 days earlier under AMB and HIW, 2015 A. odoratum 7 days later AMB; no consistently changed total flower density across three grasses; cover and biomass composition changed",
+      "original_raw_plot_ID_record_set_download_verified": false,
+      "raw_plot_level_original_flowering_results_fitted_now": false
+    },
+    {
+      "doi": "10.1111/gcb.13615",
+      "title": "Multiple night-time light-emitting diode lighting strategies impact grassland invertebrate assemblages",
+      "authors": "Davies et al.",
+      "publication_year": 2017,
+      "original_years": [
+        2012,
+        2013,
+        2014
+      ],
+      "experiment_lit_years": [
+        2012,
+        2013,
+        2014
+      ],
+      "data_access_publication": "https://ore.exeter.ac.uk/repository/handle/10871/25044",
+      "original_access_expected": "Exeter Open Research archive (article deposit, raw data may be absent)",
+      "primary_open_pdf": "https://kevingaston.com/wp-content/uploads/2017/02/Davies_et_al-2017-LED-grassland-invert-assemblages.pdf",
+      "trophic_stage": "ground_active_spiders_and_beetles_mixed_trophic_roles",
+      "measurements": [
+        "Araneae daytime_and_nighttime_pitfall_activity_density",
+        "Coleoptera_daytime_and_nighttime_pitfall_activity_density",
+        "invertebrate_assemblage_composition"
+      ],
+      "sampling": "May/July/September 3 days+nights per month each of 3 years; 27 sampling nights per original site; not 27 independent lamps",
+      "source_arthropods_caught": 5180,
+      "source_arthropod_taxa": 136,
+      "published_positive_and_null_results": "White LEDs increased total spider/beetle catch and changed assemblages; dim/amber/part-night reduced number of commonly affected taxa but did not eliminate changes; year-specific species tests uncorrected for 320 comparisons",
+      "original_raw_plot_ID_record_set_download_verified": false,
+      "raw_plot_level_original_arthropod_results_fitted_now": false
+    }
+  ],
+  "source_known_likely_nonindependent_related_papers": [
+    {
+      "doi": "10.1111/1365-2664.13240",
+      "overlap": "DIFFERENT MESOCOSM programme: 54 outdoor trays in Exeter Penryn Campus (50°10N, 5°7W), not Lizard Reserve 30 plots",
+      "do_not_force_merge": true
+    },
+    {
+      "doi": "10.1098/rstb.2014.0131",
+      "overlap": "Check original 2015 grassland aphid plant resource work: paper discusses lighting system but physical mesocosm provenance requires exact IDs",
+      "do_not_count_as_independent_or_same_without_source": true
+    }
+  ],
+  "new_joint_cross_trophic_estimate_gate": {
+    "independent_crosspaper_same_plot_match_performed": false,
+    "minimum_required_keys": [
+      "original_plot_id",
+      "light_treatment",
+      "calendar_year"
+    ],
+    "required_same_plot_pairs_for_causal_mediator": "source plot IDs shared + meaningful same-year matched plant and spider outcomes + original covariates",
+    "shared_treatment_only_does_not_identify_spider_mediated_plant_phenology": true,
+    "trap_catch_is_activity_density_not_true_predation_rate": true,
+    "herbivory_not_measured_by_Davies_pitfalls": true,
+    "original_source_plant_seed_fitness_measured": false,
+    "no_effect_size_or_mediation_coefficient_fitted": true,
+    "do_not_count_two_papers_as_independent_light_experiments": true
+  }
+}

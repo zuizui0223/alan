@@ -1,0 +1,93 @@
+name: ALAN predator guild role heterogeneity and Deitsch original EDI source preflight
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  programme-unit-and-opposing-direction-guards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate source programme ledger and no independent-night or leaf pseudo-replication
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_predator_role_study_heterogeneity_20261118.py -v
+          python -m unittest discover -s tests -p test_alan_deitsch2023_public_edi_source_audit_20261118.py -v
+      - name: Recompute published-source signs and descriptive plant reproduction arithmetic without false meta
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_predator_roles_20261118
+          python -m scripts.analysis.alan_predator_role_study_heterogeneity_20261118 \
+            --registry results/all_species_forest/biotic_interactions/predator_role_original_published_programme_ledger_20261118.json \
+            --out /tmp/alan_predator_roles_20261118/programme_stage_summary.json
+          python - <<'PY'
+          import json
+          p='/tmp/alan_predator_roles_20261118/programme_stage_summary.json'
+          x=json.load(open(p))
+          assert x['evidence']['independent_programmes_unique']==7
+          assert x['evidence']['predator_abundance_programmes']==5
+          assert x['evidence']['distinct_endpoint_entries']==10
+          assert x['evidence']['predator_abundance_published_directions']=={
+              'increase':3,'not_resolved':1,'decrease':1}
+          assert x['evidence']['no_common_endpoint_random_effects_meta_fitted']
+          assert x['scope']['no_novel_experimental_results_created']
+          assert x['eckhartt2022_original_published_model']['not_randomly_assigned_ALAN']
+          assert x['eckhartt2022_original_published_model']['original_n_lamppost_clusters']==7
+          assert x['brown2023_predator_herbivore_source_trophic_capture_reweighting']['light_on_to_pre_predator_herbivore_ratio_of_ratios']>5
+          assert x['boom2020_spectral_nursery_algebra']['overall_seed_output_reported_omnibus_p']==0.63
+          print('ALAN_PREDATOR_EVIDENCE_PROGRAMME_AND_REPRODUCTION_SOURCE_GATES_OK')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-predator-7-programmes-10-endpoints-source-stage-audit-20261118
+          path: /tmp/alan_predator_roles_20261118/programme_stage_summary.json
+          if-no-files-found: error
+          retention-days: 90
+
+  original-deitsch2023-public-edi-source-schema-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Read only official EDI 368.2 resources and check source grammar
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_deitsch_edi
+          python -m unittest discover -s tests -p test_alan_deitsch2023_public_edi_source_audit_20261118.py -v
+          python -m scripts.acquisition.alan_deitsch2023_public_edi_source_audit_20261118 \
+            --out /tmp/alan_deitsch_edi/primary_EDI_original_schema_and_sha.json
+      - name: Ensure no original plot records exported and no fictitious fitted effects
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          p='/tmp/alan_deitsch_edi/primary_EDI_original_schema_and_sha.json'
+          x=json.load(open(p))
+          assert x['schema']=='alan_edi_deitsch2023_authentic_source_preflight_20261118_v1'
+          assert x['source']['package_ID']=='knb-lter-hbr.368.2'
+          assert x['raw_plot_rows_committed'] is False
+          assert x['raw_coordinates_committed'] is False
+          assert x['new_model_of_predation_mediation_fitted'] is False
+          assert x['independent_raw_plot_effect_fit'] is False
+          print('ALAN_EDI_SOURCE_STATUS_ONLY',x['source_status'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-deitsch2023-original-edi-368-2-source-hashes-and-column-names
+          path: /tmp/alan_deitsch_edi/primary_EDI_original_schema_and_sha.json
+          if-no-files-found: warn
+          retention-days: 90

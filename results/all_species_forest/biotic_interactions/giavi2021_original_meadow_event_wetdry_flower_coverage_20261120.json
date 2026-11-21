@@ -1,0 +1,272 @@
+{
+  "schema": "alan_Giavi2021_original_six_meadow_wetdry_same_event_selection_audit_20261120_v1",
+  "source_replay_run": "https://github.com/zuizui0223/alan/actions/runs/44670559432",
+  "Giavi_original_RData_MD5": "f60b21d82c163cbb53520fda0bc61985",
+  "Kew_BIFloraExplorer_git_blob_SHA1": "e6a1da929af81f370d2a1b79177b489e3e573a06",
+  "original_independent_meadows": 6,
+  "original_matched_source_plant_meadow_repeat_rows": 193,
+  "original_study": "10.1038/s41467-021-22011-8",
+  "source_F_results": {
+    "F_Doring": {
+      "by_meadow": {
+        "1": {
+          "F_max": 8,
+          "F_min": 4,
+          "drier_species": 4,
+          "inference_independent_of_other_meadows": false,
+          "original_matched_scored_plant_pairs": 13,
+          "original_plant_species_scored": 6,
+          "source_meadow": "1",
+          "wet_species": 2,
+          "within_sample_pair_FE_beta_F": -0.1824647511337033
+        },
+        "2": {
+          "F_max": 7,
+          "F_min": 4,
+          "drier_species": 4,
+          "inference_independent_of_other_meadows": false,
+          "original_matched_scored_plant_pairs": 20,
+          "original_plant_species_scored": 4,
+          "source_meadow": "2",
+          "wet_species": 0,
+          "within_sample_pair_FE_beta_F": -1.5897041177836526
+        },
+        "3": {
+          "F_max": 7,
+          "F_min": 4,
+          "drier_species": 3,
+          "inference_independent_of_other_meadows": false,
+          "original_matched_scored_plant_pairs": 10,
+          "original_plant_species_scored": 3,
+          "source_meadow": "3",
+          "wet_species": 0,
+          "within_sample_pair_FE_beta_F": 0.14863779863758708
+        },
+        "4": {
+          "F_max": 7,
+          "F_min": 4,
+          "drier_species": 4,
+          "inference_independent_of_other_meadows": false,
+          "original_matched_scored_plant_pairs": 14,
+          "original_plant_species_scored": 4,
+          "source_meadow": "4",
+          "wet_species": 0,
+          "within_sample_pair_FE_beta_F": 0.5492077942060325
+        },
+        "5": {
+          "F_max": 7,
+          "F_min": 4,
+          "drier_species": 3,
+          "inference_independent_of_other_meadows": false,
+          "original_matched_scored_plant_pairs": 11,
+          "original_plant_species_scored": 3,
+          "source_meadow": "5",
+          "wet_species": 0,
+          "within_sample_pair_FE_beta_F": -0.4624197662917853
+        },
+        "6": {
+          "F_max": 8,
+          "F_min": 4,
+          "drier_species": 2,
+          "inference_independent_of_other_meadows": false,
+          "original_matched_scored_plant_pairs": 9,
+          "original_plant_species_scored": 4,
+          "source_meadow": "6",
+          "wet_species": 2,
+          "within_sample_pair_FE_beta_F": -1.0560465043327225
+        }
+      },
+      "dry": 6,
+      "dry_only": {
+        "beta_F_per_ordinal_point": -0.6365505447829645,
+        "beta_delta_log1p_flower": null,
+        "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+        "no_causal_mediation_claim": true,
+        "sampling_pair_FE_count": 33,
+        "source_matched_plant_pair_records": 69,
+        "source_true_site_pairs": 6,
+        "unique_source_species": 6
+      },
+      "plant_source_n": 77,
+      "same_meadow_same_event": {
+        "cannot_infer_wet_group_specific_light_effect": true,
+        "exact_two_sided_signflip_min_resolution_if_nonzero_all_sites": 0.5,
+        "independent_meadow_event_averaged_values": {
+          "1": {
+            "independent_original_meadow_pair": "1",
+            "sampling_events_with_both_wet_and_drier": 3,
+            "wet_minus_drier_dark_log_cover_event_mean": 0.5299974688406367,
+            "wet_minus_drier_lit_log_cover_event_mean": -0.7672486768904911,
+            "wet_vs_drier_light_minus_dark_flower_double_difference": -1.2972461457311277
+          },
+          "6": {
+            "independent_original_meadow_pair": "6",
+            "sampling_events_with_both_wet_and_drier": 4,
+            "wet_minus_drier_dark_log_cover_event_mean": 0.9195697594852593,
+            "wet_minus_drier_lit_log_cover_event_mean": 0.4261790957372964,
+            "wet_vs_drier_light_minus_dark_flower_double_difference": -0.4933906637479626
+          }
+        },
+        "independent_original_meadow_site_pairs_with_qualifying_event": 2,
+        "original_matched_same_site_same_sampling_event_comparisons": 7,
+        "source_direction_negative_meadow_pairs": 2,
+        "source_direction_positive_meadow_pairs": 0,
+        "source_event_level_independent_treatment_units_not_assumed": true,
+        "source_within_meadow_light_minus_dark_group_difference_site_mean": -0.8953184047395452
+      },
+      "single_arm_selection": {
+        "not_habitat_disappearance_or_treatment_extinction_measure": true,
+        "original_plant_arm_selection_by_trait": {
+          "drier_F_le7": {
+            "observed_original_dark_only": 22,
+            "observed_original_lit_and_dark": 69,
+            "observed_original_lit_only": 39,
+            "original_source_site_event_plant_keys": 130,
+            "source_both_arm_coverage_fraction": 0.5307692307692308
+          },
+          "wet_F_gt7": {
+            "observed_original_dark_only": 10,
+            "observed_original_lit_and_dark": 8,
+            "observed_original_lit_only": 9,
+            "original_source_site_event_plant_keys": 27,
+            "source_both_arm_coverage_fraction": 0.2962962962962963
+          }
+        },
+        "original_unpaired_plant_is_not_assumed_absent_biomass": true
+      },
+      "wet": 2
+    },
+    "F_PLANTATT": {
+      "by_meadow": {
+        "1": {
+          "F_max": 8,
+          "F_min": 4,
+          "drier_species": 3,
+          "inference_independent_of_other_meadows": false,
+          "original_matched_scored_plant_pairs": 9,
+          "original_plant_species_scored": 5,
+          "source_meadow": "1",
+          "wet_species": 2,
+          "within_sample_pair_FE_beta_F": -0.19052490751576534
+        },
+        "2": {
+          "F_max": 5,
+          "F_min": 4,
+          "drier_species": 3,
+          "inference_independent_of_other_meadows": false,
+          "original_matched_scored_plant_pairs": 16,
+          "original_plant_species_scored": 3,
+          "source_meadow": "2",
+          "wet_species": 0,
+          "within_sample_pair_FE_beta_F": -1.3341250123069264
+        },
+        "3": {
+          "F_max": 5,
+          "F_min": 4,
+          "drier_species": 2,
+          "inference_independent_of_other_meadows": false,
+          "original_matched_scored_plant_pairs": 6,
+          "original_plant_species_scored": 2,
+          "source_meadow": "3",
+          "wet_species": 0,
+          "within_sample_pair_FE_beta_F": null
+        },
+        "4": {
+          "F_max": 5,
+          "F_min": 4,
+          "drier_species": 3,
+          "inference_independent_of_other_meadows": false,
+          "original_matched_scored_plant_pairs": 9,
+          "original_plant_species_scored": 3,
+          "source_meadow": "4",
+          "wet_species": 0,
+          "within_sample_pair_FE_beta_F": -1.1602152266570278
+        },
+        "5": {
+          "F_max": 5,
+          "F_min": 4,
+          "drier_species": 2,
+          "inference_independent_of_other_meadows": false,
+          "original_matched_scored_plant_pairs": 8,
+          "original_plant_species_scored": 2,
+          "source_meadow": "5",
+          "wet_species": 0,
+          "within_sample_pair_FE_beta_F": null
+        },
+        "6": {
+          "F_max": 8,
+          "F_min": 4,
+          "drier_species": 1,
+          "inference_independent_of_other_meadows": false,
+          "original_matched_scored_plant_pairs": 5,
+          "original_plant_species_scored": 3,
+          "source_meadow": "6",
+          "wet_species": 2,
+          "within_sample_pair_FE_beta_F": null
+        }
+      },
+      "dry": 5,
+      "dry_only": {
+        "beta_F_per_ordinal_point": -1.0094149663273217,
+        "beta_delta_log1p_flower": null,
+        "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+        "no_causal_mediation_claim": true,
+        "sampling_pair_FE_count": 26,
+        "source_matched_plant_pair_records": 45,
+        "source_true_site_pairs": 6,
+        "unique_source_species": 5
+      },
+      "plant_source_n": 53,
+      "same_meadow_same_event": {
+        "cannot_infer_wet_group_specific_light_effect": true,
+        "exact_two_sided_signflip_min_resolution_if_nonzero_all_sites": 0.5,
+        "independent_meadow_event_averaged_values": {
+          "1": {
+            "independent_original_meadow_pair": "1",
+            "sampling_events_with_both_wet_and_drier": 2,
+            "wet_minus_drier_dark_log_cover_event_mean": 2.6911560990284107,
+            "wet_minus_drier_lit_log_cover_event_mean": 1.858790358223837,
+            "wet_vs_drier_light_minus_dark_flower_double_difference": -0.8323657408045735
+          },
+          "6": {
+            "independent_original_meadow_pair": "6",
+            "sampling_events_with_both_wet_and_drier": 1,
+            "wet_minus_drier_dark_log_cover_event_mean": 5.572154032177765,
+            "wet_minus_drier_lit_log_cover_event_mean": -0.28768207245178123,
+            "wet_vs_drier_light_minus_dark_flower_double_difference": -5.8598361046295455
+          }
+        },
+        "independent_original_meadow_site_pairs_with_qualifying_event": 2,
+        "original_matched_same_site_same_sampling_event_comparisons": 3,
+        "source_direction_negative_meadow_pairs": 2,
+        "source_direction_positive_meadow_pairs": 0,
+        "source_event_level_independent_treatment_units_not_assumed": true,
+        "source_within_meadow_light_minus_dark_group_difference_site_mean": -3.3461009227170595
+      },
+      "single_arm_selection": {
+        "not_habitat_disappearance_or_treatment_extinction_measure": true,
+        "original_plant_arm_selection_by_trait": {
+          "drier_F_le7": {
+            "observed_original_dark_only": 19,
+            "observed_original_lit_and_dark": 45,
+            "observed_original_lit_only": 38,
+            "original_source_site_event_plant_keys": 102,
+            "source_both_arm_coverage_fraction": 0.4411764705882353
+          },
+          "wet_F_gt7": {
+            "observed_original_dark_only": 10,
+            "observed_original_lit_and_dark": 8,
+            "observed_original_lit_only": 9,
+            "original_source_site_event_plant_keys": 27,
+            "source_both_arm_coverage_fraction": 0.2962962962962963
+          }
+        },
+        "original_unpaired_plant_is_not_assumed_absent_biomass": true
+      },
+      "wet": 2
+    }
+  },
+  "inference_scope": "only 2 original paired meadows, 3 or 7 comparable events, no wet-specific ALAN causal effect",
+  "missing_source_plants_not_assumed_zero": true,
+  "source_original_plab_is_flower_covered_transect_area_proxy_not_flower_count": true
+}

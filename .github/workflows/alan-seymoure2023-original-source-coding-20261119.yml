@@ -1,0 +1,59 @@
+name: ALAN Seymoure 2023 true 79-paper source-coded interaction audit
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - scripts/analysis/alan_seymoure2023_true_workbook_coding_audit_20261119.py
+      - tests/test_alan_seymoure2023_true_workbook_coding_audit_20261119.py
+      - .github/workflows/alan-seymoure2023-original-source-coding-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-79paper-coding-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test exact study DOI and source row grain, install original XLSX parser
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m unittest discover -s tests -p test_alan_seymoure2023_true_workbook_coding_audit_20261119.py -v
+      - name: Independently re-download exact SHA-pinned primary Excel and audit original study codebook
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_true_79paper_review
+          python -m scripts.analysis.alan_seymoure2023_true_workbook_coding_audit_20261119 \
+            --out /tmp/alan_true_79paper_review/real_original_source_study_coding_audit.json
+      - name: Guard author-source SHA, original row counts and refusal to invent effects
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          p='/tmp/alan_true_79paper_review/real_original_source_study_coding_audit.json'
+          d=json.load(open(p))
+          assert d['schema']=='alan_seymoure2023_true_original_79paper_81interaction_source_coding_audit_v1'
+          assert d['original_source_SHA256']=='a4c105c50f7b53cb2c58b287d065b79432b6ec7c308c35b1c4b873e78a4a359e'
+          assert d['source_observed']['original_header_count']==20
+          assert d['source_observed']['original_excel_data_nonempty_rows']==82
+          assert d['gate']['original_source_verified']
+          assert not d['gate']['source_coding_direction_interpreted']
+          assert not d['gate']['meta_effect_estimated']
+          assert d['gate']['source_excel_row_level_records_not_exported']
+          print('ALAN_TRUE_79STUDY_DATA_CODEBOOK_GATES_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-seymoure2023-source-coding-82-raw-rows-grain-DOI-original
+          path: /tmp/alan_true_79paper_review/real_original_source_study_coding_audit.json
+          if-no-files-found: warn
+          retention-days: 90

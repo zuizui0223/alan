@@ -1,0 +1,984 @@
+{
+  "schema": "alan_Giavi2021_original6meadow_flower_FWL_source_verified_compact_20261120_v1",
+  "verified_CI_url": "https://github.com/zuizui0223/alan/actions/runs/44669315284",
+  "original_Giavi_Zenodo_RData_MD5": "f60b21d82c163cbb53520fda0bc61985",
+  "original_Kew_BIFloraExplorer_Git_blob_SHA1": "e6a1da929af81f370d2a1b79177b489e3e573a06",
+  "source_total_original_visitation_rows": 1884,
+  "source_original_meadow_light_pairs": 6,
+  "source_original_sampling_pair_events": 37,
+  "source_actual_same_plant_meadow_pairing_records": 193,
+  "source_sampling_independent_plant_visitation_experiments": 1,
+  "joint_algebraic_association_not_caused_mediation": true,
+  "physical_light_assignment_randomization_unverified": true,
+  "strict_two_plant_guilds_per_site_meadow_overlap_only": {
+    "F_PLANTATT": 1,
+    "F_Doring": 2
+  },
+  "original_measured_flower_change_is_concurrent_with_visitation": true,
+  "source_negative_experimental_effect_on_macro_wet_species_proven": false,
+  "original_derived_cohort_and_guild_results": {
+    "F_Doring": {
+      "results": {
+        "all_scored_true_plant_pairs": {
+          "guild_models": {
+            "flower_cover": {
+              "FWL_association_partition": {
+                "concurrent_flower_F_slope_times_visit_flower_association": -0.3956493584057839,
+                "this_is_algebra_not_causal_mediation": true,
+                "unadjusted_F_slope_minus_flower_adjusted_F_slope": -0.39564935840578025,
+                "within_source_fitted_on_identical_true_plant_pairs": true
+              },
+              "exact_meadow_signflip_source_flower_F": {
+                "exact_whole_meadow_label_flips": 64,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": -0.6459040480760607,
+                "true_original_meadows": 6,
+                "two_sided_abs_extreme_fraction": 0.25
+              },
+              "leave_one_original_plant_out_F_flower": {
+                "Angelica_sylvestris": -0.6816434818930834,
+                "Cirsium_oleraceum": -0.7665966939655967,
+                "Daucus_carota": -0.5060749538880482,
+                "Filipendula_ulmaria": -0.5854429994920916,
+                "Geranium_sylvaticum": -0.6871824200783143,
+                "Heracleum_sphondylium": -0.678994947419314,
+                "Lotus_corniculatus": -0.8474364854783449,
+                "Trifolium_pratense": -0.7319285972778433
+              },
+              "leave_one_true_meadow_out_F_flower": {
+                "1": -0.8016929642798452,
+                "2": -0.2076068020818202,
+                "3": -0.7504490279068079,
+                "4": -0.7903369958400079,
+                "5": -0.6614749618972009,
+                "6": -0.5851790727565043
+              },
+              "lit_minus_dark_log1p_flower_as_response": {
+                "beta_F_per_ordinal_point": -0.6459040480760607,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 33,
+                "source_matched_plant_pair_records": 77,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 8
+              }
+            },
+            "v_Coleoptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.14941523681945001,
+                "beta_delta_log1p_flower": 0.10794049649794557,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 33,
+                "source_matched_plant_pair_records": 77,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 8
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.21913444045881092,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 33,
+                "source_matched_plant_pair_records": 77,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 8
+              }
+            },
+            "v_Diptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": 0.02713555211128995,
+                "beta_delta_log1p_flower": 0.4108248195472796,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 33,
+                "source_matched_plant_pair_records": 77,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 8
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.2382178618844124,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 33,
+                "source_matched_plant_pair_records": 77,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 8
+              }
+            },
+            "v_Hymenoptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": 0.07764921459681147,
+                "beta_delta_log1p_flower": 0.4311822581508187,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 33,
+                "source_matched_plant_pair_records": 77,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 8
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.20085315140137808,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 33,
+                "source_matched_plant_pair_records": 77,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 8
+              }
+            },
+            "visits": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.01590674407373762,
+                "beta_delta_log1p_flower": 0.6125512908369214,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 33,
+                "source_matched_plant_pair_records": 77,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 8
+              },
+              "leave_one_original_plant_out_adjusted_F_visits": {
+                "Angelica_sylvestris": -0.08794672115222019,
+                "Cirsium_oleraceum": 0.08331409340509591,
+                "Daucus_carota": -0.019673434522449358,
+                "Filipendula_ulmaria": -0.014191813151887618,
+                "Geranium_sylvaticum": -0.03817863362866477,
+                "Heracleum_sphondylium": -0.09680246184875246,
+                "Lotus_corniculatus": -0.04638163420918507,
+                "Trifolium_pratense": 0.13893259340648587
+              },
+              "leave_true_meadow_out_F_betas": {
+                "1": 0.005207707288901308,
+                "2": -0.0006496147212273976,
+                "3": 0.0727547202060594,
+                "4": -0.07094397190330871,
+                "5": 0.0542277021610108,
+                "6": -0.12214223792928743
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.41155610247951785,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 33,
+                "source_matched_plant_pair_records": 77,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 8
+              },
+              "site_signflip_flower_adjusted": {
+                "exact_whole_meadow_label_flips": 64,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": -0.01590674407373762,
+                "true_original_meadows": 6,
+                "two_sided_abs_extreme_fraction": 0.96875
+              },
+              "site_signflip_not_flower_adjusted": {
+                "exact_whole_meadow_label_flips": 64,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": -0.41155610247951785,
+                "true_original_meadows": 6,
+                "two_sided_abs_extreme_fraction": 0.3125
+              }
+            }
+          },
+          "matched_plant_pair_rows": 77,
+          "plants": 8,
+          "true_meadows": 6
+        },
+        "plants_observed_2plus_meadows": {
+          "guild_models": {
+            "flower_cover": {
+              "FWL_association_partition": {
+                "concurrent_flower_F_slope_times_visit_flower_association": -0.24529134174920292,
+                "this_is_algebra_not_causal_mediation": true,
+                "unadjusted_F_slope_minus_flower_adjusted_F_slope": -0.2452913417492026,
+                "within_source_fitted_on_identical_true_plant_pairs": true
+              },
+              "exact_meadow_signflip_source_flower_F": {
+                "exact_whole_meadow_label_flips": 64,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": -0.572672811525751,
+                "true_original_meadows": 6,
+                "two_sided_abs_extreme_fraction": 0.25
+              },
+              "leave_one_true_meadow_out_F_flower": {
+                "1": -0.6862444797845138,
+                "2": -0.24472219733256312,
+                "3": -0.6918081975887624,
+                "4": -0.6846726515113881,
+                "5": -0.5842949274051136,
+                "6": -0.48250218381558324
+              },
+              "lit_minus_dark_log1p_flower_as_response": {
+                "beta_F_per_ordinal_point": -0.572672811525751,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 32,
+                "source_matched_plant_pair_records": 66,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 5
+              }
+            },
+            "v_Coleoptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.18706902369543915,
+                "beta_delta_log1p_flower": 0.014557631112448566,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 32,
+                "source_matched_plant_pair_records": 66,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 5
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.19540578323375923,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 32,
+                "source_matched_plant_pair_records": 66,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 5
+              }
+            },
+            "v_Diptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.040707754188830374,
+                "beta_delta_log1p_flower": 0.23423583302241643,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 32,
+                "source_matched_plant_pair_records": 66,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 5
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.17484824724585435,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 32,
+                "source_matched_plant_pair_records": 66,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 5
+              }
+            },
+            "v_Hymenoptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": 0.05045805959369188,
+                "beta_delta_log1p_flower": 0.4360559695372439,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 32,
+                "source_matched_plant_pair_records": 66,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 5
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.1992593384637885,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 32,
+                "source_matched_plant_pair_records": 66,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 5
+              }
+            },
+            "visits": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.13960928526389008,
+                "beta_delta_log1p_flower": 0.4283271997769237,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 32,
+                "source_matched_plant_pair_records": 66,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 5
+              },
+              "leave_true_meadow_out_F_betas": {
+                "1": -0.038421121338997236,
+                "2": -0.13842093348742532,
+                "3": -0.07440482617334615,
+                "4": -0.21935070709416804,
+                "5": -0.06897393566663733,
+                "6": -0.2681055683036804
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.3849006270130927,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 32,
+                "source_matched_plant_pair_records": 66,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 5
+              },
+              "site_signflip_flower_adjusted": {
+                "exact_whole_meadow_label_flips": 64,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": -0.13960928526389008,
+                "true_original_meadows": 6,
+                "two_sided_abs_extreme_fraction": 0.46875
+              },
+              "site_signflip_not_flower_adjusted": {
+                "exact_whole_meadow_label_flips": 64,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": -0.3849006270130927,
+                "true_original_meadows": 6,
+                "two_sided_abs_extreme_fraction": 0.25
+              }
+            }
+          },
+          "matched_plant_pair_rows": 66,
+          "plants": 5,
+          "true_meadows": 6
+        },
+        "same_meadow_wet_drier_overlap_only": {
+          "guild_models": {
+            "flower_cover": {
+              "FWL_association_partition": {
+                "concurrent_flower_F_slope_times_visit_flower_association": -0.2667537403722979,
+                "this_is_algebra_not_causal_mediation": true,
+                "unadjusted_F_slope_minus_flower_adjusted_F_slope": -0.2667537403722969,
+                "within_source_fitted_on_identical_true_plant_pairs": true
+              },
+              "exact_meadow_signflip_source_flower_F": {
+                "exact_whole_meadow_label_flips": 4,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": -0.4785119008289263,
+                "true_original_meadows": 2,
+                "two_sided_abs_extreme_fraction": 0.5
+              },
+              "leave_one_true_meadow_out_F_flower": {
+                "1": -1.0560465043327225,
+                "6": -0.1824647511337033
+              },
+              "lit_minus_dark_log1p_flower_as_response": {
+                "beta_F_per_ordinal_point": -0.4785119008289263,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 22,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 6
+              }
+            },
+            "v_Coleoptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.35577931639695376,
+                "beta_delta_log1p_flower": -0.29298995901160546,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 22,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 6
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.2155801341865209,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 22,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 6
+              }
+            },
+            "v_Diptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": 0.26302633305823314,
+                "beta_delta_log1p_flower": 0.5212857698117003,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 22,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 6
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": 0.013584888470566492,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 22,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 6
+              }
+            },
+            "v_Hymenoptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": 0.20700613036494955,
+                "beta_delta_log1p_flower": 0.43512717344004964,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 22,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 6
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.001207400500166489,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 22,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 6
+              }
+            },
+            "visits": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": 0.1687236273830917,
+                "beta_delta_log1p_flower": 0.5574652164558505,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 22,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 6
+              },
+              "leave_true_meadow_out_F_betas": {
+                "1": 1.2707314354491253,
+                "6": -0.06779012712814328
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.09803011298920516,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 22,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 6
+              },
+              "site_signflip_flower_adjusted": {
+                "exact_whole_meadow_label_flips": 4,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": 0.1687236273830917,
+                "true_original_meadows": 2,
+                "two_sided_abs_extreme_fraction": 1
+              },
+              "site_signflip_not_flower_adjusted": {
+                "exact_whole_meadow_label_flips": 4,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": -0.09803011298920516,
+                "true_original_meadows": 2,
+                "two_sided_abs_extreme_fraction": 1
+              }
+            }
+          },
+          "matched_plant_pair_rows": 22,
+          "plants": 6,
+          "true_meadows": 2
+        }
+      },
+      "support": {
+        "confirmatory_moisture_moderator_support": false,
+        "sites_with_2wet_2drier": 2,
+        "sites_with_wet_and_drier": 2,
+        "source_drier_species_le7": 6,
+        "source_meadow_sites": 6,
+        "source_scored_species": 8,
+        "source_wet_species_gt7": 2,
+        "status": "SOURCE_WET_DRY_COMMON_SUPPORT_STOP"
+      }
+    },
+    "F_PLANTATT": {
+      "results": {
+        "all_scored_true_plant_pairs": {
+          "guild_models": {
+            "flower_cover": {
+              "FWL_association_partition": {
+                "concurrent_flower_F_slope_times_visit_flower_association": -0.4000050004241478,
+                "this_is_algebra_not_causal_mediation": true,
+                "unadjusted_F_slope_minus_flower_adjusted_F_slope": -0.400005000424148,
+                "within_source_fitted_on_identical_true_plant_pairs": true
+              },
+              "exact_meadow_signflip_source_flower_F": {
+                "exact_whole_meadow_label_flips": 64,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": -0.7694822036438459,
+                "true_original_meadows": 6,
+                "two_sided_abs_extreme_fraction": 0.03125
+              },
+              "leave_one_original_plant_out_F_flower": {
+                "Angelica_sylvestris": -0.8230445053239936,
+                "Daucus_carota": -0.6853216207788129,
+                "Filipendula_ulmaria": -0.6412830128300884,
+                "Geranium_sylvaticum": -0.7580291055763437,
+                "Heracleum_sphondylium": -0.9325309963811307,
+                "Lotus_corniculatus": -0.6534068223657207,
+                "Trifolium_pratense": -0.7068398159099077
+              },
+              "leave_one_true_meadow_out_F_flower": {
+                "1": -1.316974429330182,
+                "2": -0.690360281410801,
+                "3": -0.7776955810355162,
+                "4": -0.7605511631178294,
+                "5": -0.7430017384425781,
+                "6": -0.5146510015014786
+              },
+              "lit_minus_dark_log1p_flower_as_response": {
+                "beta_F_per_ordinal_point": -0.7694822036438459,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 30,
+                "source_matched_plant_pair_records": 53,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 7
+              }
+            },
+            "v_Coleoptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.14171491477470788,
+                "beta_delta_log1p_flower": 0.05605680722576836,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 30,
+                "source_matched_plant_pair_records": 53,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 7
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.18484963032803003,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 30,
+                "source_matched_plant_pair_records": 53,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 7
+              }
+            },
+            "v_Diptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": 0.3354666733228414,
+                "beta_delta_log1p_flower": 0.6083507548773186,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 30,
+                "source_matched_plant_pair_records": 53,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 7
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.1326484061285545,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 30,
+                "source_matched_plant_pair_records": 53,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 7
+              }
+            },
+            "v_Hymenoptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.10637167268672382,
+                "beta_delta_log1p_flower": 0.1637697693779166,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 30,
+                "source_matched_plant_pair_records": 53,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 7
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.23238959571788723,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 30,
+                "source_matched_plant_pair_records": 53,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 7
+              }
+            },
+            "visits": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": 0.09797924954946355,
+                "beta_delta_log1p_flower": 0.5198365843029812,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 30,
+                "source_matched_plant_pair_records": 53,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 7
+              },
+              "leave_one_original_plant_out_adjusted_F_visits": {
+                "Angelica_sylvestris": 0.05401776060479174,
+                "Daucus_carota": -0.054453109850636935,
+                "Filipendula_ulmaria": 0.3049970390310087,
+                "Geranium_sylvaticum": 0.09641191865219922,
+                "Heracleum_sphondylium": -0.16495251721539606,
+                "Lotus_corniculatus": 0.6122337193884997,
+                "Trifolium_pratense": 0.3589224671351082
+              },
+              "leave_true_meadow_out_F_betas": {
+                "1": 0.23985358186200856,
+                "2": -0.09197688493807858,
+                "3": 0.09367020711547441,
+                "4": 0.07925539029974958,
+                "5": 0.23488485685820035,
+                "6": 0.04566310267006852
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.3020257508746844,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 30,
+                "source_matched_plant_pair_records": 53,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 7
+              },
+              "site_signflip_flower_adjusted": {
+                "exact_whole_meadow_label_flips": 64,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": 0.09797924954946355,
+                "true_original_meadows": 6,
+                "two_sided_abs_extreme_fraction": 0.34375
+              },
+              "site_signflip_not_flower_adjusted": {
+                "exact_whole_meadow_label_flips": 64,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": -0.3020257508746844,
+                "true_original_meadows": 6,
+                "two_sided_abs_extreme_fraction": 0.125
+              }
+            }
+          },
+          "matched_plant_pair_rows": 53,
+          "plants": 7,
+          "true_meadows": 6
+        },
+        "plants_observed_2plus_meadows": {
+          "guild_models": {
+            "flower_cover": {
+              "FWL_association_partition": {
+                "concurrent_flower_F_slope_times_visit_flower_association": -0.00850424750739432,
+                "this_is_algebra_not_causal_mediation": true,
+                "unadjusted_F_slope_minus_flower_adjusted_F_slope": -0.008504247507393703,
+                "within_source_fitted_on_identical_true_plant_pairs": true
+              },
+              "exact_meadow_signflip_source_flower_F": {
+                "exact_whole_meadow_label_flips": 64,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": -0.8169403478759896,
+                "true_original_meadows": 6,
+                "two_sided_abs_extreme_fraction": 0.03125
+              },
+              "leave_one_true_meadow_out_F_flower": {
+                "1": -1.1557181956639262,
+                "2": -0.8432754046007507,
+                "3": -0.8298620384377475,
+                "4": -0.8215188204438352,
+                "5": -0.786363046623404,
+                "6": -0.4713303861259115
+              },
+              "lit_minus_dark_log1p_flower_as_response": {
+                "beta_F_per_ordinal_point": -0.8169403478759896,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 25,
+                "source_matched_plant_pair_records": 42,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 4
+              }
+            },
+            "v_Coleoptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.2769513840666723,
+                "beta_delta_log1p_flower": -0.144846725216215,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 25,
+                "source_matched_plant_pair_records": 42,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 4
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.1586202499798386,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 25,
+                "source_matched_plant_pair_records": 42,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 4
+              }
+            },
+            "v_Diptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.07431330950047396,
+                "beta_delta_log1p_flower": 0.16099526342764847,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 25,
+                "source_matched_plant_pair_records": 42,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 4
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.20583683601144517,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 25,
+                "source_matched_plant_pair_records": 42,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 4
+              }
+            },
+            "v_Hymenoptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.174590674335109,
+                "beta_delta_log1p_flower": 0.11801297588723125,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 25,
+                "source_matched_plant_pair_records": 42,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 4
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.2710002359103032,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 25,
+                "source_matched_plant_pair_records": 42,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 4
+              }
+            },
+            "visits": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.40078952192671097,
+                "beta_delta_log1p_flower": 0.010409875738791707,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 25,
+                "source_matched_plant_pair_records": 42,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 4
+              },
+              "leave_true_meadow_out_F_betas": {
+                "1": -0.14794576088069977,
+                "2": -0.5378969526108127,
+                "3": -0.424387125739786,
+                "4": -0.43013682365109823,
+                "5": -0.3362919763773471,
+                "6": -0.3954394987646138
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.40929376943410467,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 25,
+                "source_matched_plant_pair_records": 42,
+                "source_true_site_pairs": 6,
+                "unique_source_species": 4
+              },
+              "site_signflip_flower_adjusted": {
+                "exact_whole_meadow_label_flips": 64,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": -0.40078952192671097,
+                "true_original_meadows": 6,
+                "two_sided_abs_extreme_fraction": 0.15625
+              },
+              "site_signflip_not_flower_adjusted": {
+                "exact_whole_meadow_label_flips": 64,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": -0.40929376943410467,
+                "true_original_meadows": 6,
+                "two_sided_abs_extreme_fraction": 0.25
+              }
+            }
+          },
+          "matched_plant_pair_rows": 42,
+          "plants": 4,
+          "true_meadows": 6
+        },
+        "same_meadow_wet_drier_overlap_only": {
+          "guild_models": {
+            "flower_cover": {
+              "FWL_association_partition": {
+                "concurrent_flower_F_slope_times_visit_flower_association": -0.21967368662559403,
+                "this_is_algebra_not_causal_mediation": true,
+                "unadjusted_F_slope_minus_flower_adjusted_F_slope": -0.2196736866255936,
+                "within_source_fitted_on_identical_true_plant_pairs": true
+              },
+              "exact_meadow_signflip_source_flower_F": {
+                "exact_whole_meadow_label_flips": 4,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": -0.6436570385883419,
+                "true_original_meadows": 2,
+                "two_sided_abs_extreme_fraction": 0.5
+              },
+              "leave_one_true_meadow_out_F_flower": {
+                "1": null,
+                "6": -0.19052490751576534
+              },
+              "lit_minus_dark_log1p_flower_as_response": {
+                "beta_F_per_ordinal_point": -0.6436570385883419,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 14,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 5
+              }
+            },
+            "v_Coleoptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.3946554002180412,
+                "beta_delta_log1p_flower": -0.35536738966586023,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 14,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 5
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.16592067857484394,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 14,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 5
+              }
+            },
+            "v_Diptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": 0.4029072561356463,
+                "beta_delta_log1p_flower": 0.6483413382358969,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 14,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 5
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.014402209627673617,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 14,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 5
+              }
+            },
+            "v_Hymenoptera": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.048885049233413046,
+                "beta_delta_log1p_flower": 0.30694495637870556,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 14,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 5
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.24645233086575827,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 14,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 5
+              }
+            },
+            "visits": {
+              "flower_adjusted": {
+                "beta_F_per_ordinal_point": 0.008866756449504968,
+                "beta_delta_log1p_flower": 0.34128996259775046,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 14,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 5
+              },
+              "leave_true_meadow_out_F_betas": {
+                "1": null,
+                "6": 0.06013810143579889
+              },
+              "not_flower_adjusted": {
+                "beta_F_per_ordinal_point": -0.21080693017608865,
+                "beta_delta_log1p_flower": null,
+                "model": "paired lit-minus-dark log1p visits with sampling-event fixed effects and optional measured floral cover",
+                "no_causal_mediation_claim": true,
+                "sampling_pair_FE_count": 9,
+                "source_matched_plant_pair_records": 14,
+                "source_true_site_pairs": 2,
+                "unique_source_species": 5
+              },
+              "site_signflip_flower_adjusted": {
+                "exact_whole_meadow_label_flips": 4,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": 0.008866756449504968,
+                "true_original_meadows": 2,
+                "two_sided_abs_extreme_fraction": 1
+              },
+              "site_signflip_not_flower_adjusted": {
+                "exact_whole_meadow_label_flips": 4,
+                "not_original_randomized_unit_test": true,
+                "observed_beta": -0.21080693017608865,
+                "true_original_meadows": 2,
+                "two_sided_abs_extreme_fraction": 0.5
+              }
+            }
+          },
+          "matched_plant_pair_rows": 14,
+          "plants": 5,
+          "true_meadows": 2
+        }
+      },
+      "support": {
+        "confirmatory_moisture_moderator_support": false,
+        "sites_with_2wet_2drier": 1,
+        "sites_with_wet_and_drier": 2,
+        "source_drier_species_le7": 5,
+        "source_meadow_sites": 6,
+        "source_scored_species": 7,
+        "source_wet_species_gt7": 2,
+        "status": "SOURCE_WET_DRY_COMMON_SUPPORT_STOP"
+      }
+    }
+  },
+  "source_leave_entire_plant_out_flower_F_negative_for_both_indicators": true,
+  "LOO_plant_flower_F_ranges": {
+    "F_Doring": {
+      "min": -0.8474364854783449,
+      "max": -0.5060749538880482,
+      "species_removed": 8
+    },
+    "F_PLANTATT": {
+      "min": -0.9325309963811307,
+      "max": -0.6412830128300884,
+      "species_removed": 7
+    }
+  }
+}

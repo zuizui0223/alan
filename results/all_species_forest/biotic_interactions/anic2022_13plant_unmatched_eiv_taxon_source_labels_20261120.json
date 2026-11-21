@@ -1,0 +1,798 @@
+{
+  "candidate_label_audit_only": [
+    {
+      "EIV_source_rows_with_exact_binomial_plus_suffix": [
+        "Achillea millefolium aggr."
+      ],
+      "exact_name_source_valid": false,
+      "no_suggested_mapping_automatically_accepted": true,
+      "original_source_exact_MOIST": null,
+      "original_source_plant": "Achillea millefolium",
+      "same_genus_EIV_rows": 45,
+      "same_genus_high_similarity_source_labels": [
+        {
+          "eiv_source_name": "Achillea millefolium aggr.",
+          "similarity": 0.8696,
+          "source_trait_measure": [
+            4.1
+          ]
+        },
+        {
+          "eiv_source_name": "Achillea crithmifolia",
+          "similarity": 0.7317,
+          "source_trait_measure": [
+            4.5
+          ]
+        },
+        {
+          "eiv_source_name": "Achillea aspleniifolia",
+          "similarity": 0.7143,
+          "source_trait_measure": [
+            6
+          ]
+        },
+        {
+          "eiv_source_name": "Achillea maritima",
+          "similarity": 0.7027,
+          "source_trait_measure": [
+            3.7
+          ]
+        },
+        {
+          "eiv_source_name": "Achillea salicifolia",
+          "similarity": 0.7,
+          "source_trait_measure": [
+            8
+          ]
+        },
+        {
+          "eiv_source_name": "Achillea ageratifolia",
+          "similarity": 0.6829,
+          "source_trait_measure": [
+            2.1
+          ]
+        },
+        {
+          "eiv_source_name": "Achillea clypeolata",
+          "similarity": 0.6667,
+          "source_trait_measure": [
+            3.2
+          ]
+        },
+        {
+          "eiv_source_name": "Achillea filipendulina",
+          "similarity": 0.6667,
+          "source_trait_measure": [
+            4
+          ]
+        },
+        {
+          "eiv_source_name": "Achillea nobilis",
+          "similarity": 0.6667,
+          "source_trait_measure": [
+            3.7
+          ]
+        }
+      ]
+    },
+    {
+      "EIV_source_rows_with_exact_binomial_plus_suffix": [],
+      "exact_name_source_valid": false,
+      "no_suggested_mapping_automatically_accepted": true,
+      "original_source_exact_MOIST": null,
+      "original_source_plant": "Agrostis tenuis",
+      "same_genus_EIV_rows": 16,
+      "same_genus_high_similarity_source_labels": [
+        {
+          "eiv_source_name": "Agrostis tileni",
+          "similarity": 0.8667,
+          "source_trait_measure": [
+            2
+          ]
+        },
+        {
+          "eiv_source_name": "Agrostis mertensii",
+          "similarity": 0.7879,
+          "source_trait_measure": [
+            5.5
+          ]
+        },
+        {
+          "eiv_source_name": "Agrostis nevadensis",
+          "similarity": 0.7647,
+          "source_trait_measure": [
+            4.6
+          ]
+        },
+        {
+          "eiv_source_name": "Agrostis curtisii",
+          "similarity": 0.75,
+          "source_trait_measure": [
+            5.5
+          ]
+        },
+        {
+          "eiv_source_name": "Agrostis vinealis",
+          "similarity": 0.75,
+          "source_trait_measure": [
+            null
+          ]
+        },
+        {
+          "eiv_source_name": "Agrostis canina",
+          "similarity": 0.7333,
+          "source_trait_measure": [
+            8.4
+          ]
+        },
+        {
+          "eiv_source_name": "Agrostis rupestris",
+          "similarity": 0.7273,
+          "source_trait_measure": [
+            4.3
+          ]
+        },
+        {
+          "eiv_source_name": "Agrostis castellana",
+          "similarity": 0.7059,
+          "source_trait_measure": [
+            null
+          ]
+        },
+        {
+          "eiv_source_name": "Agrostis gigantea",
+          "similarity": 0.6875,
+          "source_trait_measure": [
+            null
+          ]
+        },
+        {
+          "eiv_source_name": "Agrostis alpina",
+          "similarity": 0.6667,
+          "source_trait_measure": [
+            5.2
+          ]
+        }
+      ]
+    },
+    {
+      "EIV_source_rows_with_exact_binomial_plus_suffix": [
+        "Anthoxanthum odoratum aggr."
+      ],
+      "exact_name_source_valid": false,
+      "no_suggested_mapping_automatically_accepted": true,
+      "original_source_exact_MOIST": null,
+      "original_source_plant": "Anthoxanthum odoratum",
+      "same_genus_EIV_rows": 6,
+      "same_genus_high_similarity_source_labels": [
+        {
+          "eiv_source_name": "Anthoxanthum ovatum",
+          "similarity": 0.9,
+          "source_trait_measure": [
+            3
+          ]
+        },
+        {
+          "eiv_source_name": "Anthoxanthum odoratum aggr.",
+          "similarity": 0.875,
+          "source_trait_measure": [
+            null
+          ]
+        },
+        {
+          "eiv_source_name": "Anthoxanthum aristatum",
+          "similarity": 0.8372,
+          "source_trait_measure": [
+            2.7
+          ]
+        },
+        {
+          "eiv_source_name": "Anthoxanthum amarum",
+          "similarity": 0.8,
+          "source_trait_measure": [
+            7
+          ]
+        },
+        {
+          "eiv_source_name": "Anthoxanthum pauciflorum",
+          "similarity": 0.7556,
+          "source_trait_measure": [
+            7
+          ]
+        },
+        {
+          "eiv_source_name": "Anthoxanthum gracile",
+          "similarity": 0.7317,
+          "source_trait_measure": [
+            3.5
+          ]
+        }
+      ]
+    },
+    {
+      "EIV_source_rows_with_exact_binomial_plus_suffix": [],
+      "exact_name_source_valid": true,
+      "no_suggested_mapping_automatically_accepted": true,
+      "original_source_exact_MOIST": 4.6,
+      "original_source_plant": "Centaurea nigra",
+      "same_genus_EIV_rows": 112,
+      "same_genus_high_similarity_source_labels": [
+        {
+          "eiv_source_name": "Centaurea nigra",
+          "similarity": 1,
+          "source_trait_measure": [
+            4.6
+          ]
+        },
+        {
+          "eiv_source_name": "Centaurea uniflora",
+          "similarity": 0.8485,
+          "source_trait_measure": [
+            4
+          ]
+        },
+        {
+          "eiv_source_name": "Centaurea ionica",
+          "similarity": 0.8387,
+          "source_trait_measure": [
+            2.6
+          ]
+        },
+        {
+          "eiv_source_name": "Centaurea ambigua",
+          "similarity": 0.8125,
+          "source_trait_measure": [
+            3
+          ]
+        },
+        {
+          "eiv_source_name": "Centaurea iberica",
+          "similarity": 0.8125,
+          "source_trait_measure": [
+            6
+          ]
+        },
+        {
+          "eiv_source_name": "Centaurea nervosa",
+          "similarity": 0.8125,
+          "source_trait_measure": [
+            3.5
+          ]
+        },
+        {
+          "eiv_source_name": "Centaurea idaea",
+          "similarity": 0.8,
+          "source_trait_measure": [
+            4
+          ]
+        },
+        {
+          "eiv_source_name": "Centaurea nigrescens",
+          "similarity": 0.8,
+          "source_trait_measure": [
+            4.8
+          ]
+        },
+        {
+          "eiv_source_name": "Centaurea aspera",
+          "similarity": 0.7742,
+          "source_trait_measure": [
+            2.3
+          ]
+        },
+        {
+          "eiv_source_name": "Centaurea janeri",
+          "similarity": 0.7742,
+          "source_trait_measure": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "EIV_source_rows_with_exact_binomial_plus_suffix": [],
+      "exact_name_source_valid": false,
+      "no_suggested_mapping_automatically_accepted": true,
+      "original_source_exact_MOIST": null,
+      "original_source_plant": "Dactylis glomerata",
+      "same_genus_EIV_rows": 1,
+      "same_genus_high_similarity_source_labels": [
+        {
+          "eiv_source_name": "Dactylis glomerata",
+          "similarity": 1,
+          "source_trait_measure": [
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "EIV_source_rows_with_exact_binomial_plus_suffix": [
+        "Festuca ovina aggr.",
+        "Festuca ovina s. l."
+      ],
+      "exact_name_source_valid": true,
+      "no_suggested_mapping_automatically_accepted": true,
+      "original_source_exact_MOIST": 4.1,
+      "original_source_plant": "Festuca ovina",
+      "same_genus_EIV_rows": 132,
+      "same_genus_high_similarity_source_labels": [
+        {
+          "eiv_source_name": "Festuca ovina",
+          "similarity": 1,
+          "source_trait_measure": [
+            4.1
+          ]
+        },
+        {
+          "eiv_source_name": "Festuca varia",
+          "similarity": 0.8462,
+          "source_trait_measure": [
+            3
+          ]
+        },
+        {
+          "eiv_source_name": "Festuca vaginata",
+          "similarity": 0.8276,
+          "source_trait_measure": [
+            2
+          ]
+        },
+        {
+          "eiv_source_name": "Festuca alpina",
+          "similarity": 0.8148,
+          "source_trait_measure": [
+            3
+          ]
+        },
+        {
+          "eiv_source_name": "Festuca norica",
+          "similarity": 0.8148,
+          "source_trait_measure": [
+            4
+          ]
+        },
+        {
+          "eiv_source_name": "Festuca polita",
+          "similarity": 0.8148,
+          "source_trait_measure": [
+            4
+          ]
+        },
+        {
+          "eiv_source_name": "Festuca valida",
+          "similarity": 0.8148,
+          "source_trait_measure": [
+            4.9
+          ]
+        },
+        {
+          "eiv_source_name": "Festuca ovina aggr.",
+          "similarity": 0.8125,
+          "source_trait_measure": [
+            3
+          ]
+        },
+        {
+          "eiv_source_name": "Festuca ovina s. l.",
+          "similarity": 0.8125,
+          "source_trait_measure": [
+            4
+          ]
+        },
+        {
+          "eiv_source_name": "Festuca morisiana",
+          "similarity": 0.8,
+          "source_trait_measure": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "EIV_source_rows_with_exact_binomial_plus_suffix": [],
+      "exact_name_source_valid": false,
+      "no_suggested_mapping_automatically_accepted": true,
+      "original_source_exact_MOIST": null,
+      "original_source_plant": "Holcus lanatus",
+      "same_genus_EIV_rows": 5,
+      "same_genus_high_similarity_source_labels": [
+        {
+          "eiv_source_name": "Holcus lanatus",
+          "similarity": 1,
+          "source_trait_measure": [
+            null
+          ]
+        },
+        {
+          "eiv_source_name": "Holcus annuus",
+          "similarity": 0.8148,
+          "source_trait_measure": [
+            4
+          ]
+        },
+        {
+          "eiv_source_name": "Holcus gayanus",
+          "similarity": 0.7857,
+          "source_trait_measure": [
+            1
+          ]
+        },
+        {
+          "eiv_source_name": "Holcus mollis",
+          "similarity": 0.6667,
+          "source_trait_measure": [
+            5.6
+          ]
+        }
+      ]
+    },
+    {
+      "EIV_source_rows_with_exact_binomial_plus_suffix": [],
+      "exact_name_source_valid": false,
+      "no_suggested_mapping_automatically_accepted": true,
+      "original_source_exact_MOIST": null,
+      "original_source_plant": "Hypochaeris radicata",
+      "same_genus_EIV_rows": 10,
+      "same_genus_high_similarity_source_labels": [
+        {
+          "eiv_source_name": "Hypochaeris radicata",
+          "similarity": 1,
+          "source_trait_measure": [
+            null
+          ]
+        },
+        {
+          "eiv_source_name": "Hypochaeris maculata",
+          "similarity": 0.85,
+          "source_trait_measure": [
+            4.2
+          ]
+        },
+        {
+          "eiv_source_name": "Hypochaeris laevigata",
+          "similarity": 0.8293,
+          "source_trait_measure": [
+            2
+          ]
+        },
+        {
+          "eiv_source_name": "Hypochaeris facchiniana",
+          "similarity": 0.7442,
+          "source_trait_measure": [
+            4
+          ]
+        },
+        {
+          "eiv_source_name": "Hypochaeris glabra",
+          "similarity": 0.7368,
+          "source_trait_measure": [
+            3.3
+          ]
+        },
+        {
+          "eiv_source_name": "Hypochaeris robertia",
+          "similarity": 0.7,
+          "source_trait_measure": [
+            4.5
+          ]
+        },
+        {
+          "eiv_source_name": "Hypochaeris uniflora",
+          "similarity": 0.7,
+          "source_trait_measure": [
+            4.6
+          ]
+        },
+        {
+          "eiv_source_name": "Hypochaeris cretensis",
+          "similarity": 0.6829,
+          "source_trait_measure": [
+            5
+          ]
+        },
+        {
+          "eiv_source_name": "Hypochaeris tenuiflora",
+          "similarity": 0.6667,
+          "source_trait_measure": [
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "EIV_source_rows_with_exact_binomial_plus_suffix": [
+        "Lotus corniculatus aggr."
+      ],
+      "exact_name_source_valid": false,
+      "no_suggested_mapping_automatically_accepted": true,
+      "original_source_exact_MOIST": null,
+      "original_source_plant": "Lotus corniculatus",
+      "same_genus_EIV_rows": 26,
+      "same_genus_high_similarity_source_labels": [
+        {
+          "eiv_source_name": "Lotus corniculatus",
+          "similarity": 1,
+          "source_trait_measure": [
+            null
+          ]
+        },
+        {
+          "eiv_source_name": "Lotus corniculatus aggr.",
+          "similarity": 0.8571,
+          "source_trait_measure": [
+            4
+          ]
+        },
+        {
+          "eiv_source_name": "Lotus conjugatus",
+          "similarity": 0.8235,
+          "source_trait_measure": [
+            2.5
+          ]
+        },
+        {
+          "eiv_source_name": "Lotus pedunculatus",
+          "similarity": 0.7778,
+          "source_trait_measure": [
+            7.9
+          ]
+        },
+        {
+          "eiv_source_name": "Lotus creticus",
+          "similarity": 0.75,
+          "source_trait_measure": [
+            2
+          ]
+        },
+        {
+          "eiv_source_name": "Lotus maritimus",
+          "similarity": 0.6667,
+          "source_trait_measure": [
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "EIV_source_rows_with_exact_binomial_plus_suffix": [],
+      "exact_name_source_valid": true,
+      "no_suggested_mapping_automatically_accepted": true,
+      "original_source_exact_MOIST": 7.9,
+      "original_source_plant": "Lotus pedunculatus",
+      "same_genus_EIV_rows": 26,
+      "same_genus_high_similarity_source_labels": [
+        {
+          "eiv_source_name": "Lotus pedunculatus",
+          "similarity": 1,
+          "source_trait_measure": [
+            7.9
+          ]
+        },
+        {
+          "eiv_source_name": "Lotus corniculatus",
+          "similarity": 0.7778,
+          "source_trait_measure": [
+            null
+          ]
+        },
+        {
+          "eiv_source_name": "Lotus edulis",
+          "similarity": 0.7333,
+          "source_trait_measure": [
+            3
+          ]
+        },
+        {
+          "eiv_source_name": "Lotus corniculatus aggr.",
+          "similarity": 0.6667,
+          "source_trait_measure": [
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "EIV_source_rows_with_exact_binomial_plus_suffix": [],
+      "exact_name_source_valid": true,
+      "no_suggested_mapping_automatically_accepted": true,
+      "original_source_exact_MOIST": 4.5,
+      "original_source_plant": "Plantago lanceolata",
+      "same_genus_EIV_rows": 31,
+      "same_genus_high_similarity_source_labels": [
+        {
+          "eiv_source_name": "Plantago lanceolata",
+          "similarity": 1,
+          "source_trait_measure": [
+            4.5
+          ]
+        },
+        {
+          "eiv_source_name": "Plantago atrata",
+          "similarity": 0.7647,
+          "source_trait_measure": [
+            null
+          ]
+        },
+        {
+          "eiv_source_name": "Plantago arenaria",
+          "similarity": 0.7222,
+          "source_trait_measure": [
+            3.2
+          ]
+        },
+        {
+          "eiv_source_name": "Plantago argentea",
+          "similarity": 0.7222,
+          "source_trait_measure": [
+            3
+          ]
+        },
+        {
+          "eiv_source_name": "Plantago subulata",
+          "similarity": 0.7222,
+          "source_trait_measure": [
+            3
+          ]
+        },
+        {
+          "eiv_source_name": "Plantago afra",
+          "similarity": 0.6875,
+          "source_trait_measure": [
+            3
+          ]
+        },
+        {
+          "eiv_source_name": "Plantago lagopus",
+          "similarity": 0.6857,
+          "source_trait_measure": [
+            3.5
+          ]
+        },
+        {
+          "eiv_source_name": "Plantago macrorhiza",
+          "similarity": 0.6842,
+          "source_trait_measure": [
+            4
+          ]
+        },
+        {
+          "eiv_source_name": "Plantago albicans",
+          "similarity": 0.6667,
+          "source_trait_measure": [
+            2
+          ]
+        },
+        {
+          "eiv_source_name": "Plantago crassifolia",
+          "similarity": 0.6667,
+          "source_trait_measure": [
+            7.3
+          ]
+        }
+      ]
+    },
+    {
+      "EIV_source_rows_with_exact_binomial_plus_suffix": [],
+      "exact_name_source_valid": true,
+      "no_suggested_mapping_automatically_accepted": true,
+      "original_source_exact_MOIST": 5.6,
+      "original_source_plant": "Prunella vulgaris",
+      "same_genus_EIV_rows": 5,
+      "same_genus_high_similarity_source_labels": [
+        {
+          "eiv_source_name": "Prunella vulgaris",
+          "similarity": 1,
+          "source_trait_measure": [
+            5.6
+          ]
+        },
+        {
+          "eiv_source_name": "Prunella cretensis",
+          "similarity": 0.6857,
+          "source_trait_measure": [
+            5
+          ]
+        },
+        {
+          "eiv_source_name": "Prunella laciniata",
+          "similarity": 0.6857,
+          "source_trait_measure": [
+            3.4
+          ]
+        }
+      ]
+    },
+    {
+      "EIV_source_rows_with_exact_binomial_plus_suffix": [],
+      "exact_name_source_valid": false,
+      "no_suggested_mapping_automatically_accepted": true,
+      "original_source_exact_MOIST": null,
+      "original_source_plant": "Trifolium pratense",
+      "same_genus_EIV_rows": 87,
+      "same_genus_high_similarity_source_labels": [
+        {
+          "eiv_source_name": "Trifolium pratense",
+          "similarity": 1,
+          "source_trait_measure": [
+            null
+          ]
+        },
+        {
+          "eiv_source_name": "Trifolium patens",
+          "similarity": 0.9412,
+          "source_trait_measure": [
+            null
+          ]
+        },
+        {
+          "eiv_source_name": "Trifolium arvense",
+          "similarity": 0.8571,
+          "source_trait_measure": [
+            2.9
+          ]
+        },
+        {
+          "eiv_source_name": "Trifolium repens",
+          "similarity": 0.8235,
+          "source_trait_measure": [
+            null
+          ]
+        },
+        {
+          "eiv_source_name": "Trifolium rubens",
+          "similarity": 0.8235,
+          "source_trait_measure": [
+            3.5
+          ]
+        },
+        {
+          "eiv_source_name": "Trifolium pallescens",
+          "similarity": 0.7895,
+          "source_trait_measure": [
+            4.8
+          ]
+        },
+        {
+          "eiv_source_name": "Trifolium praetermissum",
+          "similarity": 0.7805,
+          "source_trait_measure": [
+            4
+          ]
+        },
+        {
+          "eiv_source_name": "Trifolium parnassii",
+          "similarity": 0.7568,
+          "source_trait_measure": [
+            4.3
+          ]
+        },
+        {
+          "eiv_source_name": "Trifolium latinum",
+          "similarity": 0.7429,
+          "source_trait_measure": [
+            3
+          ]
+        },
+        {
+          "eiv_source_name": "Trifolium patulum",
+          "similarity": 0.7429,
+          "source_trait_measure": [
+            4
+          ]
+        }
+      ]
+    }
+  ],
+  "no_biological_moisture_effect_estimated": true,
+  "no_trait_values_inferred_from_genus_or_fuzzy_match": true,
+  "original_13_plant_names": 13,
+  "original_exact_EIV_plant_names": 5,
+  "schema": "alan_anic2022_13species_eiv_unmatched_taxonomic_candidate_audit_v1",
+  "source_Aniс_13_plants_verified": true,
+  "source_ambiguous_or_unmatched": 8,
+  "source_exact_EIV_SHA256": "ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba",
+  "source_authenticated_action_url": "https://github.com/zuizui0223/alan/actions/runs/44662579384",
+  "updated_linkage_method": "literal exact full-name and genus-level suggestive candidates; do not impute or transfer among species",
+  "biological_moisture_effect_confirmed": false
+}

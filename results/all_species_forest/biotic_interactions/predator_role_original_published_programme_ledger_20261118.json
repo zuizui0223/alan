@@ -1,0 +1,277 @@
+{
+  "schema": "alan_20261118_new_predator_roles_programme_ledger_v1",
+  "as_of": "2026-11-18",
+  "selection": "purposeful mechanism and counterexample set; NOT a systematic review or representative meta sample; 2022 artificial-prey spatial reversal was independently added as a published non-randomized counterexample, not pooled with manipulative predator-abundance outcomes",
+  "source_independence_rule": "programme_id is independent study programme; never count multiple endpoint_id rows as independent experiments",
+  "light_treatment_unit_rule": "use independently assigned lit and unlit field plots/sites; repeated nights, multiple model caterpillars, leaves and individual insects are not independent installations",
+  "source_verification_note": "Parkinson directly refit on main; other numerical entries from cited primary published text unless EDI access separately demonstrated",
+  "rows": [
+    {
+      "programme_id": "Parkinson2020",
+      "endpoint_id": "Parkinson2020_Tetragnatha",
+      "year": 2020,
+      "doi": "10.1371/journal.pone.0240138",
+      "biome": "freshwater shoreline",
+      "site_type": "riparian mesocosm",
+      "guild": "web-building spider",
+      "endpoint": "predator_abundance",
+      "direction": "increase",
+      "source_treatment_units": "20 mesocosms: 10 lit and 10 unlit",
+      "sampling": "3 dates per mesocosm",
+      "effect": {
+        "kind": "lit_control_mean_ratio",
+        "value": 2.01,
+        "ci95": [
+          1.66,
+          2.44
+        ]
+      },
+      "raw_source_status": "original source three CSV source hash verified and refit on main",
+      "site_confounding": "fish factorial block assignment not reconstructable",
+      "plant_fitness_measured": false,
+      "source_url": "https://github.com/zuizui0223/alan/blob/main/results/all_species_forest/biotic_interactions/parkinson2020_source_verified_20261118.json"
+    },
+    {
+      "programme_id": "Deitsch2023",
+      "endpoint_id": "Deitsch2023_predators",
+      "year": 2023,
+      "doi": "10.1098/rspb.2023.0153",
+      "biome": "temperate deciduous northern hardwood forest",
+      "site_type": "forest interior and edge",
+      "guild": "arthropod predators and parasitoids",
+      "endpoint": "predator_abundance",
+      "direction": "increase",
+      "source_treatment_units": "4 ALAN and 4 control plots matched in four pairs; two topographic blocks",
+      "sampling": "repeated arthropod samples 2021–2022",
+      "effect": {
+        "kind": "direction_only",
+        "value": null
+      },
+      "raw_source_status": "EDI data+code public knb-lter-hbr.368.2; retrieval preflight pending",
+      "site_confounding": "eight plots not independent caterpillar replicates; capture is not mortality",
+      "plant_fitness_measured": false,
+      "source_url": "https://doi.org/10.1098/rspb.2023.0153"
+    },
+    {
+      "programme_id": "Deitsch2023",
+      "endpoint_id": "Deitsch2023_clay",
+      "year": 2023,
+      "doi": "10.1098/rspb.2023.0153",
+      "biome": "temperate deciduous northern hardwood forest",
+      "site_type": "forest interior and edge",
+      "guild": "predator or parasitoid interactions",
+      "endpoint": "clay_caterpillar_attack_marks",
+      "direction": "increase",
+      "source_treatment_units": "same 4 ALAN/control field pairs as Deitsch predator sampling",
+      "sampling": "plasticine caterpillar models (nested repeated items)",
+      "effect": {
+        "kind": "direction_only",
+        "value": null
+      },
+      "raw_source_status": "original EDI data and code identified; raw per-pair replay pending",
+      "site_confounding": "attack marks on a model do not equal live caterpillar mortality or pollinator decline",
+      "plant_fitness_measured": false,
+      "source_url": "https://doi.org/10.1098/rspb.2023.0153"
+    },
+    {
+      "programme_id": "Brown2023",
+      "endpoint_id": "Brown2023_predator",
+      "year": 2023,
+      "doi": "10.1016/j.isci.2023.106203",
+      "biome": "temperate oak-hickory forest/path edge",
+      "site_type": "10 experimental and 10 interspersed control pitfall traps",
+      "guild": "ground-active predatory arthropods",
+      "endpoint": "predator_abundance",
+      "direction": "increase",
+      "source_treatment_units": "20 fixed traps; 10 lit and 10 control",
+      "sampling": "5 pretreatment nights, 5 treated nights, 5 post-treatment nights; not 15 independent installations",
+      "effect": {
+        "kind": "three_period_experimental_trap_means",
+        "value": null,
+        "pre": 4.96,
+        "during": 11.34,
+        "post": 3.1,
+        "reported_tukey_pre_vs_during_ci_for_pre_minus_during": [
+          -10.56,
+          -2.2
+        ]
+      },
+      "raw_source_status": "published Table 3 original; raw family records available on request only",
+      "site_confounding": "control series not supplied for this specific guild table; during/pre is NOT a BACI effect",
+      "plant_fitness_measured": false,
+      "source_url": "https://doi.org/10.1016/j.isci.2023.106203"
+    },
+    {
+      "programme_id": "Brown2023",
+      "endpoint_id": "Brown2023_herbivore",
+      "year": 2023,
+      "doi": "10.1016/j.isci.2023.106203",
+      "biome": "temperate oak-hickory forest/path edge",
+      "site_type": "same 10 experimental and 10 control pitfall traps as predator endpoint",
+      "guild": "ground-active herbivorous arthropods",
+      "endpoint": "herbivore_abundance",
+      "direction": "decrease_during_light",
+      "source_treatment_units": "same 20 fixed traps; 10 lit and 10 control; do NOT count as an independent experiment from Brown predator data",
+      "sampling": "same 5 pre, 5 during, 5 post nights as Brown predator endpoint",
+      "effect": {
+        "kind": "three_period_experimental_trap_means",
+        "value": null,
+        "pre": 3.28,
+        "during": 1.45,
+        "post": 2.65,
+        "reported_tukey_pre_vs_during_ci_for_pre_minus_during": [
+          0.43,
+          3.23
+        ]
+      },
+      "raw_source_status": "published peer-reviewed primary Table 3; family-level original source by request only",
+      "site_confounding": "guild catch/activity-density can change by movement, capture propensity, and taxonomy; does NOT establish predator control of herbivores",
+      "plant_fitness_measured": false,
+      "source_url": "https://doi.org/10.1016/j.isci.2023.106203"
+    },
+    {
+      "programme_id": "Guo2025",
+      "endpoint_id": "Guo2025_orbweaver",
+      "year": 2025,
+      "doi": "10.1007/s00114-025-02031-w",
+      "biome": "subtropical secondary forest",
+      "site_type": "four Hong Kong peri-urban forest sites",
+      "guild": "Nephila pilipes orb-weaver",
+      "endpoint": "predator_abundance",
+      "direction": "not_resolved",
+      "source_treatment_units": "7 lit/unlit plot pairs distributed across four forest sites (14 plots)",
+      "sampling": "repeated female-spider observations April–June 2024 (417 records)",
+      "effect": {
+        "kind": "no_resolved_ALAN_effect",
+        "value": null,
+        "observed_lit_records": 201,
+        "observed_dark_records": 216
+      },
+      "raw_source_status": "published primary methods and results; individual plot means not recovered",
+      "site_confounding": "417 repeated female observations are not 417 independent lighting units; no inference of exact zero",
+      "plant_fitness_measured": false,
+      "source_url": "https://doi.org/10.1007/s00114-025-02031-w"
+    },
+    {
+      "programme_id": "Guo2025",
+      "endpoint_id": "Guo2025_herbivory",
+      "year": 2025,
+      "doi": "10.1007/s00114-025-02031-w",
+      "biome": "subtropical secondary forest",
+      "site_type": "same four Hong Kong forest sites",
+      "guild": "leaf-chewing herbivores",
+      "endpoint": "leaf_herbivory",
+      "direction": "season_specific_increase",
+      "source_treatment_units": "same 7 plot pairs, not independent from Guo spider endpoint",
+      "sampling": "840 leaves across two plants and three rounds; individual leaves nested within plots",
+      "effect": {
+        "kind": "early_wet_season_positive_treatment_interaction",
+        "value": null,
+        "p_treatment": 0.045,
+        "p_treatment_round": 0.044,
+        "plant": "Psychotria asiatica"
+      },
+      "raw_source_status": "published primary methods and results; raw plot data not reanalyzed",
+      "site_confounding": "no correlation with measured spider biomass; ALAN→spider→herbivory mediation not supported",
+      "plant_fitness_measured": false,
+      "source_url": "https://doi.org/10.1007/s00114-025-02031-w"
+    },
+    {
+      "programme_id": "Farnworth2026",
+      "endpoint_id": "Farnworth2026_groundpredator",
+      "year": 2026,
+      "doi": "10.1016/j.biocon.2026.111967",
+      "biome": "temperate evergreen closed-canopy forest",
+      "site_type": "Maungatautari Ecological Island Aotearoa New Zealand",
+      "guild": "ground-dwelling predatory invertebrates",
+      "endpoint": "predator_abundance",
+      "direction": "decrease",
+      "source_treatment_units": "BACI lit and dark plots; publication abstract omits independent plot number (2025 conference abstract reports six lit and six dark sites)",
+      "sampling": "baseline, three-day, four-week treatment periods; multiple pitfall traps within sites",
+      "effect": {
+        "kind": "published_approximate_fold_decline",
+        "value": "threefold lower under ALAN relative to controls"
+      },
+      "raw_source_status": "published article abstract; individual trap/site data by request only",
+      "site_confounding": "pitfall activity-density not a census; source uncertainty/cluster SE unavailable",
+      "plant_fitness_measured": false,
+      "source_url": "https://doi.org/10.1016/j.biocon.2026.111967"
+    },
+    {
+      "programme_id": "Boom2020",
+      "endpoint_id": "Boom2020_Hadena_seeds",
+      "year": 2020,
+      "doi": "10.1038/s41598-020-75471-1",
+      "biome": "European seminatural grassland",
+      "site_type": "four Dutch field sites",
+      "guild": "Hadena bicruris adult pollinator and seed-predating larvae",
+      "endpoint": "nursery_seed_predation",
+      "direction": "spectral_treatment_difference",
+      "source_treatment_units": "one original programme, four field sites; dark/red/green/white light",
+      "sampling": "flowers and fruits and ovules nested within sites; not independent field treatments",
+      "effect": {
+        "kind": "published_four_spectrum_means",
+        "value": null,
+        "dark": {
+          "fruit": 0.73,
+          "infested": 0.28,
+          "fertilized_noninfested": 0.56
+        },
+        "green": {
+          "fruit": 0.75,
+          "infested": 0.53,
+          "fertilized_noninfested": 0.43
+        },
+        "white": {
+          "fruit": 0.78,
+          "infested": 0.44,
+          "fertilized_noninfested": 0.49
+        },
+        "red": {
+          "fruit": 0.71,
+          "infested": 0.33,
+          "fertilized_noninfested": 0.47
+        },
+        "seed_output_omnibus_p": 0.63
+      },
+      "raw_source_status": "original JATS Table 1 replay already verified on older stacked draft PR #67; avoid duplicate study-counting",
+      "site_confounding": "no significant overall seeds/flower treatment difference; conditional ovule values selected on noninfested fruits; ratio not mediation",
+      "plant_fitness_measured": true,
+      "source_url": "https://doi.org/10.1038/s41598-020-75471-1"
+    },
+    {
+      "programme_id": "Eckhartt2022",
+      "endpoint_id": "Eckhartt2022_bait_predation_spatial_gradient",
+      "year": 2022,
+      "doi": "10.1098/rsbl.2022.0281",
+      "biome": "urban grass streetlight margin",
+      "site_type": "St Andrews UK established LED streetlights; five within-lamp distances",
+      "guild": "unknown predators consuming insect-containing suet pellets",
+      "endpoint": "surrogate_bait_predation_probability",
+      "direction": "lower_predation_near_light_at_night",
+      "source_treatment_units": "7 existing lamppost clusters, measured for 13 calendar days, 5 distance levels; NOT 830 independently assigned lamps",
+      "sampling": "830 artificial prey bait events (approximately 415 before and 415 after dusk); baits left for six hours each; natural twilight and lamp-on coincide",
+      "effect": {
+        "kind": "published_random_lamp_batch_GLMM",
+        "value": null,
+        "model_intercept": -3.32,
+        "pre_dusk_logit": 9.263,
+        "distance_post_dusk_logit_per_m": 0.384,
+        "distance_SE": 0.089,
+        "pre_dusk_distance_interaction": -0.491,
+        "interaction_SE": 0.148,
+        "interaction_z": -3.323,
+        "interaction_reported_p": "<0.001",
+        "published_before_baits_predated": 345,
+        "published_after_baits_predated": 171,
+        "published_baits_total": 830,
+        "random_lamp_intercept_variance": 17.02,
+        "random_batch_intercept_variance": 12.92
+      },
+      "raw_source_status": "published original peer-reviewed Table 1 and official Dryad dataset doi:10.5061/dryad.7m0cfxpxv; author original workbook SHA and 7-lamp refit not yet verified (Dryad API metadata accessible)",
+      "site_confounding": "original lampposts were not switched off at night; time-of-day and unmanipulated street lighting change together; bait pellets are not living insects; real predators unobserved; nuisance random-effects does not make 830 sites",
+      "plant_fitness_measured": false,
+      "source_url": "https://doi.org/10.1098/rsbl.2022.0281"
+    }
+  ]
+}

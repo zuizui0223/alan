@@ -1,0 +1,63 @@
+name: ALAN three true plant reproduction source coefficients and spatial spillover sensitivity
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - results/all_species_forest/biotic_interactions/alan_three_true_plant_reproduction_published_coefficient_ledger_20261119.json
+      - scripts/analysis/alan_three_reproductive_programmes_daynight_edge_sensitivity_20261119.py
+      - tests/test_alan_three_reproductive_programmes_daynight_edge_sensitivity_20261119.py
+      - .github/workflows/alan-three-true-reproduction-silene-route-stage-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  published-primary-coefficient-stage-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate original study field-unit and counterfactual-vs-observed distinction
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_three_reproductive_programmes_daynight_edge_sensitivity_20261119.py -v
+      - name: Recalculate original published per-flower pollination and same-plant dark-edge costs
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_three_primary_reproduction_20261119
+          python -m scripts.analysis.alan_three_reproductive_programmes_daynight_edge_sensitivity_20261119 \
+            --ledger results/all_species_forest/biotic_interactions/alan_three_true_plant_reproduction_published_coefficient_ledger_20261119.json \
+            --out /tmp/alan_three_primary_reproduction_20261119/source_published_daynight_and_darkedge_contrasts.json
+      - name: Assert no pooled endpoints, no fictitious raw experiments, correct source signs
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, math
+          x=json.load(open('/tmp/alan_three_primary_reproduction_20261119/source_published_daynight_and_darkedge_contrasts.json'))
+          assert x['schema']=='alan_20261119_three_true_repro_published_contrast_nonmeta_sensitivity_v1'
+          assert x['primary_published_programmes_n']==3
+          assert x['three_primary_effects_with_same_endpoint_SE_and_verified_treatment_units']==0
+          assert not x['primary_reproductive_effect_random_effects_meta_fitted']
+          m=x['macgregor2019_published_day_night_functional_pathways']
+          assert abs(m['independent_day_night_route_predicted_open']-(1-.624*.472))<1e-12
+          assert m['marginal_caging_rates_not_a_dark_control_only_comparison']
+          g=x['giavi2020_original_field_and_lab_model_table_contrasts']
+          assert g['physical_lit_meadows']==4 and g['physical_dark_control_meadows']==4
+          pred=[a for a in g['original_published_effects_separately_by_endpoint']
+                if a['endpoint']=='Silene_infested_fruit_fraction' and a['orientation']=='adjacent/dark']
+          assert len(pred)==1 and abs(pred[0]['source_model_conditional_attack_odds_ratio']-math.exp(1.9))<1e-10
+          assert g['cannot_pretend_published_reproduction_link_is_actual_seed_loss_ratio']
+          print('ALAN_THREE_SOURCE_PROGRAMME_CONTRAST_GATES_OK_NO_FAKE_META')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-three-plant-reproduction-published-source-daynight-and-spillover-stage
+          path: /tmp/alan_three_primary_reproduction_20261119/source_published_daynight_and_darkedge_contrasts.json
+          retention-days: 90
+          if-no-files-found: error

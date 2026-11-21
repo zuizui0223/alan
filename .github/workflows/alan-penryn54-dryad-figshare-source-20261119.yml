@@ -1,0 +1,70 @@
+name: ALAN one 54-mesocosm trophic programme Dryad 2018 and Figshare 2022 original source
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - scripts/acquisition/alan_penryn54_crosspaper_figshare_dryad_primary_audit_20261119.py
+      - tests/test_alan_penryn54_crosspaper_figshare_dryad_primary_audit_20261119.py
+      - .github/workflows/alan-penryn54-dryad-figshare-source-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  physical-source-programme-identity-and-open-data-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate XLSX CSV and ZIP schema without individual plot data export
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5 pypdf==6.1.0
+          python -m unittest discover -s tests -p test_alan_penryn54_crosspaper_figshare_dryad_primary_audit_20261119.py -v
+      - name: Fetch exact official published Figshare article and Dryad DOI source metadata/bytes
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_penryn54_original
+          python -m scripts.acquisition.alan_penryn54_crosspaper_figshare_dryad_primary_audit_20261119 \
+            --out /tmp/alan_penryn54_original/one_54_light_mesocosm_two_source_access_schema.json
+      - name: Refuse treating a green source metadata job as original light-treatment effect
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/alan_penryn54_original/one_54_light_mesocosm_two_source_access_schema.json'))
+          assert x['schema']=='alan_original_54_mesocosm_three_papers_figshare_dryad_source_gate_v1'
+          assert x['original_physical_light_mesocosms']==54
+          assert x['independent_light_experiment_programmes']==1
+          assert x['crossed_light_arms']*x['crossed_trophic_arms']*x['independent_mesocosms_per_light_trophic_cell']==54
+          assert len(x['original_publications'])==3
+          assert not x['source_54_plot_light_treatment_year_full_join_verified']
+          assert not x['randomized_light_x_predator_effect_reanalyzed_from_raw']
+          assert not x['source_original_row_level_observations_exported']
+          assert not x['source_original_plot_IDs_exported']
+          assert x['green_CI_does_not_imply_original_download']
+          pdf=x['figshare_2022_plant_original_dataset']
+          for item in pdf.get('files',[]):
+            if str(item.get('original_file_name','')).lower().endswith('.pdf') and item.get('download_status')=='VERIFIED_RAW_BYTES':
+              assert item['original_file_schema_only']['kind']=='pdf'
+              assert item['original_file_schema_only']['no_original_pdf_measurement_cells_exported']
+          for k in ('figshare_2022_plant_original_dataset','dryad_2018_herbivory_original_dataset'):
+            z=x[k]
+            assert z['source_authenticated_original_table_count']>=0
+            assert not z['original_light_meso_ids_jointly_matched_other_source']
+            print('PENRYN54_PUBLIC_DATA_GATE',k,z['metadata'],z['source_authenticated_original_table_count'])
+          print('PENRYN54_ONE_EXPERIMENT_THREE_PUBLICATIONS_SOURCE_GATES_OK')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-original-Penryn54-Dryad2018-Figshare2022-source-schema-hashes
+          path: /tmp/alan_penryn54_original/one_54_light_mesocosm_two_source_access_schema.json
+          if-no-files-found: warn
+          retention-days: 90

@@ -1,0 +1,59 @@
+name: ALAN true 17 primary biological endpoint and reproduction eligibility audit
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - results/all_species_forest/biotic_interactions/seymoure2023_plant17_primary_endpoint_tiers_20261119.json
+      - scripts/analysis/alan_seymoure2023_primary17_endpoint_eligibility_20261119.py
+      - tests/test_alan_seymoure2023_primary17_endpoint_eligibility_20261119.py
+      - .github/workflows/alan-seymoure2023-primary17-endpoint-eligibility-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-17-source-primary-endpoints:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Require 17 unique source DOIs and reject false pollination/plant seed equivalence
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m unittest discover -s tests \
+            -p test_alan_seymoure2023_primary17_endpoint_eligibility_20261119.py -v
+      - name: Re-fetch original authenticated 2023 author Excel and join public 17 primary biology papers
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_primary17_original
+          python -m scripts.analysis.alan_seymoure2023_primary17_endpoint_eligibility_20261119 \
+            --registry results/all_species_forest/biotic_interactions/seymoure2023_plant17_primary_endpoint_tiers_20261119.json \
+            --out /tmp/alan_primary17_original/true_17paper_biological_stage_audit.json
+      - name: Guard primary fruit-seed n=3 and no false common meta coefficient
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_primary17_original/true_17paper_biological_stage_audit.json'))
+          assert d['schema']=='alan_source_17_plant_primary_endpoint_stage_eligibility_results_v1'
+          assert d['priority_original_paper_n']==17
+          assert d['priority_original_review_interaction_n']==18
+          assert d['actual_flowering_plant_fruit_seed_papers_n']==3
+          assert d['other_stage_papers_n']==12
+          assert d['effect_size_meta_gate']['verified_common_same_endpoint_effects_with_original_SE']==0
+          assert d['effect_size_meta_gate']['no_meta_pooled_mean_or_confidence_interval_fitted']
+          print('ALAN_ORIGINAL_PLANT_REPRODUCTION_STAGE_AUDIT_PASSED')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-Seymoure2023-original-17primary-study-stage-and-seed-eligibility-audit
+          path: /tmp/alan_primary17_original/true_17paper_biological_stage_audit.json
+          retention-days: 90
+          if-no-files-found: error

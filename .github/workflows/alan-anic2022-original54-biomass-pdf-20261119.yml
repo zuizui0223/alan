@@ -1,0 +1,62 @@
+name: ALAN actual Anic 2022 original 54-trough plant biomass PDF rows and factorial source replay
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - scripts/analysis/alan_anic2022_original_pdf_biomass_54trough_parse_20261119.py
+      - tests/test_alan_anic2022_original_pdf_biomass_54trough_parse_20261119.py
+      - .github/workflows/alan-anic2022-original54-biomass-pdf-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-figshare-PDF-physical-plant-light-factorial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 11
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test source PDF species and numerical data parser
+        run: |
+          set -euo pipefail
+          python -m pip install -q pypdf==6.1.0
+          python -m unittest discover -s tests -p test_alan_anic2022_original_pdf_biomass_54trough_parse_20261119.py -v
+      - name: Re-download original SHA-locked Figshare author PDF and extract true biomass source rows in memory
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_original_54_biomass_source
+          python -m scripts.analysis.alan_anic2022_original_pdf_biomass_54trough_parse_20261119 \
+            --out /tmp/alan_original_54_biomass_source/true_original_54_trough_biomass_source_aggregation.json
+      - name: Assert no plot IDs or individual biological values exported and SOURCE STOP if factorial invalid
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/alan_original_54_biomass_source/true_original_54_trough_biomass_source_aggregation.json'))
+          assert x['schema']=='alan_anic2022_original_54trough_PDF_biomass_parsed_counts_and_cell_means_v1'
+          assert x['source_original_figshare_sha256']=='baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0'
+          assert x['original_total_PDF_pages']==24
+          assert x['original_biomass_section_pages_read']==14
+          assert not x['raw_plot_IDs_or_individual_measurements_exported']
+          assert not x['new_cross_trophic_plant_arthropod_mediation_fitted']
+          if x['experimental_light_trophic_full_factorial_verified']:
+            assert x['original_unique_physical_mesocosms_in_biomass_table']==54
+            assert len(x['original_factorial_cell_assignments_counts_only'])==9
+            assert {v['unique_physical_troughs'] for v in x['original_factorial_cell_assignments_counts_only']}=={6}
+            assert x['source_original_treatment_conflicts']==0
+            print('ANIC_2022_ACTUAL_ORIGINAL_54_TROUGH_BIOMASS_TABLE_VALIDATED')
+          else:
+            print('ANIC_2022_SOURCE_BIOMASS_TABLE_NOT_YET_FITTING_READY',x['source_status'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-Anic2022-original-54-physical-trough-PDF-biomass-source-aggregation
+          path: /tmp/alan_original_54_biomass_source/true_original_54_trough_biomass_source_aggregation.json
+          retention-days: 90
+          if-no-files-found: error

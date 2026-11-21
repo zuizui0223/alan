@@ -1,0 +1,173 @@
+{
+  "schema": "alan_giavi2021_original6meadow_kewF_source_verified_compact_20261120",
+  "successful_source_run": "https://github.com/zuizui0223/alan/actions/runs/44667088538",
+  "original_Giavi_source_git_blob_sha1": "b54cadf945edf2eac129d1b45ce9d5edcbda78cf",
+  "Kew_BIFloraExplorer_source_git_blob_sha1": "e6a1da929af81f370d2a1b79177b489e3e573a06",
+  "source_original_six_lighting_pairs": 6,
+  "source_true_plant_binomials": 10,
+  "original_trait_results": {
+    "F_Doring": {
+      "all_names_matched_source_exact": {
+        "distinct_source_label_arrangements": 15120,
+        "drier_F_le7": 7,
+        "no_causal_independent_species_light_effect": true,
+        "observed_Spearman_rho": -0.8806314188730906,
+        "physical_meadow_light_pairs_total": 6,
+        "species": 9,
+        "status": "EXACT_ORDINAL_SPECIES_MOISTURE_LABEL_NULL_EXPLORATORY",
+        "two_sided_exact_label_permutation_p": 0.0033068783068783067,
+        "wet_F_gt7": 2
+      },
+      "leave_one_species_out_rho": {
+        "Angelica sylvestris": -0.8715757936489196,
+        "Cirsium oleraceum": -0.8647908694379515,
+        "Daucus carota": -0.8607483448197477,
+        "Filipendula ulmaria": -0.8470243628419076,
+        "Geranium molle": -0.8607483448197477,
+        "Geranium sylvaticum": -0.8647908694379515,
+        "Heracleum sphondylium": -0.8838515090524254,
+        "Lotus corniculatus": -0.9092412093166349,
+        "Trifolium pratense": -0.9084029398594373
+      },
+      "source_names_with_2plus_meadow_pairs": 5,
+      "source_names_with_F": 9,
+      "source_scored_original_species_and_pair_count": [
+        {
+          "F": 8,
+          "original_shared_meadow_pairs": 2,
+          "source_name": "Angelica sylvestris"
+        },
+        {
+          "F": 7,
+          "original_shared_meadow_pairs": 6,
+          "source_name": "Cirsium oleraceum"
+        },
+        {
+          "F": 4,
+          "original_shared_meadow_pairs": 1,
+          "source_name": "Daucus carota"
+        },
+        {
+          "F": 8,
+          "original_shared_meadow_pairs": 2,
+          "source_name": "Filipendula ulmaria"
+        },
+        {
+          "F": 4,
+          "original_shared_meadow_pairs": 1,
+          "source_name": "Geranium molle"
+        },
+        {
+          "F": 6,
+          "original_shared_meadow_pairs": 1,
+          "source_name": "Geranium sylvaticum"
+        },
+        {
+          "F": 5,
+          "original_shared_meadow_pairs": 1,
+          "source_name": "Heracleum sphondylium"
+        },
+        {
+          "F": 4,
+          "original_shared_meadow_pairs": 6,
+          "source_name": "Lotus corniculatus"
+        },
+        {
+          "F": 5,
+          "original_shared_meadow_pairs": 5,
+          "source_name": "Trifolium pratense"
+        }
+      ],
+      "strict_2plus_meadow_pairs": {
+        "distinct_source_label_arrangements": 60,
+        "drier_F_le7": 3,
+        "no_causal_independent_species_light_effect": true,
+        "observed_Spearman_rho": -0.7181848464596079,
+        "physical_meadow_light_pairs_total": 6,
+        "species": 5,
+        "status": "EXACT_ORDINAL_SPECIES_MOISTURE_LABEL_NULL_EXPLORATORY",
+        "two_sided_exact_label_permutation_p": 0.16666666666666666,
+        "wet_F_gt7": 2
+      }
+    },
+    "F_PLANTATT": {
+      "all_names_matched_source_exact": {
+        "distinct_source_label_arrangements": 420,
+        "drier_F_le7": 6,
+        "no_causal_independent_species_light_effect": true,
+        "observed_Spearman_rho": -0.7715167498104596,
+        "physical_meadow_light_pairs_total": 6,
+        "species": 8,
+        "status": "EXACT_ORDINAL_SPECIES_MOISTURE_LABEL_NULL_EXPLORATORY",
+        "two_sided_exact_label_permutation_p": 0.0380952380952381,
+        "wet_F_gt7": 2
+      },
+      "leave_one_species_out_rho": {
+        "Angelica sylvestris": -0.6573757351339166,
+        "Daucus carota": -0.6972166887783964,
+        "Filipendula ulmaria": -0.6573757351339166,
+        "Geranium molle": -0.8504200642707614,
+        "Geranium sylvaticum": -0.7559289460184546,
+        "Heracleum sphondylium": -0.7559289460184546,
+        "Lotus corniculatus": -0.8964214570007953,
+        "Trifolium pratense": -0.8504200642707614
+      },
+      "source_names_with_2plus_meadow_pairs": 4,
+      "source_names_with_F": 8,
+      "source_scored_original_species_and_pair_count": [
+        {
+          "F": 8,
+          "original_shared_meadow_pairs": 2,
+          "source_name": "Angelica sylvestris"
+        },
+        {
+          "F": 4,
+          "original_shared_meadow_pairs": 1,
+          "source_name": "Daucus carota"
+        },
+        {
+          "F": 8,
+          "original_shared_meadow_pairs": 2,
+          "source_name": "Filipendula ulmaria"
+        },
+        {
+          "F": 5,
+          "original_shared_meadow_pairs": 1,
+          "source_name": "Geranium molle"
+        },
+        {
+          "F": 5,
+          "original_shared_meadow_pairs": 1,
+          "source_name": "Geranium sylvaticum"
+        },
+        {
+          "F": 5,
+          "original_shared_meadow_pairs": 1,
+          "source_name": "Heracleum sphondylium"
+        },
+        {
+          "F": 4,
+          "original_shared_meadow_pairs": 6,
+          "source_name": "Lotus corniculatus"
+        },
+        {
+          "F": 5,
+          "original_shared_meadow_pairs": 5,
+          "source_name": "Trifolium pratense"
+        }
+      ],
+      "strict_2plus_meadow_pairs": {
+        "distinct_source_label_arrangements": 12,
+        "drier_F_le7": 2,
+        "no_causal_independent_species_light_effect": true,
+        "observed_Spearman_rho": -0.7378647873726218,
+        "physical_meadow_light_pairs_total": 6,
+        "species": 4,
+        "status": "EXACT_ORDINAL_SPECIES_MOISTURE_LABEL_NULL_EXPLORATORY",
+        "two_sided_exact_label_permutation_p": 0.3333333333333333,
+        "wet_F_gt7": 2
+      }
+    }
+  },
+  "warning": "Within-source 6 light-dark meadow pairs, not 8 or 9 independent illumination experiments; exact source species rank-label null conditional on aggregate coefficients, not 6-meadow ALAN randomization; strict >=2 paired meadows fails source support; not wet species causal mediation"
+}

@@ -1,0 +1,58 @@
+name: ALAN 2022 original 54-trough Lotus biomass independent-unit Welch contrasts
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - scripts/analysis/alan_anic2022_Lotus_original_54trough_biomass_welch_20261119.py
+      - tests/test_alan_anic2022_Lotus_original_54trough_biomass_welch_20261119.py
+      - .github/workflows/alan-anic2022-original-Lotus54trough-welch-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  genuine-lotus-biomass-light-code-independent-troughs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 11
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test physical unit, source SHA and lack of assumed semantic light-code mapping
+        run: |
+          set -euo pipefail
+          python -m pip install -q pypdf==6.1.0 scipy==1.15.3
+          python -m unittest discover -s tests -p test_alan_anic2022_Lotus_original_54trough_biomass_welch_20261119.py -v
+      - name: Re-download exact Figshare original PDF and compute independent-trough stratum-adjusted contrasts
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_anic_lotus_original
+          python -m scripts.analysis.alan_anic2022_Lotus_original_54trough_biomass_welch_20261119 \
+            --out /tmp/alan_anic_lotus_original/actual_lotus_54trough_biomass_lightcode_contrasts.json
+      - name: Preserve source stage and adjusted tests
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_anic_lotus_original/actual_lotus_54trough_biomass_lightcode_contrasts.json'))
+          assert d['schema']=='alan_20261119_Anic_original_lotus_54trough_equal_trophic_light_contrasts_v1'
+          assert d['original_independent_physical_light_trophic_troughs']==54
+          assert d['original_species_by_trough_actual_raw_records']==665
+          assert d['primary_species']=='Lotus pedunculatus'
+          assert not d['source_original_light_code_mapping_verified_to_unlit_amber_white']
+          assert not d['source_2018_Dryad_herbivore_rows_joined_by_original_trough']
+          assert len(d['source_original_exploratory_light_pair_contrasts'])==3
+          assert d['exploratory_analytic_multiple_testing_and_original_author_pvalue_separate']
+          assert d['no_original_plot_IDs_or_species_by_trough_values_exported']
+          print('ANIC2022_LOTUS_TRUE54_PHYSICAL_TROUGH_BIOMASS_EFFECT_AND_MULTIPLICITY_GATES_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-Anic2022-original-Lotus54trough-3light-x3trophic-Welch-Holm-aggregate
+          path: /tmp/alan_anic_lotus_original/actual_lotus_54trough_biomass_lightcode_contrasts.json
+          if-no-files-found: error
+          retention-days: 90

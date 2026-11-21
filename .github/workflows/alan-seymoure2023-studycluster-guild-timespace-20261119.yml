@@ -1,0 +1,60 @@
+name: ALAN 79-paper study-cluster guild sign and time-space analysis
+
+on:
+  push:
+    branches:
+      - analysis/alan-predator-guild-switch-edi-20261118
+    paths:
+      - scripts/analysis/alan_seymoure2023_studycluster_guild_time_space_screen_20261119.py
+      - tests/test_alan_seymoure2023_studycluster_guild_time_space_screen_20261119.py
+      - .github/workflows/alan-seymoure2023-studycluster-guild-timespace-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  genuine-signed-original-study-cluster-screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check unmodified 2023 source coding, exact conditional tests and 79 DOI clusters
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m unittest discover -s tests -p test_alan_seymoure2023_studycluster_guild_time_space_screen_20261119.py -v
+          python -m unittest discover -s tests -p test_alan_seymoure2023_original_direction_study_units_20261119.py -v
+      - name: Re-download original Figshare 81 source interactions and compute study-preserving descriptive contrasts
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_seymoure_role_signs_20261119
+          python -m scripts.analysis.alan_seymoure2023_studycluster_guild_time_space_screen_20261119 \
+            --out /tmp/alan_seymoure_role_signs_20261119/study_cluster_exploratory_summary.json
+      - name: Validate source programme denominators and avoid causal effect-size claims
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          p='/tmp/alan_seymoure_role_signs_20261119/study_cluster_exploratory_summary.json'
+          d=json.load(open(p))
+          assert d['schema']=='alan_original_2023_seymoure_79paper_guild_time_space_descriptive_associations_v1'
+          assert d['independent_publications_in_review']==79
+          assert d['original_source_interactions']==81
+          assert d['predator_prey_versus_herbivory_coding']['predator_prey']['n']==55
+          assert d['predator_prey_versus_herbivory_coding']['herbivory']['n']==12
+          assert d['within_publication_original_spatiotemporal_coding']['spatial_only']==24
+          assert d['within_publication_original_spatiotemporal_coding']['temporal_only']==4
+          assert d['inference_gate']['not_a_random_effects_effect_size_meta_analysis']
+          assert d['inference_gate']['no_original_study_row_or_DOI_export']
+          print('ALAN_2023_ORIGINAL_REVIEW_DESCRIPTIVE_GUILD_GATES_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-79paper-source-guild-direction-time-space-nonmeta-20261119
+          path: /tmp/alan_seymoure_role_signs_20261119/study_cluster_exploratory_summary.json
+          retention-days: 90
+          if-no-files-found: error

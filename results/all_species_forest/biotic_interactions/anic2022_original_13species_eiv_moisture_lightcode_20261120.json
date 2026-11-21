@@ -1,0 +1,177 @@
+{
+  "schema": "alan_Anic2022_13plant_original_EIV_exact_source_verified_compact_v1",
+  "original_source_CI": "https://github.com/zuizui0223/alan/actions/runs/44662225191",
+  "original_source_pdf_sha256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+  "independent_EIV_SHA256": "ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba",
+  "original_plant_species": 13,
+  "official_EIV_exact_MOIST_available": 5,
+  "observed_13_species_source_light_code_logratios": [
+    {
+      "MOIST": null,
+      "codes": {
+        "L2/L1": 0.35548948632263994,
+        "L3/L1": -0.3684932884032571,
+        "L3/L2": -0.7239827747258971
+      },
+      "species": "Achillea millefolium"
+    },
+    {
+      "MOIST": null,
+      "codes": {
+        "L2/L1": 0.4093517509524789,
+        "L3/L1": 0.3034408066905969,
+        "L3/L2": -0.10591094426188186
+      },
+      "species": "Agrostis tenuis"
+    },
+    {
+      "MOIST": null,
+      "codes": {
+        "L2/L1": 0.03038906231628557,
+        "L3/L1": 0.24097599605582998,
+        "L3/L2": 0.21058693373954432
+      },
+      "species": "Anthoxanthum odoratum"
+    },
+    {
+      "MOIST": 4.6,
+      "codes": {
+        "L2/L1": 0.1646649112554202,
+        "L3/L1": -0.3914869448589895,
+        "L3/L2": -0.5561518561144096
+      },
+      "species": "Centaurea nigra"
+    },
+    {
+      "MOIST": null,
+      "codes": {
+        "L2/L1": 0.26596444343885706,
+        "L3/L1": 0.29151754264980134,
+        "L3/L2": 0.02555309921094431
+      },
+      "species": "Dactylis glomerata"
+    },
+    {
+      "MOIST": 4.1,
+      "codes": {
+        "L2/L1": -0.38672089163936296,
+        "L3/L1": -0.2155444402198028,
+        "L3/L2": 0.17117645141956025
+      },
+      "species": "Festuca ovina"
+    },
+    {
+      "MOIST": null,
+      "codes": {
+        "L2/L1": 0.028233105167100737,
+        "L3/L1": -0.4271353052663374,
+        "L3/L2": -0.4553684104334382
+      },
+      "species": "Holcus lanatus"
+    },
+    {
+      "MOIST": null,
+      "codes": {
+        "L2/L1": 0.18686308661024817,
+        "L3/L1": 0.21743501380420588,
+        "L3/L2": 0.030571927193957838
+      },
+      "species": "Hypochaeris radicata"
+    },
+    {
+      "MOIST": null,
+      "codes": {
+        "L2/L1": 0.4689671683420264,
+        "L3/L1": 0.27553912334314934,
+        "L3/L2": -0.19342804499887703
+      },
+      "species": "Lotus corniculatus"
+    },
+    {
+      "MOIST": 7.9,
+      "codes": {
+        "L2/L1": -0.2565283854315375,
+        "L3/L1": -0.4400702347148066,
+        "L3/L2": -0.18354184928326914
+      },
+      "species": "Lotus pedunculatus"
+    },
+    {
+      "MOIST": 4.5,
+      "codes": {
+        "L2/L1": 0.22778510543712094,
+        "L3/L1": 0.24694431286776763,
+        "L3/L2": 0.019159207430646776
+      },
+      "species": "Plantago lanceolata"
+    },
+    {
+      "MOIST": 5.6,
+      "codes": {
+        "L2/L1": null,
+        "L3/L1": -0.7497451002535943,
+        "L3/L2": null
+      },
+      "species": "Prunella vulgaris"
+    },
+    {
+      "MOIST": null,
+      "codes": {
+        "L2/L1": 0.16788913942974992,
+        "L3/L1": 0.007961846101853666,
+        "L3/L2": -0.15992729332789635
+      },
+      "species": "Trifolium pratense"
+    }
+  ],
+  "strict_EIV_trait_moderator_support": {
+    "descriptive_only": {
+      "L2/L1": {
+        "MOIST_max": 7.9,
+        "MOIST_min": 4.1,
+        "Spearman_MOIST_vs_log_Biomass_ratio_exploratory": 0.19999999999999998,
+        "drier_species_n": 3,
+        "endpoint": "total shoot+root biomass, not reproduction",
+        "light_codes_unmapped_to_original_spectral_arms": true,
+        "median_logratio_drier_le7": 0.1646649112554202,
+        "median_logratio_wet7": -0.2565283854315375,
+        "source_species_n": 4,
+        "wet_species_n": 1
+      },
+      "L3/L1": {
+        "MOIST_max": 7.9,
+        "MOIST_min": 4.1,
+        "Spearman_MOIST_vs_log_Biomass_ratio_exploratory": -0.7999999999999999,
+        "drier_species_n": 4,
+        "endpoint": "total shoot+root biomass, not reproduction",
+        "light_codes_unmapped_to_original_spectral_arms": true,
+        "median_logratio_drier_le7": -0.30351569253939614,
+        "median_logratio_wet7": -0.4400702347148066,
+        "source_species_n": 5,
+        "wet_species_n": 1
+      },
+      "L3/L2": {
+        "MOIST_max": 7.9,
+        "MOIST_min": 4.1,
+        "Spearman_MOIST_vs_log_Biomass_ratio_exploratory": -0.7999999999999999,
+        "drier_species_n": 3,
+        "endpoint": "total shoot+root biomass, not reproduction",
+        "light_codes_unmapped_to_original_spectral_arms": true,
+        "median_logratio_drier_le7": 0.019159207430646776,
+        "median_logratio_wet7": -0.18354184928326914,
+        "source_species_n": 4,
+        "wet_species_n": 1
+      }
+    },
+    "distinct_matched_drier_plant_names": 4,
+    "distinct_matched_wet_plant_names": 1,
+    "matched_original_plants": 5,
+    "multiple_contrast_confirmatory_inference": null,
+    "status": "SOURCE_MOISTURE_MODERATOR_COMMON_SUPPORT_STOP",
+    "study_original_plants": 13
+  },
+  "source_treatment_physical_mesocosms": 54,
+  "wetness_moderator_coefficient_newly_fitted": false,
+  "source_original_L_code_to_illumination_assignment_unverified": true,
+  "plant_absences_not_imputed_zeros": true
+}

@@ -1,0 +1,54 @@
+name: ALAN Giavi 6-meadow flower-adjusted moisture response original RData
+on:
+  push:
+    branches: [analysis/alan-predator-guild-switch-edi-20261118]
+    paths:
+      - 'scripts/analysis/alan_giavi2021_true6meadow_floweradjusted_moisture_20261120.py'
+      - 'tests/test_alan_giavi2021_true6meadow_floweradjusted_20261120.py'
+      - '.github/workflows/alan-giavi-true6meadow-floweradjusted-20261120.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  true-six-original-meadow-pairs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original RData and Kew source numerical dependencies
+        run: python -m pip install -q pyreadr==0.5.2 pandas==2.2.3 numpy==2.1.3 scipy==1.15.2
+      - name: Test six-site signflip and source biological-support gate
+        run: python -m unittest discover -s tests -p 'test_alan_giavi2021_true6meadow_floweradjusted_20261120.py' -v
+      - name: Recompute 1884 original source rows, matched plant pair and true floral cover
+        run: |
+          python -m scripts.analysis.alan_giavi2021_true6meadow_floweradjusted_moisture_20261120 \
+             --out /tmp/alan_giavi2021_original_floweradjusted_moisture.json
+      - name: Verify original six meadow and 193 plant pairs, no biological invented zeros
+        run: |
+          python - <<'PY'
+          import json
+          s=json.load(open('/tmp/alan_giavi2021_original_floweradjusted_moisture.json'))
+          assert s['schema']=='alan_Giavi2021_original6_meadows_flower_adjusted_wetness_moderation_v1'
+          assert s['original_source']['rows']==1884
+          assert s['original_source']['meadow_pairs']==6
+          assert s['original_source']['sampling_events']==37
+          assert s['original_source']['matched_plant_pair_cells']==193
+          assert s['original_source']['source_guild_flower_cover_identical']
+          assert s['unobserved_plant_arm_not_assumed_zero']
+          assert s['do_not_count_193_plant_pairs_as_independent_ALAN_lighting_units'] if 'do_not_count_193_plant_pairs_as_independent_ALAN_lighting_units' in s else s['no_193_independent_randomized_treatments']
+          assert s['cannot_establish_wet_plant_macro_mechanism']
+          print('ORIGINAL_GIAVI_6_MEADOW_PAIRED_SOURCE_AND_NO_CAUSAL_PROMOTION_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-Giavi-original-6meadow-flower-adjusted-moderator
+          path: /tmp/alan_giavi2021_original_floweradjusted_moisture.json
+          retention-days: 75
+          if-no-files-found: error
