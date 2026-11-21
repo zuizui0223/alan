@@ -1,0 +1,90 @@
+{
+  "purpose": "Verified PLANTATT habitat-affinity support for four complete, survival-reconciled Penryn plant species; not a general moisture moderator estimate",
+  "retrieved_and_checked_date_UTC": "2026-11-21T14:24:29.430976+00:00",
+  "source_url": "https://raw.githubusercontent.com/RBGKew/BIFloraExplorer/master/data-raw/BI_MAIN.csv",
+  "source_browser_url": "https://github.com/RBGKew/BIFloraExplorer/blob/master/data-raw/BI_MAIN.csv",
+  "source_dataset_publication_doi": "10.1038/s41597-021-01104-5",
+  "source_sha256": "89cbc9cb6b6651b847e65bcf6155856fbf41dbf1a85bc39aed78bed6161c20b7",
+  "source_git_blob_sha1": "e6a1da929af81f370d2a1b79177b489e3e573a06",
+  "source_encoding_used": "latin1; exact target names and numeric fields are ASCII",
+  "source_rows": 3227,
+  "name_source": "Kew POWO taxon386415-1 retrieved with web search/open 2026-11-21; asserts Agrostis tenuis Sibth. synonym of Agrostis capillaris. Original biomass table reports binomial without authority.",
+  "rows": [
+    {
+      "source_species": "Agrostis tenuis",
+      "matched_Kew_species": "Agrostis capillaris",
+      "join_method": "authoritative_Kew_POWO_synonym",
+      "F_PLANTATT": 5,
+      "L_PLANTATT": 6,
+      "taxonomic_status": "Accepted",
+      "aggregate_flag": "",
+      "Kew_id": "30197865-2",
+      "source_csv_line": 55,
+      "POWO_taxon_url": "http://plantsoftheworldonline.org/taxon/30197865-2",
+      "synonym_evidence_url": "https://powo.science.kew.org/taxon/386415-1",
+      "synonym_evidence": "Agrostis tenuis Sibth. is a synonym of Agrostis capillaris"
+    },
+    {
+      "source_species": "Anthoxanthum odoratum",
+      "matched_Kew_species": "Anthoxanthum odoratum",
+      "join_method": "exact_binomial",
+      "F_PLANTATT": 6,
+      "L_PLANTATT": 7,
+      "taxonomic_status": "Accepted",
+      "aggregate_flag": "",
+      "Kew_id": "389034-1",
+      "source_csv_line": 182,
+      "POWO_taxon_url": "http://plantsoftheworldonline.org/taxon/389034-1",
+      "synonym_evidence_url": "",
+      "synonym_evidence": ""
+    },
+    {
+      "source_species": "Hypochaeris radicata",
+      "matched_Kew_species": "Hypochaeris radicata",
+      "join_method": "exact_binomial",
+      "F_PLANTATT": 4,
+      "L_PLANTATT": 8,
+      "taxonomic_status": "Accepted",
+      "aggregate_flag": "",
+      "Kew_id": "225575-1",
+      "source_csv_line": 1490,
+      "POWO_taxon_url": "http://plantsoftheworldonline.org/taxon/225575-1",
+      "synonym_evidence_url": "",
+      "synonym_evidence": ""
+    },
+    {
+      "source_species": "Lotus pedunculatus",
+      "matched_Kew_species": "Lotus pedunculatus",
+      "join_method": "exact_binomial",
+      "F_PLANTATT": 8,
+      "L_PLANTATT": 7,
+      "taxonomic_status": "Accepted",
+      "aggregate_flag": "",
+      "Kew_id": "503822-1",
+      "source_csv_line": 1752,
+      "POWO_taxon_url": "http://plantsoftheworldonline.org/taxon/503822-1",
+      "synonym_evidence_url": "",
+      "synonym_evidence": ""
+    }
+  ],
+  "interpretation": {
+    "F_is": "British/Irish PLANTATT ordinal habitat-moisture affinity, separate from European EIV MOIST; not measured mesocosm soil water",
+    "L_is": "British/Irish PLANTATT ordinal habitat-light affinity; not artificial-night-light sensitivity or the experiment light treatment code",
+    "high_F_species": [
+      "Lotus pedunculatus"
+    ],
+    "one_high_F_taxon_confounded_with_species_identity": true,
+    "reference_mean_L_PLANTATT": 7.0,
+    "Lotus_L_PLANTATT": 7,
+    "same_L_pair": [
+      "Lotus pedunculatus",
+      "Anthoxanthum odoratum"
+    ],
+    "not_identified": [
+      "causal effect of moisture affinity",
+      "response to soil moisture manipulation",
+      "mediation by herbivores or predators",
+      "general effect across wet plant species"
+    ]
+  }
+}

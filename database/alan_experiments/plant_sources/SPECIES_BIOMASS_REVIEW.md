@@ -1,5 +1,12 @@
 # Penryn species biomass: source rows and conditional descriptive contrasts
 
+**Subsequent analysis, 2026-11-21:** the four species with complete54-unit
+biomass and concordant S1 survival counts now have a separate
+[covariance-aware composition and trophic contrast analysis](complete_species_trophic/README.md).
+The original13-species descriptive extraction below is retained unchanged;
+its earlier statement that no intervals were supplied describes that extraction.
+The additional analysis is not a moisture regression or a new experiment.
+
 2026-11-21. Original author data: https://doi.org/10.6084/m9.figshare.20304039,
 PDF https://ndownloader.figshare.com/files/36265164. Article:
 https://doi.org/10.1002/ece3.9157 (PMC9352868). The cached primary XML
