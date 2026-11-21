@@ -1,0 +1,29 @@
+{
+  "combined_search_reports": 539,
+  "supplementary_ledger_reports": 18,
+  "supplementary_reports_already_in_combined_search": 4,
+  "additional_reports_outside_both_searches": 14,
+  "union_reports": 553,
+  "publication_families_after_known_links": 549,
+  "primary_read_documented_reports": 173,
+  "pending_documented_fulltext_followup_reports": 34,
+  "no_documented_current_fulltext_followup_reports": 346,
+  "final_eligibility": false,
+  "final_prisma": false,
+  "input_sha256": {
+    "combined_search_reports.csv": "d00c48c2c533e0295ca839735f43e1a926272482390e4a2e4d67d06d94377277",
+    "combined_search_appearances.csv": "3cf5146a4214996af060c06769779d219097c5e9b7d85f1d4afc5fa1ae3461dd",
+    "report_review_coverage.csv": "ae68254939da077faf790cd6c45766718fd516f6b21b36a73d8d868ab36a1e0a",
+    "supplementary_report_sources.csv": "f93297354e2157c33d1a41145ec2f1752bcf10295d9dd7dbc0280e5fe6a7ae7c",
+    "pollination_expansion_fulltext_followup.csv": "0739f9042803522ca2bbc22fe4631f86c19975655195fa051b39d53479317272",
+    "partial_report_reviews.csv": "1692d171d30b678fbee8970c0deceebcf916398b7eb4c086fe8c14fa3ddd09cd"
+  },
+  "limits": [
+    "Original 160 read retained reports differs from all161 read original reports",
+    "A primary read can support exclusion or contextual use, not necessarily experimental eligibility",
+    "No fulltext requirement here is not a confirmed final exclusion",
+    "Partial inspections do not become full reading; version links do not transfer reading",
+    "Citation ledger is documented sources, not exhaustive citation-search hit count",
+    "Programme-level independence and final adoption remain unadjudicated"
+  ]
+}
