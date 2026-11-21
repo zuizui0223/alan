@@ -1,0 +1,134 @@
+{
+  "schema": "penryn_independent_jacobian_verification_v1",
+  "status": "passed",
+  "verified_at_utc": "2026-11-21T14:35:09.700853+00:00",
+  "analysis_dir": "/workspace/scratch/e42e6d7d1b3b/alan/database/alan_experiments/plant_sources/complete_species_trophic",
+  "method": "36 arithmetic arm means; nine 4x4 sample covariance blocks divided by 6; 24x36 log-ratio Jacobian; independent 12x24 contrast matrix",
+  "analysis_implementation_imported_or_executed": false,
+  "verification_agent": "AI independent calculation review",
+  "human_duplicate_extraction": false,
+  "scope": "Repository source tables and saved calculations; this script does not re-extract the original PDF or verify trait values",
+  "selected_species": [
+    "Agrostis tenuis",
+    "Anthoxanthum odoratum",
+    "Hypochaeris radicata",
+    "Lotus pedunculatus"
+  ],
+  "source_rows": 216,
+  "physical_mesocosms": 54,
+  "independent_programmes": 1,
+  "species_effects_checked": 24,
+  "species_covariance_cells_checked": 576,
+  "derived_contrasts_checked": 12,
+  "derived_covariance_cells_checked": 144,
+  "species_covariance_rank": 24,
+  "species_covariance_min_eigenvalue": 0.007620824952615047,
+  "absolute_tolerance": 1e-12,
+  "relative_tolerance": 1e-12,
+  "max_absolute_errors": {
+    "selected_source_biomass": 0.0,
+    "species_log_effects": 7.771561172376096e-16,
+    "species_covariance": 1.1102230246251565e-16,
+    "species_variance": 1.1102230246251565e-16,
+    "contrast_weights": 0.0,
+    "derived_log_effects": 1.033895191682177e-15,
+    "derived_covariance": 1.1102230246251565e-16,
+    "derived_variance": 1.1102230246251565e-16,
+    "ratio": 8.881784197001252e-16,
+    "lower_95_t5": 2.220446049250313e-16,
+    "upper_95_t5": 6.217248937900877e-15,
+    "lower_95_family_t5": 9.71445146547012e-17,
+    "upper_95_family_t5": 1.4210854715202004e-14,
+    "mean_log_estimand": 5.551115123125783e-16,
+    "single_comparator_marginals": 3.885780586188048e-16
+  },
+  "source_sha256": {
+    "species_biomass_source_rows.csv": "86f270e65cc893e55f58b49b983e2191a15d7d67247b4447babd605175b88d22",
+    "species_survival_reconciliation.csv": "fac8c68d8d01972c4c32e7c91321bb704da983680a9909744f219820429c25c8",
+    "anic2022_community_units.csv": "6fb371b5a62ddf9e241e8f746fd1a9db541eab52736b62d6e059f40aef387039"
+  },
+  "checked_output_sha256": {
+    "selected_source_rows.csv": "97c512490a01cf61baf2e3e4fc89e60aa4449fce43dd61fea355382bc02ed00f",
+    "species_effects.csv": "0e97941b2097aa0e9a2a48a0e19e8f8522b84b91fec68ac95f91429be3b6e24d",
+    "species_covariance.csv": "958691962c0e2ad33ceaa3ba443a609785c031d335eb85ce831925c282158b75",
+    "contrast_weights.csv": "10826f6dd7ed3270640209d281cae7b3b2d95f2198ce7cdfe291ef0c87b3c09b",
+    "composition_and_trophic_contrasts.csv": "bdef0138b4ba0a819a765ebb0728d0f50a690e2a57b9ede56b9e168e83b9d5b4",
+    "contrast_covariance.csv": "13350c35739da57f1659ce185b74099866f749d78bd9ab0a88dbaaaa298219b9",
+    "mean_log_estimand_sensitivity.csv": "77666ff2ce793a72d646b4711aaeb95083b762a3d3ce216926408adc166e3504",
+    "comparator_sensitivity.csv": "ab4725578750773d0277240308427ca034c27e357d1911c0880199591ce403fc",
+    "analysis_summary.json": "c7d9205f2ff1070870303907470c4420d61773348e991c2ed3680b4cb74ef3f3"
+  },
+  "verifier_sha256": "08ba34511ef7a0b570870918f9169c01123bd67e5d4d0400f7c5b62685d90aba",
+  "marginal_results": [
+    {
+      "light": "L2",
+      "ratio": 0.6358796435134657,
+      "lower_95_t5": 0.3632106213165235,
+      "upper_95_t5": 1.1132464121484034,
+      "lower_95_family_t5": 0.3192056900265283,
+      "upper_95_family_t5": 1.2667158940719645
+    },
+    {
+      "light": "L3",
+      "ratio": 0.4916520070487306,
+      "lower_95_t5": 0.2424673143124862,
+      "upper_95_t5": 0.9969248709684628,
+      "lower_95_family_t5": 0.2059942691039301,
+      "upper_95_family_t5": 1.173438936367154
+    }
+  ],
+  "all_four_modifier_nominal_intervals_include_one": true,
+  "mean_log_alternative_marginal_ratios": {
+    "L2": 0.6647152445292711,
+    "L3": 0.5153880238084673
+  },
+  "single_comparator_marginals": [
+    {
+      "comparator": "Agrostis tenuis",
+      "light": "L2",
+      "ratio": 0.5212040950398292,
+      "lower_95_t5": 0.20473249875368085,
+      "upper_95_t5": 1.3268714558753132
+    },
+    {
+      "comparator": "Agrostis tenuis",
+      "light": "L3",
+      "ratio": 0.4566597330889593,
+      "lower_95_t5": 0.1731244753057258,
+      "upper_95_t5": 1.204555921146422
+    },
+    {
+      "comparator": "Anthoxanthum odoratum",
+      "light": "L2",
+      "ratio": 0.7498243287361991,
+      "lower_95_t5": 0.3805187683692453,
+      "upper_95_t5": 1.4775526746662655
+    },
+    {
+      "comparator": "Anthoxanthum odoratum",
+      "light": "L3",
+      "ratio": 0.5081270204575133,
+      "lower_95_t5": 0.21961454194035968,
+      "upper_95_t5": 1.1756647198214554
+    },
+    {
+      "comparator": "Hypochaeris radicata",
+      "light": "L2",
+      "ratio": 0.6578962631518477,
+      "lower_95_t5": 0.3760177167120773,
+      "upper_95_t5": 1.1510827118834617
+    },
+    {
+      "comparator": "Hypochaeris radicata",
+      "light": "L3",
+      "ratio": 0.5121632832787265,
+      "lower_95_t5": 0.23713645507324602,
+      "upper_95_t5": 1.1061615501413447
+    }
+  ],
+  "limitations": [
+    "First-order delta and t5 intervals remain approximate with six units per cell",
+    "Post hoc complete-survivor species subset; not a general moisture effect or new independent study",
+    "Sensitivity point directions do not establish significant individual comparator differences"
+  ]
+}

@@ -1,0 +1,14 @@
+species,recorded_units,complete_positive_54,survival_all_nine_cells_agree,component_values_consistent,included
+Achillea millefolium,53,False,False,True,False
+Agrostis tenuis,54,True,True,True,True
+Anthoxanthum odoratum,54,True,True,True,True
+Centaurea nigra,54,True,False,True,False
+Dactylis glomerata,53,False,False,True,False
+Festuca ovina,50,False,False,False,False
+Holcus lanatus,51,False,False,True,False
+Hypochaeris radicata,54,True,True,True,True
+Lotus corniculatus,47,False,False,True,False
+Lotus pedunculatus,54,True,True,True,True
+Plantago lanceolata,52,False,False,True,False
+Prunella vulgaris,38,False,False,True,False
+Trifolium pratense,51,False,False,True,False

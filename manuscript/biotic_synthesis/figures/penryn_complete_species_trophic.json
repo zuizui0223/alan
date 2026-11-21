@@ -1,0 +1,15 @@
+{
+  "inputs": {
+    "composition_and_trophic_contrasts.csv": "bdef0138b4ba0a819a765ebb0728d0f50a690e2a57b9ede56b9e168e83b9d5b4",
+    "species_marginal_effects.csv": "3363612bd19a1964222c0fe88271c38c8441168219ea2d9729f681eb0b5fa8a4",
+    "penryn_four_species_PLANTATT_verified.tsv": "766403d450a9ce08bde22e5a9cd5477a180c0a6b23279d023f9810e46159590a"
+  },
+  "displayed_estimates": 20,
+  "covariance_aware": true,
+  "pooled_study_estimate": false,
+  "figures": [
+    "penryn_complete_species_trophic.png",
+    "penryn_complete_species_trophic.pdf",
+    "penryn_complete_species_trophic.svg"
+  ]
+}

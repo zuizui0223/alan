@@ -1,0 +1,243 @@
+{
+  "verification_date_UTC": "2026-11-21T14:32:50.987272+00:00",
+  "source_pdf": "https://ndownloader.figshare.com/files/36265164",
+  "source_pdf_sha256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+  "selected_csv": "selected_source_rows.csv",
+  "selected_csv_sha256": "97c512490a01cf61baf2e3e4fc89e60aa4449fce43dd61fea355382bc02ed00f",
+  "independent_method": "Poppler pdftotext -layout; page-local line tokenization; Decimal comparison of six numeric source/value fields; no import or invocation of repository extractor",
+  "pdf_pages_used": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "parsed_selected_species_rows": 216,
+  "unique_species_mesocosm_keys": 216,
+  "species": {
+    "Agrostis tenuis": {
+      "rows": 54,
+      "source_pages": [
+        2,
+        3
+      ]
+    },
+    "Anthoxanthum odoratum": {
+      "rows": 54,
+      "source_pages": [
+        3,
+        4
+      ]
+    },
+    "Hypochaeris radicata": {
+      "rows": 54,
+      "source_pages": [
+        8,
+        9
+      ]
+    },
+    "Lotus pedunculatus": {
+      "rows": 54,
+      "source_pages": [
+        10,
+        11
+      ]
+    }
+  },
+  "light_and_trophic_values_compared": 432,
+  "biomass_fields_compared": 1296,
+  "source_pages_compared": 216,
+  "missing_in_selected": [],
+  "missing_in_pdf": [],
+  "numeric_treatment_or_page_differences": [],
+  "numeric_treatment_or_page_differences_count": 0,
+  "format_only_source_lexeme_differences_count": 0,
+  "format_only_source_lexeme_examples": [],
+  "malformed_selected_species_source_lines": [],
+  "visual_review": {
+    "status": "completed_AI_visual_page_review_and_numeric_spot_checks",
+    "rendered_and_viewed_pages": [
+      2,
+      3,
+      4,
+      8,
+      9,
+      10,
+      11
+    ],
+    "all_selected_species_page_transitions_visually_checked": true,
+    "numeric_triplets_spot_checked": 19,
+    "Lotus_numeric_triplets_spot_checked": 9,
+    "spot_checks": [
+      {
+        "species": "Agrostis tenuis",
+        "mesocosm": "A1",
+        "page": 2,
+        "total": "21.48",
+        "root": "10.76",
+        "shoot": "10.72"
+      },
+      {
+        "species": "Agrostis tenuis",
+        "mesocosm": "G3",
+        "page": 2,
+        "total": "0.53",
+        "root": "0.22",
+        "shoot": "0.31"
+      },
+      {
+        "species": "Agrostis tenuis",
+        "mesocosm": "H7",
+        "page": 3,
+        "total": "177.5",
+        "root": "87.5",
+        "shoot": "90"
+      },
+      {
+        "species": "Anthoxanthum odoratum",
+        "mesocosm": "E7",
+        "page": 3,
+        "total": "194",
+        "root": "104",
+        "shoot": "90"
+      },
+      {
+        "species": "Anthoxanthum odoratum",
+        "mesocosm": "G2",
+        "page": 4,
+        "total": "92",
+        "root": "9.75",
+        "shoot": "82.25"
+      },
+      {
+        "species": "Anthoxanthum odoratum",
+        "mesocosm": "H7",
+        "page": 4,
+        "total": "24.76",
+        "root": "4.23",
+        "shoot": "20.53"
+      },
+      {
+        "species": "Hypochaeris radicata",
+        "mesocosm": "A1",
+        "page": 8,
+        "total": "90.57",
+        "root": "45.21",
+        "shoot": "45.36"
+      },
+      {
+        "species": "Hypochaeris radicata",
+        "mesocosm": "H4",
+        "page": 9,
+        "total": "19.09",
+        "root": "0.95",
+        "shoot": "18.14"
+      },
+      {
+        "species": "Hypochaeris radicata",
+        "mesocosm": "H5",
+        "page": 9,
+        "total": "2",
+        "root": "0.64",
+        "shoot": "1.36"
+      },
+      {
+        "species": "Hypochaeris radicata",
+        "mesocosm": "H7",
+        "page": 9,
+        "total": "64.25",
+        "root": "41.12",
+        "shoot": "23.13"
+      },
+      {
+        "species": "Lotus pedunculatus",
+        "mesocosm": "A1",
+        "page": 10,
+        "total": "137",
+        "root": "97.5",
+        "shoot": "39.5"
+      },
+      {
+        "species": "Lotus pedunculatus",
+        "mesocosm": "D5",
+        "page": 10,
+        "total": "29.95",
+        "root": "8.45",
+        "shoot": "21.5"
+      },
+      {
+        "species": "Lotus pedunculatus",
+        "mesocosm": "E2",
+        "page": 10,
+        "total": "41.75",
+        "root": "25.5",
+        "shoot": "16.25"
+      },
+      {
+        "species": "Lotus pedunculatus",
+        "mesocosm": "E3",
+        "page": 11,
+        "total": "55.75",
+        "root": "40.5",
+        "shoot": "15.25"
+      },
+      {
+        "species": "Lotus pedunculatus",
+        "mesocosm": "F1",
+        "page": 11,
+        "total": "65.25",
+        "root": "64.25",
+        "shoot": "1"
+      },
+      {
+        "species": "Lotus pedunculatus",
+        "mesocosm": "G3",
+        "page": 11,
+        "total": "119.75",
+        "root": "64",
+        "shoot": "55.75"
+      },
+      {
+        "species": "Lotus pedunculatus",
+        "mesocosm": "H4",
+        "page": 11,
+        "total": "8.61",
+        "root": "4.02",
+        "shoot": "4.59"
+      },
+      {
+        "species": "Lotus pedunculatus",
+        "mesocosm": "H5",
+        "page": 11,
+        "total": "10.22",
+        "root": "3.89",
+        "shoot": "6.33"
+      },
+      {
+        "species": "Lotus pedunculatus",
+        "mesocosm": "H7",
+        "page": 11,
+        "total": "57.31",
+        "root": "34.39",
+        "shoot": "22.92"
+      }
+    ],
+    "differences": [],
+    "scope": "Every selected record was compared computationally; visual numerical review was a 19-row spot check, not human duplicate extraction.",
+    "source_pdf_identical_to_rechecked_pdf": true,
+    "performed_on_prior_numerically_identical_selected_csv": "135f5758fae3a06c1456d2fa35ca809e12efcf549776b725a452e2d3265b3c6b"
+  },
+  "human_duplicate_extraction_complete": false,
+  "independent_AI_source_check": true,
+  "no_missing_values_imputed": true,
+  "no_original_source_values_modified": true
+}
