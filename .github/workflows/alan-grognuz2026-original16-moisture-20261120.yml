@@ -1,0 +1,57 @@
+name: ALAN Grognuz 2026 original 16 plant moisture and Mendeley API source audit
+
+on:
+  push:
+    branches: [analysis/alan-grognuz2026-phenology-moisture-gate-20261120]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-grognuz-14-site-pairs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test original Kew and Mendeley source provenance guards
+        run: python -m unittest discover -s tests -p test_alan_grognuz2026_fig4_kewF_mendeley_gate.py -v
+      - name: Verify original 16 flowering labels against source Kew F, audit Mendeley versions 1 and 2
+        run: |
+          python -m scripts.acquisition.alan_grognuz2026_fig4_kewF_mendeley_source_gate \
+             --out /tmp/alan_grognuz2026_original16_Mendeley_KewF_source_gate.json
+      - name: Fail closed on wetness common support and prevent figure as raw phenology
+        run: |
+          python - <<'PY'
+          import json
+          q=json.load(open('/tmp/alan_grognuz2026_original16_Mendeley_KewF_source_gate.json'))
+          assert q["schema"]=="alan_Grognuz2026_Fig4_original16_KewF_Mendeley_access_support_v1"
+          assert q["original_phenology_2022_paired_light_sites"]==6
+          assert q["original_phenology_2023_paired_light_sites"]==8
+          assert q["original_phenology_2022_observed_sites"]==11
+          assert q["original_phenology_2023_observed_sites"]==16
+          assert q["source_phenology_plots_total"]==108
+          k=q["species_and_F_source"]
+          assert k["source_published_fig4_labels"]==16
+          assert k["F_PLANTATT_scored"]==12
+          assert k["F_PLANTATT_scored_wet_gt7"]==0
+          assert k["original_germination_six_species_Kew_F"]["exact_nonmissing_PLANTATT_F"]==4
+          assert k["original_germination_six_species_Kew_F"]["PLANTATT_wet_gt7"]==0
+          assert k["original_diel_petal_two_species_Kew_F"]["exact_nonmissing_PLANTATT_F"]==2
+          assert k["original_diel_petal_two_species_Kew_F"]["PLANTATT_wet_gt7"]==0
+          assert not q["original_ALAN_plant_phenology_moisture_moderator_computed"]
+          assert not q["wet_vs_drier_species_comparison_supported"]
+          assert q["Mendeley_original_file_source_audit"]["source_raw_experimental_phenology_rows_downloaded"]==False
+          print("GROGNUZ_MOISTURE_SPECTRUM_AND_SOURCE_FILE_ACCESS_STATUS",
+                q["Mendeley_original_file_source_audit"]["status"],flush=True)
+          print("GROGNUZ_ALL16_F_SCORES",k["F_PLANTATT_distinct_scores"],flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-grognuz2026-14pair-16plant-UKF-Mendeley-source
+          path: /tmp/alan_grognuz2026_original16_Mendeley_KewF_source_gate.json
+          retention-days: 75
+          if-no-files-found: error

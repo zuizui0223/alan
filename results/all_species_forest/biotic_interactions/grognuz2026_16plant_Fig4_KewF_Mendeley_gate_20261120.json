@@ -1,0 +1,321 @@
+{
+  "schema": "alan_grognuz2026_original16_Fig4_KewF_Mendeley_authorized_source_20261120_v1",
+  "source_confirmed_original_action_run": "https://github.com/zuizui0223/alan/actions/runs/44673329871",
+  "paper_DOI": "10.1016/j.biocon.2025.111650",
+  "author_published_fig4_16_taxa_phenological_endpoint": "FIRST/QUARTER/PEAK/ULTIMATE dates; not flower number, cover, seed production or reproductive success",
+  "source_phenology_site_context": {
+    "year2022_site_pairs": 6,
+    "year2023_site_pairs": 8,
+    "actual_2022_phenology_sites": 11,
+    "actual_2023_phenology_sites": 16,
+    "original_distinct_sown_phenology_plots": 108,
+    "missing_one_dark_2022_site": true,
+    "site_identity_for_complete_matching_not_source_recovered": true
+  },
+  "Kew_source_Git_blob_SHA1": "e6a1da929af81f370d2a1b79177b489e3e573a06",
+  "species_habitat_indicator_match_counts": {
+    "figure_species_n": 16,
+    "Kew_exact_binomial_found": 13,
+    "F_PLANTATT_scored": 12,
+    "F_Doring_scored": 10,
+    "F_PLANTATT_wet_gt7": 0,
+    "F_Doring_wet_gt7": 0,
+    "F_PLANTATT_distinct_scores": [
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "original_paper_fig4_species_Kew_indicator_coverage": [
+    {
+      "Kew_F_Doring": 5,
+      "Kew_F_PLANTATT": 5,
+      "Kew_exact_original_binomial": "Achillea millefolium",
+      "Kew_taxonomic_status": "Accepted",
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": false,
+      "paper_Figure4_label": "Achillea millefolium",
+      "source_Kew_missing_or_taxon_unresolved": false
+    },
+    {
+      "Kew_F_Doring": null,
+      "Kew_F_PLANTATT": 5,
+      "Kew_exact_original_binomial": "Centaurea cyanus",
+      "Kew_taxonomic_status": "Accepted",
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": false,
+      "paper_Figure4_label": "Centaurea cyanus",
+      "source_Kew_missing_or_taxon_unresolved": false
+    },
+    {
+      "Kew_F_Doring": null,
+      "Kew_F_PLANTATT": 5,
+      "Kew_exact_original_binomial": "Sinapis arvensis",
+      "Kew_taxonomic_status": "Accepted",
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": false,
+      "paper_Figure4_label": "Sinapis arvensis",
+      "source_Kew_missing_or_taxon_unresolved": false
+    },
+    {
+      "Kew_F_Doring": 4,
+      "Kew_F_PLANTATT": 4,
+      "Kew_exact_original_binomial": "Daucus carota",
+      "Kew_taxonomic_status": "Accepted",
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": false,
+      "paper_Figure4_label": "Daucus carota",
+      "source_Kew_missing_or_taxon_unresolved": false
+    },
+    {
+      "Kew_F_Doring": 5,
+      "Kew_F_PLANTATT": 5,
+      "Kew_exact_original_binomial": "Papaver rhoeas",
+      "Kew_taxonomic_status": "Accepted",
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": false,
+      "paper_Figure4_label": "Papaver rhoeas",
+      "source_Kew_missing_or_taxon_unresolved": false
+    },
+    {
+      "Kew_F_Doring": null,
+      "Kew_F_PLANTATT": null,
+      "Kew_exact_original_binomial": null,
+      "Kew_taxonomic_status": null,
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": true,
+      "paper_Figure4_label": "Sonchus sp.",
+      "source_Kew_missing_or_taxon_unresolved": true
+    },
+    {
+      "Kew_F_Doring": null,
+      "Kew_F_PLANTATT": null,
+      "Kew_exact_original_binomial": "Centaurea jacea",
+      "Kew_taxonomic_status": "Accepted",
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": false,
+      "paper_Figure4_label": "Centaurea jacea",
+      "source_Kew_missing_or_taxon_unresolved": true
+    },
+    {
+      "Kew_F_Doring": 4,
+      "Kew_F_PLANTATT": 4,
+      "Kew_exact_original_binomial": "Leucanthemum vulgare",
+      "Kew_taxonomic_status": "Accepted",
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": false,
+      "paper_Figure4_label": "Leucanthemum vulgare",
+      "source_Kew_missing_or_taxon_unresolved": false
+    },
+    {
+      "Kew_F_Doring": 4,
+      "Kew_F_PLANTATT": 3,
+      "Kew_exact_original_binomial": "Malva moschata",
+      "Kew_taxonomic_status": "Accepted",
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": false,
+      "paper_Figure4_label": "Malva moschata",
+      "source_Kew_missing_or_taxon_unresolved": false
+    },
+    {
+      "Kew_F_Doring": null,
+      "Kew_F_PLANTATT": null,
+      "Kew_exact_original_binomial": null,
+      "Kew_taxonomic_status": null,
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": false,
+      "paper_Figure4_label": "Silene pratensis",
+      "source_Kew_missing_or_taxon_unresolved": true
+    },
+    {
+      "Kew_F_Doring": 2,
+      "Kew_F_PLANTATT": 2,
+      "Kew_exact_original_binomial": "Trifolium incarnatum",
+      "Kew_taxonomic_status": "Accepted",
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": false,
+      "paper_Figure4_label": "Trifolium incarnatum",
+      "source_Kew_missing_or_taxon_unresolved": false
+    },
+    {
+      "Kew_F_Doring": 4,
+      "Kew_F_PLANTATT": 4,
+      "Kew_exact_original_binomial": "Echium vulgare",
+      "Kew_taxonomic_status": "Accepted",
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": false,
+      "paper_Figure4_label": "Echium vulgare",
+      "source_Kew_missing_or_taxon_unresolved": false
+    },
+    {
+      "Kew_F_Doring": null,
+      "Kew_F_PLANTATT": null,
+      "Kew_exact_original_binomial": null,
+      "Kew_taxonomic_status": null,
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": true,
+      "paper_Figure4_label": "Epilobium sp.",
+      "source_Kew_missing_or_taxon_unresolved": true
+    },
+    {
+      "Kew_F_Doring": 5,
+      "Kew_F_PLANTATT": 5,
+      "Kew_exact_original_binomial": "Veronica persica",
+      "Kew_taxonomic_status": "Accepted",
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": false,
+      "paper_Figure4_label": "Veronica persica",
+      "source_Kew_missing_or_taxon_unresolved": false
+    },
+    {
+      "Kew_F_Doring": 5,
+      "Kew_F_PLANTATT": 5,
+      "Kew_exact_original_binomial": "Matricaria chamomilla",
+      "Kew_taxonomic_status": "Accepted",
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": false,
+      "paper_Figure4_label": "Matricaria chamomilla",
+      "source_Kew_missing_or_taxon_unresolved": false
+    },
+    {
+      "Kew_F_Doring": 5,
+      "Kew_F_PLANTATT": 5,
+      "Kew_exact_original_binomial": "Trifolium pratense",
+      "Kew_taxonomic_status": "Accepted",
+      "no_genus_or_synonym_trait_assigned": true,
+      "not_a_species_level_label": false,
+      "paper_Figure4_label": "Trifolium pratense",
+      "source_Kew_missing_or_taxon_unresolved": false
+    }
+  ],
+  "source_Mendeley": {
+    "published_public_doi_v1": "10.17632/xjmn5jhxyn.1",
+    "article_reserved_doi_v2": "10.17632/xjmn5jhxyn.2",
+    "official_Mendeley_API_public_dataset_and_file_endpoints": [
+      {
+        "name": "dataset_v1",
+        "status": "SOURCE_ACCESS_STOP",
+        "http": 401,
+        "metadata_only_status": null
+      },
+      {
+        "name": "dataset_v2",
+        "status": "SOURCE_ACCESS_STOP",
+        "http": 401,
+        "metadata_only_status": null
+      },
+      {
+        "name": "latest_dataset",
+        "status": "SOURCE_ACCESS_STOP",
+        "http": 401,
+        "metadata_only_status": null
+      },
+      {
+        "name": "files_v1",
+        "status": "SOURCE_ACCESS_STOP",
+        "http": 401,
+        "metadata_only_status": null
+      },
+      {
+        "name": "files_v2",
+        "status": "SOURCE_ACCESS_STOP",
+        "http": 401,
+        "metadata_only_status": null
+      },
+      {
+        "name": "dataset_versions",
+        "status": "SOURCE_ACCESS_STOP",
+        "http": 401,
+        "metadata_only_status": null
+      },
+      {
+        "name": "repository_v1_public_page",
+        "status": "HTTP_OK",
+        "http": null,
+        "metadata_only_status": "not_json_original_data_unverified"
+      }
+    ],
+    "original_file_manifest_available": false,
+    "original_phenology_raw_rows_retrieved": false
+  },
+  "original_species_moisture_by_light_slope_fitted": false,
+  "observed_Kew_no_wet_species_does_not_prove_Swiss_no_wet_species": true,
+  "original_phenology_effects_are_published_authors_result_not_reanalysis": true,
+  "source_scope": "UK moisture indicator coverage audit and repository access test; no original plot/year lighting effects estimated",
+  "missing_four_source_moisture_is_not_assigned_as_dry": true,
+  "original_additional_germination_six_species_UK_F": {
+    "PLANTATT_wet_gt7": 0,
+    "UK_source_matched_species": [
+      {
+        "UK_Doring_F": null,
+        "UK_PLANTATT_F": null,
+        "exact_binomial_in_Kew": false,
+        "not_imputed_from_related_species": true,
+        "source_species": "Anthemis tinctoria"
+      },
+      {
+        "UK_Doring_F": 4,
+        "UK_PLANTATT_F": 4,
+        "exact_binomial_in_Kew": true,
+        "not_imputed_from_related_species": true,
+        "source_species": "Cichorium intybus"
+      },
+      {
+        "UK_Doring_F": 5,
+        "UK_PLANTATT_F": 4,
+        "exact_binomial_in_Kew": true,
+        "not_imputed_from_related_species": true,
+        "source_species": "Crepis capillaris"
+      },
+      {
+        "UK_Doring_F": 4,
+        "UK_PLANTATT_F": 4,
+        "exact_binomial_in_Kew": true,
+        "not_imputed_from_related_species": true,
+        "source_species": "Hypochaeris radicata"
+      },
+      {
+        "UK_Doring_F": null,
+        "UK_PLANTATT_F": null,
+        "exact_binomial_in_Kew": false,
+        "not_imputed_from_related_species": true,
+        "source_species": "Silene pratensis"
+      },
+      {
+        "UK_Doring_F": 2,
+        "UK_PLANTATT_F": 2,
+        "exact_binomial_in_Kew": true,
+        "not_imputed_from_related_species": true,
+        "source_species": "Trifolium incarnatum"
+      }
+    ],
+    "exact_nonmissing_Doring_F": 4,
+    "exact_nonmissing_PLANTATT_F": 4,
+    "original_source_species_count": 6
+  },
+  "original_additional_petal_nyctinasty_two_species_UK_F": {
+    "PLANTATT_wet_gt7": 0,
+    "UK_source_matched_species": [
+      {
+        "UK_Doring_F": 4,
+        "UK_PLANTATT_F": 4,
+        "exact_binomial_in_Kew": true,
+        "not_imputed_from_related_species": true,
+        "source_species": "Silene noctiflora"
+      },
+      {
+        "UK_Doring_F": 4,
+        "UK_PLANTATT_F": 3,
+        "exact_binomial_in_Kew": true,
+        "not_imputed_from_related_species": true,
+        "source_species": "Malva moschata"
+      }
+    ],
+    "exact_nonmissing_Doring_F": 2,
+    "exact_nonmissing_PLANTATT_F": 2,
+    "original_source_species_count": 2
+  },
+  "three_original_phenological_stages_are_not_independent_light_studies": true,
+  "scored_wet_plant_count_across_each_distinct_study_endpoint_zero": true
+}
