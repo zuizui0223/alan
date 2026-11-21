@@ -1,0 +1,48 @@
+{
+  "source_file": "Spectra_fieldexperiment.csv",
+  "source_sha256": "bb633fcedfa194bc4ea9c9ec107fd8a2bb49254e62060ca6be5a1f938c136cff",
+  "source_rows": 850,
+  "observed_cages": 50,
+  "final_week": 17,
+  "final_date": "2017-10-04",
+  "final_rows": 50,
+  "expansion_factor": 2,
+  "source_columns": [
+    "M.v",
+    "M.v.w",
+    "A.p",
+    "A.p.w",
+    "A.f",
+    "A.f.w",
+    "L.f",
+    "A.e",
+    "A.m"
+  ],
+  "arm_summary_rows": 72,
+  "matched_contrast_rows": 63,
+  "finite_log_point_rows": 18,
+  "zero_mean_log_unavailable_rows": 45,
+  "observed_cages_by_treatment": {
+    "Bl": 7,
+    "C": 6,
+    "G": 5,
+    "O": 7,
+    "P": 7,
+    "R": 6,
+    "Ub": 7,
+    "Uv": 5
+  },
+  "matched_n_by_treatment": {
+    "Bl": 6,
+    "G": 4,
+    "O": 6,
+    "P": 6,
+    "R": 5,
+    "Ub": 6,
+    "Uv": 4
+  },
+  "missing_cages_not_filled": true,
+  "morph_columns_not_summed": true,
+  "new_pooled_effects": 0,
+  "covariance_or_ci_estimated": false
+}

@@ -14,6 +14,16 @@ Aboveground biomass ratios range0.919–1.594. Green versus dark is1.594 with un
 
 ## Cross-endpoint audit
 
+### Final insect observations extracted (2026-11-21)
+
+`extract_final_insects.py SOURCE_DIRECTORY` now preserves all 50 final cage records at week17 (4 October2017), and produces72 treatment×source-column summaries and63 block-matched lit/dark point comparisons. Every final record has Abundance.factor=2; counts are expanded accordingly. The raw columns and expanded columns are both retained. Nine source columns are kept separate: three aphid columns, their three winged-morph columns, and three parasitoid-mummy columns. The species-count labels do not explicitly resolve whether winged morphs are included in the main species column, so no totals across those columns are invented.
+
+The final data yield18 finite log-ratio points;45 comparisons have a zero mean in at least one arm and cannot be log-transformed without changing the estimand. Both-zero cases are not assigned a no-effect ratio. No pseudo-count or absent-cage zero is added. L.f and A.e are zero throughout the final cohort; this does not establish a light effect on either parasitoid. Control A.p and all control winged-morph counts are also zero.
+
+Each light treatment is matched to observed dark cages by Block before taking the ratio of means:6 matched blocks for Bl/O/P/Ub,5 for R,4 for G/Uv. These comparisons use different subsets, not a common balanced seven-block experiment. `final_insect_arm_summaries.csv` retains all available cages, whereas `final_insect_matched_points.csv` explicitly records the restricted blocks for each contrast. Original counts, missing cohorts and block labels are never silently substituted.
+
+No confidence intervals, cross-contrast covariance or pooled effects are assigned at this stage. Final-paper reconciliation and the52-versus50cohort discrepancy below remain unresolved. Point ratios are descriptive, not additional significant effects, and not a replacement for a repeated-measures analysis. The week13 aphid-excluded plant measurements are not the week17 insect outcome and do not identify a trophic mediation pathway. The new source tables do not alter the108-row effect catalogue or114-row central reported-statistics registry.
+
 The insect file has50cages×17weeks=850rows with unique cage-week keys. Shared50cages have matching treatment/block labels in biomass and insect files. Six biomass cages have no insect time series:1(G),22(R),33(C),47(Uv),51(Uv),52(G). The description implies52retained insect cages (green6,red6,UV5,others7); the raw file has green5 and dark6. Its column description also says cage IDs1–48, conflicting with the56-cage biomass table. These inconsistencies remain unresolved. No absent insect trajectory is replaced by zero, and no biomass cage is excluded solely because its insect trajectory is missing.
 
 The attack-rate and behavioural files describe separate controlled-temperature laboratory experiments. Successful attacks inferred from mummies after two weeks are not immediate observed strikes. They are not added to the outdoor plant experiment or used as its mediating covariate. Hyperparasitoid sampling is conditional on sufficient mummies and sampled weeks; missing samples are not zero hyperparasitism. Field Abundance.factor must be applied as documented before any population analysis.
