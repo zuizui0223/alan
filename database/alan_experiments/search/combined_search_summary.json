@@ -1,0 +1,27 @@
+{
+  "search_appearances": 572,
+  "original_records": 521,
+  "supplementary_records": 51,
+  "exact_record_overlap": 26,
+  "unique_records": 546,
+  "exact_identity_reports": 541,
+  "original_reports": 516,
+  "new_report_keys_relative_to_original": 25,
+  "unresolved_candidate_pairs": 3,
+  "candidate_pairs_auto_merged": 0,
+  "publication_families_reestimated": false,
+  "final_prisma": false,
+  "final_eligibility": false,
+  "independent_experiments_estimated": false,
+  "input_sha256": {
+    "record_identity_crosswalk.csv": "c5767e0902a7883e1fb2a8f1e7286b9f835034434360b3cf38506bc6f020e826",
+    "pollination_expansion_screening.csv": "376ac1ab110e8642d9bc182ef8bdc9b55cc0525108a53be19da16298e52f7a40"
+  },
+  "limits": [
+    "Only the two named fixed EuropePMC searches; not all citation-tracked reports",
+    "Distinct preprint/final DOI reports retained; no claim of family independence",
+    "Missing DOI records retained by ID; title similarity not used for merging",
+    "Original and supplemental screening histories preserved, not adjudicated",
+    "Neither WoS nor Scopus search completed"
+  ]
+}
