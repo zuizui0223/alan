@@ -112,6 +112,15 @@ and `species_covariance.csv` give all 24 effects and 576 covariance entries.
 `mesocosm_log_indices.csv` preserve the alternative comparisons.
 `analysis_summary.json` fingerprints input files.
 
+The analytical tables were generated with Python 3.12, numpy 2.3.5,
+pandas 2.2.3 and scipy 1.17.0; the CI workflow pins those versions. SciPy
+1.14.1 gives slightly different extreme Student-t inverse-CDF values: its
+largest family-interval endpoint difference here is 1.8e-11, while effects
+and covariance agree at the strict 1e-12 verifier tolerance. Using the
+generation versions keeps that tolerance intact and all saved results unchanged.
+Plot replay additionally requires matplotlib; PDF source verification requires
+Poppler's `pdftotext`.
+
 The independent source check used Poppler layout extraction and Decimal
 comparison, not the original repository extraction function. It matched all
 216 keys, 432 treatment labels, 648 biomass values and page references. The

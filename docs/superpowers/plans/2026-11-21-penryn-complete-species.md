@@ -37,7 +37,7 @@ No raw-data publication changes or main merge.
 - [x] Render a multi-panel figure and visually check saved PNG/PDF.
 - [x] Write Japanese results and limitations, link from current evidence.
 - [x] Obtain independent scientific/code review; resolve concrete material findings.
-- [ ] Verify source hashes, outputs and diff; commit and open a draft PR.
+- [x] Verify source hashes, outputs and diff; commit and open a draft PR.
 
 ## Execution record
 
@@ -52,3 +52,15 @@ Task 1 complete: 6 new and 3 existing tests passed; original PDF216 rows, all va
 Task 2 review: independent arm-mean/Jacobian calculations match24 effects and576 covariance entries within1e-14. PDF/PNG inspected after margin corrections; all labels visible. Nominal white upper bound0.996925 is explicitly qualified by the two-colour interval including1. No new pooled effect or independent programme is counted.
 
 Final review: no material findings. Overview wording clarified as the geometric mean of comparator responses. All6 new and3 existing tests pass. Portable independent covariance/source verifiers and their receipts are retained. No unresolved reviewer findings.
+
+Publication: draft PR https://github.com/zuizui0223/alan/pull/100 created from
+main db82976f834cc048e76e69e6f621ba11e3ef33e5. The remote analysis tree matches
+the locally verified tree exactly. Main was not merged or modified.
+
+Initial CI run 44915063904 passed all 9 tests, then failed the strict independent
+interval check. The failure was reproduced with isolated numpy 2.1.3/scipy
+1.14.1: the six-comparison t5 critical value differs from scipy 1.17.0 by
+5.50e-12, producing a maximum family-interval endpoint difference of 1.77e-11.
+All effects and covariance passed the original 1e-12 checks. CI now uses the
+same Python/numpy/pandas/scipy versions as generation, with no tolerance or
+stored analytical result changes. Final run status is recorded in the PR.
