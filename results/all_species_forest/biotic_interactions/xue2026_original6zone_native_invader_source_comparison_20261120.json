@@ -1,0 +1,110 @@
+{
+  "schema": "alan_Xue2026_verified_original6lightingzone_invader_native_20261120_compact_v1",
+  "source_approved_reproducibility_run": "https://github.com/zuizui0223/alan/actions/runs/44674915361",
+  "original_ScienceDB_source_DOI": "10.57760/sciencedb.35715",
+  "original_2026_paper_DOI": "10.1002/ecy.70458",
+  "true_original_77_surviving_cylinders_shared_6_lighting_zones": true,
+  "source_only_one_original_Xue2026_experiment": true,
+  "original_mixed_community_light_fixture_allocation_unresolved": true,
+  "source_git_pinned_zone_means_SHA1": "8fc7dbdccf92a65ba9e76b2d3d90aebdc836f218",
+  "source_original_Monoculture_Growth_xlsx_SHA256": "8a18f7a30fe8e4656495db511f4e19b0f7e97657233111ba175c7c4007ed4f39",
+  "response_of_primary_index": "lit-minus-dark mean of within-zone log invader biomass minus mean log native monoculture biomasses",
+  "results": {
+    "original_six_zone_invasive_native_relative_productivity": {
+      "all_three_lit_zone_indices_exceed_every_dark_zone_index": true,
+      "exact_exchangeable_three_of_six_zone_assignments": 20,
+      "exact_zone_label_two_sided_p_if_exchangeable": 0.1,
+      "independent_dark_light_zones": 3,
+      "independent_lit_light_zones": 3,
+      "invasive_to_native_relative_response_ratio": 1.6636299700906039,
+      "leave_one_lit_and_one_dark_zone_out_log_diff_range": [
+        0.33345096255459516,
+        0.715476880226831
+      ],
+      "method": "per-original-lighting-zone log invasive biomass minus log geometric mean of 3 native monoculture biomasses",
+      "monoculture_not_direct_species_competition": true,
+      "not_proven_original_randomization_p": true,
+      "not_wet_dry_species_moisture_moderator": true,
+      "observed_lit_minus_dark_invasive_relative_to_native_log_ratio": 0.5090019439266824,
+      "source_dark_perzone_mean_log_index": 1.1329677106460787,
+      "source_lit_perzone_mean_log_index": 1.6419696545727611,
+      "source_zone_index_by_group_descriptive_only": {
+        "ALAN": [
+          1.5688643786150744,
+          1.7840626471321452,
+          1.572981937971064
+        ],
+        "No ALAN": [
+          0.9239587404612882,
+          1.472812307288689,
+          1.002132084188259
+        ]
+      },
+      "true_source_dark_zone_index_range": [
+        0.9239587404612882,
+        1.472812307288689
+      ],
+      "true_source_lit_zone_index_range": [
+        1.5688643786150744,
+        1.7840626471321452
+      ],
+      "zone_bootstrap_descriptive_95pct_CI_log_difference": [
+        0.16915734728407217,
+        0.7636858890415065
+      ],
+      "zone_bootstrap_descriptive_95pct_CI_ratio": [
+        1.1843064716709357,
+        2.1461722123210993
+      ],
+      "zone_stratified_bootstrap_draws": 5999
+    },
+    "original_shared_lighting_zone_covariance": {
+      "different_from_mean_of_log_zone_indices": true,
+      "no_normal_approx_test_claimed_with_only_three_zones_per_arm": true,
+      "source_invasive_lnRR_minus_native_average_lnRR": 0.4652787951402042,
+      "source_invasive_vs_native_ratio_of_mean_response_ratios": 1.5924580965828778,
+      "source_natives_original_log_mean_ratio_average": -0.012969856780134856,
+      "source_species_monoculture_lit_over_dark_log_mean_ratios": {
+        "Hydrilla_verticillata": 0.05575018683729036,
+        "Myriophyllum_aquaticum": 0.45230893836006936,
+        "Myriophyllum_spicatum": -0.17522022000867787,
+        "Vallisneria_natans": 0.08056046283098295
+      },
+      "within_source_lighting_zone_covariance_delta_approx_SE": 0.1959967914176814,
+      "within_source_lighting_zone_covariance_delta_approx_variance": 0.038414742246026104
+    },
+    "independent_mixed_community_snail_assay_descriptive_only": {
+      "descriptive_lit_vs_dark_ratio_of_native_retention_under_invasive_snail": 0.24566311176041766,
+      "descriptive_ln_ratio_of_retention_ratios": -1.4037941460116692,
+      "do_not_infer_statistical_significance_from_independent_bucket_counts": true,
+      "not_same_experiment_as_monoculture_50day_zone_outcome": true,
+      "original_selection_3_missing_containers_all_ALAN_native_snail": true,
+      "original_source_bucket_count": 10,
+      "source_animal_grazer_induced_losses_not_true_plant_pollination": true,
+      "summary_by_original_light_arm": {
+        "ALAN": {
+          "invasive_biomass_mean_invasive_snail_g": 13.361,
+          "invasive_biomass_mean_no_snail_g": 13.9344,
+          "invasive_retention_relative_to_same_light_no_snail": 0.958850040188311,
+          "native_biomass_mean_invasive_snail_g": 2.0202,
+          "native_biomass_mean_no_snail_g": 15.8137,
+          "native_retention_relative_to_same_light_no_snail": 0.12774998893364614,
+          "native_suppression_relative_to_same_light_no_snail": 0.8722500110663538
+        },
+        "No ALAN": {
+          "invasive_biomass_mean_invasive_snail_g": 12.1598,
+          "invasive_biomass_mean_no_snail_g": 14.8887,
+          "invasive_retention_relative_to_same_light_no_snail": 0.8167133463633495,
+          "native_biomass_mean_invasive_snail_g": 8.301200000000001,
+          "native_biomass_mean_no_snail_g": 15.963199999999995,
+          "native_retention_relative_to_same_light_no_snail": 0.5200210484113463,
+          "native_suppression_relative_to_same_light_no_snail": 0.47997895158865367
+        }
+      },
+      "underlying_real_independent_lamp_count_UNRESOLVED": true
+    }
+  },
+  "no_original_community_experimental_variance_inferred": true,
+  "no_confirmed_cross_wet_drier_plant_trait_moderator": true,
+  "no_causal_mediation_of_main_moist_decrease_candidate": true
+}
