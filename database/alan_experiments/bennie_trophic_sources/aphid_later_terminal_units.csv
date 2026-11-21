@@ -1,0 +1,109 @@
+year,date,plot,light,trophic,count,record_status
+2014,2014-08-29,A1,Control,Predator,0.0,observed_count
+2014,2014-08-29,A2,Amber,Predator,0.0,observed_count
+2014,2014-08-29,A3,White,Grazer,0.0,observed_count
+2014,2014-08-29,A4,Control,Non Grazer,,missing_not_zero
+2014,2014-08-29,A5,White,Non Grazer,,missing_not_zero
+2014,2014-08-29,A6,White,Predator,0.0,observed_count
+2014,2014-08-29,B1,Amber,Grazer,0.0,observed_count
+2014,2014-08-29,B2,Control,Non Grazer,,missing_not_zero
+2014,2014-08-29,B3,Amber,Grazer,0.0,observed_count
+2014,2014-08-29,B4,Amber,Predator,0.0,observed_count
+2014,2014-08-29,B5,Amber,Grazer,0.0,observed_count
+2014,2014-08-29,B6,Control,Grazer,0.0,observed_count
+2014,2014-08-29,C1,White,Grazer,0.0,observed_count
+2014,2014-08-29,C2,Amber,Non Grazer,,missing_not_zero
+2014,2014-08-29,C3,White,Predator,0.0,observed_count
+2014,2014-08-29,C4,Control,Grazer,0.0,observed_count
+2014,2014-08-29,C5,Amber,Predator,0.0,observed_count
+2014,2014-08-29,C6,Control,Grazer,0.0,observed_count
+2014,2014-08-29,C7,White,Predator,0.0,observed_count
+2014,2014-08-29,D1,Control,Grazer,0.0,observed_count
+2014,2014-08-29,D2,White,Non Grazer,,missing_not_zero
+2014,2014-08-29,D3,Control,Non Grazer,,missing_not_zero
+2014,2014-08-29,D4,Amber,Grazer,0.0,observed_count
+2014,2014-08-29,D5,White,Grazer,0.0,observed_count
+2014,2014-08-29,D6,Amber,Non Grazer,,missing_not_zero
+2014,2014-08-29,D7,Amber,Predator,0.0,observed_count
+2014,2014-08-29,E1,Amber,Non Grazer,,missing_not_zero
+2014,2014-08-29,E2,White,Grazer,0.0,observed_count
+2014,2014-08-29,E3,Control,Grazer,0.0,observed_count
+2014,2014-08-29,E4,White,Predator,0.0,observed_count
+2014,2014-08-29,E5,Control,Predator,0.0,observed_count
+2014,2014-08-29,E6,Amber,Predator,0.0,observed_count
+2014,2014-08-29,E7,White,Non Grazer,,missing_not_zero
+2014,2014-08-29,F1,White,Predator,0.0,observed_count
+2014,2014-08-29,F2,Control,Grazer,0.0,observed_count
+2014,2014-08-29,F3,Amber,Non Grazer,,missing_not_zero
+2014,2014-08-29,F4,White,Grazer,0.0,observed_count
+2014,2014-08-29,F5,Amber,Grazer,0.0,observed_count
+2014,2014-08-29,F6,Control,Non Grazer,,missing_not_zero
+2014,2014-08-29,F7,Control,Predator,0.0,observed_count
+2014,2014-08-29,G1,White,Non Grazer,,missing_not_zero
+2014,2014-08-29,G2,Amber,Grazer,0.0,observed_count
+2014,2014-08-29,G3,Control,Predator,0.0,observed_count
+2014,2014-08-29,G4,Amber,Non Grazer,,missing_not_zero
+2014,2014-08-29,G5,Control,Non Grazer,,missing_not_zero
+2014,2014-08-29,G6,White,Grazer,0.0,observed_count
+2014,2014-08-29,G7,Control,Predator,0.0,observed_count
+2014,2014-08-29,H1,Control,Non Grazer,,missing_not_zero
+2014,2014-08-29,H2,White,Predator,0.0,observed_count
+2014,2014-08-29,H3,White,Non Grazer,,missing_not_zero
+2014,2014-08-29,H4,Control,Predator,0.0,observed_count
+2014,2014-08-29,H5,White,Non Grazer,,missing_not_zero
+2014,2014-08-29,H6,Amber,Predator,0.0,observed_count
+2014,2014-08-29,H7,Amber,Non Grazer,,missing_not_zero
+2015,2015-08-27,A1,Control,Predator,0.0,observed_count
+2015,2015-08-27,A2,Amber,Predator,0.0,observed_count
+2015,2015-08-27,A3,White,Grazer,0.0,observed_count
+2015,2015-08-27,A4,Control,Non Grazer,,missing_not_zero
+2015,2015-08-27,A5,White,Non Grazer,,missing_not_zero
+2015,2015-08-27,A6,White,Predator,0.0,observed_count
+2015,2015-08-27,B1,Amber,Grazer,0.0,observed_count
+2015,2015-08-27,B2,Control,Non Grazer,,missing_not_zero
+2015,2015-08-27,B3,Amber,Grazer,0.0,observed_count
+2015,2015-08-27,B4,Amber,Predator,0.0,observed_count
+2015,2015-08-27,B5,Amber,Grazer,0.0,observed_count
+2015,2015-08-27,B6,Control,Grazer,0.0,observed_count
+2015,2015-08-27,C1,White,Grazer,0.0,observed_count
+2015,2015-08-27,C2,Amber,Non Grazer,,missing_not_zero
+2015,2015-08-27,C3,White,Predator,0.0,observed_count
+2015,2015-08-27,C4,Control,Grazer,0.0,observed_count
+2015,2015-08-27,C5,Amber,Predator,0.0,observed_count
+2015,2015-08-27,C6,Control,Grazer,0.0,observed_count
+2015,2015-08-27,C7,White,Predator,0.0,observed_count
+2015,2015-08-27,D1,Control,Grazer,0.0,observed_count
+2015,2015-08-27,D2,White,Non Grazer,,missing_not_zero
+2015,2015-08-27,D3,Control,Non Grazer,,missing_not_zero
+2015,2015-08-27,D4,Amber,Grazer,1.0,observed_count
+2015,2015-08-27,D5,White,Grazer,0.0,observed_count
+2015,2015-08-27,D6,Amber,Non Grazer,,missing_not_zero
+2015,2015-08-27,D7,Amber,Predator,0.0,observed_count
+2015,2015-08-27,E1,Amber,Non Grazer,,missing_not_zero
+2015,2015-08-27,E2,White,Grazer,0.0,observed_count
+2015,2015-08-27,E3,Control,Grazer,0.0,observed_count
+2015,2015-08-27,E4,White,Predator,0.0,observed_count
+2015,2015-08-27,E5,Control,Predator,0.0,observed_count
+2015,2015-08-27,E6,Amber,Predator,0.0,observed_count
+2015,2015-08-27,E7,White,Non Grazer,,missing_not_zero
+2015,2015-08-27,F1,White,Predator,0.0,observed_count
+2015,2015-08-27,F2,Control,Grazer,0.0,observed_count
+2015,2015-08-27,F3,Amber,Non Grazer,,missing_not_zero
+2015,2015-08-27,F4,White,Grazer,0.0,observed_count
+2015,2015-08-27,F5,Amber,Grazer,0.0,observed_count
+2015,2015-08-27,F6,Control,Non Grazer,,missing_not_zero
+2015,2015-08-27,F7,Control,Predator,0.0,observed_count
+2015,2015-08-27,G1,White,Non Grazer,,missing_not_zero
+2015,2015-08-27,G2,Amber,Grazer,0.0,observed_count
+2015,2015-08-27,G3,Control,Predator,0.0,observed_count
+2015,2015-08-27,G4,Amber,Non Grazer,,missing_not_zero
+2015,2015-08-27,G5,Control,Non Grazer,,missing_not_zero
+2015,2015-08-27,G6,White,Grazer,0.0,observed_count
+2015,2015-08-27,G7,Control,Predator,0.0,observed_count
+2015,2015-08-27,H1,Control,Non Grazer,,missing_not_zero
+2015,2015-08-27,H2,White,Predator,0.0,observed_count
+2015,2015-08-27,H3,White,Non Grazer,,missing_not_zero
+2015,2015-08-27,H4,Control,Predator,0.0,observed_count
+2015,2015-08-27,H5,White,Non Grazer,,missing_not_zero
+2015,2015-08-27,H6,Amber,Predator,0.0,observed_count
+2015,2015-08-27,H7,Amber,Non Grazer,,missing_not_zero

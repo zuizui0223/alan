@@ -1,0 +1,23 @@
+{
+  "input_sha256": {
+    "PeaAphid2014.csv": "901b5663f5dc4707f0d79eaab45c566abb94c990e6fc649235882899c0f8abe3",
+    "PeaAphid2015.csv": "e2933e2a36ee234d96e56029920e0efd445f2b6a71ee298bfb76a33e45573eb4"
+  },
+  "years": [
+    2014,
+    2015
+  ],
+  "physical_mesocosms": 54,
+  "annual_rows": 108,
+  "observed_trophic_mesocosms_per_year": 36,
+  "unrecorded_plants_only_per_year": 18,
+  "finite_lnRRs": 0,
+  "finite_predator_modification_contrasts": 0,
+  "main_2013_estimate_changed": false,
+  "new_independent_programmes": 0,
+  "scope": "Final recorded annual aphid search counts, not extinction or mortality",
+  "temporal_selection": "Existing pooled estimate uses2013 first-report terminal; later programme terminals are not estimable by lnRR",
+  "introduction_regime": "Aphids introduced May-June2013; predators supplemented2013-2015; 2015 herbivore reintroduction in Methods refers to slugs, not aphids",
+  "no_pseudocounts": true,
+  "no_zero_variance_inverse_weights": true
+}

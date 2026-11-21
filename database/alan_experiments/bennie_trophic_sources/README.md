@@ -27,3 +27,13 @@ The existing100-cell aphid/plant submatrix and16-cell slug submatrix are reprodu
 The plant-biomass predator contrasts are1.060 (approximate95% interval0.697–1.612) for amber and1.076 (0.648–1.787) for white. All six contrasts have intervals containing1. Their times differ: aphids September2013, slugs15observedmonths2013–2014, plants final2016. Do not interpret the combined covariance as evidence of a contemporaneous causal chain or pool the three endpoints into a common biological effect.
 
 `plot_joint_contrasts.py` writes the [publication figure](../../../manuscript/biotic_synthesis/figures/penryn_predator_contrasts.png) in PNG/SVG/PDF. It shows study-specific contrasts, not a meta-analytic diamond. Regenerate extraction, joint covariance and plot in that order.
+
+## Later annual terminal aphid observations (2026-11-21)
+
+`extract_terminal_aphids.py SOURCE_DIRECTORY` now audits2014 and2015 final dates from recovered PeaAphid files. All54physical IDs and light/trophic allocations match Anic2016. These are the same programme, not two new studies. Each year has36observed aphid mesocosms and18plants-only rows with no counts; the latter remain missing, not zero.
+
+At29August2014, all36observed counts are zero. At27August2015, the Grazer/Amber cell has one counted aphid in six mesocosms (mean1/6); the other35observations are zero. All dark-arm means are zero in both years. Thus all8annual lighting lnRRs and4predator-modification contrasts are undefined under the current ratio estimand. No pseudocount, infinite effect, zero-effect ratio or inverse-variance weight is assigned. Observed zero search counts do not establish population extinction or zero underlying uncertainty.
+
+The primary accepted manuscript Methods states initial aphid introduction May–June2013 and annual supplementation of predator taxa during2013–2015. The2015herbivore reintroduction described there is for slugs, not aphids. Later observations therefore do not measure an unmanipulated predator assemblage or survival of a fixed original cohort.
+
+The existing2013 first-report endpoint remains an explicitly earlier-window exploratory estimate. It is not the programme-terminal estimate. Under a strict latest-observation-per-programme rule, Penryn supplies no finite terminal lnRR for either later year, so the current two-programme aphid ratio synthesis cannot be presented as a terminal-programme meta-analysis. We do not select a last nonzero date to recover a finite ratio. All terminal units, arm summaries, non-estimable contrasts and input hashes are retained in `aphid_later_terminal_*` outputs. Main effect catalogue and earlier numerical estimates are unchanged.

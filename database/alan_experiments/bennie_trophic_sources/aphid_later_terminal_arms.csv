@@ -1,0 +1,19 @@
+year,date,trophic,light,allocated_mesocosms,observed_mesocosms,missing_mesocosms,mean,total,zero_count_mesocosms
+2014,2014-08-29,Grazer,Amber,6,6,0,0.0,0.0,6
+2014,2014-08-29,Grazer,Control,6,6,0,0.0,0.0,6
+2014,2014-08-29,Grazer,White,6,6,0,0.0,0.0,6
+2014,2014-08-29,Non Grazer,Amber,6,0,6,,,0
+2014,2014-08-29,Non Grazer,Control,6,0,6,,,0
+2014,2014-08-29,Non Grazer,White,6,0,6,,,0
+2014,2014-08-29,Predator,Amber,6,6,0,0.0,0.0,6
+2014,2014-08-29,Predator,Control,6,6,0,0.0,0.0,6
+2014,2014-08-29,Predator,White,6,6,0,0.0,0.0,6
+2015,2015-08-27,Grazer,Amber,6,6,0,0.16666666666666666,1.0,5
+2015,2015-08-27,Grazer,Control,6,6,0,0.0,0.0,6
+2015,2015-08-27,Grazer,White,6,6,0,0.0,0.0,6
+2015,2015-08-27,Non Grazer,Amber,6,0,6,,,0
+2015,2015-08-27,Non Grazer,Control,6,0,6,,,0
+2015,2015-08-27,Non Grazer,White,6,0,6,,,0
+2015,2015-08-27,Predator,Amber,6,6,0,0.0,0.0,6
+2015,2015-08-27,Predator,Control,6,6,0,0.0,0.0,6
+2015,2015-08-27,Predator,White,6,6,0,0.0,0.0,6

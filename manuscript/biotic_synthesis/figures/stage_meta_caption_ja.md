@@ -16,3 +16,5 @@ Aは起源分類が原資料間で一致しなかったEphydridaeを両系列か
 - この作図処理はモデル再推定、追加の効果選抜、欠測区間の補完を行わない。
 
 出典と解析上の制約は[捕獲](../../../database/alan_experiments/capture_origin_synthesis/README.md)、[捕食者による修飾](../../../database/alan_experiments/aphid_predator_synthesis/README.md)、[食害](../../../database/alan_experiments/leaf_damage_synthesis/README.md)を参照。
+
+BのPenrynは2013年の最初の報告の終点を用いる。後年2014・2015年の各最終観測では暗区平均がゼロでlnRRを計算できないため、Bを系列全体の最終時点を統一したメタ解析とは解釈しない。数値を得るために最後の非ゼロ時点へ選び替えていない。

@@ -1,0 +1,9 @@
+year,trophic,light,mean_lit,mean_dark,lnRR,sampling_variance,status,pseudocount_added
+2014,Grazer,Amber,0.0,0.0,,,undefined_both_means_zero,False
+2014,Grazer,White,0.0,0.0,,,undefined_both_means_zero,False
+2014,Predator,Amber,0.0,0.0,,,undefined_both_means_zero,False
+2014,Predator,White,0.0,0.0,,,undefined_both_means_zero,False
+2015,Grazer,Amber,0.16666666666666666,0.0,,,undefined_zero_dark_mean,False
+2015,Grazer,White,0.0,0.0,,,undefined_both_means_zero,False
+2015,Predator,Amber,0.0,0.0,,,undefined_both_means_zero,False
+2015,Predator,White,0.0,0.0,,,undefined_both_means_zero,False
