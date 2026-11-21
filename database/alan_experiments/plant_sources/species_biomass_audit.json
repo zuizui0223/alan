@@ -1,0 +1,28 @@
+{
+  "source_doi": "10.6084/m9.figshare.20304039",
+  "source_sha256": "baa5a7e2a3e0aaa56d1d810c5bbe6e9c93414f488e4fb12dcd8f7be03d96e2b0",
+  "source_pages": 24,
+  "species_rows": 665,
+  "species": 13,
+  "community_mesocosms": 54,
+  "complete_54_record_species": 5,
+  "arm_cells": 116,
+  "planned_contrasts": 78,
+  "finite_descriptive_contrasts": 77,
+  "unlisted_arm": "Prunella vulgaris, L2, T1",
+  "component_conflict_rows": 1,
+  "largest_community_minus_listed_g": 64.19999999999999,
+  "imputed_absences": 0,
+  "independent_programmes_added": 0,
+  "pooled_effects_added": 0,
+  "main_catalogue_changed": false,
+  "human_duplicate_extraction_complete": false,
+  "limits": [
+    "13 source-listed species; 5 rare species excluded from author species analysis",
+    "Unlisted species-mesocosm combinations are not assigned zero",
+    "Means condition on available species records; no survival or unconditional biomass effect",
+    "Source total retained when total differs from root+shoot; affected contrast flagged",
+    "Shared mesocosms and controls; no cross-species covariance or confidence intervals inferred",
+    "Final whole-plant dry mass is not aboveground clipped biomass or pollination mediation"
+  ]
+}
