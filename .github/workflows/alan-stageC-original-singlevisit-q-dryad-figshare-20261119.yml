@@ -1,0 +1,60 @@
+name: ALAN Stage C authentic single-visit pollen efficiency original Dryad and Figshare
+
+on:
+  push:
+    branches:
+      - analysis/alan-three-stage-prisma-meta-protocol-20261119
+    paths:
+      - scripts/acquisition/alan_stageC_SVD_dryad_figshare_original_q_sources_20261119.py
+      - tests/test_alan_stageC_SVD_dryad_figshare_original_q_sources_20261119.py
+      - .github/workflows/alan-stageC-original-singlevisit-q-dryad-figshare-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  official-original-singlevisit-source-availability-and-guild-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 11
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Original source SVD file schema tests, no fabricated moth/fly comparisons
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m unittest discover -s tests \
+            -p test_alan_stageC_SVD_dryad_figshare_original_q_sources_20261119.py -v
+      - name: Fetch true 2020 SVD meta Dryad and 2025 Knautia primary Figshare public files
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_source_q_original
+          python -m scripts.acquisition.alan_stageC_SVD_dryad_figshare_original_q_sources_20261119 \
+            --out /tmp/alan_source_q_original/real_single_visit_source_guilds_and_schemas.json
+      - name: Keep no pairwise original moth-versus-fly compatible stigma q as unknown
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/alan_source_q_original/real_single_visit_source_guilds_and_schemas.json'))
+          assert x['schema']=='alan_stageC_original_moth_fly_q_two_existing_meta_primary_datasets_preflight_v1'
+          assert x['original_meta_published_28_studies']==28
+          assert x['original_meta_published_127_observations']==127
+          assert x['original_meta_published_bee_taxa']==94
+          assert x['original_meta_published_fly_taxa']==33
+          assert x['original_meta_published_moth_taxa']==0
+          assert x['source_primary_nocturnal_moth_singlevisit_measurement_verified'] is False
+          assert x['no_moth_fly_same_plant_efficiency_ratio_estimated']
+          assert x['no_lu2026_plant_taxon_SVD_efficiency_verified']
+          assert not x['any_completed_stageC_meta_analysis']
+          print('ALAN_STAGEC_PRIMARY_SVD_ONLY_NO_MOTH_FLY_RATIO_SUFFICIENCY_OK')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-stageC-real-SVD-Dryad28study-beefly-and-Knautia-hoverfly-Figshare-source
+          path: /tmp/alan_source_q_original/real_single_visit_source_guilds_and_schemas.json
+          retention-days: 90
+          if-no-files-found: error

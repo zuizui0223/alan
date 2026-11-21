@@ -1,0 +1,59 @@
+name: ALAN Sanders 23 original A-process and B-endpoint numeric source readiness audit
+
+on:
+  push:
+    branches:
+      - analysis/alan-three-stage-prisma-meta-protocol-20261119
+    paths:
+      - scripts/analysis/alan_sanders23_source_processwise_numeric_readiness_20261120.py
+      - tests/test_alan_sanders23_source_processwise_numeric_readiness_20261120.py
+      - .github/workflows/alan-sanders23-quantitative-process-sufficiency-20261120.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source_original_process_level_A_B_numeric_screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify 23 original source DOI clusters and reject fake meta readiness
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_sanders23_source_processwise_numeric_readiness_20261120.py -v
+      - name: Recover original 126-paper author raw mean SD n CSV and audit 23 actual Study IDs by process
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_20261120_meta_sufficiency
+          python -m scripts.analysis.alan_sanders23_source_processwise_numeric_readiness_20261120 \
+            --out /tmp/alan_20261120_meta_sufficiency/true_original_23study_source_process_numeric_readiness.json
+      - name: Assert original 152 arthropod effects cannot masquerade as A meta-ready studies
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_20261120_meta_sufficiency/true_original_23study_source_process_numeric_readiness.json'))
+          assert d['schema']=='alan_20261120_sanders_original_23paper_stageA_processwise_numeric_candidate_source_census_v1'
+          totals=d['stageA_broad_original_source_sufficiency_totals']
+          assert totals['source_original_Keep_StageA_broad_effects']==152
+          assert totals['source_original_Keep_StageA_Study_IDs']==23
+          assert totals['source_stageA_Field_effect_rows']==130
+          assert totals['source_stageA_positive_original_arm_means_SD_n_rows']==145
+          assert sum(x['source_Study_ID_clusters_from_original_author_keep']
+                     for x in d['stageA_original_23_papers_by_primary_biological_process'].values())==23
+          assert d['confirmed_A_water_x_light_meta_regression_beta'] is None
+          assert d['confirmed_B_wet_affinity_x_light_meta_regression_beta'] is None
+          assert d['original_raw_meta_effect_rows_or_Study_ID_exported'] is False
+          print('SANDERS_23_PRIMARY_A_B_PROCESSWISE_NUMERIC_CANDIDATE_COUNTS_VERIFIED_NOT_META_FIT')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-original-Sanders23-stageA-process-and-stageB-numeric-arm-data-sufficiency
+          path: /tmp/alan_20261120_meta_sufficiency/*.json
+          if-no-files-found: error
+          retention-days: 90

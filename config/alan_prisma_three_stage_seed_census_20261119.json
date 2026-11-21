@@ -1,0 +1,405 @@
+{
+  "schema": "alan_prisma_three_stage_source_seed_v1",
+  "created": "2026-11-19",
+  "review_status": "DRAFT_PROTOCOL_NOT_PROSPECTIVE_PRE_REGISTRATION_AND_NOT_SYSTEMATICALLY_SEARCHED",
+  "data_window_end": "2026-11-19",
+  "effect_observed_pre_protocol": true,
+  "baseline_reviews": [
+    {
+      "doi": "10.1038/s41559-020-01322-x",
+      "data_doi": "10.5061/dryad.wpzgmsbjn",
+      "published_126_papers": 126,
+      "published_1304_effects": 1304,
+      "source_metric": "Hedges d; NOT automatically lnRR",
+      "source_data_expected": [
+        "Sanders_et_al_datafile.csv",
+        "Sanders_meta__rcode.r"
+      ],
+      "screening_status": "SOURCE_PRIORITY_METADATA_VERIFIED_NOT_ENDPOINT_ELIGIBILITY"
+    },
+    {
+      "doi": "10.1002/ece3.9990",
+      "source_metric": "Hedges g",
+      "published_study_total_all_pollutants": 58,
+      "source_light_subpanel_articles": 22,
+      "source_UVB_light_articles": 8,
+      "source_ALAN_nonUVB_light_candidate_articles": 14,
+      "source_light_reproduction_studies": 13,
+      "source_UVB_light_reproduction_articles": 7,
+      "source_nightlight_reproduction_candidates": 6,
+      "source_status": "existing original supplementary audit on ALAN PR75; six candidate articles not automatically independently randomized"
+    },
+    {
+      "doi": "10.1098/rstb.2022.0356",
+      "data_doi": "10.6084/m9.figshare.c.6837630",
+      "published_papers": 79,
+      "published_interaction_investigations": 81,
+      "source_status": "true 79 DOI clusters / 81 interaction records verified; no effect size variances; method unknown for 63/79 papers"
+    }
+  ],
+  "source_reference_id_concordance": {
+    "penryn_2015_2018_2022_same_54_troughs": true,
+    "lizard_2017_2018_same_30_light_plots": true,
+    "Lu2026_JPE_and_EE_overlap_unverified": true,
+    "Seymoure_review_and_Guenat_review_original_papers_must_deduplicate": true,
+    "westhavelland_2017_2025_same_1lit_1dark_sitepair": true
+  },
+  "seed_candidates": [
+    {
+      "stage": "S1",
+      "study_programme_id": "Parkinson2020",
+      "doi": "10.1371/journal.pone.0240138",
+      "habitat": "aquatic_riparian",
+      "design": "experimental_light",
+      "endpoint_candidates": [
+        "emergent_aquatic_insects",
+        "web_spiders",
+        "web_preys"
+      ],
+      "independence_note": "20 physical mesocosms; original source refit existing main",
+      "current_source_tier": "source_reanalysis_some_endpoints",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S1",
+      "study_programme_id": "Sullivan2019",
+      "doi": "10.1002/eap.1821",
+      "habitat": "aquatic_riparian",
+      "design": "observational_light_gradient",
+      "endpoint_candidates": [
+        "riparian_spiders",
+        "emergent_aquatic_insects",
+        "stable_isotope_foodweb"
+      ],
+      "independence_note": "site-light gradient; no randomized lamp treatment verified",
+      "current_source_tier": "candidate_fulltext",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S1",
+      "study_programme_id": "Davies2017",
+      "doi": "10.1111/gcb.13615",
+      "habitat": "terrestrial_grassland",
+      "design": "experimental_light",
+      "endpoint_candidates": [
+        "Araneae",
+        "Coleoptera pitfall_activity"
+      ],
+      "independence_note": "30 light plots; same programme as Bennie2018JAE; different from Penryn54",
+      "current_source_tier": "source_programme_verified_not_endpoint_variance",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S1",
+      "study_programme_id": "Deitsch2023",
+      "doi": "10.1098/rspb.2023.0153",
+      "habitat": "terrestrial_forest",
+      "design": "paired_light",
+      "endpoint_candidates": [
+        "predator_arthropods",
+        "clay_caterpillar_marks"
+      ],
+      "independence_note": "4 lit/dark field pairs; raw EDI source stopped",
+      "current_source_tier": "published_sign_only",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S1",
+      "study_programme_id": "Brown2023",
+      "doi": "10.1016/j.isci.2023.106203",
+      "habitat": "terrestrial_forest",
+      "design": "experimental_light_before_after",
+      "endpoint_candidates": [
+        "pitfall_predatory_arthropods"
+      ],
+      "independence_note": "10 lit/10 control traps; trap times repeated; before/during not BACI alone",
+      "current_source_tier": "published_experimental_arm_time_means_only",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S1",
+      "study_programme_id": "Guo2025",
+      "doi": "10.1007/s00114-025-02031-w",
+      "habitat": "terrestrial_forest",
+      "design": "lit_dark_field_comparison",
+      "endpoint_candidates": [
+        "orb_weaver_abundance",
+        "herbivory"
+      ],
+      "independence_note": "7 lit/unlit plot pairs within four sites; cause assignment needs audit",
+      "current_source_tier": "published_sign_only",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S1",
+      "study_programme_id": "Farnworth2026",
+      "doi": "10.1016/j.biocon.2026.111967",
+      "habitat": "terrestrial_forest",
+      "design": "BACI_light",
+      "endpoint_candidates": [
+        "ground_predator_pitfall_activity"
+      ],
+      "independence_note": "physical independent site n unverified; three-fold lower source claim",
+      "current_source_tier": "published_approx_only",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S1",
+      "study_programme_id": "Manfrin2025",
+      "doi": "10.1016/j.gecco.2025.e03577",
+      "habitat": "aquatic_riparian",
+      "design": "experiment_light_crayfish_factorial",
+      "endpoint_candidates": [
+        "aquatic_emergence",
+        "riparian_spider_pitfall",
+        "suction_spider"
+      ],
+      "independence_note": "16 field flume/terrestrial units; pitfall +22%; suction −25%; raw request",
+      "current_source_tier": "published_direction_different_sampling",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S1",
+      "study_programme_id": "Eckhartt2022",
+      "doi": "10.1098/rsbl.2022.0281",
+      "habitat": "terrestrial_urban",
+      "design": "existing_streetlight_twilight_confounded",
+      "endpoint_candidates": [
+        "artificial_insect_suet_bait_damage"
+      ],
+      "independence_note": "7 lamppost gradient; day vs night not light-off randomized",
+      "current_source_tier": "secondary_surrogate_not_primary_abundance",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S2",
+      "study_programme_id": "Knop2017",
+      "doi": "10.1038/nature23288",
+      "habitat": "not_recoded_to_moist_or_dry_without_independent_trait_source",
+      "design": "lighting_experiment",
+      "endpoint_candidates": [
+        "visitation",
+        "fruit_set"
+      ],
+      "independence_note": "distinct manipulated programme; original -13% focal fruit set, effect SE unverified",
+      "current_source_tier": "candidate_known_original_methods_mixed",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S2",
+      "study_programme_id": "Macgregor2019",
+      "doi": "10.1002/ecs2.2550",
+      "habitat": "not_recoded_to_moist_or_dry_without_independent_trait_source",
+      "design": "lighting_x_access_experiment",
+      "endpoint_candidates": [
+        "per_flower_pollination_success",
+        "conditional_seeds"
+      ],
+      "independence_note": "5 physical plots×4 rotations; raw numeric input CSV missing; positive full-night",
+      "current_source_tier": "candidate_known_original_methods_mixed",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S2",
+      "study_programme_id": "Boom2020",
+      "doi": "10.1038/s41598-020-75471-1",
+      "habitat": "not_recoded_to_moist_or_dry_without_independent_trait_source",
+      "design": "spectral_light_experiment",
+      "endpoint_candidates": [
+        "fruit_set",
+        "infestation",
+        "conditional_ovule_fertilization",
+        "overall_seeds"
+      ],
+      "independence_note": "4 sites; no resolved net seed effect p=.63",
+      "current_source_tier": "candidate_known_original_methods_mixed",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S2",
+      "study_programme_id": "Giavi2020",
+      "doi": "10.1038/s41598-020-68667-y",
+      "habitat": "not_recoded_to_moist_or_dry_without_independent_trait_source",
+      "design": "light_experiment_dark_edge",
+      "endpoint_candidates": [
+        "seed_predation",
+        "unattacked_fruit_index",
+        "seed_presence"
+      ],
+      "independence_note": "4 lit+4 dark meadow plots, adjacent dark shares lit treatment meadows; Table 1c denominator ambiguous",
+      "current_source_tier": "candidate_known_original_methods_mixed",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S2",
+      "study_programme_id": "Bariles2021",
+      "doi": "10.1093/biolinnean/blab114",
+      "habitat": "not_recoded_to_moist_or_dry_without_independent_trait_source",
+      "design": "observational_skyglow",
+      "endpoint_candidates": [
+        "pollen_tubes",
+        "fruit_set",
+        "seeds"
+      ],
+      "independence_note": "6-sites ambient radiance not randomly lit",
+      "current_source_tier": "candidate_known_original_methods_mixed",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S2",
+      "study_programme_id": "Wilson2021",
+      "doi": "10.1093/icb/icab010",
+      "habitat": "not_recoded_to_moist_or_dry_without_independent_trait_source",
+      "design": "light_tower_and_observational_skyglow",
+      "endpoint_candidates": [
+        "fruit_recruitment",
+        "yucca_larvae"
+      ],
+      "independence_note": "two different exposure processes not independent matched random effects",
+      "current_source_tier": "candidate_known_original_methods_mixed",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S2",
+      "study_programme_id": "DzulCauich2022",
+      "doi": "10.1007/s00114-021-01783-5",
+      "habitat": "not_recoded_to_moist_or_dry_without_independent_trait_source",
+      "design": "observational_light_noise",
+      "endpoint_candidates": [
+        "bat_visits",
+        "stigma_pollen",
+        "fruit_set",
+        "seed_per_ovule"
+      ],
+      "independence_note": "43 records are not 43 illumination assignments, same-source pollen/fruit opposite sign",
+      "current_source_tier": "candidate_known_original_methods_mixed",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S2",
+      "study_programme_id": "Li2026",
+      "doi": "10.64898/2026.07.10.737511",
+      "habitat": "not_recoded_to_moist_or_dry_without_independent_trait_source",
+      "design": "lighting_experiment_preprint",
+      "endpoint_candidates": [
+        "plant_any_seed",
+        "fruit_count",
+        "seed_count"
+      ],
+      "independence_note": "3 fields, author raw source analysed; unreviewed preprint",
+      "current_source_tier": "candidate_known_original_methods_mixed",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S2",
+      "study_programme_id": "Lu2026JPE",
+      "doi": "10.1093/jpe/rtag160",
+      "habitat": "not_recoded_to_moist_or_dry_without_independent_trait_source",
+      "design": "light_x_pollinator_access",
+      "endpoint_candidates": [
+        "stigma_pollen",
+        "night_only_seed_per_ovule",
+        "open_seed_per_ovule"
+      ],
+      "independence_note": "5 field pairs? source originally unclear, 2 plants; −56% night-only not unrestricted open",
+      "current_source_tier": "candidate_known_original_methods_mixed",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S2",
+      "study_programme_id": "Lu2026EE",
+      "doi": "10.1002/ece3.74368",
+      "habitat": "not_recoded_to_moist_or_dry_without_independent_trait_source",
+      "design": "light_x_daynight_visit",
+      "endpoint_candidates": [
+        "guild_night_visits",
+        "day_visits"
+      ],
+      "independence_note": "5 paired blocks; possible overlap with Lu2026JPE not source-resolved",
+      "current_source_tier": "candidate_known_original_methods_mixed",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S2",
+      "study_programme_id": "Grognuz2026",
+      "doi": "10.1016/j.biocon.2025.111650",
+      "habitat": "not_recoded_to_moist_or_dry_without_independent_trait_source",
+      "design": "lighting_experiment",
+      "endpoint_candidates": [
+        "flower_phenology",
+        "fruiting_inflorescences"
+      ],
+      "independence_note": "14 light/dark pairs; phenology distinct from pollination and true seed output",
+      "current_source_tier": "candidate_known_original_methods_mixed",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    },
+    {
+      "stage": "S1",
+      "study_programme_id": "AquaticDipteraEmergence2025",
+      "doi": "10.1007/s00027-025-01161-7",
+      "habitat": "aquatic_riparian",
+      "design": "experimental_streetlight_near_drainage_ditch",
+      "endpoint_candidates": [
+        "true_aquatic_Diptera_emergence",
+        "flying_adult_Diptera_light_trap_abundance"
+      ],
+      "independence_note": "ONE lighted riparian field SITE and ONE dark control SITE (not 12 independent lamps nor 4 independent emergence traps); same light infrastructure as Manfrin2017 original article, but year 2014 Diptera-specific emergence differs from 2012-13 broad aquatic insect emergence. Both nested within one physical exposure programme.",
+      "current_source_tier": "published_abstract_origins_and_effect_directions_no_source_variance",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true,
+      "physical_exposure_programme_id": "WesthavellandDrainageDitch2012"
+    },
+    {
+      "stage": "S1",
+      "study_programme_id": "Manfrin2017Westhavelland",
+      "physical_exposure_programme_id": "WesthavellandDrainageDitch2012",
+      "doi": "10.3389/fenvs.2017.00061",
+      "habitat": "aquatic_riparian",
+      "design": "before_after_control_impact_at_one_lit_and_one_dark_field_site",
+      "endpoint_candidates": [
+        "aquatic_origin_insect_emergence",
+        "flying_aquatic_insects",
+        "ground_spider_predator_pitfall_activity",
+        "ground_carabid_pitfall_activity"
+      ],
+      "independence_note": "One treatment riparian field SITE and one unlit field SITE, not 12 lamps×2 independent illumination assignments; 2012 before/after and 2013 repeated; same physical infrastructure as Manfrin et al. 2025 Aquatic Diptera (2014), which is not independent ALAN experimental source.",
+      "current_source_tier": "published_primary_fulltext_and_methods_verified_2012_2013_no_independent_site_SE",
+      "screening_status": "SEED_REQUIRES_FULLTEXT_AND_EFFECT_VARIANCE",
+      "not_PRISMA_included_yet": true
+    }
+  ],
+  "counts": {
+    "S1_purposeful_candidate_paper_records_not_search_inclusions": 11,
+    "S2_purposeful_candidate_paper_records_not_search_inclusions": 11,
+    "source_original_independent_lighting_programme_total": "UNKNOWN_UNTIL_DEDUPLICATION",
+    "S1_confirmed_readily_extractable_lnRR_with_correct_variance": "UNKNOWN_NEEDS_ENDPOINT_RECHECK",
+    "S2_confirmed_readily_extractable_lnRR_with_correct_variance": "UNKNOWN_NEEDS_ENDPOINT_RECHECK",
+    "S2_confirmed_meta_ready_moisture_x_true_dark_nocturnal_dependence": "0_in_prior_12paper_source_sufficiency_screen_NOT_a_general_lnRR_count",
+    "Stage3_plant_specific_moth_fly_q_lit_dark_sameplant_ready": "UNKNOWN_NOT_VERIFIED",
+    "S1_initial_seed_at_protocol_creation_20261119": 9,
+    "S1_added_after_initial_seed_before_PRISMA_search": 2
+  },
+  "no_PRISMA_record_counts_claimed": true,
+  "programme_vs_paper_vs_effect_vs_field_unit_distinguished": true,
+  "preselected_positive_null_negative_literature_included": true
+}

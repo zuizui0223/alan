@@ -1,0 +1,59 @@
+name: ALAN Sanders 23 original Stage A papers source-authentic process triage
+
+on:
+  push:
+    branches:
+      - analysis/alan-three-stage-prisma-meta-protocol-20261119
+    paths:
+      - config/alan_sanders2020_23paper_stageA_original_endpoint_title_triage_20261119.json
+      - scripts/analysis/alan_sanders23_original_stageA_measurement_process_triage_20261119.py
+      - tests/test_alan_sanders23_original_stageA_measurement_process_triage_20261119.py
+      - .github/workflows/alan-sanders23-stageA-process-source-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-exact-23paper-screen-and-independent-study-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test no falsely included aquatic emergence or trophic effect
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests \
+            -p test_alan_sanders23_original_stageA_measurement_process_triage_20261119.py -v
+      - name: Author-original DOI/Study reconstruction with published Zenodo MD5/SHA
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_sanders_23_stageA_source
+          python -m scripts.analysis.alan_sanders23_original_stageA_measurement_process_triage_20261119 \
+            --out /tmp/alan_sanders_23_stageA_source/original_23_study_process_prisma_firstpass.json
+      - name: Original author source Study IDs and five distinct endpoint processes guard
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_sanders_23_stageA_source/original_23_study_process_prisma_firstpass.json'))
+          assert d['schema']=='alan_sanders_original23_stageA_separate_biological_processes_title_screen_gate_v1'
+          assert d['original_broad_stageA_Keep_StudyID_count']==23
+          assert sum(d['preliminary_outcome_family_counts_not_meta_sample'].values())==23
+          assert d['original_study_with_source_DOI_identity_conflict']==1
+          assert d['single_original_stream_drift_preliminary_paper_count']==1
+          assert d['total_arthropod_predator_abundance_meta_ready_k'] is None
+          assert d['riparian_terrestrial_modification_meta_ready_k'] is None
+          assert d['WoS_or_Scopus_PRISMA_search_paper_count'] is None
+          assert d['no_new_global_lnRR_or_predation_causal_meta_fitted']
+          print('SANDERS23_SOURCE_PRIMARY_PROCESSES_FULL_DOI_COVERAGE_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-original-Sanders23-stageA-five-processes-DOI-provenance-not-meta
+          path: /tmp/alan_sanders_23_stageA_source/original_23_study_process_prisma_firstpass.json
+          retention-days: 90
+          if-no-files-found: error

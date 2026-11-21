@@ -1,0 +1,348 @@
+{
+  "schema": "alan_sanders126_author_source_23_stageA_title_primary_process_review_v1",
+  "date": "2026-11-19",
+  "source_original_Sanders_DOI": "10.1038/s41559-020-01322-x",
+  "source_original_CSV_SHA256": "d11d1e29c05826f2b4a5c1c2d63b9c195dc2effbedd1ff531afa7b6bdf497693",
+  "source_original_review_keep_A_study_ids": 23,
+  "assessed_publication_Study_id_mapping": "same ordered source bibliography produced by original Keep/Delete audit; title/fulltext source checks partial",
+  "includes_title_screen_only_not_systematic_search": true,
+  "no_automated_habitat_determination_from_plant_or_insect_taxonomy": true,
+  "distinct_source_study_records": 23,
+  "source_study_entries": [
+    {
+      "original_source_DOIs": [
+        "10.1002/ecy.1770/suppinfo"
+      ],
+      "preliminary_primary_endpoint_class": "frog_biting_midge_light_noise_parasitic_host_interaction",
+      "preliminary_original_habitat": "terrestrial_near_wetland_uncertain",
+      "screening_caveat": "original 2 field light/noise trials, not 2 independent publications; not aquatic emergence",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "trophic_predation_parasitism"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1007/s10201-018-0548-0"
+      ],
+      "preliminary_primary_endpoint_class": "planktivorous_fish_daphnia_evasive_behaviour",
+      "preliminary_original_habitat": "freshwater",
+      "screening_caveat": "original prey behavior, not aquatic emergent insect or spider abundance",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "aquatic_behaviour_not_emergence"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1007/s10841-015-9777-2"
+      ],
+      "preliminary_primary_endpoint_class": "terrestrial_predation_larval_insect_attack",
+      "preliminary_original_habitat": "terrestrial",
+      "screening_caveat": "original null light effect candidate, predation not predator abundance",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "trophic_predation_parasitism"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1016/j.applanim.2015.11.020",
+        "10.1016/j.applanim.2015.11.021"
+      ],
+      "preliminary_primary_endpoint_class": "signal_crayfish_behaviour_invasive_species",
+      "preliminary_original_habitat": "freshwater",
+      "screening_caveat": "original Sanders source DOI conflict; two source DOIs for one Study, resolve titles",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "aquatic_behaviour_not_emergence"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1016/j.baae.2018.07.005"
+      ],
+      "preliminary_primary_endpoint_class": "nocturnal_insect_demographic_trap",
+      "preliminary_original_habitat": "terrestrial_or_mixed_unknown",
+      "screening_caveat": "ALAN activity, possible population sink; not known aquatic emergence",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "aerial_light_attraction_activity"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1016/j.cub.2018.05.078"
+      ],
+      "preliminary_primary_endpoint_class": "insect_aphid_parasitoid_topdown_rate",
+      "preliminary_original_habitat": "terrestrial_outdoor_mesocosm",
+      "screening_caveat": "original low-light 0.1–5 lux top-down parasitoid control, not aquatic insect subsidy",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "trophic_predation_parasitism"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1016/j.marpolbul.2015.02.023"
+      ],
+      "preliminary_primary_endpoint_class": "marine_amphipod_light_trap_attraction",
+      "preliminary_original_habitat": "marine",
+      "screening_caveat": "mobile marine epifauna light trapping, NOT freshwater emergence",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "aquatic_behaviour_not_emergence"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1016/j.rbe.2016.11.004"
+      ],
+      "preliminary_primary_endpoint_class": "streetlight_beetle_attraction",
+      "preliminary_original_habitat": "terrestrial_urban",
+      "screening_caveat": "ground or flying beetle abundance/attraction; light installation n unverified",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "aerial_light_attraction_activity"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1038/srep15232"
+      ],
+      "preliminary_primary_endpoint_class": "aphid_parasitoid_population_and_plant_resource",
+      "preliminary_original_habitat": "terrestrial_mesocosm",
+      "screening_caveat": "source separate 2014 broad bean host/parasitoid experiment; not Penryn54 grassland troughs",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "trophic_predation_parasitism"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1080/03946975.2017.1362841"
+      ],
+      "preliminary_primary_endpoint_class": "fish_terrestrial_insect_crossboundary_aggregation",
+      "preliminary_original_habitat": "freshwater_edge",
+      "screening_caveat": "terrestrial insect inputs into fish; NOT aquatic insect emergence",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "aquatic_behaviour_not_emergence"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1098/rsbl.2012.0216"
+      ],
+      "preliminary_primary_endpoint_class": "streetlight_invertebrate_community_activity",
+      "preliminary_original_habitat": "terrestrial_urban",
+      "screening_caveat": "community abundance sampling; not verified wetland or predator-only",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "aerial_light_attraction_activity"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1098/rsbl.2015.0080"
+      ],
+      "preliminary_primary_endpoint_class": "marine_epifaunal_community",
+      "preliminary_original_habitat": "marine",
+      "screening_caveat": "marine epifaunal response; not freshwater wetland hypothesis",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "aquatic_behaviour_not_emergence"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1098/rspb.2017.0075"
+      ],
+      "preliminary_primary_endpoint_class": "bat_spectral_light_response",
+      "preliminary_original_habitat": "terrestrial",
+      "screening_caveat": "bat presence and insect prey opportunity; not arthropod predator counts",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "other_noncomparable_behaviour_reproduction"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1098/rspb.2017.1195"
+      ],
+      "preliminary_primary_endpoint_class": "warming_light_predator_prey_field_factorial",
+      "preliminary_original_habitat": "terrestrial",
+      "screening_caveat": "light×warming interactions, no direct plant pollination",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "trophic_predation_parasitism"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1098/rstb.2014.0131"
+      ],
+      "preliminary_primary_endpoint_class": "legume_resource_specialist_aphid_bottomup",
+      "preliminary_original_habitat": "terrestrial_Penryn54",
+      "screening_caveat": "same source Penryn54 original as 2018 Bennie and 2022 Anic; not separate lighting trial",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "trophic_predation_parasitism"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1111/1365-2664.13004"
+      ],
+      "preliminary_primary_endpoint_class": "aerial_nocturnal_insect_streetlight_attraction",
+      "preliminary_original_habitat": "terrestrial_or_mixed_unknown",
+      "screening_caveat": "streetlight aerial attractivity, not emergence rate",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "aerial_light_attraction_activity"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1111/eth.12852"
+      ],
+      "preliminary_primary_endpoint_class": "orbweaver_light_foraging_behavior",
+      "preliminary_original_habitat": "terrestrial",
+      "screening_caveat": "spider behavior, not original abundance direct count",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "other_noncomparable_behaviour_reproduction"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1111/fwb.12426"
+      ],
+      "preliminary_primary_endpoint_class": "headwater_stream_drift_emergence_multi_endpoint",
+      "preliminary_original_habitat": "freshwater_headwater",
+      "screening_caveat": "4 independent streams each one light/dark reach pair; drift approx halved, emergence unresolved",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "aquatic_drift_source_NOT_equivalent_to_emergence"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1111/gcb.13373"
+      ],
+      "preliminary_primary_endpoint_class": "moth_population_and_body_pollen_transport",
+      "preliminary_original_habitat": "terrestrial",
+      "screening_caveat": "pollen on insect body NOT conspecific stigma deposition",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "other_noncomparable_behaviour_reproduction"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1111/gcb.13615"
+      ],
+      "preliminary_primary_endpoint_class": "Lizard30_terrestrial_spider_beetle_activity",
+      "preliminary_original_habitat": "terrestrial_grassland_Lizard30",
+      "screening_caveat": "same Lizard30 physical lights as Bennie2018 JAE vegetation, 2 publications not 2 programmes",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "aerial_light_attraction_activity"
+    },
+    {
+      "original_source_DOIs": [
+        "10.1111/icad.12116"
+      ],
+      "preliminary_primary_endpoint_class": "geometrid_moth_mating",
+      "preliminary_original_habitat": "terrestrial",
+      "screening_caveat": "no arthropod abundance or actual pollination endpoint",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "other_noncomparable_behaviour_reproduction"
+    },
+    {
+      "original_source_DOIs": [
+        "10.7717/peerj.4070"
+      ],
+      "preliminary_primary_endpoint_class": "spider_prey_interception_arthropod_phenotype",
+      "preliminary_original_habitat": "terrestrial",
+      "screening_caveat": "actual prey intercept and traits, not direct spider density; negative lighting possible",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "trophic_predation_parasitism"
+    },
+    {
+      "original_source_DOIs": [
+        "10.7717/peerj.5599"
+      ],
+      "preliminary_primary_endpoint_class": "orbweaver_spider_life_history",
+      "preliminary_original_habitat": "terrestrial",
+      "screening_caveat": "life history morphology, not predator density",
+      "primary_illumination_programme_id_verified": false,
+      "original_research_light_LRR_SE_verified": false,
+      "source_study_effect_rows_not_independent_light_programmes": true,
+      "final_PRISMA_fulltext_decision": "NOT_SCREENED",
+      "manual_literature_screen_date": "2026-11-19",
+      "preliminary_outcome_family_for_screen_only": "other_noncomparable_behaviour_reproduction"
+    }
+  ],
+  "question": "Does ALAN alter the supply of aquatic-emergent insects or predator abundance differently between independent riparian and terrestrial experiments?",
+  "eligibility_status": "DOI_TITLE_AND_SELECTED_ABSTRACT_SOURCE_TRIAGE_NOT_PRISMA_FULLTEXT_FINAL",
+  "strict_aquatic_emergence_moderator_meta_eligible_k": "UNKNOWN",
+  "strict_predator_abundance_moderator_meta_eligible_k": "UNKNOWN",
+  "no_stageA_random_effect_lnRR_meta_fitted": true,
+  "title_screen_only_families_counts_not_meta_ready": {
+    "trophic_predation_parasitism": 7,
+    "aquatic_behaviour_not_emergence": 5,
+    "aerial_light_attraction_activity": 5,
+    "other_noncomparable_behaviour_reproduction": 5,
+    "aquatic_drift_source_NOT_equivalent_to_emergence": 1
+  }
+}

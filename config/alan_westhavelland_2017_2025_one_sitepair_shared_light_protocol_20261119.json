@@ -1,0 +1,50 @@
+{
+  "schema": "alan_westhavelland_original_one_lit_one_dark_field_site_repeat_publications_v1",
+  "audit_date": "2026-11-19",
+  "source_research_programme": "WesthavellandDrainageDitch2012",
+  "site": "Westhavelland Nature Park agricultural drainage ditch, Brandenburg, Germany",
+  "physical_unit": "one whole lighted riparian site versus one whole unlit control site, both adjacent to same drainage ditch",
+  "independent_lit_sites": 1,
+  "independent_dark_sites": 1,
+  "natural_field_sites_vs_12_lamps": "12 streetlight fixtures per site in infrastructure, not 12 independent site-level treatment assignments",
+  "emergence_traps_per_site": 4,
+  "adult_air_eclector_traps_per_site": 12,
+  "lighting_start": "2012-07-25",
+  "source_spectrum": "70W high-pressure sodium, 2000 K",
+  "source2017": {
+    "doi": "10.3389/fenvs.2017.00061",
+    "title": "Artificial Light at Night Affects Organism Flux across Ecosystem Boundaries and Drives Community Structure in the Recipient Ecosystem",
+    "source": "https://www.frontiersin.org/journals/environmental-science/articles/10.3389/fenvs.2017.00061/full",
+    "source_years": "2012 baseline and after illumination, 2013 follow-up",
+    "published_aquatic_origin_emergence": "increased in ALAN site in 2-year BACI study",
+    "published_terrestrial_ground_predators": "Pachygnatha clercki, Trochosa spp. and Opiliones increased but Carabidae decreased; taxon-specific sign changes",
+    "source_original_effect_variance_and_site_level_randomization": "not verified",
+    "source_DOI_not_new_experiment_for_2025": true
+  },
+  "source2025": {
+    "doi": "10.1007/s00027-025-01161-7",
+    "title": "Artificial light at night reduces emergence and attracts flying adults of aquatic Diptera",
+    "source": "https://link.springer.com/article/10.1007/s00027-025-01161-7",
+    "source_years": "May–October 2014",
+    "aquatic_Diptera_emergence_original_CPUE_lit_mean": 3.72,
+    "aquatic_Diptera_emergence_original_CPUE_dark_mean": 7.84,
+    "aquatic_Diptera_emergence_CPUE_lit_SD": 3.29,
+    "aquatic_Diptera_emergence_CPUE_dark_SD": 6.99,
+    "aquatic_emergence_published_direction": "twofold less at lit site",
+    "flying_Diptera_light_trap_published_direction": "approximately eightfold more at lit site",
+    "total_emergence_caught": 2424,
+    "total_flying_adults_caught": 2143,
+    "same_1site_vs_1site_riparian_experiment_as_2017": true,
+    "site_independent_light_vs_dark_replication_missing": true
+  },
+  "inferential_gates": {
+    "two_publications_not_two_independent_experimental_light_programmes": true,
+    "prior_broad_aquatic_emergence_positive_vs_2014_Diptera_negative_not_same_taxon_response_reversal": true,
+    "within_2025_emergence_vs_flying_different_capture_processes": true,
+    "lamps_and_traps_are_nested_not_independent_sites": true,
+    "cannot_estimate_general_A_wet_vs_terrestrial_interaction_from_one_riparian_site_pair": true,
+    "source_mean_SD_not_site_level_cluster_SE": true,
+    "no_lnRR_meta_fitted": true,
+    "no_falsely_inferred_ALAN_causal_pollination_or_plant_seed_effect": true
+  }
+}

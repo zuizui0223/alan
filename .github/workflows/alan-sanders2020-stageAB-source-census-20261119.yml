@@ -1,0 +1,58 @@
+name: ALAN Sanders genuine 126 study 1304 effect stage A/B source screen
+
+on:
+  push:
+    branches:
+      - analysis/alan-three-stage-prisma-meta-protocol-20261119
+    paths:
+      - scripts/analysis/alan_sanders2020_stageAB_source_census_20261119.py
+      - tests/test_alan_sanders2020_stageAB_source_census_20261119.py
+      - .github/workflows/alan-sanders2020-stageAB-source-census-20261119.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source126stageAstageBno-fake-meta:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test original source Stage A/B screening and n/means/SD without pseudo lamp replication
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_alan_sanders2020_stageAB_source_census_20261119.py -v
+      - name: Fetch author original MD5-pinned Sanders meta source and audit 126 studies/1304 effects
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_sanders2020_stage_source
+          python -m scripts.analysis.alan_sanders2020_stageAB_source_census_20261119 \
+            --out /tmp/alan_sanders2020_stage_source/original_126study_1304effect_stageA_B_candidate_source_census.json
+      - name: Demand true 126 source IDs and refuse meta k or water moderator claim
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/alan_sanders2020_stage_source/original_126study_1304effect_stageA_B_candidate_source_census.json'))
+          assert x['schema']=='alan_original_Sanders2020_126Study_1304effects_stageAB_exploratory_census_v1'
+          assert x['source_original_Study_count']==126
+          assert x['source_original_Study_effect_records']==1304
+          assert x['source_meta_original_hedges_d_not_lnRR']
+          assert x['original_meta_126papers_not_126_unique_physical_light_programmes_proven']
+          assert x['source_original_effect_n_values_not_confirmed_independent_lamp_sites']
+          assert x['requires_publication_fulltext_taxonomy_and_habitat_before_stageA']
+          assert x['requires_plant_conspecific_pollen_and_true_seed_denominator_before_stageB']
+          assert not x['source_raw_study_IDs_or_rows_exported']
+          assert not x['no_aquatic_vs_terrestrial_moderator_fitted'] is False
+          print('ALAN_SANDERS126_STAGE_A_B_SOURCE_SCREEN_NO_FICTITIOUS_META_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-Sanders126-original-study-1304effects-stage-A-B-source-screen-no-meta-k
+          path: /tmp/alan_sanders2020_stage_source/original_126study_1304effect_stageA_B_candidate_source_census.json
+          retention-days: 90
+          if-no-files-found: error

@@ -1,0 +1,60 @@
+name: ALAN Perkin 2014 four independent stream pairs original publisher Appendix S2 source
+
+on:
+  push:
+    branches:
+      - analysis/alan-three-stage-prisma-meta-protocol-20261119
+    paths:
+      - scripts/acquisition/alan_perkin2014_four_streams_AppendixS2_source_20261120.py
+      - tests/test_alan_perkin2014_four_streams_AppendixS2_source_20261120.py
+      - .github/workflows/alan-perkin2014-four-stream-original-AppendixS2-20261120.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-original-four-paired-streams-AppendixS2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test original biological units and official-source failure gates
+        run: |
+          set -euo pipefail
+          python -m pip install -q openpyxl==3.1.5
+          python -m unittest discover -s tests -p test_alan_perkin2014_four_streams_AppendixS2_source_20261120.py -v
+      - name: Attempt actual public original Appendix S2 XLSX from publisher site
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_perkin2014_public_original
+          python -m scripts.acquisition.alan_perkin2014_four_streams_AppendixS2_source_20261120 \
+            --out /tmp/alan_perkin2014_public_original/perkin2014_four_streams_original_workbook_source_status.json
+      - name: Verify four independent streams but do not infer missing quantitative light effects
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_perkin2014_public_original/perkin2014_four_streams_original_workbook_source_status.json'))
+          assert d['schema']=='alan_perkin2014_original_four_paired_streams_AppendixS2_XLSX_source_gate_v1'
+          assert d['original_independent_stream_pair_count']==4
+          assert d['source_status'] in ('SOURCE_STOP','ORIGINAL_WILEY_APPX_S2_BYTES_AND_SHEETS_VERIFIED')
+          assert d['no_raw_site_or_stream_observations_exported']
+          assert not d['night_drift_original_field_meta_effect_fitted']
+          assert not d['aquatic_emergence_original_field_meta_effect_fitted']
+          if d['source_status']=='ORIGINAL_WILEY_APPX_S2_BYTES_AND_SHEETS_VERIFIED':
+            assert d['source_original_workbook_sha256']
+            print('PERKIN_2014_ORIGINAL_WILEY_FOUR_STREAMS_WORKBOOK_BYTES_VERIFIED')
+          else:
+            print('PERKIN_2014_FOUR_STREAMS_ORIGINAL_APPENDIX_SOURCE_STOP')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-Perkin2014-four-streams-original-AppendixS2-XLSX-or-source-STOP
+          path: /tmp/alan_perkin2014_public_original/*.json
+          if-no-files-found: warn
+          retention-days: 90

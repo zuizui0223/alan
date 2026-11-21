@@ -1,0 +1,181 @@
+import copy
+import io
+import hashlib
+import zipfile
+import http.client
+from unittest.mock import patch
+import math
+import unittest
+from scripts.analysis.alan_lu2026_original_plant_specific_required_fly_efficiency_20261119 import (
+    source_plant_q_thresholds, num, SCHEMA, AUTHOR_SHA,
+    source_bytes, unpack_author_workbook, OriginalSourceUnavailable, SOURCE_URLS
+)
+
+
+def plant(name,treatment,moth,fly,block=1):
+    return {
+        "plant":name,"sampling_time":"Nocturnal","treatment":treatment,
+        "block":block,"Lepidoptera":moth,"Diptera":fly,"all":moth+fly,
+    }
+
+
+def visit(treatment,moth,fly):
+    return {"sampling_time":"Nocturnal","treatment":treatment,
+            "block":1,"L_abundance":moth,"D_abundance":fly}
+
+
+class OriginalLuPlantQThresholdTests(unittest.TestCase):
+    def original_shape(self):
+        plants=[
+          plant("A","Unlit",10,1),plant("A","Lit",4,4),  # -6 moth,+3 fly, q>=2
+          plant("B","Unlit",2,2),plant("B","Lit",1,8),   # -1 moth,+6 fly, q>=1/6
+          plant("C","Unlit",2,0),plant("C","Lit",1,0),   # no fly gain; cannot compensate
+          plant("D","Unlit",2,2), # lit undocumented: NOT a visit count zero
+        ]
+        visits=[visit("Unlit",16,5),visit("Lit",6,12)]
+        return plants,visits
+
+    def test_source_plant_threshold_no_pollen_or_seed_inference(self):
+        plants,visits=self.original_shape()
+        a=source_plant_q_thresholds(plants,visits,strict=False)
+        self.assertEqual(a["schema"],SCHEMA)
+        self.assertEqual(a["source_original_focal_plant_species"],4)
+        self.assertEqual(a["original_documented_nocturnal_moth_down_fly_up_plant_n"],2)
+        self.assertEqual(a["source_field_blocks"],5)
+        self.assertEqual(a["community_visit_event_losses_moth"],10)
+        self.assertEqual(a["community_visit_event_gains_fly"],7)
+        self.assertAlmostEqual(a["community_conditional_qfly_qmoth_threshold_if_all_visits_act_on_same_equivalent_plants"],10/7)
+        q=a["focal_six_plant_required_efficiency_ratio_descriptive_summary"]
+        self.assertEqual(q["n_plant_taxa_with_both_source_changes"],2)
+        self.assertAlmostEqual(q["minimum"],1/6)
+        self.assertAlmostEqual(q["median"],(2+1/6)/2)
+        self.assertEqual(q["maximum"],2)
+        self.assertEqual(q["count_where_equal_q_visits_would_suffice"],1)
+        self.assertEqual(q["count_where_fly_q_must_exceed_moth_q"],1)
+        self.assertEqual(q["n_plants_with_at_least_one_common_documented_light_block"],2)
+        self.assertEqual(q["n_plants_with_positive_loss_and_gain_within_common_documented_blocks"],2)
+        self.assertTrue(q["common_source_block_q_ratio_is_not_corrected_for_flower_availability"])
+        self.assertEqual(len(a["focal_plant_thresholds_aggregated_no_original_species_or_site_ID"]),2)
+        self.assertTrue(all(r["common_physical_blocks_with_positive_source_visits_in_both_arms"]==1
+                            for r in a["focal_plant_thresholds_aggregated_no_original_species_or_site_ID"]))
+        self.assertTrue(all(r["source_common_block_leave_one_out_q_ratio_minmax"] is None
+                            for r in a["focal_plant_thresholds_aggregated_no_original_species_or_site_ID"]))
+
+        self.assertTrue(q["theoretical_only_NOT_compensated_plant_proportion"])
+        self.assertTrue(a["guard"]["no_causal_pollination_rescue_fraction_reported"])
+        self.assertTrue(a["guard"]["six_plant_thresholds_one_five_block_experiment_NOT_six_independent_light_studies"])
+        self.assertNotIn('"A"',str(a))
+        self.assertNotIn('"D"',str(a))
+
+    def test_negative_or_absent_fly_replacement_not_forced_into_compensated_fraction(self):
+        plants,visits=self.original_shape()
+        for r in visits:
+            if r["treatment"]=="Lit":
+                r["D_abundance"]=0
+        a=source_plant_q_thresholds(plants,visits,strict=False)
+        self.assertIsNone(a["community_conditional_qfly_qmoth_threshold_if_all_visits_act_on_same_equivalent_plants"])
+        self.assertEqual(a["original_documented_nocturnal_moth_down_fly_up_plant_n"],2)
+        self.assertTrue(a["guard"]["cross_plant_community_q_threshold_not_biological_same_plant_pollination"])
+
+    def test_missing_original_visits_do_not_become_zero(self):
+        plants,visits=self.original_shape()
+        plants=[r for r in plants if r["plant"]!="B"]
+        a=source_plant_q_thresholds(plants,visits,strict=False)
+        self.assertEqual(a["source_original_focal_plant_species"],3)
+        self.assertEqual(a["original_documented_nocturnal_moth_down_fly_up_plant_n"],1)
+        self.assertTrue(a["guard"]["not_equal_per_flower_visitation_effort_or_flower_availability"])
+
+    def test_official_original_nested_or_direct_ZIP_same_workbook_sha(self):
+        raw=b"original author bytes: mock verified by dynamic SHA"
+        targetsha=hashlib.sha256(raw).hexdigest()
+        inner=io.BytesIO()
+        with zipfile.ZipFile(inner,"w") as z:
+            z.writestr("Date.xlsx",raw)
+        direct=inner.getvalue()
+        outer=io.BytesIO()
+        with zipfile.ZipFile(outer,"w") as z:
+            z.writestr("ECE3-16-e74368-s001.zip",direct)
+        self.assertEqual(unpack_author_workbook(direct,original_sha=targetsha),raw)
+        self.assertEqual(unpack_author_workbook(outer.getvalue(),original_sha=targetsha),raw)
+        with self.assertRaisesRegex(ValueError,"SHA256 drift"):
+            unpack_author_workbook(direct,original_sha="0"*64)
+
+    def test_official_source_fallback_and_no_fake_source_on_all_access_failures(self):
+        attempts=[]
+        def reader(url,timeout):
+            attempts.append((url,timeout))
+            if url==SOURCE_URLS[0]:
+                raise TimeoutError("first official host times out")
+            return b"synthetic transport package"
+        with patch("scripts.analysis.alan_lu2026_original_plant_specific_required_fly_efficiency_20261119.unpack_author_workbook",return_value=b"verified original workbook"):
+            raw,meta=source_bytes(reader=reader)
+        self.assertEqual(raw,b"verified original workbook")
+        self.assertEqual(meta["source_status"] if "source_status" in meta else meta["original_source_access"],"SUCCESS")
+        self.assertEqual(meta["original_source_url"],SOURCE_URLS[1])
+        self.assertEqual(len(attempts),2)
+        def blocked(url,timeout):
+            raise TimeoutError("all official source routes currently unreachable")
+        with self.assertRaises(OriginalSourceUnavailable) as cm:
+            source_bytes(reader=blocked)
+        self.assertGreaterEqual(len(cm.exception.errors),3)
+        self.assertTrue(all(e["error_class"]=="TimeoutError" for e in cm.exception.errors))
+
+    def test_truncated_chunked_original_zip_is_source_stop_not_partial_EBI_plant_result(self):
+        def bad_chunk_reader(url,timeout):
+            raise http.client.IncompleteRead(b"partial-original-archive")
+        with self.assertRaises(OriginalSourceUnavailable) as cm:
+            source_bytes(reader=bad_chunk_reader)
+        self.assertTrue(cm.exception.errors)
+        self.assertTrue(all(x["error_class"]=="IncompleteRead" for x in cm.exception.errors))
+        self.assertFalse(any(x.get("source_original_exact_workbook_SHA256")==AUTHOR_SHA
+                             for x in cm.exception.errors))
+
+    def test_unmatched_light_blocks_do_not_impute_plant_visits_or_moth_fly_efficiency(self):
+        plantrows,visits=self.original_shape()
+        for row in plantrows:
+            if row["plant"]=="A" and row["treatment"]=="Lit":
+                row["block"]=2
+        result=source_plant_q_thresholds(plantrows,visits,strict=False)
+        plantA=next(x for x in result["focal_plant_thresholds_aggregated_no_original_species_or_site_ID"]
+                    if abs(x["required_fly_over_moth_single_visit_effectiveness_ratio_if_other_factors_constant"]-2)<1e-9)
+        self.assertEqual(plantA["common_physical_blocks_with_positive_source_visits_in_both_arms"],0)
+        self.assertIsNone(plantA["common_documented_blocks_conditional_q_ratio"])
+        self.assertTrue(plantA["unrecorded_plant_in_block_does_not_imply_true_zero"])
+        self.assertEqual(result["focal_six_plant_required_efficiency_ratio_descriptive_summary"]["n_plants_with_at_least_one_common_documented_light_block"],1)
+
+    def test_same_original_block_sensitivity_may_differ_from_unmatched_pooled_source_count(self):
+        plantrows,visits=self.original_shape()
+        plantrows.extend([
+            plant("A","Unlit",3,1,block=2),
+            plant("A","Lit",2,1,block=2),
+        ])
+        result=source_plant_q_thresholds(plantrows,visits,strict=False)
+        plantA=next(x for x in result["focal_plant_thresholds_aggregated_no_original_species_or_site_ID"]
+                    if x["loss_original_moth_visitor_events"]==7)
+        self.assertEqual(plantA["common_physical_blocks_with_positive_source_visits_in_both_arms"],2)
+        self.assertEqual(plantA["source_documented_positive_visitation_rows_dark_and_lit"],[2,2])
+        self.assertEqual(plantA["source_common_block_leave_one_out_valid_n"],1)
+        self.assertAlmostEqual(plantA["common_documented_blocks_conditional_q_ratio"],7/3)
+        self.assertEqual(plantA["source_common_block_leave_one_out_q_ratio_minmax"],[2,2])
+
+    def test_source_2026_author_SHA_and_strict_data_volume_guards(self):
+        self.assertEqual(AUTHOR_SHA,"ba7e15e66986f64943a38fd294e49d7128cf7719d318578f6b805d29cde8f98f")
+        plants,visits=self.original_shape()
+        with self.assertRaisesRegex(ValueError,"Original 1038"):
+            source_plant_q_thresholds(plants,visits,strict=True)
+        bad=copy.deepcopy(plants)
+        bad[0]["Lepidoptera"]=-1
+        with self.assertRaisesRegex(ValueError,"Invalid original visitor"):
+            source_plant_q_thresholds(bad,visits,strict=False)
+        bad=copy.deepcopy(plants)
+        bad[0]["block"]=6
+        with self.assertRaisesRegex(ValueError,"Five original paired"):
+            source_plant_q_thresholds(bad,visits,strict=False)
+        with self.assertRaises(ValueError):
+            num(None)
+        with self.assertRaises(ValueError):
+            num(-1.2)
+
+
+if __name__=="__main__":
+    unittest.main()
