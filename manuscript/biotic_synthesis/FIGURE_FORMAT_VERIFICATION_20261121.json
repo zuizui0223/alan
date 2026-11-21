@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-21",
+  "source_files": {
+    "stage_meta.pdf": "7a899cfb8ac7f224d98e6cccc7a756b92fe9e914b62e3f1cf590c02a5f04a878",
+    "stage_meta.svg": "3d04b1ca280ffc79f8d5b4e5243eabcf0f148e3aa25b5fcb5d3e25601834915f",
+    "stage_meta_plot_data.csv": "a7b9b4db471f20c3c0bcb65a214d32e12c8c9fd122de19eaccd512c6d85d585e"
+  },
+  "pdf_pages": 1,
+  "verified_numeric_rows": [
+    {
+      "stage": "A",
+      "label": "Parkinson 2020 (point only)",
+      "displayed_value": "5.13 [not displayed]",
+      "pdf_text_matches": true,
+      "svg_source_matches": true
+    },
+    {
+      "stage": "A",
+      "label": "Parkinson 2023 (point only)",
+      "displayed_value": "12.2 [not displayed]",
+      "pdf_text_matches": true,
+      "svg_source_matches": true
+    },
+    {
+      "stage": "A",
+      "label": "Pooled: 2 programmes",
+      "displayed_value": "6.88 [0.0376, 1.26e+03]",
+      "pdf_text_matches": true,
+      "svg_source_matches": true
+    },
+    {
+      "stage": "B",
+      "label": "Penryn",
+      "displayed_value": "0.902 [0.0564, 14.4]",
+      "pdf_text_matches": true,
+      "svg_source_matches": true
+    },
+    {
+      "stage": "B",
+      "label": "Miller 2017 (unheated)",
+      "displayed_value": "0.602 [0.121, 3]",
+      "pdf_text_matches": true,
+      "svg_source_matches": true
+    },
+    {
+      "stage": "B",
+      "label": "Pooled: 2 programmes",
+      "displayed_value": "0.648 [0.00194, 216]",
+      "pdf_text_matches": true,
+      "svg_source_matches": true
+    },
+    {
+      "stage": "C",
+      "label": "Netherlands",
+      "displayed_value": "1.91 [0.022, 165]",
+      "pdf_text_matches": true,
+      "svg_source_matches": true
+    },
+    {
+      "stage": "C",
+      "label": "Switzerland",
+      "displayed_value": "0.68 [0.0104, 44.3]",
+      "pdf_text_matches": true,
+      "svg_source_matches": true
+    },
+    {
+      "stage": "C",
+      "label": "Hong Kong",
+      "displayed_value": "0.72 [0.555, 0.933]",
+      "pdf_text_matches": true,
+      "svg_source_matches": true
+    },
+    {
+      "stage": "C",
+      "label": "Pooled: 3 programmes",
+      "displayed_value": "0.929 [0.237, 3.63]",
+      "pdf_text_matches": true,
+      "svg_source_matches": true
+    }
+  ],
+  "renderer": "PyMuPDF 1.28.2",
+  "visual_inspection": "Both formats rendered at1.5x; three panels, ten rows, labels and footer visible without clipping",
+  "rendering_limit": "SVG converted through MuPDF; dash pattern appears solid in this rasterizer. Original SVG contains three stroke-dasharray declarations. Cross-renderer pixel identity not asserted.",
+  "new_analysis": false
+}
