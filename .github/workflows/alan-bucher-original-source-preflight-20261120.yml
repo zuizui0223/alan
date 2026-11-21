@@ -1,0 +1,37 @@
+name: ALAN Bucher Dryad species biomass and wetness source preflight
+on:
+  push:
+    branches: [analysis/alan-bucher-wetness-plant-response-20261120]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-first-ecounit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch source-original Dryad files and inspect true unit / treatment
+        run: |
+          python -m scripts.acquisition.alan_bucher2023_dryad_original_species_gate_20261120 \
+            --out /tmp/alan_bucher2023_source_gate_20261120.json
+      - name: Verify no fabricated wet ALAN main effect
+        run: |
+          python - <<'PY'
+          import json
+          s=json.load(open('/tmp/alan_bucher2023_source_gate_20261120.json'))
+          assert s['schema']=='alan_bucher2023_dryad_original_species_source_gate_20261120_v1'
+          assert s['wet_trait_coefficient_fitted']==False
+          assert s['species_light_interaction_fitted']==False
+          print("BUCHER_SOURCE_STATUS",s['status'])
+          print("BUCHER_ORIGINAL_FILE_STATUS",{k:v['status'] for k,v in s['files'].items()})
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-bucher-dryad-official-source-preflight
+          path: /tmp/alan_bucher2023_source_gate_20261120.json
+          if-no-files-found: error
+          retention-days: 40
