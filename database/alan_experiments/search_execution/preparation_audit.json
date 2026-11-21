@@ -1,0 +1,12 @@
+{
+  "prepared_date": "2026-11-21",
+  "user_reported_access": "both WoS and Scopus available; not independently verified",
+  "browser_status": "automation initialization failed before browser-session inspection",
+  "executed": false,
+  "query_concept_source": "database/alan_experiments/README.md planned concept",
+  "query_hashes": {
+    "wos_advanced_query.txt": "7dd5e0a6985c5ea60a369b9702059b7fd5e5cc28bf87b7d221b58994754dd224",
+    "scopus_advanced_query.txt": "c6dbe388f2ccf9b8fbdcabbe7037533d2500c59adf0ce5212be94d5c816ae593"
+  },
+  "actual_dates_hits_exports": "not yet recorded"
+}

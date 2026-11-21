@@ -1,0 +1,3 @@
+database,actual_search_date,query_file,database_editions,timespan,filters,hits,exported_records,export_file_names,execution_status
+Web of Science Core Collection,,wos_advanced_query.txt,,all available years through actual search date,none planned,,,,prepared_not_executed
+Scopus,,scopus_advanced_query.txt,,all available years through actual search date,none planned,,,,prepared_not_executed
