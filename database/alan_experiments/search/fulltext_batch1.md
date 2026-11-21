@@ -22,6 +22,8 @@ Seventeen cached Europe PMC full-text XML records were individually screened usi
 
 ## Mechanistically relevant studies that cannot enter the same lit/dark synthesis
 
+Follow-up 2026-11-21: the [bat raw-data support audit](../bat_refuge2021_sources/README.md) recovered and reconciled 28,646 retained positions and 1,855 trajectories. The 12 recording nights comprise 10 site–treatment cells (control 4, red 3, white 3), with repeated red/white observations at one site. Reported coefficient inconsistencies are retained; no predation effect is inferred or added to the pooled catalogue.
+
 - **Reflection/polarization, PMC6346644:** original [Dryad 7m5cv66](https://doi.org/10.5061/dryad.7m5cv66). Five river sites, three light spectra × two polarizing surfaces; all illuminated. Strong relevance to the water-reflection mechanism, but no dark reference. Keep in the separate spectrum/mechanism evidence layer.
 - **Parasitoid retrofit, PMC11842737:** [Figshare 26206229](https://doi.org/10.6084/m9.figshare.26206229). Three road-section impact/control comparisons, all lit, combining shielding and spectrum changes. This is not strictly a wavelength-only study, so it is held as a mitigation-scope case rather than misclassified as a valid ALAN/dark experiment. Parasitoid capture is not measured parasitism.
 - **Lakeside citizen-science attraction, PMC13594263:** [Figshare 29436527](https://doi.org/10.6084/m9.figshare.29436527). Three HPS and three shielded LED lamps in a nonrandom array, no dark arm. Repeated nights/time intervals do not increase treatment replication.

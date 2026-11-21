@@ -1,0 +1,47 @@
+{
+  "article_doi": "10.1186/s40462-020-00238-2",
+  "dataset_doi": "10.5281/zenodo.4036279",
+  "source_files": [
+    {
+      "file": "03_Analysis.R",
+      "bytes": 70998,
+      "sha256": "85f11b17ad23ef72bdd469f9404b18aad86ac917f46e3786ae25492aad225ee2",
+      "checksum": "md5:5ca1f86ecf6a8af74a66ee83db3b8fa3",
+      "url": "https://zenodo.org/api/records/4036279/files/03_Analysis.R/content"
+    },
+    {
+      "file": "TrajFinalFiltered_20190531correctedlightheight.csv",
+      "bytes": 24995763,
+      "sha256": "9887a714a41cb609265d16cba9bcfb8cf71cc687223f5413aa33f223f9289bf6",
+      "checksum": "md5:0b8a56fdf5a46afe7cdcb47de1f7f1c1",
+      "url": "https://zenodo.org/api/records/4036279/files/TrajFinalFiltered_20190531correctedlightheight.csv/content"
+    }
+  ],
+  "raw_positions": 35067,
+  "retained_positions": 28646,
+  "excluded_single_positions": 6421,
+  "sites": 4,
+  "nights": 12,
+  "site_treatment_cells": 10,
+  "sites_per_treatment": {
+    "control": 4,
+    "red": 3,
+    "white": 3
+  },
+  "nights_per_treatment": {
+    "control": 4,
+    "red": 4,
+    "white": 4
+  },
+  "positions_by_group": {
+    "EptNyc": 1788,
+    "MyoPlec": 692,
+    "Pip": 26166
+  },
+  "trajectories": 1855,
+  "license": {
+    "id": "cc-by-4.0"
+  },
+  "new_meta_effects": 0,
+  "observation": "flight location, not attacks or unique animals"
+}
