@@ -5,3 +5,6 @@
 - [Nuñez2021](https://doi.org/10.1016/j.marenvres.2021.105285): OpenAlex identified institutional handle11336/162034. Landing-page HTTP200 returned only1,227bytes without a PDF/full article; web access also failed. No full review. A successful HTTP response alone does not establish primary-text retrieval.
 
 No report in this note is counted as fully read. No access failure is treated as scientific exclusion or a zero effect. OpenAlex was used only to locate primary copies.
+
+
+Follow-up 2026-11-21: the Rufaida preprint was recovered through its official bioRxiv JATS link and its Methods/Results read. It is a 45-minute indoor dish behaviour assay with crushed-conspecific cues, not actual predator attacks. See [scope and version audit](../rufaida_preprint2024_sources/README.md). The final JEB article is still pending; no final-paper exclusion, family merge or meta effect is inferred.

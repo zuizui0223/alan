@@ -1,0 +1,21 @@
+{
+  "preprint_doi": "10.1101/2024.10.16.618652",
+  "preprint_version": 1,
+  "preprint_date": "2024-10-18",
+  "candidate_published_doi": "10.1242/jeb.250443",
+  "published_relation_api": "NA",
+  "version_equivalence_verified": false,
+  "source_url": "https://www.biorxiv.org/content/early/2024/10/18/2024.10.16.618652.source.xml",
+  "source_bytes": 93342,
+  "source_sha256": "32da6e4a076e75faa60704c3523185bacc0ffb890001eb1400abd2be7ca13dcc",
+  "retrieved": "2026-11-21",
+  "setting": "darkened laboratory room",
+  "trial_minutes": 45,
+  "animals_per_dish": 4,
+  "reported_trials_total": 96,
+  "reported_trials_per_cell": 16,
+  "treatment_cells": 6,
+  "actual_predator_present": false,
+  "final_article_review_complete": false,
+  "new_meta_effects": 0
+}
