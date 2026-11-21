@@ -16,7 +16,7 @@ The original screening identified five plots per arm and isotope allocation endp
 
 In particular, `AGB13C` and `BGB13C` must not be treated as total aboveground and belowground biomass. A microbial correlation-network edge is not an observed feeding interaction. These data cannot establish stronger predation, reduced pollination, or a wet/dry habitat effect.
 
-This acquisition adds **zero** effects to the current 108-row effect catalogue and **zero** records to the separately scoped 86-row reported-statistics registry. The local 238-row extraction is an additional source table, not 238 independent ecological effects. No effect variance is assigned from unverified sample sizes or zero covariance assumptions.
+This acquisition adds **zero** effects to the current 108-row effect catalogue and **zero** records to the separately scoped reported-statistics registry. The local 238-row extraction is an additional source table, not 238 independent ecological effects. No effect variance is assigned from unverified sample sizes or zero covariance assumptions.
 
 ## Remaining verification
 

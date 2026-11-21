@@ -125,10 +125,10 @@ EuropePMCの補助検索521レコードを取得・予備選別し、192件を�
 
 ### 著者報告値の共通登録（2026-11-21）
 
-`reported_observations.csv` は7論文・9実験に対応する86行を出典表から接続する。内訳はBoom2020の処理区要約16、Liu2022の尤度比検定15、Wilson2021のモデル係数7、Nunez2026のオッズ比2、Brown2023の処理区・時期要約36、Sanders2015の報告要約8、Owens2022の原データ由来の処理別交尾集計2行である。86独立効果量ではない。原著の報告値と自前の原データ集計を`statistic_type`で区別し、全フィールドを`source_values_json`に元の文字列のまま保持する。
+`reported_observations.csv` は8論文・10実験に対応する114行を出典表から接続する。内訳はBoom2020の処理区要約16、Liu2022の尤度比検定15、Wilson2021のモデル係数7、Nunez2026のオッズ比2、Brown2023の処理区・時期要約36、Sanders2015の報告要約8、Owens2022の原データ由来の処理別交尾集計2、Cronin2022のモデル係数28行である。114独立効果量ではない。原著の報告値と自前の原データ集計を`statistic_type`で区別し、全フィールドを`source_values_json`に元の文字列のまま保持する。
 
 Wilsonの捕獲と繁殖は別実験に対応する。Sandersの2014年群集実験と2015年植物追試は別の実験IDだが、同じケージを再使用した一つの依存グループに残す。Nunezの2時期も同じ依存グループに残す。Brownの捕食者群要約は照明区内の時期比較で、同時期の暗対照との差ではない。Owensの34試行は14晩にまとまり、個体再利用が未解決である。登録は共分散を推定できたことを意味しない。
 
-86行には暗区の要約、照明以外の検定項、時期比較も含む。108行の効果量台帳へ追加せず、lnRRへ変換せず、メタ解析の研究数を増やさない。プレプリントのみの光色実験は最終版照合が済んでいないため、この報告統計台帳に混在させず個別監査に保持する。AIによる照合は人による独立再抽出とは区別する。
+114行には暗区の要約、照明以外の検定項、時期比較も含む。108行の効果量台帳へ追加せず、lnRRへ変換せず、メタ解析の研究数を増やさない。プレプリントのみの光色実験は最終版照合が済んでいないため、この報告統計台帳に混在させず個別監査に保持する。AIによる照合は人による独立再抽出とは区別する。
 
-`python database/alan_experiments/build_reported_observations.py` の後に `python database/alan_experiments/build_catalogue_evidence_view.py` を実行すると、既存11対応と報告統計9対応を共通の `experiment_studies.csv` に接続する。現時点の実験登録は19行、論文・実験対応は20行で、全資料の登録完了や最終採択を表さない。原入力のハッシュと照合結果は `reported_observations_audit.json` に保存する。検索・統計抽出・投稿用の最終採択は継続中。
+`python database/alan_experiments/build_reported_observations.py` の後に `python database/alan_experiments/build_catalogue_evidence_view.py` を実行すると、既存11対応と報告統計10対応を共通の `experiment_studies.csv` に接続する。現時点の実験登録は19行、論文・実験対応は20行で、全資料の登録完了や最終採択を表さない。原入力のハッシュと照合結果は `reported_observations_audit.json` に保存する。検索・統計抽出・投稿用の最終採択は継続中。

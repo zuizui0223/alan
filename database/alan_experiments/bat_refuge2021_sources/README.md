@@ -28,7 +28,7 @@ The published model table and saved code also require reconciliation before nume
 
 The author models include recording/night ID and trajectory random intercepts, but do not thereby establish independence of individual bats or separate every site, treatment and date influence. No replacement model or variance based on 28,646 independent positions is fitted here. No feeding-buzz, prey identification, attack, or pollination endpoint is supplied by this response.
 
-This recovery adds zero effects to the 108-row pooled-effect catalogue and does not inflate the independently scoped 86-row reported-statistics registry. It provides an auditable alternative predator response—spatial avoidance/refuge use—rather than evidence that lighting universally raises predation pressure.
+This recovery adds zero effects to the 108-row pooled-effect catalogue and does not inflate the independently scoped reported-statistics registry. It provides an auditable alternative predator response—spatial avoidance/refuge use—rather than evidence that lighting universally raises predation pressure.
 
 ## Reproduction and provenance
 

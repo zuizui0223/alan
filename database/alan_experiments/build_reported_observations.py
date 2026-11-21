@@ -13,6 +13,7 @@ SOURCES = [
     ('Brown2023', 'brown2023_sources/reported_arm_summaries.csv', 'arm_summary', 'Brown2016_pitfalls', 36),
     ('Sanders2015', 'sanders2015_sources/reported_summaries.csv', 'reported_summary', None, 8),
     ('Owens2022', 'owens2022_sources/field_arm_counts.csv', 'original_data_binary_arm_summary', 'Owens2020_field_mating', 2),
+    ('Cronin2022', 'frog_noise2022_sources/reported_coefficients.csv', 'reported_model_coefficient', 'Cronin2019_BCI_crossover', 28),
 ]
 
 def read(name):
@@ -49,7 +50,7 @@ def build():
                 programme_id=study['programme_id'], doi=study['doi'], statistic_type=kind,
                 endpoint=row.get('endpoint', row.get('response', 'field_mating_success')),
                 source_file=source, source_csv_line=line,
-                source_location=row.get('source_location', row.get('table', 'original_workbook_field_post_trials')),
+                source_location=row.get('source_location', row.get('source_table', row.get('table', 'original_workbook_field_post_trials'))),
                 source_values_json=payload,
                 pooling_status='not_in_effect_catalogue_not_poolable_as_registered',
                 dependence_group=study['programme_id'] if study_id == 'Sanders2015' else eid,
