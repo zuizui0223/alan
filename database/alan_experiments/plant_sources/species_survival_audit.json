@@ -1,0 +1,16 @@
+{
+  "source_doi": "10.1002/ece3.9157",
+  "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9352868/supplementaryFiles",
+  "supplement_sha256": "9e8f61fa1f3ed396575dfaa8f19ad63c495138171fce2cdc29e678aae8a14a27",
+  "transcribed_cells": 162,
+  "transcribed_species": 18,
+  "compared_cells": 117,
+  "agreeing_cells": 113,
+  "documented_exclusion_cells": 1,
+  "unexplained_count_conflict_cells": 3,
+  "conflicting_species": "Centaurea nigra: S1 total50 vs biomass54 positive rows",
+  "newly_estimated_survival_effects": 0,
+  "imputed_biomass_values": 0,
+  "final_adjudication": false,
+  "human_duplicate_extraction_complete": false
+}

@@ -28,7 +28,7 @@ There are116 observed species-by-light-by-trophic cells, each with3–6
 recorded mesocosms. Prunella vulgaris L2/T1 has no parsed source rows.
 This conflicts with a blanket reading of the article's claim that all13
 analysed species have at least three surviving mesocosms in every cell;
-source completeness and the survival supplement require reconciliation.
+the subsequent TableS1 check below resolves the exclusion annotation, not the missing biomass value.
 Of78 planned lit/dark comparisons,77 yield finite descriptive point ratios;
 the remaining comparison is explicitly held, not assigned ratio zero or one.
 
@@ -53,5 +53,14 @@ table is [the complete species-by-treatment display](../../../manuscript/biotic_
 An independent AI reader re-parsed the original PDF and reproduced all77
 finite point ratios. All38 Prunella occurrences in the species table were
 accounted for; L2/T1 is absent from that table text, rather than lost by the
-parser. SupplementS1 cells remain unverified in this check. This is not a
-completed human duplicate extraction or an explanation of the missing cell.
+parser. That first check did not verify SupplementS1. The subsequent visual reconciliation below supersedes that access limitation; neither check constitutes human duplicate extraction.
+
+## SupplementS1 reconciliation (2026-11-21)
+
+Visual transcription of original supplement page5 covers18species×9cells=162counts. TableS1 describes mesocosms with surviving individuals, not individual survivor counts. All printed row totals were checked. The162cells are preserved in `species_survival_reconciliation.csv`; the13species biomass comparison covers117cells.
+
+Of these117cells,113agree directly. Prunella vulgaris A/T1 has1 surviving mesocosm, with an asterisk explicitly excluding that sample from its GLM; the biomass table has no corresponding row. Thus the omission is consistent with a documented author exclusion, not extinction. S1 total39 vs biomass38 is explained at the count level, but no biomass value or mesocosm ID for that excluded observation can be reconstructed.
+
+Centaurea nigra remains inconsistent: S1 C/T1=5, A/T1=4 and W/T3=5, while the biomass table has6 positive rows in each cell. S1 total50 contrasts with54 biomass rows. The other11species match all nine cells. Consequently, five species have complete54-row biomass tables, but only four of those also have54 surviving mesocosms confirmed by S1. The Centaurea T1 amber/dark, T1 white/dark and T3 white/dark descriptive ratios depend on discrepant cells; they are not cleared for synthesis. No values are removed or replaced to force agreement.
+
+Run `python database/alan_experiments/plant_sources/reconcile_species_survival.py SOURCE_DIRECTORY`. The supplement hash is saved. An independent AI reader checked the13species×9cells from the rendered table and confirmed the same4differences (one documented exclusion, three unresolved count conflicts). No survival effect, new independent programme, pooled effect or additional catalogue row is inferred. Festuca's organ/total discrepancy remains separate and unresolved.
