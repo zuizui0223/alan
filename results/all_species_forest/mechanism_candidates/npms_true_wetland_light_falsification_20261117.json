@@ -1,0 +1,155 @@
+{
+  "schema": "alan_npms_wetland_habitat_light_falsification_summary_v2",
+  "source_original": "UK NPMS original 2015-2025 + original previous-year calibrated PCNL and official Tichy EIV",
+  "source_workflow": "https://github.com/zuizui0223/alan/actions/runs/44083411351",
+  "exact_github_artifact": "https://github.com/zuizui0223/alan/actions/runs/44083411351/artifacts/14327793296",
+  "source_real_habitat_light": "https://github.com/zuizui0223/alan/actions/runs/44078528434",
+  "scientific_scope": "selected source-positive plant cover only, no local absence or ALAN causality; all robustness is secondary exploratory",
+  "original_cohort": {
+    "wetland_plots": 47,
+    "other_plots": 279,
+    "wetland_shared_siteyears": 256,
+    "other_shared_siteyears": 1525,
+    "original_positive_cover_rows": 11902
+  },
+  "previous_observation": {
+    "triple_beta": -1.5129270418346314,
+    "plot_cluster_ci95": [
+      -2.380878707298993,
+      -0.6449753763702696
+    ],
+    "two_way_plot_species_ci95": [
+      -2.4899963537235728,
+      -0.5358577299456904
+    ]
+  },
+  "source_light_site_diagnostic": {
+    "wetland": {
+      "n": 47,
+      "brightening_slope": 26,
+      "darkening_slope": 20,
+      "insufficient_years": 1,
+      "zero_positive_switch": 3,
+      "jump_ge1log_per_year": 3,
+      "median_PCNL_range": 0.11441698688833002,
+      "range_ge0p1": 27,
+      "range_ge0p3": 6
+    },
+    "other": {
+      "n": 279,
+      "brightening_slope": 129,
+      "darkening_slope": 145,
+      "insufficient_or_flat": 5,
+      "zero_positive_switch": 40,
+      "jump_ge1log_per_year": 47,
+      "median_PCNL_range": 0.12924186194615306
+    },
+    "note": "site trends are calculated only among source-eligible observed years and are not randomized artificial light interventions"
+  },
+  "robust": {
+    "exclude_zero_positive_switch": {
+      "beta": -3.7280289682369494,
+      "ci95": [
+        -6.7741725573055245,
+        -0.6818853791683739
+      ],
+      "wetland_sites": 44
+    },
+    "exclude_large_PCNL_shocks": {
+      "beta": -2.391694626068073,
+      "ci95": [
+        -8.26631075472504,
+        3.482921502588894
+      ],
+      "wetland_sites": 44
+    },
+    "only_source_brightening": {
+      "status": "STOP common support",
+      "wetland_sites": 26
+    },
+    "only_source_darkening": {
+      "status": "STOP common support",
+      "wetland_sites": 20
+    },
+    "species_shared_across_habitats": {
+      "shared_taxa": 109,
+      "wetland_sites": 43,
+      "beta": -1.2837855227276502,
+      "ci95": [
+        -2.2691693559304835,
+        -0.29840168952481694
+      ]
+    },
+    "grid_1deg": {
+      "spatial_blocks": 40,
+      "wetland_spatial_blocks": 20,
+      "beta": -1.5129270420636183,
+      "spatial_cluster_ci95": [
+        -2.394823450683935,
+        -0.6310306334433015
+      ],
+      "spatial_x_species_cluster_ci95": [
+        -2.444786197117681,
+        -0.5810678870095556
+      ]
+    },
+    "grid_2deg": {
+      "spatial_blocks": 15,
+      "wetland_spatial_blocks": 11,
+      "beta": -1.5129270420636183,
+      "spatial_cluster_ci95": [
+        -2.655714783227343,
+        -0.3701393008998932
+      ],
+      "spatial_x_species_cluster_ci95": [
+        -2.6922131280580053,
+        -0.3336409560692313
+      ]
+    },
+    "add_species_x_habitat_x_year_FE": {
+      "beta": -1.1305279326722744,
+      "plot_cluster_ci95": [
+        -2.18102051336851,
+        -0.08003535197603862
+      ],
+      "plot_nominal_p": 0.03500433959886211,
+      "plot_x_species_ci95": [
+        -2.3581084462520536,
+        0.09705258090750468
+      ],
+      "two_way_nominal_p": 0.0709436222642373
+    },
+    "future_light_placebo": {
+      "wetland_sites": 31,
+      "other_sites": 216,
+      "siteyears_wet": 141,
+      "siteyears_other": 882,
+      "past_light_moderator_beta_joint": -0.37603360843006306,
+      "past_light_moderator_ci95": [
+        -1.463458392789147,
+        0.7113911759290208
+      ],
+      "future_year_moderator_beta_joint": -0.5118624421875673,
+      "future_year_moderator_ci95": [
+        -1.694729215137033,
+        0.6710043307618985
+      ],
+      "future_only_moderator_beta": -0.568771668225838,
+      "future_only_ci95": [
+        -1.7120586484469826,
+        0.5745153119953067
+      ],
+      "caveat": "future year light from actual source survey two years later; strong temporal autocorrelation and selection; not an independent falsification experiment"
+    }
+  },
+  "boundaries": {
+    "original_main_moisture_enrichment_unchanged": true,
+    "source_original_illuminated_experiment": false,
+    "source_positive_cover_not_absence": true,
+    "infer_causal_ALAN_effect": false,
+    "infer_reproductive_pollen_transfer": false,
+    "confirm_species_wetland_ALAN_moderator": false,
+    "strong_PCNL_change_ge0p1_and_ge0p3": "source wetland support STOP",
+    "interpretation": "geographic/shared-species evidence supports exploration, but additional habitat-specific temporal FE and extreme source-PCNL sensitivity prevent confirmatory ALAN-specific mechanism inference"
+  }
+}

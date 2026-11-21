@@ -1,0 +1,92 @@
+name: ALAN independent NPMS wetland-affinity x prior-nightlight field panel
+
+on:
+  push:
+    branches:
+      - analysis/alan-wet-mechanism-candidate-triage-20261117
+    paths:
+      - 'scripts/analysis/alan_npms_independent_moisture_priorlight_20261117.py'
+      - 'tests/test_alan_npms_independent_moisture_priorlight_20261117.py'
+      - '.github/workflows/alan-npms-wetness-priorlight-original-20261117.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  true-original-NPMS-cover-wetness-light:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical dependencies and test actual high-dimensional FWL estimator with synthetic fixtures
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          python -m unittest discover -s tests -p test_alan_npms_independent_moisture_priorlight_20261117.py -v
+      - name: Restore byte-verified original NPMS 2015-25 positive vegetation cover at repeated plot-years
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_npms_source
+          gh run download 42815428180 --repo zuizui0223/alan --name alan-real-NPMS-sameplot-sameprotocol-positive-cover-pastlight-source --dir /tmp/alan_npms_source
+          test -s /tmp/alan_npms_source/NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz
+          test -s /tmp/alan_npms_source/NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json
+          python - <<'PY'
+          import json,hashlib,pathlib
+          p=pathlib.Path('/tmp/alan_npms_source')
+          z=p/'NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz'
+          r=json.loads((p/'NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json').read_text())
+          assert hashlib.sha256(z.read_bytes()).hexdigest()==r['source_original_positive_cover_table_SHA256']
+          assert r['source_2015to2025_same_surveyID_season_eligible_unique_plots']==1203
+          print('NPMS_ORIGINAL_SOURCE_CRC_SHALOCK_CONFIRMED',flush=True)
+          PY
+      - name: Obtain original European plant moisture indicator data, reject any source drift
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --max-time 360 'https://www.sci.muni.cz/botany/juice/NET/sources/EIV_Europe.csv' -o /tmp/alan_npms_source/EIV_Europe.csv
+          echo 'ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba  /tmp/alan_npms_source/EIV_Europe.csv' | sha256sum -c -
+      - name: Fit cohort-blind MOIST × previous-year PCNL positive-cover models with true plot and species-year effects
+        timeout-minutes: 40
+        run: |
+          set -euo pipefail
+          python scripts/analysis/alan_npms_independent_moisture_priorlight_20261117.py \
+            --source /tmp/alan_npms_source/NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz \
+            --receipt /tmp/alan_npms_source/NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json \
+            --eiv /tmp/alan_npms_source/EIV_Europe.csv \
+            --out /tmp/alan_npms_source/alan_npms_moisture_20261117_aggregate.json
+      - name: Inspect supported and unsupported results without selecting coefficient signs
+        if: success()
+        run: |
+          python - <<'PY'
+          import json
+          p='/tmp/alan_npms_source/alan_npms_moisture_20261117_aggregate.json'
+          r=json.load(open(p))
+          assert r['schema']=='alan_npms_moisture_alan_independent_plant_cover_v1'
+          assert r['source']['original_source_rows']==61555
+          assert r['endpoint'].startswith('DOMIN measured positive cover')
+          print('ALAN_NPMS_MOISTURE_FULL_SOURCE_MODEL_AUDIT',json.dumps({
+            'source':r['source'],
+            'eligibility':r['eligibility'],
+            'primary':r.get('primary_continuous_moisture',{}).get('coefficients',{}),
+            'strict':r.get('strict_moisture',{}).get('coefficients',{}),
+            'stops':{k:v for k,v in r.items() if 'stop_reason' in k}
+          },sort_keys=True),flush=True)
+          PY
+      - name: Upload aggregate-only original-model support and results (no NPMS protected plot/plant coordinates)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-npms-true-positive-cover-macro-wetness-original
+          path: /tmp/alan_npms_source/alan_npms_moisture_20261117_aggregate.json
+          if-no-files-found: warn
+          retention-days: 30

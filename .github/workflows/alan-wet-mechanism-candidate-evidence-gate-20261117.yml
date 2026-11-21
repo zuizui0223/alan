@@ -1,0 +1,397 @@
+name: ALAN wet-mechanism candidate evidence gate
+
+on:
+  push:
+    branches:
+      - analysis/alan-wet-mechanism-candidate-triage-20261117
+  pull_request:
+    paths:
+      - 'scripts/analysis/alan_wet_candidate_triage_20261117.py'
+      - 'scripts/analysis/alan_wet_species_support_20261117.py'
+      - 'scripts/analysis/alan_wet_moisture_missingness_tipping_20261117.py'
+      - 'tests/test_alan_wet_candidate_triage_20261117.py'
+      - 'tests/test_alan_wet_species_support_20261117.py'
+      - 'tests/test_alan_wet_missingness_tipping_20261117.py'
+      - 'results/all_species_forest/**'
+      - 'docs/ALAN_WET_MECHANISM_CANDIDATE_TRIAGE_20261117.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  verify-source-derived-mechanism-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recompute fixed source four-species and region summaries
+        run: python scripts/analysis/alan_wet_candidate_triage_20261117.py
+      - name: Recompute all-3901 species coverage and stratified wetness sensitivity
+        run: |
+          mkdir -p /tmp/alan_wet_audit
+          python scripts/analysis/alan_wet_species_support_20261117.py | tee /tmp/alan_wet_audit/moisture_species_support.json
+      - name: Evaluate hypothetical MOIST-missingness sensitivity
+        run: python scripts/analysis/alan_wet_moisture_missingness_tipping_20261117.py | tee /tmp/alan_wet_audit/moisture_missingness_tipping.json
+      - name: Check all preselected-source, grouping and nonpromotion gates
+        run: |
+          python -m unittest discover -s tests -p 'test_alan_wet_candidate_triage_20261117.py' -v
+          python -m unittest discover -s tests -p 'test_alan_wet_species_support_20261117.py' -v
+          python -m unittest discover -s tests -p 'test_alan_wet_missingness_tipping_20261117.py' -v
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-wet-all3901-species-support
+          path: /tmp/alan_wet_audit/*.json
+          if-no-files-found: error
+          retention-days: 30
+
+  true-original-NPMS-cover-wetness-light:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical dependencies and test actual high-dimensional FWL estimator with synthetic fixtures
+        run: |
+          set -euo pipefail
+          python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+          python -m unittest discover -s tests -p test_alan_npms_independent_moisture_priorlight_20261117.py -v
+      - name: Restore byte-verified original NPMS 2015-25 positive vegetation cover at repeated plot-years
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_npms_source
+          gh run download 42815428180 --repo zuizui0223/alan --name alan-real-NPMS-sameplot-sameprotocol-positive-cover-pastlight-source --dir /tmp/alan_npms_source
+          test -s /tmp/alan_npms_source/NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz
+          test -s /tmp/alan_npms_source/NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json
+          python - <<'PY'
+          import json,hashlib,pathlib
+          p=pathlib.Path('/tmp/alan_npms_source')
+          z=p/'NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz'
+          r=json.loads((p/'NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json').read_text())
+          assert hashlib.sha256(z.read_bytes()).hexdigest()==r['source_original_positive_cover_table_SHA256']
+          assert r['source_2015to2025_same_surveyID_season_eligible_unique_plots']==1203
+          print('NPMS_ORIGINAL_SOURCE_CRC_SHALOCK_CONFIRMED',flush=True)
+          PY
+      - name: Obtain original European plant moisture indicator data, reject any source drift
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --max-time 360 'https://www.sci.muni.cz/botany/juice/NET/sources/EIV_Europe.csv' -o /tmp/alan_npms_source/EIV_Europe.csv
+          echo 'ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba  /tmp/alan_npms_source/EIV_Europe.csv' | sha256sum -c -
+      - name: Fit cohort-blind MOIST × previous-year PCNL positive-cover models with true plot and species-year effects
+        timeout-minutes: 40
+        run: |
+          set -euo pipefail
+          python scripts/analysis/alan_npms_independent_moisture_priorlight_20261117.py \
+            --source /tmp/alan_npms_source/NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz \
+            --receipt /tmp/alan_npms_source/NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json \
+            --eiv /tmp/alan_npms_source/EIV_Europe.csv \
+            --out /tmp/alan_npms_source/alan_npms_moisture_20261117_aggregate.json
+      - name: Inspect supported and unsupported results without selecting coefficient signs
+        if: success()
+        run: |
+          python - <<'PY'
+          import json
+          p='/tmp/alan_npms_source/alan_npms_moisture_20261117_aggregate.json'
+          r=json.load(open(p))
+          assert r['schema']=='alan_npms_moisture_alan_independent_plant_cover_v1'
+          assert r['source']['original_source_rows']==61555
+          assert r['endpoint'].startswith('DOMIN measured positive cover')
+          print('ALAN_NPMS_MOISTURE_FULL_SOURCE_MODEL_AUDIT',json.dumps({
+            'source':r['source'],
+            'eligibility':r['eligibility'],
+            'primary':r.get('primary_continuous_moisture',{}).get('coefficients',{}),
+            'strict':r.get('strict_moisture',{}).get('coefficients',{}),
+            'stops':{k:v for k,v in r.items() if 'stop_reason' in k}
+          },sort_keys=True),flush=True)
+          PY
+      - name: Upload aggregate-only original-model support and results (no NPMS protected plot/plant coordinates)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-npms-true-positive-cover-macro-wetness-original
+          path: /tmp/alan_npms_source/alan_npms_moisture_20261117_aggregate.json
+          if-no-files-found: warn
+          retention-days: 30
+
+  grognuz-source-metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch original Mendeley dataset metadata and size-limited source files
+        run: |
+          mkdir -p /tmp/alan_grognuz
+          python scripts/acquisition/alan_grognuz2025_original_source_gate.py \
+            --inspect-small-public-files --output /tmp/alan_grognuz/original_source_gate.json
+      - name: Report genuine published source access or fail-closed missingness
+        run: |
+          python - <<'PY'
+          import json
+          p='/tmp/alan_grognuz/original_source_gate.json'
+          d=json.load(open(p))
+          assert d['schema']=='alan_grognuz2025_original_source_gate_v1'
+          assert d['independent_light_installations_are_not_images_or_species']
+          print('GROGNUZ_ORIGINAL_SOURCE_GATES',d['status'])
+          for r in d.get('source_files',[]):
+              print('SOURCE_FILE',r.get('filename'),r.get('source_size_bytes'),
+                    r.get('status'),r.get('layout',{}).get('type'))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-grognuz-2025-original-flowering-public-source-gate
+          path: /tmp/alan_grognuz/original_source_gate.json
+          if-no-files-found: warn
+          retention-days: 45
+
+  npms-habitat-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 85
+    permissions:
+      contents: read
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install exact ecological source-table readers
+        run: python -m pip install -q numpy==2.1.3 pandas==2.2.3 scipy==1.15.2
+      - name: Get original published NPMS 2015-2025 survey and old verified positive-cover source
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_habitat
+          curl -L --fail --retry 3 --max-time 650 \
+            https://data-package.ceh.ac.uk/data/64caeed0-160f-48f1-b182-cd24a1d7dca8.zip \
+            -o /tmp/alan_habitat/NPMS_original_2015_2025.zip
+          gh run download 42815428180 --repo zuizui0223/alan \
+            --name alan-real-NPMS-sameplot-sameprotocol-positive-cover-pastlight-source \
+            --dir /tmp/alan_habitat
+      - name: Original sample habitat and survey-wide no-species status source gate
+        run: |
+          set -euo pipefail
+          python scripts/acquisition/alan_npms_original_habitat_source_gate_20261117.py \
+            --npms /tmp/alan_habitat/NPMS_original_2015_2025.zip \
+            --cover /tmp/alan_habitat/NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz \
+            --receipt /tmp/alan_habitat/NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json \
+            --out /tmp/alan_habitat/npms_original_habitat_source_support.json
+      - name: Verify honest no-absence or light-effect inference
+        run: |
+          python - <<'PY'
+          import json
+          p='/tmp/alan_habitat/npms_original_habitat_source_support.json'
+          s=json.load(open(p))
+          assert s['schema']=='alan_npms_original_habitat_and_recording_status_support_v1'
+          assert s['source_CRC_verified'] and s['original_cover_rows']==61555
+          assert not s['plant_local_absence_fitted']
+          assert not s['habitat_specific_effect_fitted']
+          print('NPMS_TRUE_HABITAT_SOURCE_COVERAGE',json.dumps(s['positive_cover_broad_classes'],sort_keys=True))
+          PY
+      - name: Acquire source-locked European species moisture indicator
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 3 --max-time 360 \
+            https://www.sci.muni.cz/botany/juice/NET/sources/EIV_Europe.csv \
+            -o /tmp/alan_habitat/EIV_Europe.csv
+          echo 'ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba  /tmp/alan_habitat/EIV_Europe.csv' | sha256sum -c -
+      - name: Run actual site-confirmed inland wetland vs other habitat MOIST x prior PCNL source gate and fit
+        timeout-minutes: 30
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_npms_true_wetland_moisture_priorlight_20261117 \
+            --npms /tmp/alan_habitat/NPMS_original_2015_2025.zip \
+            --cover /tmp/alan_habitat/NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz \
+            --receipt /tmp/alan_habitat/NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json \
+            --eiv /tmp/alan_habitat/EIV_Europe.csv \
+            --out /tmp/alan_habitat/npms_true_wetland_moisture_prior_PCNL_20261117.json
+      - name: Test year-paired light-shock, site-trend and species coexistence guards
+        run: python -m unittest discover -s tests -p test_alan_npms_wetland_light_spatial_falsification_20261117.py -v
+      - name: Test published NPMS wetland response against light zero switches, brightening/darkening and coarse geographic groups
+        timeout-minutes: 35
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_npms_wetland_light_spatial_falsification_20261117 \
+            --npms /tmp/alan_habitat/NPMS_original_2015_2025.zip \
+            --cover /tmp/alan_habitat/NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz \
+            --receipt /tmp/alan_habitat/NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json \
+            --eiv /tmp/alan_habitat/EIV_Europe.csv \
+            --out /tmp/alan_habitat/npms_light_spatial_falsification_20261117.json
+      - name: Fail closed if source records, site counts, or fake biological absence change
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/alan_habitat/npms_light_spatial_falsification_20261117.json'))
+          assert d['schema']=='alan_npms_wetland_light_timeseries_spatial_falsification_v1'
+          assert d['source_CRC_and_prior_pcNL_hash_locked']
+          assert d['original_coobserved_habitat_gate']['inland_wetland']['plots']==47
+          assert d['original_coobserved_habitat_gate']['other']['plots']==279
+          assert d['true_plant_local_absence'] is False
+          print('ALAN_NPMS_FALSIFICATION_SOURCE_VERIFIED',len(d['robustness']))
+          PY
+      - name: Test stable source management and grazing labels without treating missing as none
+        run: python -m unittest discover -s tests -p test_alan_npms_management_protocol_20261117.py -v
+      - name: Audit observed management/grazing and botanical record-process changes under original NPMS wetland source
+        timeout-minutes: 35
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_npms_management_protocol_20261117 \
+            --npms /tmp/alan_habitat/NPMS_original_2015_2025.zip \
+            --cover /tmp/alan_habitat/NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz \
+            --receipt /tmp/alan_habitat/NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json \
+            --eiv /tmp/alan_habitat/EIV_Europe.csv \
+            --out /tmp/alan_habitat/npms_observation_management_source_gate_20261117.json
+      - name: Verify direct original management data does not fabricate species absence
+        run: |
+          python - <<'PY'
+          import json
+          p='/tmp/alan_habitat/npms_observation_management_source_gate_20261117.json'
+          x=json.load(open(p))
+          assert x['schema']=='alan_npms_true_observer_management_and_checklist_gate_v1'
+          assert x['source_original_internal_CRC_verified']
+          assert x['source_plant_positive_cover_rows']==11902
+          assert x['wetland_source_eligible_plots']==47
+          assert x['no_biological_zero_imputation']
+          assert x['no_assigned_causal_light_or_management_effect']
+          print('NPMS_TRUE_MANAGEMENT_AND_SURVEY_PROCESS_PASS',
+                {k:v.get('model',v).get('status') for k,v in x['robustness'].items()})
+          PY
+      - name: Verify original field habitat source and no fabricated species-zero effect
+        run: |
+          python - <<'PY'
+          import json
+          s=json.load(open('/tmp/alan_habitat/npms_true_wetland_moisture_prior_PCNL_20261117.json'))
+          assert s['schema']=='alan_npms_measured_habitat_wetness_light_candidate_v1'
+          assert s['source_npms_CRC_and_positive_cover_joins_verified']
+          assert s['species_not_reported_was_never_assigned_absence']
+          assert not s['estimated_actual_reproductive_or_visitation_response']
+          print('NPMS_WETLAND_TRUE_HABITAT_FINAL_GATE',s['status'],s['source_gate'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-npms-habitat-source-and-positive-cover-support
+          path: /tmp/alan_habitat/*.json
+          if-no-files-found: warn
+          retention-days: 45
+
+  official-2015-2022-habitat-change-schema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    permissions:
+      contents: read
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source-schema reader
+        run: python -m pip install -q pandas==2.2.3 numpy==2.1.3 scipy==1.15.2
+      - name: Download two separately published NPMS original datasets
+        timeout-minutes: 18
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/alan_npms_change_source
+          curl -L --fail --show-error --retry 3 --max-time 600 \
+            https://data-package.ceh.ac.uk/data/a12b5c70-c0e2-48cf-b0b7-3e95791feca9.zip \
+            -o /tmp/alan_npms_change_source/habitat_2015_2022_original.zip
+          curl -L --fail --show-error --retry 3 --max-time 600 \
+            https://data-package.ceh.ac.uk/data/64caeed0-160f-48f1-b182-cd24a1d7dca8.zip \
+            -o /tmp/alan_npms_change_source/NPMS_2015_2025_original.zip
+          python - <<'PY'
+          import zipfile
+          for q in ('habitat_2015_2022_original.zip','NPMS_2015_2025_original.zip'):
+              p='/tmp/alan_npms_change_source/'+q
+              assert zipfile.is_zipfile(p),p
+              with zipfile.ZipFile(p) as z:assert z.testzip() is None
+              print('OFFICIAL_NPMS_HABITAT_CHANGE_ARCHIVE_AUTHENTIC_ZIP',q,flush=True)
+          PY
+      - name: Verify official habitat-change flag fields and exact identifiers without source data leakage
+        run: |
+          set -euo pipefail
+          python scripts/acquisition/alan_npms_habitat_change_original_20261117.py \
+            --habitat-2022 /tmp/alan_npms_change_source/habitat_2015_2022_original.zip \
+            --npms-2025 /tmp/alan_npms_change_source/NPMS_2015_2025_original.zip \
+            --out /tmp/alan_npms_change_source/habitat_change_source_schema_20261117.json
+      - name: Keep honest join and organism-response gates
+        run: |
+          python - <<'PY'
+          import json
+          p='/tmp/alan_npms_change_source/habitat_change_source_schema_20261117.json'
+          a=json.load(open(p))
+          assert a['schema']=='alan_npms_habitat_change_2015_2022_source_schema_gate_v1'
+          assert a['old_NPMS_source_sample_rows']==27611
+          assert not a['sample_habitat_effect_or_ALAN_moderator_fitted']
+          assert a['source_original_habitat_rows_not_published']
+          print('ORIGINAL_NPMS_CHANGE_DATA_JOIN_STATUS',a['status'])
+          print('EXACT_DATA_SCHEMA',json.dumps(a['source_files'],sort_keys=True))
+          PY
+      - name: Restore original source-stable 2015-25 plant cover and independent European EIV
+        run: |
+          set -euo pipefail
+          gh run download 42815428180 --repo zuizui0223/alan \
+            --name alan-real-NPMS-sameplot-sameprotocol-positive-cover-pastlight-source \
+            --dir /tmp/alan_npms_change_source
+          curl -L --fail --show-error --retry 3 --max-time 360 \
+            https://www.sci.muni.cz/botany/juice/NET/sources/EIV_Europe.csv \
+            -o /tmp/alan_npms_change_source/EIV_Europe.csv
+          echo 'ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba  /tmp/alan_npms_change_source/EIV_Europe.csv' | sha256sum -c -
+      - name: Verify author-reported 2015-22 habitat transitions and source-identical 2015-25 NPMS model support
+        timeout-minutes: 35
+        run: |
+          set -euo pipefail
+          python -m scripts.analysis.alan_npms_official_habitat_change_priorlight_20261117 \
+            --habitat-2022 /tmp/alan_npms_change_source/habitat_2015_2022_original.zip \
+            --npms-2025 /tmp/alan_npms_change_source/NPMS_2015_2025_original.zip \
+            --cover /tmp/alan_npms_change_source/NPMS_source_positive_comparable_plant_cover_plot_method_season_year.csv.gz \
+            --receipt /tmp/alan_npms_change_source/NPMS_2015to2025_repeated_plot_method_season_alanchanging_cover_source_receipt.json \
+            --eiv /tmp/alan_npms_change_source/EIV_Europe.csv \
+            --out /tmp/alan_npms_change_source/habitat_change_crossversion_20261117.json
+      - name: Verify no undocumented sample IDs or synthetic species absences
+        run: |
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/alan_npms_change_source/habitat_change_crossversion_20261117.json'))
+          assert x['schema']=='alan_npms_official_2015_22_habitat_change_panel_gate_v1'
+          assert x['physical_plots_ever_source_reported_broad_change']==351
+          assert x['cross_version_sample_rows_identical']>=21000
+          assert x['original_NPMS_positive_cover_rows']==11902
+          assert x['no_causal_hydrology_or_light_mediation_estimated']
+          print('ORIGINAL_AUTHOR_HABITAT_CHANGE_COHORT_JOIN',x['source_2015_22_habitat_change_support'],flush=True)
+          print('ORIGINAL_HABITAT_CHANGE_MODEL_STOP_GATES',
+                {k:v['status'] for k,v in x['posthoc_source_version_sensitivities'].items()},flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alan-npms-2015-22-original-habitat-change-source-schema
+          path: /tmp/alan_npms_change_source/habitat_change*_20261117.json
+          retention-days: 90
+          if-no-files-found: warn
