@@ -1,0 +1,29 @@
+source_table,response,term,estimate_original,se_original,likelihood_ratio_chisq_original,p_original
+T1,Breeding site presence,Intercept,-1.95,0.6,,
+T1,Breeding site presence,Light*Noise,0.46,0.79,0.33,0.57
+T1,Breeding site presence,Light,-0.18,0.4,0.21,0.65
+T1,Breeding site presence,Noise,0.56,0.41,1.73,0.19
+T1,Calling presence,Intercept,-2.39,1.82,,
+T1,Calling presence,Light*Noise,0.17,2.18,0.01,0.94
+T1,Calling presence,Light,0.06,1.08,0,1
+T1,Calling presence,Noise,-1.12,1.11,1.03,0.31
+T1,Breeding site arrival time,Intercept,3.43,0.2,,
+T1,Breeding site arrival time,Light*Noise,-0.65,0.37,5.1,0.02
+T1,Breeding site arrival time,Light,0.66,0.27,2.79,0.09
+T1,Breeding site arrival time,Noise,0.72,0.27,5.17,0.02
+T1,Calling start time,Intercept,-0.27,0.51,,
+T1,Calling start time,Light*Noise,-0.39,1.12,0.12,0.73
+T1,Calling start time,Light,-0.45,0.56,0.67,0.41
+T1,Calling start time,Noise,0.98,0.56,2.94,0.08
+T2,Calling effort,Intercept,0.2,0.44,,
+T2,Calling effort,Light*Noise,-0.94,0.89,1.13,0.29
+T2,Calling effort,Light,1.82,0.49,12.8,<0.001
+T2,Calling effort,Noise,0.11,0.44,0.06,0.81
+T2,Call bout length,Intercept,1.93,0.06,,
+T2,Call bout length,Light*Noise,0.14,0.10,1.8,0.18
+T2,Call bout length,Light,-0.01,0.05,0.03,0.86
+T2,Call bout length,Noise,-0.03,0.05,0.31,0.58
+T2,Call rate,Intercept,17.91,1.63,,
+T2,Call rate,Light*Noise,0.68,2.57,0.05,0.82
+T2,Call rate,Light,-0.77,1.34,0.42,0.52
+T2,Call rate,Noise,0.94,1.27,0.46,0.5

@@ -15,3 +15,6 @@ Wet-system followups with flags: PMC10625352 duckweed Zenodo8017670 has161cups b
 Predatorfunction caveat: owl study38individuals in oneoutdooraviary usesfixedcontrol-first ordering and prey-cue responses;none pursuedprey. Cannot call detectionchanges measuredpredation. Amphipodstudy measures2hconsumption of3prey inindoor dishes with16trials/cell;keptseparate underlaboratoryassays. Acute mothpulse study usesrandomlight/nolight releases outdoors but individualflightbehavior scope separatefrompopulationresponse.
 
 AddedPMC3356403:26wildnestboxes randomizedto13light-first/13dark-first sequences, reversedatday9. Femaleprovisioning increase onlylaterstage;nestlinggrowth andactivitytimingnull. Mainfigure/tablelackrawreplicate covariance. Final13lit/13dark alreadyhaveoppositeprior exposure, whilefemale fullcrossover uses26boxes. Do notcountchicks asindependentreplicates.
+
+
+Follow-up 2026-11-21: [frog reported-model extraction](../frog_noise2022_sources/README.md) retains all 28 table coefficients and derives three explicitly logit-scale light odds ratios for separate responses. Dryad metadata was recovered; raw API download returned 401. No new paper count or pooled predation effect is added.

@@ -1,0 +1,12 @@
+{
+  "article_doi": "10.1093/beheco/arac077",
+  "source_sha256": "ffc015c8f40ed9063b13739c7148c438fc5d6776df4aabea7449d9137447f6e9",
+  "dataset_doi": "10.5061/dryad.4j0zpc8fj",
+  "dataset_version": 187596,
+  "original_coefficients": 28,
+  "derived_logit_contrasts": 3,
+  "covariance_available": false,
+  "raw_data_acquired": false,
+  "new_pooled_effects": 0,
+  "access_check": "2026-11-21: Dryad metadata HTTP 200; activity file API download HTTP 401; not bypassed"
+}

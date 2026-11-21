@@ -1,0 +1,4 @@
+response,log_odds_ratio,reported_se,odds_ratio,approximate_wald95_low,approximate_wald95_high,source_table,model,status
+Breeding site presence,-0.18,0.4,0.835270211411272,0.38136437349418956,1.8294218719978597,T1,author_reduced_model_without_light_noise_interaction,single_study_reported_model_not_pooled
+Calling presence,0.06,1.08,1.0618365465453596,0.12786247585943586,8.81804332350702,T1,author_reduced_model_without_light_noise_interaction,single_study_reported_model_not_pooled
+Calling effort,1.82,0.49,6.171858449883554,2.3622156184559637,16.12546984610039,T2,author_reduced_model_without_light_noise_interaction,single_study_reported_model_not_pooled
