@@ -1,0 +1,56 @@
+name: ALAN freshwater feeding three-consumer Zenodo source gate
+on:
+  push:
+    branches: [analysis/alan-functional-compensation-20261119]
+    paths:
+      - "scripts/acquisition/alan_freshwater_invertebrate_zenodo2026_source_20261120.py"
+      - "scripts/acquisition/alan_freshwater_zenodo_original_workbook_schema_20261120.py"
+      - "scripts/analysis/alan_freshwater2026_three_consumer_vial_feeding.py"
+      - "tests/test_alan_freshwater_three_consumer_vial_20261120.py"
+      - ".github/workflows/alan-freshwater2026-zenodo-source-20261120.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-zenodo-invertebrates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Download Zenodo record and small original source files
+        run: |
+          python -m scripts.acquisition.alan_freshwater_invertebrate_zenodo2026_source_20261120 \
+            --out /tmp/alan_freshwater_zenodo_source_gate_20261120.json
+      - name: Inspect official original 2026 six-sheet Excel layout, pinned SHA
+        run: |
+          python -m scripts.acquisition.alan_freshwater_zenodo_original_workbook_schema_20261120 \
+            --out /tmp/alan_freshwater_zenodo_schema_20261120.json
+      - name: Test vial-unit source constraints
+        run: python -m unittest discover -s tests -p test_alan_freshwater_three_consumer_vial_20261120.py -v
+      - name: Compute complete original 3 species x 3 lux feeding means and conditional bootstrap
+        run: |
+          python -m scripts.analysis.alan_freshwater2026_three_consumer_vial_feeding \
+            --out /tmp/alan_freshwater2026_feeding_vial_bootstrap.json
+      - name: Assert raw source not mislabelled as wet plant macro mechanism
+        run: |
+          python - <<'PY'
+          import json
+          z=json.load(open("/tmp/alan_freshwater_zenodo_source_gate_20261120.json"))
+          assert z["schema"]=="alan_zenodo19022243_freshwater_feeding_original_source_gate_v1"
+          assert z["no_new_effect_size_fitted"]
+          assert z["wet_plant_moisture_moderator_unavailable"]
+          print("ZENODO_FRESHWATER_FEEDING_SOURCE_GATE",z["status"])
+          print("SOURCE_FILES",[(x["filename"],x["status"]) for x in z.get("files",[])])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-freshwater2026-three-consumer-original-source
+          path: |
+            /tmp/alan_freshwater_zenodo_source_gate_20261120.json
+            /tmp/alan_freshwater_zenodo_schema_20261120.json
+            /tmp/alan_freshwater2026_feeding_vial_bootstrap.json
+          if-no-files-found: error
+          retention-days: 40

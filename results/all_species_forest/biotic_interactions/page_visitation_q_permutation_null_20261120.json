@@ -1,0 +1,101 @@
+{
+  "schema": "alan_page33_visitor_q_null_excess_verified_compact_20261120_v1",
+  "reproduction_run": "https://github.com/zuizui0223/alan/actions/runs/44655725882",
+  "page_source_original_csv_SHA256": "e28ebe99e0dfb27b73fbe6638e568bf98fa95b92c920e1d3d981e8eaea27519a",
+  "original_source_studies": 33,
+  "original_study_plant_networks": 72,
+  "source_null_q_permutation_results": {
+    "all_taxa_random_q_assignment": {
+      "networks": 72,
+      "original_source_study_bootstrap_of_alignment_excess": {
+        "best_observed_minus_null": [
+          -0.07368077978383135,
+          0.21487865144693563
+        ],
+        "proportional_observed_minus_null": [
+          -0.038315983388519645,
+          0.2684968746999763
+        ]
+      },
+      "source_count_with_permutable_taxa": 72,
+      "source_network_balanced": {
+        "best": {
+          "null_expected_count": 17.803401700850426,
+          "null_expected_fraction": 0.24726946806736702,
+          "observed_count": 21,
+          "observed_fraction": 0.2916666666666667,
+          "observed_minus_null_fraction": 0.044397198599299664
+        },
+        "proportional": {
+          "null_expected_count": 34.23061530765383,
+          "null_expected_fraction": 0.47542521260630316,
+          "observed_count": 39,
+          "observed_fraction": 0.5416666666666666,
+          "observed_minus_null_fraction": 0.06624145406036347
+        }
+      },
+      "source_studies": 33,
+      "source_study_balanced": {
+        "best": {
+          "null_expected_fraction": 0.28251564454666006,
+          "observed_fraction": 0.34805194805194806,
+          "observed_minus_null_fraction": 0.06553630350528801
+        },
+        "proportional": {
+          "null_expected_fraction": 0.4768266889577545,
+          "observed_fraction": 0.5945887445887446,
+          "observed_minus_null_fraction": 0.11776205563099013
+        }
+      }
+    },
+    "only_within_same_source_pollinator_guild": {
+      "networks": 72,
+      "original_source_study_bootstrap_of_alignment_excess": {
+        "best_observed_minus_null": [
+          -0.12598066710122735,
+          0.13293136467223515
+        ],
+        "proportional_observed_minus_null": [
+          -0.06741556203787319,
+          0.17769335605753814
+        ]
+      },
+      "source_count_with_permutable_taxa": 62,
+      "source_network_balanced": {
+        "best": {
+          "null_expected_count": 21.6088044022011,
+          "null_expected_fraction": 0.3001222833639041,
+          "observed_count": 21,
+          "observed_fraction": 0.2916666666666667,
+          "observed_minus_null_fraction": -0.008455616697237434
+        },
+        "proportional": {
+          "null_expected_count": 37.17308654327163,
+          "null_expected_fraction": 0.5162928686565504,
+          "observed_count": 39,
+          "observed_fraction": 0.5416666666666666,
+          "observed_minus_null_fraction": 0.02537379801011619
+        }
+      },
+      "source_studies": 33,
+      "source_study_balanced": {
+        "best": {
+          "null_expected_fraction": 0.35043672629965783,
+          "observed_fraction": 0.34805194805194806,
+          "observed_minus_null_fraction": -0.002384778247709726
+        },
+        "proportional": {
+          "null_expected_fraction": 0.5407047679683998,
+          "observed_fraction": 0.5945887445887446,
+          "observed_minus_null_fraction": 0.05388397662034482
+        }
+      }
+    }
+  },
+  "source_alternate_guild_restricted_randomization_condition": "permute q among different taxa within each original pollinator guild and plant network; otherwise keep original V",
+  "study_cluster_bootstrap_is_descriptive": true,
+  "observed_all_taxa_best_case_excess_not_distinguishable_from_zero": true,
+  "observed_all_taxa_proportional_excess_not_distinguishable_from_zero": true,
+  "ALAN_causal_mechanism_identified": false,
+  "wet_affinity_mechanistic_moderator_identified": false
+}

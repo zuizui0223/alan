@@ -1,0 +1,741 @@
+{
+  "schema": "alan_page2021_original_functional_compensation_20261119_verified_compact_v1",
+  "source_run": "https://github.com/zuizui0223/alan/actions/runs/44545544302",
+  "pinned_original_page_DOI": "10.6084/m9.figshare.16160265.v1",
+  "pinned_original_Page_623_SHA256": "e28ebe99e0dfb27b73fbe6638e568bf98fa95b92c920e1d3d981e8eaea27519a",
+  "eiv_source_sha256": "ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba",
+  "summary_by_source_taxon_revision": {
+    "as_published": {
+      "all": {
+        "bootstrap_status": "descriptive_original_study_cluster_bootstrap",
+        "intervals": {
+          "best_case_pollen_shortfall_mean": [
+            0.042185979930921644,
+            0.13071770213468342
+          ],
+          "even_optimal_equal_count_replacement_fails_fraction": [
+            0.1774193548387097,
+            0.4318181818181818
+          ],
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": [
+            0.3918918918918919,
+            0.6923076923076923
+          ],
+          "proportional_fails_but_optimal_could_succeed_fraction": [
+            0.13043478260869565,
+            0.36
+          ],
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": [
+            0.09760222806884386,
+            0.19744327794655642
+          ],
+          "requires_tenfold_visit_replacement_fraction": [
+            0,
+            0
+          ],
+          "requires_twice_visit_replacement_fraction": [
+            0.09836065573770492,
+            0.30120481927710846
+          ],
+          "study_balanced_fraction_requires_more_visits": [
+            0.4819727891156463,
+            0.7200680272108844
+          ]
+        },
+        "summary": {
+          "best_case_pollen_shortfall_mean": 0.07502354982967707,
+          "even_optimal_equal_count_replacement_fails_count": 21,
+          "even_optimal_equal_count_replacement_fails_fraction": 0.2916666666666667,
+          "independent_original_studies": 33,
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": 0.5416666666666666,
+          "networks": 72,
+          "proportional_fails_but_optimal_could_succeed_fraction": 0.25,
+          "relative_pollen_retained_after_full_numerical_replacement_median": 0.9777205392675488,
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": 0.14560876139966117,
+          "relative_pollen_shortfall_after_full_numerical_replacement_median": 0.02227946073245124,
+          "required_visit_multiplier_75pct_when_finite": 1.6805414597227228,
+          "required_visit_multiplier_median_when_finite": 1.0772305328251117,
+          "requires_more_than_equal_visit_replacement_count": 39,
+          "requires_tenfold_visit_replacement_fraction": 0,
+          "requires_twice_visit_replacement_fraction": 0.20833333333333334,
+          "source_distinct_plant_names": 62,
+          "status": "static_observational_counterfactual",
+          "study_balanced_fraction_requires_more_visits": 0.5945887445887446,
+          "unavailable_positive_q_remaining_networks": 0
+        }
+      },
+      "at_least_five_visitors": {
+        "bootstrap_status": "descriptive_original_study_cluster_bootstrap",
+        "intervals": {
+          "best_case_pollen_shortfall_mean": [
+            0.013350312025470233,
+            0.08437740652635299
+          ],
+          "even_optimal_equal_count_replacement_fails_fraction": [
+            0.10714285714285714,
+            0.35294117647058826
+          ],
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": [
+            0.45454545454545453,
+            0.7916666666666666
+          ],
+          "proportional_fails_but_optimal_could_succeed_fraction": [
+            0.2413793103448276,
+            0.56
+          ],
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": [
+            0.09255498701815394,
+            0.2109268116886472
+          ],
+          "requires_tenfold_visit_replacement_fraction": [
+            0,
+            0
+          ],
+          "requires_twice_visit_replacement_fraction": [
+            0.06451612903225806,
+            0.3333333333333333
+          ],
+          "study_balanced_fraction_requires_more_visits": [
+            0.50625,
+            0.8378947368421052
+          ]
+        },
+        "summary": {
+          "best_case_pollen_shortfall_mean": 0.03788296506273565,
+          "even_optimal_equal_count_replacement_fails_count": 10,
+          "even_optimal_equal_count_replacement_fails_fraction": 0.23255813953488372,
+          "independent_original_studies": 16,
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": 0.6046511627906976,
+          "networks": 43,
+          "proportional_fails_but_optimal_could_succeed_fraction": 0.37209302325581395,
+          "relative_pollen_retained_after_full_numerical_replacement_median": 0.956974832490699,
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": 0.1444377196705197,
+          "relative_pollen_shortfall_after_full_numerical_replacement_median": 0.043025167509300966,
+          "required_visit_multiplier_75pct_when_finite": 1.7447916666666672,
+          "required_visit_multiplier_median_when_finite": 1.1301010678871093,
+          "requires_more_than_equal_visit_replacement_count": 26,
+          "requires_tenfold_visit_replacement_fraction": 0,
+          "requires_twice_visit_replacement_fraction": 0.20930232558139536,
+          "source_distinct_plant_names": 38,
+          "status": "static_observational_counterfactual",
+          "study_balanced_fraction_requires_more_visits": 0.6643092105263158,
+          "unavailable_positive_q_remaining_networks": 0
+        }
+      },
+      "at_least_three_visitors": {
+        "bootstrap_status": "descriptive_original_study_cluster_bootstrap",
+        "intervals": {
+          "best_case_pollen_shortfall_mean": [
+            0.016634736128273247,
+            0.06957681869862262
+          ],
+          "even_optimal_equal_count_replacement_fails_fraction": [
+            0.1111111111111111,
+            0.32142857142857145
+          ],
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": [
+            0.37142857142857144,
+            0.6923076923076923
+          ],
+          "proportional_fails_but_optimal_could_succeed_fraction": [
+            0.2,
+            0.4666666666666667
+          ],
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": [
+            0.07937229077523764,
+            0.17445947566927283
+          ],
+          "requires_tenfold_visit_replacement_fraction": [
+            0,
+            0
+          ],
+          "requires_twice_visit_replacement_fraction": [
+            0.06,
+            0.2835820895522388
+          ],
+          "study_balanced_fraction_requires_more_visits": [
+            0.43241758241758244,
+            0.7277310924369749
+          ]
+        },
+        "summary": {
+          "best_case_pollen_shortfall_mean": 0.0430514303776834,
+          "even_optimal_equal_count_replacement_fails_count": 13,
+          "even_optimal_equal_count_replacement_fails_fraction": 0.22807017543859648,
+          "independent_original_studies": 25,
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": 0.543859649122807,
+          "networks": 57,
+          "proportional_fails_but_optimal_could_succeed_fraction": 0.3157894736842105,
+          "relative_pollen_retained_after_full_numerical_replacement_median": 0.9788287395207151,
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": 0.13221169762397908,
+          "relative_pollen_shortfall_after_full_numerical_replacement_median": 0.02117126047928486,
+          "required_visit_multiplier_75pct_when_finite": 1.6805414597227228,
+          "required_visit_multiplier_median_when_finite": 1.0725722072313266,
+          "requires_more_than_equal_visit_replacement_count": 31,
+          "requires_tenfold_visit_replacement_fraction": 0,
+          "requires_twice_visit_replacement_fraction": 0.19298245614035087,
+          "source_distinct_plant_names": 50,
+          "status": "static_observational_counterfactual",
+          "study_balanced_fraction_requires_more_visits": 0.5848571428571429,
+          "unavailable_positive_q_remaining_networks": 0
+        }
+      },
+      "at_least_two_guilds": {
+        "bootstrap_status": "descriptive_original_study_cluster_bootstrap",
+        "intervals": {
+          "best_case_pollen_shortfall_mean": [
+            0.02684328104702311,
+            0.1215885021084539
+          ],
+          "even_optimal_equal_count_replacement_fails_fraction": [
+            0.15,
+            0.43243243243243246
+          ],
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": [
+            0.38333333333333336,
+            0.7272727272727273
+          ],
+          "proportional_fails_but_optimal_could_succeed_fraction": [
+            0.13513513513513514,
+            0.41935483870967744
+          ],
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": [
+            0.09061798699508557,
+            0.19801071490745922
+          ],
+          "requires_tenfold_visit_replacement_fraction": [
+            0,
+            0
+          ],
+          "requires_twice_visit_replacement_fraction": [
+            0.06779661016949153,
+            0.3111111111111111
+          ],
+          "study_balanced_fraction_requires_more_visits": [
+            0.4942307692307692,
+            0.7541666666666668
+          ]
+        },
+        "summary": {
+          "best_case_pollen_shortfall_mean": 0.06221110169372931,
+          "even_optimal_equal_count_replacement_fails_count": 15,
+          "even_optimal_equal_count_replacement_fails_fraction": 0.2727272727272727,
+          "independent_original_studies": 22,
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": 0.5636363636363636,
+          "networks": 55,
+          "proportional_fails_but_optimal_could_succeed_fraction": 0.2909090909090909,
+          "relative_pollen_retained_after_full_numerical_replacement_median": 0.9766123390143824,
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": 0.14380876655291022,
+          "relative_pollen_shortfall_after_full_numerical_replacement_median": 0.02338766098561762,
+          "required_visit_multiplier_75pct_when_finite": 1.6805414597227228,
+          "required_visit_multiplier_median_when_finite": 1.081888858418897,
+          "requires_more_than_equal_visit_replacement_count": 31,
+          "requires_tenfold_visit_replacement_fraction": 0,
+          "requires_twice_visit_replacement_fraction": 0.2,
+          "source_distinct_plant_names": 47,
+          "status": "static_observational_counterfactual",
+          "study_balanced_fraction_requires_more_visits": 0.6215909090909091,
+          "unavailable_positive_q_remaining_networks": 0
+        }
+      },
+      "fly_as_most_frequent": {
+        "bootstrap_status": "UNDER_FIVE_INDEPENDENT_STUDIES_STOP",
+        "intervals": null,
+        "summary": {
+          "best_case_pollen_shortfall_mean": 0.08429206933353589,
+          "even_optimal_equal_count_replacement_fails_count": 1,
+          "even_optimal_equal_count_replacement_fails_fraction": 0.16666666666666666,
+          "independent_original_studies": 4,
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": 0.3333333333333333,
+          "networks": 6,
+          "proportional_fails_but_optimal_could_succeed_fraction": 0.16666666666666666,
+          "relative_pollen_retained_after_full_numerical_replacement_median": 1.15806079540006,
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": 0.08782061274675003,
+          "relative_pollen_shortfall_after_full_numerical_replacement_median": 0,
+          "required_visit_multiplier_75pct_when_finite": 0.9470320665371971,
+          "required_visit_multiplier_median_when_finite": 0.7659624450530658,
+          "requires_more_than_equal_visit_replacement_count": 2,
+          "requires_tenfold_visit_replacement_fraction": 0,
+          "requires_twice_visit_replacement_fraction": 0.16666666666666666,
+          "source_distinct_plant_names": 6,
+          "status": "static_observational_counterfactual",
+          "study_balanced_fraction_requires_more_visits": 0.3333333333333333,
+          "unavailable_positive_q_remaining_networks": 0
+        }
+      },
+      "moth_as_most_frequent": {
+        "bootstrap_status": "UNDER_FIVE_INDEPENDENT_STUDIES_STOP",
+        "intervals": null,
+        "summary": {
+          "best_case_pollen_shortfall_mean": 0,
+          "even_optimal_equal_count_replacement_fails_count": 0,
+          "even_optimal_equal_count_replacement_fails_fraction": 0,
+          "independent_original_studies": 2,
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": 0,
+          "networks": 5,
+          "proportional_fails_but_optimal_could_succeed_fraction": 0,
+          "relative_pollen_retained_after_full_numerical_replacement_median": 2.119063196246169,
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": 0,
+          "relative_pollen_shortfall_after_full_numerical_replacement_median": 0,
+          "required_visit_multiplier_75pct_when_finite": 0.08448326019778131,
+          "required_visit_multiplier_median_when_finite": 0.05820016592530968,
+          "requires_more_than_equal_visit_replacement_count": 0,
+          "requires_tenfold_visit_replacement_fraction": 0,
+          "requires_twice_visit_replacement_fraction": 0,
+          "source_distinct_plant_names": 3,
+          "status": "static_observational_counterfactual",
+          "study_balanced_fraction_requires_more_visits": 0,
+          "unavailable_positive_q_remaining_networks": 0
+        }
+      },
+      "no_source_zero_q": {
+        "bootstrap_status": "descriptive_original_study_cluster_bootstrap",
+        "intervals": {
+          "best_case_pollen_shortfall_mean": [
+            0.048595690749832554,
+            0.14985596619068242
+          ],
+          "even_optimal_equal_count_replacement_fails_fraction": [
+            0.20512820512820512,
+            0.4878048780487805
+          ],
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": [
+            0.43548387096774194,
+            0.7105263157894737
+          ],
+          "proportional_fails_but_optimal_could_succeed_fraction": [
+            0.125,
+            0.35294117647058826
+          ],
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": [
+            0.10718306571307513,
+            0.2167923921384947
+          ],
+          "requires_tenfold_visit_replacement_fraction": [
+            0,
+            0
+          ],
+          "requires_twice_visit_replacement_fraction": [
+            0.12,
+            0.36923076923076925
+          ],
+          "study_balanced_fraction_requires_more_visits": [
+            0.5067460317460317,
+            0.7419642857142857
+          ]
+        },
+        "summary": {
+          "best_case_pollen_shortfall_mean": 0.08799408233978011,
+          "even_optimal_equal_count_replacement_fails_count": 19,
+          "even_optimal_equal_count_replacement_fails_fraction": 0.3275862068965517,
+          "independent_original_studies": 30,
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": 0.5689655172413793,
+          "networks": 58,
+          "proportional_fails_but_optimal_could_succeed_fraction": 0.2413793103448276,
+          "relative_pollen_retained_after_full_numerical_replacement_median": 0.9613194668403904,
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": 0.15591653890159468,
+          "relative_pollen_shortfall_after_full_numerical_replacement_median": 0.038680533159609565,
+          "required_visit_multiplier_75pct_when_finite": 1.6709853877122793,
+          "required_visit_multiplier_median_when_finite": 1.1269373216172682,
+          "requires_more_than_equal_visit_replacement_count": 33,
+          "requires_tenfold_visit_replacement_fraction": 0,
+          "requires_twice_visit_replacement_fraction": 0.2413793103448276,
+          "source_distinct_plant_names": 52,
+          "status": "static_observational_counterfactual",
+          "study_balanced_fraction_requires_more_visits": 0.6207142857142857,
+          "unavailable_positive_q_remaining_networks": 0
+        }
+      }
+    },
+    "verified_butterfly_taxon_excluded": {
+      "all": {
+        "bootstrap_status": "descriptive_original_study_cluster_bootstrap",
+        "intervals": {
+          "best_case_pollen_shortfall_mean": [
+            0.042185979930921644,
+            0.13071770213468342
+          ],
+          "even_optimal_equal_count_replacement_fails_fraction": [
+            0.1774193548387097,
+            0.4318181818181818
+          ],
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": [
+            0.3918918918918919,
+            0.6923076923076923
+          ],
+          "proportional_fails_but_optimal_could_succeed_fraction": [
+            0.13043478260869565,
+            0.36
+          ],
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": [
+            0.09760222806884386,
+            0.19744327794655642
+          ],
+          "requires_tenfold_visit_replacement_fraction": [
+            0,
+            0
+          ],
+          "requires_twice_visit_replacement_fraction": [
+            0.09836065573770492,
+            0.30120481927710846
+          ],
+          "study_balanced_fraction_requires_more_visits": [
+            0.4819727891156463,
+            0.7200680272108844
+          ]
+        },
+        "summary": {
+          "best_case_pollen_shortfall_mean": 0.07502354982967707,
+          "even_optimal_equal_count_replacement_fails_count": 21,
+          "even_optimal_equal_count_replacement_fails_fraction": 0.2916666666666667,
+          "independent_original_studies": 33,
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": 0.5416666666666666,
+          "networks": 72,
+          "proportional_fails_but_optimal_could_succeed_fraction": 0.25,
+          "relative_pollen_retained_after_full_numerical_replacement_median": 0.9777205392675488,
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": 0.14560876139966117,
+          "relative_pollen_shortfall_after_full_numerical_replacement_median": 0.02227946073245124,
+          "required_visit_multiplier_75pct_when_finite": 1.6805414597227228,
+          "required_visit_multiplier_median_when_finite": 1.0772305328251117,
+          "requires_more_than_equal_visit_replacement_count": 39,
+          "requires_tenfold_visit_replacement_fraction": 0,
+          "requires_twice_visit_replacement_fraction": 0.20833333333333334,
+          "source_distinct_plant_names": 62,
+          "status": "static_observational_counterfactual",
+          "study_balanced_fraction_requires_more_visits": 0.5945887445887446,
+          "unavailable_positive_q_remaining_networks": 0
+        }
+      },
+      "at_least_five_visitors": {
+        "bootstrap_status": "descriptive_original_study_cluster_bootstrap",
+        "intervals": {
+          "best_case_pollen_shortfall_mean": [
+            0.013915776208754017,
+            0.08580674633759246
+          ],
+          "even_optimal_equal_count_replacement_fails_fraction": [
+            0.1111111111111111,
+            0.3684210526315789
+          ],
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": [
+            0.4772727272727273,
+            0.8125
+          ],
+          "proportional_fails_but_optimal_could_succeed_fraction": [
+            0.2608695652173913,
+            0.5789473684210527
+          ],
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": [
+            0.10006420474196101,
+            0.21583146116282007
+          ],
+          "requires_tenfold_visit_replacement_fraction": [
+            0,
+            0
+          ],
+          "requires_twice_visit_replacement_fraction": [
+            0.06666666666666667,
+            0.35
+          ],
+          "study_balanced_fraction_requires_more_visits": [
+            0.50625,
+            0.8378947368421052
+          ]
+        },
+        "summary": {
+          "best_case_pollen_shortfall_mean": 0.038784940421372205,
+          "even_optimal_equal_count_replacement_fails_count": 10,
+          "even_optimal_equal_count_replacement_fails_fraction": 0.23809523809523808,
+          "independent_original_studies": 16,
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": 0.6190476190476191,
+          "networks": 42,
+          "proportional_fails_but_optimal_could_succeed_fraction": 0.38095238095238093,
+          "relative_pollen_retained_after_full_numerical_replacement_median": 0.9493180952310395,
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": 0.14787671299600827,
+          "relative_pollen_shortfall_after_full_numerical_replacement_median": 0.050681904768960506,
+          "required_visit_multiplier_75pct_when_finite": 1.7447916666666672,
+          "required_visit_multiplier_median_when_finite": 1.1604363279589198,
+          "requires_more_than_equal_visit_replacement_count": 26,
+          "requires_tenfold_visit_replacement_fraction": 0,
+          "requires_twice_visit_replacement_fraction": 0.21428571428571427,
+          "source_distinct_plant_names": 38,
+          "status": "static_observational_counterfactual",
+          "study_balanced_fraction_requires_more_visits": 0.6643092105263158,
+          "unavailable_positive_q_remaining_networks": 0
+        }
+      },
+      "at_least_three_visitors": {
+        "bootstrap_status": "descriptive_original_study_cluster_bootstrap",
+        "intervals": {
+          "best_case_pollen_shortfall_mean": [
+            0.016634736128273247,
+            0.06957681869862262
+          ],
+          "even_optimal_equal_count_replacement_fails_fraction": [
+            0.1111111111111111,
+            0.32142857142857145
+          ],
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": [
+            0.37142857142857144,
+            0.6923076923076923
+          ],
+          "proportional_fails_but_optimal_could_succeed_fraction": [
+            0.2,
+            0.4666666666666667
+          ],
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": [
+            0.07937229077523764,
+            0.17445947566927283
+          ],
+          "requires_tenfold_visit_replacement_fraction": [
+            0,
+            0
+          ],
+          "requires_twice_visit_replacement_fraction": [
+            0.06,
+            0.2835820895522388
+          ],
+          "study_balanced_fraction_requires_more_visits": [
+            0.43241758241758244,
+            0.7277310924369749
+          ]
+        },
+        "summary": {
+          "best_case_pollen_shortfall_mean": 0.0430514303776834,
+          "even_optimal_equal_count_replacement_fails_count": 13,
+          "even_optimal_equal_count_replacement_fails_fraction": 0.22807017543859648,
+          "independent_original_studies": 25,
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": 0.543859649122807,
+          "networks": 57,
+          "proportional_fails_but_optimal_could_succeed_fraction": 0.3157894736842105,
+          "relative_pollen_retained_after_full_numerical_replacement_median": 0.9788287395207151,
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": 0.13221169762397908,
+          "relative_pollen_shortfall_after_full_numerical_replacement_median": 0.02117126047928486,
+          "required_visit_multiplier_75pct_when_finite": 1.6805414597227228,
+          "required_visit_multiplier_median_when_finite": 1.0725722072313266,
+          "requires_more_than_equal_visit_replacement_count": 31,
+          "requires_tenfold_visit_replacement_fraction": 0,
+          "requires_twice_visit_replacement_fraction": 0.19298245614035087,
+          "source_distinct_plant_names": 50,
+          "status": "static_observational_counterfactual",
+          "study_balanced_fraction_requires_more_visits": 0.5848571428571429,
+          "unavailable_positive_q_remaining_networks": 0
+        }
+      },
+      "at_least_two_guilds": {
+        "bootstrap_status": "descriptive_original_study_cluster_bootstrap",
+        "intervals": {
+          "best_case_pollen_shortfall_mean": [
+            0.02684328104702311,
+            0.1215885021084539
+          ],
+          "even_optimal_equal_count_replacement_fails_fraction": [
+            0.15,
+            0.43243243243243246
+          ],
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": [
+            0.38333333333333336,
+            0.7272727272727273
+          ],
+          "proportional_fails_but_optimal_could_succeed_fraction": [
+            0.13513513513513514,
+            0.41935483870967744
+          ],
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": [
+            0.09061798699508557,
+            0.19801071490745922
+          ],
+          "requires_tenfold_visit_replacement_fraction": [
+            0,
+            0
+          ],
+          "requires_twice_visit_replacement_fraction": [
+            0.06779661016949153,
+            0.3111111111111111
+          ],
+          "study_balanced_fraction_requires_more_visits": [
+            0.4942307692307692,
+            0.7541666666666668
+          ]
+        },
+        "summary": {
+          "best_case_pollen_shortfall_mean": 0.06221110169372931,
+          "even_optimal_equal_count_replacement_fails_count": 15,
+          "even_optimal_equal_count_replacement_fails_fraction": 0.2727272727272727,
+          "independent_original_studies": 22,
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": 0.5636363636363636,
+          "networks": 55,
+          "proportional_fails_but_optimal_could_succeed_fraction": 0.2909090909090909,
+          "relative_pollen_retained_after_full_numerical_replacement_median": 0.9766123390143824,
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": 0.14380876655291022,
+          "relative_pollen_shortfall_after_full_numerical_replacement_median": 0.02338766098561762,
+          "required_visit_multiplier_75pct_when_finite": 1.6805414597227228,
+          "required_visit_multiplier_median_when_finite": 1.081888858418897,
+          "requires_more_than_equal_visit_replacement_count": 31,
+          "requires_tenfold_visit_replacement_fraction": 0,
+          "requires_twice_visit_replacement_fraction": 0.2,
+          "source_distinct_plant_names": 47,
+          "status": "static_observational_counterfactual",
+          "study_balanced_fraction_requires_more_visits": 0.6215909090909091,
+          "unavailable_positive_q_remaining_networks": 0
+        }
+      },
+      "fly_as_most_frequent": {
+        "bootstrap_status": "UNDER_FIVE_INDEPENDENT_STUDIES_STOP",
+        "intervals": null,
+        "summary": {
+          "best_case_pollen_shortfall_mean": 0.08429206933353589,
+          "even_optimal_equal_count_replacement_fails_count": 1,
+          "even_optimal_equal_count_replacement_fails_fraction": 0.16666666666666666,
+          "independent_original_studies": 4,
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": 0.3333333333333333,
+          "networks": 6,
+          "proportional_fails_but_optimal_could_succeed_fraction": 0.16666666666666666,
+          "relative_pollen_retained_after_full_numerical_replacement_median": 1.15806079540006,
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": 0.08782061274675003,
+          "relative_pollen_shortfall_after_full_numerical_replacement_median": 0,
+          "required_visit_multiplier_75pct_when_finite": 0.9470320665371971,
+          "required_visit_multiplier_median_when_finite": 0.7659624450530658,
+          "requires_more_than_equal_visit_replacement_count": 2,
+          "requires_tenfold_visit_replacement_fraction": 0,
+          "requires_twice_visit_replacement_fraction": 0.16666666666666666,
+          "source_distinct_plant_names": 6,
+          "status": "static_observational_counterfactual",
+          "study_balanced_fraction_requires_more_visits": 0.3333333333333333,
+          "unavailable_positive_q_remaining_networks": 0
+        }
+      },
+      "moth_as_most_frequent": {
+        "bootstrap_status": "UNDER_FIVE_INDEPENDENT_STUDIES_STOP",
+        "intervals": null,
+        "summary": {
+          "best_case_pollen_shortfall_mean": 0,
+          "even_optimal_equal_count_replacement_fails_count": 0,
+          "even_optimal_equal_count_replacement_fails_fraction": 0,
+          "independent_original_studies": 2,
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": 0,
+          "networks": 5,
+          "proportional_fails_but_optimal_could_succeed_fraction": 0,
+          "relative_pollen_retained_after_full_numerical_replacement_median": 2.1205673880542144,
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": 0,
+          "relative_pollen_shortfall_after_full_numerical_replacement_median": 0,
+          "required_visit_multiplier_75pct_when_finite": 0.08448326019778131,
+          "required_visit_multiplier_median_when_finite": 0.05820016592530968,
+          "requires_more_than_equal_visit_replacement_count": 0,
+          "requires_tenfold_visit_replacement_fraction": 0,
+          "requires_twice_visit_replacement_fraction": 0,
+          "source_distinct_plant_names": 3,
+          "status": "static_observational_counterfactual",
+          "study_balanced_fraction_requires_more_visits": 0,
+          "unavailable_positive_q_remaining_networks": 0
+        }
+      },
+      "no_source_zero_q": {
+        "bootstrap_status": "descriptive_original_study_cluster_bootstrap",
+        "intervals": {
+          "best_case_pollen_shortfall_mean": [
+            0.046307804045178314,
+            0.1416464915162601
+          ],
+          "even_optimal_equal_count_replacement_fails_fraction": [
+            0.19047619047619047,
+            0.4634146341463415
+          ],
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": [
+            0.4090909090909091,
+            0.6904761904761905
+          ],
+          "proportional_fails_but_optimal_could_succeed_fraction": [
+            0.11538461538461539,
+            0.3409090909090909
+          ],
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": [
+            0.1043255861178702,
+            0.2042017819301799
+          ],
+          "requires_tenfold_visit_replacement_fraction": [
+            0,
+            0
+          ],
+          "requires_twice_visit_replacement_fraction": [
+            0.11363636363636363,
+            0.3469387755102041
+          ],
+          "study_balanced_fraction_requires_more_visits": [
+            0.4777310924369748,
+            0.7178571428571429
+          ]
+        },
+        "summary": {
+          "best_case_pollen_shortfall_mean": 0.08506094626178744,
+          "even_optimal_equal_count_replacement_fails_count": 19,
+          "even_optimal_equal_count_replacement_fails_fraction": 0.31666666666666665,
+          "independent_original_studies": 31,
+          "most_frequent_visitor_requires_more_than_equal_visit_replacement_fraction": 0.55,
+          "networks": 60,
+          "proportional_fails_but_optimal_could_succeed_fraction": 0.23333333333333334,
+          "relative_pollen_retained_after_full_numerical_replacement_median": 0.971138220102232,
+          "relative_pollen_shortfall_after_full_numerical_replacement_mean": 0.1507193209382082,
+          "relative_pollen_shortfall_after_full_numerical_replacement_median": 0.028861779897767892,
+          "required_visit_multiplier_75pct_when_finite": 1.6709853877122793,
+          "required_visit_multiplier_median_when_finite": 1.102831216883162,
+          "requires_more_than_equal_visit_replacement_count": 33,
+          "requires_tenfold_visit_replacement_fraction": 0,
+          "requires_twice_visit_replacement_fraction": 0.23333333333333334,
+          "source_distinct_plant_names": 52,
+          "status": "static_observational_counterfactual",
+          "study_balanced_fraction_requires_more_visits": 0.6006912442396313,
+          "unavailable_positive_q_remaining_networks": 0
+        }
+      }
+    }
+  },
+  "moisture_link_source_support": {
+    "Lu2026_focal_11_species_independent_EIV_exact_name_support": {
+      "exact_Tichy_EIV_matches": 1,
+      "exact_matched_drier_le7": 1,
+      "exact_matched_wet_gt7": 0,
+      "five_lu_spatial_pairs_not_11_independent_light_installations": true,
+      "no_source_light_moisture_coefficient_fitted": true,
+      "source_lu_focal_species_11": 11,
+      "species_scored_from_source_EIV": {
+        "Geum aleppicum": 6
+      },
+      "status": "MOISTURE_MODERATOR_SOURCE_STOP"
+    },
+    "dry_functional_threshold_fraction_descriptive": 0.8,
+    "exclude_between_study_ecology_as_moisture_effect": true,
+    "functional_redundancy_moisture_meta_moderator": null,
+    "matched_dry_networks": 25,
+    "matched_dry_plant_names": 23,
+    "matched_original_studies": 9,
+    "matched_plant_names": 25,
+    "matched_study_networks": 28,
+    "matched_wet_networks": 3,
+    "matched_wet_plant_names": 2,
+    "missing_EIV_does_not_mean_dry": true,
+    "no_altered_pollination_by_ALAN_measured": true,
+    "schema": "alan_page2021_72network_independent_EIV_moisture_support_v1",
+    "source_EIV_SHA256": "ffeb2a5f45c95886625f970734e431098587c65baad7def786d35364a761dbba",
+    "source_page_all_networks": 72,
+    "source_page_original_plants": 62,
+    "source_page_original_studies": 33,
+    "source_studies_with_both_wet_and_dry": 3,
+    "source_studies_with_both_wet_and_dry_names": [
+      "Ballantyne_2015_1",
+      "Cunnold_2018_1",
+      "Moquet_2017_1"
+    ],
+    "status": "SOURCE_WITHIN_STUDY_MOISTURE_SUPPORT_STOP",
+    "wet_functional_threshold_fraction_descriptive": 0
+  },
+  "interpretation_guards": [
+    "A static counterfactual, not observed ALAN-mediated pollinator loss or pollinator replacement",
+    "Every lost visit goes either proportionally to existing other visitors or, in the unattainable best-case bound, to one maximally efficient remaining visitor",
+    "Conspecific pollen deposition, not pollen viability or seeds",
+    "EIV moisture exact matches only, missing traits not dry; Lu 11 focal taxa cannot support moderator",
+    "Original study bootstrap descriptive intervals; 72 network cells are not independent light experiments"
+  ],
+  "ALAN_wet_species_mechanism_causal_claim_supported": false,
+  "source_runs_are_not_new_independent_plant_experiments": true
+}
