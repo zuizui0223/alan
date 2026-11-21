@@ -1,0 +1,10 @@
+{
+  "trials": 37,
+  "sites": 6,
+  "observed_dates": 14,
+  "date_dummy_rank": 14,
+  "date_plus_light_rank": 14,
+  "light_identifiable_with_unrestricted_date_fixed_effects": false,
+  "source": "SupplementaryTableS2; trial table values rechecked2026-11-21",
+  "interpretation": "Light is exactly a function of observed date; no same-date treatment comparison. Does not assert every parametric temporal model is impossible."
+}

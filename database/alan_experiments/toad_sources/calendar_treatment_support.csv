@@ -1,0 +1,15 @@
+month,day,n_trials,n_light_states,lighting
+1,14,1,1,off
+1,15,1,1,off
+1,17,2,1,off
+1,21,3,1,on
+1,23,3,1,off
+1,24,3,1,on
+1,25,3,1,off
+1,26,3,1,on
+3,22,3,1,off
+3,26,3,1,on
+3,27,3,1,off
+3,29,3,1,on
+3,30,3,1,off
+4,3,3,1,on

@@ -9,3 +9,6 @@ Retain mechanistic leads separately: singlebridge switch-offs affect seabirdgrou
 Columns n_lit/n_control record allocation units only when identifiable, not total insects/traps/days. Repeated crossover enclosure counts6/6 mean the SAME6enclosures, not12independentunits. Swiss36lit includesmultiplelighttreatments; Dutch24lit comprises8transects/color and shared8dark, with species coveragevarying. Empty n indicates no validated independent-arm denominator.
 
 Additional PMC4892457: one boatlight at one nearshorearray, on/off sequence reversed across two nights.40releasedturtles are not40independentlightreplicates. Publishedtransit+23%, swimming speed null. SupplementTableS2 and AIMS originaltracks available; hold pending scope/temporalunit review.
+
+
+Follow-up2026-11-21: [toad original extraction and calendar audit](../toad_sources/README.md) rechecks the existing37-trial source and six enclosure means. All14observed dates contain a single light condition, so the enclosure-pair interval is flagged as naive and not used for pooling. This is a recheck, not a newly read paper or added effect.

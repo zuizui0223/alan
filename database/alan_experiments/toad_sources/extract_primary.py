@@ -23,6 +23,18 @@ g.to_csv(OUT/'enclosure_treatment_means.csv',index=False)
 w=g.pivot(index='site',columns='lighting',values='mean_gut_g');x,y=w.on,w.off;n=len(w)
 mx,my=x.mean(),y.mean();cov=np.cov(x,y,ddof=1)[0,1];inf=(x-mx)/mx-(y-my)/my;v=inf.var(ddof=1)/n;lnrr=np.log(mx/my);crit=t.ppf(.975,n-1)
 out=dict(study_doi='10.1038/s41598-020-63503-9',endpoint='overnight prey gut mass g per toad; enclosure-treatment average over trial nights',window='Jan14-Apr3 2018; inferred year from main methods Dec2017-Apr2018',n_pairs=n,mean_lit=mx,sd_lit=x.std(ddof=1),mean_control=my,sd_control=y.std(ddof=1),within_enclosure_covariance=cov,lnRR=lnrr,variance_lnRR_paired=v,RR=mx/my,RR_t95_low=np.exp(lnrr-crit*np.sqrt(v)),RR_t95_high=np.exp(lnrr+crit*np.sqrt(v)),mean_difference_g=mx-my,variance_mean_difference=(x-y).var(ddof=1)/n,status='descriptive paired enclosure means; temporal treatment confounding remains')
+calendar=d.groupby(['month','day']).agg(n_trials=('site','size'),n_light_states=('lighting','nunique'),lighting=('lighting','first')).reset_index()
+calendar.to_csv(OUT/'calendar_treatment_support.csv',index=False)
+date_matrix=pd.get_dummies(d.month.astype(str)+'-'+d.day.astype(str),dtype=float).to_numpy()
+light_indicator=d.lighting.eq('on').astype(float).to_numpy()[:,None]
+date_rank=int(np.linalg.matrix_rank(date_matrix))
+joint_rank=int(np.linalg.matrix_rank(np.c_[date_matrix,light_indicator]))
+assert date_rank==joint_rank==14
+(OUT/'calendar_design_audit.json').write_text(json.dumps(dict(trials=len(d),sites=int(d.site.nunique()),observed_dates=date_matrix.shape[1],date_dummy_rank=date_rank,date_plus_light_rank=joint_rank,light_identifiable_with_unrestricted_date_fixed_effects=False,source='SupplementaryTableS2; trial table values rechecked2026-11-21',interpretation='Light is exactly a function of observed date; no same-date treatment comparison. Does not assert every parametric temporal model is impossible.'),indent=2)+'\n',encoding='utf-8')
+out['interval_scope']='naive enclosure-pair t5; shared date dependence not accounted for; not adopted for pooling'
+out['all_observed_dates_single_treatment']=bool(calendar.n_light_states.eq(1).all())
+out['n_observed_dates']=len(calendar)
+out['pooling_status']='hold shared-date dependence and temporal treatment confounding'
 pd.DataFrame([out]).to_csv(OUT/'effect_paired.csv',index=False)
 (OUT/'source_manifest.json').write_text(json.dumps(dict(source='https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7162902/supplementaryFiles',file='supplement.pdf',sha256=hashlib.sha256((CACHE/'supplement.pdf').read_bytes()).hexdigest(),doi='10.1038/s41598-020-63503-9',digitized=0,source_location='SupplementaryTableS2 pp4-5'),indent=2),encoding='utf-8')
 print(g.to_string(index=False));print(json.dumps(out,indent=2))
