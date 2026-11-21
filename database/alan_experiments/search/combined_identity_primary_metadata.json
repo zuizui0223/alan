@@ -1,0 +1,127 @@
+{
+  "25914438.json": {
+    "sha256": "f0f6e43dddf72271c212fa1eee3da41888dde333bdaeb5be8719d24952f74e12",
+    "verified_metadata": {
+      "id": "25914438",
+      "source": "MED",
+      "doi": "10.1111/een.12174",
+      "title": "Pollination by nocturnal Lepidoptera, and the effects of light pollution: a review.",
+      "authorString": "MacGregor CJ, Pocock MJ, Fox R, Evans DM.",
+      "journalInfo": {
+        "issue": "3",
+        "volume": "40",
+        "journalIssueId": 2276839,
+        "dateOfPublication": "2015 Jun",
+        "monthOfPublication": 6,
+        "yearOfPublication": 2015,
+        "journal": {
+          "medlineAbbreviation": "Ecol Entomol",
+          "title": "Ecological Entomology",
+          "essn": "1365-2311",
+          "issn": "0307-6946",
+          "nlmid": "7607130",
+          "isoabbreviation": "Ecol Entomol"
+        },
+        "printPublicationDate": "2015-06-01"
+      },
+      "pageInfo": "187-198",
+      "firstPublicationDate": "2014-12-13"
+    }
+  },
+  "27251575.json": {
+    "sha256": "94bf99407c772645c848a3f2539220dfcddb255549018461ece8d98228bae43e",
+    "verified_metadata": {
+      "id": "27251575",
+      "source": "MED",
+      "doi": "10.1111/gcb.13371",
+      "title": "The dark side of street lighting: impacts on moths and evidence for the disruption of nocturnal pollen transport.",
+      "authorString": "Macgregor CJ, Evans DM, Fox R, Pocock MJ.",
+      "journalInfo": {
+        "issue": "2",
+        "volume": "23",
+        "journalIssueId": 2515037,
+        "dateOfPublication": "2017 Feb",
+        "monthOfPublication": 2,
+        "yearOfPublication": 2017,
+        "journal": {
+          "medlineAbbreviation": "Glob Chang Biol",
+          "title": "Global change biology",
+          "essn": "1365-2486",
+          "issn": "1354-1013",
+          "isoabbreviation": "Glob Chang Biol",
+          "nlmid": "9888746"
+        },
+        "printPublicationDate": "2017-02-01"
+      },
+      "pageInfo": "697-707",
+      "firstPublicationDate": "2016-07-12"
+    }
+  },
+  "honeybee_biorxiv.json": {
+    "sha256": "07fab2410ca836d0efb7f7972418be883e012f27f9041e81dbb2124fa0a81f2f",
+    "verified_metadata": [
+      {
+        "doi": "10.1101/2023.07.03.547605",
+        "version": "1",
+        "published": "10.1038/s41598-024-73378-9",
+        "title": "Exposure to constant artificial light alters honey bee sleep rhythms and disrupts sleep",
+        "authors": "Kim, A. Y.; Velazquez, A.; Saavedra, B.; Smarr, B.; Nieh, J. C."
+      }
+    ]
+  },
+  "IND601326109.json": {
+    "sha256": "1911d8a60bf8eaddcf916a563f4a1a5a180f30262216cbee25fe91941db3483c",
+    "verified_metadata": {
+      "id": "IND601326109",
+      "source": "AGR",
+      "doi": null,
+      "title": "Pollination by nocturnal Lepidoptera, and the effects of light pollution: a review",
+      "authorString": "MACGREGOR CJ, POCOCK MJO, Fox R, EVANS DM.",
+      "journalInfo": {
+        "issue": "3",
+        "volume": "40",
+        "journalIssueId": 2276839,
+        "dateOfPublication": "2015 Jun",
+        "monthOfPublication": 6,
+        "yearOfPublication": 2015,
+        "journal": {
+          "medlineAbbreviation": "Ecol Entomol",
+          "title": "Ecological entomology",
+          "essn": "1365-2311",
+          "issn": "0307-6946",
+          "nlmid": "7607130",
+          "isoabbreviation": "Ecol Entomol"
+        },
+        "printPublicationDate": "2015-06-01"
+      },
+      "pageInfo": "187-198",
+      "firstPublicationDate": "2015-06-01"
+    }
+  },
+  "IND605878087.json": {
+    "sha256": "37f3cda0db69e849f51469f3c5171658cb43a9efd89df7c48c3b2b5ccc3cd54d",
+    "verified_metadata": {
+      "id": "IND605878087",
+      "source": "AGR",
+      "doi": null,
+      "title": "The dark side of street lighting: impacts on moths and evidence for the disruption of nocturnal pollen transport",
+      "authorString": "Macgregor CJ, Evans DM, Fox R, Pocock MJO.",
+      "journalInfo": {
+        "issue": "2",
+        "volume": "23",
+        "journalIssueId": 2667885,
+        "dateOfPublication": "2017 Feb",
+        "monthOfPublication": 2,
+        "yearOfPublication": 2017,
+        "journal": {
+          "medlineAbbreviation": "Global change biology.",
+          "title": "Global Change Biology",
+          "issn": "1354-1013"
+        },
+        "printPublicationDate": "2017-02-01"
+      },
+      "pageInfo": "697-707",
+      "firstPublicationDate": "2017-02-01"
+    }
+  }
+}
