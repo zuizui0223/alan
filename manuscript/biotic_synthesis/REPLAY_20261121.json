@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-21",
+  "base_commit": "5be5293b38cec33439389562084e50fbad00049e",
+  "commands": [
+    {
+      "command": "python database/alan_experiments/synthesize_capture_origins.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python database/alan_experiments/synthesize_aphid_predator.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python database/alan_experiments/synthesize_leaf_damage.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python -m pytest tests/test_alan_experiment_db.py -q",
+      "exit_code": 0,
+      "tests_passed": 3
+    },
+    {
+      "command": "python manuscript/biotic_synthesis/render_stage_meta.py",
+      "exit_code": 0
+    }
+  ],
+  "outputs": {
+    "database/alan_experiments/capture_origin_synthesis/pooled_estimates.csv": {
+      "sha256": "0411135adbe709fca2f83de63a4c910a0883e3c1a56dad7740ecf724d2de43e6",
+      "matches_pre_replay_head": true
+    },
+    "database/alan_experiments/aphid_predator_synthesis/pooled_estimate.csv": {
+      "sha256": "84fe3483034ca6d77b1b2e5a3f26142dd982ced8d412a29882f1138d4fca6ab5",
+      "matches_pre_replay_head": true
+    },
+    "database/alan_experiments/leaf_damage_synthesis/pooled_estimate.csv": {
+      "sha256": "97d5a6ca30f93cc3295e406f1ec7be2904ff3684436c2a90e19c67a6aaf8b3dd",
+      "matches_pre_replay_head": true
+    },
+    "manuscript/biotic_synthesis/figures/stage_meta_plot_data.csv": {
+      "sha256": "a7b9b4db471f20c3c0bcb65a214d32e12c8c9fd122de19eaccd512c6d85d585e",
+      "matches_pre_replay_head": true
+    },
+    "manuscript/biotic_synthesis/figures/stage_meta.png": {
+      "sha256": "70c62c4e8b53e13c43d4da7352bd2567c99ccf68fc5dd7fe83efa67ad285f46c",
+      "matches_pre_replay_head": true
+    }
+  },
+  "figure_visual_check": "PNG inspected; all three panels, labels and intervals readable",
+  "scope": "Replay of current synthesis inputs, not re-extraction of every primary source or final systematic review",
+  "pdf_svg_handling": "Regenerated PDF/SVG bytes differed; tracked originals retained. PNG and plot data matched. Independent PDF/SVG equivalence was not checked.",
+  "goal_complete": false
+}
