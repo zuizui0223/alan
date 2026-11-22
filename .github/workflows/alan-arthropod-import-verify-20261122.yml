@@ -1,0 +1,34 @@
+name: ALAN arthropod source and screening audit
+
+on:
+  pull_request:
+    paths:
+      - 'database/alan_experiments/arthropod_expansion_20261122/**'
+      - 'database/alan_experiments/search/**'
+      - 'database/alan_experiments/search_execution/**'
+      - 'tests/test_alan_arthropod_import_20261122.py'
+      - '.github/workflows/alan-arthropod-import-verify-20261122.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source and independent-unit invariants
+        run: python -m unittest discover -s tests -p 'test_alan_arthropod_import_20261122.py' -v
+      - name: Rebuild reference and screening outputs from frozen snapshot
+        run: |
+          python database/alan_experiments/arthropod_expansion_20261122/build_screening.py
+          python database/alan_experiments/arthropod_expansion_20261122/build_citation_ledger.py
+          python database/alan_experiments/arthropod_expansion_20261122/data_sources/swiss_envidat/summarize.py
+      - name: Regenerated outputs must be byte-identical
+        run: |
+          python -m unittest discover -s tests -p 'test_alan_arthropod_import_20261122.py' -v
+          git diff --exit-code -- database/alan_experiments/arthropod_expansion_20261122
