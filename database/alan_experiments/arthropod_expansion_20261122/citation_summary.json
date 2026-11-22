@@ -1,0 +1,60 @@
+{
+  "date_jst": "2026-11-22",
+  "sources": {
+    "meta": {
+      "path": "citation_sources/meta_source_search.json",
+      "query_list_pointer": "/queries",
+      "query_count": 55,
+      "contributing_report_records": 29
+    },
+    "aquatic": {
+      "path": "citation_sources/aquatic_experiment_search.json",
+      "query_list_pointer": "/queries",
+      "query_count": 19,
+      "contributing_report_records": 12
+    },
+    "terrestrial": {
+      "path": "citation_sources/terrestrial_experiment_search.json",
+      "query_list_pointer": "/queries",
+      "query_count": 27,
+      "contributing_report_records": 17
+    }
+  },
+  "appearances_including_followup": 58,
+  "unique_citation_reports": 49,
+  "unique_citation_reports_with_doi": 49,
+  "baseline_reports_compared": 553,
+  "expansion_europe_pmc_records_compared": 341,
+  "exact_baseline_report_matches": 9,
+  "matches_to_expansion_including_baseline_reports": 16,
+  "matches_to_expansion_outside_baseline": 9,
+  "additional_citation_report_candidates_outside_both": 31,
+  "additional_doi_candidates_outside_both": 31,
+  "checks": {
+    "kuhne_icab149": "MED:34180520",
+    "explicitly_verified_index_ids": {
+      "AGR:IND609454928": [
+        "10.1016/j.biocon.2026.111711",
+        "Five authors in order, journal/volume 315, title and four-site camera-trap experiment agree.",
+        "https://pure.knaw.nl/portal/en/datasets/data-from-timing-of-attraction-to-light-of-nocturnal-insects-is-s/"
+      ],
+      "AGR:IND609426870": [
+        "10.1016/j.biocon.2026.111722",
+        "Fourteen authors in order, journal, March 2026, title and four-treatment Chihuahuan Desert trial agree.",
+        "https://www.sciencedirect.com/science/article/pii/S0006320726000303?dgcid=rss_sd_all"
+      ],
+      "AGR:IND605878255": [
+        "10.1111/gcb.13615",
+        "Six authors in order, journal/volume 23/issue 7, July 2017, title and three-year experiment agree.",
+        "https://pubmed.ncbi.nlm.nih.gov/28139040/"
+      ]
+    }
+  },
+  "interpretation": [
+    "Reports are deduplicated by exact case-insensitive article DOI. An undated or non-DOI record would retain its source identity. Distinct papers may share an experiment.",
+    "Overlap with Europe PMC uses an exact DOI or verified index-record mapping. Source-level title suggestions are preserved in the archived originals and do not automatically merge reports.",
+    "Each source entry points into the unaltered archival manifest with a JSON pointer. The manifests list search queries; they do not attribute each query to a particular record. No per-query hit assignment was reconstructed.",
+    "Primary and data URLs provide portable provenance. Chat search references are auxiliary session labels. Publicly linked material may be unavailable for download.",
+    "These are supplementary search leads, including ineligible designs, companion papers, and a search-follow-up for Kühne. Counts do not establish extraction readiness, sample size or independent experimental families."
+  ]
+}
