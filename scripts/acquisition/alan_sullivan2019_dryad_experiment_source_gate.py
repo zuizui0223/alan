@@ -10,7 +10,7 @@ import argparse, csv, hashlib, io, json, os, re
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import quote, urlparse, unquote
+from urllib.parse import quote, urlparse, unquote, urljoin
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
@@ -63,9 +63,11 @@ def links(d):
     if isinstance(d,dict):
         for k,v in d.items():
             if k in ('href', 'url', 'link') and isinstance(v,str):
-                u = urlparse(v)
+                # Official Dryad HAL uses relative hrefs, e.g. /api/v2/versions/123/files.
+                resolved = urljoin('https://datadryad.org', v)
+                u = urlparse(resolved)
                 if u.scheme == 'https' and u.hostname in {'datadryad.org', 'www.datadryad.org'} and ('/api/v2/' in u.path):
-                    uris.add(v)
+                    uris.add(resolved)
             elif isinstance(v,(list,dict)):
                 uris |= links(v)
     elif isinstance(d,list):

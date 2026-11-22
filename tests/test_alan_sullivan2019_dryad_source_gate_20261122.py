@@ -10,6 +10,13 @@ class TestSullivanSourceGuards(unittest.TestCase):
     def test_two_independent_response_strata(self):
         self.assertIn('WetlandFieldExperiment_2013',S.EXPECTED[0]);self.assertEqual(len(S.EXPECTED),2)
         self.assertNotIn('UrbanStream',S.EXPECTED[0]);self.assertTrue(S.PAPER.startswith('10.1002/'))
+    def test_official_dryad_relative_hal_links_are_resolved_only_inside_host(self):
+        source={'_links':{'stash:version':{'href':'/api/v2/versions/8747'},
+                          'malicious':{'href':'https://evil.example/api/v2/files/1'},
+                          'self':{'href':'/api/v2/datasets/doi%3A10.5061%2Fdryad.gb9534p'}}}
+        out=S.links(source)
+        self.assertIn('https://datadryad.org/api/v2/versions/8747',out)
+        self.assertTrue(all(x.startswith('https://datadryad.org/api/v2/') for x in out))
     def test_disallow_untrusted_url(self):
         with self.assertRaises(ValueError):S.fetch('https://example.com/api/v2/files/1/download')
     def test_disallow_ftp(self):
