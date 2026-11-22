@@ -12,13 +12,15 @@ from urllib.error import HTTPError, URLError
 DOI='10.5061/dryad.rfj6q57k5'; B='https://datadryad.org/api/v2'
 NAME='DISCONNECTED_alldata.xlsx'; MAX=2_000_000
 HOSTS={'datadryad.org','www.datadryad.org'}
+# Exact delivery host observed after following official Dryad API version ZIP.
+DELIVERY_HOST='w27i4vubmmwkssdf6xpszafmhq0rffog.lambda-url.us-west-2.on.aws'
 
 def grab(url):
     u=urlparse(url)
     if u.scheme!='https' or u.hostname not in HOSTS:raise ValueError('UNAPPROVED_HOST')
     with urlopen(Request(url,headers={'User-Agent':'ALAN-original-source-audit/2026-11-23','Accept':'application/json,*/*'}),timeout=28) as h:
         final=h.geturl();u=urlparse(final)
-        if u.scheme!='https' or u.hostname not in HOSTS:raise ValueError('REDIRECTED_OUTSIDE_ALLOWLIST:'+str(u.hostname))
+        if u.scheme!='https' or u.hostname not in (HOSTS | {DELIVERY_HOST}):raise ValueError('REDIRECTED_OUTSIDE_ALLOWLIST:'+str(u.hostname))
         if int(h.headers.get('Content-Length') or '0')>MAX:raise ValueError('PAYLOAD_TOO_LARGE')
         data=h.read(MAX+1)
         if len(data)>MAX:raise ValueError('PAYLOAD_TOO_LARGE')
