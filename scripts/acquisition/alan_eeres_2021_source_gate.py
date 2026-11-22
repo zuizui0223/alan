@@ -149,7 +149,83 @@ def source_effects(content):
                             'benthos_up':'6 HT x 4 treatment classes; 2 subsamples per section; 72 source rows'},
             'n_independent_header_blocks':6,
             'effect_summaries':outcomes,
+            'joint_shared_HT':joint_source_estimands(outcomes),
             'critical_boundary':'HT grouping avoids 18-flume or repeated-week pseudoreplication. Drift is in-stream transport, not aquatic emergence to terrestrial predators; benthos a separate terminal sample. No 2026/2024 paper double count.'}
+
+
+def joint_source_estimands(outcomes):
+    """A shared-6-header-tank delta covariance for all 8 source log ratios.
+
+    Distinct measurement endpoints share headers; all simultaneous 2021 light
+    treatments use the same original header-based assignment. Returned results
+    are post-hoc descriptors with df5 approximate intervals, not a meta sample.
+    """
+    if set(outcomes) != {'drift', 'benthos'}:
+        return {'status':'SOURCE_STOP_MISSING_STRATA'}
+    names=[]; gradients=[]; blockcolumns={}; means={}; source_est={}
+    treatments=('CT','L','F','L+F')
+    for endpoint in ('drift','benthos'):
+        for measure in ('abund','rich'):
+            entries=outcomes[endpoint][measure]
+            if len(entries)!=2 or entries[0]['treatment']!='L' or entries[1]['treatment']!='L+F':
+                return {'status':'SOURCE_STOP_UNEXPECTED_CONTRAST_PAIR'}
+            for entry in entries:
+                for arm,field in ((entry['treatment'],'block_treatment_values'),
+                                  (entry['control'],'block_control_values')):
+                    key=f'{endpoint}|{measure}|{arm}'
+                    vals=entry[field]
+                    if len(vals)!=6 or any(not isinstance(x,(int,float)) or x<=0 or not math.isfinite(x) for x in vals):
+                        return {'status':'SOURCE_STOP_INCOMPLETE_HT_COVARIANCE'}
+                    if key in blockcolumns and blockcolumns[key]!=vals:
+                        return {'status':'SOURCE_STOP_INCONSISTENT_SHARED_ARM'}
+                    blockcolumns[key]=vals
+                    means[key]=statistics.mean(vals)
+            for idx,entry in enumerate(entries):
+                ekey=f'{endpoint}|{measure}|{"L_vs_CT" if idx==0 else "LF_vs_F"}'
+                names.append(ekey)
+                source_est[ekey]=entry['lnRR']
+                gradients.append({f'{endpoint}|{measure}|{entry["treatment"]}':1.0/entry['mean_treatment'],
+                                  f'{endpoint}|{measure}|{entry["control"]}':-1.0/entry['mean_control']})
+    # One influence-score vector per effect, with each original header equally
+    # weighted. This generates a covariance of rank <= n_HT-1 even for 8 outputs.
+    infl=[]
+    for g in gradients:
+        vals=[]
+        for h in range(6):
+            vals.append(sum(weight*(blockcolumns[key][h]-means[key])
+                            for key,weight in g.items()))
+        infl.append(vals)
+    matrix=[[sum(infl[i][k]*infl[j][k] for k in range(6))/(6*5)
+             for j in range(len(names))] for i in range(len(names))]
+    tcrit=2.570581835636305
+    def diff(a,b,kind):
+        ai=names.index(a);bi=names.index(b)
+        est=source_est[a]-source_est[b]
+        var=matrix[ai][ai]+matrix[bi][bi]-2*matrix[ai][bi]
+        if var<-1e-10:return {'status':'SOURCE_STOP_NEGATIVE_JOINT_VARIANCE'}
+        se=math.sqrt(max(0.0,var))
+        return {'kind':kind,'numerator_lnRR':a,'denominator_lnRR':b,
+                'difference_lnRR':est,'ratio_of_response_ratios':math.exp(est),
+                'SE_shared_HT':se,'t5_exploratory_95ratio':
+                [math.exp(est-tcrit*se),math.exp(est+tcrit*se)],
+                'independent_header_blocks':6,
+                'status':'POSTHOC_DESCRIPTIVE_NO_CAUSAL_MEDIATION'}
+    crosses=[]
+    for metric in ('abund','rich'):
+        for exposure in ('L_vs_CT','LF_vs_F'):
+            crosses.append(diff(f'drift|{metric}|{exposure}',f'benthos|{metric}|{exposure}',
+                                'DRIFT_VS_BENTHOS_COMPARISON_NOT_EMERGENCE'))
+    flow_mod=[]
+    for endpoint in ('drift','benthos'):
+        for metric in ('abund','rich'):
+            flow_mod.append(diff(f'{endpoint}|{metric}|LF_vs_F',f'{endpoint}|{metric}|L_vs_CT',
+                                 'FLOW_MODIFIES_LIGHT_ASSOCIATION'))
+    return {'status':'SOURCE_DERIVED_EIGHT_JOINT_HT_CONTRAST_COVARIANCE',
+            'physical_programme':'EERES2021_Disconnected18flumes_6headers',
+            'source_sha256':SOURCE_SHA,'independent_header_blocks':6,
+            'source_outcomes':names,'covariance_logRR':matrix,
+            'stage_contrasts':crosses,'light_by_flow_modifiers':flow_mod,
+            'interpretation_gate':'Drift=in-stream downstream transport, benthos=riverbed community; neither is adult emergence or predation. Correlated outcomes across six source headers, 8 selected comparisons and 8 post hoc differences. No wet-vs-dry gradient or plant outcome.'}
 
 def find_archive(archive):
     if len(archive)>MAX:raise ValueError('ZIP_TOO_BIG')

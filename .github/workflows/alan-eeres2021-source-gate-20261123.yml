@@ -6,6 +6,9 @@ on:
     paths:
       - scripts/acquisition/alan_eeres_2021_source_gate.py
       - tests/test_alan_eeres_2021.py
+      - tests/test_alan_eeres_frozen_20261123.py
+      - scripts/analysis/alan_eeres2021_verify_frozen_20261123.py
+      - 'database/alan_experiments/arthropod_expansion_20261122/eeres2021_source_reanalysis/**'
       - .github/workflows/alan-eeres2021-source-gate-20261123.yml
   workflow_dispatch:
 permissions:
@@ -25,6 +28,10 @@ jobs:
           PYTHONPATH=scripts/acquisition python -m unittest discover -s tests -p 'test_alan_eeres_2021.py' -v
       - name: Fetch bounded original Dryad archive and report metadata only
         run: python scripts/acquisition/alan_eeres_2021_source_gate.py --output results/eeres2021_disconnected_source_audit.json
+      - name: Independently audit frozen original source and all joint effects
+        run: |
+          python -m unittest discover -s tests -p 'test_alan_eeres_frozen_20261123.py' -v
+          python scripts/analysis/alan_eeres2021_verify_frozen_20261123.py --observed results/eeres2021_disconnected_source_audit.json --frozen database/alan_experiments/arthropod_expansion_20261122/eeres2021_source_reanalysis/original_reanalysis_20261123.json
       - name: Retain public-source metadata without raw observations
         uses: actions/upload-artifact@v4
         with:
