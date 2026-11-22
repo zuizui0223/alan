@@ -65,6 +65,7 @@ class TestSullivanSourceGuards(unittest.TestCase):
         self.assertEqual(out['results']['AquaticEmergent']['station_n'],15)
         self.assertAlmostEqual(out['results']['AquaticEmergent']['estimands']['LEDI']['RR'],2.0)
         self.assertAlmostEqual(out['results']['AquaticEmergent']['shared_dark_covariance_log_scale']['LEDI']['HPSI'],0.0)
+        self.assertAlmostEqual(out['paired_cross_stratum_descriptive_ratios']['TerrestrialArthropod']['LEDH']['ratio_of_original_response_ratios'],1.0)
     def test_unavailable_source_not_interpreted_as_zero_effect(self):
         self.assertEqual(S.file_summaries({'_embedded':{'stash:files':[]}}),[])
 

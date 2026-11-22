@@ -254,10 +254,27 @@ def within_block_capture_contrasts(raw):
                      'matched_nights_by_block':[b['n_matched_dates'] for b in by_group],
                      'total_source_counts_by_arm':{t:sum(b['total_counts_by_treatment'][t] for b in by_group) for t in arms},
                      'estimands':estimates,'shared_dark_covariance_log_scale':covariance}
+    # Within-source cross-stratum comparisons preserve original common block
+    # labels and dark controls; they are NOT a causal food-web mediation test.
+    cross={}
+    for comparator in ('TerrestrialArthropod','WebCount'):
+        cross[comparator]={}
+        for t in treatments:
+            a=results['AquaticEmergent']['estimands'][t]['raw_block_lnRR']
+            b=results[comparator]['estimands'][t]['raw_block_lnRR']
+            vals=[aa-bb for aa,bb in zip(a,b)]
+            m=sum(vals)/len(vals)
+            se=math.sqrt(sum((v-m)**2 for v in vals)/(len(vals)*(len(vals)-1)))
+            cross[comparator][t]={'ratio_of_original_response_ratios':math.exp(m),
+                                   'difference_lnRR':m, 'SE_paired_blocks':se,
+                                   'descriptive_t95_ratio':[math.exp(m-tcrit*se),math.exp(m+tcrit*se)],
+                                   'independent_blocks':len(vals),
+                                   'within_block_differences_lnRR':vals}
     return {'status':'SOURCE_DERIVED_DESCRIPTIVE_BLOCK_ESTIMATES_ONLY',
             'source_status':'NOT_FITTED_CAUSAL_META_EFFECT',
             'same_three_groups_all_treatments':len(groups),
             'results':results,
+            'paired_cross_stratum_descriptive_ratios':cross,
             'cross_sample_dependence':'All responses from the same 15 physical stations; do not treat samples as independent programmes.',
             'uncertainty_note':'t2 intervals on 3 groups are descriptive and assume blocks independent; assignment and common effort not yet externally adjudicated.'}
 
