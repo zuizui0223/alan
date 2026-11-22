@@ -166,7 +166,49 @@ def primary_fullrun(output):
   return result
 
 
+def original_grain_diagnostic(rows):
+    if not rows: raise ValueError('Original RDS empty')
+    columns=list(rows[0].keys())
+    summary={}
+    for col in columns:
+        nonempty=[str(r.get(col, '')).strip() for r in rows if str(r.get(col,'')).strip()]
+        uniq=sorted(set(nonempty))
+        summary[col]={'nonempty':len(nonempty),'distinct':len(uniq)}
+        if len(uniq)<=25:summary[col]['values']=uniq
+    group=collections.Counter((r.get('treat','').strip(),r.get('week','').strip(),r.get('flume','').strip()) for r in rows)
+    flume_treat=collections.defaultdict(set)
+    for r in rows:flume_treat[r.get('flume','').strip()].add(r.get('treat','').strip())
+    return {'n_rows':len(rows),'columns':summary,'n_flume_week_groups':len(group),
+        'rows_per_flume_week_histogram':dict(collections.Counter(group.values())),
+        'treatment_flume_pairs':len({(r.get('treat','').strip(),r.get('flume','').strip()) for r in rows}),
+        'flumes_assigned_multiple_treatments':{k:sorted(v) for k,v in flume_treat.items() if len(v)>1},
+        'sample_group_counts':{str(k):v for k,v in sorted(group.items())[:20]}}
+
+
+def inspect_original_grain(output):
+    import shutil
+    if not shutil.which('Rscript'):raise RuntimeError('Rscript unavailable')
+    receipts=[];data={}
+    with tempfile.TemporaryDirectory(prefix='alan-landau-inspection-') as td:
+      for key,d in SOURCES.items():
+        raw,proof=read_and_verify_rds(d['path'],d['blob_sha']);receipts.append(proof)
+        rds=pathlib.Path(td)/(key+'.rds');csvpath=pathlib.Path(td)/(key+'.csv');rds.write_bytes(raw)
+        cp=subprocess.run(['Rscript',str(pathlib.Path(__file__).with_name('alan_landau16_rds_to_csv_20261123.R')),str(rds),str(csvpath)],capture_output=True,text=True,timeout=60)
+        if cp.returncode:raise RuntimeError('RDS read error '+cp.stderr[-500:])
+        data[key]=original_grain_diagnostic(as_records(csvpath))
+    result={'status':'SOURCE_GRAIN_AUDIT_ONLY_NO_EFFECT','sources':receipts,'dataset_grain':data,
+         'no_effects_estimated':True,'no_new_programme_k':True}
+    pathlib.Path(output).parent.mkdir(parents=True,exist_ok=True)
+    pathlib.Path(output).write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    print('GRAIN_AUDIT',json.dumps({k:{'n_rows':v['n_rows'],'rows_per_flume_week_histogram':v['rows_per_flume_week_histogram'], 'columns':list(v['columns'])} for k,v in data.items()}))
+
+
 def main():
- p=argparse.ArgumentParser();p.add_argument('--output',default='results/alan_landau16_original_rds_20261123.json');args=p.parse_args();primary_fullrun(args.output)
+    p=argparse.ArgumentParser()
+    p.add_argument('--output',default='results/alan_landau16_original_rds_20261123.json')
+    p.add_argument('--inspect-grain',action='store_true')
+    args=p.parse_args()
+    if args.inspect_grain:inspect_original_grain(args.output)
+    else:primary_fullrun(args.output)
 
 if __name__=='__main__':main()
