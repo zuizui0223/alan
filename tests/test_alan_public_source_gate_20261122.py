@@ -29,6 +29,21 @@ class SafeSourceGateTests(unittest.TestCase):
         self.assertEqual(f[0]['label'],'Roadlights_long.csv')
         self.assertEqual(license['name'],'CC BY')
 
+    def test_semicolon_delimiter_and_descriptive_strata(self):
+        content=(b';"X";"year";"date";"treatment";"trap";"method";"interval";"count"\n'
+                 b'1;1;2023;2023-07-11;HPS;L1;roadlight;1;3\n'
+                 b'2;2;2023;2023-07-11;LED;L2;roadlight;1;0\n'
+                 b'3;3;2023;2023-07-12;HPS;L1;roadlight;2;2\n')
+        result=gate.tabular_summary('Roadlights_long.csv',content)
+        self.assertEqual(result['delimiter'],';')
+        self.assertEqual(result['column_count'],9)
+        self.assertEqual(result['row_count'],3)
+        self.assertEqual(len(result['raw_count_by_treatment_method']),2)
+        hps=next(x for x in result['raw_count_by_treatment_method'] if x['treatment']=='HPS')
+        self.assertEqual(hps['raw_count_column_sum'],5.0)
+        self.assertEqual(hps['n_trap_labels'],1)
+        self.assertEqual(hps['n_date_labels'],2)
+
     def test_csv_schema_not_effect_or_raw_redistribution(self):
         s=gate.tabular_summary('capture.csv',b'trap_id,date,light,caught\nT1,2023-07-11,dark,0\nT2,2023-07-11,red,3\n')
         self.assertEqual(s['row_count'],2)

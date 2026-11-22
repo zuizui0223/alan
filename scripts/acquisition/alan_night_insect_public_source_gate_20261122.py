@@ -121,22 +121,70 @@ def figshare_files(meta):
 
 
 def tabular_summary(name, raw):
-    low=name.lower()
-    if low.endswith('.csv') or low.endswith('.tsv'):
+    """Inspect original tabular schema; never count records as independent lamps.
+
+    The official Reinhard et al. source CSVs are semicolon-delimited R exports,
+    which a default comma parser would silently misparse as one giant column.
+    """
+    low = name.lower()
+    if low.endswith(('.csv', '.tsv')):
         try:
-            st=raw.decode('utf-8-sig')
-            sep='\t' if low.endswith('.tsv') else ','
-            rows=csv.reader(io.StringIO(st), delimiter=sep)
-            head=next(rows,None)
-            if not head or len(head)>500:return {'schema_status':'NO_VALID_HEADER'}
-            n=sum(1 for _ in rows)
-            return {'schema_status':'CSV_PARSED','row_count':n,'column_count':len(head),'column_names':head[:50]}
-        except (UnicodeDecodeError,csv.Error,StopIteration):
-            return {'schema_status':'CSV_DECODE_STOP'}
+            st = raw.decode('utf-8-sig')
+            first_line = st.splitlines()[0] if st else ''
+            sep = '\t' if low.endswith('.tsv') else (';' if first_line.count(';') > first_line.count(',') else ',')
+            reader = csv.DictReader(io.StringIO(st), delimiter=sep)
+            head = reader.fieldnames
+            if not head or len(head) > 500:
+                return {'schema_status': 'NO_VALID_HEADER'}
+            source_rows = list(reader)
+            out = {
+                'schema_status': 'CSV_PARSED', 'delimiter': 'tab' if sep == '\t' else sep,
+                'row_count': len(source_rows), 'column_count': len(head), 'column_names': head[:70],
+            }
+            # Aggregation is descriptive only. The original file may contain
+            # taxon × interval × repeated-trap rows including zero-filled records.
+            # Do NOT infer n independent light installations from rows or dates.
+            if all(c in head for c in ('count', 'treatment', 'trap', 'date')):
+                groups = {}
+                for rec in source_rows:
+                    treatment = (rec.get('treatment') or 'MISSING').strip()
+                    method = (rec.get('method') or 'MISSING').strip()
+                    key = (treatment, method)
+                    g = groups.setdefault(key, {'treatment': treatment, 'method': method,
+                                                'source_rows': 0, 'count_numeric_rows': 0,
+                                                'count_missing_or_non_numeric_rows': 0,
+                                                'raw_count_column_sum': 0.0,
+                                                '_traps': set(), '_dates': set(), '_intervals': set()})
+                    g['source_rows'] += 1
+                    if rec.get('trap'):g['_traps'].add(rec['trap'])
+                    if rec.get('date'):g['_dates'].add(rec['date'])
+                    if rec.get('interval'):g['_intervals'].add(rec['interval'])
+                    try:
+                        val = float(rec.get('count') or 'nan')
+                        if not (-1e200 < val < 1e200) or val < 0:
+                            raise ValueError('invalid count')
+                        g['count_numeric_rows'] += 1
+                        g['raw_count_column_sum'] += val
+                    except ValueError:
+                        g['count_missing_or_non_numeric_rows'] += 1
+                summary = []
+                for key, g in sorted(groups.items()):
+                    g['n_trap_labels'] = len(g.pop('_traps'))
+                    g['n_date_labels'] = len(g.pop('_dates'))
+                    g['n_interval_labels'] = len(g.pop('_intervals'))
+                    g['raw_count_column_sum'] = round(g['raw_count_column_sum'], 6)
+                    summary.append(g)
+                out['raw_count_by_treatment_method'] = summary[:30]
+                out['group_summary_truncated'] = len(summary) > 30
+                out['independence_warning'] = ('Raw column sums and date/trap labels are observational file summaries; '
+                    'neither counts nor rows identify randomized lamp installations, '
+                    'time-varying assignment, zero-control counterfactual or ALAN causal response.')
+            return out
+        except (UnicodeDecodeError, csv.Error, StopIteration):
+            return {'schema_status': 'CSV_DECODE_STOP'}
     if low.endswith('.xlsx'):
-        # A complete workbook requires an audited sheet parser and real physical allocation labels.
-        return {'schema_status':'XLSX_NOT_PARSED'}
-    return {'schema_status':'OTHER_FORMAT_NOT_PARSED'}
+        return {'schema_status': 'XLSX_NOT_PARSED'}
+    return {'schema_status': 'OTHER_FORMAT_NOT_PARSED'}
 
 
 def audit_one(code, spec, download=True):
