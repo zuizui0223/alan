@@ -7,6 +7,7 @@ on:
       - 'database/alan_experiments/search/**'
       - 'database/alan_experiments/search_execution/**'
       - 'tests/test_alan_arthropod_import_20261122.py'
+      - 'tests/test_alan_primary_design_gates_20261122.py'
       - '.github/workflows/alan-arthropod-import-verify-20261122.yml'
   workflow_dispatch:
 
@@ -22,13 +23,14 @@ jobs:
         with:
           python-version: '3.12'
       - name: Source and independent-unit invariants
-        run: python -m unittest discover -s tests -p 'test_alan_arthropod_import_20261122.py' -v
+        run: python -m unittest discover -s tests -p 'test_alan_*_20261122.py' -v
       - name: Rebuild reference and screening outputs from frozen snapshot
         run: |
           python database/alan_experiments/arthropod_expansion_20261122/build_screening.py
           python database/alan_experiments/arthropod_expansion_20261122/build_citation_ledger.py
           python database/alan_experiments/arthropod_expansion_20261122/data_sources/swiss_envidat/summarize.py
+          python database/alan_experiments/arthropod_expansion_20261122/build_primary_design_gates.py
       - name: Regenerated outputs must be byte-identical
         run: |
-          python -m unittest discover -s tests -p 'test_alan_arthropod_import_20261122.py' -v
+          python -m unittest discover -s tests -p 'test_alan_*_20261122.py' -v
           git diff --exit-code -- database/alan_experiments/arthropod_expansion_20261122
