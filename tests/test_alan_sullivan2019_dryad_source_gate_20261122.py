@@ -1,5 +1,6 @@
 import importlib.util
 import unittest
+import io, zipfile
 from pathlib import Path
 
 modpath=Path(__file__).resolve().parents[1]/'scripts/acquisition/alan_sullivan2019_dryad_experiment_source_gate.py'
@@ -29,6 +30,16 @@ class TestSullivanSourceGuards(unittest.TestCase):
         a=S.summarize_text(s,'Sullivan_EAP18-0555_WetlandFieldExperiment_2013.txt')
         self.assertEqual(a['nonempty_rows'],3);self.assertEqual(a['physical_unit_candidate_fields']['Light']['distinct'],2)
         self.assertEqual(a['physical_unit_candidate_fields']['Plot']['distinct'],2)
+    def test_only_original_2013_zip_members_enter_the_source_audit(self):
+        b=io.BytesIO()
+        with zipfile.ZipFile(b,'w',zipfile.ZIP_DEFLATED) as z:
+            z.writestr('README_for_Sullivan_EAP18-0555_WetlandFieldExperiment_2013.txt','Light: lit or dark\nPlot: 1\n')
+            z.writestr('Sullivan_EAP18-0555_WetlandFieldExperiment_2013.txt','Plot\tLight\tCount\nA\tlit\t10\nB\tdark\t5\n')
+            z.writestr('Sullivan_EAP18-0555_UrbanStreamGradient_2010-2011.txt','DO NOT MIX')
+        files=S.unpack_expected_dataset_zip(b.getvalue())
+        self.assertEqual(len(files),2)
+        self.assertEqual(set(x['status'] for x in files),{'SOURCE_BYTES_VERIFIED'})
+        self.assertEqual([x for x in files if x['name'].startswith('Sullivan_')][0]['physical_unit_candidate_fields']['Light']['distinct'],2)
     def test_unavailable_source_not_interpreted_as_zero_effect(self):
         self.assertEqual(S.file_summaries({'_embedded':{'stash:files':[]}}),[])
 

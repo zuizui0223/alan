@@ -6,7 +6,7 @@ field experiment; don't treat individual arthropods or visits as light-site n.
 No raw author records are published by this audit. Fail closed on blocked bytes.
 """
 from __future__ import annotations
-import argparse, csv, hashlib, io, json, os, re
+import argparse, csv, hashlib, io, json, os, re, zipfile
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -24,6 +24,7 @@ DATASET_URLS = (
 EXPECTED = ('Sullivan_EAP18-0555_WetlandFieldExperiment_2013.txt',
             'README_for_Sullivan_EAP18-0555_WetlandFieldExperiment_2013.txt')
 MAX_FETCH = 450_000
+MAX_ZIP_UNPACK = 2_000_000
 UA = 'ALAN-scientific-source-audit/2026-11-22 (public source; no login)'
 
 
@@ -117,6 +118,30 @@ def summarize_text(content, filename):
             'physical_unit_candidate_fields':plausible}
 
 
+def unpack_expected_dataset_zip(raw):
+    """Inspect only the two named 2013 original sources; never export author rows."""
+    if not zipfile.is_zipfile(io.BytesIO(raw)):
+        raise ValueError('SOURCE_STOP_UNEXPECTED_NOT_ZIP')
+    out=[]
+    with zipfile.ZipFile(io.BytesIO(raw)) as z:
+        infos=z.infolist()
+        if len(infos)>60 or sum(f.file_size for f in infos)>MAX_ZIP_UNPACK:
+            raise ValueError('SOURCE_STOP_UNSAFE_ZIP_SIZE')
+        for expect in EXPECTED:
+            found=[f for f in infos if Path(f.filename).name==expect and not f.is_dir()]
+            if len(found)!=1:
+                out.append({'name':expect,'status':'SOURCE_STOP_MISSING_OR_DUPLICATE_ARCHIVE_MEMBER'})
+                continue
+            info=found[0]
+            if info.file_size>MAX_FETCH or '..' in Path(info.filename).parts:
+                out.append({'name':expect,'status':'SOURCE_STOP_BAD_MEMBER_PATH_OR_SIZE'})
+                continue
+            b=z.read(info)
+            out.append({'name':expect,'status':'SOURCE_BYTES_VERIFIED','byte_count':len(b),
+                        'sha256':hashlib.sha256(b).hexdigest(),
+                        **summarize_text(b,expect)})
+    return out
+
 def run():
     errors=[]; log=[]; root=None
     for url in DATASET_URLS:
@@ -161,6 +186,24 @@ def run():
                       'sha256':hashlib.sha256(raw).hexdigest(), **summarize_text(raw,filename)})
         except (HTTPError, URLError, ValueError, OSError) as e:
             output['source_files'].append({'name':filename,'status':'SOURCE_STOP', 'reason':f'{type(e).__name__}:{getattr(e,"code",str(e))}'[:140]})
+    # Official Dryad version archive is public for some datasets even when
+    # /files/{id}/download returns HTTP401. Audit a bounded ZIP in memory only.
+    version_urls=[u for u in links(root) if re.search(r'/api/v2/versions/\d+$',urlparse(u).path)]
+    output['archive_candidates']=sorted(version_urls)
+    for version in sorted(version_urls):
+        archive_url=version+'/download'
+        try:
+            payload=fetch(archive_url)['bytes']
+            data=unpack_expected_dataset_zip(payload)
+            output['archive_source']={'url':archive_url, 'byte_count':len(payload),
+                                      'sha256':hashlib.sha256(payload).hexdigest(),
+                                      'archive_member_count':len(data)}
+            output['source_files']=data
+            output['source_reanalysis']=False
+            break
+        except (HTTPError, URLError, OSError, ValueError, zipfile.BadZipFile) as err:
+            log.append({'request_url':archive_url, 'status':'SOURCE_STOP_ZIP',
+                        'reason':f'{type(err).__name__}:{getattr(err,"code",str(err))}'[:160]})
     output['metadata_probes_count']=len(log)
     output['status']='SOURCE_FILE_METADATA_FOUND' if candidates else 'SOURCE_STOP_NO_FILE_MANIFEST'
     if output['source_files'] and all(x['status']=='SOURCE_BYTES_VERIFIED' for x in output['source_files']):
