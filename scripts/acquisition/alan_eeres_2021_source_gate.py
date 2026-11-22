@@ -18,7 +18,7 @@ def grab(url):
     if u.scheme!='https' or u.hostname not in HOSTS:raise ValueError('UNAPPROVED_HOST')
     with urlopen(Request(url,headers={'User-Agent':'ALAN-original-source-audit/2026-11-23','Accept':'application/json,*/*'}),timeout=28) as h:
         final=h.geturl();u=urlparse(final)
-        if u.scheme!='https' or u.hostname not in HOSTS:raise ValueError('REDIRECTED_OUTSIDE_ALLOWLIST')
+        if u.scheme!='https' or u.hostname not in HOSTS:raise ValueError('REDIRECTED_OUTSIDE_ALLOWLIST:'+str(u.hostname))
         if int(h.headers.get('Content-Length') or '0')>MAX:raise ValueError('PAYLOAD_TOO_LARGE')
         data=h.read(MAX+1)
         if len(data)>MAX:raise ValueError('PAYLOAD_TOO_LARGE')
