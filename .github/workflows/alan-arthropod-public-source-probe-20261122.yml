@@ -1,0 +1,35 @@
+name: ALAN independent moth-light source access (source gate only)
+
+on:
+  push:
+    branches:
+      - analysis/alan-arthropod-search-expansion-20261122
+    paths:
+      - 'scripts/acquisition/alan_night_insect_public_source_gate_20261122.py'
+      - '.github/workflows/alan-arthropod-public-source-probe-20261122.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  author-original-source-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source programme and endpoint schema guard tests
+        run: python -m unittest discover -s tests -p 'test_alan_public_source_gate_20261122.py' -v
+      - name: Probe official public author data and record exact source STOPs
+        run: python scripts/acquisition/alan_night_insect_public_source_gate_20261122.py --output results/alan_night_insect_20261122_public_source_gate.json
+      - name: Retain bounded provenance output without publishing raw records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-public-source-probe-20261122
+          path: results/alan_night_insect_20261122_public_source_gate.json
+          if-no-files-found: warn
+          retention-days: 30
