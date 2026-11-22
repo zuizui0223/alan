@@ -1,0 +1,40 @@
+{
+  "date_jst": "2026-11-22",
+  "indexed_records": 341,
+  "unmatched_records": 143,
+  "screened_records": 143,
+  "screening_decisions": {
+    "fulltext_needed": 28,
+    "identity_review": 7,
+    "out_of_scope": 56,
+    "reference_mining": 20,
+    "separate_indoor": 9,
+    "separate_observational": 21,
+    "separate_spectrum_no_dark": 2
+  },
+  "identity_candidate_pairs": 15,
+  "identity_pair_scopes": {
+    "baseline": 8,
+    "new_snapshot": 7
+  },
+  "duplicate_identity_candidates_merged": 0,
+  "final_eligibility": false,
+  "independent_experiment_count": null,
+  "screening_process": "AI-assisted rapid title/abstract screen, split into two non-overlapping batches; no independent human double screen.",
+  "interpretation": "Categories route records for follow-up; they are not final exclusions, distinct reports, or experimental programmes.",
+  "input_sha256": {
+    "arthropod_expansion_20261122/records.csv": "d2644c78fd537378061a6eef97d9310fc9a1fcc163c334b0882992571dd6daeb",
+    "arthropod_expansion_20261122/unmatched_records.csv": "d15e9751a11398b2b6028270bd3e676ee3dbde513afe95bc8ce9926bde5b0a67",
+    "arthropod_expansion_20261122/bibliographic_details.csv": "f23cc85abe532edfd7aa4f3a9c00f612adb05efbbc2bf472d83881de70139054",
+    "search/combined_search_records.csv": "92590148aecdef043fd1ef0667d02ca04bede58336064d0120ca95f146e28a79",
+    "search/unified_review_inventory.csv": "88226cfd2e1ba9605c9adb369d194ce2fb0bf5458fc1220ac00f10b328297e71",
+    "arthropod_expansion_20261122/screening_sources/screening_aquatic.csv": "a770bf043004c85157e847f245ccf1b993e1dc0926e8f9ce08297e46b797a25e",
+    "arthropod_expansion_20261122/screening_sources/screening_meta.csv": "ca4af0b6329e12c5d96db05c296322bfdbb82328dbe6d2cde21b75d94a970ef9"
+  },
+  "output_sha256": {
+    "screened_unmatched_records.csv": "ec01ebae9d8a3e803484a3dc755dd7bebfd49babd23df194e2b644a28311b6ae",
+    "fulltext_candidates.csv": "d3babe53ed198b2803bea8ab6f901c0cca9ab5eb501d9619a78cf566ca030fb8",
+    "identity_candidates.csv": "56853ec4a9f258d5694b4ecaace9156eadf3fd6d146bcbc4185ead423ab9a8c4",
+    "unmatched_records.ris": "025dead3b05b9eb6195a05801386d2214c1f2e91bf818bd19d2dd8f412cd3fe2"
+  }
+}

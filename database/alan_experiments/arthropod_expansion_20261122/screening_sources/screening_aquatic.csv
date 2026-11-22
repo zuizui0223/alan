@@ -1,0 +1,72 @@
+record_id,candidate_report_key,decision,reason,evidence_level,primary_endpoint,possible_programme_overlap
+PPR:PPR538629,doi:10.1101/2022.08.31.505991,identity_review,Cricket light-pulse preprint tests clock gene expression.,title_abstract,clock gene expression,Probable version of 10.3390/ijms231911358; verify before merging.
+MED:33607454,doi:10.1016/j.marpolbul.2021.112132,separate_indoor,Twenty-day laboratory lighting exposure of beach beetles; nutritional condition measured directly.,title_abstract,RNA:DNA ratio,
+MED:40174133,doi:10.11646/zootaxa.5609.4.4,out_of_scope,Firefly taxonomy and DNA barcoding; light listed as a threat.,title_abstract,genetic variation,
+MED:37062314,doi:10.1016/j.scitotenv.2023.163521,out_of_scope,Human pregnancy cohort.,title_abstract,human fetal size,
+PPR:PPR563110,doi:10.1101/2022.10.24.513514,identity_review,Aphid colony experiment preprint with dark and two light schedules.,title_abstract,aphid colony growth and maturation,Probable version of 10.1098/rstb.2022.0357; verify before merging.
+MED:38851339,doi:10.1016/j.scitotenv.2024.173790,fulltext_needed,Field study of shore amphipod catch and movement over an ALAN intensity range; verify exposure allocation and ambient control.,title_abstract,directional trap catches and migration,
+MED:34020284,doi:10.1016/j.ecoenv.2021.112334,fulltext_needed,"ALAN-stressed moths and locomotion are mentioned, but whether movement was measured directly outdoors is unclear.",title_abstract,protein succinylation; possible locomotion,
+PPR:PPR865996,doi:10.21203/rs.3.rs-4555039/v1,out_of_scope,Numerical optimization algorithm patterned after animal behavior.,title_abstract,algorithm performance,
+ETH:794534,ETH:794534,fulltext_needed,Bat-lighting thesis includes streetlight retrofits; index abstract truncates before methods for possible insect outcomes.,title_abstract,bat activity; insect captures unverified,Check chapter/publication overlap.
+MED:39332620,doi:10.1016/j.cois.2024.101276,reference_mining,Review of lighting practices and evidence for reducing insect effects.,title_abstract,review of mitigation,
+MED:33906034,doi:10.1016/j.envpol.2021.117187,out_of_scope,Spatial models and radiotracking of two bat species; no measured arthropod response described.,title_abstract,bat habitat use,
+MED:37909073,doi:10.1098/rspb.2023.0957,out_of_scope,Avian flight activity with natural moonlight.,title_abstract,swift flight heights,
+MED:38705184,doi:10.1098/rstb.2023.0110,out_of_scope,Field acoustics of insects with natural moonlight as the exposure.,title_abstract,katydid calls,
+ETH:739143,ETH:739143,fulltext_needed,"Thesis about moths, streetlight types and food plants; obtain chapter-specific comparator and experimental design.",title_abstract,moth responses and food plants,Check Cornwall studies and thesis-derived reports.
+MED:40809820,doi:10.1002/ece3.71978,out_of_scope,Landscape and season predict activity of bats; insect counts and lighting intervention not described.,title_abstract,bat activity,
+MED:37290659,doi:10.1016/j.scitotenv.2023.164647,out_of_scope,Human birth outcomes and neighborhood greenspace.,title_abstract,human birth outcomes,
+AGR:IND607762636,AGR:IND607762636,fulltext_needed,ALAN crossed with insect exclusion in plants; verify whether insects themselves were counted and retain plant endpoint separately.,title_abstract,plant biomass; insect outcome unconfirmed,Compare preprint 10.1101/2021.08.09.455752.
+AGR:IND606740853,doi:10.1016/j.biocon.2019.108259,reference_mining,Review of pathways linking artificial light to insect declines.,title_abstract,review of insect responses,
+MED:37562048,doi:10.1146/annurev-ento-030223-111608,reference_mining,Review of variation in arthropod sexual communication under environmental pressures.,title_abstract,review of arthropod reproductive behavior,
+MED:39922414,doi:10.1016/j.envpol.2025.125821,out_of_scope,Nightjar gaze direction inferred from movement sensors; insect encounters not counted.,title_abstract,nightjar orientation,
+MED:41592769,doi:10.1098/rspb.2025.2704,fulltext_needed,Wild-caught moths tested against natural night illumination; ascertain whether flight activity was measured in field cages or indoors.,title_abstract,individual moth activity,
+MED:34687777,doi:10.1016/j.envpol.2021.118394,out_of_scope,Bat acoustic activity along a radiance gradient; no arthropod endpoint described.,title_abstract,bat passes,
+PPR:PPR651451,doi:10.1101/2023.04.25.538243,out_of_scope,"Swift migration/flight profiles linked to moonlight, with no artificial-light arthropod experiment.",title_abstract,swift flight heights,"Likely version of swift moonlight paper, not eligible."
+PPR:PPR381597,doi:10.1101/2021.08.09.455752,identity_review,Preprint of ALAN by insect exclusion study primarily reporting plant biomass.,title_abstract,plant biomass,Compare AGR Matthew-effect report within this search; shared cohort pending.
+MED:34180520,doi:10.1093/icb/icab149,fulltext_needed,Four spectral treatments at two intensities in a ditch; check methods for unlit controls versus active light-trap selectivity.,title_abstract,aquatic insect phototactic trap catches,
+MED:33280918,doi:10.1016/j.envpol.2020.116136,out_of_scope,Overwinter exposure and timing measured in migratory birds; insect abundance on route is hypothetical.,title_abstract,bird migration timing,
+AGR:IND607501390,doi:10.1016/j.biocon.2021.109311,separate_observational,"Interviews, habitat configuration and light exposure modeled; no light assignment.",title_abstract,scarab sightings,
+AGR:IND605899795,AGR:IND605899795,identity_review,Same apparent observational macromoth trends as the MED-indexed report; reconcile identities.,title_abstract,macromoth occurrence trends,Candidate duplicate of 10.1111/gcb.14008.
+MED:29215778,doi:10.1111/gcb.14008,separate_observational,1985–2015 population trends contrasted by phototaxis and diel habit without manipulated light.,title_abstract,macromoth trends,AGR:IND605899795 likely duplicate.
+PPR:PPR885585,doi:10.20944/preprints202407.1721.v1,out_of_scope,Lighting intervention measured attraction/disorientation in seabirds.,title_abstract,fairy prion attraction,
+MED:28452048,doi:10.1111/1365-2656.12670,separate_indoor,Laboratory assay of dogwhelk behavior using olfactory crab cues; crab was not the monitored animal.,title_abstract,dogwhelk foraging,
+AGR:IND606448272,doi:10.1016/j.biocon.2019.05.016,separate_observational,Flying insects and bats surveyed at forest edges with established mercury lamps versus unlit edges.,title_abstract,flying insect density,
+MED:36793791,doi:10.1002/ece3.9808,separate_observational,Wetland moth community inventoried during hydrological change; competing drivers discussed.,title_abstract,moth assemblage,
+MED:38608892,doi:10.1016/j.scitotenv.2024.172329,separate_observational,"Citizen-science firefly counts modeled against habitat, climate, pesticides and light.",title_abstract,firefly abundance,
+MED:22628095,doi:10.1098/rsbl.2012.0216,separate_observational,Compares proximity to street lighting; arm assignment not described. Revisit if full text documents manipulation.,title_abstract,ground invertebrate assemblage,
+PPR:PPR36293,doi:10.7287/peerj.preprints.26943v1,identity_review,Chronic lighting in reared orb-web spiders; preprint of likely indexed final study.,title_abstract,spider mortality and reproduction,Probable version of 10.7717/peerj.5599.
+PPR:PPR1136339,doi:10.20944/preprints202512.1792.v1,out_of_scope,Observation of prey supplied to one owl nest; lighting explanation speculative.,title_abstract,owl prey deliveries,
+MED:29425403,doi:10.1111/1744-7917.12574,fulltext_needed,"Host plant and herbivore performance under streetlights; check manipulation, location and arthropod endpoint.",title_abstract,herbivore performance,
+AGR:IND603408946,doi:10.1111/een.12202,out_of_scope,"Dark-controlled manipulation reports chemical pheromone release and composition, not realized behavior or count.",title_abstract,female moth pheromone production,
+AGR:IND606611369,doi:10.1111/aec.12772,fulltext_needed,Streetlight retrofit followed before/after with separate unlit habitat; verify comparator and allocation for insect biomass; retain reported null.,title_abstract,insect biomass; bat activity,Sydney retrofit; check forest-edge study for site overlap.
+MED:28499591,doi:10.1016/j.jinsphys.2017.04.009,separate_indoor,Three-generation controlled fly rearing under four light levels.,title_abstract,Drosophila fecundity and survival,
+MED:29787823,doi:10.1016/j.gene.2018.05.070,out_of_scope,Neuropeptide gene expression in response to light stress is the study endpoint.,title_abstract,moth gene expression,
+MED:31284209,doi:10.1016/j.envpol.2019.06.105,fulltext_needed,Riverbank lights manipulated across lit and unlit nights; insect catches measured by position.,title_abstract,sticky-trap insect counts,Also independently retrieved by aquatic citation harvesting; same DOI.
+MED:34609062,doi:10.1111/brv.12802,reference_mining,Reviews remote sensing methods for entomology; potential methodological leads.,title_abstract,insect monitoring methods,
+PPR:PPR87971,doi:10.1101/727248,identity_review,Moth acoustic playback preprint comparing two illuminated traps; reconcile final report before dark-control review.,title_abstract,moth captures under bat playback,Probable version of 10.1002/ece3.6904.
+MED:29208228,doi:10.1016/j.cois.2017.09.010,reference_mining,Review of chemical communication and sexual selection under environmental change.,title_abstract,insect sexual signaling,
+AGR:IND605878255,AGR:IND605878255,identity_review,AGR record of three-year grassland lighting experiment also returned with DOI.,title_abstract,ground spider and beetle assemblage,Likely duplicate of 10.1111/gcb.13615; check relationship to Lizard/Bennie programme.
+MED:30377809,doi:10.1007/s00114-018-1589-2,separate_indoor,Common-garden hatchlings tested for illuminated/dark web-site preference after urban/rural sampling.,title_abstract,web placement preference,
+MED:27589894,doi:10.1016/j.envpol.2016.08.068,fulltext_needed,"Field lights versus ambient in sandy-beach amphipods, plus separate laboratory chambers; retain field activity endpoint.",title_abstract,field locomotor and foraging activity,
+MED:28139040,doi:10.1111/gcb.13615,fulltext_needed,"Three-year field LED manipulation monitored adult beetles and spiders; check plot replication, dark control and period.",title_abstract,grassland spider and beetle assemblage,AGR:IND605878255 likely duplicate; check shared plots with Lizard/Bennie.
+MED:29733537,doi:10.1002/jez.2164,separate_indoor,Controlled fly colony rearing across three generations under dim versus dark nights.,title_abstract,"mating, egg output and ROS",
+MED:39294210,doi:10.1038/s41598-024-71868-4,out_of_scope,Human visitor ratings of light designs.,title_abstract,visitor preferences,
+MED:38051484,doi:10.1007/s11356-023-31310-0,out_of_scope,Plant protection products reviewed; streetlight effect is a metaphor for evidence bias.,title_abstract,pesticide evidence gaps,
+MED:31534712,doi:10.1002/ece3.5537,out_of_scope,Review of changing climate versus stable natural photoperiod.,title_abstract,photoperiod and animal fitness,
+AGR:IND605763320,doi:10.1007/s10905-017-9623-3,out_of_scope,Manipulation concerns optical polarization on asphalt; no lamp intervention is described.,title_abstract,mayfly landings on polarizing traps,
+ETH:727231,ETH:727231,reference_mining,Doctoral thesis on urban stressors and odonates includes polarized-light preferences; inspect for directly relevant chapters.,title_abstract,odonate polarotaxis and ecology,
+MED:25310881,doi:10.1016/j.cbd.2014.09.002,out_of_scope,Existing transcriptome data used to identify copepod circadian clock genes.,title_abstract,molecular clock,
+MED:23505141,doi:10.1111/gcb.12166,reference_mining,Lighting and visual spectral sensitivity modeled from published values; may supply primary references.,title_abstract,modeled spectrum sensitivity,
+MED:24857721,doi:10.1016/j.physbeh.2014.05.012,out_of_scope,Non-arthropod developmental lighting and anxiety experiment.,title_abstract,anxiety-like behaviors,
+MED:27078950,MED:27078950,out_of_scope,Water quality survey describes aquatic organisms without documented ALAN exposure comparison.,title_abstract,aquatic community and water quality,
+MED:35003705,doi:10.1002/ece3.8480,out_of_scope,Neonicotinoid exposure study of honeybees; streetlight is metaphorical.,title_abstract,neurogenomic responses,
+MED:34940205,doi:10.3390/insects12121117,reference_mining,Tatort Streetlight programme/design paper describes a four-year BACI intervention; trace results publication.,title_abstract,planned insect attraction/behavior,"Check Tatort Streetlight, shielding and tailored luminaires publications."
+AGR:IND500647624,doi:10.1111/j.1439-0418.2012.01728.x,fulltext_needed,"Camera observations of beetle movement under near-infrared, red and white radiation; confirm location and near-infrared control before assigning stratum.",title_abstract,beetle locomotion,
+MED:34366755,doi:10.1007/s10311-021-01291-y,out_of_scope,Zoonotic spillover review without experimental arthropod outcomes.,title_abstract,proposed zoonosis drivers,
+PPR:PPR342235,doi:10.2139/ssrn.3838871,out_of_scope,Hypothesis about urban disturbance and infection spillover; no arthropod-light experiment reported.,title_abstract,hypothesis on wildlife pathogen spillover,
+MED:31017808,doi:10.1152/ajpregu.00008.2019,out_of_scope,"Fetal hypoxia review, no arthropod lighting exposure.",title_abstract,fetal development,
+MED:23297793,doi:10.1186/1471-2458-13-14,out_of_scope,Human physical activity barriers.,title_abstract,child physical activity,
+ETH:376198,ETH:376198,fulltext_needed,Historical field thesis on active moth light-trap capture and radius; verify an experimental lower-light/off comparator at chapter level.,title_abstract,active light-trap catches,
+PAT:KR20090110960,PAT:KR20090110960,out_of_scope,Patent with trapping-device title; no study report indicated.,title_only,insect-control patent,
+PAT:WO2007052948,PAT:WO2007052948,out_of_scope,Patent describes streetlight trap engineering.,title_abstract,insect-control patent,
+PAT:US4908979,PAT:US4908979,out_of_scope,Streetlight pest control assembly patent.,title_abstract,insect-control patent,
