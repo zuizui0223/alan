@@ -1,0 +1,5 @@
+<PARSED TEXT FOR SHEET: 1 / 1 TABS
+TAB NAME: file2.csv>index,programme_id,publication,doi,field_observation_years,measurement,published_direction,existing_physical_lighting_installation,analysis_admissibility
+0,Westhavelland_2012_2014,Manfrin_et_al_2017,10.3389/fenvs.2017.00061,2012-2013,all_aquatic_insect_emergence,2013 lit/control ratio ca. 2; 2013 lit/2012 own pretreatment ca. 3; different denominators,same_lit_and_dark_sites,descriptive_only_unreplicated_site
+1,Westhavelland_2012_2014,Manfrin_et_al_2025,10.1007/s00027-025-01161-7,2014,aquatic_diptera_emergence,lit_lower_than_dark,same_lit_and_dark_sites,descriptive_only_unreplicated_site
+2,Westhavelland_2012_2014,Manfrin_et_al_2025,10.1007/s00027-025-01161-7,2014,aquatic_diptera_flying_adults,lit_higher_than_dark,same_lit_and_dark_sites,descriptive_only_unreplicated_site
