@@ -1,7 +1,7 @@
 # 契約検索の実行・受け渡し
 
 準備日：2026-11-21。利用者は両データベースを利用可能と回答済み。
-こちらのブラウザ操作機能が初期化に失敗したため、契約セッションの確認・検索・エクスポートは未実施。
+11月21日の初回はブラウザ操作機能が初期化に失敗したため、契約セッションの確認・検索・エクスポートは未実施。
 検索式を作成した日を検索実施日として記録しない。既存のPRISMAログの未実施状態を維持する。
 
 ## 実行
@@ -42,3 +42,10 @@ WoSのTSはTopic、ScopusのTITLE-ABS-KEYは題名・抄録・キーワード検
 - [Scopus公式：エクスポート項目](https://www.elsevier.support/scopus/answer/how-do-i-export-documents-from-scopus)
 
 これらは操作・形式の参照先であり、実際の検索を行った証拠ではない。
+
+
+## 2026-11-22のブラウザ再確認
+
+今回はブラウザの起動と各サイトへの移動ができたが、Web of ScienceのAdvanced SearchはCloudflareの「Sorry, you have been blocked」で拒否された。ScopusのAdvanced Searchは「Site Unavailable」で、一度の再読み込み後も同じ表示だった。両方でHTTP 403が記録された。Scopusの原因は表示だけでは特定できず、自動操作対策による拒否とは断定しない。認証済みの大学契約セッションは確立できていない。
+
+いずれも検索式の送信・検索結果の取得・書き出しには到達していない。ヒット数は未取得であり0件ではない。[接続確認の記録](../arthropod_expansion_20261122/contract_database_access_20261122.csv)。アクセス制限の迂回は行わなかった。別途実行した[Europe PMCの追加341件と引用追跡](../arthropod_expansion_20261122/README_ja.md)は補助検索として記録し、WoS・Scopusの完了として置き換えない。
