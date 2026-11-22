@@ -1,0 +1,939 @@
+{
+  "doi": "10.5061/dryad.gb9534p",
+  "publication": "10.1002/eap.1821",
+  "source": "original Dryad API",
+  "probes": [
+    {
+      "request_url": "https://datadryad.org/api/v2/datasets/doi:10.5061/dryad.gb9534p",
+      "status": "SOURCE_STOP",
+      "reason": "HTTPError:404"
+    },
+    {
+      "request_url": "https://datadryad.org/api/v2/datasets/doi:10.5061%2Fdryad.gb9534p",
+      "status": "JSON_RECEIVED",
+      "byte_count": 7846,
+      "sha256": "b1d1fdc7c1d8c3f46ca10a85e81636bb0e80948bf1e4ba9eea1e574808f60fe1",
+      "final_url": "https://datadryad.org/api/v2/datasets/doi:10.5061%2Fdryad.gb9534p"
+    },
+    {
+      "request_url": "https://datadryad.org/api/v2/datasets/doi%3A10.5061%2Fdryad.gb9534p",
+      "status": "JSON_RECEIVED",
+      "byte_count": 7846,
+      "sha256": "b1d1fdc7c1d8c3f46ca10a85e81636bb0e80948bf1e4ba9eea1e574808f60fe1",
+      "final_url": "https://datadryad.org/api/v2/datasets/doi%3A10.5061%2Fdryad.gb9534p"
+    },
+    {
+      "request_url": "https://datadryad.org/api/v2/datasets/doi%3A10.5061%2Fdryad.gb9534p/download",
+      "status": "SOURCE_STOP",
+      "reason": "HTTPError:401"
+    },
+    {
+      "request_url": "https://datadryad.org/api/v2/datasets/doi%3A10.5061%2Fdryad.gb9534p/versions",
+      "status": "JSON_RECEIVED",
+      "byte_count": 7992,
+      "sha256": "74057d5da0dd3cc15042b6f8da6bea83fa864ca149f7879a28c120c978781a9f",
+      "final_url": "https://datadryad.org/api/v2/datasets/doi%3A10.5061%2Fdryad.gb9534p/versions"
+    },
+    {
+      "request_url": "https://datadryad.org/api/v2/versions/8787",
+      "status": "JSON_RECEIVED",
+      "byte_count": 7727,
+      "sha256": "3d1f6bd7225e24d692d34872f7d0070047e5f0cfd4673fdbe20e7249838f01bc",
+      "final_url": "https://datadryad.org/api/v2/versions/8787"
+    },
+    {
+      "request_url": "https://datadryad.org/api/v2/datasets/doi:10.5061%2Fdryad.gb9534p/versions",
+      "status": "JSON_RECEIVED",
+      "byte_count": 7992,
+      "sha256": "74057d5da0dd3cc15042b6f8da6bea83fa864ca149f7879a28c120c978781a9f",
+      "final_url": "https://datadryad.org/api/v2/datasets/doi:10.5061%2Fdryad.gb9534p/versions"
+    },
+    {
+      "request_url": "https://datadryad.org/api/v2/datasets/doi:10.5061%2Fdryad.gb9534p/versions?page=1",
+      "status": "JSON_RECEIVED",
+      "byte_count": 7999,
+      "sha256": "52b9d2a28fd33249b73ce233f3c9ae76b578b1b954e435c3ed6d4a603e7a21a5",
+      "final_url": "https://datadryad.org/api/v2/datasets/doi:10.5061%2Fdryad.gb9534p/versions?page=1"
+    },
+    {
+      "request_url": "https://datadryad.org/api/v2/versions/8787/download",
+      "status": "SOURCE_STOP",
+      "reason": "UnicodeDecodeError:'utf-8' codec can't decode byte 0x8b in position 82: invalid start byte"
+    },
+    {
+      "request_url": "https://datadryad.org/api/v2/versions/8787/files",
+      "status": "JSON_RECEIVED",
+      "byte_count": 5575,
+      "sha256": "97b195a20733216d348e19b74b9967cdbd96d9f0e331e07a99d80306c59ec5a0",
+      "final_url": "https://datadryad.org/api/v2/versions/8787/files"
+    },
+    {
+      "request_url": "https://datadryad.org/api/v2/files/38946",
+      "status": "JSON_RECEIVED",
+      "byte_count": 883,
+      "sha256": "f899382134d9e143f9aff1537f9d82be42fab109140e6c6bf5c0bd4eb2220e28",
+      "final_url": "https://datadryad.org/api/v2/files/38946"
+    },
+    {
+      "request_url": "https://datadryad.org/api/v2/files/38946/download",
+      "status": "SOURCE_STOP",
+      "reason": "HTTPError:401"
+    },
+    {
+      "request_url": "https://datadryad.org/api/v2/files/38947",
+      "status": "JSON_RECEIVED",
+      "byte_count": 892,
+      "sha256": "161fb20ab26a707fb89a6386b24bddff8996d9ca7fd9e39a6545b08f9a137f59",
+      "final_url": "https://datadryad.org/api/v2/files/38947"
+    },
+    {
+      "request_url": "https://datadryad.org/api/v2/files/38947/download",
+      "status": "SOURCE_STOP",
+      "reason": "HTTPError:401"
+    }
+  ],
+  "declared_expected_files": [
+    "Sullivan_EAP18-0555_WetlandFieldExperiment_2013.txt",
+    "README_for_Sullivan_EAP18-0555_WetlandFieldExperiment_2013.txt"
+  ],
+  "source_files": [
+    {
+      "name": "Sullivan_EAP18-0555_WetlandFieldExperiment_2013.txt",
+      "status": "SOURCE_BYTES_VERIFIED",
+      "byte_count": 118202,
+      "sha256": "385444ab318ec4b15edd3161c740aa7f4b2d9b973fe4c2ddf6c29cc56cdec484",
+      "format": "delimited_table",
+      "delimiter": "'\\t'",
+      "columns": [
+        "Station",
+        "Treatment",
+        "Intensity",
+        "Spectra",
+        "Group",
+        "Sample",
+        "Date",
+        "Taxa",
+        "Count",
+        "Biomass",
+        "Canopy",
+        "Cover",
+        "Water"
+      ],
+      "nonempty_rows": 1161,
+      "column_count": 13,
+      "physical_unit_candidate_fields": {
+        "Station": {
+          "observed": 1161,
+          "distinct": 15,
+          "top_categories": [
+            [
+              "HPSH-3",
+              89
+            ],
+            [
+              "LEDH-1",
+              84
+            ],
+            [
+              "LEDH-2",
+              83
+            ],
+            [
+              "LEDH-3",
+              83
+            ],
+            [
+              "LEDI-2",
+              82
+            ],
+            [
+              "HPSI-1",
+              79
+            ],
+            [
+              "HPSH-2",
+              78
+            ],
+            [
+              "HPSH-1",
+              77
+            ],
+            [
+              "DRK-2",
+              76
+            ],
+            [
+              "HPSI-2",
+              76
+            ]
+          ]
+        },
+        "Treatment": {
+          "observed": 1161,
+          "distinct": 5,
+          "top_categories": [
+            [
+              "LEDH",
+              250
+            ],
+            [
+              "HPSH",
+              244
+            ],
+            [
+              "HPSI",
+              230
+            ],
+            [
+              "DRK",
+              221
+            ],
+            [
+              "LEDI",
+              216
+            ]
+          ]
+        },
+        "Group": {
+          "observed": 1161,
+          "distinct": 3,
+          "top_categories": [
+            [
+              "2",
+              395
+            ],
+            [
+              "1",
+              384
+            ],
+            [
+              "3",
+              382
+            ]
+          ]
+        },
+        "Sample": {
+          "observed": 1161,
+          "distinct": 4,
+          "top_categories": [
+            [
+              "TerrestrialArthropod",
+              483
+            ],
+            [
+              "LeafFall",
+              360
+            ],
+            [
+              "AquaticEmergent",
+              198
+            ],
+            [
+              "WebCount",
+              120
+            ]
+          ]
+        },
+        "Date": {
+          "observed": 1161,
+          "distinct": 11,
+          "top_categories": [
+            [
+              "9/11/2013",
+              338
+            ],
+            [
+              "9/25/2013",
+              221
+            ],
+            [
+              "9/18/2013",
+              181
+            ],
+            [
+              "10/2/2013",
+              151
+            ],
+            [
+              "10/9/2013",
+              45
+            ],
+            [
+              "10/16/2013",
+              45
+            ],
+            [
+              "10/23/2013",
+              45
+            ],
+            [
+              "10/30/2013",
+              45
+            ],
+            [
+              "9/17/2013",
+              30
+            ],
+            [
+              "9/24/2013",
+              30
+            ]
+          ]
+        }
+      },
+      "experimental_count_grain": {
+        "status": "EXPOSURE_AND_CAPTURE_GRAIN_READ_ONLY",
+        "source_rows": 1161,
+        "unique_original_station_names": 15,
+        "unique_station_by_treatment_group": {
+          "DRK|1": 1,
+          "DRK|2": 1,
+          "DRK|3": 1,
+          "HPSH|1": 1,
+          "HPSH|2": 1,
+          "HPSH|3": 1,
+          "HPSI|1": 1,
+          "HPSI|2": 1,
+          "HPSI|3": 1,
+          "LEDH|1": 1,
+          "LEDH|2": 1,
+          "LEDH|3": 1,
+          "LEDI|1": 1,
+          "LEDI|2": 1,
+          "LEDI|3": 1
+        },
+        "unique_station_sample_date_events": 300,
+        "events_with_any_numeric_count": 180,
+        "source_count_missing_rows": 360,
+        "source_count_explicit_zero_rows": 22,
+        "by_sample": {
+          "AquaticEmergent": {
+            "rows": 198,
+            "treatments": {
+              "DRK": 33,
+              "HPSH": 43,
+              "HPSI": 45,
+              "LEDH": 40,
+              "LEDI": 37
+            },
+            "n_stations": 15,
+            "n_groups": 3,
+            "n_dates": 4,
+            "nonmissing_count_rows": 198,
+            "zero_count_rows": 0,
+            "raw_count_sum": 5372.0,
+            "matched_group_date_pairs": {
+              "LEDI": 12,
+              "LEDH": 12,
+              "HPSI": 12,
+              "HPSH": 12
+            },
+            "fully_observed_five_treatment_group_dates": 12
+          },
+          "LeafFall": {
+            "rows": 360,
+            "treatments": {
+              "LEDH": 72,
+              "HPSH": 72,
+              "DRK": 72,
+              "LEDI": 72,
+              "HPSI": 72
+            },
+            "n_stations": 15,
+            "n_groups": 3,
+            "n_dates": 8,
+            "nonmissing_count_rows": 0,
+            "zero_count_rows": 0,
+            "raw_count_sum": 0.0,
+            "matched_group_date_pairs": {
+              "LEDI": 24,
+              "LEDH": 24,
+              "HPSI": 24,
+              "HPSH": 24
+            },
+            "fully_observed_five_treatment_group_dates": 24
+          },
+          "TerrestrialArthropod": {
+            "rows": 483,
+            "treatments": {
+              "DRK": 92,
+              "HPSH": 105,
+              "HPSI": 89,
+              "LEDH": 114,
+              "LEDI": 83
+            },
+            "n_stations": 15,
+            "n_groups": 3,
+            "n_dates": 4,
+            "nonmissing_count_rows": 483,
+            "zero_count_rows": 0,
+            "raw_count_sum": 839.0,
+            "matched_group_date_pairs": {
+              "LEDI": 12,
+              "LEDH": 12,
+              "HPSI": 12,
+              "HPSH": 12
+            },
+            "fully_observed_five_treatment_group_dates": 12
+          },
+          "WebCount": {
+            "rows": 120,
+            "treatments": {
+              "DRK": 24,
+              "LEDI": 24,
+              "LEDH": 24,
+              "HPSI": 24,
+              "HPSH": 24
+            },
+            "n_stations": 15,
+            "n_groups": 3,
+            "n_dates": 4,
+            "nonmissing_count_rows": 120,
+            "zero_count_rows": 22,
+            "raw_count_sum": 665.0,
+            "matched_group_date_pairs": {
+              "LEDI": 12,
+              "LEDH": 12,
+              "HPSI": 12,
+              "HPSH": 12
+            },
+            "fully_observed_five_treatment_group_dates": 12
+          }
+        },
+        "inference_stop": "No independently verified installation assignment/randomization, comparable trap effort, or treatment covariance; descriptive schema only."
+      },
+      "provisional_block_contrasts": {
+        "status": "SOURCE_DERIVED_DESCRIPTIVE_BLOCK_ESTIMATES_ONLY",
+        "source_status": "NOT_FITTED_CAUSAL_META_EFFECT",
+        "same_three_groups_all_treatments": 3,
+        "results": {
+          "AquaticEmergent": {
+            "independent_physical_block_n": 3,
+            "station_n": 15,
+            "matched_nights_by_block": [
+              4,
+              4,
+              4
+            ],
+            "total_source_counts_by_arm": {
+              "DRK": 407.0,
+              "LEDI": 1212.0,
+              "LEDH": 1362.0,
+              "HPSI": 1565.0,
+              "HPSH": 826.0
+            },
+            "estimands": {
+              "LEDI": {
+                "lnRR": 0.9116425875736135,
+                "RR": 2.488406604010565,
+                "SE_across_physical_blocks": 0.3842439870287345,
+                "descriptive_t95_RR": [
+                  0.4763388290860283,
+                  12.999501717641976
+                ],
+                "raw_block_lnRR": [
+                  1.5883010621247842,
+                  0.8887975912939564,
+                  0.25782910930209985
+                ]
+              },
+              "LEDH": {
+                "lnRR": 1.111121368537747,
+                "RR": 3.0377629369881376,
+                "SE_across_physical_blocks": 0.2476397148191948,
+                "descriptive_t95_RR": [
+                  1.0466699765296104,
+                  8.81653612720947
+                ],
+                "raw_block_lnRR": [
+                  1.6028805118879412,
+                  0.9162907318741551,
+                  0.8141928618511451
+                ]
+              },
+              "HPSI": {
+                "lnRR": 1.1731244986989344,
+                "RR": 3.2320754940672494,
+                "SE_across_physical_blocks": 0.35403073111780525,
+                "descriptive_t95_RR": [
+                  0.7045846540195796,
+                  14.826198583456183
+                ],
+                "raw_block_lnRR": [
+                  1.8591533869620305,
+                  0.9818880143599683,
+                  0.6783320947748047
+                ]
+              },
+              "HPSH": {
+                "lnRR": 0.6053480293155812,
+                "RR": 1.831889649256222,
+                "SE_across_physical_blocks": 0.25612692584414354,
+                "descriptive_t95_RR": [
+                  0.6085493995379656,
+                  5.514457313736491
+                ],
+                "raw_block_lnRR": [
+                  1.1137477127332103,
+                  0.4054651081081644,
+                  0.296831267105369
+                ]
+              }
+            },
+            "shared_dark_covariance_log_scale": {
+              "LEDI": {
+                "LEDI": 0.14764344156773831,
+                "LEDH": 0.08855662611840158,
+                "HPSI": 0.13201300007255992,
+                "HPSH": 0.09171528270679097
+              },
+              "LEDH": {
+                "LEDI": 0.08855662611840158,
+                "LEDH": 0.06132542835573213,
+                "HPSI": 0.08692294566997998,
+                "HPSH": 0.06342682184747443
+              },
+              "HPSI": {
+                "LEDI": 0.13201300007255992,
+                "LEDH": 0.08692294566997998,
+                "HPSI": 0.12533775857580773,
+                "HPSH": 0.08994225452738251
+              },
+              "HPSH": {
+                "LEDI": 0.09171528270679097,
+                "LEDH": 0.06342682184747443,
+                "HPSI": 0.08994225452738251,
+                "HPSH": 0.06560100214237141
+              }
+            }
+          },
+          "TerrestrialArthropod": {
+            "independent_physical_block_n": 3,
+            "station_n": 15,
+            "matched_nights_by_block": [
+              4,
+              4,
+              4
+            ],
+            "total_source_counts_by_arm": {
+              "DRK": 161.0,
+              "LEDI": 205.0,
+              "LEDH": 179.0,
+              "HPSI": 125.0,
+              "HPSH": 169.0
+            },
+            "estimands": {
+              "LEDI": {
+                "lnRR": 0.22301654299362825,
+                "RR": 1.2498412496807922,
+                "SE_across_physical_blocks": 0.2918936414011901,
+                "descriptive_t95_RR": [
+                  0.3559729870703466,
+                  4.388263172044976
+                ],
+                "raw_block_lnRR": [
+                  -0.3117796240308415,
+                  0.28768207245178085,
+                  0.6931471805599453
+                ]
+              },
+              "LEDH": {
+                "lnRR": 0.10821523378881859,
+                "RR": 1.1142875519099396,
+                "SE_across_physical_blocks": 0.1832371299993666,
+                "descriptive_t95_RR": [
+                  0.5065204890836226,
+                  2.451306067771844
+                ],
+                "raw_block_lnRR": [
+                  0.3690974639372895,
+                  -0.24512245803298496,
+                  0.20067069546215124
+                ]
+              },
+              "HPSI": {
+                "lnRR": -0.2324321880355856,
+                "RR": 0.7926034955244738,
+                "SE_across_physical_blocks": 0.1222651122427045,
+                "descriptive_t95_RR": [
+                  0.46837008905238225,
+                  1.3412903936471372
+                ],
+                "raw_block_lnRR": [
+                  -0.4144337780909248,
+                  -0.282862786015832,
+                  0.0
+                ]
+              },
+              "HPSH": {
+                "lnRR": 0.07914719390156745,
+                "RR": 1.0823636276708921,
+                "SE_across_physical_blocks": 0.25408043159538407,
+                "descriptive_t95_RR": [
+                  0.36273865281280787,
+                  3.229628310687516
+                ],
+                "raw_block_lnRR": [
+                  -0.07410797215372185,
+                  -0.2638145910451376,
+                  0.5753641449035618
+                ]
+              }
+            },
+            "shared_dark_covariance_log_scale": {
+              "LEDI": {
+                "LEDI": 0.08520189789044658,
+                "LEDH": -0.019816906750734036,
+                "HPSI": 0.03389102069779572,
+                "HPSH": 0.04884487692022618
+              },
+              "LEDH": {
+                "LEDI": -0.019816906750734036,
+                "LEDH": 0.03357584581040477,
+                "HPSI": -0.001362054060683026,
+                "HPSH": 0.021179623878149884
+              },
+              "HPSI": {
+                "LEDI": 0.03389102069779572,
+                "LEDH": -0.001362054060683026,
+                "HPSI": 0.014948757671721132,
+                "HPSH": 0.026754207244538867
+              },
+              "HPSH": {
+                "LEDI": 0.04884487692022618,
+                "LEDH": 0.021179623878149884,
+                "HPSI": 0.026754207244538867,
+                "HPSH": 0.06455686571969665
+              }
+            }
+          },
+          "WebCount": {
+            "independent_physical_block_n": 3,
+            "station_n": 15,
+            "matched_nights_by_block": [
+              4,
+              4,
+              4
+            ],
+            "total_source_counts_by_arm": {
+              "DRK": 226.0,
+              "LEDI": 66.0,
+              "LEDH": 132.0,
+              "HPSI": 58.0,
+              "HPSH": 183.0
+            },
+            "estimands": {
+              "LEDI": {
+                "lnRR": -1.567385033002397,
+                "RR": 0.20858992557524808,
+                "SE_across_physical_blocks": 0.6726312527381231,
+                "descriptive_t95_RR": [
+                  0.011545220596532015,
+                  3.7686379993949304
+                ],
+                "raw_block_lnRR": [
+                  -0.7683706017975328,
+                  -1.0296194171811581,
+                  -2.9041650800285006
+                ]
+              },
+              "LEDH": {
+                "lnRR": -0.568339187765579,
+                "RR": 0.566465450642604,
+                "SE_across_physical_blocks": 0.1880630636696207,
+                "descriptive_t95_RR": [
+                  0.2522059553678176,
+                  1.2723058276072505
+                ],
+                "raw_block_lnRR": [
+                  -0.282862786015832,
+                  -0.4989911661189879,
+                  -0.9231636111619171
+                ]
+              },
+              "HPSI": {
+                "lnRR": -1.4696730586243156,
+                "RR": 0.2300006696309388,
+                "SE_across_physical_blocks": 0.2677692521179928,
+                "descriptive_t95_RR": [
+                  0.07267257780449819,
+                  0.7279266764554746
+                ],
+                "raw_block_lnRR": [
+                  -1.749199854809259,
+                  -0.9343092373768334,
+                  -1.7255100836868544
+                ]
+              },
+              "HPSH": {
+                "lnRR": -0.5570386705403519,
+                "RR": 0.57290310915235,
+                "SE_across_physical_blocks": 0.5357413224363563,
+                "descriptive_t95_RR": [
+                  0.05714590561742982,
+                  5.743508111914863
+                ],
+                "raw_block_lnRR": [
+                  -1.4008931605410433,
+                  0.43671765161226883,
+                  -0.7069405026922811
+                ]
+              }
+            },
+            "shared_dark_covariance_log_scale": {
+              "LEDI": {
+                "LEDI": 0.45243280216005677,
+                "LEDH": 0.12328582595450267,
+                "HPSI": 0.06775869022590873,
+                "HPSH": 0.010090307240739222
+              },
+              "LEDH": {
+                "LEDI": 0.12328582595450267,
+                "LEDH": 0.03536771591680381,
+                "HPSI": 0.00801755713306823,
+                "HPSH": -0.019799446217720937
+              },
+              "HPSI": {
+                "LEDI": 0.06775869022590873,
+                "LEDH": 0.00801755713306823,
+                "HPSI": 0.0717003723798292,
+                "HPSH": 0.1343752604736362
+              },
+              "HPSH": {
+                "LEDI": 0.010090307240739222,
+                "LEDH": -0.019799446217720937,
+                "HPSI": 0.1343752604736362,
+                "HPSH": 0.2870187645658559
+              }
+            }
+          }
+        },
+        "paired_cross_stratum_descriptive_ratios": {
+          "TerrestrialArthropod": {
+            "LEDI": {
+              "ratio_of_original_response_ratios": 1.990978137940399,
+              "difference_lnRR": 0.6886260445799852,
+              "SE_paired_blocks": 0.6755899664042476,
+              "descriptive_t95_ratio": [
+                0.10880445826821324,
+                36.432275008299754
+              ],
+              "independent_blocks": 3,
+              "within_block_differences_lnRR": [
+                1.9000806861556256,
+                0.6011155188421755,
+                -0.43531807125784544
+              ]
+            },
+            "LEDH": {
+              "ratio_of_original_response_ratios": 2.7261930116524002,
+              "difference_lnRR": 1.0029061347489285,
+              "SE_paired_blocks": 0.19580964838341297,
+              "descriptive_t95_ratio": [
+                1.1739864934227315,
+                6.330676186157968
+              ],
+              "independent_blocks": 3,
+              "within_block_differences_lnRR": [
+                1.2337830479506517,
+                1.16141318990714,
+                0.6135221663889939
+              ]
+            },
+            "HPSI": {
+              "ratio_of_original_response_ratios": 4.077796164560884,
+              "difference_lnRR": 1.40555668673452,
+              "SE_paired_blocks": 0.46586099787990604,
+              "descriptive_t95_ratio": [
+                0.5494258761232614,
+                30.265086306158874
+              ],
+              "independent_blocks": 3,
+              "within_block_differences_lnRR": [
+                2.2735871650529553,
+                1.2647508003758003,
+                0.6783320947748047
+              ]
+            },
+            "HPSH": {
+              "ratio_of_original_response_ratios": 1.6924900305438144,
+              "difference_lnRR": 0.5262008354140137,
+              "SE_paired_blocks": 0.42931244454753115,
+              "descriptive_t95_ratio": [
+                0.26687323032997257,
+                10.733644959250478
+              ],
+              "independent_blocks": 3,
+              "within_block_differences_lnRR": [
+                1.1878556848869322,
+                0.669279699153302,
+                -0.2785328777981928
+              ]
+            }
+          },
+          "WebCount": {
+            "LEDI": {
+              "ratio_of_original_response_ratios": 11.929658621565988,
+              "difference_lnRR": 2.479027620576011,
+              "SE_paired_blocks": 0.36416538654966457,
+              "descriptive_t95_ratio": [
+                2.4896706334360137,
+                57.162884485925474
+              ],
+              "independent_blocks": 3,
+              "within_block_differences_lnRR": [
+                2.356671663922317,
+                1.9184170084751146,
+                3.1619941893306005
+              ]
+            },
+            "LEDH": {
+              "ratio_of_original_response_ratios": 5.362662336320899,
+              "difference_lnRR": 1.679460556303326,
+              "SE_paired_blocks": 0.1388613638132328,
+              "descriptive_t95_ratio": [
+                2.950540371076732,
+                9.74673914490453
+              ],
+              "independent_blocks": 3,
+              "within_block_differences_lnRR": [
+                1.8857432979037732,
+                1.415281897993143,
+                1.7373564730130622
+              ]
+            },
+            "HPSI": {
+              "ratio_of_original_response_ratios": 14.052461235236697,
+              "difference_lnRR": 2.64279755732325,
+              "SE_paired_blocks": 0.502882600105818,
+              "descriptive_t95_ratio": [
+                1.6145695120774657,
+                122.3060792927666
+              ],
+              "independent_blocks": 3,
+              "within_block_differences_lnRR": [
+                3.6083532417712894,
+                1.9161972517368016,
+                2.4038421784616593
+              ]
+            },
+            "HPSH": {
+              "ratio_of_original_response_ratios": 3.1975557821053378,
+              "difference_lnRR": 1.1623866998559331,
+              "SE_paired_blocks": 0.7392028013174939,
+              "descriptive_t95_ratio": [
+                0.13290160305904933,
+                76.93182583458005
+              ],
+              "independent_blocks": 3,
+              "within_block_differences_lnRR": [
+                2.514640873274254,
+                -0.031252543504104446,
+                1.00377176979765
+              ]
+            }
+          }
+        },
+        "cross_sample_dependence": "All responses from the same 15 physical stations; do not treat samples as independent programmes.",
+        "uncertainty_note": "t2 intervals on 3 groups are descriptive and assume blocks independent; assignment and common effort not yet externally adjudicated."
+      }
+    },
+    {
+      "name": "README_for_Sullivan_EAP18-0555_WetlandFieldExperiment_2013.txt",
+      "status": "SOURCE_BYTES_VERIFIED",
+      "byte_count": 4180,
+      "sha256": "809a4607bd9cbb936fade7c016cd01ca86366f83aacad69ad84109007dd0ea55",
+      "format": "README_text",
+      "total_lines": 39,
+      "relevant_lines_first_15": [
+        "Artificial Lighting at Night Alters Aquatic-Riparian Invertebrate Food Webs",
+        "This dataset contains all response and predictor variables associated with the Wetland Field Experiment from the Sullivan et al. Ecological Applications publication to enable repli",
+        "The experiment was conducted in the unplanted experimental wetland at the Wilma H. Shiermeier Olentangy River Wetland Research Park during the summer and fall of 2013. Sampling sta",
+        "Station = The sampling station name (n=15; format is Treatment-Group). See e.g. Table S2.",
+        "Treatment = The treatment combination abbreviation (n=5): control/low illuminance, skyglow (DRK); moderate-to-high illuminance, LED (LEDI); moderate-to-high illuminance, HPS (HPSI)",
+        "Intensity = The illuminance treatment (n=3): control/low illuminance, ~0.1 lux; moderate-to-high illuminance, ~1-5 lux; and very-high illuminance, ~10-20 lux.",
+        "Spectra = The lighting spectra treatment (n=3): skyglow; LED, cool-white light-emitting diode; HPS, high-pressure sodium. See Fig. S1AB for the HPS and LED spectral power distribut",
+        "Group = The habitat type and location group for blocking (n=3). See Methods, Third Field Study: Wetland Field Experiment for further description, as well as Table S2.",
+        "Date = The date the sample was collected (format is mm/dd/yyyy). For WebCount samples these are the dates of the spider web counts. For AquaticEmergent, TerrestrialArthropod, and L",
+        "Count = The number of individuals collected or counted given the Station, Date and Taxa (not applicable for LeafFall samples).",
+        "Biomass = Dry biomass (g) of the trap collection given the Station, Date and Taxa (not applicable for WebCount samples). Note that for TerrestrialArthropod samples, only the total ",
+        "Canopy = The proportion of visible sky estimated for each sampling station using a fisheye camera lens and HemiView software at the beginning and end of the sampling period (8/15/2"
+      ]
+    }
+  ],
+  "new_meta_eligible_independent_programme_k": 0,
+  "within_site_moisture_meta_regression": false,
+  "source_reanalysis": false,
+  "note": "2013 wetland experiment distinct from 2010-2011 observational stream gradients; only physical independent light sites count",
+  "title": "Data from: Artificial lighting at night alters aquatic-riparian invertebrate food webs",
+  "dataset_id": 8747,
+  "found_file_metadata": [
+    {
+      "name": "README_for_Sullivan_EAP18-0555_UrbanStreamCategories_2010.txt",
+      "id": null,
+      "size": 2413,
+      "content_type": "text/plain",
+      "has_download_link": true
+    },
+    {
+      "name": "README_for_Sullivan_EAP18-0555_UrbanStreamGradient_2010-2011.txt",
+      "id": null,
+      "size": 2148,
+      "content_type": "text/plain",
+      "has_download_link": true
+    },
+    {
+      "name": "README_for_Sullivan_EAP18-0555_WetlandFieldExperiment_2013.txt",
+      "id": null,
+      "size": 4180,
+      "content_type": "text/plain",
+      "has_download_link": true
+    },
+    {
+      "name": "Sullivan_EAP18-0555_UrbanStreamCategories_2010.txt",
+      "id": null,
+      "size": 12784,
+      "content_type": "text/plain",
+      "has_download_link": true
+    },
+    {
+      "name": "Sullivan_EAP18-0555_UrbanStreamGradient_2010-2011.txt",
+      "id": null,
+      "size": 10866,
+      "content_type": "text/plain",
+      "has_download_link": true
+    },
+    {
+      "name": "Sullivan_EAP18-0555_WetlandFieldExperiment_2013.txt",
+      "id": null,
+      "size": 118202,
+      "content_type": "text/plain",
+      "has_download_link": true
+    },
+    {
+      "name": "Sullivan_EAP18-0555_WetlandFieldExperiment_2013.txt",
+      "id": null,
+      "size": 118202,
+      "content_type": "text/plain",
+      "has_download_link": true
+    },
+    {
+      "name": "README_for_Sullivan_EAP18-0555_WetlandFieldExperiment_2013.txt",
+      "id": null,
+      "size": 4180,
+      "content_type": "text/plain",
+      "has_download_link": true
+    }
+  ],
+  "archive_candidates": [
+    "https://datadryad.org/api/v2/versions/8787"
+  ],
+  "archive_source": {
+    "url": "https://datadryad.org/api/v2/versions/8787/download",
+    "byte_count": 151970,
+    "sha256": "b3d8b950f43c4935c4c977aa5b313285c00501804bfc1a9b492050999671c7d2",
+    "archive_member_count": 2
+  },
+  "metadata_probes_count": 14,
+  "status": "SOURCE_BYTES_READ_FOR_SCHEMA_AUDIT"
+}
