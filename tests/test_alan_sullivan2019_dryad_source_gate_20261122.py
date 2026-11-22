@@ -52,6 +52,19 @@ class TestSullivanSourceGuards(unittest.TestCase):
         self.assertEqual(z['source_count_explicit_zero_rows'],1)
         self.assertEqual(z['by_sample']['AquaticEmergent']['matched_group_date_pairs']['LEDI'],1)
         self.assertEqual(z['by_sample']['AquaticEmergent']['fully_observed_five_treatment_group_dates'],0)
+    def test_three_true_blocks_yield_four_correlated_dark_control_contrasts(self):
+        rows=['Station\tTreatment\tGroup\tSample\tDate\tCount']
+        for sm in ('AquaticEmergent','TerrestrialArthropod','WebCount'):
+            for g in ('1','2','3'):
+                for day in ('d1','d2'):
+                    for t,n in (('DRK',1),('LEDI',2),('LEDH',3),('HPSI',4),('HPSH',5)):
+                        rows.append(f'{g}_{t}\t{t}\t{g}\t{sm}\t{day}\t{n}')
+        out=S.within_block_capture_contrasts(('\n'.join(rows)+'\n').encode())
+        self.assertEqual(out['status'],'SOURCE_DERIVED_DESCRIPTIVE_BLOCK_ESTIMATES_ONLY')
+        self.assertEqual(out['results']['AquaticEmergent']['independent_physical_block_n'],3)
+        self.assertEqual(out['results']['AquaticEmergent']['station_n'],15)
+        self.assertAlmostEqual(out['results']['AquaticEmergent']['estimands']['LEDI']['RR'],2.0)
+        self.assertAlmostEqual(out['results']['AquaticEmergent']['shared_dark_covariance_log_scale']['LEDI']['HPSI'],0.0)
     def test_unavailable_source_not_interpreted_as_zero_effect(self):
         self.assertEqual(S.file_summaries({'_embedded':{'stash:files':[]}}),[])
 

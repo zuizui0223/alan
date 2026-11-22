@@ -6,7 +6,7 @@ field experiment; don't treat individual arthropods or visits as light-site n.
 No raw author records are published by this audit. Fail closed on blocked bytes.
 """
 from __future__ import annotations
-import argparse, csv, hashlib, io, json, os, re, zipfile
+import argparse, csv, hashlib, io, json, os, re, zipfile, math
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -180,6 +180,87 @@ def audit_grouped_experiment_rows(raw):
        'inference_stop':'No independently verified installation assignment/randomization, comparable trap effort, or treatment covariance; descriptive schema only.'
     }
 
+def within_block_capture_contrasts(raw):
+    """Exploratory equal-block log ratios from real source sums, NOT study meta effects.
+
+    Physical replication is 3 independent assigned stations per treatment, NOT
+    source taxa (rows) nor four repeated collection dates. Shared DRK arm within
+    block induces full 4×4 covariance of the four light-treatment contrasts.
+    """
+    reader=csv.DictReader(io.StringIO(raw.decode('utf-8-sig','replace')),delimiter='\t')
+    need={'Station','Treatment','Group','Sample','Date','Count'}
+    if not need.issubset(reader.fieldnames or []):
+        return {'status':'SOURCE_STOP_INVALID_COLUMNS'}
+    relevant=('AquaticEmergent','TerrestrialArthropod','WebCount')
+    treatments=('LEDI','LEDH','HPSI','HPSH')
+    arms=('DRK',)+treatments
+    capture_sum={}; observed_events=set(); invalid=[];station_arm={}
+    for r in reader:
+        sm=r['Sample'].strip()
+        if sm not in relevant:continue
+        t=r['Treatment'].strip();g=r['Group'].strip();day=r['Date'].strip();st=r['Station'].strip()
+        if not all((t,g,day,st)) or t not in arms:
+            invalid.append('incomplete_grain');continue
+        sa=(g,t)
+        if sa in station_arm and station_arm[sa]!=st:
+            invalid.append('multiple_station_for_block_arm');continue
+        station_arm[sa]=st
+        k=(sm,g,day,t)
+        observed_events.add(k)
+        try:
+            v=float(r['Count'].strip())
+            if not (math.isfinite(v) and v>=0):raise ValueError('bad count')
+            capture_sum[k]=capture_sum.get(k,0.0)+v
+        except (ValueError,TypeError):
+            invalid.append('missing_or_invalid_count_'+sm)
+    if invalid:return {'status':'SOURCE_STOP_NONNUMERIC_OR_BAD_GRAIN','problems':dict(Counter(invalid))}
+    groups=sorted({g for g,t in station_arm})
+    if len(groups)<2 or any((g,t) not in station_arm for g in groups for t in arms):
+        return {'status':'SOURCE_STOP_INCOMPLETE_PHYSICAL_BLOCKS','groups':groups}
+    results={}
+    for sm in relevant:
+        by_group=[]
+        for g in groups:
+            dates={day for s,gg,day,t in observed_events if s==sm and gg==g}
+            complete=sorted(day for day in dates if all((sm,g,day,t) in observed_events for t in arms))
+            if not complete:
+                return {'status':'SOURCE_STOP_NO_MATCHED_ARM_SAMPLING','sample':sm,'group':g}
+            # Source rows list only observed taxa. We sum observed taxon counts
+            # within *recorded* station-date-trap events; no missing date is zero.
+            totals={t:sum(capture_sum[(sm,g,day,t)] for day in complete) for t in arms}
+            if any(v<=0 for v in totals.values()):
+                return {'status':'SOURCE_STOP_NONPOSITIVE_BLOCK_ARM_TOTAL','sample':sm,'group':g}
+            by_group.append({'group':g,'n_matched_dates':len(complete),
+                             'contrasts':{t:math.log(totals[t]/totals['DRK']) for t in treatments},
+                             'total_counts_by_treatment':totals})
+        n=len(by_group)
+        means={t:sum(b['contrasts'][t] for b in by_group)/n for t in treatments}
+        se={}
+        covariance={}
+        for t in treatments:
+            covariance[t]={}
+            for tt in treatments:
+                # Sample covariance among independent physical blocks / n.
+                covariance[t][tt]=sum((b['contrasts'][t]-means[t])*(b['contrasts'][tt]-means[tt]) for b in by_group)/(n*(n-1))
+            se[t]=math.sqrt(max(0.0,covariance[t][t]))
+        # df=2 critical is fixed solely for the observed 3 independent blocks.
+        if n!=3:return {'status':'SOURCE_STOP_UNSUPPORTED_SMALL_SAMPLE_T_APPROXIMATION','n':n}
+        tcrit=4.302652729911275
+        estimates={t:{'lnRR':means[t],'RR':math.exp(means[t]),'SE_across_physical_blocks':se[t],
+                      'descriptive_t95_RR':[math.exp(means[t]-tcrit*se[t]),math.exp(means[t]+tcrit*se[t])],
+                      'raw_block_lnRR':[b['contrasts'][t] for b in by_group]} for t in treatments}
+        results[sm]={'independent_physical_block_n':n,
+                     'station_n':len({station_arm[(g,t)] for g in groups for t in arms}),
+                     'matched_nights_by_block':[b['n_matched_dates'] for b in by_group],
+                     'total_source_counts_by_arm':{t:sum(b['total_counts_by_treatment'][t] for b in by_group) for t in arms},
+                     'estimands':estimates,'shared_dark_covariance_log_scale':covariance}
+    return {'status':'SOURCE_DERIVED_DESCRIPTIVE_BLOCK_ESTIMATES_ONLY',
+            'source_status':'NOT_FITTED_CAUSAL_META_EFFECT',
+            'same_three_groups_all_treatments':len(groups),
+            'results':results,
+            'cross_sample_dependence':'All responses from the same 15 physical stations; do not treat samples as independent programmes.',
+            'uncertainty_note':'t2 intervals on 3 groups are descriptive and assume blocks independent; assignment and common effort not yet externally adjudicated.'}
+
 def unpack_expected_dataset_zip(raw):
     """Inspect only the two named 2013 original sources; never export author rows."""
     if not zipfile.is_zipfile(io.BytesIO(raw)):
@@ -204,6 +285,7 @@ def unpack_expected_dataset_zip(raw):
                     **summarize_text(b,expect)}
             if expect.startswith('Sullivan_'):
                 record['experimental_count_grain']=audit_grouped_experiment_rows(b)
+                record['provisional_block_contrasts']=within_block_capture_contrasts(b)
             out.append(record)
     return out
 
