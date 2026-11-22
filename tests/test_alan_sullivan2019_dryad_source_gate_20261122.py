@@ -40,6 +40,18 @@ class TestSullivanSourceGuards(unittest.TestCase):
         self.assertEqual(len(files),2)
         self.assertEqual(set(x['status'] for x in files),{'SOURCE_BYTES_VERIFIED'})
         self.assertEqual([x for x in files if x['name'].startswith('Sullivan_')][0]['physical_unit_candidate_fields']['Light']['distinct'],2)
+    def test_grouped_experiment_only_matches_same_group_and_date_not_missing_zeros(self):
+        data=('Station\tTreatment\tIntensity\tSpectra\tGroup\tSample\tDate\tTaxa\tCount\n'
+              'X_DRK\tDRK\t0.1\tsky\tG1\tAquaticEmergent\t9/1/2013\tA\t2\n'
+              'X_LED\tLEDI\t4\tLED\tG1\tAquaticEmergent\t9/1/2013\tA\t5\n'
+              'X_LED\tLEDI\t4\tLED\tG1\tAquaticEmergent\t9/2/2013\tA\t0\n'
+              'Y_DRK\tDRK\t0.1\tsky\tG2\tAquaticEmergent\t9/1/2013\tA\t1\n')
+        z=S.audit_grouped_experiment_rows(data.encode())
+        self.assertEqual(z['source_rows'],4)
+        self.assertEqual(z['unique_original_station_names'],3)
+        self.assertEqual(z['source_count_explicit_zero_rows'],1)
+        self.assertEqual(z['by_sample']['AquaticEmergent']['matched_group_date_pairs']['LEDI'],1)
+        self.assertEqual(z['by_sample']['AquaticEmergent']['fully_observed_five_treatment_group_dates'],0)
     def test_unavailable_source_not_interpreted_as_zero_effect(self):
         self.assertEqual(S.file_summaries({'_embedded':{'stash:files':[]}}),[])
 

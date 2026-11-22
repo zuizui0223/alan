@@ -109,7 +109,7 @@ def summarize_text(content, filename):
     if not 1<len(header)<200 or not header:return {'format':'unsupported_table','line_count':len(dat)}
     plausible={}
     for index,label in enumerate(header):
-        if re.search(r'light|lux|treat|site|habitat|plot|block|date|time|month|type|trap',label,re.I):
+        if re.search(r'light|lux|treat|site|station|sample|group|habitat|plot|block|date|time|month|type|trap',label,re.I):
             vals=[r[index].strip() for r in record_rows if len(r)>index and r[index].strip()]
             n=len(set(vals))
             plausible[label]={'observed':len(vals),'distinct':n, 'top_categories':Counter(vals).most_common(10) if n<=30 else []}
@@ -117,6 +117,68 @@ def summarize_text(content, filename):
             'nonempty_rows':len(record_rows),'column_count':len(header),
             'physical_unit_candidate_fields':plausible}
 
+
+def audit_grouped_experiment_rows(raw):
+    """Count source-backed exposure units and sampling strata without exporting rows.
+
+    Only reports what is explicitly in the source, and does not impute missing
+    station×date records as zero. No source-level hypothesis test here.
+    """
+    s=raw.decode('utf-8-sig','replace')
+    rd=csv.DictReader(io.StringIO(s),delimiter='\t')
+    required={'Station','Treatment','Intensity','Spectra','Group','Sample','Date','Taxa','Count'}
+    if not required.issubset(set(rd.fieldnames or [])):
+        return {'status':'SOURCE_STOP_INVALID_COLUMNS','missing':sorted(required-set(rd.fieldnames or []))}
+    rows=list(rd)
+    by_sample={}; stations={}; blocks={}; event_keys=set(); event_with_numeric_counts=set()
+    missing_count=0; zero_count=0
+    for r in rows:
+        sample=r['Sample'].strip()
+        treatment=r['Treatment'].strip()
+        group=r['Group'].strip()
+        station=r['Station'].strip()
+        day=r['Date'].strip()
+        if not all((sample,treatment,group,station,day)):
+            continue
+        key=(station,treatment,group,sample,day)
+        event_keys.add(key)
+        stations.setdefault((treatment,group),set()).add(station)
+        blocks.setdefault(sample,set()).add(group)
+        d=by_sample.setdefault(sample,{'rows':0,'treatments':Counter(),'station_ids':set(),'groups':set(),'dates':set(),'nonmissing_count':0,'zero_count':0,'numeric_count_sum':0.0})
+        d['rows']+=1;d['treatments'][treatment]+=1;d['station_ids'].add(station);d['groups'].add(group);d['dates'].add(day)
+        try:
+            v=float(r['Count'].strip())
+            if not (v>=0 and v<float('inf')):raise ValueError('Nonfinite count')
+            d['nonmissing_count']+=1;d['numeric_count_sum']+=v
+            if v==0:d['zero_count']+=1;zero_count+=1
+            event_with_numeric_counts.add(key)
+        except (ValueError,TypeError):
+            missing_count+=1
+    # Restrict pair comparisons to explicit same source group and exact date.
+    # A sample/day/group without a source row in an arm is NOT a zero count.
+    sample_event_treat={}
+    for station,treatment,group,sample,day in event_keys:
+        sample_event_treat.setdefault((sample,group,day),set()).add(treatment)
+    arms=['DRK','LEDI','LEDH','HPSI','HPSH']
+    matched={}
+    for sample in by_sample:
+        matched[sample]={'matched_group_date_pairs':{arm:sum('DRK' in tr and arm in tr for (sm,g,dt),tr in sample_event_treat.items() if sm==sample) for arm in arms if arm!='DRK'},
+                         'fully_observed_five_treatment_group_dates':sum(all(a in tr for a in arms) for (sm,g,dt),tr in sample_event_treat.items() if sm==sample)}
+    return {
+       'status':'EXPOSURE_AND_CAPTURE_GRAIN_READ_ONLY',
+       'source_rows':len(rows), 'unique_original_station_names':len(set(k[0] for k in event_keys)),
+       'unique_station_by_treatment_group':{f'{t}|{g}':len(v) for (t,g),v in sorted(stations.items())},
+       'unique_station_sample_date_events':len(event_keys),
+       'events_with_any_numeric_count':len(event_with_numeric_counts),
+       'source_count_missing_rows':missing_count,'source_count_explicit_zero_rows':zero_count,
+       'by_sample':{s:{'rows':d['rows'],'treatments':dict(d['treatments']),
+                       'n_stations':len(d['station_ids']),'n_groups':len(d['groups']),
+                       'n_dates':len(d['dates']),'nonmissing_count_rows':d['nonmissing_count'],
+                       'zero_count_rows':d['zero_count'],
+                       'raw_count_sum':d['numeric_count_sum'],
+                       **matched[s]} for s,d in sorted(by_sample.items())},
+       'inference_stop':'No independently verified installation assignment/randomization, comparable trap effort, or treatment covariance; descriptive schema only.'
+    }
 
 def unpack_expected_dataset_zip(raw):
     """Inspect only the two named 2013 original sources; never export author rows."""
@@ -137,9 +199,12 @@ def unpack_expected_dataset_zip(raw):
                 out.append({'name':expect,'status':'SOURCE_STOP_BAD_MEMBER_PATH_OR_SIZE'})
                 continue
             b=z.read(info)
-            out.append({'name':expect,'status':'SOURCE_BYTES_VERIFIED','byte_count':len(b),
-                        'sha256':hashlib.sha256(b).hexdigest(),
-                        **summarize_text(b,expect)})
+            record={'name':expect,'status':'SOURCE_BYTES_VERIFIED','byte_count':len(b),
+                    'sha256':hashlib.sha256(b).hexdigest(),
+                    **summarize_text(b,expect)}
+            if expect.startswith('Sullivan_'):
+                record['experimental_count_grain']=audit_grouped_experiment_rows(b)
+            out.append(record)
     return out
 
 def run():
