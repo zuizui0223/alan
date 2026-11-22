@@ -1,0 +1,3 @@
+programme_id,contrast,n_real_flumes_per_arm,ratio_of_geometric_changes,ln_ratio_of_changes,delta_SE,normal95_low_descriptive,normal95_high_descriptive,exact_p_70_label_allocations,effect_status
+Landau_RSM_2022_16flumes_ALAN_crayfish,ALAN_no_cray,4,0.8258198821910928,-0.19137858954110376,0.5175997202742998,0.299430170775997,2.277587712870447,0.8,exploratory_not_canonical
+Landau_RSM_2022_16flumes_ALAN_crayfish,ALAN_with_cray,4,1.633906496930998,0.49097377138004683,0.5125712797330318,0.5982982300454192,4.46207310442931,0.4,exploratory_not_canonical

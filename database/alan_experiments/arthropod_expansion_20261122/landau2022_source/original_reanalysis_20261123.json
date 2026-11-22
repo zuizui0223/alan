@@ -1,0 +1,706 @@
+{
+  "study": "Ogbeide et al. 2026 / Manfrin et al. 2025 shared physical 2022 Landau RSM programme",
+  "programme_id": "Landau_RSM_2022_16flumes_ALAN_crayfish",
+  "doi": [
+    "10.1016/j.gecco.2025.e03577",
+    "10.1111/1365-2435.70335",
+    "10.1186/s12302-026-01345-4"
+  ],
+  "authentic_source_doi": "10.5281/zenodo.14516568",
+  "original_source_receipts": [
+    {
+      "original_repository": "colinog/ALAN_crayfish_SIA",
+      "original_commit": "5e749c03161ad9ae7d57f12ddb86d9aaad283077",
+      "path": "data/other data_output/emergence.rds",
+      "bytes": 1457,
+      "git_blob_sha1": "53dfb2f8940f1a6fb54ef5daf4e39699e16fb6ad",
+      "sha256": "289e9dc874724ca765aa2e8314f975ef7cf7b2cb688bdb62e8f1be9bc50d1776",
+      "source_url": "https://raw.githubusercontent.com/colinog/ALAN_crayfish_SIA/5e749c03161ad9ae7d57f12ddb86d9aaad283077/data/other%20data_output/emergence.rds"
+    },
+    {
+      "original_repository": "colinog/ALAN_crayfish_SIA",
+      "original_commit": "5e749c03161ad9ae7d57f12ddb86d9aaad283077",
+      "path": "data/other data_output/other_emergence.rds",
+      "bytes": 2917,
+      "git_blob_sha1": "472ec0fb0334f5db042a3a774b57ce5181fdeb36",
+      "sha256": "6723d8435bab80dca1d73d8029b5a32f16dff4689923bcde4185dfb01b4d8dc0",
+      "source_url": "https://raw.githubusercontent.com/colinog/ALAN_crayfish_SIA/5e749c03161ad9ae7d57f12ddb86d9aaad283077/data/other%20data_output/other_emergence.rds"
+    }
+  ],
+  "source_reference_code": "https://github.com/colinog/ALAN_crayfish_SIA/blob/5e749c03161ad9ae7d57f12ddb86d9aaad283077/code/other_code_output.R",
+  "emergence_dataset": "Chironomidae emergence flux (author emergence.rds, not air-eclector capture)",
+  "other_emergence_grain": {
+    "n_rows": 529,
+    "columns": {
+      "treat": {
+        "nonempty": 529,
+        "distinct": 4,
+        "values": [
+          "alan",
+          "alan+cray",
+          "control",
+          "cray"
+        ]
+      },
+      "week": {
+        "nonempty": 529,
+        "distinct": 2,
+        "values": [
+          "w1",
+          "w4"
+        ]
+      },
+      "day": {
+        "nonempty": 529,
+        "distinct": 2,
+        "values": [
+          "d1",
+          "d2"
+        ]
+      },
+      "date": {
+        "nonempty": 529,
+        "distinct": 4,
+        "values": [
+          "44707",
+          "44711",
+          "44728",
+          "44732"
+        ]
+      },
+      "flume": {
+        "nonempty": 529,
+        "distinct": 16,
+        "values": [
+          "f01",
+          "f02",
+          "f03",
+          "f04",
+          "f05",
+          "f06",
+          "f07",
+          "f08",
+          "f09",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16"
+        ]
+      },
+      "trap": {
+        "nonempty": 529,
+        "distinct": 3,
+        "values": [
+          "down",
+          "mid",
+          "up"
+        ]
+      },
+      "taxa": {
+        "nonempty": 529,
+        "distinct": 6,
+        "values": [
+          "Ephemeroptera",
+          "chiro",
+          "other_dipt",
+          "simu",
+          "tany",
+          "tipu"
+        ]
+      },
+      "abundance": {
+        "nonempty": 529,
+        "distinct": 157
+      },
+      "trap_day": {
+        "nonempty": 529,
+        "distinct": 1,
+        "values": [
+          "4"
+        ]
+      },
+      "area": {
+        "nonempty": 529,
+        "distinct": 1,
+        "values": [
+          "1"
+        ]
+      },
+      "abund_rate": {
+        "nonempty": 529,
+        "distinct": 157
+      }
+    },
+    "n_flume_week_groups": 32,
+    "rows_per_flume_week_histogram": {
+      "16": 4,
+      "19": 2,
+      "20": 4,
+      "18": 7,
+      "17": 5,
+      "14": 3,
+      "15": 2,
+      "13": 4,
+      "12": 1
+    },
+    "treatment_flume_pairs": 16,
+    "flumes_assigned_multiple_treatments": {},
+    "sample_group_counts": {
+      "('alan', 'w1', 'f03')": 20,
+      "('alan', 'w1', 'f06')": 17,
+      "('alan', 'w1', 'f09')": 20,
+      "('alan', 'w1', 'f16')": 16,
+      "('alan', 'w4', 'f03')": 19,
+      "('alan', 'w4', 'f06')": 15,
+      "('alan', 'w4', 'f09')": 18,
+      "('alan', 'w4', 'f16')": 13,
+      "('alan+cray', 'w1', 'f01')": 16,
+      "('alan+cray', 'w1', 'f08')": 14,
+      "('alan+cray', 'w1', 'f11')": 18,
+      "('alan+cray', 'w1', 'f14')": 13,
+      "('alan+cray', 'w4', 'f01')": 18,
+      "('alan+cray', 'w4', 'f08')": 12,
+      "('alan+cray', 'w4', 'f11')": 18,
+      "('alan+cray', 'w4', 'f14')": 17,
+      "('control', 'w1', 'f04')": 18,
+      "('control', 'w1', 'f07')": 18,
+      "('control', 'w1', 'f10')": 20,
+      "('control', 'w1', 'f13')": 17
+    },
+    "source_grain_status": "HETEROGENEOUS_TAXA_NOT_COMBINED",
+    "unbalanced_taxon_rows_preclude_straight_sum": true
+  },
+  "original_primary": {
+    "grain": {
+      "n_rows": 192,
+      "n_real_flumes": 16,
+      "physical_unit": "flume",
+      "n_flume_week_means": 32,
+      "subsamples_per_flume_week": 6,
+      "subsample_design": "3 trap positions x 2 equally-weighted days; 4 day effort, 1 area per original row",
+      "treatments": {
+        "alan+cray": 4,
+        "cray": 4,
+        "alan": 4,
+        "control": 4
+      },
+      "weeks": {
+        "Week 1": 96,
+        "Week 4": 96
+      },
+      "taxon_labels": [
+        "chiro"
+      ],
+      "source_subsamples_not_independent_lamps": true
+    },
+    "unit_counts": [
+      {
+        "week": "Week 1",
+        "summary": {
+          "control": {
+            "n_flumes": 4,
+            "arithmetic_mean": 94.48958333333334,
+            "sample_sd": 10.649855187243595,
+            "min": 84.25,
+            "max": 104.41666666666667
+          },
+          "alan": {
+            "n_flumes": 4,
+            "arithmetic_mean": 83.46875,
+            "sample_sd": 12.398914182970485,
+            "min": 70.5,
+            "max": 95.45833333333333
+          },
+          "cray": {
+            "n_flumes": 4,
+            "arithmetic_mean": 62.48958333333333,
+            "sample_sd": 24.276912686405023,
+            "min": 37.583333333333336,
+            "max": 92.70833333333333
+          },
+          "alan+cray": {
+            "n_flumes": 4,
+            "arithmetic_mean": 52.53125,
+            "sample_sd": 16.287967575221945,
+            "min": 28.166666666666668,
+            "max": 62.166666666666664
+          }
+        }
+      },
+      {
+        "week": "Week 4",
+        "summary": {
+          "control": {
+            "n_flumes": 4,
+            "arithmetic_mean": 33.19791666666667,
+            "sample_sd": 17.91645267960068,
+            "min": 8.5,
+            "max": 50.25
+          },
+          "alan": {
+            "n_flumes": 4,
+            "arithmetic_mean": 22.78125,
+            "sample_sd": 13.108537956656766,
+            "min": 11.208333333333334,
+            "max": 39.583333333333336
+          },
+          "cray": {
+            "n_flumes": 4,
+            "arithmetic_mean": 12.885416666666666,
+            "sample_sd": 8.674167093647581,
+            "min": 3.375,
+            "max": 23.291666666666668
+          },
+          "alan+cray": {
+            "n_flumes": 4,
+            "arithmetic_mean": 18.270833333333332,
+            "sample_sd": 13.146719242908166,
+            "min": 5.958333333333333,
+            "max": 30.333333333333332
+          }
+        }
+      }
+    ],
+    "contrasts": [
+      {
+        "week": "Week 1",
+        "contrast": "ALAN_no_cray",
+        "treatment": "alan",
+        "reference": "control",
+        "n_treatment_flumes": 4,
+        "n_reference_flumes": 4,
+        "lnRR": -0.12401728883687363,
+        "RR": 0.8833645684048065,
+        "delta_SE": 0.09323247510446496,
+        "normal95_descriptive": [
+          0.735832373167491,
+          1.0604765285794102
+        ],
+        "exact_4of8_label_permutation_two_sided_p": 0.22857142857142856,
+        "permutation_allocations": 70,
+        "adopted_into_main_meta": false
+      },
+      {
+        "week": "Week 1",
+        "contrast": "ALAN_with_cray",
+        "treatment": "alan+cray",
+        "reference": "cray",
+        "n_treatment_flumes": 4,
+        "n_reference_flumes": 4,
+        "lnRR": -0.17359164557636775,
+        "RR": 0.8406401066844474,
+        "delta_SE": 0.24852935222466158,
+        "normal95_descriptive": [
+          0.5164849259018581,
+          1.3682408789230005
+        ],
+        "exact_4of8_label_permutation_two_sided_p": 0.6,
+        "permutation_allocations": 70,
+        "adopted_into_main_meta": false
+      },
+      {
+        "week": "Week 1",
+        "contrast": "Cray_without_ALAN",
+        "treatment": "cray",
+        "reference": "control",
+        "n_treatment_flumes": 4,
+        "n_reference_flumes": 4,
+        "lnRR": -0.41348972296185127,
+        "RR": 0.6613383309447689,
+        "delta_SE": 0.20225727794682763,
+        "normal95_descriptive": [
+          0.4448963311172505,
+          0.9830793319388964
+        ],
+        "exact_4of8_label_permutation_two_sided_p": 0.08571428571428572,
+        "permutation_allocations": 70,
+        "adopted_into_main_meta": false
+      },
+      {
+        "week": "Week 1",
+        "contrast": "Cray_with_ALAN",
+        "treatment": "alan+cray",
+        "reference": "alan",
+        "n_treatment_flumes": 4,
+        "n_reference_flumes": 4,
+        "lnRR": -0.46306407970134533,
+        "RR": 0.6293523025084238,
+        "delta_SE": 0.17190441195284747,
+        "normal95_descriptive": [
+          0.44933043471539735,
+          0.8814989817538879
+        ],
+        "exact_4of8_label_permutation_two_sided_p": 0.02857142857142857,
+        "permutation_allocations": 70,
+        "adopted_into_main_meta": false
+      },
+      {
+        "week": "Week 1",
+        "contrast": "factorial_ALAN_x_Cray_interaction",
+        "n_independent_flumes": 16,
+        "lnRR": -0.04957435673949412,
+        "RR": 0.9516343950748313,
+        "delta_SE": 0.2654413934022246,
+        "normal95_descriptive": [
+          0.5656162197129517,
+          1.6010998099542355
+        ],
+        "exact_permutation_p": null,
+        "adopted_into_main_meta": false
+      },
+      {
+        "week": "Week 4",
+        "contrast": "ALAN_no_cray",
+        "treatment": "alan",
+        "reference": "control",
+        "n_treatment_flumes": 4,
+        "n_reference_flumes": 4,
+        "lnRR": -0.3765492937405688,
+        "RR": 0.6862252902416064,
+        "delta_SE": 0.39444791793805534,
+        "normal95_descriptive": [
+          0.31674215954682666,
+          1.4867144608754208
+        ],
+        "exact_4of8_label_permutation_two_sided_p": 0.37142857142857144,
+        "permutation_allocations": 70,
+        "adopted_into_main_meta": false
+      },
+      {
+        "week": "Week 4",
+        "contrast": "ALAN_with_cray",
+        "treatment": "alan+cray",
+        "reference": "cray",
+        "n_treatment_flumes": 4,
+        "n_reference_flumes": 4,
+        "lnRR": 0.3492098005396404,
+        "RR": 1.417946645109135,
+        "delta_SE": 0.492675080078345,
+        "normal95_descriptive": [
+          0.5398665193253718,
+          3.7242033287945024
+        ],
+        "exact_4of8_label_permutation_two_sided_p": 0.5428571428571428,
+        "permutation_allocations": 70,
+        "adopted_into_main_meta": false
+      },
+      {
+        "week": "Week 4",
+        "contrast": "Cray_without_ALAN",
+        "treatment": "cray",
+        "reference": "control",
+        "n_treatment_flumes": 4,
+        "n_reference_flumes": 4,
+        "lnRR": -0.9463909420248486,
+        "RR": 0.38813931597113266,
+        "delta_SE": 0.43140132458017805,
+        "normal95_descriptive": [
+          0.16663699114656602,
+          0.9040737447667444
+        ],
+        "exact_4of8_label_permutation_two_sided_p": 0.11428571428571428,
+        "permutation_allocations": 70,
+        "adopted_into_main_meta": false
+      },
+      {
+        "week": "Week 4",
+        "contrast": "Cray_with_ALAN",
+        "treatment": "alan+cray",
+        "reference": "alan",
+        "n_treatment_flumes": 4,
+        "n_reference_flumes": 4,
+        "lnRR": -0.2206318477446395,
+        "RR": 0.8020118884316415,
+        "delta_SE": 0.4606634255574653,
+        "normal95_descriptive": [
+          0.3251293545505492,
+          1.9783604900113168
+        ],
+        "exact_4of8_label_permutation_two_sided_p": 0.6,
+        "permutation_allocations": 70,
+        "adopted_into_main_meta": false
+      },
+      {
+        "week": "Week 4",
+        "contrast": "factorial_ALAN_x_Cray_interaction",
+        "n_independent_flumes": 16,
+        "lnRR": 0.7257590942802092,
+        "RR": 2.0662990205591285,
+        "delta_SE": 0.6311243098596904,
+        "normal95_descriptive": [
+          0.5997486950758948,
+          7.118967790039662
+        ],
+        "exact_permutation_p": null,
+        "adopted_into_main_meta": false
+      }
+    ],
+    "aggregated_flume_week_means": [
+      {
+        "flume": "f01",
+        "treatment": "alan+cray",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 60.583333333333336
+      },
+      {
+        "flume": "f01",
+        "treatment": "alan+cray",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 30.333333333333332
+      },
+      {
+        "flume": "f02",
+        "treatment": "cray",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 92.70833333333333
+      },
+      {
+        "flume": "f02",
+        "treatment": "cray",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 23.291666666666668
+      },
+      {
+        "flume": "f03",
+        "treatment": "alan",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 92.58333333333333
+      },
+      {
+        "flume": "f03",
+        "treatment": "alan",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 39.583333333333336
+      },
+      {
+        "flume": "f04",
+        "treatment": "control",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 86.375
+      },
+      {
+        "flume": "f04",
+        "treatment": "control",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 50.25
+      },
+      {
+        "flume": "f05",
+        "treatment": "cray",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 37.583333333333336
+      },
+      {
+        "flume": "f05",
+        "treatment": "cray",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 16.083333333333332
+      },
+      {
+        "flume": "f06",
+        "treatment": "alan",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 75.33333333333333
+      },
+      {
+        "flume": "f06",
+        "treatment": "alan",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 26.708333333333332
+      },
+      {
+        "flume": "f07",
+        "treatment": "control",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 84.25
+      },
+      {
+        "flume": "f07",
+        "treatment": "control",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 32.958333333333336
+      },
+      {
+        "flume": "f08",
+        "treatment": "alan+cray",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 28.166666666666668
+      },
+      {
+        "flume": "f08",
+        "treatment": "alan+cray",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 5.958333333333333
+      },
+      {
+        "flume": "f09",
+        "treatment": "alan",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 95.45833333333333
+      },
+      {
+        "flume": "f09",
+        "treatment": "alan",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 13.625
+      },
+      {
+        "flume": "f10",
+        "treatment": "control",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 102.91666666666667
+      },
+      {
+        "flume": "f10",
+        "treatment": "control",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 41.083333333333336
+      },
+      {
+        "flume": "f11",
+        "treatment": "alan+cray",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 62.166666666666664
+      },
+      {
+        "flume": "f11",
+        "treatment": "alan+cray",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 28.916666666666668
+      },
+      {
+        "flume": "f12",
+        "treatment": "cray",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 70.33333333333333
+      },
+      {
+        "flume": "f12",
+        "treatment": "cray",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 8.791666666666666
+      },
+      {
+        "flume": "f13",
+        "treatment": "control",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 104.41666666666667
+      },
+      {
+        "flume": "f13",
+        "treatment": "control",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 8.5
+      },
+      {
+        "flume": "f14",
+        "treatment": "alan+cray",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 59.208333333333336
+      },
+      {
+        "flume": "f14",
+        "treatment": "alan+cray",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 7.875
+      },
+      {
+        "flume": "f15",
+        "treatment": "cray",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 49.333333333333336
+      },
+      {
+        "flume": "f15",
+        "treatment": "cray",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 3.375
+      },
+      {
+        "flume": "f16",
+        "treatment": "alan",
+        "week": "Week 1",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 70.5
+      },
+      {
+        "flume": "f16",
+        "treatment": "alan",
+        "week": "Week 4",
+        "n_trap_day_subsamples": 6,
+        "mean_abund_rate": 11.208333333333334
+      }
+    ],
+    "temporal_within_flume_change": [
+      {
+        "contrast": "ALAN_no_cray",
+        "estimand": "ratio of geometric flume-specific Week4/Week1 changes",
+        "n_light_flumes": 4,
+        "n_reference_flumes": 4,
+        "ln_ratio_of_changes": -0.19137858954110376,
+        "ratio_of_geometric_changes": 0.8258198821910928,
+        "delta_SE": 0.5175997202742998,
+        "normal95_descriptive": [
+          0.299430170775997,
+          2.277587712870447
+        ],
+        "exact_4of8_two_sided_label_permutation_p": 0.8,
+        "allocations": 70,
+        "adopted_into_main_meta": false
+      },
+      {
+        "contrast": "ALAN_with_cray",
+        "estimand": "ratio of geometric flume-specific Week4/Week1 changes",
+        "n_light_flumes": 4,
+        "n_reference_flumes": 4,
+        "ln_ratio_of_changes": 0.49097377138004683,
+        "ratio_of_geometric_changes": 1.633906496930998,
+        "delta_SE": 0.5125712797330318,
+        "normal95_descriptive": [
+          0.5982982300454192,
+          4.46207310442931
+        ],
+        "exact_4of8_two_sided_label_permutation_p": 0.4,
+        "allocations": 70,
+        "adopted_into_main_meta": false
+      }
+    ],
+    "warning": "Two weeks from same 16 flumes are dependent; each block contains 6 repeated trap-day samples; the source sample rows and linked papers are not independently randomized programmes. Author GLMM used Gamma AR(1)."
+  },
+  "number_new_independent_programmes": 0,
+  "source_independence_note": "Already entered under Ogbeide2026 in ALAN studies.csv; distinct response study, no addition to existing 108 effect catalogue until adjudication",
+  "inference": "Exploratory source-only independent 4-flume-per-arm arithmetic mean lnRR; do not interpret as main wet-plant mechanism or causal spider-mediated effect."
+}

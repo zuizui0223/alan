@@ -15,6 +15,9 @@ class ProgrammeIdentityTests(unittest.TestCase):
   w=[r for r in self.rows if r['programme_id'].startswith('Westhavelland')]
   l=[r for r in self.rows if r['programme_id'].startswith('Landau')]
   self.assertNotEqual({r['programme_id'] for r in w},{r['programme_id'] for r in l})
+ def test_gurbe_original_field_year_2017(self):
+  rows=[r for r in self.rows if r['programme_id']=='SwissGurbe2021_Carannante']
+  self.assertEqual({r['experiment_year'] for r in rows},{'2017'})
  def test_no_new_approved_meta(self):
   self.assertTrue(all(r['meta_status']!='newly_approved_meta_effect' for r in self.rows))
  def test_response_types_not_pooled(self):

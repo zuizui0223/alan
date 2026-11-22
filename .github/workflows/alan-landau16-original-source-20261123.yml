@@ -8,6 +8,8 @@ on:
       - 'scripts/analysis/alan_landau16_original_rds_20261123.py'
       - 'scripts/analysis/alan_landau16_rds_to_csv_20261123.R'
       - 'tests/test_alan_landau16_original_rds_20261123.py'
+      - 'tests/test_alan_landau16_frozen_20261123.py'
+      - 'database/alan_experiments/arthropod_expansion_20261122/landau2022_source/**'
       - 'tests/test_alan_physical_programme_crosscheck_20261123.py'
       - 'database/alan_experiments/arthropod_expansion_20261122/cross_programme/**'
       - '.github/workflows/alan-landau16-original-source-20261123.yml'
@@ -37,6 +39,8 @@ jobs:
         run: |
           Rscript --version
           python scripts/analysis/alan_landau16_original_rds_20261123.py --output results/alan_landau16_original_rds_20261123.json
+      - name: Independently recompute all 8 arm ratios and two temporal contrasts from 32 true flume means
+        run: python -m unittest discover -s tests -p 'test_alan_landau16_frozen_20261123.py' -v
       - uses: actions/upload-artifact@v4
         with:
           name: alan-landau16-source-reanalysis-20261123
