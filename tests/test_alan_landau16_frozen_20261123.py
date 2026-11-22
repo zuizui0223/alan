@@ -93,6 +93,16 @@ class LandauFrozenSourceTests(unittest.TestCase):
     aa=set(ids);a=[v for k,v in enumerate(allvals) if k in aa];b=[v for k,v in enumerate(allvals) if k not in aa]
     if abs(statistics.mean(a)-statistics.mean(b))+1e-12>=obs:nn+=1
    self.assertAlmostEqual(nn/70,r['exact_4of8_two_sided_label_permutation_p'],places=12)
+ def test_live_source_replay_matches_frozen_when_available(self):
+  # GitHub Actions writes this outside the committed frozen result directory.
+  # Unlike a self-referential output check, this directly compares a fresh
+  # network-authenticated author-RDS parse against the old frozen values.
+  fresh=ROOT/'results/alan_landau16_original_rds_20261123.json'
+  if not fresh.exists():self.skipTest('network replay generated only in CI')
+  new=json.loads(fresh.read_text(encoding='utf-8'))
+  self.assertEqual(new['original_source_receipts'],self.doc['original_source_receipts'])
+  self.assertEqual(new['original_primary'],self.doc['original_primary'])
+  self.assertEqual(new['other_emergence_grain'],self.doc['other_emergence_grain'])
  def test_effect_csv_matches_source_output(self):
   self.assertEqual(len(self.effects),10)
   self.assertEqual({r['effect_status'] for r in self.effects},{'exploratory_not_canonical'})
