@@ -57,37 +57,63 @@ def as_records(path):
 
 
 def source_grain(rows, *, primary=True):
- if not rows:raise ValueError("original RDS has no records")
- expected={'treat','week','flume','abund_rate'}
- if not expected<=set(rows[0]):raise ValueError("original expected column mismatch " + str(sorted(rows[0].keys())))
- bykey={}; treatments=collections.Counter(); weeks=collections.Counter(); unique_flumes={}
- for r in rows:
-  treat=r['treat'].strip().lower(); week=r['week'].strip(); flume=str(r['flume']).strip()
-  if treat not in TREATMENTS:raise ValueError("Unexpected original treatment: "+repr(treat))
-  if not week or not flume:raise ValueError("Missing original week/flume")
-  value=float(r['abund_rate'])
-  if not math.isfinite(value) or value<0:raise ValueError("Unusable emergence flux")
-  taxa=r.get('taxa','').strip()
-  key=(treat,week,flume) if primary else (treat,week,flume,taxa)
-  if key in bykey: raise ValueError("duplicate original independent flume-week/stratum "+str(key))
-  bykey[key]=value
-  treatments[(treat,flume)]+=1;weeks[week]+=1
-  if flume in unique_flumes and unique_flumes[flume]!=treat:raise ValueError("flume changes lighting assignment")
-  unique_flumes[flume]=treat
- # Real independent installation requirement. Handle other-emergence in separate exploratory tabulation.
- if primary:
-  if len(unique_flumes)!=16 or set(unique_flumes.values())!=set(TREATMENTS):
-   raise ValueError("16 original flumes and all four treatments not confirmed")
-  arm_flumes={a:{f for f,v in unique_flumes.items() if v==a} for a in TREATMENTS}
-  if [len(arm_flumes[t]) for t in TREATMENTS]!=[4,4,4,4]:raise ValueError("4 flumes per arm not confirmed")
-  weeknames=sorted(set(weeks))
-  if len(weeknames)<2:raise ValueError("Source weeks incomplete")
-  for week in weeknames:
-   for arm in TREATMENTS:
-    got={f for a,w,f in bykey if a==arm and w==week}
-    if got!=arm_flumes[arm]:raise ValueError("missing original flume-week record for "+arm+" / "+week)
- return bykey,{"n_rows":len(rows),"n_real_flumes":len(unique_flumes),"treatments":dict(collections.Counter(unique_flumes.values())),"weeks":dict(weeks),"taxon_labels":sorted({r.get('taxa','').strip() for r in rows})}
+    """Original Chironomidae RDS: 3 traps x 2 days per real flume-week.
 
+    We aggregate equal-area, equal-duration sub-samples to one mean emergence
+    flux per flume-week. Independent randomised lamps/flumes remain n=16.
+    Do not aggregate other emergence taxa with missing taxon-specific rows.
+    """
+    if not rows: raise ValueError('original RDS has no records')
+    expected={'treat','week','flume','abund_rate'}
+    if not expected<=set(rows[0]):raise ValueError('original expected column mismatch '+str(sorted(rows[0])))
+    if not primary:
+        raise ValueError('Other-emergence taxa lack a balanced per-taxon collection frame; SOURCE_STOP for effect fitting')
+    needed={'treat','week','flume','trap','day','Family','abundance','trap_day','area','abund_rate'}
+    if not needed<=set(rows[0]):raise ValueError('original six-subsample schema changed; stop')
+    values=collections.defaultdict(dict);unique_flumes={};weeks=collections.Counter();families=set()
+    for r in rows:
+        trt=r['treat'].strip().lower();week=r['week'].strip();flume=str(r['flume']).strip()
+        if trt not in TREATMENTS:raise ValueError('Unexpected original treatment '+repr(trt))
+        if week not in ('Week 1','Week 4'):raise ValueError('Unexpected original sample week '+repr(week))
+        if not flume:raise ValueError('missing flume')
+        if flume in unique_flumes and unique_flumes[flume]!=trt:raise ValueError('flume changes lighting assignment')
+        unique_flumes[flume]=trt
+        trap=r['trap'].strip();day=r['day'].strip();family=r['Family'].strip()
+        families.add(family)
+        if (trap,day) not in set(itertools.product(('up','mid','down'),('d1','d2'))):
+            raise ValueError('original trap-day labels outside frozen six-subsample design')
+        duration=float(r['trap_day']);area=float(r['area']);abundance=float(r['abundance']);rate=float(r['abund_rate'])
+        if not all(map(math.isfinite,[duration,area,abundance,rate])) or duration<=0 or area<=0 or abundance<0 or rate<0:
+            raise ValueError('invalid original emergence effort or count')
+        if (duration,area)!=(4.0,1.0):raise ValueError('original effort or area unequal; require fresh weighted estimator')
+        if not math.isclose(abundance/(duration*area),rate,rel_tol=1e-8,abs_tol=1e-8):
+            raise ValueError('original rate does not equal count/effort')
+        key=(trt,week,flume)
+        if (trap,day) in values[key]:raise ValueError('duplicate original independent flume-week/stratum trap-day')
+        values[key][(trap,day)]=rate
+        weeks[week]+=1
+    if families != {'chiro'}:raise ValueError('unexpected family not Chironomidae')
+    if len(unique_flumes)!=16 or set(unique_flumes.values())!=set(TREATMENTS):
+        raise ValueError('16 original flumes and all four treatments not confirmed')
+    arm_flumes={a:{f for f,v in unique_flumes.items() if v==a} for a in TREATMENTS}
+    if [len(arm_flumes[t]) for t in TREATMENTS]!=[4,4,4,4]:raise ValueError('4 flumes per arm not confirmed')
+    expected_grid=set(itertools.product(('up','mid','down'),('d1','d2')))
+    if len(values)!=32 or set(weeks)!={'Week 1','Week 4'}:
+        raise ValueError('original 16 flumes x 2 repeated weeks incomplete')
+    for arm in TREATMENTS:
+        for week in ('Week 1','Week 4'):
+            for flume in arm_flumes[arm]:
+                key=(arm,week,flume)
+                if set(values.get(key,{}))!=expected_grid:raise ValueError('unequal number of source traps/days; no pseudo replication')
+    bykey={k:statistics.mean(v.values()) for k,v in values.items()}
+    grain={'n_rows':len(rows),'n_real_flumes':len(unique_flumes),
+           'physical_unit':'flume','n_flume_week_means':len(bykey),
+           'subsamples_per_flume_week':len(expected_grid),
+           'subsample_design':'3 trap positions x 2 equally-weighted days; 4 day effort, 1 area per original row',
+           'treatments':dict(collections.Counter(unique_flumes.values())),
+           'weeks':dict(weeks),'taxon_labels':sorted(families),
+           'source_subsamples_not_independent_lamps':True}
+    return bykey,grain
 
 def log_rr(x,y):
  """ln ratio of arithmetic arm means; non-zero means only, independent physical flumes."""
@@ -153,10 +179,9 @@ def primary_fullrun(output):
    else:other=as_records(csvpath)
   res=primary_results(rows)
   # Secondary source contains emergence families, but not equivalent to main and never pooled.
-  try:
-   _,og=source_grain(other,primary=False)
-  except ValueError as err:
-   og={'source_rows':len(other),'source_grain_status':'SOURCE_STOP','reason':str(err)}
+  og=original_grain_diagnostic(other)
+  og['source_grain_status']='HETEROGENEOUS_TAXA_NOT_COMBINED'
+  og['unbalanced_taxon_rows_preclude_straight_sum']=True
   result={"study":"Ogbeide et al. 2026 / Manfrin et al. 2025 shared physical 2022 Landau RSM programme", "programme_id":"Landau_RSM_2022_16flumes_ALAN_crayfish","doi":["10.1016/j.gecco.2025.e03577","10.1111/1365-2435.70335","10.1186/s12302-026-01345-4"],"authentic_source_doi":"10.5281/zenodo.14516568","original_source_receipts":receipts,"source_reference_code":"https://github.com/colinog/ALAN_crayfish_SIA/blob/5e749c03161ad9ae7d57f12ddb86d9aaad283077/code/other_code_output.R", "emergence_dataset":"Chironomidae emergence flux (author emergence.rds, not air-eclector capture)","other_emergence_grain":og,"original_primary":res,"number_new_independent_programmes":0,"source_independence_note":"Already entered under Ogbeide2026 in ALAN studies.csv; distinct response study, no addition to existing 108 effect catalogue until adjudication", "inference":"Exploratory source-only independent 4-flume-per-arm arithmetic mean lnRR; do not interpret as main wet-plant mechanism or causal spider-mediated effect."}
   pathlib.Path(output).parent.mkdir(parents=True,exist_ok=True)
   pathlib.Path(output).write_text(json.dumps(result,indent=2,ensure_ascii=False,allow_nan=False)+'\n',encoding='utf-8')

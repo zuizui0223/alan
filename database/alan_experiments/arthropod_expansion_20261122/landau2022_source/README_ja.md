@@ -14,8 +14,8 @@
 
 原著が公開する `data/other data_output/emergence.rds` （Git blob `53dfb2f8940f1a6fb54ef5daf4e39699e16fb6ad`、原Git commit `5e749c03161ad9ae7d57f12ddb86d9aaad283077`）と `other_emergence.rds`（Git blob `472ec0fb0334f5db042a3a774b57ce5181fdeb36`）だけを公式の原著リポジトリから取得し、Git blob SHAを照合。原著RDSを**リポ内に再配布せず**、base Rを使って一時変換し、1水路1週という物理的階層に整合する場合のみ解析。
 
-- 原著の4処理 `control/alan/cray/alan+cray` は1週間/4週間の**同じ16水路**に反復：物理割付単位 `flume`、各処理4水路、n=16の1実験。週を独立研究に数えない。
-- `emergence.rds` の原著変数`abund_rate`は、著者のChironomidae羽化率の指標。羽化トラップと成虫の点灯源への飛翔捕獲・個体群生存・植物結実は別endpoint。
+- 原著の4処理 `control/alan/cray/alan+cray` は1週間/4週間の**同じ16水路**に反復：物理割付単位 `flume`、各処理4水路、n=16の1実験。著者RDSの真正な**192元行=16水路×2週×3トラップ位置（up/mid/down）×2採集日（d1/d2）**。全192行で `trap_day=4`、`area=1`、Chironomidaeの記録であり、1水路×週ごとに同一努力の6羽化率を平均して32水路週を作る。**192行や32水路週を独立研究と数えない**。
+- `emergence.rds` の原著変数`abund_rate`は、著者のChironomidae羽化率の指標。各行で `abundance/(trap_day*area)` と一致する場合だけ集約する。`other_emergence.rds`は529元行・6分類群があるが、分類群の記録密度が不均一なので、この主効果へ自動追加しない。羽化トラップと成虫の点灯源への飛翔捕獲・個体群生存・植物結実は別endpoint。
 - 記述的照明効果は `ln(mean(ALAN)/mean(control))` と `ln(mean(ALAN+cray)/mean(cray))`、ザリガニ効果と2×2交互作用は別。n4の独立フルームごとの原平均・分散からdelta分散。照明対照の2群は4対4の全70再割付について正負の恣意的選別なし両側ラベル置換pを記録。**原著GLMM（Gamma/AR1）ではないので検定方法は別**。
 - ゼロ平均、任意の固定n補完、割付同定不能、元RDSの未知列・処理ラベルがあればSOURCE STOP。2週のpを2独立実験として統合しない。
 - 流路全体の湿潤性は共通して高く、距離と明暗が交差する実験ではないため、植物湿潤性×ALANのメタ回帰や直接媒介量は**推定できない**。

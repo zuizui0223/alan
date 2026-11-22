@@ -9,8 +9,20 @@ class LandauOriginalSourceTests(unittest.TestCase):
   for k,t in enumerate(a.TREATMENTS):
    for f in range(4):
     for w,v in [('Week 1',1.0),('Week 4',2.0)]:
-     d.append({'treat':t,'week':w,'flume':str(k*4+f+1),'abund_rate':str((k+1)*v)})
+     for trap in ('up','mid','down'):
+      for day in ('d1','d2'):
+       rate=(k+1)*v
+       d.append({'treat':t,'week':w,'flume':str(k*4+f+1),'trap':trap,'day':day,'Family':'chiro','area':'1','trap_day':'4','abundance':str(4*rate),'abund_rate':str(rate)})
   return d
+ def test_unequal_source_effort_fails_closed(self):
+  d=self.mock();d[0]['trap_day']='3'
+  with self.assertRaisesRegex(ValueError,'effort'):a.primary_results(d)
+ def test_rate_and_count_mismatch_fails_closed(self):
+  d=self.mock();d[0]['abundance']='1'
+  with self.assertRaisesRegex(ValueError,'rate'):a.primary_results(d)
+ def test_missing_one_trap_day_fails_closed(self):
+  d=self.mock();d.pop()
+  with self.assertRaisesRegex(ValueError,'unequal'):a.primary_results(d)
  def test_pinned_original_paths(self):
   self.assertEqual(len(a.SOURCES),2)
   self.assertTrue(a.source_url(a.SOURCES['emergence']['path']).startswith('https://raw.githubusercontent.com/colinog/'))
@@ -29,7 +41,9 @@ class LandauOriginalSourceTests(unittest.TestCase):
   dat=self.mock();dat[0]['flume']='100'
   with self.assertRaisesRegex(ValueError,'16 original flumes'):a.primary_results(dat)
  def test_paired_weeks_not_independent_k(self):
-  r=a.primary_results(self.mock());self.assertEqual(r['grain']['weeks'],{'Week 1':16,'Week 4':16})
+  r=a.primary_results(self.mock());self.assertEqual(r['grain']['weeks'],{'Week 1':96,'Week 4':96})
+  self.assertEqual(r['grain']['n_flume_week_means'],32)
+  self.assertEqual(r['grain']['subsamples_per_flume_week'],6)
   self.assertEqual(r['contrasts'][0]['n_treatment_flumes'],4)
  def test_single_epoch_arithmetic_rr(self):
   r=a.primary_results(self.mock());first=r['contrasts'][0]
@@ -41,7 +55,7 @@ class LandauOriginalSourceTests(unittest.TestCase):
  def test_zero_arm_mean_stop(self):
   d=self.mock()
   for r in d:
-   if r['treat']=='control':r['abund_rate']='0'
+   if r['treat']=='control':r['abund_rate']='0';r['abundance']='0'
   with self.assertRaisesRegex(ValueError,'zero arm mean'):a.primary_results(d)
  def test_source_alias_is_one_programme(self):
   self.assertEqual(a.SOURCE_COMMIT,'5e749c03161ad9ae7d57f12ddb86d9aaad283077')
