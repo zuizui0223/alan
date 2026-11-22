@@ -1,0 +1,98 @@
+{
+  "study_doi": "10.1098/rstb.2022.0361",
+  "programme_id": "SevenPonds2022",
+  "year_of_original_field": 2022,
+  "true_independent_lighting_units": 30,
+  "one_pond_one_night": true,
+  "original_taxa_rows": 193,
+  "families": 35,
+  "original_invertebrates": 4699.0,
+  "top_two_families": [
+    {
+      "name": "caenidae",
+      "count": 2860.0
+    },
+    {
+      "name": "leptoceridae",
+      "count": 686.0
+    }
+  ],
+  "top_two_fraction": 0.7546286443924239,
+  "F4_20_profiles": {
+    "full_raw": {
+      "F": 9.680484236634568,
+      "p_nominal": 0.00015950472855398655,
+      "df_num": 4,
+      "df_den": 20
+    },
+    "full_log1p": {
+      "F": 6.757759234236173,
+      "p_nominal": 0.0013049582069654606,
+      "df_num": 4,
+      "df_den": 20
+    },
+    "top2_excluded_raw": {
+      "F": 4.2930071984721625,
+      "p_nominal": 0.011424665921978225,
+      "df_num": 4,
+      "df_den": 20
+    },
+    "top2_excluded_log1p": {
+      "F": 2.7605119797243827,
+      "p_nominal": 0.05616779227680952,
+      "df_num": 4,
+      "df_den": 20
+    }
+  },
+  "violet_full": {
+    "violet_littoral_RR": 104.16666666666667,
+    "violet_riparian_RR": 9.690909090909091,
+    "ratio_of_RRs": 10.748905565978736,
+    "cell_means": {
+      "littoral_purple": 833.3333333333334,
+      "littoral_dark": 8.0,
+      "riparian_purple": 177.66666666666666,
+      "riparian_dark": 18.333333333333332
+    }
+  },
+  "violet_excluding_top_two": {
+    "violet_littoral_RR": 18.095238095238095,
+    "violet_riparian_RR": 3.4509803921568625,
+    "ratio_of_RRs": 5.2435064935064934,
+    "cell_means": {
+      "littoral_purple": 126.66666666666667,
+      "littoral_dark": 7.0,
+      "riparian_purple": 58.666666666666664,
+      "riparian_dark": 17.0
+    }
+  },
+  "pairs_p_at_least_0_05": 2,
+  "pairs_total": 595,
+  "pairs_nonsignificant": [
+    [
+      "cicadellidae",
+      "leptoceridae"
+    ],
+    [
+      "caenidae",
+      "leptoceridae"
+    ]
+  ],
+  "source_hashes": {
+    "trap_units.csv": "5e8b5644629e15c7f7bf17e461f038eff2f5ede76bad155e814178aa76a70fa5",
+    "taxon_counts.csv": "f56edf6ff8dee89aa81d1db4599bfa3a8afd3b65ef6392548febf9c340713979"
+  },
+  "null_caveat": "All F p-values are original ANOVA-model/normality tests: not randomization-exact, not family-wise adjusted; pair removal post hoc. Species-trait moisture and independent habitat replication unavailable.",
+  "carannante_design_idealised_small_n": {
+    "study": "10.1002/2688-8319.12053",
+    "independent_lit_dark_pairs": 4,
+    "distance_classes": [
+      3,
+      40
+    ],
+    "spatial_blocks": 2,
+    "two_sided_min_p_if_two_blocks_exchangeable": 0.5,
+    "two_sided_min_p_if_four_pairs_fully_exchangeable": 0.3333333333333333,
+    "note": "Hypothetical randomization-support bound, not an observed exact p or proof that distance was randomized. Cannot confirm a habitat moderator with only 2 blocks."
+  }
+}
