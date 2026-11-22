@@ -52,6 +52,13 @@ class LandauOriginalSourceTests(unittest.TestCase):
  def test_factorial_interaction(self):
   r=a.primary_results(self.mock());first=[x for x in r['contrasts'] if x['contrast']=='factorial_ALAN_x_Cray_interaction'][0]
   self.assertAlmostEqual(first['RR'],(4/3)/(2/1))
+ def test_flume_mean_rows_and_within_flume_temporal_ratio(self):
+  r=a.primary_results(self.mock())
+  self.assertEqual(len(r['aggregated_flume_week_means']),32)
+  self.assertTrue(all(z['n_trap_day_subsamples']==6 for z in r['aggregated_flume_week_means']))
+  for z in r['temporal_within_flume_change']:
+   self.assertAlmostEqual(z['ratio_of_geometric_changes'],1.0)
+   self.assertEqual(z['allocations'],70)
  def test_zero_arm_mean_stop(self):
   d=self.mock()
   for r in d:

@@ -157,8 +157,38 @@ def primary_results(rows):
   dint=a[0]-b[0];se=math.sqrt(a[2]+b[2])
   estimates.append({"week":week,"contrast":"factorial_ALAN_x_Cray_interaction","n_independent_flumes":16,"lnRR":dint,"RR":math.exp(dint),"delta_SE":se,"normal95_descriptive":[math.exp(dint-1.96*se),math.exp(dint+1.96*se)],"exact_permutation_p":None,"adopted_into_main_meta":False})
   full.append({"week":week,"summary":stats})
- # Within-flume time comparison: individual log flux if zero? explicitly separate; do not inflate k.
- return {"grain":grain,"unit_counts":full,"contrasts":estimates,"warning":"Two weeks from same 16 flumes are dependent, 4 arms are same factorial programme; n=4 per arm. Ratios/normal approximations descriptive; original author model used Gamma GLMM with AR(1)."}
+ # Preserve source-aggregated means, not the author's 192 trap-day rows.
+ means_by_flume=[{'flume':f,'treatment':assignment[f],'week':w,
+                   'n_trap_day_subsamples':grain['subsamples_per_flume_week'],
+                   'mean_abund_rate':bykey[(assignment[f],w,f)]}
+                  for f in units for w in periods]
+ # Repeated-week within-flume change: ratio of geometric individual changes,
+ # deliberately separate from ratio of arithmetic group means.
+ t1,t4='Week 1','Week 4'
+ changes={a:[] for a in TREATMENTS}
+ for f in units:
+  arm=assignment[f];y1=bykey[(arm,t1,f)];y4=bykey[(arm,t4,f)]
+  if y1<=0 or y4<=0: raise ValueError('zero flume-week mean; cannot take temporal log change')
+  changes[arm].append(math.log(y4/y1))
+ temporal=[]
+ for name,light,ref in [('ALAN_no_cray','alan','control'),('ALAN_with_cray','alan+cray','cray')]:
+  xa,xb=changes[light],changes[ref]
+  d=statistics.mean(xa)-statistics.mean(xb)
+  v=statistics.variance(xa)/len(xa)+statistics.variance(xb)/len(xb)
+  vals=xa+xb;observed=abs(d);count=0;perm=0
+  for aa in itertools.combinations(range(len(vals)),len(xa)):
+   aa=set(aa);left=[val for i,val in enumerate(vals) if i in aa];right=[val for i,val in enumerate(vals) if i not in aa]
+   perm+=1
+   if abs(statistics.mean(left)-statistics.mean(right))+1e-12>=observed:count+=1
+  temporal.append({'contrast':name,'estimand':'ratio of geometric flume-specific Week4/Week1 changes',
+   'n_light_flumes':4,'n_reference_flumes':4,'ln_ratio_of_changes':d,
+   'ratio_of_geometric_changes':math.exp(d),'delta_SE':math.sqrt(v),
+   'normal95_descriptive':[math.exp(d-1.96*math.sqrt(v)),math.exp(d+1.96*math.sqrt(v))],
+   'exact_4of8_two_sided_label_permutation_p':count/perm,'allocations':perm,
+   'adopted_into_main_meta':False})
+ return {'grain':grain,'unit_counts':full,'contrasts':estimates,
+  'aggregated_flume_week_means':means_by_flume,'temporal_within_flume_change':temporal,
+  'warning':'Two weeks from same 16 flumes are dependent; each block contains 6 repeated trap-day samples; the source sample rows and linked papers are not independently randomized programmes. Author GLMM used Gamma AR(1).'}
 
 
 def primary_fullrun(output):
