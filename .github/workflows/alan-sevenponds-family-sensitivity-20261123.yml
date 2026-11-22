@@ -1,0 +1,44 @@
+name: ALAN SevenPonds family and placement source sensitivity
+
+on:
+  push:
+    branches:
+      - analysis/alan-arthropod-search-expansion-20261122
+    paths:
+      - 'scripts/analysis/alan_sevenponds_family_sensitivity_20261123.py'
+      - 'tests/test_alan_sevenponds_family_sensitivity_20261123.py'
+      - 'database/alan_experiments/parkinson2023_sources/trap_units.csv'
+      - 'database/alan_experiments/parkinson2023_sources/taxon_counts.csv'
+      - 'database/alan_experiments/arthropod_expansion_20261122/sevenponds_family_sensitivity/**'
+      - '.github/workflows/alan-sevenponds-family-sensitivity-20261123.yml'
+  pull_request:
+    paths:
+      - 'scripts/analysis/alan_sevenponds_family_sensitivity_20261123.py'
+      - 'tests/test_alan_sevenponds_family_sensitivity_20261123.py'
+      - 'database/alan_experiments/arthropod_expansion_20261122/sevenponds_family_sensitivity/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-trap-and-family-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify real 30 traps 193 source family rows and sensitivity numbers
+        run: python -m unittest discover -s tests -p 'test_alan_sevenponds_family_sensitivity_20261123.py' -v
+      - name: Regenerate complete 35 and 595 exclusions from real original tables
+        run: python scripts/analysis/alan_sevenponds_family_sensitivity_20261123.py
+      - name: Assert exact frozen outputs
+        run: git diff --exit-code -- database/alan_experiments/arthropod_expansion_20261122/sevenponds_family_sensitivity
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-sevenponds-source-robustness-20261123
+          path: |
+            database/alan_experiments/arthropod_expansion_20261122/sevenponds_family_sensitivity/summary_20261123.json
+            database/alan_experiments/arthropod_expansion_20261122/sevenponds_family_sensitivity/single_family_removal_20261123.csv
+            database/alan_experiments/arthropod_expansion_20261122/sevenponds_family_sensitivity/every_two_family_removal_20261123.csv
