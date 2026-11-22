@@ -1,0 +1,16 @@
+record_id,target_key,comparison_scope,evidence_basis,status,evidence
+PPR:PPR1103978,doi:10.1111/ele.70382,baseline,normalized_title,candidate_not_merged,"Same normalized title; verify authors, journal metadata and version relation."
+PPR:PPR1237309,doi:10.1002/ece3.74296,baseline,normalized_title,candidate_not_merged,"Same normalized title; verify authors, journal metadata and version relation."
+PPR:PPR538629,doi:10.3390/ijms231911358,baseline,normalized_title,candidate_not_merged,"Same normalized title; verify authors, journal metadata and version relation."
+PPR:PPR563110,doi:10.1098/rstb.2022.0357,baseline,normalized_title,candidate_not_merged,"Same normalized title; verify authors, journal metadata and version relation."
+PPR:PPR36293,doi:10.7717/peerj.5599,baseline,normalized_title,candidate_not_merged,"Same normalized title; verify authors, journal metadata and version relation."
+PPR:PPR87971,doi:10.1002/ece3.6904,baseline,normalized_title,candidate_not_merged,"Same normalized title; verify authors, journal metadata and version relation."
+MED:42118802,doi:10.1101/2025.07.11.663976,new_snapshot,normalized_title,candidate_not_merged,Same normalized title; distinguish duplicate index entries from preprint/final versions.
+AGR:IND609413054,doi:10.1111/gcb.70645,new_snapshot,normalized_title,candidate_not_merged,Same normalized title; distinguish duplicate index entries from preprint/final versions.
+MED:38531451,doi:10.1101/2023.11.06.565762,new_snapshot,normalized_title,candidate_not_merged,Same normalized title; distinguish duplicate index entries from preprint/final versions.
+AGR:IND605899795,doi:10.1111/gcb.14008,new_snapshot,normalized_title,candidate_not_merged,Same normalized title; distinguish duplicate index entries from preprint/final versions.
+AGR:IND605878255,doi:10.1111/gcb.13615,new_snapshot,normalized_title,candidate_not_merged,Same normalized title; distinguish duplicate index entries from preprint/final versions.
+PPR:PPR926215,doi:10.1242/jeb.250443,baseline,screening_version_candidate,candidate_not_merged,Aquatic shredder preprint/final candidate identified in abstract screen.
+PPR:PPR913088,doi:10.1371/journal.pone.0329449,baseline,screening_version_candidate,candidate_not_merged,Gammarid preprint/final candidate identified in abstract screen.
+PPR:PPR1196034,AGR:IND609294764,new_snapshot,screening_version_candidate,candidate_not_merged,Keystoneness preprint/final candidate; verify version relation.
+PPR:PPR381597,AGR:IND607762636,new_snapshot,screening_version_candidate,candidate_not_merged,Matthew-effect report/preprint candidate; verify title and authors.

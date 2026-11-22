@@ -1,0 +1,117 @@
+{
+  "retrieval_date_jst": "2026-11-22",
+  "resources": [
+    {
+      "dataset": "566",
+      "filename": "pt_trf_all.csv",
+      "url": "https://www.envidat.ch/dataset/f85c7171-2635-43ba-81f5-6b01b56500d2/resource/3aecf663-0494-4d8d-9a9b-70ee70584c33/download/pt_trf_all.csv",
+      "bytes": 40556,
+      "sha256": "ed8c144a671895842217f852cb61d142b432603fce007ff479ee31605c8a4428",
+      "mime": "binary/octet-stream"
+    },
+    {
+      "dataset": "566",
+      "filename": "alanex_pt_all_clean_control.csv",
+      "url": "https://www.envidat.ch/dataset/f85c7171-2635-43ba-81f5-6b01b56500d2/resource/aa8b6e52-c154-482c-a4db-2a9ff2ceaff2/download/alanex_pt_all_clean_control.csv",
+      "bytes": 82055,
+      "sha256": "cd9947b51982ce69c4c4163b278178d9c60e309d78f822ceb38c679269711880",
+      "mime": "binary/octet-stream"
+    },
+    {
+      "dataset": "566",
+      "filename": "alanex_trf_all_clean_control.csv",
+      "url": "https://www.envidat.ch/dataset/f85c7171-2635-43ba-81f5-6b01b56500d2/resource/388d1352-f4ab-4c80-9439-b47ff1b2d84a/download/alanex_trf_all_clean_control.csv",
+      "bytes": 62191,
+      "sha256": "365674b519402feb714da3715ed71b326bc0bc502bd5d5761608b3c4ded75970",
+      "mime": "binary/octet-stream"
+    },
+    {
+      "dataset": "566",
+      "filename": "alanex_pt_nmds.csv",
+      "url": "https://www.envidat.ch/dataset/f85c7171-2635-43ba-81f5-6b01b56500d2/resource/92df1cc5-e8f7-4ed8-98b6-8f512edd3504/download/alanex_pt_nmds.csv",
+      "bytes": 34799,
+      "sha256": "29a0174f4fc5b2906183b878d8c592d5278452b7842b925c475381e0915a3bb3",
+      "mime": "binary/octet-stream"
+    },
+    {
+      "dataset": "566",
+      "filename": "alanex_trf_nmds.csv",
+      "url": "https://www.envidat.ch/dataset/f85c7171-2635-43ba-81f5-6b01b56500d2/resource/7aa3a91d-3ed9-477c-aa15-68c42f50392b/download/alanex_trf_nmds.csv",
+      "bytes": 50258,
+      "sha256": "6e8f622e6bc7d8cdc4cba6e6f8bc91327efab04c704446e386b952ee5b9ed634",
+      "mime": "binary/octet-stream"
+    },
+    {
+      "dataset": "566",
+      "filename": "alanex_moransi.csv",
+      "url": "https://www.envidat.ch/dataset/f85c7171-2635-43ba-81f5-6b01b56500d2/resource/352f7a23-41a2-4160-b5da-000ca56511bb/download/alanex_moransi.csv",
+      "bytes": 70008,
+      "sha256": "f4ff7d9f47e3f795a1284426767d5f20ad7921c0d428ade0b0c7163009c94ea4",
+      "mime": "binary/octet-stream"
+    },
+    {
+      "dataset": "566",
+      "filename": "permanova_pt_nmds.r",
+      "url": "https://www.envidat.ch/dataset/f85c7171-2635-43ba-81f5-6b01b56500d2/resource/80cd6f62-ec98-4675-a3fd-2dff6894fc7f/download/permanova_pt_nmds.r",
+      "bytes": 866,
+      "sha256": "620c466c98f7b86c80985c42f998ebb7756350585922bf1cf589d3b9fa5d78f4",
+      "mime": "binary/octet-stream"
+    },
+    {
+      "dataset": "566",
+      "filename": "permanova_trf_nmds.r",
+      "url": "https://www.envidat.ch/dataset/f85c7171-2635-43ba-81f5-6b01b56500d2/resource/6733f71f-1d72-4730-8bfe-e1158349c383/download/permanova_trf_nmds.r",
+      "bytes": 880,
+      "sha256": "51586b41b7c953b787ef096e627b13a3d943a5b664177ec0e5adfe72aa3cbbb1",
+      "mime": "binary/octet-stream"
+    },
+    {
+      "dataset": "566",
+      "filename": "pt_nmds.r",
+      "url": "https://www.envidat.ch/dataset/f85c7171-2635-43ba-81f5-6b01b56500d2/resource/1b4bf7ce-faae-43da-a051-dce85fb4a35b/download/pt_nmds.r",
+      "bytes": 5615,
+      "sha256": "803baf8ceaf99724e04203654618722083015234cdeab461cc1ecadd057115e1",
+      "mime": "binary/octet-stream"
+    },
+    {
+      "dataset": "566",
+      "filename": "trf_nmds.r",
+      "url": "https://www.envidat.ch/dataset/f85c7171-2635-43ba-81f5-6b01b56500d2/resource/78ab68b0-cb5a-4228-b165-0a9249833467/download/trf_nmds.r",
+      "bytes": 5646,
+      "sha256": "d19defebbc4dc76f851d0bf1c676b70c29524c4f7fabd25354d31b52eef875d3",
+      "mime": "binary/octet-stream"
+    },
+    {
+      "dataset": "566",
+      "filename": "regression_pttrf_allgroups.r",
+      "url": "https://www.envidat.ch/dataset/f85c7171-2635-43ba-81f5-6b01b56500d2/resource/6cede3a0-0f23-4660-b8b9-d7b4b2a6dd51/download/regression_pttrf_allgroups.r",
+      "bytes": 6609,
+      "sha256": "6fb066d6ffc0bbf17b3099196f33251c87ac49f555f1bfceee98b0e7ae79e5c2",
+      "mime": "binary/octet-stream"
+    },
+    {
+      "dataset": "566",
+      "filename": "regression_pt_taxa.r",
+      "url": "https://www.envidat.ch/dataset/f85c7171-2635-43ba-81f5-6b01b56500d2/resource/a24b15bc-039a-4611-9efc-3bacd43be0b9/download/regression_pt_taxa.r",
+      "bytes": 12359,
+      "sha256": "c1eccab184881123c95a58cf573e4f23752db7f98d14bee1122baa7c3d943f24",
+      "mime": "binary/octet-stream"
+    },
+    {
+      "dataset": "566",
+      "filename": "regression_trf_taxa.r",
+      "url": "https://www.envidat.ch/dataset/f85c7171-2635-43ba-81f5-6b01b56500d2/resource/33788f24-dd2b-4137-b2f6-878ac0f98e88/download/regression_trf_taxa.r",
+      "bytes": 12379,
+      "sha256": "8611f59317d3325e6f26a7162cd9238305e298774d024b78cf80c718ca3e33a6",
+      "mime": "binary/octet-stream"
+    },
+    {
+      "dataset": "496",
+      "filename": "alanex_trf_all_clean.csv",
+      "url": "https://www.envidat.ch/dataset/f225c2df-9428-4c69-a191-aae68a2cdb3a/resource/ee41f9b0-351b-4397-8054-63df03b6473b/download/alanex_trf_all_clean.csv",
+      "bytes": 347565,
+      "sha256": "cc18f639e383dc9487a1a9bd5fa48bd84e07479ce94c294f1ca204552a70f524",
+      "mime": "binary/octet-stream"
+    }
+  ]
+}
