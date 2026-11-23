@@ -21,9 +21,24 @@ ENDPOINTS = ("AquaticEmergent", "TerrestrialArthropod", "WebCount")
 T2_CRITICAL_95 = math.sqrt(2 * 0.95 ** 2 / (1 - 0.95 ** 2))
 
 
+def source_programme(source: dict) -> dict:
+    """Select the one authenticated 2013 experimental source, never metadata-only files."""
+    matches = [f for f in source.get("source_files", [])
+               if f.get("name") == "Sullivan_EAP18-0555_WetlandFieldExperiment_2013.txt"]
+    if len(matches) != 1:
+        raise ValueError("missing or ambiguous 2013 experimental TSV summary")
+    original = matches[0]
+    if original.get("status") != "SOURCE_BYTES_VERIFIED" or original.get("sha256") != "385444ab318ec4b15edd3161c740aa7f4b2d9b973fe4c2ddf6c29cc56cdec484":
+        raise ValueError("unverified original TSV provenance")
+    programme = original["provisional_block_contrasts"]
+    if programme["same_three_groups_all_treatments"] != 3:
+        raise ValueError("unexpected number of original experimental habitat blocks")
+    return programme
+
+
 def endpoint_blocks(source: dict, endpoint: str) -> dict[str, list[float]]:
-    assert source["provisional_block_contrasts"]["same_three_groups_all_treatments"] == 3
-    entry = source["provisional_block_contrasts"]["results"][endpoint]
+    programme = source_programme(source)
+    entry = programme["results"][endpoint]
     assert entry["independent_physical_block_n"] == 3
     data = {}
     for light in LIGHTS:
