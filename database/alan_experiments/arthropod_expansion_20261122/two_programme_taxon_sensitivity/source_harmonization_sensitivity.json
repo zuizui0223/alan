@@ -1,0 +1,546 @@
+{
+  "source": {
+    "canonical_effect_catalogue_altered": false,
+    "canonical_experimental_k_added": 0,
+    "programme_count": 2,
+    "source_pin": {
+      "n2020": 20,
+      "n2022": 30,
+      "n2022_taxon_rows": 193,
+      "source_defined_2020_aquatic_summary_discrepancy_units": [
+        "5",
+        "7",
+        "8",
+        "18"
+      ],
+      "source_2020_ephydridae_origin": "aquatic",
+      "source_2022_ephydridae_origin": "terrestrial",
+      "source_2020_git_blob": "4e2b7065d67e0604ca121ea26c96b5db6d64de94",
+      "source_2022_traps_git_blob": "c544c4af5c39677f8d5d4bacbd40ef2a518868fb",
+      "source_2022_taxa_git_blob": "d99b0e97d6608d8420342394ca5e9c65a89011c5"
+    },
+    "family_counts": {
+      "caenidae": {
+        "Parkinson2016": {
+          "lit": 1342.0,
+          "dark": 164.0
+        },
+        "SevenPonds2022": {
+          "lit": 2854.0,
+          "dark": 6.0
+        }
+      },
+      "leptoceridae": {
+        "Parkinson2016": {
+          "lit": 1.0,
+          "dark": 1.0
+        },
+        "SevenPonds2022": {
+          "lit": 685.0,
+          "dark": 1.0
+        }
+      },
+      "ephydridae": {
+        "Parkinson2016": {
+          "lit": 11.0,
+          "dark": 4.0
+        },
+        "SevenPonds2022": {
+          "lit": 12.0,
+          "dark": 0
+        }
+      }
+    },
+    "distinct_2020_2022_experiments": "two Michigan freshwater-edge programmes, differing year and equipment",
+    "endpoint": "ratio of aquatic-origin to terrestrial-origin *trap catch* responses; not emergence, arthropod abundance, predator attack, pollination or plant fitness",
+    "inference": "post hoc dominant-family and colour-menu sensitivity, k=2; confidence bounds modified Knapp-Hartung df=1 and not definitive",
+    "limitations": [
+      "source 2020 summed taxa mismatch author summary in four mesocosms",
+      "Ephydridae different published origin classes, excluded in harmonized analysis",
+      "colour spectra/illuminance and habitat positions differ between programmes",
+      "ponds are both in Michigan, no independent wet-vs-dry plant habitat comparison",
+      "one experiment 2022 only single pond one night; multiple traps can attract one moving insect population",
+      "high dependence of aquatic capture response on Caenidae and Leptoceridae"
+    ]
+  },
+  "variants": [
+    {
+      "variant": "harmonized_excl_ephydridae",
+      "excluded_families": [
+        "ephydridae"
+      ],
+      "Parkinson2016": {
+        "log_ratio": 1.634137079758137,
+        "ratio": 5.12503359312013,
+        "sampling_variance": 0.1114596322496973,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 162.3,
+            "terrestrial_mean": 6.1,
+            "variance": 0.03949828905154088,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          },
+          "dark": {
+            "aquatic_mean": 24.4,
+            "terrestrial_mean": 4.7,
+            "variance": 0.07196134319815642,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          }
+        }
+      },
+      "SevenPonds2022": {
+        "log_ratio": 2.4994590835020523,
+        "ratio": 12.175906030654636,
+        "sampling_variance": 0.35053509170225366,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 177.08333333333334,
+            "terrestrial_mean": 14.916666666666666,
+            "variance": 0.031227070663463304,
+            "physical_light_units": 24,
+            "treatment_cells": 8
+          },
+          "dark": {
+            "aquatic_mean": 6.5,
+            "terrestrial_mean": 6.666666666666666,
+            "variance": 0.31930802103879036,
+            "physical_light_units": 6,
+            "treatment_cells": 2
+          }
+        }
+      },
+      "pooled": {
+        "ratio": 6.88025420158834,
+        "log_ratio": 1.9286555991679772,
+        "lower": 0.0375877402990979,
+        "upper": 1259.3972795861348,
+        "tau2_REML_two_programme_closed_form": 0.1433937231057168,
+        "Q": 1.0000000000000002,
+        "df": 1,
+        "w_2020": 0.6596428634247461,
+        "mKH_sampling_variance": 0.16811219708004974,
+        "programmes": 2
+      }
+    },
+    {
+      "variant": "harmonized_excl_ephydridae_caenidae",
+      "excluded_families": [
+        "ephydridae",
+        "caenidae"
+      ],
+      "Parkinson2016": {
+        "log_ratio": 0.9956017721966117,
+        "ratio": 2.706352459016394,
+        "sampling_variance": 0.09411649516908124,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 28.1,
+            "terrestrial_mean": 6.1,
+            "variance": 0.04217179922823319,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          },
+          "dark": {
+            "aquatic_mean": 8.0,
+            "terrestrial_mean": 4.7,
+            "variance": 0.05194469594084805,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          }
+        }
+      },
+      "SevenPonds2022": {
+        "log_ratio": 1.5532051895690735,
+        "ratio": 4.726595564584391,
+        "sampling_variance": 0.3358583380322109,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 58.166666666666664,
+            "terrestrial_mean": 14.916666666666666,
+            "variance": 0.02857413233891412,
+            "physical_light_units": 24,
+            "treatment_cells": 8
+          },
+          "dark": {
+            "aquatic_mean": 5.5,
+            "terrestrial_mean": 6.666666666666666,
+            "variance": 0.30728420569329673,
+            "physical_light_units": 6,
+            "treatment_cells": 2
+          }
+        }
+      },
+      "pooled": {
+        "ratio": 3.0576745667161744,
+        "log_ratio": 1.1176546815417272,
+        "lower": 0.09754196405994935,
+        "upper": 95.84975908622069,
+        "tau2_REML_two_programme_closed_form": 0,
+        "Q": 0.723115743194882,
+        "df": 1,
+        "w_2020": 0.7811116188630027,
+        "mKH_sampling_variance": 0.07351548790323303,
+        "programmes": 2
+      }
+    },
+    {
+      "variant": "harmonized_excl_ephydridae_leptoceridae",
+      "excluded_families": [
+        "ephydridae",
+        "leptoceridae"
+      ],
+      "Parkinson2016": {
+        "log_ratio": 1.6376275288715574,
+        "ratio": 5.142953518181206,
+        "sampling_variance": 0.11233089243327518,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 162.2,
+            "terrestrial_mean": 6.1,
+            "variance": 0.03938600650316191,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          },
+          "dark": {
+            "aquatic_mean": 24.3,
+            "terrestrial_mean": 4.7,
+            "variance": 0.07294488593011328,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          }
+        }
+      },
+      "SevenPonds2022": {
+        "log_ratio": 2.3496796408352463,
+        "ratio": 10.48221111437812,
+        "sampling_variance": 0.3570810861263815,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 148.54166666666666,
+            "terrestrial_mean": 14.916666666666666,
+            "variance": 0.03556446562776648,
+            "physical_light_units": 24,
+            "treatment_cells": 8
+          },
+          "dark": {
+            "aquatic_mean": 6.333333333333334,
+            "terrestrial_mean": 6.666666666666666,
+            "variance": 0.321516620498615,
+            "physical_light_units": 6,
+            "treatment_cells": 2
+          }
+        }
+      },
+      "pooled": {
+        "ratio": 6.18292232371937,
+        "log_ratio": 1.8217910276185547,
+        "lower": 0.11765783705896717,
+        "upper": 324.91272504005104,
+        "tau2_REML_two_programme_closed_form": 0.01880311579614652,
+        "Q": 1.0,
+        "df": 1,
+        "w_2020": 0.7413623305756182,
+        "mKH_sampling_variance": 0.09721781395868637,
+        "programmes": 2
+      }
+    },
+    {
+      "variant": "harmonized_excl_ephydridae_both_dominant",
+      "excluded_families": [
+        "ephydridae",
+        "caenidae",
+        "leptoceridae"
+      ],
+      "Parkinson2016": {
+        "log_ratio": 1.0046154882389757,
+        "ratio": 2.730857024278897,
+        "sampling_variance": 0.09537046995423797,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 28.0,
+            "terrestrial_mean": 6.1,
+            "variance": 0.041460537453358134,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          },
+          "dark": {
+            "aquatic_mean": 7.9,
+            "terrestrial_mean": 4.7,
+            "variance": 0.05390993250087983,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          }
+        }
+      },
+      "SevenPonds2022": {
+        "log_ratio": 0.9092829947167503,
+        "ratio": 2.482541899441341,
+        "sampling_variance": 0.3397305914388171,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 29.625,
+            "terrestrial_mean": 14.916666666666666,
+            "variance": 0.03082434143881707,
+            "physical_light_units": 24,
+            "treatment_cells": 8
+          },
+          "dark": {
+            "aquatic_mean": 5.333333333333333,
+            "terrestrial_mean": 6.666666666666666,
+            "variance": 0.30890625000000005,
+            "physical_light_units": 6,
+            "treatment_cells": 2
+          }
+        }
+      },
+      "pooled": {
+        "ratio": 2.674384906881849,
+        "log_ratio": 0.983719412554824,
+        "lower": 0.08344148232009607,
+        "upper": 85.71677337561951,
+        "tau2_REML_two_programme_closed_form": 0,
+        "Q": 0.02088775488634147,
+        "df": 1,
+        "w_2020": 0.7808084640177799,
+        "mKH_sampling_variance": 0.07446607015762238,
+        "programmes": 2
+      }
+    }
+  ],
+  "leave_one_colour_out": [
+    {
+      "omitted_colour": "green",
+      "Parkinson2016": {
+        "log_ratio": 1.634137079758137,
+        "ratio": 5.12503359312013,
+        "sampling_variance": 0.1114596322496973,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 162.3,
+            "terrestrial_mean": 6.1,
+            "variance": 0.03949828905154088,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          },
+          "dark": {
+            "aquatic_mean": 24.4,
+            "terrestrial_mean": 4.7,
+            "variance": 0.07196134319815642,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          }
+        }
+      },
+      "SevenPonds2022": {
+        "log_ratio": 2.4981297528889455,
+        "ratio": 12.159730979403111,
+        "sampling_variance": 0.3596676369148329,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 200.88888888888889,
+            "terrestrial_mean": 16.944444444444443,
+            "variance": 0.04035961587604254,
+            "physical_light_units": 18,
+            "treatment_cells": 6
+          },
+          "dark": {
+            "aquatic_mean": 6.5,
+            "terrestrial_mean": 6.666666666666666,
+            "variance": 0.31930802103879036,
+            "physical_light_units": 6,
+            "treatment_cells": 2
+          }
+        }
+      },
+      "pooled_menu_sensitivity": {
+        "ratio": 6.837986429488787,
+        "log_ratio": 1.9224933066419883,
+        "lower": 0.03861067515574975,
+        "upper": 1211.0137473964837,
+        "tau2_REML_two_programme_closed_form": 0.13767803502959497,
+        "Q": 1.0,
+        "df": 1,
+        "w_2020": 0.6662515367879819,
+        "mKH_sampling_variance": 0.16598835369660137,
+        "programmes": 2
+      },
+      "status": "unstandardized_wavelength_menu_perturbation_not_new_study"
+    },
+    {
+      "omitted_colour": "purple",
+      "Parkinson2016": {
+        "log_ratio": 1.634137079758137,
+        "ratio": 5.12503359312013,
+        "sampling_variance": 0.1114596322496973,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 162.3,
+            "terrestrial_mean": 6.1,
+            "variance": 0.03949828905154088,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          },
+          "dark": {
+            "aquatic_mean": 24.4,
+            "terrestrial_mean": 4.7,
+            "variance": 0.07196134319815642,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          }
+        }
+      },
+      "SevenPonds2022": {
+        "log_ratio": 1.7527254800039875,
+        "ratio": 5.770308123249299,
+        "sampling_variance": 0.3528445241052185,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 74.38888888888889,
+            "terrestrial_mean": 13.222222222222221,
+            "variance": 0.033536503066428136,
+            "physical_light_units": 18,
+            "treatment_cells": 6
+          },
+          "dark": {
+            "aquatic_mean": 6.5,
+            "terrestrial_mean": 6.666666666666666,
+            "variance": 0.31930802103879036,
+            "physical_light_units": 6,
+            "treatment_cells": 2
+          }
+        }
+      },
+      "pooled_menu_sensitivity": {
+        "ratio": 5.2730297296326345,
+        "log_ratio": 1.6626050986194167,
+        "lower": 0.13063094431880262,
+        "upper": 212.8503523769405,
+        "tau2_REML_two_programme_closed_form": 0,
+        "Q": 0.030288784798471823,
+        "df": 1,
+        "w_2020": 0.759942635179649,
+        "mKH_sampling_variance": 0.08470292664798955,
+        "programmes": 2
+      },
+      "status": "unstandardized_wavelength_menu_perturbation_not_new_study"
+    },
+    {
+      "omitted_colour": "red",
+      "Parkinson2016": {
+        "log_ratio": 1.634137079758137,
+        "ratio": 5.12503359312013,
+        "sampling_variance": 0.1114596322496973,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 162.3,
+            "terrestrial_mean": 6.1,
+            "variance": 0.03949828905154088,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          },
+          "dark": {
+            "aquatic_mean": 24.4,
+            "terrestrial_mean": 4.7,
+            "variance": 0.07196134319815642,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          }
+        }
+      },
+      "SevenPonds2022": {
+        "log_ratio": 2.7123447790017057,
+        "ratio": 15.064557192216766,
+        "sampling_variance": 0.3521110508475882,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 230.11111111111111,
+            "terrestrial_mean": 15.666666666666666,
+            "variance": 0.032803029808797866,
+            "physical_light_units": 18,
+            "treatment_cells": 6
+          },
+          "dark": {
+            "aquatic_mean": 6.5,
+            "terrestrial_mean": 6.666666666666666,
+            "variance": 0.31930802103879036,
+            "physical_light_units": 6,
+            "treatment_cells": 2
+          }
+        }
+      },
+      "pooled_menu_sensitivity": {
+        "ratio": 7.858871606859363,
+        "log_ratio": 2.061643034666907,
+        "lower": 0.00965820025648942,
+        "upper": 6394.758991624971,
+        "tau2_REML_two_programme_closed_form": 0.34948057980541225,
+        "Q": 1.0,
+        "df": 1,
+        "w_2020": 0.6035031513791893,
+        "mKH_sampling_variance": 0.27817887057265045,
+        "programmes": 2
+      },
+      "status": "unstandardized_wavelength_menu_perturbation_not_new_study"
+    },
+    {
+      "omitted_colour": "white",
+      "Parkinson2016": {
+        "log_ratio": 1.634137079758137,
+        "ratio": 5.12503359312013,
+        "sampling_variance": 0.1114596322496973,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 162.3,
+            "terrestrial_mean": 6.1,
+            "variance": 0.03949828905154088,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          },
+          "dark": {
+            "aquatic_mean": 24.4,
+            "terrestrial_mean": 4.7,
+            "variance": 0.07196134319815642,
+            "physical_light_units": 10,
+            "treatment_cells": 1
+          }
+        }
+      },
+      "SevenPonds2022": {
+        "log_ratio": 2.7111689383148647,
+        "ratio": 15.04685408299866,
+        "sampling_variance": 0.36089225228573757,
+        "arms": {
+          "lit": {
+            "aquatic_mean": 202.94444444444446,
+            "terrestrial_mean": 13.833333333333334,
+            "variance": 0.0415842312469472,
+            "physical_light_units": 18,
+            "treatment_cells": 6
+          },
+          "dark": {
+            "aquatic_mean": 6.5,
+            "terrestrial_mean": 6.666666666666666,
+            "variance": 0.31930802103879036,
+            "physical_light_units": 6,
+            "treatment_cells": 2
+          }
+        }
+      },
+      "pooled_menu_sensitivity": {
+        "ratio": 7.821346321687529,
+        "log_ratio": 2.0568567036373775,
+        "lower": 0.00979801272047883,
+        "upper": 6243.455691368549,
+        "tau2_REML_two_programme_closed_form": 0.34382286990536226,
+        "Q": 0.9999999999999999,
+        "df": 1,
+        "w_2020": 0.6075142805471843,
+        "mKH_sampling_variance": 0.27659062174245286,
+        "programmes": 2
+      },
+      "status": "unstandardized_wavelength_menu_perturbation_not_new_study"
+    }
+  ]
+}
