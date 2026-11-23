@@ -1,0 +1,32 @@
+name: ALAN Henn 2014 five stream Table 1 reproducibility
+
+on:
+  push:
+    branches: [analysis/alan-arthropod-search-expansion-20261122]
+    paths:
+      - 'database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/**'
+      - 'tests/test_alan_henn2014_five_streams_20261124.py'
+      - '.github/workflows/alan-henn2014-five-stream-table1-20261124.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  paired-stream-counts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independently verify original published Table 1 totals and five paired log ratios
+        run: python -m unittest discover -s tests -p 'test_alan_henn2014_five_streams_20261124.py' -v
+      - name: Reproduce equal-stream and count-weighted ratios without hiding conflicting published totals
+        run: python database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/henn2014_table1_analysis.py
+      - name: Archive only derived five-stream summary (not copyrighted paper PDF)
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-henn2014-five-stream-reanalysis-20261124
+          path: database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/henn2014_paired_count_result_20261124.json
