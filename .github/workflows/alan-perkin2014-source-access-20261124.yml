@@ -1,0 +1,29 @@
+name: ALAN Perkin 2014 public supporting XLSX access gate
+
+on:
+  push:
+    branches: [analysis/alan-arthropod-search-expansion-20261122]
+    paths:
+      - 'scripts/acquisition/alan_perkin2014_wiley_source_gate_20261124.py'
+      - '.github/workflows/alan-perkin2014-source-access-20261124.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-public-supporting-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check publicly accessible original publisher supporting file without bypassing access controls
+        run: python scripts/acquisition/alan_perkin2014_wiley_source_gate_20261124.py
+      - name: Save access receipt only
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-perkin2014-wiley-public-access-receipt
+          path: results/alan_perkin2014_supplement_access_20261124.json
