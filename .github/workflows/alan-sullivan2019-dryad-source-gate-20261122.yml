@@ -31,6 +31,10 @@ jobs:
         run: python scripts/acquisition/alan_sullivan2019_dryad_experiment_source_gate.py --output results/alan_sullivan2019_dryad_source_gate_20261122.json
       - name: Recheck frozen derived results against the newly retrieved source
         run: python -m unittest discover -s tests -p 'test_alan_sullivan2019_frozen_20261122.py' -v
+      - name: Verify exploratory three-block colour-balanced contrasts
+        run: |
+          python -m unittest discover -s tests -p 'test_alan_sullivan2019_colour_balanced_20261124.py' -v
+          python database/alan_experiments/arthropod_expansion_20261122/sullivan2019_source_reanalysis/colour_balanced_block_test_20261124.py --output "$RUNNER_TEMP/sullivan_colour_balanced_20261124.json"
       - name: Archive only the source audit, not individual records
         uses: actions/upload-artifact@v4
         with:
