@@ -4,7 +4,7 @@ import math
 import unittest
 from pathlib import Path
 
-SRC=Path(__file__).with_name('alan_two_programme_family_origin_sensitivity_20261123.py')
+SRC=(Path(__file__).resolve().parents[1] / 'scripts/analysis/alan_two_programme_family_origin_sensitivity_20261123.py')
 S=importlib.util.spec_from_file_location('taxon_sensitivity',SRC)
 A=importlib.util.module_from_spec(S);S.loader.exec_module(A)
 
