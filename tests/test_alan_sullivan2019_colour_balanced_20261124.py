@@ -63,7 +63,13 @@ class TestColourBalancedSullivan(unittest.TestCase):
 
     def test_rejects_corrupted_source_summary(self):
         corrupted = copy.deepcopy(self.data)
-        corrupted["provisional_block_contrasts"]["results"]["AquaticEmergent"]["estimands"]["LEDI"]["lnRR"] += .1
+        corrupted["source_files"][0]["provisional_block_contrasts"]["results"]["AquaticEmergent"]["estimands"]["LEDI"]["lnRR"] += .1
+        with self.assertRaises(ValueError):
+            module.analyze(corrupted)
+
+    def test_rejects_nonmatching_original_file_hash(self):
+        corrupted = copy.deepcopy(self.data)
+        corrupted["source_files"][0]["sha256"] = "bad-original-content-hash"
         with self.assertRaises(ValueError):
             module.analyze(corrupted)
 
