@@ -1,0 +1,72 @@
+name: ALAN two-programme aquatic-origin family sensitivity
+on:
+  push:
+    branches:
+      - analysis/alan-arthropod-search-expansion-20261122
+    paths:
+      - 'scripts/analysis/alan_two_programme_family_origin_sensitivity_20261123.py'
+      - 'tests/test_alan_two_programme_family_origin_sensitivity_20261123.py'
+      - 'database/alan_experiments/arthropod_expansion_20261122/two_programme_taxon_sensitivity/**'
+      - '.github/workflows/alan-two-programme-family-origin-sensitivity-20261123.yml'
+  pull_request:
+    paths:
+      - 'scripts/analysis/alan_two_programme_family_origin_sensitivity_20261123.py'
+      - 'tests/test_alan_two_programme_family_origin_sensitivity_20261123.py'
+      - 'database/alan_experiments/arthropod_expansion_20261122/two_programme_taxon_sensitivity/**'
+      - '.github/workflows/alan-two-programme-family-origin-sensitivity-20261123.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-locked-reanalysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check physical units, family exclusions and low-k meta formula
+        run: python -m unittest discover -s tests -p 'test_alan_two_programme_family_origin_sensitivity_20261123.py' -v
+      - name: Re-fetch pinned author original 2020 table and replay both independent experiments
+        run: |
+          python scripts/analysis/alan_two_programme_family_origin_sensitivity_20261123.py --output-dir "$RUNNER_TEMP/source-replay"
+      - name: Independently compare frozen numeric findings to precomputed references
+        env:
+          RESULT_DIR: ${{ runner.temp }}/source-replay
+        run: |
+          python - <<'PY'
+          import csv,math,os,pathlib
+          d=pathlib.Path(os.environ['RESULT_DIR'])
+          rows={r['variant']:r for r in csv.DictReader((d/'family_and_colour_sensitivity.csv').open())}
+          expected={
+            'harmonized_excl_ephydridae':(5.12503359312013,12.175906030654636,6.88025420158834),
+            'harmonized_excl_ephydridae_caenidae':(2.706352459016394,4.726595564584391,3.0576745667161744),
+            'harmonized_excl_ephydridae_leptoceridae':(5.142953518181206,10.48221111437812,6.182922323719371),
+            'harmonized_excl_ephydridae_both_dominant':(2.730857024278897,2.482541899441341,2.674384906881849),
+          }
+          for k,values in expected.items():
+            v=rows[k];got=[float(v[f]) for f in ['RR_2016','RR_2022','pooled_RR']]
+            assert all(math.isclose(x,y,abs_tol=1e-9) for x,y in zip(got,values)),(k,got,values)
+            assert float(v['lower_mKH']) < 1 < float(v['upper_mKH'])
+            assert int(v['k_independent_programmes'])==2
+          v=rows['2022_exclude_purple_colour_cell']
+          assert math.isclose(float(v['RR_2022']),5.7703081232493,abs_tol=1e-9)
+          assert math.isclose(float(v['pooled_RR']),5.273029729632636,abs_tol=1e-9)
+          assert len(rows)==8
+          print('SAME_FAMILY_BOTH_PROGRAMMES_4_VARIANTS_AND_FOUR_COLOUR_MENUS_VERIFIED')
+          PY
+      - name: Any already-frozen outputs must be byte-identical
+        env:
+          RESULT_DIR: ${{ runner.temp }}/source-replay
+        run: |
+          FROZEN=database/alan_experiments/arthropod_expansion_20261122/two_programme_taxon_sensitivity
+          if [[ -f "$FROZEN/family_and_colour_sensitivity.csv" ]]; then
+            cmp "$RESULT_DIR/family_and_colour_sensitivity.csv" "$FROZEN/family_and_colour_sensitivity.csv"
+            cmp "$RESULT_DIR/source_harmonization_sensitivity.json" "$FROZEN/source_harmonization_sensitivity.json"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-two-programme-original-family-sensitivity-20261123
+          path: ${{ runner.temp }}/source-replay/
+          if-no-files-found: error
