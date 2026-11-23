@@ -34,11 +34,11 @@
 
 **これは一般的な全捕獲の37%減少を「誤り」とした結果ではない。** 全数比と河川等重み対数比は異なる推定量で、同じ原表でも値が変わる。著者は全河川漂流密度を対応t検定して差は明瞭でないと報告している。さらに**計数値は河川体積流量で正規化されたドリフト密度ではない**。対応夜の流況、採集した水量が完全一致しない限り、今回の等河川計数比を密度効果や因果的な光効果として主張しない。
 
-[固定した河川×処理の原著集計表](henn2014_table1_five_stream_counts.csv) → [標準ライブラリのみの再計算](henn2014_table1_analysis.py) → GitHub Actionsの出力JSON（生の著作物PDFをコピーしない）。検証 [test_alan_henn2014_five_streams_20261124.py](../../../../../tests/test_alan_henn2014_five_streams_20261124.py) はTable 1の合計、両推定量、t4区間、符号反転、Barton除去、入力改変STOPを照合する。
+[固定した河川×処理の原著集計表](henn2014_table1_five_stream_counts.csv) → [標準ライブラリのみの再計算](henn2014_table1_analysis.py) → GitHub Actionsの出力JSON（生の著作物PDFをコピーしない）。検証 [test_alan_henn2014_five_streams_20261124.py](../../../../tests/test_alan_henn2014_five_streams_20261124.py) はTable 1の合計、両推定量、t4区間、符号反転、Barton除去、入力改変STOPを照合する。
 
 ## B. Perkin et al.（2014）：著者が実際に報告した効果係数を新たに回収
 
-原著 [*Artificial light as a disturbance to light-naïve streams*](https://doi.org/10.1111/fwb.12426)。カナダ・ブリティッシュコロンビア州の**4自然河川×各照明・暗区区間**、同じ河川内の実験。元の著者による[2013年博士論文Chapter 5とAppendix 2](https://refubium.fu-berlin.de/bitstream/handle/fub188/10784/EK_Perkin_art_light_stream_ecosys.pdf?isAllowed=y&sequence=1)に、混合モデルの実測値・係数・SEが載っていた。
+原著 [*Artificial light as a disturbance to light-naïve streams*](https://doi.org/10.1111/fwb.12426)。カナダ・ブリティッシュコロンビア州の**4自然河川×各照明・暗区区間**、同じ河川内の実験。照明3灯（70W高圧ナトリウム）、水面照度0.37–1.19 lx、暗区は推定0.008 lx。**実験は2011年5月31日夜から7月1日朝まで**。明区は4河川中3河川で下流区間、Springでは上流区間に配置され、無作為化した照明区間割付は確認されていない（上・下流の潜在的な位置交絡）。採集時のネット通水断面・流速・時間で100 m³当たりの漂流密度へ標準化している。元の著者による[2013年博士論文Chapter 5とAppendix 2](https://refubium.fu-berlin.de/bitstream/handle/fub188/10784/EK_Perkin_art_light_stream_ecosys.pdf?isAllowed=y&sequence=1)に、混合モデルの実測値・係数・SEが載っていた。
 
 | 著者の異なる測定段階 | モデル `LDLit` 係数 | SE | df | p（著者報告） |
 |---|---:|---:|---:|---:|
@@ -50,7 +50,7 @@
 
 また、同一河川での羽化と陸生昆虫流入は漂流ほど変わらず、魚の全体成長応答も明瞭でなかった。ただし魚の**河川×照明交互作用**が報告されている（博士論文ANOVA F₃,₇₆=5.841, p=0.00121）ため、「魚には常に影響しない」とは書かない。
 
-Wiley公式本文は補遺 `fwb12426-sup-0004-AppendixS2.xlsx` を原データとして掲載。しかし2026-11-24の公開URL3ルートを用いたGitHub Actionsアクセス検査では**HTTP403**。アクセス制御を迂回せず`DATA_ACCESS_STOP`。有効な原Excelのバイト、4河川の対応元数値・分散・共分散は未取得であり、メタへ採択しない。[ソース取得ゲート](../../../../../scripts/acquisition/alan_perkin2014_wiley_source_gate_20261124.py)。
+Wiley公式本文は補遺 `fwb12426-sup-0004-AppendixS2.xlsx` を原データとして掲載。しかし2026-11-24の公開URL3ルートを用いたGitHub Actionsアクセス検査では**HTTP403**。アクセス制御を迂回せず`DATA_ACCESS_STOP`。有効な原Excelのバイト、4河川の対応元数値・分散・共分散は未取得であり、メタへ採択しない。[ソース取得ゲート](../../../../scripts/acquisition/alan_perkin2014_wiley_source_gate_20261124.py)。
 
 ## C. EERES2021との差：異なる条件でドリフトの方向が逆になる候補
 
@@ -60,7 +60,7 @@ Perkin2014（低照度、自然林内の河川、4週間）とHenn2014（強い�
 
 ## 独立実験の扱い／次のゲート
 
-- **3実験プログラム候補**：HennTexas2012、PerkinCanada2012（※年は博士論文の実験時期を明示して確認すること）、EERESGermany2021。出版社/著者の複数報告は別プログラムと数えない。
+- **3実験プログラム候補**：HennTexas2012、PerkinCanada2011（2011年5月31日夜～7月1日朝の4週間）、EERESGermany2021。出版社/著者の複数報告は別プログラムと数えない。
 - **データ入手の状態**：Hennは公表Table1の五つの対応計数値、Perkinは著者モデル係数と著者平均・SE、EERESは著者原Excelの六つの共有ヘッダー×処理データ。三者で同一の原endpointと標本誤差は未成立。
 - **採択条件**：まず流量正規化（drift density）、同じ時間帯、対応河川・ヘッダー単位、処理と年次・強度、共有対照の共分散を揃える。定義が不一致なら単一統合には進まず、3研究の異質性を独立の結果として示す。
 - **主結果の境界**：今回の河川漂流はいずれも湿潤植物の結実・種子形成や送粉者捕食を直接測っていない。長期記録率の湿潤種偏りの因果媒介は推定しない。
