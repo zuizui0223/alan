@@ -7,6 +7,7 @@ on:
       - 'scripts/acquisition/alan_sullivan2019_dryad_experiment_source_gate.py'
       - 'tests/test_alan_sullivan2019_dryad_source_gate_20261122.py'
       - 'tests/test_alan_sullivan2019_frozen_20261122.py'
+      - 'tests/test_alan_sullivan2019_colour_balanced_20261124.py'
       - 'database/alan_experiments/arthropod_expansion_20261122/sullivan2019_source_reanalysis/**'
       - '.github/workflows/alan-sullivan2019-dryad-source-gate-20261122.yml'
   workflow_dispatch:
