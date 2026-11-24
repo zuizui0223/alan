@@ -1,0 +1,35 @@
+name: ALAN Henn-EERES shared-four-order drift composition original source replay
+
+on:
+  push:
+    branches: [analysis/alan-arthropod-search-expansion-20261122]
+    paths:
+      - 'scripts/analysis/alan_20261124_henn_eeres_taxon_matched_drift.py'
+      - 'tests/test_alan_henn_eeres_four_order_drift_20261124.py'
+      - 'database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/henn2014_derived_order_by_stream.csv'
+      - '.github/workflows/alan-henn-eeres-matched-four-order-20261124.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  genuine-two-programme-taxonomy-contrast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Pin original XLSX reader
+        run: python -m pip install 'openpyxl==3.1.5'
+      - name: Validate shared 38-source-taxon map and n=5 river estimand without internet
+        run: python -m unittest discover -s tests -p test_alan_henn_eeres_four_order_drift_20261124.py -v
+      - name: Reacquire original SHA-verified EERES Dryad workbook and compute six-header composition
+        run: python scripts/analysis/alan_20261124_henn_eeres_taxon_matched_drift.py --output results/alan_henn_eeres_four_order_drift_20261124.json
+      - name: Archive source-derived result only (no author raw rows)
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-henn-eeres-four-order-drift-20261124
+          path: results/alan_henn_eeres_four_order_drift_20261124.json
