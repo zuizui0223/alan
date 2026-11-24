@@ -76,7 +76,7 @@ class TestChironomidEmergenceMeta(unittest.TestCase):
         self.assertTrue(0<x["SE"]<1)
 
     def test_frozen_source_receipt_stops_unexpected_reanalysis(self):
-        file=ROOT/"database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/chironomid_emergence_k2_frozen_20261124.json"
+        file=ROOT/"database/alan_experiments/arthropod_expansion_20261122/chironomid_emergence_20261124/chironomid_emergence_k2_frozen_20261124.json"
         frozen=json.loads(file.read_text(encoding="utf-8"))
         self.assertEqual(len(frozen["programme_estimates"]),2)
         self.assertEqual(frozen["exploratory_meta"]["k_independent_programmes"],2)
