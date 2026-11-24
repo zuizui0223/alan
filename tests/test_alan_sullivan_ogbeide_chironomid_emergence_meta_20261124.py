@@ -107,7 +107,7 @@ class TestChironomidEmergenceMeta(unittest.TestCase):
         })
         ref=frozen["within_programme_physical_unit_diagnostics"]
         copy_result["leave_one_physical_unit_out_point_sensitivities"].update({
-            "Sullivan_n3_group_ratios":ref["Sullivan_3_group_RRs"],
+            "Sullivan_n3_group_ratios":list(ref["Sullivan_3_group_RRs"]),
             "Sullivan_leave_one_group_out_RR_point_only":{
                 f"group_{i+1}":v for i,v in enumerate(ref["Sullivan_leave_one_group_out_RRs"])},
             "Ogbeide_eight_flume_leave_one_out_RR_point_only":{
