@@ -105,6 +105,19 @@ class TestChironomidEmergenceMeta(unittest.TestCase):
             "pooled_logRR_SE_mKH":frozen["exploratory_meta"]["SE_logRR_mKH"],
             "modified_HK_t1_95":frozen["exploratory_meta"]["t1_95"],
         })
+        pair=frozen["two_programme_difference_descriptive"]
+        self.assertAlmostEqual(pair["source_two_programme_RR_of_RRs"],3.19932425302357,places=12)
+        self.assertAlmostEqual(pair["descriptive_t2_two_sided_p"],.09972377667328713,places=11)
+        self.assertLess(pair["descriptive_conservative_t2_95_RR_of_RRs"][0],1)
+        self.assertGreater(pair["descriptive_conservative_t2_95_RR_of_RRs"][1],1)
+        copy_result["two_programme_differential_effect_size_descriptive"].update({
+            **{k:pair[k] for k in (
+                "source_two_programme_RR_of_RRs","source_lnRR_difference",
+                "uncertainty_SE_from_two_independent_source_programmes",
+                "descriptive_t2_two_sided_p",
+            )},
+            "descriptive_conservative_t2_95_RR_of_RRs":list(pair["descriptive_conservative_t2_95_RR_of_RRs"]),
+        })
         ref=frozen["within_programme_physical_unit_diagnostics"]
         copy_result["leave_one_physical_unit_out_point_sensitivities"].update({
             "Sullivan_n3_group_ratios":list(ref["Sullivan_3_group_RRs"]),
