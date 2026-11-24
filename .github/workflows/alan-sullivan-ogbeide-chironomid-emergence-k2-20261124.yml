@@ -6,6 +6,7 @@ on:
     paths:
       - 'scripts/analysis/alan_sullivan_ogbeide_chironomid_emergence_meta_20261124.py'
       - 'tests/test_alan_sullivan_ogbeide_chironomid_emergence_meta_20261124.py'
+      - 'database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/chironomid_emergence_k2_frozen_20261124.json'
       - '.github/workflows/alan-sullivan-ogbeide-chironomid-emergence-k2-20261124.yml'
   workflow_dispatch:
 
@@ -30,6 +31,7 @@ jobs:
       - name: Source-authenticate 2013 original Dryad TSV and 2022 original RDS-derived flumes, then fit k2
         run: |
           python scripts/analysis/alan_sullivan_ogbeide_chironomid_emergence_meta_20261124.py \
+            --frozen database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/chironomid_emergence_k2_frozen_20261124.json \
             --output results/alan_sullivan_ogbeide_chironomid_emergence_k2_20261124.json
       - name: Publish only family/block summaries and programme meta, not original author rows
         uses: actions/upload-artifact@v4
