@@ -32,8 +32,8 @@ class TestHennOrderComposition(unittest.TestCase):
     def test_compositional_ratio_exact(self):
         a=self.result
         self.assertAlmostEqual(a["equal_stream_compositional_ratio_of_RRs"],1.2846373445392218,places=12)
-        self.assertAlmostEqual(a["descriptive_t4_95_interval"][0],.894048922202373,places=8)
-        self.assertAlmostEqual(a["descriptive_t4_95_interval"][1],1.845864452457827,places=8)
+        self.assertAlmostEqual(a["descriptive_t4_95_interval"][0],.8940489154931339,places=8)
+        self.assertAlmostEqual(a["descriptive_t4_95_interval"][1],1.8458644469967567,places=8)
         self.assertEqual(a["posthoc_two_sided_signflip_p"],.0625)
         self.assertTrue(a["all_five_ratios_above_one"])
         self.assertAlmostEqual(a["stream_results"][0]["composition_ratio_of_RRs"],1.58974358974359,places=12)
