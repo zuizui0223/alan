@@ -253,6 +253,29 @@ def verify_frozen(actual, frozen):
         raise ValueError("STOP: Ogbeide flume aggregate Git blob identity drift")
     if actual["exploratory_k2_random_effects_meta"]["k_independent_programmes"]!=2:
         raise ValueError("STOP: pseudo programme replication attempted")
+    prior=frozen.get("within_programme_physical_unit_diagnostics")
+    diag=actual.get("leave_one_physical_unit_out_point_sensitivities")
+    if not prior or not diag:
+        raise ValueError("STOP: missing physical-unit leave-one-out source audit")
+    indexed=[
+        (diag["Sullivan_n3_group_ratios"],prior["Sullivan_3_group_RRs"]),
+        ([diag["Sullivan_leave_one_group_out_RR_point_only"]["group_"+str(i)] for i in (1,2,3)],
+         prior["Sullivan_leave_one_group_out_RRs"]),
+        ([diag["Ogbeide_eight_flume_leave_one_out_RR_point_only"][f"{arm}_index_{i}"]
+         for arm in ("alan","control") for i in (1,2,3,4)],
+         prior["Ogbeide_8_flume_leave_one_out_RRs"]),
+    ]
+    for observed,pinned in indexed:
+        if len(observed)!=len(pinned) or not all(math.isclose(a,b,rel_tol=1e-10,abs_tol=1e-12)
+                                                   for a,b in zip(observed,pinned)):
+            raise ValueError("STOP: physical-unit robustness/source effect drift")
+    for key,reference in (
+        ("Ogbeide_Week1_RR",prior["Ogbeide_Week1_RR"]),
+        ("Ogbeide_Week4_RR",prior["Ogbeide_Week4_RR"]),
+        ("between_programme_ratio_of_LitDark_RR_point_only",prior["between_programme_ratio_of_RRs_point"]),
+    ):
+        if not math.isclose(float(diag[key]),float(reference),rel_tol=1e-10,abs_tol=1e-12):
+            raise ValueError("STOP: source conditional-week or cross-programme point drift")
     return True
 
 
