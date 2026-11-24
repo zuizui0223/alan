@@ -1,0 +1,34 @@
+name: ALAN Sullivan 2019 2013 wetland aquatic emergence family source gate
+
+on:
+  push:
+    branches: [analysis/alan-arthropod-search-expansion-20261122]
+    paths:
+      - 'scripts/analysis/alan_sullivan2019_chironomid_source_gate_20261124.py'
+      - 'tests/test_alan_sullivan2019_chironomid_source_gate_20261124.py'
+      - '.github/workflows/alan-sullivan2019-chironomid-source-gate-20261124.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-author-wetland-taxonomy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test source grain and three independent wetland locations
+        run: python -m unittest discover -s tests -p test_alan_sullivan2019_chironomid_source_gate_20261124.py -v
+      - name: Re-fetch authentic Dryad 2013 original TSV and audit aquatic source taxa
+        run: |
+          python scripts/analysis/alan_sullivan2019_chironomid_source_gate_20261124.py \
+            --output results/alan_sullivan2019_chironomid_source_gate_20261124.json
+      - name: Preserve aggregate taxon labels and counts, not author individual source records
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-sullivan2019-original-aquatic-emergence-taxon-gate
+          path: results/alan_sullivan2019_chironomid_source_gate_20261124.json
