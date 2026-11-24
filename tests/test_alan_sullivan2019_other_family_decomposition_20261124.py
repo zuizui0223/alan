@@ -1,5 +1,5 @@
 """Test only physical block and taxonomic complement logic; synthetic fixture."""
-import csv,importlib.util,io,unittest
+import csv,importlib.util,io,json,unittest
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -57,6 +57,15 @@ class TaxonDecompositionTest(unittest.TestCase):
         self.assertTrue(alt["descriptive_t2_95_RRR"][0]<alt["equal_block_RRR"]<alt["descriptive_t2_95_RRR"][1])
         self.assertGreaterEqual(alt["three_block_signflip_reference_p"],0.25)
         self.assertTrue(all(x["chiro_vs_all_other_response_RRR"]>0 for x in a["physical_block_family_contributions"]))
+
+    def test_source_frozen_receipt_rejects_synthetic_fixture(self):
+        pinned=json.loads((ROOT/"database/alan_experiments/arthropod_expansion_20261122/chironomid_emergence_20261124/sullivan_family_composition_frozen_20261124.json").read_text(encoding="utf-8"))
+        self.assertEqual(pinned["original_physical_habitat_groups"],3)
+        self.assertAlmostEqual(pinned["equal_block_chiro_vs_other_RRR"],1.59110636626693,places=12)
+        self.assertAlmostEqual(pinned["equal_block_chiro_vs_culicidae_RRR"],2.705677495636492,places=12)
+        self.assertEqual(pinned["new_independent_programmes"],0)
+        with self.assertRaises(ValueError):
+            m.verify_frozen(m.inspect(create_source()),pinned)
 
     def test_corrupted_taxon_source_blocks_stop(self):
         raw=create_source().decode()
