@@ -18,6 +18,20 @@ class TestBernSource(unittest.TestCase):
             m.probe("http://evil.test/carannante")
         with self.assertRaises(ValueError):
             m.probe("https://github.com/zuizui0223/alan")
+    def test_official_api_html_200_is_not_raw_data(self):
+        self.assertEqual(
+            m.classify_html("https://boris-portal.unibe.ch/server/api/discover/search/objects?query=Carannante",
+                            "<html><body>Temporary Access Restriction</body></html>"),
+            "PUBLIC_ACCESS_RESTRICTED_HTML_SOFT_200")
+        self.assertEqual(
+            m.classify_html("https://boris-portal.unibe.ch/server/api/discover/search/objects?query=Carannante",
+                            "<html><body>Angular SPA index</body></html>"),
+            "API_RETURNED_HTML_SHELL_NOT_AUTHOR_DATA")
+        self.assertEqual(
+            m.classify_html("https://boris-portal.unibe.ch/items/UUID",
+                            "<html><body>Some landing page</body></html>"),
+            "PUBLIC_LANDING_HTML_ONLY_NOT_AUTHOR_DATA")
+
     def test_public_dataset_name_hints_are_not_original_dataset(self):
         obj={"_embedded":{"searchResult":{"_embedded":{"objects":[
             {"_embedded":{"indexableObject":{"name":"Carannante et al adult aquatic insects 2021"}}},
