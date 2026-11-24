@@ -24,7 +24,7 @@ def get_original():
             final.hostname in {"datadryad.org","www.datadryad.org"} or
             final.hostname.endswith(".amazonaws.com")
         ):
-            raise ValueError("STOP source redirected outside official Dryad HTTPS/S3 delivery")
+            raise ValueError("STOP source redirected outside official Dryad HTTPS/S3 delivery, host="+str(final.hostname))
         z=f.read(1500000)
     with zipfile.ZipFile(io.BytesIO(z)) as f:
         entries=[x for x in f.infolist() if Path(x.filename).name==FILENAME]
