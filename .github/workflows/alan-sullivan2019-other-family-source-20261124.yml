@@ -6,6 +6,7 @@ on:
     paths:
       - 'scripts/analysis/alan_sullivan2019_other_family_decomposition_20261124.py'
       - 'tests/test_alan_sullivan2019_other_family_decomposition_20261124.py'
+      - 'database/alan_experiments/arthropod_expansion_20261122/chironomid_emergence_20261124/sullivan_family_composition_frozen_20261124.json'
       - '.github/workflows/alan-sullivan2019-other-family-source-20261124.yml'
   workflow_dispatch:
 
@@ -26,6 +27,7 @@ jobs:
       - name: Retrieve and hash-verify original Dryad TSV, then find other captured families by wetland block
         run: |
           python scripts/analysis/alan_sullivan2019_other_family_decomposition_20261124.py \
+            --frozen database/alan_experiments/arthropod_expansion_20261122/chironomid_emergence_20261124/sullivan_family_composition_frozen_20261124.json \
             --output results/alan_sullivan2019_other_emergence_family_drivers_20261124.json
       - name: Publish only block by family aggregated statistics, no individual author rows
         uses: actions/upload-artifact@v4
