@@ -84,3 +84,12 @@
 - `alan`・`iwe`・元送粉研究から同一実験を意識して整理した[繁殖12候補の採択台帳](../database/alan_experiments/reproductive_meta_admission_candidates_20261124.csv)を追加。**NightOnly vs Openの同尺度・独立照明ユニット・差の共分散がすべてそろった採択済み系列は現在0**。負の結果に偏らず、Liの正方向、Grognuzの持越し、Boomの混合効果も残した。[実験単位の必要原データと最優先手順](ALAN_REPRODUCTIVE_META_ADMISSION_20261124_ja.md)。
 
 これらは**正式な系統的メタ解析が完成した意味ではない**。既存108効果量、別々に推定した4探索的統合、主マクロ湿潤植物の結果は変更しない。
+## 7. 2026-11-24: 全62既定ブランチの実際の文献パス監査が完了
+
+[実測結果全文](ALAN_62_REPO_DOI_AUDIT_RESULTS_20261124_ja.md)：**62／62公開リポジトリのGitツリーは非truncatedで取得成功**、追跡ファイル45,975、文献がありそうなテキスト22,309、優先して実読した539（**約2.4%**）、未読21,770。出典位置を持つDOI形式の文字列はユニーク676、複数リポで見つかった文字列は65。**676 DOIの正式検証・676独立研究・全全文読了とは言えない**。全パス＋抽出サンプル＋未読情報をActions ZIPに保存（[成功した実行](https://github.com/zuizui0223/alan/actions/runs/45328217854)）。
+
+主検索の[全文追加確認待ち27報告](../database/alan_experiments/search/pending_primary_review.csv)と11/22の[新規全文候補28件](../database/alan_experiments/arthropod_expansion_20261122/fulltext_candidates.csv)を**効果の正負を使用せず**結合した[55件の原著設計レビュー・作業キュー](../database/alan_experiments/cross_repo_fulltext_design_queue_20261124.csv)を保存。**55は独立照明実験数でも採択文献数でもない**。1件の繁殖・送粉、13件の栄養相互作用、26件の移動・捕獲、15件の設定／その他確認へ題名・測定名で一次振り分けた。研究単位・共通endpointを原本文で確認するまでメタ効果へ採用しない。
+
+相互作用の機能を実際に測定した研究として[塩性湿地カニの生存、森林粘土幼虫への攻撃痕、都市草地の照明源からの距離勾配の3文献の定量採択ゲート](ALAN_TROPHIC_FUNCTION_FIELD_STUDY_ADOPTION_GATE_20261124_ja.md)を追加。Nuñez2021には5エリアの白LED試験でjuvenileカニ生存の原著値、Deitsch2023には4森林区画ペア・4反復の攻撃痕率、Freising2025には照明源への距離勾配があるが**三者の分母・明暗対照・独立分散は揃わない**。捕食者の個体数・網数を捕食成功率へ代入しない。
+
+**引き続き未完の部分**：全22,309候補テキストの読み取りとDOIの正式照合、全PDF・補遺・未マージPR・歴史的ブランチ、原著ごとの物理設計の二重採択、WoS/Scopus。科学的な結論の前に資料の完全性とエンドポイントを固定する。
