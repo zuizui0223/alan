@@ -24,7 +24,7 @@
 
 ## 再現・メタ解析上の位置づけ
 
-[16水路×2週の公開元資料由来集計](flume_emergence_rates.csv)・[既存のWeek4比較](week4_light_effects.csv)・[今回のsource-lockスクリプト](../../scripts/analysis/alan_ogbeide2026_emergence_light_crayfish_time_20261124.py)・[4件の物理反復・数値検証テスト](../../tests/test_alan_ogbeide2026_emergence_light_crayfish_time_20261124.py)。
+[16水路×2週の公開元資料由来集計](flume_emergence_rates.csv)・[既存のWeek4比較](week4_light_effects.csv)・[今回のsource-lockスクリプト](../../../scripts/analysis/alan_ogbeide2026_emergence_light_crayfish_time_20261124.py)・[4件の物理反復・数値検証テスト](../../../tests/test_alan_ogbeide2026_emergence_light_crayfish_time_20261124.py)。
 
 [GitHub Actions #45332536690](https://github.com/zuizui0223/alan/actions/runs/45332536690)で元ファイルGit blob確認・先行Week4値への一致・4テスト・6万回感度が**SUCCESS**。元原著の著者データアーカイブが無作為化の全記録として検証されたわけではなく、記事の「16水路を各処理へランダム割付」という設計に依存する。
 
