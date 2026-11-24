@@ -1,0 +1,45 @@
+name: ALAN frozen 62-repo DOI-to-source-ledger crosswalk
+
+on:
+  push:
+    branches: [analysis/alan-arthropod-search-expansion-20261122]
+    paths:
+      - 'scripts/analysis/alan_crossrepo_doi_ledger_join_20261124.py'
+      - 'tests/test_alan_crossrepo_doi_ledger_join_20261124.py'
+      - '.github/workflows/alan-crossrepo-doi-to-ALAN-ledger-20261124.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  source-ledger-identity-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: zuizui0223/alan
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check DOI admission gates and 676-ID frozen fixture
+        run: python -m unittest discover -s tests -p 'test_alan_crossrepo_doi_ledger_join_20261124.py' -v
+      - name: Download immutable previous 62-repo source audit
+        run: |
+          mkdir -p results/alan_prior_62repo_source_inventory
+          gh run download 45328217854 --repo zuizui0223/alan --name alan-crossrepo-doi-source-inventory-20261124 --dir results/alan_prior_62repo_source_inventory
+          test -s results/alan_prior_62repo_source_inventory/doi_occurrence_sources.csv
+          test -s results/alan_prior_62repo_source_inventory/summary.json
+      - name: Join DOI source locations to ALAN 553 reports, new leads, IWE and 55-review queue
+        run: |
+          python scripts/analysis/alan_crossrepo_doi_ledger_join_20261124.py \
+            --inventory results/alan_prior_62repo_source_inventory \
+            --output-dir results/alan_crossrepo_doi_ledger_join_20261124
+      - name: Keep only DOI provenance and explicit unmatched-source claims
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-crossrepo-doi-ledger-join-20261124
+          path: results/alan_crossrepo_doi_ledger_join_20261124/
