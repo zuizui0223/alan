@@ -155,6 +155,37 @@ def compute(source_original,original_flume_arms):
     wet,wetvariants,units=independent_habitat_block_estimates(source_original)
     flume,flumevariants=independent_flume_estimates(original_flume_arms)
     primary=k2_meta(wet,flume)
+    # Predeclared leave-one-physical-unit-out diagnostics are point-only.
+    # With 2 wetland blocks remaining, do NOT attach population CIs.
+    block_logs=wet["three_block_lnRR"]
+    wet_loo={
+        f"group_{i+1}":math.exp(statistics.mean(
+            y for j,y in enumerate(block_logs) if j!=i))
+        for i in range(3)
+    }
+    # Remove one real independently assigned Ogbeide flume, retaining
+    # within-flume Week1/Week4 and unchanged no-crayfish design.
+    original_lit=flume["flume_mean_values_by_treatment"]["alan"]
+    original_dark=flume["flume_mean_values_by_treatment"]["control"]
+    flume_loo={}
+    for treatment,vals in (("alan",original_lit),("control",original_dark)):
+        for i in range(4):
+            if treatment=="alan":
+                r=statistics.mean(v for j,v in enumerate(vals) if j!=i)/statistics.mean(original_dark)
+            else:
+                r=statistics.mean(original_lit)/statistics.mean(v for j,v in enumerate(vals) if j!=i)
+            flume_loo[f"{treatment}_index_{i+1}"]=r
+    diagnostics={
+        "Sullivan_n3_group_lnRR":block_logs,
+        "Sullivan_n3_group_ratios":[math.exp(y) for y in block_logs],
+        "Sullivan_groups_positive_count":sum(y>0 for y in block_logs),
+        "Sullivan_leave_one_group_out_RR_point_only":wet_loo,
+        "Ogbeide_eight_flume_leave_one_out_RR_point_only":flume_loo,
+        "Ogbeide_Week1_RR":flumevariants["Week 1"]["RR"],
+        "Ogbeide_Week4_RR":flumevariants["Week 4"]["RR"],
+        "between_programme_ratio_of_LitDark_RR_point_only":wet["RR"]/flume["RR"],
+        "note":"Post hoc diagnostics share original physical source programmes, no additional k or causal moderator"
+    }
     sensitivity={
         f"wetland_{sk}_Ogbeide_all_weeks":k2_meta(sv,flume)
         for sk,sv in wetvariants.items()
@@ -176,6 +207,7 @@ def compute(source_original,original_flume_arms):
         "Ogbeide_no_crayfish_eight_flumes_frozen_primary":flume,
         "Ogbeide_week_sensitivities":flumevariants,
         "exploratory_k2_random_effects_meta":primary,
+        "leave_one_physical_unit_out_point_sensitivities":diagnostics,
         "contrasts_if_changing_source_colour_or_sampling_week":sensitivity,
         "new_study_programmes_discovered_today":0,
         "new_exploratory_endpoint_meta_lane":1,
@@ -242,6 +274,7 @@ def main():
         "Sullivan_all_four":{k:report["Sullivan_color_menu_frozen_primary"][k] for k in ("RR","SE","descriptive_t2_95")},
         "Ogbeide_no_cray_all_weeks":{k:report["Ogbeide_no_crayfish_eight_flumes_frozen_primary"][k] for k in ("RR","SE")},
         "pooled_k2":report["exploratory_k2_random_effects_meta"],
+        "physical_unit_loo":report["leave_one_physical_unit_out_point_sensitivities"],
         "sensitivity":{k:v["pooled_RR"] for k,v in report["contrasts_if_changing_source_colour_or_sampling_week"].items()},
         "existing_four_meta_effects_unchanged":True
     },ensure_ascii=False))
