@@ -274,6 +274,23 @@ def verify_frozen(actual, frozen):
         (actual["exploratory_k2_random_effects_meta"]["pooled_logRR_SE_mKH"], frozen["exploratory_meta"]["SE_logRR_mKH"]),
     ]
     pairs.extend(zip(actual["exploratory_k2_random_effects_meta"]["modified_HK_t1_95"],frozen["exploratory_meta"]["t1_95"]))
+    contrast=actual.get("two_programme_differential_effect_size_descriptive")
+    saved=frozen.get("two_programme_difference_descriptive")
+    if not contrast or not saved:
+        raise ValueError("STOP: missing cross-programme effect-size difference sensitivity")
+    for key in (
+        "source_two_programme_RR_of_RRs",
+        "source_lnRR_difference",
+        "uncertainty_SE_from_two_independent_source_programmes",
+        "descriptive_t2_two_sided_p",
+    ):
+        pairs.append((contrast[key],saved[key]))
+    pairs.extend(zip(contrast["descriptive_conservative_t2_95_RR_of_RRs"],
+                     saved["descriptive_conservative_t2_95_RR_of_RRs"]))
+    if (not contrast["not_causal_wetland_vs_flume_effect_modifier"] or
+        not contrast["not_confirmatory_cross_study_difference"]):
+        raise ValueError("STOP: two studies cannot identify causal wetland moderator")
+
     if any(not math.isclose(float(a),float(b),rel_tol=1e-10,abs_tol=1e-12) for a,b in pairs):
         raise ValueError("STOP: published source-based family-level emergence estimate or interval drift")
     if frozen.get("Sullivan2013_original_Dryad_TSV_SHA256")!=sullivan.DIGEST:
