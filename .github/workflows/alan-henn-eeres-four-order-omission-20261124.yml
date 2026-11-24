@@ -6,6 +6,7 @@ on:
     paths:
       - 'scripts/analysis/alan_drift_four_order_leaveoneout_20261124.py'
       - 'tests/test_alan_drift_four_order_leaveoneout_20261124.py'
+      - 'database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/four_order_omission_frozen_20261124.json'
       - '.github/workflows/alan-henn-eeres-four-order-omission-20261124.yml'
   workflow_dispatch:
 
@@ -26,7 +27,7 @@ jobs:
       - name: Reproduce Henn 5 river variants and source-paired two-programme baseline
         run: python -m unittest discover -s tests -p test_alan_drift_four_order_leaveoneout_20261124.py -v
       - name: Reacquire public Dryad original EERES XLSX by SHA and compute all five compositional comparisons
-        run: python scripts/analysis/alan_drift_four_order_leaveoneout_20261124.py --out results/alan_drift_four_order_leaveoneout_20261124.json
+        run: python scripts/analysis/alan_drift_four_order_leaveoneout_20261124.py --frozen database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/four_order_omission_frozen_20261124.json --out results/alan_drift_four_order_leaveoneout_20261124.json
       - name: Archive only derived study summaries
         uses: actions/upload-artifact@v4
         with:
