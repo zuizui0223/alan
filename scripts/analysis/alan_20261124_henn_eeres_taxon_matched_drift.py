@@ -194,6 +194,45 @@ def eeres_study(original):
             return statistics.mean(x[group] for x in values[ht,tr])
         blocks.append((avg("L","E_T"),avg("L","D_C"),avg("CT","E_T"),avg("CT","D_C")))
     result=ratio_from_block_arms(blocks,"EERES2021_six_header_tanks_controlled_flumes")
+    # Fully factorial same-HT sensitivity: compare light effect on ET/DC drift
+    # at normal flow (L/CT) with its effect under reduced flow (L+F/F).
+    # All four treatments share each of the exact six physical header tanks.
+    flow_blocks=[]
+    for i in range(1,7):
+        ht=f"ht{i}"
+        def flow_avg(tr,group):
+            return statistics.mean(x[group] for x in values[ht,tr])
+        flow_blocks.append((
+            flow_avg("L+F","E_T"), flow_avg("L+F","D_C"),
+            flow_avg("F","E_T"), flow_avg("F","D_C"),
+        ))
+    flow_effect=ratio_from_block_arms(flow_blocks,
+                "EERES2021_six_header_tanks_reduced_flow")
+    base_arr=[(r["A_lit"],r["B_lit"],r["A_dark"],r["B_dark"]) for r in result["block_marginals"]]
+    normal_mu=result["arm_means_A_lit_B_lit_A_dark_B_dark"]
+    flow_mu=flow_effect["arm_means_A_lit_B_lit_A_dark_B_dark"]
+    def influence(r,mu):
+        g=(1/mu[0],-1/mu[1],-1/mu[2],1/mu[3])
+        return sum(gg*(rr-mm) for gg,rr,mm in zip(g,r,mu))
+    d_scores=[influence(flow_blocks[i],flow_mu)-influence(base_arr[i],normal_mu)
+              for i in range(6)]
+    d_se=statistics.stdev(d_scores)/math.sqrt(6)
+    d=flow_effect["four_order_log_composition_RRR"]-result["four_order_log_composition_RRR"]
+    result["flow_moderator_exploratory"]={
+        "contrast":"log[ (ET/DC)_LF / (ET/DC)_F ] - log[ (ET/DC)_L / (ET/DC)_CT ]",
+        "reduced_flow_light_composition_RRR":flow_effect["four_order_composition_RRR"],
+        "reduced_flow_logRRR":flow_effect["four_order_log_composition_RRR"],
+        "reduced_flow_delta_SE":flow_effect["delta_SE_shared_physical_units"],
+        "reduced_flow_descriptive_t5_95":flow_effect["descriptive_t95"],
+        "within_same_six_HT_moderation_logRRR":d,
+        "moderation_ratio_of_RRRs":math.exp(d),
+        "joint_shared_HT_delta_SE":d_se,
+        "descriptive_t5_95_moderator":[math.exp(d-2.570581835636305*d_se),
+                                      math.exp(d+2.570581835636305*d_se)],
+        "n_true_independent_header_tanks":6,
+        "not_a_water_wet_vs_dry_gradient_or_plant_fitness":True,
+        "posthoc_not_confirmatory":True,
+    }
     result.update({
         "source_sha256":XLSX_SHA,
         "source_drift_taxon_columns":len(names),
@@ -225,7 +264,7 @@ def main():
     args.output.write_text(json.dumps(out,indent=2,ensure_ascii=False,sort_keys=True)+"\n",encoding="utf-8")
     print("SOURCE_MATCHED_FOUR_ORDER",json.dumps({
         "henn":{k:out["henn"][k] for k in ("four_order_composition_RRR","four_order_log_composition_RRR","delta_SE_shared_physical_units","descriptive_t95","n_independent_physical_units","alternate_equal_stream_geometric_RRR")},
-        "eeres":{k:out["eeres"][k] for k in ("four_order_composition_RRR","four_order_log_composition_RRR","delta_SE_shared_physical_units","descriptive_t95","n_independent_physical_units")},
+        "eeres":{k:out["eeres"][k] for k in ("four_order_composition_RRR","four_order_log_composition_RRR","delta_SE_shared_physical_units","descriptive_t95","n_independent_physical_units","flow_moderator_exploratory")},
         "meta_k_added":out["meta_k_added"],
     },ensure_ascii=False))
 
