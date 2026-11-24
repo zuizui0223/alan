@@ -1,0 +1,31 @@
+name: ALAN Carannante aquatic-light original data repository gate
+on:
+  push:
+    branches: [analysis/alan-arthropod-search-expansion-20261122]
+    paths:
+      - scripts/acquisition/alan_carannante2021_boris_provenance_gate.py
+      - .github/workflows/alan-carannante2021-boris-source-probe.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source gate tests
+        run: python -m unittest discover -s tests -p 'test_alan_carannante2021_boris_provenance_gate.py' -v
+      - name: Probe official University of Bern public source pages
+        run: python scripts/acquisition/alan_carannante2021_boris_provenance_gate.py --output results/alan_carannante2021_boris_source_gate.json
+      - name: Retain metadata only (no raw records)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-carannante2021-boris-public-source-probe
+          path: results/alan_carannante2021_boris_source_gate.json
+          if-no-files-found: warn
+          retention-days: 30

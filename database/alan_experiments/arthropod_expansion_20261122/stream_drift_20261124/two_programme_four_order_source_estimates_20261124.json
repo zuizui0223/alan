@@ -1,0 +1,50 @@
+{
+  "analysis_date": "2026-11-24",
+  "status": "TWO_SOURCE_AUTHENTICATED_PROGRAMME_ESTIMATES_FOR_EXPLORATORY_SYNTHESIS_NOT_FINAL_PRISMA",
+  "estimand": "ln[(mean_block_ET_lit / mean_block_DC_lit) / (mean_block_ET_dark / mean_block_DC_dark)]",
+  "numerator_orders": [
+    "Ephemeroptera",
+    "Trichoptera"
+  ],
+  "denominator_orders": [
+    "Diptera",
+    "Coleoptera"
+  ],
+  "source_replay_workflow": "https://github.com/zuizui0223/alan/actions/runs/45309822879",
+  "eeres_dryad_workbook_sha256": "496dcfa07436619084dc677317525dc674775e9965a0fdfb482cfa1cb4d8977f",
+  "henn_provenance": "Henn et al 2014 original Table 1 manually summed family rows into 6 orders; distinct San Marcos +2 source-count discrepancy retained",
+  "studies": [
+    {
+      "programme_id": "Henn2012Texas_five_stream_pairs",
+      "study_doi": "10.1080/02705060.2014.900654",
+      "design": "five independent paired natural stream comparisons, lit/dark sampled on different nights, high-intensity incandescent",
+      "n_physical_units": 5,
+      "ln_rrr": 0.12511029022811382,
+      "se_paired_physical_unit_delta": 0.07847123889548929,
+      "rrr": 1.133273435160227,
+      "exploratory_t95": [
+        0.9114114866746901,
+        1.409142519725856
+      ],
+      "reported_source_status": "MANUALLY_TRANSCRIBED_PUBLISHED_TABLE_OF_SIX_ORDER_AGGREGATES_AND_SUM_VERIFIED"
+    },
+    {
+      "programme_id": "EERES2021Germany_six_header_tanks",
+      "study_doi": "10.1002/ecog.07758",
+      "dataset_doi": "10.5061/dryad.rfj6q57k5",
+      "design": "six independent shared header-tank blocks in 18-flume ALAN and water-flow factorial, repeated drift sampling; use lit vs control at normal flow",
+      "n_physical_units": 6,
+      "ln_rrr": 0.23181424616015578,
+      "se_paired_physical_unit_delta": 0.05008183522476254,
+      "rrr": 1.260885492751995,
+      "exploratory_t95": [
+        1.108574316510447,
+        1.434123271804538
+      ],
+      "reported_source_status": "DRYAD_AUTHOR_XLSX_SHA256_VERIFIED_AND_REEXTRACTED"
+    }
+  ],
+  "prohibition": "Do not count original taxon columns, shared controls, repeated flume samples, or one literature report per outcome as independent studies; cannot infer wet-plant decline, predation, or true abundance productivity.",
+  "canonical_108_effect_catalogue_changed": false,
+  "existing_three_stage_meta_k_changed": false
+}

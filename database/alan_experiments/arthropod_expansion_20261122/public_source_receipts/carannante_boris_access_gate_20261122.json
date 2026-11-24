@@ -1,0 +1,44 @@
+{
+  "source": "Carannante et al. 2021",
+  "article_doi": "10.1002/2688-8319.12053",
+  "original_source_citation": "https://boris.unibe.ch/151803/",
+  "true_design": "Gürbe river Study A: 4 true lit/dark plot pairs × 6 repeated nights; pairs at 3 and 40 m, two upstream/downstream blocks. Study B: only lit traps across 3–80m (NOT light×distance).",
+  "endpoint": "adult aquatic insect trap capture, not emerging abundance or seed fitness",
+  "original_plot_by_night_numeric_effects_extracted": false,
+  "independent_programmes_added": 0,
+  "probes": [
+    {
+      "url": "https://boris.unibe.ch/151803/",
+      "status": "PUBLIC_HTML_RECEIVED",
+      "final_url": "https://boris-portal.unibe.ch/items/f559ab1e-e693-4fbc-b7fe-683134f6dbe1",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 7298,
+      "sha256": "0feaa7e080ff7c0018b44c8559de614242c85001113cd9d9fa5aba118fc6c8cd",
+      "public_source_link_candidates": [],
+      "contains_dataset_word": false
+    },
+    {
+      "url": "https://boris-portal.unibe.ch/server/api/discover/search/objects?query=Carannante%20dataset&size=20",
+      "status": "PUBLIC_HTML_RECEIVED",
+      "final_url": "https://boris-portal.unibe.ch/server/api/discover/search/objects?query=Carannante%20dataset&size=20",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 7298,
+      "sha256": "fda566b55ea697f3e1d7344091ccfcf4519a3f257d9b74ec196d00df3426d908",
+      "public_source_link_candidates": [],
+      "contains_dataset_word": false
+    },
+    {
+      "url": "https://boris-portal.unibe.ch/server/api/discover/search/objects?query=%222688-8319.12053%22&size=20",
+      "status": "PUBLIC_HTML_RECEIVED",
+      "final_url": "https://boris-portal.unibe.ch/server/api/discover/search/objects?query=%222688-8319.12053%22&size=20",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 7297,
+      "sha256": "27122ff1ecc998558bd8dd3c29aa1fdb9f2a81c5c7a700d556d39e03fb609396",
+      "public_source_link_candidates": [],
+      "contains_dataset_word": false
+    }
+  ]
+}

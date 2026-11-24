@@ -1,0 +1,48 @@
+name: ALAN Landau 16 flume original emergence source gate
+
+on:
+  push:
+    branches:
+      - analysis/alan-arthropod-search-expansion-20261122
+    paths:
+      - 'scripts/analysis/alan_landau16_original_rds_20261123.py'
+      - 'scripts/analysis/alan_landau16_rds_to_csv_20261123.R'
+      - 'tests/test_alan_landau16_original_rds_20261123.py'
+      - 'tests/test_alan_landau16_frozen_20261123.py'
+      - 'database/alan_experiments/arthropod_expansion_20261122/landau2022_source/**'
+      - 'tests/test_alan_physical_programme_crosscheck_20261123.py'
+      - 'database/alan_experiments/arthropod_expansion_20261122/cross_programme/**'
+      - '.github/workflows/alan-landau16-original-source-20261123.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-16-flume-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.4.3'
+          use-public-rspm: false
+      - name: Unit tests for physical experiment and source guards
+        run: |
+          python -m unittest discover -s tests -p 'test_alan_landau16_original_rds_20261123.py' -v
+          python -m unittest discover -s tests -p 'test_alan_physical_programme_crosscheck_20261123.py' -v
+      - name: Aggregate only balanced 3-trap x 2-day flume-week measures, fit provisional effects
+        run: |
+          Rscript --version
+          python scripts/analysis/alan_landau16_original_rds_20261123.py --output results/alan_landau16_original_rds_20261123.json
+      - name: Independently recompute all 8 arm ratios and two temporal contrasts from 32 true flume means
+        run: python -m unittest discover -s tests -p 'test_alan_landau16_frozen_20261123.py' -v
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alan-landau16-source-reanalysis-20261123
+          path: results/alan_landau16_original_rds_20261123.json
+          if-no-files-found: error

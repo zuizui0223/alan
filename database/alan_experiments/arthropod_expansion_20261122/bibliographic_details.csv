@@ -1,0 +1,342 @@
+record_id,authors_json,volume,issue,pages,source_response_sha256
+MED:42851410,"[""Lu N"", ""Wang Y"", ""Cai W"", ""Chen Y"", ""Yin L"", ""Chen X"", ""Cao J"", ""Luo Q""]",16,10,e74368,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609454928,"[""Charvalakis GA"", ""van Boxem N"", ""Visser ME"", ""Hut RA"", ""Spoelstra K""]",315,,Not Available,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42217539,"[""Gupta K"", ""Singh P"", ""Lucky L"", ""Diwakar S""]",172,,105010,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42656194,"[""Johnson LE"", ""Uder ER"", ""Dobbs KG"", ""Powell E"", ""Tayon LL"", ""Radomski T"", ""Medley KA"", ""Westby KM""]",229,18,jeb252361,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41558474,"[""Evans DM"", ""Fabušová M""]",36,2,R61-R63,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609422657,"[""van Koppenhagen N"", ""Gossner MM"", ""Haller J"", ""Bolliger J""]",40,1,Not Available,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42413848,"[""Miao W"", ""Shu Y"", ""Fang Q"", ""Fan G"", ""Peng J"", ""Zhang L"", ""Liu B"", ""Guo W"", ""Yan L"", ""Li J"", ""Chen R"", ""Lei X"", ""Wang Y"", ""Ji C"", ""Song L""]",406,,128724,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41412128,"[""Meah RJ"", ""Sumner-Rooney L"", ""Venables SV"", ""Lloyd-How ST"", ""Massy R"", ""Hawkes WLS"", ""Daly IM"", ""Smithers SP"", ""Wotton KR"", ""Roberts NW""]",36,2,541-548.e4,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42889399,"[""Teixeira ESN"", ""Costa TD"", ""Gouveia C"", ""Vieira V"", ""Boieiro M"", ""Borges PAV""]",14,,e209141,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42184954,"[""Gurholt H"", ""Arun R"", ""López-Sepulcre A"", ""Agrawal AA"", ""Gordon S""]",107,5,e70382,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42214201,"[""Li QL"", ""Poulin R"", ""Li CH""]",1041,,181917,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609465991,"[""Fyie LR"", ""Meuti ME"", ""Sivakoff F"", ""Fiorta MA"", ""Gardiner MM""]",63,5,70407,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:40851285,"[""van Koppenhagen N"", ""Gossner MM"", ""Haller J"", ""Bolliger J""]",40,1,e70137,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609469613,"[""Van de Schoot E"", ""Pels C"", ""Wesselingh RA"", ""van Dyck H""]",51,3,465-474,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42768113,"[""Reinhard JE"", ""Dietenberger M"", ""Rehberg H"", ""Hofmann R"", ""Lühr PE"", ""Loubies von Harpe N"", ""Vogel LN"", ""Wächter T"", ""Schroer S"", ""Jechow A"", ""Hölker F""]",9,1,1227,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1346808,"[""Torrico-Paz S"", ""Moya I"", ""Aguirre LF"", ""Pacheco LF""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609462058,"[""Zúñiga‐Cueto N"", ""Quintanilla‐Ahumada D"", ""Quijón PA"", ""Miranda‐Benabarre C"", ""Pulgar J"", ""Simeone A"", ""Duarte C""]",174,4,329-334,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42362139,"[""Lang SR"", ""Schweiger R"", ""Müller C""]",406,,128654,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1277181,"[""Li D"", ""Adeniji LA"", ""Meah RJ"", ""Clements CF""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:39878880,"[""Corsini M"", ""Cole HJ"", ""Gomes DGE"", ""Fristrup KM"", ""Barber JR""]",207,1,26,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41921131,"[""Diaz-Palma S"", ""Capilla-Lasheras P"", ""Dominoni D"", ""Cichoń M"", ""Sudyka J""]",29,4,e70382,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1256111,"[""Li R"", ""Rodríguez-Muñoz R"", ""Dominoni D"", ""Tregenza T"", ""O’Shea-Wheller T""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41668654,"[""Somanathan H""]",229,Suppl_1,jeb250795,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:40587913,"[""Charpentier CL"", ""Barnes DK"", ""Gidzinski SL"", ""Jones L"", ""Fuchs HL""]",210,,107326,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609471227,"[""Ogbeide C"", ""Arias M"", ""Bollinger E"", ""Burgazzi G"", ""Burgis F"", ""Manfrin A"", ""Schirmel J"", ""Schreiner VC"", ""Bundschuh M"", ""Schulz R""]",40,6,1740-1754,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41686999,"[""Jiang W"", ""Han A"", ""Huang Y"", ""Yuan Z"", ""Xu J"", ""Zhang J""]",60,8,6048-6056,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41174129,"[""Mondor EB"", ""Manning BR"", ""Johnson GL""]",22,2,594-599,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42774743,"[""Sandoval-Granillo V"", ""Ensaldo-Cárdenas AS"", ""Robertson BA"", ""Villalobos-Jimenez G"", ""Córdoba Aguilar A""]",37,6,arag108,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:40410247,"[""Van de Schoot E"", ""Lonnoy M"", ""Laroy L"", ""Wesselingh RA"", ""Van Dyck H""]",15,1,18056,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1099403,"[""Bereza E"", ""Rotter I"", ""Paraskevopoulou S"", ""Ben-Ami F""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41089890,"[""van Koppenhagen N"", ""Gossner MM"", ""Eisenring M"", ""Mathis DS"", ""Haller J"", ""Bolliger J""]",15,10,e72311,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41133383,"[""Rufaida Z"", ""Czarnecka M""]",228,23,jeb250443,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:40089141,"[""Van de Schoot E"", ""Wesselingh RA"", ""Van Dyck H""]",372,,126068,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41092776,"[""de Alcântara LO"", ""Cupolillo AP"", ""Tebaldi FX"", ""Mello JHF"", ""Dias ATC"", ""Araripe LO""]",1003,,180692,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:39378094,"[""Degen J"", ""Storms M"", ""Lee CB"", ""Jechow A"", ""Stöckl AL"", ""Hölker F"", ""Jakhar A"", ""Walter T"", ""Walter S"", ""Mitesser O"", ""Hovestadt T"", ""Degen T""]",121,42,e2401215121,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND607959057,"[""Cieraad E"", ""Strange E"", ""Flink M"", ""Schrama M"", ""Spoelstra K""]",60,3,400-410,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42118802,"[""Linsk S"", ""Thonis A"", ""Winchell KM""]",21,5,e0342856,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41151633,"[""Kuriwada T""]",167,,104901,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1201501,"[""Koppenhagen Nv"", ""Gossner MM"", ""Eisenring M"", ""Mathis DS"", ""Haller J"", ""Bolliger J""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41085731,"[""Guo Y"", ""Siu Y"", ""Allcock JA"", ""Dingle C"", ""Ashton LA"", ""Bonebrake TC""]",112,6,76,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609070141,"[""Sordello R"", ""Ouédraogo DY"", ""Chassoulier C"", ""Aulagnier S"", ""Coulon A"", ""Reyjol Y""]",302,,Not Available,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42505781,"[""Tsinoglou M"", ""Fiedler K"", ""Degen J""]",17,7,670,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37899018,"[""Grenis K"", ""Nufio C"", ""Wimp GM"", ""Murphy SM""]",378,1892,20220365,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1078868,"[""Chevalier D"", ""Chavez Molina N"", ""Carrillo J"", ""Geissmann Q""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42341603,"[""Goforth KM"", ""Shetty V"", ""Giannuzzi MS"", ""Merlin C""]",99,,103240,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609547314,"[""Sheehan TN"", ""McTeague MM"", ""Favorito CM"", ""Deczynski AM"", ""Klepzig KD""]",80,3,405-422,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:40433964,"[""Tuohetasen S"", ""Qu Y"", ""Hopke PK"", ""Zhang K"", ""Liu Y"", ""Lin S"", ""Gu H"", ""Wang X"", ""Lau SSS"", ""Lin X"", ""Gao X"", ""Wu Y"", ""Zhou X"", ""Lin Z"", ""Zhang M"", ""Sun Y"", ""Liu X"", ""Chen J"", ""Zhang W""]",36,5,625-635,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42744155,"[""Hsu GC"", ""Chao TH"", ""Sun SJ""]",79,,101620,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42505846,"[""Xu S"", ""Chen Z"", ""Xiong M"", ""Huang J"", ""Wang H"", ""Wan B"", ""Wang G"", ""Xia B""]",17,7,735,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609368879,"[""Heinen R"", ""López Pérez S""]",312,,Not Available,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609285147,"[""Middendorp A"", ""Poey B"", ""Mawhirt C"", ""Walker D"", ""Mochizuki Y"", ""Wong MKL""]",311,,Not Available,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41505010,"[""Christensen T"", ""Røysamb A"", ""Bayr U"", ""Bui DT"", ""Helgadottir G"", ""Johansen NS"", ""Klein J"", ""Louwe MC"", ""Mork R"", ""Noh K"", ""Reinhardt S"", ""Robsahm TE"", ""Roll KH"", ""Steifetten Ø"", ""Strömberg P"", ""Østenstad GT"", ""Zaikina V""]",25,2,211-227,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609413054,"[""Schligler J"", ""Norin T"", ""Mcbride M"", ""Morat F"", ""Killen SS"", ""Swearer SE"", ""Beldade R"", ""Mills SC""]",32,1,Not Available,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41486759,"[""Schligler J"", ""Norin T"", ""McBride M"", ""Morat F"", ""Killen SS"", ""Swearer SE"", ""Beldade R"", ""Mills SC""]",32,1,e70645,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:39126816,"[""Zeng Y"", ""Xiao X"", ""Yang F"", ""Li T"", ""Huang Y"", ""Shi X"", ""Lai C""]",283,,116780,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:40773521,"[""Underwood CN"", ""Ford AT"", ""Robson SC"", ""Wijnen H""]",20,8,e0329449,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1103978,"[""Sayuri D"", ""Pablo C"", ""Davide D"", ""Mariusz C"", ""Joanna S""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41130929,"[""Shin YI"", ""Lee H"", ""Kim SP"", ""Hong SB"", ""Ha A"", ""Jung JH"", ""Yoon HJ"", ""Kim SH"", ""Kim YK""]",36,3,553-560,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42652464,"[""Magsi FH"", ""Ullah A"", ""Ma Y"", ""Huang J"", ""Li G"", ""Zhao X"", ""Feng H""]",17,8,809,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1116992,"[""Burns J"", ""Beard B"", ""Anner S"", ""Hwangbo D"", ""Lackey A""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609216509,"[""Storms M"", ""Degen T"", ""Degen J""]",50,4,729-740,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42813203,"[""Trombin D"", ""Mazzei P"", ""Piccini I"", ""Dessì L"", ""Grieco P"", ""Matechou E"", ""Bonelli S""]",16,10,e74296,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41465689,"[""Ji Y"", ""Ma Y"", ""Wen Z"", ""Gao B"", ""Foster JJ"", ""Yu D"", ""Wu Y"", ""Wan G"", ""Hu G""]",16,12,1252,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37899007,"[""Fobert EK"", ""Miller CR"", ""Swearer SE"", ""Mayer-Pinto M""]",378,1892,20220362,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42413435,"[""Norte AC"", ""Dias M"", ""Calapez AR"", ""da Silva JP"", ""Serra SRQ"", ""Henni SH"", ""Mørch MB"", ""Moen A"", ""Bouchali R"", ""Loyau A"", ""Schmeller DS"", ""Goethals P"", ""Ho L"", ""Forio MA"", ""Esposito L"", ""Piscopo N"", ""Ramos JA"", ""Feio MJ""]",414,,130415,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609234723,"[""Manríquez PH"", ""Quintanilla-Ahumada D"", ""González CP"", ""Domenici P"", ""Bravo J"", ""Camaño A"", ""Pulgar J"", ""Quijon PA"", ""Duarte C""]",219,,Not Available,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609395919,"[""Buddendorf SWJ"", ""Broeckx HD"", ""van Delft J"", ""Groot AT"", ""Visser ME"", ""Burdfield-Steel ER"", ""Spoelstra K""]",314,,Not Available,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:39979329,"[""Dietenberger M"", ""Jechow A"", ""Sann M"", ""Hölker F""]",15,1,6237,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609426870,"[""Seymoure BM"", ""Deitsch JF"", ""Hyder P"", ""Sanchez B"", ""Pollard K"", ""Rios I"", ""Robinson-Griffiths E"", ""Saenz-Arreola S"", ""Horne LM"", ""Da Cunha O"", ""Neria O"", ""Mead JJ"", ""Daszak I"", ""Owens ACS""]",315,,Not Available,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:36876132,"[""Brown JA"", ""Lockwood JL"", ""Piana MR"", ""Beardsley C""]",26,3,106203,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1050781,"[""Linsk S"", ""Thonis A"", ""Winchell KM""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR926215,"[""Rufaida Z"", ""Czarnecka M""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41506308,"[""Liu T"", ""Wang J"", ""Yu M"", ""Li Y"", ""Lin H"", ""Deng D"", ""Shi X"", ""Xiao X""]",302,,110442,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:39758007,"[""Dissegna A"", ""Chiandetti C""]",228,3,JEB249626,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:39532146,"[""Fabusova M"", ""Gaston KJ"", ""Troscianko J""]",20,11,20240403,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1302936,"[""Westerhuis EL"", ""Kaestli M"", ""Grabham C"", ""North H"", ""Armstrong K"", ""Madani G"", ""O’Brien J""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1237309,"[""Trombin D"", ""Mazzei P"", ""Piccini I"", ""Dessì L"", ""Grieco P"", ""Matechou E"", ""Bonelli S""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41509565,"[""Li Y"", ""Lin S"", ""Liang W""]",16,1,e72928,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1214438,"[""Briolat ES"", ""Galloway JAM"", ""van Berkel M"", ""Bennie J"", ""Gaston KJ"", ""Troscianko J""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37899021,"[""Heinen R"", ""Sanchez-Mahecha O"", ""Martijn Bezemer T"", ""Dominoni DM"", ""Knappe C"", ""Kollmann J"", ""Kopatsch A"", ""Pfeiffer ZA"", ""Schloter M"", ""Sturm S"", ""Schnitzler JP"", ""Corina Vlot A"", ""Weisser WW""]",378,1892,20220357,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37899009,"[""Tidau S"", ""Brough FT"", ""Gimenez L"", ""Jenkins SR"", ""Davies TW""]",378,1892,20220363,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37899016,"[""Seymoure B"", ""Dell A"", ""Hölker F"", ""Kalinkat G""]",378,1892,20220356,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34295533,"[""Mukai A"", ""Yamaguchi K"", ""Goto SG""]",8,7,210866,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34433571,"[""Boyes DH"", ""Evans DM"", ""Fox R"", ""Parsons MS"", ""Pocock MJO""]",7,35,eabi8322,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:43041468,"[""Halsch CA"", ""Forister ML"", ""Skinner GLV"", ""Outhwaite CL"", ""Belitz MW"", ""Maharaj G"", ""Code A"", ""Guzman LM"", ""Van Deynze B"", ""Steibl S"", ""Stoll E"", ""De Knijf G"", ""Dittemore CM"", ""Gath L"", ""Fowler-Finn KD"", ""Bal P"", ""Marsh JR"", ""Jadhav A"", ""Owens ACS"", ""Muchoney ND"", ""Tatarko AR"", ""Dániel-Ferreira J"", ""Öckinger E"", ""Franzem TP"", ""Barrett M"", ""MacDonald ZG"", ""Latty T"", ""MacMillan HA"", ""Pohl GR"", ""Richards LA"", ""Ryalls JMW"", ""Staab M"", ""Stack Whitney K"", ""Woodcock BA"", ""Bahlai CA"", ""Grames EM"", ""Ware JL"", ""Elphick CS"", ""Wagner DL""]",119,6,418-447,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37899015,"[""Evans DM""]",378,1892,20220355,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:39226923,"[""Willmott NJ"", ""Black JR"", ""McNamara KB"", ""Wong BBM"", ""Jones TM""]",20,9,20240202,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41668668,"[""Soman S"", ""Ramaswamy SS"", ""Sane SP""]",229,Suppl_1,jeb250945,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:40650820,"[""Kivelä L"", ""Elgert C"", ""Lehtonen TK"", ""Candolin U""]",207,8,133,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609541030,"[""Harman AJ""]",80,2,302-308,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1337949,"[""Gollo G""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:40931758,"[""Qiu KR"", ""Wang K"", ""Dai YF"", ""An HM"", ""Huang QY"", ""Zhu F"", ""Liu W"", ""Wang XP""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND608114041,"[""Daufel SM"", ""Bohenek JR"", ""Sullivan M""]",171,10,783-788,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:39161952,"[""Cao Y"", ""Zhang S"", ""Ma KM""]",15,,1392262,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR624882,"[""Elisa G"", ""Jean-François L"", ""Valentina R"", ""François D"", ""Emmanuel D"", ""Isabelle A""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34256168,"[""Grubisic M"", ""van Grunsven RH""]",47,,136-141,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41553695,"[""Renthlei Z"", ""Lalrinawma TSK"", ""Hnamler L"", ""Malik S"", ""Trivedi AK""]",25,2,355-366,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37899013,"[""Parkinson E"", ""Tiegs SD""]",378,1892,20220361,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37899017,"[""Spoelstra K"", ""Teurlincx S"", ""Courbois M"", ""Hopkins ZM"", ""Visser ME"", ""Jones TM"", ""Hopkins GR""]",378,1892,20220364,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR913088,"[""Underwood CN"", ""Ford AT"", ""Robson SC"", ""Wijnen H""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:35949540,"[""Anic V"", ""Gaston KJ"", ""Davies TW"", ""Bennie J""]",12,8,e9157,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR555580,"[""Degen J"", ""Storms M"", ""Lee CB"", ""Jechow A"", ""Stöckl AL"", ""Hölker F"", ""Jakhar A"", ""Walter T"", ""Walter S"", ""Mitesser O"", ""Hovestadt T"", ""Degen T""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38531451,"[""Levy K"", ""Wegrzyn Y"", ""Moaraf S"", ""Barnea A"", ""Ayali A""]",926,,171905,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1313819,"[""Bahlai C"", ""Perry K"", ""Fleishman E"", ""Guralnick R"", ""Millard J"", ""Bonebrake T"", ""Newbold T"", ""Haynes K"", ""Manning P"", ""Bulbert M"", ""Halsch C"", ""Elphick C"", ""Wagner D"", ""Ware J"", ""Grames E""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:42419423,"[""Guénard B"", ""Bogar TA"", ""Lee RH"", ""Leong CM"", ""Wang R"", ""Wong MK""]",78,,101575,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37899019,"[""Dyer A"", ""Ryser R"", ""Brose U"", ""Amyntas A"", ""Bodnar N"", ""Boy T"", ""Franziska Bucher S"", ""Cesarz S"", ""Eisenhauer N"", ""Gebler A"", ""Hines J"", ""Kyba CCM"", ""Menz MHM"", ""Rackwitz K"", ""Shatwell T"", ""Terlau JF"", ""Hirt MR""]",378,1892,20220359,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:40860767,"[""Hassan W"", ""Kobak J"", ""Czarnecka M""]",71,4,432-439,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41538016,"[""Chan WP"", ""Daszak I"", ""Buntin GD"", ""Cook D"", ""Crow W"", ""Huang F"", ""Huseth A"", ""Kesheimer K"", ""Ludwick D"", ""V Paula-Moraes S"", ""Reisig DD"", ""Owens ACS""]",292,2061,20252319,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:39299330,"[""Li W"", ""Zhang D"", ""Zou Q"", ""Bose APH"", ""Jordan A"", ""McCallum ES"", ""Bao J"", ""Duan M""]",954,,176336,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1066698,"[""Broeck MVd"", ""Daele KV"", ""De Cock R"", ""Matthysen E""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:36846342,"[""Jiang XL"", ""Ren Z"", ""Hai XX"", ""Zhang L"", ""Wang ZG"", ""Lyu F""]",14,,1063601,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38287057,"[""Fyie LR"", ""Westby KM"", ""Meuti ME""]",14,1,2398,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND607673091,"[""Murphy SM"", ""Vyas DK"", ""Sher AA"", ""Grenis K""]",24,3,599-602,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33304586,"[""Steell SC"", ""Cooke SJ"", ""Eliason EJ""]",8,1,coaa097,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:39422781,"[""van Zyl L"", ""Burke AM"", ""Koekemoer LL"", ""Coetzee BWT""]",123,10,355,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609294764,"[""Khattar G"", ""Peres-Neto PR""]",2025,9,Not Available,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609249779,"[""Van den Broeck M"", ""Vandormael S"", ""De Cock R"", ""Merckx T"", ""Matthysen E""]",310,,Not Available,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND606162232,"[""Bennie J"", ""Davies TW"", ""Cruse D"", ""Inger R"", ""Gaston KJ""]",55,6,2698-2706,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND607526592,"[""Lockett MT"", ""Jones TM"", ""Elgar MA"", ""Gaston KJ"", ""Visser ME"", ""Hopkins GR""]",58,10,2329-2339,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38580701,"[""Ślusarczyk M"", ""Bednarska A"", ""Zebrowski ML"", ""Tałanda J""]",14,1,7995,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:36661993,"[""Wolkoff M"", ""Fyie L"", ""Meuti M""]",14,1,64,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38830420,"[""Hermans C"", ""Litovska I"", ""de Pastors M"", ""Visser ME"", ""Spoelstra K""]",940,,173699,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:36252663,"[""Kivelä L"", ""Elgert C"", ""Lehtonen TK"", ""Candolin U""]",857,Pt 3,159451,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609085322,"[""Ceppi GMP"", ""Gossner MM"", ""Rasmann S"", ""Glauser G"", ""van Koppenhagen N"", ""Perret‐Gentil A"", ""Bolliger J"", ""Haller J"", ""Eisenring M""]",62,5,1258-1270,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38705175,"[""Gao B"", ""Hu G"", ""Chapman JW""]",379,1904,20230115,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37228454,"[""Mayer-Pinto M"", ""Jones TM"", ""Swearer SE"", ""Robert KA"", ""Bolton D"", ""Aulsebrook AE"", ""Dafforn KA"", ""Dickerson AL"", ""Dimovski AM"", ""Hubbard N"", ""McLay LK"", ""Pendoley K"", ""Poore AGB"", ""Thums M"", ""Willmott NJ"", ""Yokochi K"", ""Fobert EK""]",4,,e036,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38550967,"[""Adams CA"", ""Clair CCS"", ""Knight EC"", ""Bayne EM""]",39,4,83,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609283054,"[""Neff F"", ""Chittaro Y"", ""Korner‐Nievergelt F"", ""Litsios G"", ""Martínez‐Núñez C"", ""Rey E"", ""Knop E""]",28,8,Not Available,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38461989,"[""Liu Q"", ""Zhang HD"", ""Xing D"", ""Xie JW"", ""Du YT"", ""Wang M"", ""Yin ZG"", ""Jia N"", ""Li CX"", ""Zhao T"", ""Jiang YT"", ""Dong YD"", ""Guo XX"", ""Zhou XY"", ""Zhao TY""]",924,,171594,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:39378082,"[""Jones TM"", ""McNamara KB""]",121,42,e2417219121,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR918221,"[""Andersson P"", ""Jägerbrand A""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41065801,"[""Martín-Gabarrella A"", ""Gemeno C"", ""Škorjanc A"", ""Meglič A"", ""Belušič G""]",212,2,271-281,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38016568,"[""Juvigny-Khenafou NPD"", ""Burgazzi G"", ""Steiner N"", ""Harvey E"", ""Terui A"", ""Piggott J"", ""Manfrin A"", ""Feckler A"", ""Leese F"", ""Schäfer RB""]",912,,168836,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:36349582,"[""Eckhartt GM"", ""Ruxton GD""]",18,11,20220281,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38795821,"[""van Koppenhagen N"", ""Haller J"", ""Kappeler J"", ""Gossner MM"", ""Bolliger J""]",355,,124209,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:35870531,"[""Lockett MT"", ""Rasmussen R"", ""Arndt SK"", ""Hopkins GR"", ""Jones TM""]",310,,119803,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:40926576,"[""Achury R"", ""Staab M"", ""Seibold S"", ""Müller J"", ""Heidrich L"", ""Püls M"", ""Hacker H"", ""Fonseca CR"", ""Fischer M"", ""Blüthgen N"", ""Weisser W""]",94,11,2308-2321,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1046638,"[""Rüppel G"", ""Karwinkel T"", ""Brust V"", ""Schmaljohann H""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1198068,"[""Khattar G"", ""Savary P"", ""Wang S"", ""Peres-Neto P""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR861284,"[""Sandoval-Granillo V"", ""Ensaldo-Cárdenas AS"", ""Robertson B"", ""Villalobos-Jimenez G"", ""Córdoba-Aguilar A""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR695636,"[""Zhou C"", ""Nakamura A"", ""Song X"", ""Katabuchi M""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:36555063,"[""Méndez A"", ""Martín L"", ""Arines J"", ""Carballeira R"", ""Sanmartín P""]",13,12,1153,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:36232659,"[""Levy K"", ""Fishman B"", ""Barnea A"", ""Ayali A"", ""Tauber E""]",23,19,11358,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND608023533,"[""Merckx T"", ""Nielsen ME"", ""Kankaanpää T"", ""Kadlec T"", ""Yazdanian M"", ""Kivelä SM""]",60,6,1022-1031,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:39532897,"[""Kim AY"", ""Velazquez A"", ""Saavedra B"", ""Smarr B"", ""Nieh JC""]",14,1,25865,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41201502,"[""Grob R"", ""Farnworth MS"", ""Degen J"", ""Warrant E"", ""Montgomery SH"", ""El Jundi B""]",212,2,313-336,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR694214,"[""Gebreziher HG"", ""Gebreazgaabher FG""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33482172,"[""Fyie LR"", ""Gardiner MM"", ""Meuti ME""]",129,,104194,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR753662,"[""Levy K"", ""Wegrzyn Y"", ""Moaraf S"", ""Barnea A"", ""Ayali A""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND609076233,"[""Seymoure B"", ""Sanchez BA"", ""Pollard KJ"", ""Horne LM"", ""Field E"", ""Portz AD"", ""Savage J"", ""Smith C"", ""Duffendack S"", ""Cotty E"", ""Neria O"", ""Moore A"", ""Saenz‐Arreola S"", ""Olivas A"", ""Da Cunha O""]",50,3,582-587,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR940830,"[""O'Connell Booth R"", ""Kunin W""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR337249,"[""Justice MJ"", ""Justice TC""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:36883276,"[""Deitsch JF"", ""Kaiser SA""]",290,1994,20230153,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:36152494,"[""Lynn KD"", ""Quintanilla-Ahumada D"", ""Duarte C"", ""Quijón PA""]",184,,114147,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:40392608,"[""Jiang W"", ""Huang Y"", ""Jin H"", ""Gan Y"", ""Zhang Q"", ""He X"", ""Tian Y"", ""Zhang J"", ""The Shanghai Birth Cohort""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR772015,"[""Li H"", ""Allen P"", ""Boris S"", ""Lagrama S"", ""Lyons J"", ""Mills C"", ""Moussi P"", ""Nichols C"", ""Tacosik C"", ""Tsaousis M"", ""Wilson NL"", ""Grider JF"", ""Parker KA"", ""Kalcounis-Rueppell MC""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:35868610,"[""Kehoe R"", ""Sanders D"", ""van Veen FJ""]",53,,100950,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:36998760,"[""Dimovski AM"", ""Griffiths SR"", ""Fanson KV"", ""Eastick DL"", ""Robert KA""]",10,3,221436,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1196034,"[""Khattar G"", ""Peres-Neto P""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND605878087,"[""Macgregor CJ"", ""Evans DM"", ""Fox R"", ""Pocock MJO""]",23,2,697-707,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR538629,"[""Levy K"", ""Fishman B"", ""Barnea A"", ""Ayali A"", ""Tauber E""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33607454,"[""Quintanilla-Ahumada D"", ""Quijón PA"", ""Pulgar J"", ""Manríquez PH"", ""García-Huidobro MR"", ""Duarte C""]",165,,112132,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:40174133,"[""Mori E"", ""Viviano A"", ""Baratti M"", ""Serafini E"", ""Gabbrielli B"", ""Picchi MS"", ""Giannetti D"", ""Mascalchi C"", ""Ancillotto L""]",5609,4,525-536,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37062314,"[""Zhang L"", ""Yin W"", ""Yu W"", ""Wang P"", ""Wang H"", ""Zhang X"", ""Zhu P""]",883,,163521,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR563110,"[""Heinen R"", ""Sanchez-Mahecha O"", ""Bezemer TM"", ""Dominoni DM"", ""Knappe C"", ""Kollmann J"", ""Kopatsch A"", ""Pfeiffer ZA"", ""Schloter M"", ""Sturm S"", ""Schnitzler J"", ""Vlot AC"", ""Weisser WW""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34329592,"[""Foster JJ"", ""Tocco C"", ""Smolka J"", ""Khaldy L"", ""Baird E"", ""Byrne MJ"", ""Nilsson DE"", ""Dacke M""]",31,17,3935-3942.e3,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:27251575,"[""Macgregor CJ"", ""Evans DM"", ""Fox R"", ""Pocock MJ""]",23,2,697-707,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38252321,"[""Levy K"", ""Barnea A"", ""Tauber E"", ""Ayali A""]",210,2,267-279,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:35364173,"[""Sanders D"", ""Baker DJ"", ""Cruse D"", ""Bell F"", ""van Veen FJF"", ""Gaston KJ""]",831,,154893,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:35037664,"[""Robert KA"", ""Dimovski AM"", ""Robert JA"", ""Griffiths SR""]",,178,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34547907,"[""Levy K"", ""Wegrzyn Y"", ""Efronny R"", ""Barnea A"", ""Ayali A""]",288,1959,20211626,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38851339,"[""Burke LM"", ""Davies TW"", ""Wilcockson D"", ""Jenkins S"", ""Ellison A""]",943,,173790,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34265558,"[""Luo B"", ""Xu R"", ""Li Y"", ""Zhou W"", ""Wang W"", ""Gao H"", ""Wang Z"", ""Deng Y"", ""Liu Y"", ""Feng J""]",288,,117765,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33270747,"[""Fritz B"", ""Horváth G"", ""Hünig R"", ""Pereszlényi Á"", ""Egri Á"", ""Guttmann M"", ""Schneider M"", ""Lemmer U"", ""Kriska G"", ""Gomard G""]",15,12,e0243296,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:35741350,"[""Li H"", ""Wilkins KT""]",11,6,829,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:32638000,"[""Westby KM"", ""Medley KA""]",57,6,1694-1699,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND606091249,"[""Grubisic M"", ""van Grunsven RHA"", ""Kyba CCM"", ""Manfrin A"", ""Hölker F""]",173,2,180-189,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34020284,"[""Huang Z"", ""He L"", ""Sang W"", ""Wang L"", ""Huang Q"", ""Lei C""]",220,,112334,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR765402,"[""Fairbairn A"", ""Meyer S"", ""Mühlbauer M"", ""Jung K"", ""Apfelbeck B"", ""Berthon K"", ""Bungenstock P"", ""Frank A"", ""Guthmann L"", ""Jokisch J"", ""Kerler K"", ""Matejka J"", ""Müller N"", ""Obster C"", ""Unterbichler M"", ""Webersberger J"", ""Weisser W""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR865996,"[""Singh PR"", ""Sing VK"", ""Chaurasia SN"", ""Singh VK""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38107586,"[""Pérez-Hernández CX"", ""Gutiérrez Mancillas AM"", ""Del-Val E"", ""Mendoza-Cuenca L""]",11,,e16622,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR685339,"[""Kim AY"", ""Velazquez A"", ""Saavedra B"", ""Smarr B"", ""Nieh JC""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+ETH:794534,"[""Rowse EG""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:32300179,"[""Komine H"", ""Koike S"", ""Schwarzkopf L""]",10,1,6527,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:39332620,"[""Owens AC"", ""Pocock MJ"", ""Seymoure BM""]",66,,101276,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33906034,"[""Salinas-Ramos VB"", ""Ancillotto L"", ""Cistrone L"", ""Nastasi C"", ""Bosso L"", ""Smeraldo S"", ""Sánchez Cordero V"", ""Russo D""]",284,,117187,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:35580711,"[""Czarnecka M"", ""Jermacz Ł"", ""Glazińska P"", ""Kulasek M"", ""Kobak J""]",306,,119476,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38664063,"[""Meuti ME"", ""Fyie LR"", ""Fiorta M"", ""Denlinger DL""]",64,6,1667-1678,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37909073,"[""Hufkens K"", ""Meier CM"", ""Evens R"", ""Paredes JA"", ""Karaardiç H"", ""Vercauteren S"", ""Van Gysel A"", ""Fox JW"", ""Pacheco CM"", ""da Silva LP"", ""Fernandes S"", ""Henriques P"", ""Elias G"", ""Costa LT"", ""Poot M"", ""Kearsley L""]",290,2010,20230957,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38705184,"[""Symes LB"", ""Madhusudhana S"", ""Martinson SJ"", ""Geipel I"", ""Ter Hofstede HM""]",379,1904,20230110,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33714820,"[""Straka TM"", ""von der Lippe M"", ""Voigt CC"", ""Gandy M"", ""Kowarik I"", ""Buchholz S""]",778,,146244,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+ETH:739143,"[""Somers-Yeates RH""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:40809820,"[""Meola V"", ""Ekklisiarchos I"", ""Cistrone L"", ""Migliozzi A"", ""Russo D""]",15,8,e71978,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37290659,"[""Ye T"", ""Zhang Y"", ""Chen G"", ""Yang Z"", ""Guo Y"", ""Abramson MJ"", ""Li S""]",891,,164647,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND607762636,"[""Liu Y"", ""Speißer B"", ""Knop E"", ""van Kleunen M""]",28,11,3674-3682,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR957911,"[""Wang J"", ""Liu Y"", ""Oduor AM"", ""Kleunen Mv"", ""Liu Y""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37008009,"[""Levy K"", ""Barnea A"", ""Ayali A""]",14,,1151570,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33724371,"[""Wilson AA"", ""Seymoure BM"", ""Jaeger S"", ""Milstead B"", ""Payne H"", ""Peria L"", ""Vosbigian RA"", ""Francis CD""]",61,3,1122-1133,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33259480,"[""Hakami AR"", ""Khan KA"", ""Ghramh HA"", ""Ahmad Z"", ""Al-Zayd AAA""]",15,12,e0242315,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND606740853,"[""Owens ACS"", ""Cochard P"", ""Durrant J"", ""Farnworth B"", ""Perkin EK"", ""Seymoure B""]",241,,Not Available,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33031444,"[""Parkinson E"", ""Lawson J"", ""Tiegs SD""]",15,10,e0240138,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37562048,"[""Groot AT"", ""Blankers T"", ""Halfwerk W"", ""Burdfield Steel E""]",69,,21-40,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:35152520,"[""Liu Y"", ""Speißer B"", ""Knop E"", ""van Kleunen M""]",28,11,3674-3682,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:39922414,"[""Creemers J"", ""Eens M"", ""Ulenaers E"", ""Lathouwers M"", ""Evens R""]",369,,125821,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38242447,"[""Trigos-Peral G"", ""Maák IE"", ""Schmid S"", ""Chudzik P"", ""Czaczkes TJ"", ""Witek M"", ""Casacci LP"", ""Sánchez-García D"", ""Lőrincz Á"", ""Kochanowski M"", ""Heinze J""]",915,,170157,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:41592769,"[""Briolat ES"", ""Galloway JAM"", ""Cornelius E"", ""Wright CJ"", ""Bennie J"", ""Gaston KJ"", ""Troscianko J""]",293,2063,20252704,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38276820,"[""Lewis SM"", ""Jusoh WFA"", ""Walker AC"", ""Fallon CE"", ""Joyce R"", ""Yiu V""]",15,1,71,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND605892917,"[""Cravens ZM"", ""Brown VA"", ""Divoll TJ"", ""Boyles JG""]",55,2,705-713,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38822081,"[""Dietenberger M"", ""Jechow A"", ""Kalinkat G"", ""Schroer S"", ""Saathoff B"", ""Hölker F""]",7,1,671,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34687777,"[""Barré K"", ""Vernet A"", ""Azam C"", ""Le Viol I"", ""Dumont A"", ""Deana T"", ""Vincent S"", ""Challéat S"", ""Kerbiriou C""]",292,Pt B,118394,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38392548,"[""Yang H"", ""Lu J"", ""Zhu P"", ""Sun Y"", ""Hu Z"", ""Li D"", ""Huang J""]",15,2,129,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR651451,"[""Hufkens K"", ""Meier CM"", ""Evens R"", ""Paredes JA"", ""Karaardiç H"", ""Vercauteren S"", ""Gysel AV"", ""Fox JW"", ""Pacheco CM"", ""da Silva LP"", ""Fernandes S"", ""Henriques P"", ""Elias G"", ""Costa LT"", ""Poot M"", ""Kearsley L""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38622174,"[""Wong MKL"", ""Didham RK""]",15,1,3236,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR381597,"[""Liu Y"", ""Speißer B"", ""Knop E"", ""van Kleunen M""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:37404704,"[""Chen S"", ""Liu Y"", ""Patrick SC"", ""Goodale E"", ""Safran RJ"", ""Pagani-Núñez E""]",13,7,e10259,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34520685,"[""Deora T"", ""Ahmed MA"", ""Brunton BW"", ""Daniel TL""]",17,9,20210320,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34180520,"[""Kühne JL"", ""van Grunsven RHA"", ""Jechow A"", ""Hölker F""]",61,3,1182-1190,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:28562607,"[""Voigt CC"", ""Roeleke M"", ""Marggraf L"", ""Pētersons G"", ""Voigt-Heucke SL""]",12,5,e0177748,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33280918,"[""Smith RA"", ""Gagné M"", ""Fraser KC""]",269,,116136,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND607501390,"[""Camacho LF"", ""Barragán G"", ""Espinosa S""]",262,,Not Available,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND605899795,"[""van Langevelde F"", ""Braamburg‐Annegarn M"", ""Huigens ME"", ""Groendijk R"", ""Poitevin O"", ""van Deijk JR"", ""Ellis WN"", ""van Grunsven RHA"", ""Vos Rd"", ""Vos RA"", ""Franzén M"", ""WallisDeVries MF""]",24,3,925-932,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:36928766,"[""Morelli F"", ""Tryjanowski P"", ""Ibáñez-Álamo JD"", ""Díaz M"", ""Suhonen J"", ""Pape Møller A"", ""Prosek J"", ""Moravec D"", ""Bussière R"", ""Mägi M"", ""Kominos T"", ""Galanaki A"", ""Bukas N"", ""Markó G"", ""Pruscini F"", ""Reif J"", ""Benedetti Y""]",13,1,4361,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:36200451,"[""Denlinger DL""]",112,6,715-723,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:35650413,"[""Owens ACS"", ""Dressler CT"", ""Lewis SM""]",199,2,487-497,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38691060,"[""Kuang Y"", ""Wang L""]",53,3,347-353,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:36058247,"[""Warrant E"", ""Somanathan H""]",377,1862,20210285,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:29215778,"[""van Langevelde F"", ""Braamburg-Annegarn M"", ""Huigens ME"", ""Groendijk R"", ""Poitevin O"", ""van Deijk JR"", ""Ellis WN"", ""van Grunsven RHA"", ""de Vos R"", ""Vos RA"", ""Franzén M"", ""WallisDeVries MF""]",24,3,925-932,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR885585,"[""Middlemiss K"", ""Cieraad E"", ""Mander S"", ""Fischer J"", ""Goad D""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:28452048,"[""Underwood CN"", ""Davies TW"", ""Queirós AM""]",86,4,781-789,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND607253612,"[""McNaughton EJ"", ""Beggs JR"", ""Gaston KJ"", ""Jones DN"", ""Stanley MC""]",254,,Not Available,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND606448272,"[""Haddock JK"", ""Threlfall CG"", ""Threlfall CG"", ""Law B"", ""Hochuli DF""]",236,,17-28,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:30519447,"[""Owens ACS"", ""Lewis SM""]",8,22,11337-11358,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:25360250,"[""van Geffen KG"", ""van Grunsven RH"", ""van Ruijven J"", ""Berendse F"", ""Veenendaal EM""]",4,11,2082-2089,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:36793791,"[""Płóciennik M"", ""Pabis K"", ""Zima A"", ""Kucharski L"", ""Sobczyk R""]",13,2,e9808,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:32250796,"[""Bhardwaj M"", ""Soanes K"", ""Lahoz-Monfort JJ"", ""Lumsden LF"", ""van der Ree R""]",262,,110313,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR447507,"[""Owens AC"", ""Dressler C"", ""Lewis SM""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND606303089,"[""Desouhant E"", ""Gomes E"", ""Mondy N"", ""Amat I""]",167,1,37-58,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:30324009,"[""Willmott NJ"", ""Henneken J"", ""Selleck CJ"", ""Jones TM""]",6,,e5599,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38608892,"[""McNeil DJ"", ""Goslee SC"", ""Kammerer M"", ""Lower SE"", ""Tooker JF"", ""Grozinger CM""]",929,,172329,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:22628095,"[""Davies TW"", ""Bennie J"", ""Gaston KJ""]",8,5,764-767,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR36293,"[""Willmott NJ"", ""Henneken J"", ""Selleck CJ"", ""Jones TM""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33601058,"[""Haynes KJ"", ""Robertson BA""]",45,,91-96,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:32211243,"[""Gomes DGE""]",8,,e8808,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:30720239,"[""Durrant J"", ""Green MP"", ""Jones TM""]",27,3,571-582,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33719334,"[""Chen Q"", ""Yang X"", ""You D"", ""Luo J"", ""Hu X"", ""Xu Z"", ""Xiao W""]",12,,611476,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33607160,"[""Owens ACS"", ""Lewis SM""]",130,,104200,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR1136339,"[""Torre I"", ""Grajera J"", ""Olmo-Vidal JM""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:36584184,"[""Lafitte A"", ""Sordello R"", ""Legrand M"", ""Nicolas V"", ""Obein G"", ""Reyjol Y""]",17,12,e0279718,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:29599655,"[""Borges RM""]",91,1,33-42,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:29425403,"[""Grenis K"", ""Murphy SM""]",26,4,770-776,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:31150872,"[""Czarnecka M"", ""Kakareko T"", ""Jermacz Ł"", ""Pawlak R"", ""Kobak J""]",684,,14-22,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:29414377,"[""Farnworth B"", ""Innes J"", ""Kelly C"", ""Littler R"", ""Waas JR""]",236,,82-90,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:32424552,"[""Horváth G"", ""Pereszlényi Á"", ""Egri Á"", ""Fritz B"", ""Guttmann M"", ""Lemmer U"", ""Gomard G"", ""Kriska G""]",119,8,2399-2409,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33784873,"[""Tielens EK"", ""Cimprich PM"", ""Clark BA"", ""DiPilla AM"", ""Kelly JF"", ""Mirkovic D"", ""Strand AI"", ""Zhai M"", ""Stepanian PM""]",17,3,20200808,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND606206224,"[""Zeale MRK"", ""Stone EL"", ""Zeale E"", ""Browne WJ"", ""Harris S"", ""Jones G""]",24,12,5909-5918,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:32478390,"[""Macgregor CJ"", ""Scott-Brown AS""]",4,1,19-32,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:30057304,"[""Sanders D"", ""Kehoe R"", ""Cruse D"", ""van Veen FJF"", ""Gaston KJ""]",28,15,2474-2478.e3,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:30288876,"[""Zeale MRK"", ""Stone EL"", ""Zeale E"", ""Browne WJ"", ""Harris S"", ""Jones G""]",24,12,5909-5918,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:25926694,"[""Davies TW"", ""Coleman M"", ""Griffith KM"", ""Jenkins SR""]",11,4,20150080,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:31419678,"[""Vanbergen AJ"", ""Potts SG"", ""Vian A"", ""Malkemper EP"", ""Young J"", ""Tscheulin T""]",695,,133833,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:29761669,"[""van Grunsven RHA"", ""Jähnichen D"", ""Grubisic M"", ""Hölker F""]",329,8-9,429-433,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+ETH:701381,"[""Wakefield AM""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:31789364,"[""Mcmunn MS"", ""Yang LH"", ""Ansalmo A"", ""Bucknam K"", ""Claret M"", ""Clay C"", ""Cox K"", ""Dungey DR"", ""Jones A"", ""Kim AY"", ""Kubacki R"", ""Le R"", ""Martinez D"", ""Reynolds B"", ""Schroder J"", ""Wood E""]",48,6,1331-1339,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33304523,"[""Hügel T"", ""Goerlitz HR""]",10,23,13134-13142,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:35958085,"[""Owens ACS"", ""Lewis SM""]",9,8,220468,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:32858779,"[""Kehoe R"", ""Sanders D"", ""Cruse D"", ""Silk M"", ""Gaston KJ"", ""Bridle JR"", ""van Veen F""]",89,11,2508-2516,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:29210222,"[""Pawson SM"", ""Bader""]",24,7,1561-1568,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND603408946,"[""VAN GEFFEN KG"", ""GROOT AT"", ""VAN GRUNSVEN RHA"", ""DONNERS M"", ""BERENDSE F"", ""Veenendaal EM""]",40,4,401-408,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:24688857,"[""Perkin EK"", ""Hölker F"", ""Heller S"", ""Berghahn R""]",2,,e279,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:35440233,"[""Blüthgen N"", ""Staab M"", ""Achury R"", ""Weisser WW""]",18,4,20210666,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND606611369,"[""Haddock JK"", ""Threlfall CG"", ""Threlfall CG"", ""Law B"", ""Hochuli DF""]",44,6,1052-1064,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:30697332,"[""Robertson BA"", ""Horváth G""]",12,2,175-186,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:28499591,"[""McLay LK"", ""Green MP"", ""Jones TM""]",100,,15-20,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:29787823,"[""Wang L"", ""Liu X"", ""Liu Z"", ""Wang X"", ""Lei C"", ""Zhu F""]",671,,67-77,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:19540116,"[""Stone EL"", ""Jones G"", ""Harris S""]",19,13,1123-1127,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:31284209,"[""Russo D"", ""Cosentino F"", ""Festa F"", ""De Benedetta F"", ""Pejic B"", ""Cerretti P"", ""Ancillotto L""]",252,Pt B,1671-1677,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34038438,"[""Lee KEM"", ""Lum WHD"", ""Coleman JL""]",16,5,e0247900,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34788329,"[""Fallon CE"", ""Walker AC"", ""Lewis S"", ""Cicero J"", ""Faust L"", ""Heckscher CM"", ""Pérez-Hernández CX"", ""Pfeiffer B"", ""Jepsen S""]",16,11,e0259379,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:33431565,"[""Wagner DL"", ""Fox R"", ""Salcido DM"", ""Dyer LA""]",118,2,e2002549117,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34609062,"[""Rhodes MW"", ""Bennie JJ"", ""Spalding A"", ""Ffrench-Constant RH"", ""Maclean IMD""]",97,1,343-360,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:27646716,"[""Firebaugh A"", ""Haynes KJ""]",182,4,1203-1211,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR87971,"[""Hügel T"", ""Goerlitz HR""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND605713042,"[""Lewanzik D"", ""Voigt CC""]",54,1,264-271,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:29291103,"[""Egri Á"", ""Száz D"", ""Farkas A"", ""Pereszlényi Á"", ""Horváth G"", ""Kriska G""]",4,11,171166,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+ETH:669162,"[""Newman R""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:27072407,"[""Altermatt F"", ""Ebert D""]",12,4,20160111,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:26728786,"[""Honnen AC"", ""Johnston PR"", ""Monaghan MT""]",17,,22,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:29208228,"[""Henneken J"", ""Jones TM""]",24,,84-88,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND605878255,"[""Davies TW"", ""Bennie J"", ""Cruse D"", ""Blumgart D"", ""Inger R"", ""Gaston KJ""]",23,7,2641-2648,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:35344112,"[""Bakonyi G"", ""Vásárhelyi T"", ""Szabó B""]",194,4,301,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:30377809,"[""Czaczkes TJ"", ""Bastidas-Urrutia AM"", ""Ghislandi P"", ""Tuni C""]",105,11-12,64,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:27589894,"[""Luarte T"", ""Bonta CC"", ""Silva-Rodriguez EA"", ""Quijón PA"", ""Miranda C"", ""Farias AA"", ""Duarte C""]",218,,1147-1153,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:28139040,"[""Davies TW"", ""Bennie J"", ""Cruse D"", ""Blumgart D"", ""Inger R"", ""Gaston KJ""]",23,7,2641-2648,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:29733537,"[""McLay LK"", ""Nagarajan-Radha V"", ""Green MP"", ""Jones TM""]",329,8-9,419-428,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:39294210,"[""Fristrup K"", ""Miller ZD"", ""Newton J"", ""Buckley S"", ""Cole H"", ""Linares C"", ""Donners M"", ""Taff BD"", ""Beeco JA"", ""Barber J"", ""Newman P""]",14,1,21791,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:25076137,"[""Blaho M"", ""Herczeg T"", ""Kriska G"", ""Egri A"", ""Szaz D"", ""Farkas A"", ""Tarjanyi N"", ""Czinke L"", ""Barta A"", ""Horvath G""]",9,7,e103339,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:25815748,"[""Szaz D"", ""Horvath G"", ""Barta A"", ""Robertson BA"", ""Farkas A"", ""Egri A"", ""Tarjanyi N"", ""Racz G"", ""Kriska G""]",10,3,e0121194,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:16481568,"[""Johnsen S"", ""Kelber A"", ""Warrant E"", ""Sweeney AM"", ""Widder EA"", ""Lee RL Jr"", ""Hernández-Andrés J""]",209,Pt 5,789-800,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:30446844,"[""Cravens ZM"", ""Boyles JG""]",189,1,69-77,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:31139944,"[""Bailey LA"", ""Brigham RM"", ""Bohn SJ"", ""Boyles JG"", ""Smit B""]",190,2,367-374,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:24147405,"[""Meyer LA"", ""Sullivan SM""]",23,6,1322-1330,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:27146262,"[""Degen T"", ""Mitesser O"", ""Perkin EK"", ""Weiß NS"", ""Oehlert M"", ""Mattig E"", ""Hölker F""]",85,5,1352-1360,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND601326109,"[""MACGREGOR CJ"", ""POCOCK MJO"", ""Fox R"", ""EVANS DM""]",40,3,187-198,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:23720524,"[""Somers-Yeates R"", ""Hodgson D"", ""McGregor PK"", ""Spalding A"", ""Ffrench-Constant RH""]",9,4,20130376,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:25780236,"[""Mathews F"", ""Roche N"", ""Aughney T"", ""Jones N"", ""Day J"", ""Baker J"", ""Langton S""]",370,1667,20140124,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:25914438,"[""MacGregor CJ"", ""Pocock MJ"", ""Fox R"", ""Evans DM""]",40,3,187-198,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:38051484,"[""Pesce S"", ""Sanchez W"", ""Leenhardt S"", ""Mamy L""]",32,6,3060-3067,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:28566484,"[""Spoelstra K"", ""van Grunsven RHA"", ""Ramakers JJC"", ""Ferguson KB"", ""Raap T"", ""Donners M"", ""Veenendaal EM"", ""Visser ME""]",284,1855,20170075,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR112420,"[""Bolliger J"", ""Collet M"", ""Hohl M"", ""Wermelinger B"", ""Obrist MK""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:32649703,"[""Bolliger J"", ""Collet M"", ""Hohl M"", ""Obrist MK""]",15,7,e0229476,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:25780235,"[""Jones TM"", ""Durrant J"", ""Michaelides EB"", ""Green MP""]",370,1667,20140122,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND601216481,"[""Minnaar C"", ""Boyles JG"", ""Minnaar IA"", ""Sole CL"", ""McKechnie AE"", ""McKenzie A""]",52,2,522-531,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:31534712,"[""Walker WH 2nd"", ""Meléndez-Fernández OH"", ""Nelson RJ"", ""Reiter RJ""]",9,17,10044-10054,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND605763320,"[""Egri Á"", ""Pereszlényi Á"", ""Farkas A"", ""Horváth G"", ""Penksza K"", ""Kriska G""]",30,4,374-384,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:28250209,"[""van Langevelde F"", ""van Grunsven RH"", ""Veenendaal EM"", ""Fijen TP""]",13,3,20160874,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:23441205,"[""Solano Lamphar HA"", ""Kocifaj M""]",8,2,e56563,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+ETH:727231,"[""Villalobos Jiménez GDJ""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:25310881,"[""Nesbit KT"", ""Christie AE""]",12,,16-44,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:23505141,"[""Davies TW"", ""Bennie J"", ""Inger R"", ""de Ibarra NH"", ""Gaston KJ""]",19,5,1417-1423,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:24857721,"[""Borniger JC"", ""McHenry ZD"", ""Abi Salloum BA"", ""Nelson RJ""]",133,,99-106,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:27078950,"[""Huang YY"", ""Zeng Y"", ""Liu SJ"", ""Ma YH"", ""Xu X""]",37,1,132-140,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:27990328,"[""Weinstein P"", ""Delean S"", ""Wood T"", ""Austin AD""]",7,2,229-234,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND604667252,"[""Zozaya SM"", ""Alford RA"", ""Schwarzkopf L""]",40,8,982-987,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:27780095,"[""Bolton D"", ""Mayer-Pinto M"", ""Clark GF"", ""Dafforn KA"", ""Brassil WA"", ""Becker A"", ""Johnston EL""]",576,,1-9,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:35003705,"[""Tsvetkov N"", ""Zayed A""]",11,24,18733-18742,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34940205,"[""Schroer S"", ""Austen K"", ""Moczek N"", ""Kalinkat G"", ""Jechow A"", ""Heller S"", ""Reinhard J"", ""Dehn S"", ""Wuthenow CI"", ""Post-Stapelfeldt M"", ""van Grunsven RHA"", ""Pérez Vega C"", ""Schumacher H"", ""Kaanaa L"", ""Saathoff B"", ""Völker S"", ""Hölker F""]",12,12,1117,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND500647624,"[""Allema AB"", ""Rossing WAH"", ""van der Werf W"", ""Heusinkveld BG"", ""Bukovinszky T"", ""Steingröver E"", ""van Lenteren JC""]",136,10,793-800,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34366755,"[""He S"", ""Shao W"", ""Han J""]",19,6,4021-4030,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:24475197,"[""Bates AJ"", ""Sadler JP"", ""Grundy D"", ""Lowe N"", ""Davis G"", ""Baker D"", ""Bridge M"", ""Freestone R"", ""Gardner D"", ""Gibson C"", ""Hemming R"", ""Howarth S"", ""Orridge S"", ""Shaw M"", ""Tams T"", ""Young H""]",9,1,e86925,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:34230463,"[""Briolat ES"", ""Gaston KJ"", ""Bennie J"", ""Rosenfeld EJ"", ""Troscianko J""]",12,1,4163,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PPR:PPR342235,"[""He S"", ""Shao W"", ""Han J""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND44457243,"[""Horváth G"", ""BLAHÓ M"", ""EGRI Á"", ""KRISKA G"", ""Seres I"", ""Robertson B""]",24,6,1644-1653,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:20455911,"[""Horváth G"", ""Blahó M"", ""Egri A"", ""Kriska G"", ""Seres I"", ""Robertson B""]",24,6,1644-1653,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:19699746,"[""Kriska G"", ""Bernáth B"", ""Farkas R"", ""Horváth G""]",55,12,1167-1173,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+AGR:IND44607229,"[""van Langevelde F"", ""Ettema JA"", ""Donners M"", ""WallisDeVries MF"", ""Groenendijk D""]",144,9,2274-2281,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:31017808,"[""Wood CE"", ""Keller-Wood M""]",317,1,R1-R13,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+MED:23297793,"[""Umstattd Meyer MR"", ""Sharkey JR"", ""Patterson MS"", ""Patterson MS"", ""Dean WR""]",13,,14,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+ETH:376198,"[""McGeachie WJ""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PAT:KR20090110960,"[""KWON DAE O"", ""CHOI BEOM""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PAT:WO2007052948,"[""KANG Kyung-Jong"", ""AN Byeong-Gil""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220
+PAT:US4908979,"[""HOSTETTER SHERMAN E""]",,,,4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220

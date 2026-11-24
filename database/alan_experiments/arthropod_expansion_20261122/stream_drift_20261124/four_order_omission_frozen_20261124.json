@@ -1,0 +1,63 @@
+{
+  "analysis_date": "2026-11-24",
+  "review_state": "FROZEN_AFTER_PUBLIC_DRYAD_SOURCE_SUCCESS_EXPLORATORY_NOT_META_PRISMA",
+  "henn_source": "2014 Henn five-river author printed Table 1, manually grouped to six orders, 2-count San Marcos mismatch retained",
+  "eeres_doi": "10.5061/dryad.rfj6q57k5",
+  "eeres_source_sha256": "496dcfa07436619084dc677317525dc674775e9965a0fdfb482cfa1cb4d8977f",
+  "replay_success": "https://github.com/zuizui0223/alan/actions/runs/45312384226",
+  "independent_programmes": 2,
+  "original_three_stage_k_unchanged": true,
+  "posthoc_deletions_change_estimand": true,
+  "rows": [
+    {
+      "deleted_order": "none",
+      "henn_RRR": 1.133273435160227,
+      "eeres_RRR": 1.260885492751995,
+      "two_programme_pooled_RRR": 1.2159960467857396,
+      "two_programme_mKH_t1_95": [
+        0.6398196602507323,
+        2.311036183569437
+      ]
+    },
+    {
+      "deleted_order": "Ephemeroptera",
+      "henn_RRR": 0.881652344338911,
+      "eeres_RRR": 1.3491965389369593,
+      "two_programme_pooled_RRR": 0.8994810405183208,
+      "two_programme_mKH_t1_95": [
+        0.2535861310692799,
+        3.19049838743304
+      ]
+    },
+    {
+      "deleted_order": "Trichoptera",
+      "henn_RRR": 1.1578399913646746,
+      "eeres_RRR": 1.2565036469489241,
+      "two_programme_pooled_RRR": 1.2148248342086148,
+      "two_programme_mKH_t1_95": [
+        0.5984913235191182,
+        2.4658659529637195
+      ]
+    },
+    {
+      "deleted_order": "Diptera",
+      "henn_RRR": 0.9480049383673648,
+      "eeres_RRR": 0.8634387351778658,
+      "two_programme_pooled_RRR": 0.8868815568154426,
+      "two_programme_mKH_t1_95": [
+        0.4119992414403903,
+        1.9091270485583782
+      ]
+    },
+    {
+      "deleted_order": "Coleoptera",
+      "henn_RRR": 1.2311910057085462,
+      "eeres_RRR": 1.284846896223043,
+      "two_programme_pooled_RRR": 1.265845090365515,
+      "two_programme_mKH_t1_95": [
+        0.7265220650612167,
+        2.2055266727067178
+      ]
+    }
+  ]
+}

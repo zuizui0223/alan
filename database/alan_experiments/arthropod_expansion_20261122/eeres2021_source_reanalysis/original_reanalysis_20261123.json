@@ -1,0 +1,488 @@
+{
+  "status": "SOURCE_DERIVED_HT_BLOCK_COMPARISONS",
+  "source_sha256": "496dcfa07436619084dc677317525dc674775e9965a0fdfb482cfa1cb4d8977f",
+  "physical_programme": "EERES2021_Disconnected18flumes_6headers",
+  "source_grain": {
+    "drift": "6 HT x 4 treatment classes; 4 repeated weeks; 144 rows",
+    "benthos_up": "6 HT x 4 treatment classes; 2 subsamples per section; 72 source rows"
+  },
+  "n_independent_header_blocks": 6,
+  "effect_summaries": {
+    "drift": {
+      "abund": [
+        {
+          "treatment": "L",
+          "control": "CT",
+          "mean_treatment": 59.583333333333336,
+          "mean_control": 48.05555555555556,
+          "RR": 1.239884393063584,
+          "lnRR": 0.21501814387029278,
+          "SE_paired_HT_delta": 0.05786727576071973,
+          "t5_exploratory_95RR": [
+            1.0685104501359963,
+            1.4387442892739029
+          ],
+          "physical_HT_n": 6,
+          "block_treatment_values": [
+            46.25,
+            50.25,
+            76.75,
+            61.75,
+            53,
+            69.5
+          ],
+          "block_control_values": [
+            43,
+            51.583333333333336,
+            56.333333333333336,
+            44.416666666666664,
+            40.333333333333336,
+            52.666666666666664
+          ],
+          "status": "POSTHOC_DESCRIPTIVE_NOT_META_ADOPTED"
+        },
+        {
+          "treatment": "L+F",
+          "control": "F",
+          "mean_treatment": 13.083333333333334,
+          "mean_control": 15.0,
+          "RR": 0.8722222222222222,
+          "lnRR": -0.1367110455419023,
+          "SE_paired_HT_delta": 0.11419172777531943,
+          "t5_exploratory_95RR": [
+            0.650346340316113,
+            1.1697945506520178
+          ],
+          "physical_HT_n": 6,
+          "block_treatment_values": [
+            13.25,
+            21,
+            14.5,
+            11.25,
+            7.25,
+            11.25
+          ],
+          "block_control_values": [
+            11.25,
+            22.5,
+            11.75,
+            17.75,
+            13,
+            13.75
+          ],
+          "status": "POSTHOC_DESCRIPTIVE_NOT_META_ADOPTED"
+        }
+      ],
+      "rich": [
+        {
+          "treatment": "L",
+          "control": "CT",
+          "mean_treatment": 11.208333333333334,
+          "mean_control": 9.583333333333334,
+          "RR": 1.1695652173913043,
+          "lnRR": 0.15663207067864365,
+          "SE_paired_HT_delta": 0.025283679485368925,
+          "t5_exploratory_95RR": [
+            1.0959683424201474,
+            1.2481042971651648
+          ],
+          "physical_HT_n": 6,
+          "block_treatment_values": [
+            9.25,
+            11.5,
+            12.25,
+            12.25,
+            11,
+            11
+          ],
+          "block_control_values": [
+            8.416666666666666,
+            9.916666666666666,
+            10.333333333333334,
+            9.583333333333334,
+            9.083333333333334,
+            10.166666666666666
+          ],
+          "status": "POSTHOC_DESCRIPTIVE_NOT_META_ADOPTED"
+        },
+        {
+          "treatment": "L+F",
+          "control": "F",
+          "mean_treatment": 5.125,
+          "mean_control": 5.333333333333333,
+          "RR": 0.9609375,
+          "lnRR": -0.039845908547199674,
+          "SE_paired_HT_delta": 0.06864906038844912,
+          "t5_exploratory_95RR": [
+            0.8054823920831672,
+            1.1463948659611514
+          ],
+          "physical_HT_n": 6,
+          "block_treatment_values": [
+            6,
+            4.25,
+            5.75,
+            5,
+            4.75,
+            5
+          ],
+          "block_control_values": [
+            5.25,
+            5.25,
+            4.75,
+            5.5,
+            5.75,
+            5.5
+          ],
+          "status": "POSTHOC_DESCRIPTIVE_NOT_META_ADOPTED"
+        }
+      ]
+    },
+    "benthos": {
+      "abund": [
+        {
+          "treatment": "L",
+          "control": "CT",
+          "mean_treatment": 98.08333333333333,
+          "mean_control": 132.02777777777777,
+          "RR": 0.7428992215442878,
+          "lnRR": -0.29719488068562305,
+          "SE_paired_HT_delta": 0.1437038095577073,
+          "t5_exploratory_95RR": [
+            0.5134527429041705,
+            1.074878381697756
+          ],
+          "physical_HT_n": 6,
+          "block_treatment_values": [
+            90,
+            176,
+            77.5,
+            101.5,
+            64.5,
+            79
+          ],
+          "block_control_values": [
+            129,
+            180,
+            168,
+            84.5,
+            102.16666666666667,
+            128.5
+          ],
+          "status": "POSTHOC_DESCRIPTIVE_NOT_META_ADOPTED"
+        },
+        {
+          "treatment": "L+F",
+          "control": "F",
+          "mean_treatment": 59.25,
+          "mean_control": 47.583333333333336,
+          "RR": 1.245183887915937,
+          "lnRR": 0.21928322014723065,
+          "SE_paired_HT_delta": 0.17174326983972957,
+          "t5_exploratory_95RR": [
+            0.8007576718601948,
+            1.9362698219595071
+          ],
+          "physical_HT_n": 6,
+          "block_treatment_values": [
+            93.5,
+            85.5,
+            52.5,
+            85,
+            23.5,
+            15.5
+          ],
+          "block_control_values": [
+            71,
+            39,
+            33,
+            66.5,
+            44.5,
+            31.5
+          ],
+          "status": "POSTHOC_DESCRIPTIVE_NOT_META_ADOPTED"
+        }
+      ],
+      "rich": [
+        {
+          "treatment": "L",
+          "control": "CT",
+          "mean_treatment": 10.5,
+          "mean_control": 12.25,
+          "RR": 0.8571428571428571,
+          "lnRR": -0.15415067982725836,
+          "SE_paired_HT_delta": 0.10358618164346595,
+          "t5_exploratory_95RR": [
+            0.6567660338495969,
+            1.1186538884245487
+          ],
+          "physical_HT_n": 6,
+          "block_treatment_values": [
+            11,
+            17,
+            9.5,
+            8.5,
+            6.5,
+            10.5
+          ],
+          "block_control_values": [
+            13.166666666666666,
+            14.166666666666666,
+            14,
+            9.166666666666666,
+            10.166666666666666,
+            12.833333333333334
+          ],
+          "status": "POSTHOC_DESCRIPTIVE_NOT_META_ADOPTED"
+        },
+        {
+          "treatment": "L+F",
+          "control": "F",
+          "mean_treatment": 7.583333333333333,
+          "mean_control": 8.25,
+          "RR": 0.9191919191919191,
+          "lnRR": -0.08426034361773997,
+          "SE_paired_HT_delta": 0.09266699856549072,
+          "t5_exploratory_95RR": [
+            0.7243587872165624,
+            1.1664299504868416
+          ],
+          "physical_HT_n": 6,
+          "block_treatment_values": [
+            9,
+            8,
+            6.5,
+            9,
+            6.5,
+            6.5
+          ],
+          "block_control_values": [
+            9.5,
+            8,
+            8.5,
+            6.5,
+            8.5,
+            8.5
+          ],
+          "status": "POSTHOC_DESCRIPTIVE_NOT_META_ADOPTED"
+        }
+      ]
+    }
+  },
+  "critical_boundary": "HT grouping avoids 18-flume or repeated-week pseudoreplication. Drift is in-stream transport, not aquatic emergence to terrestrial predators; benthos a separate terminal sample. No 2026/2024 paper double count.",
+  "joint_shared_HT": {
+    "status": "SOURCE_DERIVED_EIGHT_JOINT_HT_CONTRAST_COVARIANCE",
+    "physical_programme": "EERES2021_Disconnected18flumes_6headers",
+    "source_sha256": "496dcfa07436619084dc677317525dc674775e9965a0fdfb482cfa1cb4d8977f",
+    "independent_header_blocks": 6,
+    "source_outcomes": [
+      "drift|abund|L_vs_CT",
+      "drift|abund|LF_vs_F",
+      "drift|rich|L_vs_CT",
+      "drift|rich|LF_vs_F",
+      "benthos|abund|L_vs_CT",
+      "benthos|abund|LF_vs_F",
+      "benthos|rich|L_vs_CT",
+      "benthos|rich|LF_vs_F"
+    ],
+    "covariance_logRR": [
+      [
+        0.003348621603967182,
+        -0.0024544159067372505,
+        0.0005500318165677462,
+        0.0007544346822288103,
+        -0.004046697854210336,
+        -0.006080252492968666,
+        -0.004595302852941169,
+        -0.0006680533985598852
+      ],
+      [
+        -0.0024544159067372505,
+        0.013039750692312663,
+        -0.001537254277540823,
+        0.0058757422367217305,
+        -0.006963551244633969,
+        0.010991472878639887,
+        0.0004301890607623099,
+        -0.0034374165584356666
+      ],
+      [
+        0.0005500318165677462,
+        -0.001537254277540823,
+        0.0006392644483188655,
+        -0.0003650459230671182,
+        0.0012807558811541862,
+        0.00033265823738706183,
+        -0.00012380578544655128,
+        0.001328678684424603
+      ],
+      [
+        0.0007544346822288103,
+        0.0058757422367217305,
+        -0.0003650459230671182,
+        0.004712693492216935,
+        -0.0061519732378390035,
+        0.002185413496462438,
+        -0.003358325037332006,
+        -0.0011021583430120016
+      ],
+      [
+        -0.004046697854210336,
+        -0.006963551244633969,
+        0.0012807558811541862,
+        -0.0061519732378390035,
+        0.020650784881397818,
+        0.010505478713538427,
+        0.012417469970945439,
+        0.010828631024291557
+      ],
+      [
+        -0.006080252492968666,
+        0.010991472878639887,
+        0.00033265823738706183,
+        0.002185413496462438,
+        0.010505478713538427,
+        0.029495750735242163,
+        0.012503778744915294,
+        0.006673642923615212
+      ],
+      [
+        -0.004595302852941169,
+        0.0004301890607623099,
+        -0.00012380578544655128,
+        -0.003358325037332006,
+        0.012417469970945439,
+        0.012503778744915294,
+        0.010730097027473122,
+        0.004962988636458025
+      ],
+      [
+        -0.0006680533985598852,
+        -0.0034374165584356666,
+        0.001328678684424603,
+        -0.0011021583430120016,
+        0.010828631024291557,
+        0.006673642923615212,
+        0.004962988636458025,
+        0.00858717262313666
+      ]
+    ],
+    "stage_contrasts": [
+      {
+        "kind": "DRIFT_VS_BENTHOS_COMPARISON_NOT_EMERGENCE",
+        "numerator_lnRR": "drift|abund|L_vs_CT",
+        "denominator_lnRR": "benthos|abund|L_vs_CT",
+        "difference_lnRR": 0.5122130245559158,
+        "ratio_of_response_ratios": 1.6689806061260872,
+        "SE_shared_HT": 0.17914464042718575,
+        "t5_exploratory_95ratio": [
+          1.0530672180525198,
+          2.645126745827616
+        ],
+        "independent_header_blocks": 6,
+        "status": "POSTHOC_DESCRIPTIVE_NO_CAUSAL_MEDIATION"
+      },
+      {
+        "kind": "DRIFT_VS_BENTHOS_COMPARISON_NOT_EMERGENCE",
+        "numerator_lnRR": "drift|abund|LF_vs_F",
+        "denominator_lnRR": "benthos|abund|LF_vs_F",
+        "difference_lnRR": -0.35599426568913295,
+        "ratio_of_response_ratios": 0.7004766369745273,
+        "SE_shared_HT": 0.1433616255149022,
+        "t5_exploratory_95ratio": [
+          0.48455852700981444,
+          1.0126073355370042
+        ],
+        "independent_header_blocks": 6,
+        "status": "POSTHOC_DESCRIPTIVE_NO_CAUSAL_MEDIATION"
+      },
+      {
+        "kind": "DRIFT_VS_BENTHOS_COMPARISON_NOT_EMERGENCE",
+        "numerator_lnRR": "drift|rich|L_vs_CT",
+        "denominator_lnRR": "benthos|rich|L_vs_CT",
+        "difference_lnRR": 0.310782750505902,
+        "ratio_of_response_ratios": 1.3644927536231883,
+        "SE_shared_HT": 0.1077820627316303,
+        "t5_exploratory_95ratio": [
+          1.034295106157973,
+          1.8001056599854228
+        ],
+        "independent_header_blocks": 6,
+        "status": "POSTHOC_DESCRIPTIVE_NO_CAUSAL_MEDIATION"
+      },
+      {
+        "kind": "DRIFT_VS_BENTHOS_COMPARISON_NOT_EMERGENCE",
+        "numerator_lnRR": "drift|rich|LF_vs_F",
+        "denominator_lnRR": "benthos|rich|LF_vs_F",
+        "difference_lnRR": 0.0444144350705403,
+        "ratio_of_response_ratios": 1.0454155219780221,
+        "SE_shared_HT": 0.12451579338131206,
+        "t5_exploratory_95ratio": [
+          0.7590682371225841,
+          1.4397830921439094
+        ],
+        "independent_header_blocks": 6,
+        "status": "POSTHOC_DESCRIPTIVE_NO_CAUSAL_MEDIATION"
+      }
+    ],
+    "light_by_flow_modifiers": [
+      {
+        "kind": "FLOW_MODIFIES_LIGHT_ASSOCIATION",
+        "numerator_lnRR": "drift|abund|LF_vs_F",
+        "denominator_lnRR": "drift|abund|L_vs_CT",
+        "difference_lnRR": -0.3517291894121951,
+        "ratio_of_response_ratios": 0.7034706034706034,
+        "SE_shared_HT": 0.14593561631676602,
+        "t5_exploratory_95ratio": [
+          0.48342038870682497,
+          1.0236864259513354
+        ],
+        "independent_header_blocks": 6,
+        "status": "POSTHOC_DESCRIPTIVE_NO_CAUSAL_MEDIATION"
+      },
+      {
+        "kind": "FLOW_MODIFIES_LIGHT_ASSOCIATION",
+        "numerator_lnRR": "drift|rich|LF_vs_F",
+        "denominator_lnRR": "drift|rich|L_vs_CT",
+        "difference_lnRR": -0.1964779792258433,
+        "ratio_of_response_ratios": 0.8216194237918216,
+        "SE_shared_HT": 0.07798749763051792,
+        "t5_exploratory_95ratio": [
+          0.6723668201689205,
+          1.0040032573029232
+        ],
+        "independent_header_blocks": 6,
+        "status": "POSTHOC_DESCRIPTIVE_NO_CAUSAL_MEDIATION"
+      },
+      {
+        "kind": "FLOW_MODIFIES_LIGHT_ASSOCIATION",
+        "numerator_lnRR": "benthos|abund|LF_vs_F",
+        "denominator_lnRR": "benthos|abund|L_vs_CT",
+        "difference_lnRR": 0.5164781008328537,
+        "ratio_of_response_ratios": 1.6761141374297504,
+        "SE_shared_HT": 0.17069147075809948,
+        "t5_exploratory_95ratio": [
+          1.0808002150145741,
+          2.599332015911926
+        ],
+        "independent_header_blocks": 6,
+        "status": "POSTHOC_DESCRIPTIVE_NO_CAUSAL_MEDIATION"
+      },
+      {
+        "kind": "FLOW_MODIFIES_LIGHT_ASSOCIATION",
+        "numerator_lnRR": "benthos|rich|LF_vs_F",
+        "denominator_lnRR": "benthos|rich|L_vs_CT",
+        "difference_lnRR": 0.06989033620951839,
+        "ratio_of_response_ratios": 1.0723905723905724,
+        "SE_shared_HT": 0.09690868061063328,
+        "t5_exploratory_95ratio": [
+          0.8359208412474288,
+          1.375754118100494
+        ],
+        "independent_header_blocks": 6,
+        "status": "POSTHOC_DESCRIPTIVE_NO_CAUSAL_MEDIATION"
+      }
+    ],
+    "interpretation_gate": "Drift=in-stream downstream transport, benthos=riverbed community; neither is adult emergence or predation. Correlated outcomes across six source headers, 8 selected comparisons and 8 post hoc differences. No wet-vs-dry gradient or plant outcome."
+  }
+}

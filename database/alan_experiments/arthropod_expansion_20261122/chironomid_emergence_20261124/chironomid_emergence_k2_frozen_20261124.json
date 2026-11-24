@@ -1,0 +1,103 @@
+{
+  "created": "2026-11-24",
+  "status": "FROZEN_AFTER_ORIGINAL_SOURCE_REPLAY_EXPLORATORY_NOT_FINAL_SYSTEMATIC",
+  "programme_source_replay_ci": "https://github.com/zuizui0223/alan/actions/runs/45339907417",
+  "source_dois": [
+    "10.1002/eap.1821",
+    "10.1111/1365-2435.70335"
+  ],
+  "Sullivan2013_original_Dryad_TSV_SHA256": "385444ab318ec4b15edd3161c740aa7f4b2d9b973fe4c2ddf6c29cc56cdec484",
+  "Ogbeide2022_original_Zenodo_RDS_SHA256": "289e9dc874724ca765aa2e8314f975ef7cf7b2cb688bdb62e8f1be9bc50d1776",
+  "Ogbeide2022_derived_source_flume_rates_git_blob": "a774508cdbe30641e97de61a7f55d437e15b9aec",
+  "primary_estimand": "source-labelled Chironomidae in aquatic emergence traps; Sullivan n3 blocks equal four lamp colour log response vs dark, Ogbeide independent 4+4 no-crayfish flumes with equal two post-light sampling weeks",
+  "programme_estimates": [
+    {
+      "programme": "Sullivan2013Wetland",
+      "site_independent_n": 3,
+      "original_2013_chironomidae_source_n": 4960,
+      "RR": 2.662188561008355,
+      "logRR": 0.9791485518025116,
+      "SE_logRR": 0.38087668715135786,
+      "descriptive_t2_95": [
+        0.5170417952170058,
+        13.707301807949918
+      ]
+    },
+    {
+      "programme": "Ogbeide2022StreamMesocosm",
+      "site_independent_n": 8,
+      "lit_flumes": 4,
+      "dark_flumes": 4,
+      "RR": 0.8321096426823299,
+      "logRR": -0.1837910647733146,
+      "SE_logRR": 0.11418801868668381,
+      "weeks": "Week1+Week4_equal_per_flume"
+    }
+  ],
+  "exploratory_meta": {
+    "k_independent_programmes": 2,
+    "method": "intercept-only REML k2 closed-form tau2 and modified Knapp-Hartung t1",
+    "REML_tau2": 0.5971612986872729,
+    "pooled_logRR": 0.3409139101036652,
+    "pooled_RR": 1.4062321732688763,
+    "SE_logRR_mKH": 0.5786923981168333,
+    "t1_95": [
+      0.0009009415455300588,
+      2194.9136821890843
+    ]
+  },
+  "cross_programme_sensitivity_point_RR": {
+    "LED_only_in_Sullivan": 1.4693244385610642,
+    "HPS_only_in_Sullivan": 1.3456696897920666,
+    "Week1_only_in_Ogbeide": 1.4416020056381118,
+    "Week4_only_in_Ogbeide": 1.3568696618816414
+  },
+  "legacy_108_catalogue_changed": false,
+  "other_four_exploratory_meta_changed": false,
+  "new_primary_physical_programmes": 0,
+  "claims_prohibited": [
+    "significant general ALAN effect on Chironomidae",
+    "causal predation mechanism linking light and wet-affinity plants",
+    "add original trap stations or weeks as independent study k",
+    "assume same lamp light spectrum/intensity, trap design, or microhabitat across two studies",
+    "final systematic PRISMA with k2"
+  ],
+  "within_programme_physical_unit_diagnostics": {
+    "Sullivan_3_group_RRs": [
+      5.410327021453614,
+      2.3760507330154623,
+      1.4676997264220153
+    ],
+    "Sullivan_leave_one_group_out_RRs": [
+      1.867439158530104,
+      2.817931065381321,
+      3.5854165009351733
+    ],
+    "Ogbeide_8_flume_leave_one_out_RRs": [
+      0.7644531462446292,
+      0.8430956654157828,
+      0.8247131125251536,
+      0.8961766465437536,
+      0.8519879719345138,
+      0.8099523557437799,
+      0.869120654396728,
+      0.8012149141181399
+    ],
+    "Ogbeide_Week1_RR": 0.8833645684048065,
+    "Ogbeide_Week4_RR": 0.6862252902416064,
+    "between_programme_ratio_of_RRs_point": 3.19932425302357,
+    "warning": "All one-physical-unit-out points retain their programme-specific signs, but n3 wetland and n8 flume observational sampling precision do not identify a causal habitat or light-dose moderator."
+  },
+  "two_programme_difference_descriptive": {
+    "source_two_programme_RR_of_RRs": 3.19932425302357,
+    "source_lnRR_difference": 1.1629396165758261,
+    "uncertainty_SE_from_two_independent_source_programmes": 0.3976253945951941,
+    "descriptive_conservative_t2_95_RR_of_RRs": [
+      0.5781601497701577,
+      17.703876131992015
+    ],
+    "descriptive_t2_two_sided_p": 0.09972377667328713,
+    "not_causal_habitat_effect_modifier": true,
+    "not_confirmatory_cross_study_difference": true
+  }
+}

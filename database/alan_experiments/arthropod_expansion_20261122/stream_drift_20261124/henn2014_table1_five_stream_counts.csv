@@ -1,0 +1,6 @@
+programme_id,stream,stream_size,lit_count,dark_count,doi,source_table_url,source_table,unit_warning
+Henn2014_TexasFive,Barton Creek,small,57,7,10.1080/02705060.2014.900654,https://www.tandfonline.com/doi/pdf/10.1080/02705060.2014.900654,Table 1,Counts per two-hour night not flow-standardized drift density
+Henn2014_TexasFive,Bull Creek,small,49,59,10.1080/02705060.2014.900654,https://www.tandfonline.com/doi/pdf/10.1080/02705060.2014.900654,Table 1,Counts per two-hour night not flow-standardized drift density
+Henn2014_TexasFive,Onion Creek,small,46,98,10.1080/02705060.2014.900654,https://www.tandfonline.com/doi/pdf/10.1080/02705060.2014.900654,Table 1,Counts per two-hour night not flow-standardized drift density
+Henn2014_TexasFive,Comal River,large,286,601,10.1080/02705060.2014.900654,https://www.tandfonline.com/doi/pdf/10.1080/02705060.2014.900654,Table 1,Counts per two-hour night not flow-standardized drift density
+Henn2014_TexasFive,San Marcos River,large,791,1196,10.1080/02705060.2014.900654,https://www.tandfonline.com/doi/pdf/10.1080/02705060.2014.900654,Table 1,Counts per two-hour night not flow-standardized drift density

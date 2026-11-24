@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-22",
+  "report_count": 28,
+  "programme_labels_within_queue": 27,
+  "counts_by_gate": {
+    "core_capture_candidate_variance_hold": 3,
+    "duplicate_preprint_final": 1,
+    "existing_shared_programme_not_new_k": 1,
+    "field_gradient_allocation_hold": 1,
+    "light_technology_quasi_no_new_ALAN_dark_randomization": 1,
+    "mixed_treatments_hold": 1,
+    "not_an_arthropod_endpoint": 1,
+    "separate_attraction_quantitative_candidate": 4,
+    "separate_behavior_not_abundance": 6,
+    "separate_laboratory_or_performance": 6,
+    "thesis_chapter_design_hold": 3
+  },
+  "source_review_type": "targeted primary methods review of selected available sources; others remain title/abstract only",
+  "fully_independent_eligible_programmes": null,
+  "new_eligible_effects": 0,
+  "human_double_screening": false,
+  "verified_programme_duplicate_ids": [
+    "MED:38531451",
+    "PPR:PPR753662"
+  ],
+  "known_existing_programme_ids": [
+    "MED:38795821",
+    "MED:28139040"
+  ],
+  "primary_numeric_analysis_run": false,
+  "source_doi_found": "10.34894/SNKXWK",
+  "context_source_doi_found": "10.6084/m9.figshare.29436527"
+}

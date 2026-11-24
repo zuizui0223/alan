@@ -41,3 +41,17 @@ Lu JPE2026は補足表のみ、Parkinson FWB2026は索引化された本文の�
 全文確認待ち34報告は、元検索27、元検索外の資料6、追加検索からの新しい未確認1に対応する。補遺・プレプリントのみの確認は未完了として保持し、刊行版への本文確認を移し替えなかった。これらを採択研究数、独立実験数、最終PRISMAとして用いない。
 
 [全553報告の確認台帳](../../database/alan_experiments/search/unified_review_inventory.csv)、[全文確認待ち34報告](../../database/alan_experiments/search/unified_pending_primary_review.csv)、[分母と入力ハッシュ](../../database/alan_experiments/search/unified_review_inventory_summary.json)。原検索の選別記録、検索外台帳、部分確認台帳を上書きせず、出典を保持した派生集計である。
+
+## 節足動物の捕獲・活動を対象とした追加バッチ（2026-11-22）
+
+実験を示す必須語を外したEurope PMCの補助検索を実行し、341レコードを全件取得した。11月21日の553報告台帳へDOI・索引ID・既存PMCID対応で照合し、198レコードが既存報告に一致、143レコードが未一致だった。143件すべてに一次選別と理由を付け、全文・設計確認28、引用追跡20、観察研究21、室内研究9、暗対照なしの光色比較2、版対応確認7、今回の対象範囲外という一次判断56へ振り分けた。AIが非重複の二つのバッチを分担し、人による独立二重選別は未実施である。
+
+題名一致と版対応の15組は候補のまま保持し、報告キーを自動統合していない。143件は最終的な固有報告数でも独立実験数でもなく、28件も採択数ではない。過去の521件、追加51件、553報告への単純加算は行わない。
+
+並行した引用・参考文献追跡の58出現は、DOI完全一致で49報告となった。既存553報告との一致が9報告、その外で今回の341レコードと一致するものが9報告、双方の外に31報告が残った。書誌で確認した索引ID対応を含み、題名の類似だけで同定していない。この台帳には観察研究、室内研究、同じ実験の別論文も含まれ、31新規独立実験を意味しない。検索エンジンの総ヒット数ではない。
+
+スイス3森林と豪州4保護区の公開原データを取得し、反復単位を保存した記述集計を追加した。どちらも関連論文が同一実験を報告しており、論文数を系列数に読み替えない。スイスの区画・日付不整合、豪州のゼロ平均・共有暗区も保存した。テキサス5河川の対応計数は、本文・表の合計不一致を記録したうえで保持した。これらから新しい統合値や湿潤性メタ回帰は推定していない。
+
+[追加バッチの説明](../../database/alan_experiments/arthropod_expansion_20261122/README_ja.md)、[全341レコード](../../database/alan_experiments/arthropod_expansion_20261122/records.csv)、[理由付き143レコード](../../database/alan_experiments/arthropod_expansion_20261122/screened_unmatched_records.csv)、[143件のRIS](../../database/alan_experiments/arthropod_expansion_20261122/unmatched_records.ris)、[引用追跡49報告](../../database/alan_experiments/arthropod_expansion_20261122/citation_ledger.csv)。元の検索履歴を保全した追加スナップショットであり、最終PRISMAではない。WoS・Scopusの予定検索は引き続き未実施である。
+
+同日のブラウザ確認ではWoSはCloudflareのアクセス拒否、Scopusは「Site Unavailable」で検索画面へ到達できなかった。Scopusは一度の再読み込みでも変わらず、両者の検索式送信・検索結果取得・書き出しは未実施である。大学契約セッションも未確認で、0件検索と記録していない。[接続確認](../../database/alan_experiments/arthropod_expansion_20261122/contract_database_access_20261122.csv)。

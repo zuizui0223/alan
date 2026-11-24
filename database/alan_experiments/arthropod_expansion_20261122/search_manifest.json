@@ -1,0 +1,29 @@
+{
+  "search_id": "arthropod_europepmc_20261122",
+  "database": "Europe PMC",
+  "role": "supplementary_index_search",
+  "query": "(TITLE_ABS:\"artificial light at night\" OR TITLE_ABS:\"light pollution\" OR TITLE_ABS:\"street lighting\" OR TITLE_ABS:streetlight* OR TITLE_ABS:\"nocturnal illumination\" OR TITLE_ABS:\"night-time light\") AND (TITLE_ABS:insect* OR TITLE_ABS:arthropod* OR TITLE_ABS:invertebrate* OR TITLE_ABS:spider* OR TITLE_ABS:moth* OR TITLE_ABS:beetle* OR TITLE_ABS:Diptera OR TITLE_ABS:Chironomid* OR TITLE_ABS:mayfl* OR TITLE_ABS:caddisfl*) AND FIRST_PDATE:[1900-01-01 TO 2026-11-22]",
+  "endpoint": "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+  "started_utc": "2026-11-22T01:09:14.534284+00:00",
+  "completed_utc": "2026-11-22T01:09:33.523503+00:00",
+  "cutoff": "2026-11-22",
+  "raw_hits": 341,
+  "retrieved_records": 341,
+  "existing_reports_in_baseline_inventory": 553,
+  "records_matching_baseline": 198,
+  "unmatched_records": 143,
+  "unmatched_candidate_report_keys": 143,
+  "identity_conflict_records": 0,
+  "records_without_abstract": 2,
+  "baseline_input_sha256": {
+    "unified_review_inventory.csv": "88226cfd2e1ba9605c9adb369d194ce2fb0bf5458fc1220ac00f10b328297e71",
+    "combined_search_appearances.csv": "3216557f41f774ef94bd710f7ce2f7e9e3070b9e6033bf6cb24501da51d04137"
+  },
+  "raw_response_sha256": {
+    "europepmc_000.json": "4d24636d5e33d3d7b0d8da26e360812b47ca3fcce6b1bac78d39dcac1ca40220"
+  },
+  "final_prisma": false,
+  "final_eligibility": false,
+  "independent_experiments_estimated": false,
+  "limit": "Additional candidate reports require screening and identity/experiment-family review. Europe PMC is not WoS or Scopus. No abstracts redistributed in metadata CSVs."
+}

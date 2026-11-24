@@ -1,0 +1,525 @@
+{
+  "retrieval_date_jst": "2026-11-22",
+  "baseline_git_head": "db82976f834cc048e76e69e6f621ba11e3ef33e5",
+  "search_type": "Targeted supplementary primary-source discovery and data recovery, not a systematic search or complete assessment of novelty; see parent expansion ledger.",
+  "queries": [
+    "artificial light at night experimental field ground dwelling invertebrates Davies Bennie Gardner long term spider insect field LED data Dryad 2017 2024 terrestrial insect abundance",
+    "experimental street lighting Netherlands van Grunsven moth population abundance artificial light at night lit control sites 2020 long term moths insect caterpillar beetles dataset",
+    "experimental field artificial light at night insects ground arthropod abundance pitfall LED streetlights grassland New Zealand Germany USA insect emergence spider field 2023 2024 2025",
+    "street lighting field experiments moth feeding activity flight moths experimental lights dark Macgregor 2017 van Langevelde Boyes street lighting moth caterpillars Dryad",
+    "artificial light Firebaugh Haynes grassland experimental plots light pollution aerial insect abundance fireflies sticky traps 2019 study plot matching data 2015 2016",
+    "artificial light at night predator herbivore insect abundance meadow field experiment capture moth firefly population plant community grasslands lit unlit data Dryad moth movement flight activity experimental dark releases 2025",
+    "artificial light night insect flying attraction unlit control road luminaires Germany Dietenberger 2024 tailored lights dark control flight insect data Dryad Eurasian original experimental Gülpe Westhavelland",
+    "artificial light night field moth pheromone trap mating disruption winter moth females experiment dark light female numbers egg batches van Geffen data dark control male capture",
+    "van Grunsven macro moth populations 2020 dataset Dryad moth abundance transect coords observations dataset van Grunsven 2023 long term ground invertebrate 10.5061 data",
+    "Brown Introduction artificial light night abundance predators scavengers parasites arthropod communities 2023 Pennsylvania data GitHub Mendeley design twelve sites coordinates trap",
+    "Davies multiple night-time light-emitting diode lighting strategies impact grassland invertebrate assemblages 2017 dataset Penryn plots data DOI Exeter open research repository",
+    "Mitigating light pollution impacts on arthropods based on light-emitting diode properties EnviDat WSL dataset Switzerland coordinates ground flight capture 70137 plots WSL 2024 124209 data",
+    "\"Experimental light at night has a negative long-term impact\" data repository Netherlands zenodo Dryad moths csv trap blacklight turned off",
+    "Street lighting has detrimental impacts on local insect populations dataset Boyes caterpillars CEH short-term experiment coordinates Figshare DOI",
+    "\"Reducing the fatal attraction\" dataset DOI Westhavelland Dietenberger data supporting",
+    "\"Functional Invertebrate Groups\" envidat DOI van Koppenhagen 2024 functional streetlight coordinates data 2020 2021",
+    "field experiment dark control attraction of nocturnal insects LED lamps Germany Switzerland UK New Zealand Pan traps Longcore California unlit controls DIY DOI Indonesia New Zealand Pawson Bader unlit control",
+    "\"dark control\" insects attraction artificial light field Latin America Brazil tropical forest lamp unlit dark controls insects blacklight field attraction Mexico Malaysia experimental streetlights light traps unsampled literature DOI",
+    "Kivelä color artificial light affects mate attraction common glow-worm field data Dryad summer experimental LED males traps dark control fireflies Finland supplementary van Geffen winter moth funnel traps location Wageningen",
+    "\"artificial light\" \"unlit\" experimental moth trap insect attraction LED field light dark control capture abundance lure light California Longcore Pawson UK Wakefield Longcore data experimental",
+    "\"Reducing the blue spectrum\" \"figshare\" Peru Jessica Deichmann raw insect abundance data 12479",
+    "\"blue spectrum\" \"figshare.com\" Peruvian lowland forest lamps insect attraction data Deichmann database Smithsonian Figshare",
+    "\"Off-grid\" \"solar powered\" field carabid study 2018 Germany trap lines site sampling Dolné Rakousko Austria Slovakia Prague field method DOI 12303",
+    "van Geffen artificial light at night inhibits mating winter moth trees locations blocks paper oak Wageningen trees 2015 experimental site female trap",
+    "\"Off-grid: solar powered LED illumination\" field experimental night pitfall sampling data sample trap design location authors Perkin ground beetles",
+    "Tuning the white light spectrum Longcore Dryad data customized lamp dark three sites Los Angeles pan randomized stations table coordinates data",
+    "\"Divergent responses of insectivorous bats\" data figshare bushland archives NSW Australia insect LED dataset"
+  ],
+  "notes": [
+    "New exact DOI against baseline unified inventory does not establish new experimental family or absence from secondary ledgers.",
+    "Focal endpoints include specified catch and activity outcomes; no pooled synthesis performed. Different trapping or bait mechanisms are coded separately.",
+    "Some families appear in multiple publications or previous non-inventory source reviews.",
+    "Parent conducted additional comprehensive query and crosswalk. Native metadata and checks for only the two requested datasets are supplied."
+  ],
+  "records": [
+    {
+      "doi": "10.1111/cobi.70137",
+      "title": "Mitigating light pollution impacts on arthropods based on light-emitting diode properties",
+      "first_author": "van Koppenhagen",
+      "year": "2025 online / 2026 issue",
+      "location": "Switzerland, Alpthal, Birmensdorf and Lägern",
+      "endpoint": "Flight interception captures; ground pitfall activity-density",
+      "design_and_units": "Per forest, 12 experimental LED plots and 2 dark controls; repeat trap weeks over three flight summers and two ground summers. Shared controls across spectra, intensity and shape.",
+      "family_or_overlap": "Swiss WSL, linked samples proven for 2024 report.",
+      "coordinate_status": "Projected plot fields in Moran table; coordinate reference system unconfirmed, incomplete for controls.",
+      "public_data_or_access": "10.16904/envidat.566; 13 listed files downloaded; consult swiss-envidat/ for integrity manifest and provisional summaries",
+      "screen_status": "eligible manipulated capture; raw recovered; no full-period flight estimate adopted owing to inconsistent plot/treatment and dates",
+      "exact_doi_in_baseline_unified_inventory": true,
+      "baseline_coverage": "primary_read_not_final_eligibility",
+      "authors_registered": null,
+      "sources": [
+        "https://doi.org/10.1111/cobi.70137",
+        "https://www.envidat.ch/metadata/alan---nature-sustainability"
+      ],
+      "web_refs": [
+        "turn985241517view0",
+        "turn638691571view5",
+        "turn954770689search14"
+      ]
+    },
+    {
+      "doi": "10.1016/j.envpol.2024.124209",
+      "title": "LED streetlight characteristics alter the functional composition of ground-dwelling invertebrates",
+      "first_author": "van Koppenhagen",
+      "year": 2024,
+      "location": "Switzerland, same three WSL forests",
+      "endpoint": "Ground pitfall captures per guild, center and periphery",
+      "design_and_units": "Same network; two summers (2021, 2022); center and peripheral traps nested within lighting plots.",
+      "family_or_overlap": "Swiss WSL; 306/307 eligible 2025/26 center records matched exactly on seven taxon counts and sampling keys. Never pool as independent.",
+      "coordinate_status": "Three named forests; station coordinates require explicit crosswalk.",
+      "public_data_or_access": "10.16904/envidat.496; complete source CSV downloaded; archive differs in its definition of SumAll.",
+      "screen_status": "eligible linked companion; recoverable functional group counts; does not add experimental family",
+      "exact_doi_in_baseline_unified_inventory": false,
+      "baseline_coverage": "",
+      "authors_registered": [
+        "van Koppenhagen",
+        "Haller",
+        "Kappeler",
+        "Gossner",
+        "Bolliger"
+      ],
+      "sources": [
+        "https://doi.org/10.1016/j.envpol.2024.124209"
+      ],
+      "web_refs": [
+        "turn954770689search17",
+        "turn824243493search9"
+      ]
+    },
+    {
+      "doi": "10.1002/ecs2.70291",
+      "title": "Divergent responses of insectivorous bats and flying insects to experimental LED illumination of different spectra",
+      "first_author": "Robert",
+      "year": 2025,
+      "location": "four Melbourne reserves, Australia",
+      "endpoint": "Nightly flying insect captures; total bat activity showed no overall lighting effect",
+      "design_and_units": "16 plots (four reserves × control, amber, filtered white and cool white); ≥200 m separation; 3 before nights and 3 during nights; each lit-vs-dark BACI contrast has 4 paired reserve differences.",
+      "family_or_overlap": "Melbourne March 2021; workbook explicitly links the insects to the 2021 JoVE methods paper.",
+      "coordinate_status": "Named four reserves and map; metropolitan coordinates cannot substitute for plot coordinates.",
+      "public_data_or_access": "10.26181/24311368.v1; complete archived XLSX verified, includes 96 observation rows and a separate grand-total footer; melbourne/.",
+      "screen_status": "eligible manipulated capture; new ecological report on previously held JoVE experiment; descriptive BACI contrasts ready",
+      "exact_doi_in_baseline_unified_inventory": false,
+      "baseline_coverage": "",
+      "authors_registered": [
+        "Robert",
+        "Dimovski",
+        "Contos",
+        "Khwaja",
+        "Griffiths"
+      ],
+      "sources": [
+        "https://doi.org/10.1002/ecs2.70291"
+      ],
+      "web_refs": [
+        "turn597842864view0",
+        "turn359247903view0",
+        "turn359247903search1"
+      ]
+    },
+    {
+      "doi": "10.3791/63156",
+      "title": "Low-Cost Automated Flight Intercept Trap for the Temporal Sub-Sampling of Flying Insects Attracted to Artificial Light at Night",
+      "first_author": "Robert",
+      "year": 2021,
+      "location": "four Melbourne reserves, Australia",
+      "endpoint": "Flight-intercept trap samples",
+      "design_and_units": "Methods paper on the 16 traps; the 2025 source workbook verifies original date/device and sample reuse.",
+      "family_or_overlap": "Same Melbourne March 2021 experiment as 10.1002/ecs2.70291.",
+      "coordinate_status": "Use same 2025 site crosswalk.",
+      "public_data_or_access": "Public ecology paper and 10.26181/24311368.v1 supply ecological counts; restricted methods full text not used.",
+      "screen_status": "prior methods-paper access hold linked with open ecological report",
+      "exact_doi_in_baseline_unified_inventory": true,
+      "baseline_coverage": "pending_documented_fulltext_followup",
+      "authors_registered": [
+        "Robert",
+        "Dimovski",
+        "Robert",
+        "Griffiths"
+      ],
+      "sources": [
+        "https://doi.org/10.3791/63156"
+      ],
+      "web_refs": [
+        "turn597842864view0",
+        "turn359247903view0"
+      ]
+    },
+    {
+      "doi": "10.1111/icad.12479",
+      "title": "Reducing the blue spectrum of artificial light at night minimises insect attraction in a tropical lowland forest",
+      "first_author": "Deichmann",
+      "year": 2021,
+      "location": "Morona District, Loreto, Peru",
+      "endpoint": "Insect capture/attraction at lamp; total and taxonomic groups",
+      "design_and_units": "12 stations ≥100 m apart; white, yellow-filtered, amber-filtered and unlit arms rotated randomly. Each treatment present on 3 nights at each station, 18 nights, 2 sampling intervals/night. 288 samples are repeated measurements.",
+      "family_or_overlap": "Peru rainforest experiment; do not count lamps, source-origin groups or early/late windows as independent studies.",
+      "coordinate_status": "Locations mapped in Supplement Fig S1; forest landscape includes wet and upland environments, which cannot be assigned per trap without matching.",
+      "public_data_or_access": "Paper promises Figshare with no DOI there; Fig 3 reports medians/IQR; raw archive not verified in this pass.",
+      "screen_status": "high-confidence manipulated capture; new report against exact-DOI baseline.",
+      "exact_doi_in_baseline_unified_inventory": false,
+      "baseline_coverage": "",
+      "authors_registered": null,
+      "sources": [
+        "https://doi.org/10.1111/icad.12479"
+      ],
+      "web_refs": [
+        "turn453704947view3",
+        "turn427262655view3",
+        "turn273756479search1"
+      ]
+    },
+    {
+      "doi": "10.1098/rstb.2014.0125",
+      "title": "Tuning the white light spectrum of light emitting diode lamps to reduce attraction of nocturnal arthropods",
+      "first_author": "Longcore",
+      "year": 2015,
+      "location": "Los Angeles County, California, USA",
+      "endpoint": "Attraction of flying arthropods to lit pan trap vs identical empty housing",
+      "design_and_units": "Three sites; one urban and two rural; lamp treatment moved clockwise among stations between collection nights; multiple lamps share a dark trap; 32 nights in total.",
+      "family_or_overlap": "Los Angeles 2014 pan trap experiment; paired night/site, not independent insects.",
+      "coordinate_status": "Site coordinates in paper; not verified per station.",
+      "public_data_or_access": "Public article, fig 3 means and supplemental route; raw archive not checked.",
+      "screen_status": "high-confidence manipulated capture; new exact-DOI lead",
+      "exact_doi_in_baseline_unified_inventory": false,
+      "baseline_coverage": "",
+      "authors_registered": null,
+      "sources": [
+        "https://doi.org/10.1098/rstb.2014.0125"
+      ],
+      "web_refs": [
+        "turn359247903search2",
+        "turn597842864view2"
+      ]
+    },
+    {
+      "doi": "10.1111/icad.12303",
+      "title": "Off-grid: solar powered LED illumination impacts epigeal arthropods",
+      "first_author": "Eccard",
+      "year": 2018,
+      "location": "Gülpe, Westhavelland, Germany",
+      "endpoint": "Carabid pitfall capture (field experiment); separate activity-arena component",
+      "design_and_units": "2013 and 2016 used two lines of six traps each per year; zero-to-five lamps rotated across traps each night; 96 trap-nights. Line and trap repeated. Species effects varied.",
+      "family_or_overlap": "Gülpe floodplain overlaps Westhavelland in geography, but distinct portable trap lines, design and years from the later road-light experiment.",
+      "coordinate_status": "Station published 52°44′23″N, 12°15′18″E; this is not the exact position of each trap.",
+      "public_data_or_access": "Primary paper and public PDF; raw file not verified.",
+      "screen_status": "high-confidence manipulated field pitfall captures; keep arena experiment separate",
+      "exact_doi_in_baseline_unified_inventory": false,
+      "baseline_coverage": "",
+      "authors_registered": [
+        "Eccard",
+        "Scheffler",
+        "Franke",
+        "Hoffmann"
+      ],
+      "sources": [
+        "https://doi.org/10.1111/icad.12303"
+      ],
+      "web_refs": [
+        "turn281837260view0",
+        "turn427262655view0"
+      ]
+    },
+    {
+      "doi": "10.1111/icad.12116",
+      "title": "Artificial light at night inhibits mating in a Geometrid moth",
+      "first_author": "van Geffen",
+      "year": 2015,
+      "location": "Netherlands",
+      "endpoint": "Winter moth female funnel captures on trunks, male response to pheromone lure; female mating outcome separate",
+      "design_and_units": "Oak trunks with green, red, white or no light; separate male lure experiment. Independent tree/block counts not verified from methods in this pass.",
+      "family_or_overlap": "Do not assume independence from Dutch Light on Nature merely on DOI, or assign same sites without checking.",
+      "coordinate_status": "Coordinates not verified.",
+      "public_data_or_access": "Paper, supplementary spectrum/trap photographs; no raw count archive verified.",
+      "screen_status": "manipulated field capture candidate; exact unit and variance hold",
+      "exact_doi_in_baseline_unified_inventory": false,
+      "baseline_coverage": "",
+      "authors_registered": [
+        "van Geffen",
+        "van Eck",
+        "de Boer",
+        "van Grunsven",
+        "Salis",
+        "Berendse",
+        "Veenendaal"
+      ],
+      "sources": [
+        "https://doi.org/10.1111/icad.12116"
+      ],
+      "web_refs": [
+        "turn692486201search6",
+        "turn882065058search21"
+      ]
+    },
+    {
+      "doi": "10.1016/j.scitotenv.2022.159451",
+      "title": "The color of artificial light affects mate attraction in the common glow-worm",
+      "first_author": "Kivelä",
+      "year": "2022 online / 2023 issue",
+      "location": "Tvärminne, Hanko, Finland",
+      "endpoint": "Male glow-worm capture at dummy mating signals, conditional mate attraction",
+      "design_and_units": "15 stations along a road; 20 nights; five treatments incl. lights off, three stations per treatment per night with randomized rotation; 299 analyzable trap events; yellow and red did not differ significantly from control.",
+      "family_or_overlap": "Related Finnish field projects; verify sites and years before treating e.g. Elgert 2020 as different cohorts.",
+      "coordinate_status": "Road and station area mapped; plot-level coordinates not verified.",
+      "public_data_or_access": "Public author PDF with GLMM tables; raw trap-night file not verified.",
+      "screen_status": "eligible manipulated mate-attraction captures; behavioural endpoint distinct from whole-community capture",
+      "exact_doi_in_baseline_unified_inventory": false,
+      "baseline_coverage": "",
+      "authors_registered": [
+        "Kivelä",
+        "Elgert",
+        "Lehtonen",
+        "Candolin"
+      ],
+      "sources": [
+        "https://doi.org/10.1016/j.scitotenv.2022.159451",
+        "https://helda.helsinki.fi/server/api/core/bitstreams/7db9c5ee-1ea4-4ad8-9dab-9a987850354c/content"
+      ],
+      "web_refs": [
+        "turn638691571view4",
+        "turn882065058search0"
+      ]
+    },
+    {
+      "doi": "10.1002/ecs2.3227",
+      "title": "Multi-year experiment shows no impact of artificial light at night on arthropod trophic structure or abundance",
+      "first_author": "Firebaugh",
+      "year": 2020,
+      "location": "Blandy Experimental Farm, Virginia, USA",
+      "endpoint": "Grass-canopy sweep-net density, total and trophic groups; null overall result",
+      "design_and_units": "Four pairs of 20-m field plots; one randomized lit and one ambient plot per pair, repeated in 2015/16. Near-identical 2016 densities; keep paired design.",
+      "family_or_overlap": "Existing secondary predator screening; Blandy plots overlap Firebaugh firefly/courtship programme.",
+      "coordinate_status": "Named facility; plot coordinates not recovered.",
+      "public_data_or_access": "Figure 1 arm means and SE; public raw file not confirmed.",
+      "screen_status": "eligible area-based density, especially important null; not a new project lead",
+      "exact_doi_in_baseline_unified_inventory": false,
+      "baseline_coverage": "",
+      "authors_registered": [
+        "Firebaugh",
+        "Haynes"
+      ],
+      "sources": [
+        "https://doi.org/10.1002/ecs2.3227"
+      ],
+      "web_refs": [
+        "turn692486201search0"
+      ]
+    },
+    {
+      "doi": "10.1111/gcb.13615",
+      "title": "Multiple night-time light-emitting diode lighting strategies impact grassland invertebrate assemblages",
+      "first_author": "Davies",
+      "year": 2017,
+      "location": "Lizard Peninsula, Cornwall, UK",
+      "endpoint": "Ground spider and beetle pitfall activity-density, day/night samples separated",
+      "design_and_units": "Thirty 16 m² plots in randomized grid, six per each of five arms, including dark; same plots for three years and day/night.",
+      "family_or_overlap": "Existing predator-source lead. Compare plot layout, dates and coordinates with Bennie grassland vegetation study; distinct from outdoor enclosures unless proved identical.",
+      "coordinate_status": "Study-center 50.035159 N, 5.206489 W in author PDF.",
+      "public_data_or_access": "Public author PDF, figure/model evidence; per-plot raw file unconfirmed.",
+      "screen_status": "eligible manipulated pitfall captures; assessed design beyond abstract",
+      "exact_doi_in_baseline_unified_inventory": false,
+      "baseline_coverage": "",
+      "authors_registered": [
+        "Davies",
+        "Bennie",
+        "Cruse",
+        "Blumgart",
+        "Inger",
+        "Gaston"
+      ],
+      "sources": [
+        "https://doi.org/10.1111/gcb.13615"
+      ],
+      "web_refs": [
+        "turn985241517view3",
+        "turn730258360view1"
+      ]
+    },
+    {
+      "doi": "10.1016/j.cub.2020.04.083",
+      "title": "Experimental light at night has a negative long-term impact on macro-moth populations",
+      "first_author": "van Grunsven",
+      "year": 2020,
+      "location": "seven Dutch forest-edge sites",
+      "endpoint": "Repeated standardized adult macro-moth captures as population-trend proxy",
+      "design_and_units": "Seven Light on Nature sites; experimental treatments vs dark over five years; changes are temporal and do not establish absolute population census.",
+      "family_or_overlap": "Same Dutch infrastructure as Spoelstra and Cieraad; coordinated site subsetting needed.",
+      "coordinate_status": "Use Light on Nature site metadata; not independently geocoded.",
+      "public_data_or_access": "Primary PDF/SI route; no raw archive verified.",
+      "screen_status": "eligible long-term manipulated capture; indirectly referenced already",
+      "exact_doi_in_baseline_unified_inventory": false,
+      "baseline_coverage": "",
+      "authors_registered": [
+        "van Grunsven",
+        "van Deijk",
+        "Donners",
+        "Berendse",
+        "Visser",
+        "Veenendaal",
+        "Spoelstra"
+      ],
+      "sources": [
+        "https://doi.org/10.1016/j.cub.2020.04.083"
+      ],
+      "web_refs": [
+        "turn824243493search0",
+        "turn427262655view2"
+      ]
+    },
+    {
+      "doi": "10.1098/rstb.2022.0364",
+      "title": "Long-term exposure to experimental light affects the ground-dwelling invertebrate community, independent of light spectra",
+      "first_author": "Spoelstra",
+      "year": 2023,
+      "location": "eight Dutch Light on Nature sites",
+      "endpoint": "Ground pitfall captures by taxon and community; diversity finding was null",
+      "design_and_units": "8 sites × 4 randomized transects (white/red/green/dark); repeated on/off nights after 3–4 years; 1–2 nested pitfalls per transect.",
+      "family_or_overlap": "Dutch Light on Nature, overlaps 2020 moth and herbivory programme.",
+      "coordinate_status": "Eight sites; infrastructure paper and supplementary metadata.",
+      "public_data_or_access": "10.34894/YVN4YJ, data, code and metadata; previously identified by project; separate arthropods from molluscs/worms.",
+      "screen_status": "eligible, existing design review; limited/no change in species and beta diversity; distinct capture outcome",
+      "exact_doi_in_baseline_unified_inventory": true,
+      "baseline_coverage": "primary_read_not_final_eligibility",
+      "authors_registered": [
+        "Spoelstra",
+        "Teurlincx",
+        "Courbois",
+        "Hopkins",
+        "Visser",
+        "Jones",
+        "Hopkins"
+      ],
+      "sources": [
+        "https://doi.org/10.1098/rstb.2022.0364"
+      ],
+      "web_refs": [
+        "turn281837260view4",
+        "turn994858078view1"
+      ]
+    },
+    {
+      "doi": "10.1126/sciadv.abi8322",
+      "title": "Street lighting has detrimental impacts on local insect populations",
+      "first_author": "Boyes",
+      "year": 2021,
+      "location": "Oxfordshire, UK",
+      "endpoint": "Experimental nocturnal caterpillar activity/feeding proxy; observational caterpillar abundance is a separate component",
+      "design_and_units": "Two unlit grass-margin sites with portable LED and HPS rigs and dark transects, haphazard assignment. Matched pairs for established streetlights were observational. LED disrupted short-term activity, HPS did not show a significant effect.",
+      "family_or_overlap": "Boyes2021 in project; never substitute the matched hedgerow/grass-margin abundance counts for the manipulated activity test.",
+      "coordinate_status": "See repository site metadata; no station coordinates validated here.",
+      "public_data_or_access": "10.5285/7e7ce7c1-aa16-484f-86b1-90c5b088a64c experimental; 10.5285/4d3f4c8a-5605-4990-8ca1-42f8ddf63698 observational abundance.",
+      "screen_status": "eligible activity component; strong observational reductions not experimental abundance estimates",
+      "exact_doi_in_baseline_unified_inventory": true,
+      "baseline_coverage": "primary_read_not_final_eligibility",
+      "authors_registered": [
+        "Boyes",
+        "Evans",
+        "Fox",
+        "Parsons",
+        "Pocock"
+      ],
+      "sources": [
+        "https://doi.org/10.1126/sciadv.abi8322"
+      ],
+      "web_refs": [
+        "turn698879285search18",
+        "turn824243493search5",
+        "turn824243493search6"
+      ]
+    },
+    {
+      "doi": "10.1016/j.isci.2023.106203",
+      "title": "Introduction of artificial light at night increases the abundance of predators, scavengers, and parasites in arthropod communities",
+      "first_author": "Brown",
+      "year": 2023,
+      "location": "United States, forest",
+      "endpoint": "Pitfall activity-density by guild and family",
+      "design_and_units": "Added landscape lights, unlit controls and before/during/after phases; repeat trap collections nested in locations.",
+      "family_or_overlap": "Existing brown2023_sources.",
+      "coordinate_status": "Existing project documentation; no independent coordinate validation here.",
+      "public_data_or_access": "Publisher article and local existing source; no new download in this search.",
+      "screen_status": "eligible already known; not a new family",
+      "exact_doi_in_baseline_unified_inventory": true,
+      "baseline_coverage": "primary_read_not_final_eligibility",
+      "authors_registered": [
+        "Brown",
+        "Lockwood",
+        "Piana",
+        "Beardsley"
+      ],
+      "sources": [
+        "https://doi.org/10.1016/j.isci.2023.106203"
+      ],
+      "web_refs": [
+        "turn954770689search1"
+      ]
+    },
+    {
+      "doi": "10.1038/s42003-024-06304-4",
+      "title": "Reducing the fatal attraction of nocturnal insects using tailored and shielded road lights",
+      "first_author": "Dietenberger",
+      "year": 2024,
+      "location": "Westhavelland and three municipal sites in Germany",
+      "endpoint": "Flight interception attraction/capture",
+      "design_and_units": "Controlled field with lit/dark arrays in Westhavelland over 2019–22; 12 luminaires per treatment are not independent regional sites. Municipality retrofit arms are not automatically valid light/dark comparisons.",
+      "family_or_overlap": "Westhavelland field infrastructure: check overlap with riparian studies and avoid pseudoreplication in site array.",
+      "coordinate_status": "Figure 1 maps sites, precise array coordinates not extracted.",
+      "public_data_or_access": "10.6084/m9.figshare.23773365, AuBe for field array, NaturLicht for municipal sites.",
+      "screen_status": "registered experimental field capture but clustering/lighting cohort limits inference",
+      "exact_doi_in_baseline_unified_inventory": true,
+      "baseline_coverage": "primary_read_not_final_eligibility",
+      "authors_registered": [
+        "Dietenberger",
+        "Jechow",
+        "Kalinkat",
+        "Schroer",
+        "Saathoff",
+        "Hölker"
+      ],
+      "sources": [
+        "https://doi.org/10.1038/s42003-024-06304-4"
+      ],
+      "web_refs": [
+        "turn692486201search5",
+        "turn427262655view4"
+      ]
+    },
+    {
+      "doi": "10.1111/gcb.13371",
+      "title": "The dark side of street lighting: impacts on moths and evidence for the disruption of nocturnal pollen transport",
+      "first_author": "Macgregor",
+      "year": "2016 online / 2017 issue",
+      "location": "UK",
+      "endpoint": "Ground-level moth abundance index and lamp-height flight activity point in opposite directions.",
+      "design_and_units": "Matched existing lit/unlit sites; lighting not experimentally assigned.",
+      "family_or_overlap": "Keep observational design apart from later portable-rig pollination studies.",
+      "coordinate_status": "See primary methods; no plot coordinates verified.",
+      "public_data_or_access": "Published primary paper; existing register.",
+      "screen_status": "observational comparator only; do not add to manipulation-only primary synthesis",
+      "exact_doi_in_baseline_unified_inventory": true,
+      "baseline_coverage": "no_fulltext_requirement_in_joined_records_not_final_exclusion",
+      "authors_registered": [
+        "Macgregor",
+        "Evans",
+        "Fox",
+        "Pocock"
+      ],
+      "sources": [
+        "https://doi.org/10.1111/gcb.13371"
+      ],
+      "web_refs": [
+        "turn698879285search15",
+        "turn698879285search6"
+      ]
+    }
+  ],
+  "source_packages": {
+    "swiss-envidat": "Original .496 and .566 data, scripts and provisional descriptive summaries.",
+    "melbourne": "Original Figshare workbook, source metadata, separate reserve-level difference-in-changes and covariance on the additive scale."
+  }
+}

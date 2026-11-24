@@ -1,0 +1,36 @@
+{
+  "generated_date_jst": "2026-11-22",
+  "base_commit": "db82976f834cc048e76e69e6f621ba11e3ef33e5",
+  "scope": "partial GitHub import from local 2026-11-22 ALAN package",
+  "europepmc_records": 341,
+  "matched_existing_reports": 198,
+  "unmatched_screened": 143,
+  "screening": {
+    "fulltext_needed": 28,
+    "reference_mining": 20,
+    "separate_observational": 21,
+    "separate_indoor": 9,
+    "separate_spectrum_no_dark": 2,
+    "identity_review": 7,
+    "out_of_scope": 56
+  },
+  "new_study_k": "unknown",
+  "independent_human_screening": false,
+  "ris_entries": 143,
+  "citation_reports_in_local_bundle": 49,
+  "citation_not_in_prior_or_expansion": 31,
+  "doi_or_identity_candidate_pairs": 15,
+  "wos": {
+    "status": "not_executed",
+    "reason": "access denied before submitting query"
+  },
+  "scopus": {
+    "status": "not_executed",
+    "reason": "site unavailable before submitting query"
+  },
+  "new_pooled_effects": false,
+  "moisture_meta_regression": false,
+  "existing_effect_catalogue_rows_unchanged": 108,
+  "source": "2026-11-22 local release package verification_summary.json",
+  "partial_transfer": true
+}

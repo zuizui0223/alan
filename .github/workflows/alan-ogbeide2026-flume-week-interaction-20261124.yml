@@ -1,0 +1,37 @@
+name: ALAN Ogbeide 2026 16-flume emergence interaction with crayfish and sampled week
+
+on:
+  push:
+    branches: [analysis/alan-arthropod-search-expansion-20261122]
+    paths:
+      - 'scripts/analysis/alan_ogbeide2026_emergence_light_crayfish_time_20261124.py'
+      - 'tests/test_alan_ogbeide2026_emergence_light_crayfish_time_20261124.py'
+      - '.github/workflows/alan-ogbeide2026-flume-week-interaction-20261124.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  independent-flumes-not-trap-or-week-replicates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Pin original aggregation inference dependencies
+        run: python -m pip install 'numpy==2.2.6' 'scipy==1.15.3'
+      - name: Reproduce 16 genuine physical stream units, original author provenance, and covariance accounting
+        run: python -m unittest discover -s tests -p 'test_alan_ogbeide2026_emergence_light_crayfish_time_20261124.py' -v
+      - name: Recompute repeated-flume 2x2 factorial temporal interaction with 60000 balanced-label assignments
+        run: |
+          python scripts/analysis/alan_ogbeide2026_emergence_light_crayfish_time_20261124.py \
+            --permutations 60000 \
+            --output results/alan_ogbeide2026_2x2xweek_emergence_20261124.json
+      - name: Save source-derived study summary only, no raw observations
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-ogbeide2026-16-flume-emergence-time-interaction
+          path: results/alan_ogbeide2026_2x2xweek_emergence_20261124.json

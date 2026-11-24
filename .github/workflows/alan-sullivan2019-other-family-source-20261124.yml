@@ -1,0 +1,36 @@
+name: ALAN original Sullivan emergent other-family composition diagnostics
+
+on:
+  push:
+    branches: [analysis/alan-arthropod-search-expansion-20261122]
+    paths:
+      - 'scripts/analysis/alan_sullivan2019_other_family_decomposition_20261124.py'
+      - 'tests/test_alan_sullivan2019_other_family_decomposition_20261124.py'
+      - 'database/alan_experiments/arthropod_expansion_20261122/chironomid_emergence_20261124/sullivan_family_composition_frozen_20261124.json'
+      - '.github/workflows/alan-sullivan2019-other-family-source-20261124.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-taxon-source-3-blocks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test original author source and taxon complement physical-unit contract
+        run: python -m unittest discover -s tests -p test_alan_sullivan2019_other_family_decomposition_20261124.py -v
+      - name: Retrieve and hash-verify original Dryad TSV, then find other captured families by wetland block
+        run: |
+          python scripts/analysis/alan_sullivan2019_other_family_decomposition_20261124.py \
+            --frozen database/alan_experiments/arthropod_expansion_20261122/chironomid_emergence_20261124/sullivan_family_composition_frozen_20261124.json \
+            --output results/alan_sullivan2019_other_emergence_family_drivers_20261124.json
+      - name: Publish only block by family aggregated statistics, no individual author rows
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-sullivan2013-other-emergence-family-decomposition
+          path: results/alan_sullivan2019_other_emergence_family_drivers_20261124.json

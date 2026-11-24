@@ -1,0 +1,36 @@
+name: ALAN owner-wide 62-repo default-branch DOI source inventory
+
+on:
+  push:
+    branches: [analysis/alan-arthropod-search-expansion-20261122]
+    paths:
+      - 'scripts/acquisition/alan_crossrepo_doi_inventory_20261124.py'
+      - 'tests/test_alan_crossrepo_doi_inventory_20261124.py'
+      - '.github/workflows/alan-crossrepo-doi-source-inventory-20261124.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bibliography-paths-and-bounded-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate DOI and prioritization logic offline
+        run: python -m unittest discover -s tests -p 'test_alan_crossrepo_doi_inventory_20261124.py' -v
+      - name: Enumerate every owned public repo default branch and sample source-pinned bibliography files
+        run: python scripts/acquisition/alan_crossrepo_doi_inventory_20261124.py --owner zuizui0223 --source-cap-per-repo 8 --output-dir results/alan_crossrepo_doi_inventory_20261124
+      - name: Publish only DOI identifiers, paths, coverage audit and unresolved failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-crossrepo-doi-source-inventory-20261124
+          path: results/alan_crossrepo_doi_inventory_20261124/
+          if-no-files-found: warn

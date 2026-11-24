@@ -1,0 +1,59 @@
+{
+  "snapshot": "2026-11-24",
+  "doi": "10.1002/eap.1821",
+  "dryad_doi": "10.5061/dryad.gb9534p",
+  "source_original_TSV_SHA256": "385444ab318ec4b15edd3161c740aa7f4b2d9b973fe4c2ddf6c29cc56cdec484",
+  "raw_source_count_total": 5372,
+  "raw_source_count_chironomidae": 4960,
+  "raw_source_count_nonchironomidae": 412,
+  "original_physical_habitat_groups": 3,
+  "dark_counts": {
+    "Chironomidae": 356,
+    "Other": 51,
+    "Culicidae": 34
+  },
+  "four_lamp_counts": {
+    "Chironomidae": 4604,
+    "Other": 361,
+    "Culicidae": 161
+  },
+  "three_block_chiro_vs_other_RRR": [
+    4.263719512195122,
+    2.71434839842036,
+    0.3480514302800757
+  ],
+  "equal_block_chiro_vs_other_RRR": 1.59110636626693,
+  "descriptive_t2_95_chiro_vs_other": [
+    0.05767144199882094,
+    43.89728054358191
+  ],
+  "signflip_p_chiro_vs_other": 0.75,
+  "three_block_chiro_vs_culicidae_RRR": [
+    4.166077080618134,
+    3.8905660377358493,
+    1.222047244094488
+  ],
+  "equal_block_chiro_vs_culicidae_RRR": 2.705677495636492,
+  "descriptive_t2_95_chiro_vs_culicidae": [
+    0.48836815377584747,
+    14.99010665169996
+  ],
+  "signflip_p_chiro_vs_culicidae": 0.25,
+  "top_nonchironomidae": {
+    "Culicidae": 195,
+    "Dolichopodidae": 81,
+    "Canacidae": 26,
+    "Ephemerellidae": 17,
+    "Tipulidae": 16,
+    "Sciomyzidae": 11
+  },
+  "source_group3_other_lit": 158,
+  "source_group3_lit_dolichopodidae": 60,
+  "source_group3_lit_canacidae": 22,
+  "source_group3_lit_ephemerellidae": 17,
+  "verified_CI_run": "https://github.com/zuizui0223/alan/actions/runs/45359312814",
+  "not_predeclared_confirmatory": true,
+  "new_independent_programmes": 0,
+  "updated_primary_k2_meta": false,
+  "warn": "Original AquaticEmergent source contains mixed taxonomic life histories; posthoc comparator selection changes estimand, does not establish differential biological production."
+}

@@ -1,0 +1,44 @@
+{
+  "programme_id": "Westhavelland_2012_2014",
+  "source_article_doi": "10.1007/s00027-025-01161-7",
+  "source_basis": "published_site_aggregated_means_and_temporal_sd_only",
+  "physical_exposure_sites": {
+    "lighted": 1,
+    "dark": 1
+  },
+  "ratio_by_endpoint": {
+    "aquatic_diptera_emergence": {
+      "lit_dark_ratio_of_published_site_means": 0.4744897959183674,
+      "log_ratio_descriptive_only": -0.7455151660772612,
+      "lit_mean": 3.72,
+      "lit_sd_temporal_observation": 3.29,
+      "dark_mean": 7.84,
+      "dark_sd_temporal_observation": 6.99,
+      "temporal_events_not_independent_light_replicates": 12,
+      "sampling_variance_for_meta": null
+    },
+    "aquatic_diptera_flying_adults": {
+      "lit_dark_ratio_of_published_site_means": 7.983132068238452,
+      "log_ratio_descriptive_only": 2.077330824211954,
+      "lit_mean": 416.48,
+      "lit_sd_temporal_observation": 592.23,
+      "dark_mean": 52.17,
+      "dark_sd_temporal_observation": 146.72,
+      "temporal_events_not_independent_light_replicates": 7,
+      "sampling_variance_for_meta": null
+    }
+  },
+  "cross_endpoint_descriptive_ratio_of_ratios": 16.82466543413695,
+  "cross_endpoint_descriptive_log_ratio_difference": 2.822845990289215,
+  "cross_endpoint_statistical_interaction_estimated": false,
+  "within_programme_distance_to_water_treatment_interaction_estimated": false,
+  "physically_independent_effects_added_to_meta": 0,
+  "warnings": [
+    "two different CPUE denominators and different temporal sampling schedules",
+    "temporal SDs and 12/7 sampling events cannot estimate the light-installation sampling variance",
+    "2017 whole-aquatic-insect emergence and 2014 Diptera-only emergence are distinct year/taxon endpoints",
+    "one treatment site versus one dark site makes site and light perfectly confounded",
+    "capture activity can rise without growth of the source population",
+    "no pollen or wet-plant fitness response was co-measured"
+  ]
+}

@@ -1,0 +1,46 @@
+name: ALAN EERES 2021 original 18-flume source audit
+on:
+  push:
+    branches:
+      - analysis/alan-arthropod-search-expansion-20261122
+    paths:
+      - scripts/acquisition/alan_eeres_2021_source_gate.py
+      - tests/test_alan_eeres_2021.py
+      - tests/test_alan_eeres_frozen_20261123.py
+      - scripts/analysis/alan_eeres2021_verify_frozen_20261123.py
+      - scripts/analysis/alan_eeres2021_multiplicity_audit_20261123.py
+      - tests/test_alan_eeres2021_multiplicity_20261123.py
+      - 'database/alan_experiments/arthropod_expansion_20261122/eeres2021_source_reanalysis/**'
+      - .github/workflows/alan-eeres2021-source-gate-20261123.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pin for reading original XLSX
+        run: python -m pip install 'openpyxl==3.1.5'
+      - name: Basic source safety and grain tests
+        run: |
+          PYTHONPATH=scripts/acquisition python -m unittest discover -s tests -p 'test_alan_eeres_2021.py' -v
+      - name: Fetch bounded original Dryad archive and report metadata only
+        run: python scripts/acquisition/alan_eeres_2021_source_gate.py --output results/eeres2021_disconnected_source_audit.json
+      - name: Independently audit frozen original source and all joint effects
+        run: |
+          python -m unittest discover -s tests -p 'test_alan_eeres_frozen_20261123.py' -v
+          python scripts/analysis/alan_eeres2021_verify_frozen_20261123.py --observed results/eeres2021_disconnected_source_audit.json --frozen database/alan_experiments/arthropod_expansion_20261122/eeres2021_source_reanalysis/original_reanalysis_20261123.json
+      - name: Reproduce exploratory 8 plus 8 multiplicity sensitivity and compare to frozen CSV
+        run: |
+          python -m unittest discover -s tests -p 'test_alan_eeres2021_multiplicity_20261123.py' -v
+          python scripts/analysis/alan_eeres2021_multiplicity_audit_20261123.py --input database/alan_experiments/arthropod_expansion_20261122/eeres2021_source_reanalysis/original_reanalysis_20261123.json --csv results/eeres2021_multiplicity_20261123.csv
+          cmp results/eeres2021_multiplicity_20261123.csv database/alan_experiments/arthropod_expansion_20261122/eeres2021_source_reanalysis/multiplicity_sensitivity_20261123.csv
+      - name: Retain public-source metadata without raw observations
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-eeres2021-source-audit
+          path: results/eeres2021_disconnected_source_audit.json
