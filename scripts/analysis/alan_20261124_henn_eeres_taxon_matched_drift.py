@@ -224,8 +224,8 @@ def main():
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_text(json.dumps(out,indent=2,ensure_ascii=False,sort_keys=True)+"\n",encoding="utf-8")
     print("SOURCE_MATCHED_FOUR_ORDER",json.dumps({
-        "henn":{k:out["henn"][k] for k in ("four_order_composition_RRR","descriptive_t95","n_independent_physical_units","alternate_equal_stream_geometric_RRR")},
-        "eeres":{k:out["eeres"][k] for k in ("four_order_composition_RRR","descriptive_t95","n_independent_physical_units")},
+        "henn":{k:out["henn"][k] for k in ("four_order_composition_RRR","four_order_log_composition_RRR","delta_SE_shared_physical_units","descriptive_t95","n_independent_physical_units","alternate_equal_stream_geometric_RRR")},
+        "eeres":{k:out["eeres"][k] for k in ("four_order_composition_RRR","four_order_log_composition_RRR","delta_SE_shared_physical_units","descriptive_t95","n_independent_physical_units")},
         "meta_k_added":out["meta_k_added"],
     },ensure_ascii=False))
 
