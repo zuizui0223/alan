@@ -1,0 +1,27 @@
+{
+  "source_doi": "10.5061/dryad.rfj6q57k5",
+  "source_original_workbook_sha256": "496dcfa07436619084dc677317525dc674775e9965a0fdfb482cfa1cb4d8977f",
+  "source_replay": "https://github.com/zuizui0223/alan/actions/runs/45310373396",
+  "effect": "E+T vs D+C within aquatic in-stream drift, light x manipulated water-flow factor",
+  "physical_units": "six original header tanks, 18 flumes nested, repeated weeks not independent",
+  "normal_flow_lit_vs_dark_RRR": 1.260885492751995,
+  "reduced_flow_lit_vs_dark_RRR": 0.7593955831073227,
+  "reduced_flow_lnRRR": -0.27523244749405107,
+  "reduced_flow_lnRRR_se": 0.27917086411971476,
+  "reduced_flow_descriptive_t5_95": [
+    0.3705140179129399,
+    1.5564367979686375
+  ],
+  "source_estimate_moderation_lnR_of_RRRs": -0.5070466936542068,
+  "source_estimate_moderation_R_of_RRRs": 0.6022716475624397,
+  "source_estimate_moderation_SE_full_shared_header": 0.29580011245299265,
+  "source_estimate_moderation_descriptive_t5_95": [
+    0.281555669791741,
+    1.2883105416626053
+  ],
+  "moderation_unadjusted_two_sided_t5_p": 0.14716705750608022,
+  "source_replay_unmodified_main_meta": true,
+  "not_new_independent_programme": true,
+  "not_new_plant_wetness_moderator": true,
+  "interpretation": "Post hoc same-flume programme factorial contrast only; estimate uncertain, zero on log scale included; this is manipulated stream flow, not dry-versus-wet habitats or a plant pollen outcome."
+}
