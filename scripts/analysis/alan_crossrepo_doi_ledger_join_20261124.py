@@ -188,6 +188,20 @@ def main():
     with (args.output_dir/"doi_crossrepo_ALAN_ledger_join.csv").open("w",newline="",encoding="utf-8") as fh:
         w=csv.DictWriter(fh,fieldnames=list(rows[0]),quoting=csv.QUOTE_MINIMAL)
         w.writeheader();w.writerows(rows)
+    for priority,short_name in (
+        ("P1_EXACT_UNMATCHED_WITH_ALAN_IWE_SOURCE","p1_alan_iwe_unmatched_doi_source_leads.csv"),
+        ("P2_EXACT_UNMATCHED_IN_RELEVANT_DOC_PATH","p2_relevant_path_unmatched_doi_leads.csv"),
+    ):
+        subset=[r for r in rows if r["triage_priority"]==priority]
+        with (args.output_dir/short_name).open("w",newline="",encoding="utf-8") as file:
+            w=csv.DictWriter(file,fieldnames=list(rows[0]))
+            w.writeheader()
+            w.writerows(subset)
+        if priority.startswith("P1"):
+            print("ALAN_CROSSREPO_P1_SOURCE_LEADS",
+                  json.dumps([{"doi":r["doi_string"],"repo":r["source_repositories"],
+                               "source":r["source_file_locations"].split(";")[0]}
+                              for r in subset],ensure_ascii=False),flush=True)
     (args.output_dir/"summary.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2,sort_keys=True)+"\n",encoding="utf-8")
     print("ALAN_CROSSREPO_DOI_JOIN",json.dumps(summary,ensure_ascii=False),flush=True)
 
