@@ -151,6 +151,36 @@ def k2_meta(s,o):
         "not_confirmatory":True,
     }
 
+
+def independent_programme_difference_descriptive(s,o):
+    """Contrast separate studies, not a causal wetland × ALAN moderator.
+
+    The wetland estimate is the geometric mean across n=3 paired source
+    blocks, and the no-crayfish flume estimate is log of arithmetic mean
+    ratio across n=4+4 physical assignments. These are not identical
+    statistical targets, so a t2 CI is a descriptive uncertainty alarm,
+    not a confirmatory test of effect modification.
+    """
+    y=float(s["logRR"])-float(o["logRR"])
+    se=math.hypot(float(s["SE"]),float(o["SE"]))
+    if not (se>0 and math.isfinite(y)):
+        raise ValueError("STOP: invalid independent-programme comparison")
+    t2=4.302652729911275
+    tval=abs(y/se)
+    p_t2=1-tval/math.sqrt(tval*tval+2)
+    return {
+        "source_two_programme_RR_of_RRs":math.exp(y),
+        "source_lnRR_difference":y,
+        "uncertainty_SE_from_two_independent_source_programmes":se,
+        "descriptive_conservative_t2_95_RR_of_RRs":[math.exp(y-t2*se),math.exp(y+t2*se)],
+        "descriptive_t2_two_sided_p":p_t2,
+        "fraction_naive_sampling_variance_from_Sullivan_n3":s["SE"]**2/se**2,
+        "not_causal_wetland_vs_flume_effect_modifier":True,
+        "not_confirmatory_cross_study_difference":True,
+        "method_warning":"Different source estimands, independent sources but n3 wetland blocks and n8 flume plots; t2 interval is an intentionally conservative descriptive reference, not a general meta-regression effect."
+    }
+
+
 def compute(source_original,original_flume_arms):
     wet,wetvariants,units=independent_habitat_block_estimates(source_original)
     flume,flumevariants=independent_flume_estimates(original_flume_arms)
@@ -207,6 +237,7 @@ def compute(source_original,original_flume_arms):
         "Ogbeide_no_crayfish_eight_flumes_frozen_primary":flume,
         "Ogbeide_week_sensitivities":flumevariants,
         "exploratory_k2_random_effects_meta":primary,
+        "two_programme_differential_effect_size_descriptive":independent_programme_difference_descriptive(wet,flume),
         "leave_one_physical_unit_out_point_sensitivities":diagnostics,
         "contrasts_if_changing_source_colour_or_sampling_week":sensitivity,
         "new_study_programmes_discovered_today":0,
@@ -299,6 +330,7 @@ def main():
              for name,val in report["Sullivan_source_colour_sensitivities"].items()},
         "Ogbeide_no_cray_all_weeks":{k:report["Ogbeide_no_crayfish_eight_flumes_frozen_primary"][k] for k in ("RR","SE")},
         "pooled_k2":report["exploratory_k2_random_effects_meta"],
+        "opposing_programme_ratio_comparison":report["two_programme_differential_effect_size_descriptive"],
         "physical_unit_loo":report["leave_one_physical_unit_out_point_sensitivities"],
         "sensitivity":{k:v["pooled_RR"] for k,v in report["contrasts_if_changing_source_colour_or_sampling_week"].items()},
         "existing_four_meta_effects_unchanged":True
