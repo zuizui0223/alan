@@ -194,13 +194,46 @@ def compute(source_original,original_flume_arms):
         ],
     }
 
+
+def verify_frozen(actual, frozen):
+    """Fail-closed source-based replay of the literal k2 paper-facing values."""
+    if frozen.get("status")!="FROZEN_AFTER_ORIGINAL_SOURCE_REPLAY_EXPLORATORY_NOT_FINAL_SYSTEMATIC":
+        raise ValueError("STOP: no prior source-verified frozen snapshot")
+    if actual.get("status")!="SOURCE_AUTHENTICATED_EXPLORATORY_CHIRONOMIDAE_EMERGENCE_TWO_PROGRAMME_K2":
+        raise ValueError("STOP: actual result not source authenticated")
+    pairs=[
+        (actual["Sullivan_color_menu_frozen_primary"]["RR"], frozen["programme_estimates"][0]["RR"]),
+        (actual["Sullivan_color_menu_frozen_primary"]["SE"], frozen["programme_estimates"][0]["SE_logRR"]),
+        (actual["Ogbeide_no_crayfish_eight_flumes_frozen_primary"]["RR"], frozen["programme_estimates"][1]["RR"]),
+        (actual["Ogbeide_no_crayfish_eight_flumes_frozen_primary"]["SE"], frozen["programme_estimates"][1]["SE_logRR"]),
+        (actual["exploratory_k2_random_effects_meta"]["REML_tau2_closed_form_k2"], frozen["exploratory_meta"]["REML_tau2"]),
+        (actual["exploratory_k2_random_effects_meta"]["pooled_RR"], frozen["exploratory_meta"]["pooled_RR"]),
+        (actual["exploratory_k2_random_effects_meta"]["pooled_logRR_SE_mKH"], frozen["exploratory_meta"]["SE_logRR_mKH"]),
+    ]
+    pairs.extend(zip(actual["exploratory_k2_random_effects_meta"]["modified_HK_t1_95"],frozen["exploratory_meta"]["t1_95"]))
+    if any(not math.isclose(float(a),float(b),rel_tol=1e-10,abs_tol=1e-12) for a,b in pairs):
+        raise ValueError("STOP: published source-based family-level emergence estimate or interval drift")
+    if frozen.get("Sullivan2013_original_Dryad_TSV_SHA256")!=sullivan.DIGEST:
+        raise ValueError("STOP: Sullivan raw bytes identity drift")
+    if frozen.get("Ogbeide2022_original_Zenodo_RDS_SHA256")!=ogbeide.SOURCE_ORIGINAL_HASH["emergence.rds"]:
+        raise ValueError("STOP: Ogbeide original RDS identity drift")
+    if frozen.get("Ogbeide2022_derived_source_flume_rates_git_blob")!=ogbeide.EXPECTED_BLOB:
+        raise ValueError("STOP: Ogbeide flume aggregate Git blob identity drift")
+    if actual["exploratory_k2_random_effects_meta"]["k_independent_programmes"]!=2:
+        raise ValueError("STOP: pseudo programme replication attempted")
+    return True
+
+
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--output",type=Path,default=Path("results/alan_sullivan_ogbeide_chironomid_emergence_k2_20261124.json"))
+    p.add_argument("--frozen",type=Path,default=None,help="Require byte-authenticated source results to reproduce pinned paper-facing estimates")
     args=p.parse_args()
     source=sullivan.analyze(sullivan.get_original())
     flumes,flumeblob,_=ogbeide.source_verify_and_read()
     report=compute(source,flumes)
+    if args.frozen is not None:
+        verify_frozen(report,json.loads(args.frozen.read_text(encoding="utf-8")))
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_text(json.dumps(report,ensure_ascii=False,sort_keys=True,indent=2)+"\n",encoding="utf-8")
     print("TWO_PROGRAMME_CHIRONOMID_EMERGENCE",json.dumps({
