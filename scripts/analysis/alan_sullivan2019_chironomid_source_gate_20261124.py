@@ -22,7 +22,8 @@ def get_original():
         final=urlparse(f.geturl())
         if final.scheme!="https" or not final.hostname or not (
             final.hostname in {"datadryad.org","www.datadryad.org"} or
-            final.hostname.endswith(".amazonaws.com")
+            final.hostname.endswith(".amazonaws.com") or
+            final.hostname.endswith(".lambda-url.us-west-2.on.aws")
         ):
             raise ValueError("STOP source redirected outside official Dryad HTTPS/S3 delivery, host="+str(final.hostname))
         z=f.read(1500000)
