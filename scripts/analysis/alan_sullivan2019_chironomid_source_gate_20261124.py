@@ -19,8 +19,12 @@ ARMS=("DRK","LEDI","LEDH","HPSI","HPSH")
 
 def get_original():
     with urlopen(Request(URL,headers={"User-Agent":"ALAN-Verified-Source-Study-Audit/2026-11-24"}),timeout=25) as f:
-        if urlparse(f.geturl()).hostname!="datadryad.org":
-            raise ValueError("STOP external redirect")
+        final=urlparse(f.geturl())
+        if final.scheme!="https" or not final.hostname or not (
+            final.hostname in {"datadryad.org","www.datadryad.org"} or
+            final.hostname.endswith(".amazonaws.com")
+        ):
+            raise ValueError("STOP source redirected outside official Dryad HTTPS/S3 delivery")
         z=f.read(1500000)
     with zipfile.ZipFile(io.BytesIO(z)) as f:
         entries=[x for x in f.infolist() if Path(x.filename).name==FILENAME]
