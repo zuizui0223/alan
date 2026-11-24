@@ -140,11 +140,45 @@ def inspect(original):
         "status":"ORIGINAL_FAMILY_DIAGNOSTIC_DESCRIPTIVE_ONLY",
     }
 
+
+def verify_frozen(current,reference):
+    if current.get("source_original_TSV_sha256")!=reference.get("source_original_TSV_SHA256"):
+        raise ValueError("STOP original author TSV source identity drift")
+    if current.get("true_wetland_habitat_blocks")!=reference.get("original_physical_habitat_groups") or current["new_meta_programmes_added"]!=0:
+        raise ValueError("STOP physical-source replication drift")
+    expected=[
+        (current["original_aquatic_emergence_catches"],reference["raw_source_count_total"]),
+        (current["source_total_non_chironomidae_catches"],reference["raw_source_count_nonchironomidae"]),
+        (current["source_non_chironomidae_family_counts"]["Culicidae"],reference["top_nonchironomidae"]["Culicidae"]),
+    ]
+    for name,n in reference["top_nonchironomidae"].items():
+        expected.append((current["source_non_chironomidae_family_counts"].get(name),n))
+    pair=current["explicit_two_aquatic_larval_family_sensitivity"]
+    block_other=[x["chiro_vs_all_other_response_RRR"] for x in current["physical_block_family_contributions"]]
+    block_culi=[x["two_family_RRR"] for x in pair["three_original_block_counts_and_ratios"]]
+    expected.extend(zip(block_other,reference["three_block_chiro_vs_other_RRR"]))
+    expected.extend(zip(block_culi,reference["three_block_chiro_vs_culicidae_RRR"]))
+    expected.append((pair["equal_block_RRR"],reference["equal_block_chiro_vs_culicidae_RRR"]))
+    expected.append((pair["three_block_signflip_reference_p"],reference["signflip_p_chiro_vs_culicidae"]))
+    expected.extend(zip(pair["descriptive_t2_95_RRR"],reference["descriptive_t2_95_chiro_vs_culicidae"]))
+    if len(block_other)!=3 or len(block_culi)!=3:
+        raise ValueError("STOP source study physical-block n changed")
+    if any((x is None or y is None) or not math.isclose(float(x),float(y),rel_tol=1e-10,abs_tol=1e-12)
+           for x,y in expected):
+        raise ValueError("STOP original-author family-block composition changed")
+    if not pair["source_selection_posthoc"] or not pair["not_independent_experimental_meta_effect"]:
+        raise ValueError("STOP post-hoc group chosen after data review")
+    return True
+
+
 def main():
     a=argparse.ArgumentParser()
     a.add_argument("--output",type=Path,default=Path("results/alan_sullivan2019_other_emergence_family_drivers_20261124.json"))
+    a.add_argument("--frozen",type=Path,default=None)
     args=a.parse_args()
     x=inspect(base.get_original())
+    if args.frozen is not None:
+        verify_frozen(x,json.loads(args.frozen.read_text(encoding="utf-8")))
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_text(json.dumps(x,ensure_ascii=False,sort_keys=True,indent=2)+"\n",encoding="utf-8")
     print("SULLIVAN_OTHER_FAMILY_SOURCE",json.dumps({
