@@ -1,0 +1,34 @@
+name: ALAN Sullivan 2013 chironomid-versus-other emergence source composition
+
+on:
+  push:
+    branches: [analysis/alan-arthropod-search-expansion-20261122]
+    paths:
+      - 'scripts/analysis/alan_sullivan2019_chiro_versus_other_emergence_20261124.py'
+      - 'tests/test_alan_sullivan2019_chiro_versus_other_emergence_20261124.py'
+      - '.github/workflows/alan-sullivan2019-chiro-composition-source-20261124.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-verified-three-wetland-blocks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate exactly three physical wetland blocks and immutable taxon composition
+        run: python -m unittest discover -s tests -p test_alan_sullivan2019_chiro_versus_other_emergence_20261124.py -v
+      - name: Original Dryad source 2013 true emergence trap labels and four shared-dark lamp comparisons
+        run: |
+          python scripts/analysis/alan_sullivan2019_chiro_versus_other_emergence_20261124.py \
+            --output results/alan_sullivan2019_chiro_versus_other_20261124.json
+      - name: Preserve author source aggregated response by block, not raw individual rows
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-sullivan2013-chironomid-composition-physical-blocks
+          path: results/alan_sullivan2019_chiro_versus_other_20261124.json
