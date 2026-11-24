@@ -1,6 +1,8 @@
 """Check the physical-programme design and Henn order-level omission identities."""
 from pathlib import Path
 import importlib.util
+import copy
+import json
 import math
 import unittest
 
@@ -43,6 +45,30 @@ class TestOrderSensitivity(unittest.TestCase):
         self.assertAlmostEqual(x["pooled_RRR"],1.2159960467857396,places=12)
         self.assertAlmostEqual(x["mKH_t1_95"][0],.6398196602507326,places=12)
         self.assertAlmostEqual(x["mKH_t1_95"][1],2.3110361835694366,places=12)
+
+    def test_source_result_lock_rejects_any_tamper(self):
+        frozen=json.loads((ROOT/"database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/four_order_omission_frozen_20261124.json").read_text(encoding="utf-8"))
+        pseudo={
+            "source_eeres_sha256":frozen["eeres_source_sha256"],
+            "comparisons":[{
+                "deleted_order":r["deleted_order"],
+                "henn":{"RRR":r["henn_RRR"]},
+                "eeres":{"RRR":r["eeres_RRR"]},
+                "exploratory_two_programme_mKH":{
+                    "pooled_RRR":r["two_programme_pooled_RRR"],
+                    "mKH_t1_95":r["two_programme_mKH_t1_95"],
+                }
+            } for r in frozen["rows"]],
+        }
+        self.assertTrue(m.verify_frozen(pseudo,frozen))
+        broken=copy.deepcopy(pseudo)
+        broken["comparisons"][3]["eeres"]["RRR"]+=.1
+        with self.assertRaises(ValueError):
+            m.verify_frozen(broken,frozen)
+        broken=copy.deepcopy(pseudo)
+        broken["comparisons"][2]["exploratory_two_programme_mKH"]["mKH_t1_95"][0]+=.1
+        with self.assertRaises(ValueError):
+            m.verify_frozen(broken,frozen)
 
     def test_no_unverified_taxa_or_physical_pseudoreplication(self):
         with self.assertRaises(ValueError):
