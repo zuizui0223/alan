@@ -6,6 +6,8 @@ on:
     paths:
       - 'scripts/analysis/alan_20261124_henn_eeres_taxon_matched_drift.py'
       - 'tests/test_alan_henn_eeres_four_order_drift_20261124.py'
+      - 'scripts/analysis/alan_eeres2021_flow_moderator_verify_20261124.py'
+      - 'database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/eeres2021_four_order_flow_moderator_frozen_20261124.json'
       - 'tests/test_alan_four_order_two_programme_meta_20261124.py'
       - 'database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/two_programme_four_order_meta.py'
       - 'database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/two_programme_four_order_source_estimates_20261124.json'
@@ -33,6 +35,9 @@ jobs:
         run: python -m unittest discover -s tests -p test_alan_four_order_two_programme_meta_20261124.py -v
       - name: Reacquire original SHA-verified EERES Dryad workbook and compute six-header composition
         run: python scripts/analysis/alan_20261124_henn_eeres_taxon_matched_drift.py --output results/alan_henn_eeres_four_order_drift_20261124.json
+      - name: Verify same-six-HT original flow x light modulation with shared block covariance
+        run: |
+          python scripts/analysis/alan_eeres2021_flow_moderator_verify_20261124.py --frozen database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/eeres2021_four_order_flow_moderator_frozen_20261124.json --source-replay results/alan_henn_eeres_four_order_drift_20261124.json
       - name: Revalidate frozen k2 effects against newly downloaded original EERES data
         run: |
           python database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/two_programme_four_order_meta.py --original-replay results/alan_henn_eeres_four_order_drift_20261124.json --output results/alan_four_order_two_programme_meta_20261124.json
