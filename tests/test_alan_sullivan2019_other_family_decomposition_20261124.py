@@ -48,6 +48,14 @@ class TaxonDecompositionTest(unittest.TestCase):
         self.assertEqual(a["source_family_label_richness"],2)
         self.assertEqual(a["source_non_chironomidae_family_counts"]["Culicidae"],412)
         self.assertEqual(a["new_meta_programmes_added"],0)
+        alt=a["explicit_two_aquatic_larval_family_sensitivity"]
+        self.assertEqual(alt["physical_habitat_block_n"],3)
+        self.assertTrue(alt["source_selection_posthoc"])
+        self.assertEqual(alt["source_selected_families"],["Chironomidae","Culicidae"])
+        self.assertEqual(len(alt["three_original_block_counts_and_ratios"]),3)
+        self.assertFalse(not alt["not_independent_experimental_meta_effect"])
+        self.assertTrue(alt["descriptive_t2_95_RRR"][0]<alt["equal_block_RRR"]<alt["descriptive_t2_95_RRR"][1])
+        self.assertGreaterEqual(alt["three_block_signflip_reference_p"],0.25)
         self.assertTrue(all(x["chiro_vs_all_other_response_RRR"]>0 for x in a["physical_block_family_contributions"]))
 
     def test_corrupted_taxon_source_blocks_stop(self):
