@@ -1,0 +1,33 @@
+name: ALAN Lu 2026 reported reproductive access covariance envelope
+
+on:
+  push:
+    branches: [analysis/alan-arthropod-search-expansion-20261122]
+    paths:
+      - 'scripts/analysis/alan_lu2026_access_covariance_envelope_20261124.py'
+      - 'tests/test_alan_lu2026_access_covariance_envelope_20261124.py'
+      - 'database/alan_experiments/lu_jpe_sources/table_S4b.csv'
+      - '.github/workflows/alan-lu2026-source-reproductive-bounds-20261124.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-reproduction-scope:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify twelve exact publisher-reported S4b cells and unknown-covariance envelope
+        run: python -m unittest discover -s tests -p test_alan_lu2026_access_covariance_envelope_20261124.py -v
+      - name: Recompute source-reported open minus night ALAN effects, retaining covariance as unknown
+        run: python scripts/analysis/alan_lu2026_access_covariance_envelope_20261124.py --output results/alan_lu2026_access_covariance_envelope_20261124.json
+      - name: Archive model-scale descriptive bound only, without original publisher DOCX
+        uses: actions/upload-artifact@v4
+        with:
+          name: alan-lu2026-open-night-seed-covariance-bounds
+          path: results/alan_lu2026_access_covariance_envelope_20261124.json
