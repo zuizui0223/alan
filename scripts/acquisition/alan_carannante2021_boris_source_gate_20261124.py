@@ -92,6 +92,19 @@ def probe(url):
                 links=CandidateRefs()
                 links.feed(txt)
                 result["literal_data_link_suffix_candidates"]=links.urls[:15]
+                lower=txt.lower()
+                if any(flag in lower for flag in (
+                    "temporary access restriction",
+                    "public access to boris-portal has been temporarily suspended",
+                    "access is currently granted exclusively",
+                    "university of bern network",
+                    "currently restricted to",
+                )):
+                    result["status"]="PUBLIC_ACCESS_RESTRICTED_HTML_SOFT_200"
+                elif "/server/api/" in url:
+                    result["status"]="API_RETURNED_HTML_SHELL_NOT_AUTHOR_DATA"
+                else:
+                    result["status"]="PUBLIC_LANDING_HTML_ONLY_NOT_AUTHOR_DATA"
                 result["public_metadata_not_original_raw_data"]=True
             else:
                 result["status"]="NON_METADATA_RESPONSE_NOT_ADOPTED"
@@ -111,6 +124,8 @@ def report():
         "study_B_no_unlit_control":True,
         "source_access_probes":attempts,
         "status":"PUBLIC_SOURCE_DISCOVERY_ONLY_NOT_TRAP_DATA",
+        "university_legacy_record_redirects_to_item":"https://boris-portal.unibe.ch/items/f559ab1e-e693-4fbc-b7fe-683134f6dbe1",
+        "source_gate_warning":"HTTP 200 HTML from the API search path is not an authenticated source JSON or actual data; BORIS can return a soft-200 public-access restriction. No access restriction will be bypassed.",
         "new_meta_k_increment":0,
         "next_required":"University dataset actual CSV/XLSX with pair, date, distance, light, order and catch count; hash and full 4-pair design gate before lnRR or RRR.",
         "critical_sampling_warning":"Four spatial pair installations, not 48 independent observations or 99,852 individual assignments.",
