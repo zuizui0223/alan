@@ -110,6 +110,33 @@ def mKH_two(a,b):
             "reml_tau2":tau2,
             "posthoc_not_multiple_independent_confirmations":True}
 
+
+def independent_block_order_ratios(blocks):
+    """Absolute capture/counted drift responses for interpretation only.
+
+    These are *not* flow-standardized between studies, not functional fluxes,
+    and not evidence of changing true populations. n is genuine block count.
+    """
+    n=len(blocks)
+    critical={5:2.7764451051977987,6:2.570581835636305}.get(n)
+    if critical is None:raise ValueError("STOP: unknown physical block count")
+    out={}
+    for order in ORDERS:
+        light=[float(row[order][0]) for row in blocks]
+        dark=[float(row[order][1]) for row in blocks]
+        ml=statistics.mean(light);md=statistics.mean(dark)
+        if ml<=0 or md<=0:raise ValueError("STOP: cannot infer order RR with no source counts")
+        logratio=math.log(ml/md)
+        influences=[(a-ml)/ml-(b-md)/md for a,b in zip(light,dark)]
+        se=statistics.stdev(influences)/math.sqrt(n)
+        out[order]={"lit_over_dark_catch_RR":math.exp(logratio),
+                    "source_mean_lit":ml,"source_mean_dark":md,
+                    "n_independent_physical_blocks":n,
+                    "descriptive_t95":[math.exp(logratio-critical*se),
+                                       math.exp(logratio+critical*se)],
+                    "paired_block_delta_se":se}
+    return out
+
 def run(original_xlsx):
     hh,hbase=Henn()
     ee,ebase=EERES(original_xlsx)
@@ -139,6 +166,8 @@ def run(original_xlsx):
         "source_henn":"Original Henn 2014 Table 1 hand-derived orders,5 paired rivers;2-individual source discrepancy retained",
         "source_eeres_sha256":base.XLSX_SHA,
         "physical_k":[5,6],"new_independent_studies":0,
+        "per_order_catch_ratios_not_drift_density":{"henn":independent_block_order_ratios(hh),
+                "eeres":independent_block_order_ratios(ee)},
         "original_meta_unchanged":True,
         "source_taxonomic_grain":"Henn source is family aggregate by order; EERES source genus/family/subfamily/tribe labels classified into order",
         "comparisons":values,
@@ -190,6 +219,8 @@ def main():
         verify_frozen(output,json.loads(a.frozen.read_text(encoding="utf-8")))
     a.out.parent.mkdir(parents=True,exist_ok=True)
     a.out.write_text(json.dumps(output,ensure_ascii=False,sort_keys=True,indent=2)+"\n",encoding="utf-8")
+    print("ORDER_CATCH_RATIOS",json.dumps({k:{o:round(v["lit_over_dark_catch_RR"],6) for o,v in t.items()}
+        for k,t in output["per_order_catch_ratios_not_drift_density"].items()},ensure_ascii=False))
     print("FOUR_ORDER_SENSITIVITY",json.dumps([
        {"drop":d["deleted_order"],"Henn":d["henn"]["RRR"],"EERES":d["eeres"]["RRR"],
         "k2_RRR":d["exploratory_two_programme_mKH"]["pooled_RRR"],
