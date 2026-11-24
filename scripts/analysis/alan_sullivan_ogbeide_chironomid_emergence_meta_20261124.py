@@ -189,7 +189,7 @@ def compute(source_original,original_flume_arms):
     sensitivity={
         f"wetland_{sk}_Ogbeide_all_weeks":k2_meta(sv,flume)
         for sk,sv in wetvariants.items()
-        if sk in ("all_four_equal_colour","LED_only_equal_colour","HPS_only_equal_colour")
+
     }
     sensitivity.update({
         f"wetland_all_four_Ogbeide_{k}":k2_meta(wet,val)
@@ -295,6 +295,8 @@ def main():
         "sourceS_original_sha_verified":True,
         "sourceO_flume_blob_verified":flumeblob,
         "Sullivan_all_four":{k:report["Sullivan_color_menu_frozen_primary"][k] for k in ("RR","SE","descriptive_t2_95")},
+        "Sullivan_by_lamp":{name:{"RR":val["RR"],"SE":val["SE"]}
+             for name,val in report["Sullivan_source_colour_sensitivities"].items()},
         "Ogbeide_no_cray_all_weeks":{k:report["Ogbeide_no_crayfish_eight_flumes_frozen_primary"][k] for k in ("RR","SE")},
         "pooled_k2":report["exploratory_k2_random_effects_meta"],
         "physical_unit_loo":report["leave_one_physical_unit_out_point_sensitivities"],
