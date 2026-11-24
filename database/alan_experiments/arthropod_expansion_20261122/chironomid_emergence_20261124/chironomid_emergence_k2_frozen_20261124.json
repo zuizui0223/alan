@@ -61,5 +61,31 @@
     "add original trap stations or weeks as independent study k",
     "assume same lamp light spectrum/intensity, trap design, or microhabitat across two studies",
     "final systematic PRISMA with k2"
-  ]
+  ],
+  "within_programme_physical_unit_diagnostics": {
+    "Sullivan_3_group_RRs": [
+      5.410327021453614,
+      2.3760507330154623,
+      1.4676997264220153
+    ],
+    "Sullivan_leave_one_group_out_RRs": [
+      1.867439158530104,
+      2.817931065381321,
+      3.5854165009351733
+    ],
+    "Ogbeide_8_flume_leave_one_out_RRs": [
+      0.7644531462446292,
+      0.8430956654157828,
+      0.8247131125251536,
+      0.8961766465437536,
+      0.8519879719345138,
+      0.8099523557437799,
+      0.869120654396728,
+      0.8012149141181399
+    ],
+    "Ogbeide_Week1_RR": 0.8833645684048065,
+    "Ogbeide_Week4_RR": 0.6862252902416064,
+    "between_programme_ratio_of_RRs_point": 3.19932425302357,
+    "warning": "All one-physical-unit-out points retain their programme-specific signs, but n3 wetland and n8 flume observational sampling precision do not identify a causal habitat or light-dose moderator."
+  }
 }
