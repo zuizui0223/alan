@@ -151,11 +151,43 @@ def run(original_xlsx):
         ],
     }
 
+
+def verify_frozen(result, frozen):
+    """Fail closed on any drift in the real author-source derived five comparisons."""
+    if frozen.get("eeres_source_sha256")!=result["source_eeres_sha256"]:
+        raise ValueError("STOP: original Dryad XLSX fingerprint mismatch")
+    if frozen.get("independent_programmes")!=2 or not frozen.get("posthoc_deletions_change_estimand"):
+        raise ValueError("STOP: invalid effect identity or independent study count")
+    expected=frozen.get("rows",[])
+    observed=result.get("comparisons",[])
+    if len(expected)!=5 or len(observed)!=5:
+        raise ValueError("STOP: missing one original order-deletion comparison")
+    for a,b in zip(expected,observed):
+        if a["deleted_order"]!=b["deleted_order"]:
+            raise ValueError("STOP: original order-deletion identity drift")
+        for key,val in (
+            ("henn_RRR",b["henn"]["RRR"]),
+            ("eeres_RRR",b["eeres"]["RRR"]),
+            ("two_programme_pooled_RRR",b["exploratory_two_programme_mKH"]["pooled_RRR"])):
+            if not math.isclose(float(a[key]),float(val),rel_tol=1e-11,abs_tol=1e-12):
+                raise ValueError(f"STOP: source-derived output changed for {a['deleted_order']}: {key}")
+        expected_ci=a["two_programme_mKH_t1_95"]
+        observed_ci=b["exploratory_two_programme_mKH"]["mKH_t1_95"]
+        if len(expected_ci)!=2 or len(observed_ci)!=2 or not all(
+            math.isclose(float(x),float(y),rel_tol=1e-11,abs_tol=1e-12)
+            for x,y in zip(expected_ci,observed_ci)):
+            raise ValueError("STOP: meta uncertainty drift")
+    return True
+
+
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--out",type=Path,default=Path("results/alan_drift_four_order_leaveoneout_20261124.json"))
+    p.add_argument("--frozen",type=Path,default=None,help="Require all source-derived numerical outputs match this pinned snapshot")
     a=p.parse_args()
     output=run(base.source_original_xlsx())
+    if a.frozen is not None:
+        verify_frozen(output,json.loads(a.frozen.read_text(encoding="utf-8")))
     a.out.parent.mkdir(parents=True,exist_ok=True)
     a.out.write_text(json.dumps(output,ensure_ascii=False,sort_keys=True,indent=2)+"\n",encoding="utf-8")
     print("FOUR_ORDER_SENSITIVITY",json.dumps([
