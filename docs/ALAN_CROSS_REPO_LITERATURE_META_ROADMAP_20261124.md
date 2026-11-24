@@ -74,3 +74,13 @@
 **編集のゴール：** 今は「全論文を精査済み・水生昆虫の選択的応答が一般化した」と書かない。主結果は湿潤種の観察的偏り、原本操作実験は**機構候補の段階別定量評価**。全研究の検索・独立実験採択を終えた時点で、初めて「systematic experimental meta-analysis」と表現する。
 
 **外部の既存合成との住み分け：** Kendall & Nicholson 2025の135研究は昼夜送粉アクセス、Czarneckaら2025 DOI `10.1111/gcb.70569`は波長・照度の広義ALANメタ、Petiteauら2026 DOI `10.1007/s10531-026-03517-3`はALAN×騒音の相互作用メタ。自前の差別化は光の総害ではなく、**資源／消費者／送粉／繁殖が同じ方向に変わらない条件を、同一実験内での段階差として推定すること**。ただしその再現性は未検証であり、既存文献網羅後に主張を再評価する。
+
+## 6. 2026-11-24 続編：再現可能な全リポ文献監査と繁殖の機構対比
+
+前回の探索的レポートからさらに次の監査を実装した。
+
+- `zuizui0223` の全公開リポジトリについて、**既定ブランチのGitツリーとパス一覧を列挙**し、文献に関係するソーステキストだけを**優先順位つき・上限つき**で読み取る[DOI出典インデックス](../scripts/acquisition/alan_crossrepo_doi_inventory_20261124.py)を作成。[ワークフロー](https://github.com/zuizui0223/alan/actions/workflows/alan-crossrepo-doi-source-inventory-20261124.yml)の出力は`repository_coverage.csv`、`doi_occurrence_sources.csv`、`doi_crossrepo_duplicates.csv`、`source_access_failures.csv`、`summary.json`。ツリー走査は全リポを対象とするが、**文書本文・未マージPR・Git履歴を全走査したことにはしない**。残る文書数とエラーを明記し、実際の終了結果を取得するまで「全リポ完了」と記載しない。
+- 出版社のLu JPE2026 S4bは**2026-11-21にALAN側で取得済み**だった。`iwe`の2026-11-14ノートの「S4b未取得」はその後の取得状態を反映しない。P. kansuensis種子のOpen/NightOnlyの同一原著モデル尺度上の照明応答差は**+0.0887**。共有ブロックの共分散が不明のため`SE_B∈[0.0110,0.0748]`、未補正正規近似の全相関外側包絡は**[−0.0579,+0.2353]**。有意な補償とせず、**原モデル尺度を割合や対数比と仮定しない**。[実測報告S4bと具体的な停止条件](ALAN_LU_JPE_FUNCTIONAL_BUFFERING_COVARIANCE_GATE_20261124_ja.md)、[再実行テストSUCCESS](https://github.com/zuizui0223/alan/actions/runs/45328078058)。
+- `alan`・`iwe`・元送粉研究から同一実験を意識して整理した[繁殖12候補の採択台帳](../database/alan_experiments/reproductive_meta_admission_candidates_20261124.csv)を追加。**NightOnly vs Openの同尺度・独立照明ユニット・差の共分散がすべてそろった採択済み系列は現在0**。負の結果に偏らず、Liの正方向、Grognuzの持越し、Boomの混合効果も残した。[実験単位の必要原データと最優先手順](ALAN_REPRODUCTIVE_META_ADMISSION_20261124_ja.md)。
+
+これらは**正式な系統的メタ解析が完成した意味ではない**。既存108効果量、別々に推定した4探索的統合、主マクロ湿潤植物の結果は変更しない。
