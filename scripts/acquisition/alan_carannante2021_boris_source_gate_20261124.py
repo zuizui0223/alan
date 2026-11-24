@@ -61,6 +61,20 @@ def extract_name_hints(obj,limit=15):
     recurse(obj)
     return names
 
+def classify_html(url,text):
+    lower=text.lower()
+    if any(flag in lower for flag in (
+        "temporary access restriction",
+        "public access to boris-portal has been temporarily suspended",
+        "access is currently granted exclusively",
+        "university of bern network",
+        "currently restricted to",
+    )):
+        return "PUBLIC_ACCESS_RESTRICTED_HTML_SOFT_200"
+    if "/server/api/" in url:
+        return "API_RETURNED_HTML_SHELL_NOT_AUTHOR_DATA"
+    return "PUBLIC_LANDING_HTML_ONLY_NOT_AUTHOR_DATA"
+
 def probe(url):
     u=urlparse(url)
     if u.scheme!="https" or u.hostname not in EXPECTED_HOSTS:
@@ -92,19 +106,7 @@ def probe(url):
                 links=CandidateRefs()
                 links.feed(txt)
                 result["literal_data_link_suffix_candidates"]=links.urls[:15]
-                lower=txt.lower()
-                if any(flag in lower for flag in (
-                    "temporary access restriction",
-                    "public access to boris-portal has been temporarily suspended",
-                    "access is currently granted exclusively",
-                    "university of bern network",
-                    "currently restricted to",
-                )):
-                    result["status"]="PUBLIC_ACCESS_RESTRICTED_HTML_SOFT_200"
-                elif "/server/api/" in url:
-                    result["status"]="API_RETURNED_HTML_SHELL_NOT_AUTHOR_DATA"
-                else:
-                    result["status"]="PUBLIC_LANDING_HTML_ONLY_NOT_AUTHOR_DATA"
+                result["status"]=classify_html(url,txt)
                 result["public_metadata_not_original_raw_data"]=True
             else:
                 result["status"]="NON_METADATA_RESPONSE_NOT_ADOPTED"
