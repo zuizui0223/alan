@@ -1,5 +1,5 @@
 """Physical-unit taxon-matched emergence meta, source-independent offline unit tests."""
-import importlib.util,copy,math
+import importlib.util,copy,math,json
 from pathlib import Path
 import unittest
 
@@ -74,6 +74,38 @@ class TestChironomidEmergenceMeta(unittest.TestCase):
                 places=12)
         self.assertAlmostEqual(variants["Week 4"]["RR"],.6862252902416064,places=12)
         self.assertTrue(0<x["SE"]<1)
+
+    def test_frozen_source_receipt_stops_unexpected_reanalysis(self):
+        file=ROOT/"database/alan_experiments/arthropod_expansion_20261122/stream_drift_20261124/chironomid_emergence_k2_frozen_20261124.json"
+        frozen=json.loads(file.read_text(encoding="utf-8"))
+        self.assertEqual(len(frozen["programme_estimates"]),2)
+        self.assertEqual(frozen["exploratory_meta"]["k_independent_programmes"],2)
+        self.assertAlmostEqual(frozen["programme_estimates"][0]["RR"],2.662188561008355,places=12)
+        self.assertAlmostEqual(frozen["programme_estimates"][1]["RR"],.8321096426823299,places=12)
+        self.assertAlmostEqual(frozen["exploratory_meta"]["pooled_RR"],1.4062321732688763,places=12)
+        self.assertLess(frozen["exploratory_meta"]["t1_95"][0],1)
+        self.assertGreater(frozen["exploratory_meta"]["t1_95"][1],1)
+        synthetic=m.compute(self.source,self.flumes)
+        with self.assertRaises(ValueError):
+            m.verify_frozen(synthetic,frozen)
+        # The exact source replay in Actions must supply the full empirical
+        # result, this fixture checks only the validator's identity contract.
+        copy_result=copy.deepcopy(synthetic)
+        copy_result["Sullivan_color_menu_frozen_primary"].update({
+            "RR":frozen["programme_estimates"][0]["RR"],
+            "SE":frozen["programme_estimates"][0]["SE_logRR"],
+        })
+        copy_result["Ogbeide_no_crayfish_eight_flumes_frozen_primary"].update({
+            "RR":frozen["programme_estimates"][1]["RR"],
+            "SE":frozen["programme_estimates"][1]["SE_logRR"],
+        })
+        copy_result["exploratory_k2_random_effects_meta"].update({
+            "REML_tau2_closed_form_k2":frozen["exploratory_meta"]["REML_tau2"],
+            "pooled_RR":frozen["exploratory_meta"]["pooled_RR"],
+            "pooled_logRR_SE_mKH":frozen["exploratory_meta"]["SE_logRR_mKH"],
+            "modified_HK_t1_95":frozen["exploratory_meta"]["t1_95"],
+        })
+        self.assertTrue(m.verify_frozen(copy_result,frozen))
 
     def test_k2_reml_and_mkh_df1_bounds_not_overconfident(self):
         s,v,_=m.independent_habitat_block_estimates(self.source)
