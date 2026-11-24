@@ -36,6 +36,18 @@ class TestOrderSensitivity(unittest.TestCase):
             self.assertEqual(a["n_independent_physical_units"],5)
             self.assertAlmostEqual(a["four_order_composition_RRR"],want,places=12)
 
+    def test_Henn_four_order_absolute_catch_direction_is_not_absolute_biological_abundance(self):
+        r=m.independent_block_order_ratios(self.rows)
+        self.assertEqual(set(r),set(m.ORDERS))
+        for o,(lit,dark) in {
+            "Ephemeroptera":(686,1014),
+            "Trichoptera":(51,99),
+            "Diptera":(263,489),
+            "Coleoptera":(139,199),
+        }.items():
+            self.assertAlmostEqual(r[o]["lit_over_dark_catch_RR"],lit/dark,places=12)
+            self.assertEqual(r[o]["n_independent_physical_blocks"],5)
+
     def test_exact_reml_plus_mkh_reproduces_prior_k2_main(self):
         a=m.base.ratio_from_block_arms(m.build_arms(self.rows,None),"five_rivers")
         z={"four_order_log_composition_RRR":.23181424616015578,
