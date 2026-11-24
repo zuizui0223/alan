@@ -105,7 +105,22 @@ class TestChironomidEmergenceMeta(unittest.TestCase):
             "pooled_logRR_SE_mKH":frozen["exploratory_meta"]["SE_logRR_mKH"],
             "modified_HK_t1_95":frozen["exploratory_meta"]["t1_95"],
         })
+        ref=frozen["within_programme_physical_unit_diagnostics"]
+        copy_result["leave_one_physical_unit_out_point_sensitivities"].update({
+            "Sullivan_n3_group_ratios":ref["Sullivan_3_group_RRs"],
+            "Sullivan_leave_one_group_out_RR_point_only":{
+                f"group_{i+1}":v for i,v in enumerate(ref["Sullivan_leave_one_group_out_RRs"])},
+            "Ogbeide_eight_flume_leave_one_out_RR_point_only":{
+                **{f"alan_index_{i+1}":v for i,v in enumerate(ref["Ogbeide_8_flume_leave_one_out_RRs"][:4])},
+                **{f"control_index_{i+1}":v for i,v in enumerate(ref["Ogbeide_8_flume_leave_one_out_RRs"][4:])}},
+            "Ogbeide_Week1_RR":ref["Ogbeide_Week1_RR"],
+            "Ogbeide_Week4_RR":ref["Ogbeide_Week4_RR"],
+            "between_programme_ratio_of_LitDark_RR_point_only":ref["between_programme_ratio_of_RRs_point"],
+        })
         self.assertTrue(m.verify_frozen(copy_result,frozen))
+        copy_result["leave_one_physical_unit_out_point_sensitivities"]["Sullivan_n3_group_ratios"][0]+=0.2
+        with self.assertRaises(ValueError):
+            m.verify_frozen(copy_result,frozen)
 
     def test_k2_reml_and_mkh_df1_bounds_not_overconfident(self):
         s,v,_=m.independent_habitat_block_estimates(self.source)
