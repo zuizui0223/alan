@@ -11,7 +11,7 @@ different capture/attraction or habitat, not a wetland predator mechanism.
 No raw sample-level author file is redistributed.
 """
 from __future__ import annotations
-import argparse,csv,io,importlib.util,json,math
+import argparse,csv,io,importlib.util,json,math,itertools,statistics
 from collections import Counter,defaultdict
 from pathlib import Path
 
@@ -51,6 +51,8 @@ def inspect(original):
     main_other=nonchiro[:6]
     chosen=[fam for fam,_ in main_other]
     per_block=[]
+    chiro_vs_mosquito_logs=[]
+    chiro_vs_mosquito_blocks=[]
     for group in ("1","2","3"):
         d=blocks[group,"DRK"]
         l=Counter()
@@ -59,6 +61,23 @@ def inspect(original):
         d_ch=d["Chironomidae"];l_ch=l["Chironomidae"]
         if not (d_total>d_ch>0 and l_total>l_ch>0):
             raise ValueError("STOP physical block missing complementary taxa")
+        # Prespecified only after inspecting the complement: Culicidae and
+        # Chironomidae both have aquatic larval life histories, unlike the
+        # heterogeneous catch remainder. This is POST HOC and has n=3 only.
+        if not all(v>0 for v in (
+            d["Chironomidae"],l["Chironomidae"],d["Culicidae"],l["Culicidae"]
+        )):
+            raise ValueError("STOP: zero catch within Chironomidae/Culicidae source family pair")
+        cm_rrr=(l["Chironomidae"]/d["Chironomidae"])/(l["Culicidae"]/d["Culicidae"])
+        chiro_vs_mosquito_logs.append(math.log(cm_rrr))
+        chiro_vs_mosquito_blocks.append({
+            "block":group,
+            "source_chironomidae_dark":d["Chironomidae"],
+            "source_chironomidae_four_lamps":l["Chironomidae"],
+            "source_culicidae_dark":d["Culicidae"],
+            "source_culicidae_four_lamps":l["Culicidae"],
+            "two_family_RRR":cm_rrr,
+        })
         per_block.append({
             "wetland_block":group,
             "dark_all_taxa_captured":d_total,
@@ -78,6 +97,26 @@ def inspect(original):
             },
             "chiro_vs_all_other_response_RRR":(l_ch/d_ch)/((l_total-l_ch)/(d_total-d_ch)),
         })
+    m=statistics.mean(chiro_vs_mosquito_logs)
+    se=statistics.stdev(chiro_vs_mosquito_logs)/math.sqrt(3)
+    t2=4.302652729911275
+    signs=sum(1 for choice in itertools.product((-1,1),repeat=3)
+              if abs(sum(x*y for x,y in zip(choice,chiro_vs_mosquito_logs))/3)>=abs(m)-1e-12)
+    pair={
+        "source_selected_families":["Chironomidae","Culicidae"],
+        "source_selection_posthoc":True,
+        "both_taxa_have_aquatic_immature_development":True,
+        "three_original_block_counts_and_ratios":chiro_vs_mosquito_blocks,
+        "physical_habitat_block_n":3,
+        "equal_block_logRRR":m,
+        "equal_block_logRRR_SE":se,
+        "equal_block_RRR":math.exp(m),
+        "descriptive_t2_95_RRR":[math.exp(m-t2*se),math.exp(m+t2*se)],
+        "three_block_signflip_reference_p":signs/8,
+        "not_independent_experimental_meta_effect":True,
+        "source_lamp_menu_four_depend_on_same_dark_each_block":True,
+        "multiple_candidate_family_comparisons_not_predeclared":True,
+    }
     return {
         "source_original_TSV_sha256":base.DIGEST,
         "publication_doi":"10.1002/eap.1821",
@@ -89,6 +128,7 @@ def inspect(original):
         "source_non_chironomidae_family_counts":dict(nonchiro),
         "top_six_other_families":dict(main_other),
         "physical_block_family_contributions":per_block,
+        "explicit_two_aquatic_larval_family_sensitivity":pair,
         "taxonomic_classification_limit":(
             "Non-Chironomidae source catch includes families with terrestrial immature development, "
             "not exclusively freshwater emerging insects. Family identity from author label, not individual voucher re-identification."
@@ -110,6 +150,7 @@ def main():
     print("SULLIVAN_OTHER_FAMILY_SOURCE",json.dumps({
       "data_authenticated":True,"other_taxa":x["source_non_chironomidae_family_counts"],
       "true_block_decomposition":x["physical_block_family_contributions"],
+      "aquatic_larval_two_family_comparison":x["explicit_two_aquatic_larval_family_sensitivity"],
       "meta_k_increment":0
     },ensure_ascii=False),flush=True)
 if __name__=="__main__":
