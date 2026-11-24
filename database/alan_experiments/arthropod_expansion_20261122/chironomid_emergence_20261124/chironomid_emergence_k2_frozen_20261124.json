@@ -87,5 +87,17 @@
     "Ogbeide_Week4_RR": 0.6862252902416064,
     "between_programme_ratio_of_RRs_point": 3.19932425302357,
     "warning": "All one-physical-unit-out points retain their programme-specific signs, but n3 wetland and n8 flume observational sampling precision do not identify a causal habitat or light-dose moderator."
+  },
+  "two_programme_difference_descriptive": {
+    "source_two_programme_RR_of_RRs": 3.19932425302357,
+    "source_lnRR_difference": 1.1629396165758261,
+    "uncertainty_SE_from_two_independent_source_programmes": 0.3976253945951941,
+    "descriptive_conservative_t2_95_RR_of_RRs": [
+      0.5781601497701577,
+      17.703876131992015
+    ],
+    "descriptive_t2_two_sided_p": 0.09972377667328713,
+    "not_causal_habitat_effect_modifier": true,
+    "not_confirmatory_cross_study_difference": true
   }
 }
