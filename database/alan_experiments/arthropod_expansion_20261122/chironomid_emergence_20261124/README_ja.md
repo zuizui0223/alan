@@ -11,7 +11,7 @@
 
 SullivanのDryad [10.5061/dryad.gb9534p](https://doi.org/10.5061/dryad.gb9534p)から、**2013年実験の元TSV（SHA256 `385444ab318ec4b15edd3161c740aa7f4b2d9b973fe4c2ddf6c29cc56cdec484`）を再取得**。全1,161行中、AquaticEmergentは198行、計5,372個体。分類ラベルを原表から列挙すると**Chironomidaeは4,960個体（約92.3%）**で、元ラベルとして一意に存在した。照明区・暗区の**Chironomidae原計数**はDRK356、LEDI1,162、LEDH1,295、HPSI1,457、HPSH690だった。4つの照明条件は別々のステーションと同じ暗ステーションを共有するため、**(1162+1295+1457+690)/356=12.93倍という単純比を作らない**。同様に5,372個体や15ステーションを15独立実験とはしない。
 
-Ogbeideの元公開Zenodo [10.5281/zenodo.14516568](https://doi.org/10.5281/zenodo.14516568)のRDSに由来する[16水路×2週の派生表](../../../ogbeide_sources/flume_emergence_rates.csv)を使用。原RDS SHA256 `289e9dc874724ca765aa2e8314f975ef7cf7b2cb688bdb62e8f1be9bc50d1776` と派生表Git blob `a774508cdbe30641e97de61a7f55d437e15b9aec` の同一性を確認した。Week1/Week4は**両方とも照明開始後**、元論文の6週間のうち公開抽出できた2時点で、Week6の最終観測ではない。32水路×週行を32独立照明区として扱わない。
+Ogbeideの元公開Zenodo [10.5281/zenodo.14516568](https://doi.org/10.5281/zenodo.14516568)のRDSに由来する[16水路×2週の派生表](../../ogbeide_sources/flume_emergence_rates.csv)を使用。原RDS SHA256 `289e9dc874724ca765aa2e8314f975ef7cf7b2cb688bdb62e8f1be9bc50d1776` と派生表Git blob `a774508cdbe30641e97de61a7f55d437e15b9aec` の同一性を確認した。Week1/Week4は**両方とも照明開始後**、元論文の6週間のうち公開抽出できた2時点で、Week6の最終観測ではない。32水路×週行を32独立照明区として扱わない。
 
 ## 2. 原本から実際に計算した新しい研究別効果
 
