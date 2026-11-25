@@ -22,3 +22,6 @@ Perkin Canada2011 4 forest-stream pairs separate from Spree2010. Author thesis r
 - rho=1: 1.208 [0.284–5.139]
 All intervals contain1. 3 programmes' numerical sensitivity does not authorize third formal adoption. Spree emergence lacks site replication and cannot be added as another equivalent effect. Separate quantitative and descriptive datasets. 
 Source data and earlier meta analysis pinned in JSON; original code adapted and executed in-session on actual fetched aggregate sources. Standalone Node replay not yet CI-tested. Original Czarnecka candidate CSV retained locally, no raw workbook redistribution; no changes to main, canonical108, five prior meta estimates. 
+
+## Source recheck and output clarification
+Reopened original user-supplied workbook, hash verified; all 16 original 097 rows and 9 original 089 rows inspected. 097 source row order is aquatic 3m, aquatic 75m, terrestrial 3m, terrestrial 75m within each month. Source 097.1 dark SD .03 confirmed directly. Numeric output corrected scalar distance_m. The auxiliary replay of the two Michigan source-defined menu estimates is RR 6.724 (0.0457–989.18), not the archived 6.880 variant; exact prior variant reconciliation remains separate. Do not present this as reproduction of or replacement for the archived headline. No change to the current spatial or emergence results.

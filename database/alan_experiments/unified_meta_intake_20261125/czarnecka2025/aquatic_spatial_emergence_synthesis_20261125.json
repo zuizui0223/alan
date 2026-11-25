@@ -189,7 +189,10 @@
       "database/alan_experiments/arthropod_expansion_20261122/sullivan2019_source_reanalysis/dryad_provenance_and_frozen_block_results.json": "349ecebb168f1bfdaedf533c7066a764d69c4f89",
       "database/alan_experiments/ogbeide_sources/flume_emergence_rates.csv": "a774508cdbe30641e97de61a7f55d437e15b9aec",
       "database/alan_experiments/capture_origin_synthesis/programme_estimates.csv": "45271835c14bfbf5bf510bd078d547b379068e1e"
-    }
+    },
+    "workbook_sha256": "8fae8a0244047ab057808ea321962bf848cff42b6fd521f34b37a360efa154d6",
+    "workbook_reopened_this_turn": true,
+    "source_rows_actual_order": "097.1,.2 aquatic at 3/75m; .3,.4 terrestrial at 3/75m, each repeated in subsequent month; 089.5 checked directly."
   },
   "spree": {
     "table": [
@@ -1082,79 +1085,31 @@
     ],
     "broad": [
       {
-        "distance_m": {
-          "distance_m": 0,
-          "aquatic_gm_RR": 18.116382374176098,
-          "terrestrial_gm_RR": 2.9497707130858886,
-          "equal_month_RRR": 6.141623921414462,
-          "night_pair_weighted_RRR": 9.900372606763167,
-          "all_month_RRR": [
-            16.49637127578304,
-            6.272515685083992,
-            4.463768115942028,
-            3.0803571428571423
-          ]
-        },
+        "distance_m": 0,
         "programme_RRR": 6.141623921414462,
         "three_programme_equal_geometric_mean": 7.175660003863813,
         "scope": "point summary only, no new uncertainty or independent meta k"
       },
       {
-        "distance_m": {
-          "distance_m": 3,
-          "aquatic_gm_RR": 3.6916327561932194,
-          "terrestrial_gm_RR": 1.1277275822988095,
-          "equal_month_RRR": 3.27351464497129,
-          "night_pair_weighted_RRR": 4.319092634848806,
-          "all_month_RRR": [
-            7.015526164462336,
-            4.09201213346815,
-            2.5,
-            1.6
-          ]
-        },
+        "distance_m": 3,
         "programme_RRR": 3.27351464497129,
         "three_programme_equal_geometric_mean": 5.817979801898534,
         "scope": "point summary only, no new uncertainty or independent meta k"
       },
       {
-        "distance_m": {
-          "distance_m": 40,
-          "aquatic_gm_RR": 1.3606640232317853,
-          "terrestrial_gm_RR": 0.8454157909673776,
-          "equal_month_RRR": 1.609461329879855,
-          "night_pair_weighted_RRR": 1.8484162895927598,
-          "all_month_RRR": [
-            2.3701923076923075,
-            1.8787878787878787,
-            2.0090909090909093,
-            0.75
-          ]
-        },
+        "distance_m": 40,
         "programme_RRR": 1.609461329879855,
         "three_programme_equal_geometric_mean": 4.591919810284236,
         "scope": "point summary only, no new uncertainty or independent meta k"
       },
       {
-        "distance_m": {
-          "distance_m": 75,
-          "aquatic_gm_RR": 0.9212085153186145,
-          "terrestrial_gm_RR": 0.9376427702103377,
-          "equal_month_RRR": 0.9824727973020722,
-          "night_pair_weighted_RRR": 1.0275649794801642,
-          "all_month_RRR": [
-            0.7222222222222221,
-            2.6833333333333336,
-            0.38461538461538464,
-            1.25
-          ]
-        },
+        "distance_m": 75,
         "programme_RRR": 0.9824727973020722,
         "three_programme_equal_geometric_mean": 3.8953004221978453,
         "scope": "point summary only, no new uncertainty or independent meta k"
       }
     ],
-    "existing_k2": {
+    "recomputed_source_defined_menu_k2": {
       "k": 2,
       "tau": 0.11957070386094312,
       "y": 1.905633759551987,
@@ -1168,7 +1123,8 @@
         0.6708931246520967,
         0.3291068753479033
       ]
-    }
+    },
+    "replay_boundary": "New REML/mKH replay uses source-defined menu input (6.724); the archived 6.880 value is a different variant or requires reconciliation. No existing published estimate overwritten."
   },
   "formal_new_k": 0,
   "status": "EXPLORATORY_NOT_CANONICAL"
