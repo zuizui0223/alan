@@ -1,0 +1,36 @@
+# Consumer filtering and movement-stage mismatch: two new source reviews (2026-11-26)
+
+Exploratory. Not a new formal resource/feeding-buzz meta-analysis. Existing main and 108-effect catalogue unchanged.
+
+## Exact taxon contrast across two independent experiments
+
+Rowse 2018 (10.1098/rsos.180205, 21 Hertfordshire sites, 2015, randomized light intensity) versus Froidevaux et al. 2018 (10.1002/rse2.71, 28 hedgerows nested in 12 southwestern England farms, 2016, fixed dark first night then a 6W actinic light trap). Both report negative-binomial acoustic pass model coefficients for P. pipistrellus and Myotis spp. The latter study is an insect sampling-method experiment, not a streetlight experiment. Exposure and adjustment differ; trap presence and night order are confounded. Source: https://doi.org/10.1002/rse2.71 and Bristol full text https://research-information.bris.ac.uk/files/147958794/Froidevaux_2018_RSEC_Catching_insects_while_recording_bats_impacts_of_light_trapping_on_acoustic_sampling.pdf, Table 1. Text extracted; screenshot request returned HTTP403; no independent visual re-extraction claimed.
+
+Difference D = b(P. pipistrellus) - b(Myotis spp.), both on count-model log coefficient scale (default log link assumption). Rowse equal log weight across 25,50,100% with reconstructed within-model covariance from previous extraction, Froidevaux printed -0.38±0.24 and -0.57±0.31. Cross-model covariance unknown. Calculate 25 combinations of endpoint correlation (-1,-.5,0,.5,1) for each of four Rowse menus, REML/mKH df1 conditional sensitivity. Conservative reference uses each maximum variance (rho=-1), not a sampling variance estimate or a formal systematic result.
+
+| Rowse menu | Rowse exp(D) | Froidevaux exp(D) | Conservative hypothetical pooled exp(D) | reference mKH interval |
+|---|---:|---:|---:|---:|
+| all three | 2.573 | 1.209 | 2.014 | .0226–179.548 |
+| 25% | 1.713 | 1.209 | 1.518 | .0249–92.573 |
+| 50% | 3.367 | 1.209 | 2.159 | .00342–1364.051 |
+| 100% | 2.954 | 1.209 | 2.038 | .00760–546.414 |
+
+All-menu point range 1.654–2.153 over 25 assumed correlation combinations. Every one of 100 diagnostic intervals includes 1. Both original effects have positive point contrast, but Froidevaux both taxa decline and differential response is small. Do not select stronger Rowse intensity or omit weaker study. This is not a confirmed shared effect; no general quantification of trait causality. Count contrast is not an insect-to-feeding stage contrast. All original Froidevaux Table 1 animal count coefficients retained in JSON; richness uses squared Gaussian outcome and excluded.
+
+## Movement stage: Barré et al. 2023 (10.1111/acv.12875)
+
+Primary HTML https://zslpublications.onlinelibrary.wiley.com/doi/10.1111/acv.12875 , Tables 1 and 2, sections 2.1–2.4. 5 Dutch sites, 28 lamps, 60 lamp-night samples, July 2018. Lamp treatments assigned to rows since 2012. Same Light on Nature infrastructure as Spoelstra 2015/2017 and potentially Hermans; NOT an independent lighting programme relative to those studies. Recorded acoustic passes, directed incoming trajectories and full crossing trajectories defined by matched acoustic sequences, not uniquely tracked individuals. No measured prey density or feeding buzzes in this study. Incoming count model negative binomial, full crossing probability binomial. Narrow group Myotis/Plecotus, edge group Pipistrellus includes P. pipistrellus/P. nathusii. Different taxon definition and endpoint from exact taxon acoustic pass comparison above.
+
+Table 2 conditional model approach RR: green edge 1.974, white edge 2.612; edge/narrow response ratio green 7.463 and white 7.538, with maximum-SE t4 reference intervals 1.576–35.333 and 1.829–31.062; these are exploratory and model covariance not recovered. Red ratio 3.096 [.751,12.756]. White edge full-crossing OR=.432 (reference t4 .228–.818). Raw published Table 1 totals conditional on incoming trajectories: dark 48/1399=3.43%, white 36/3543=1.02%, green 77/2549=3.02%, red 32/1576=2.03%. These are pooled-event descriptive fractions, not independent observations, valid site-level intervals, or total crossing rate ratios. Effort can differ. Do not infer reduced absolute crossings from lower conditional probability. White incoming RR 2.612 times hypothetical conditional crossing RR computed from reported OR and a common dark probability p0 lies 1.127–2.612 for p0 in [0,1]; with pooled dark p0=.03431 point 1.150. This algebra demonstrates the potential difference between conditional passage probability and total crossing count, but models are separate and different random-effect averaging; not an identified model for actual crossings. For narrow group, only one full crossing in dark and none lit; no finite model contrast and no pseudocount.
+
+## Source acquisition stops and next gates
+
+- Spoelstra 2017 dataset 10.5061/dryad.1g3r5: official file BatsPerTransectPerNight_sonochiro_min5_3gr.txt, direct web fetch 403; container DNS fail. Source: https://datadryad.org/dataset/doi:10.5061/dryad.1g3r5 . Published insect/bat simultaneous observations cover seven lights-on sites and six lights-off sites; raw insect rows not established in this file. Supplement figshare collection inaccessible.
+- Spoelstra 2015 dataset handle 10411/FL0XNI redirects to 10.34894/SNFAGV. Repository description lists nightly pipistrelle passes/buzzes, moth data aggregated by year/transect and effort. Cannot infer same-night joint prey–buzz effects from these tables. Dataverse access failed DNS/redirect. https://pure.knaw.nl/portal/en/datasets/replication-data-for-the-manuscript-experimental-illumination-of-/
+- Zeale 2018 (10.1111/gcb.14462): eight British hedgerow sites, pass and buzz data, no matched insect prey response established. Data DOI 10.5523/bris.31dvq1elivhby2dap2tm0zgz94. README accessible, CSV direct web fetch unsupported binary, preview 403 and local DNS failure. https://data.bris.ac.uk/data/dataset/31dvq1elivhby2dap2tm0zgz94 . Dark-side responses are not an independent experiment.
+- Barré data DOI 10.5281/zenodo.7560697 verified in publication; raw archive not retrieved in this turn.
+- Russo 2019 Table 1 is selective, exact matching P. pipistrellus and unidentified Myotis coefficients are absent (supplement A2 needed). Printed M. daubentonii coefficient -.54±.39, Z 27.44, p<.001 do not agree if interpreted as Wald z; no silent correction. Do not substitute significant P. kuhlii and M. daubentonii for matched taxa or count as a new meta study. PDF table checked via screenshot.
+
+## Verification
+
+Output blob 7dc6d86019b796b8e3a230a3cb1f32f7b48d5edf; 125 independent readback arithmetic checks, max absolute error 4.440892098500626e-16. Script scripts/analysis/alan_bat_guild_and_movement_sensitivity_20261126.mjs. Prior Rowse coefficient source pinned by Git blob. New calculations executed in connector JS; standalone CI and human dual extraction not done. New formally eligible prey/buzz programme k=0. No manuscript/main edit. The provisional exact-taxon comparison and movement diagnostics are separate from previously established six stage-level exploratory models. This analysis does not test causal mediation of wet-habitat plant patterns.
