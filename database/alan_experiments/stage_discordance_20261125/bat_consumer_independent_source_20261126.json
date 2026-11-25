@@ -1,0 +1,1272 @@
+{
+  "date": "2026-11-26",
+  "source": {
+    "rowse": {
+      "doi": "10.1098/rsos.180205",
+      "url": "https://research-information.bris.ac.uk/ws/files/164355864/180205.full.pdf",
+      "source": "printed Tables 1 and 2, pp 6-7; screenshot and text checked",
+      "levels": [
+        25,
+        50,
+        100
+      ],
+      "lux": [
+        11.35,
+        20.23,
+        35.46
+      ],
+      "endpoints": {
+        "passes": {
+          "link": "log",
+          "n": 21,
+          "b": [
+            0.174,
+            0.391,
+            0.29
+          ],
+          "se": [
+            0.164,
+            0.161,
+            0.16
+          ],
+          "pair_b": [
+            0.217,
+            0.116,
+            -0.101
+          ],
+          "pair_se": [
+            0.161,
+            0.159,
+            0.157
+          ]
+        },
+        "pipistrelle": {
+          "link": "log",
+          "n": 21,
+          "b": [
+            0.13,
+            0.386,
+            0.343
+          ],
+          "se": [
+            0.169,
+            0.168,
+            0.167
+          ],
+          "pair_b": [
+            0.257,
+            0.213,
+            -0.043
+          ],
+          "pair_se": [
+            0.167,
+            0.164,
+            0.163
+          ]
+        },
+        "myotis": {
+          "link": "log",
+          "n": 21,
+          "b": [
+            -0.408,
+            -0.828,
+            -0.74
+          ],
+          "se": [
+            0.231,
+            0.237,
+            0.242
+          ],
+          "pair_b": [
+            -0.42,
+            -0.332,
+            0.088
+          ],
+          "pair_se": [
+            0.257,
+            0.265,
+            0.271
+          ]
+        },
+        "buzz_probability": {
+          "link": "logit",
+          "n": 21,
+          "b": [
+            0.689,
+            1.371,
+            1.19
+          ],
+          "se": [
+            0.217,
+            0.218,
+            0.22
+          ],
+          "pair_b": [
+            0.682,
+            0.501,
+            -0.181
+          ],
+          "pair_se": [
+            0.163,
+            0.161,
+            0.161
+          ]
+        },
+        "insects": {
+          "link": "log",
+          "n": 7,
+          "b": [
+            2.686,
+            2.729,
+            2.905
+          ],
+          "se": [
+            1.422,
+            1.423,
+            1.415
+          ],
+          "pair_b": [
+            0.043,
+            0.219,
+            0.177
+          ],
+          "pair_se": [
+            0.723,
+            0.696,
+            0.689
+          ]
+        }
+      }
+    },
+    "russo": {
+      "doi": "10.1016/j.envpol.2019.06.105",
+      "url": "https://www.parcoabruzzo.it/Pdf/progetti/PNALMpro522-1.pdf",
+      "source": "printed Tables 1-2, pp 1674-1675; screenshots verified",
+      "n": 8,
+      "bat_total": {
+        "b": -0.39,
+        "se": 0.12,
+        "link": "log"
+      },
+      "positions": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "groups": {
+        "total": [
+          [
+            6.99,
+            1.73,
+            2.24,
+            1,
+            -5.93
+          ],
+          [
+            4.31,
+            0.88,
+            2.43,
+            1.54,
+            -3.2
+          ],
+          [
+            3.81,
+            1.3,
+            3.65,
+            1,
+            -0.5
+          ],
+          [
+            2.7,
+            1.17,
+            2.16,
+            1.42,
+            -0.93
+          ]
+        ],
+        "diptera": [
+          [
+            22.44,
+            14.41,
+            2.04,
+            2,
+            -3.71
+          ],
+          [
+            6.41,
+            2.98,
+            3.36,
+            2.46,
+            -2.5
+          ],
+          [
+            5,
+            3.26,
+            6.86,
+            4.83,
+            1.38
+          ],
+          [
+            3.72,
+            2.27,
+            3.23,
+            3.24,
+            -0.36
+          ]
+        ]
+      },
+      "warning": "Diptera means exceed all-insect means on some rows; reported-scale/aggregation inconsistency; no pooling as total raw capture. Fixed dark-first order, bats and insects sampled different nights; no feeding-buzz endpoint."
+    }
+  },
+  "rowse": {
+    "coefficient_covariances": {
+      "passes": {
+        "covariance": [
+          [
+            0.026896000000000003,
+            0.013448,
+            0.0136075
+          ],
+          [
+            0.013448,
+            0.025921000000000003,
+            0.013436000000000002
+          ],
+          [
+            0.0136075,
+            0.013436000000000002,
+            0.0256
+          ]
+        ],
+        "det": 0.000008480194558647755,
+        "estimate": [
+          {
+            "y": 0.174,
+            "rr": 1.1900555658203626,
+            "v": 0.026896000000000003,
+            "ci": [
+              0.8629193084692754,
+              1.641210523209018
+            ]
+          },
+          {
+            "y": 0.391,
+            "rr": 1.4784585134131472,
+            "v": 0.025921000000000003,
+            "ci": [
+              1.0783647771337364,
+              2.026994596108484
+            ]
+          },
+          {
+            "y": 0.29,
+            "rr": 1.336427488025472,
+            "v": 0.0256,
+            "ci": [
+              0.9766819302426983,
+              1.82867971183439
+            ]
+          }
+        ],
+        "link": "log",
+        "n": 21
+      },
+      "pipistrelle": {
+        "covariance": [
+          [
+            0.028561000000000003,
+            0.014447999999999999,
+            0.014777000000000002
+          ],
+          [
+            0.014447999999999999,
+            0.028224000000000003,
+            0.014772000000000004
+          ],
+          [
+            0.014777000000000002,
+            0.014772000000000004,
+            0.027889000000000004
+          ]
+        ],
+        "det": 0.000010572050095344002,
+        "estimate": [
+          {
+            "y": 0.13,
+            "rr": 1.1388283833246218,
+            "v": 0.028561000000000003,
+            "ci": [
+              0.8177211332609932,
+              1.586029801496923
+            ]
+          },
+          {
+            "y": 0.386,
+            "rr": 1.4710846708147431,
+            "v": 0.028224000000000003,
+            "ci": [
+              1.0583658319900655,
+              2.0447467626925757
+            ]
+          },
+          {
+            "y": 0.343,
+            "rr": 1.4091687619264508,
+            "v": 0.027889000000000004,
+            "ci": [
+              1.0158096858990913,
+              1.9548510189994268
+            ]
+          }
+        ],
+        "link": "log",
+        "n": 21
+      },
+      "myotis": {
+        "covariance": [
+          [
+            0.053361000000000006,
+            0.021740500000000003,
+            0.020849999999999994
+          ],
+          [
+            0.021740500000000003,
+            0.056169,
+            0.020645999999999998
+          ],
+          [
+            0.020849999999999994,
+            0.020645999999999998,
+            0.058564
+          ]
+        ],
+        "det": 0.00011940355873619901,
+        "estimate": [
+          {
+            "y": -0.408,
+            "rr": 0.6649788788224019,
+            "v": 0.053361000000000006,
+            "ci": [
+              0.42284411918058545,
+              1.045768142966766
+            ]
+          },
+          {
+            "y": -0.828,
+            "rr": 0.4369222575744412,
+            "v": 0.056169,
+            "ci": [
+              0.27458031773775815,
+              0.6952466977122123
+            ]
+          },
+          {
+            "y": -0.74,
+            "rr": 0.4771139155210344,
+            "v": 0.058564,
+            "ci": [
+              0.29691443353678804,
+              0.7666777450736769
+            ]
+          }
+        ],
+        "link": "log",
+        "n": 21
+      },
+      "buzz_probability": {
+        "covariance": [
+          [
+            0.047089,
+            0.034022,
+            0.034783999999999995
+          ],
+          [
+            0.034022,
+            0.047524,
+            0.0350015
+          ],
+          [
+            0.034783999999999995,
+            0.0350015,
+            0.0484
+          ]
+        ],
+        "det": 0.000019942993529849767,
+        "estimate": [
+          {
+            "y": 0.689,
+            "rr": 1.9917228142354029,
+            "v": 0.047089,
+            "ci": [
+              1.3017217553175557,
+              3.0474713605581942
+            ]
+          },
+          {
+            "y": 1.371,
+            "rr": 3.939288014497347,
+            "v": 0.047524,
+            "ci": [
+              2.569542458563541,
+              6.039203598074623
+            ]
+          },
+          {
+            "y": 1.19,
+            "rr": 3.287081207383118,
+            "v": 0.0484,
+            "ci": [
+              2.1357287501441378,
+              5.059117579047455
+            ]
+          }
+        ],
+        "link": "logit",
+        "n": 21
+      },
+      "insects": {
+        "covariance": [
+          [
+            2.022084,
+            1.7621419999999999,
+            1.7699465000000003
+          ],
+          [
+            1.7621419999999999,
+            2.024929,
+            1.7762165000000003
+          ],
+          [
+            1.7699465000000003,
+            1.7762165000000003,
+            2.002225
+          ]
+        ],
+        "det": 0.33765806798704756,
+        "estimate": [
+          {
+            "y": 2.686,
+            "rr": 14.672866913187299,
+            "v": 2.022084,
+            "ci": [
+              0.9038708570722778,
+              238.1900265591711
+            ]
+          },
+          {
+            "y": 2.729,
+            "rr": 15.317561796775957,
+            "v": 2.024929,
+            "ci": [
+              0.9417374582426502,
+              249.1434288234455
+            ]
+          },
+          {
+            "y": 2.905,
+            "rr": 18.26524365220918,
+            "v": 2.002225,
+            "ci": [
+              1.1407100984611598,
+              292.46618060506904
+            ]
+          }
+        ],
+        "link": "log",
+        "n": 7
+      }
+    },
+    "contrasts": {
+      "25": {
+        "pass": {
+          "y": 0.174,
+          "rr": 1.1900555658203626,
+          "v": 0.026896000000000003,
+          "ci": [
+            0.8629193084692754,
+            1.641210523209018
+          ]
+        },
+        "insects": {
+          "y": 2.686,
+          "rr": 14.672866913187299,
+          "v": 2.022084,
+          "ci": [
+            0.9038708570722778,
+            238.1900265591711
+          ]
+        },
+        "buzz_odds": {
+          "y": 0.689,
+          "rr": 1.9917228142354029,
+          "v": 0.047089,
+          "ci": [
+            1.3017217553175557,
+            3.0474713605581942
+          ]
+        },
+        "pass_vs_insect": {
+          "y": -2.512,
+          "rr": 0.0811058651905849,
+          "se_min": 1.258,
+          "se_max": 1.5859999999999999,
+          "outer": [
+            0.0016735599816527385,
+            3.930639738300272
+          ]
+        },
+        "pip_vs_myotis": {
+          "y": 0.538,
+          "rr": 1.7125782781873475,
+          "se_min": 0.062,
+          "se_max": 0.4,
+          "outer": [
+            0.6435440886527798,
+            4.557456762688999
+          ]
+        },
+        "synthetic_buzz_vs_insects_point_bounds": [
+          0.0811058651905849,
+          0.16154040206838896
+        ],
+        "p0_grid": [
+          {
+            "p0": 0,
+            "probability_rr": 1.9917228142354029,
+            "synthetic_buzz_vs_insects": 0.16154040206838896
+          },
+          {
+            "p0": 0.05,
+            "probability_rr": 1.8976268235446867,
+            "synthetic_buzz_vs_insects": 0.1539086653324532
+          },
+          {
+            "p0": 0.1,
+            "probability_rr": 1.8120205975863206,
+            "synthetic_buzz_vs_insects": 0.1469654983103992
+          },
+          {
+            "p0": 0.25,
+            "probability_rr": 1.5960203627937068,
+            "synthetic_buzz_vs_insects": 0.1294466123861748
+          },
+          {
+            "p0": 0.5,
+            "probability_rr": 1.3314888697296838,
+            "synthetic_buzz_vs_insects": 0.10799155677106001
+          },
+          {
+            "p0": 0.75,
+            "probability_rr": 1.1421790487758654,
+            "synthetic_buzz_vs_insects": 0.09263741995352583
+          },
+          {
+            "p0": 1,
+            "probability_rr": 1,
+            "synthetic_buzz_vs_insects": 0.08110586519058491
+          }
+        ],
+        "warning": "all menu uses mean log coefficients, OR formula applied only as synthetic geometric-menu example, not a pooled risk ratio; bat model 21 sites, insect subset 7, different conditional models; no direct feeding count or joint covariance."
+      },
+      "50": {
+        "pass": {
+          "y": 0.391,
+          "rr": 1.4784585134131472,
+          "v": 0.025921000000000003,
+          "ci": [
+            1.0783647771337364,
+            2.026994596108484
+          ]
+        },
+        "insects": {
+          "y": 2.729,
+          "rr": 15.317561796775957,
+          "v": 2.024929,
+          "ci": [
+            0.9417374582426502,
+            249.1434288234455
+          ]
+        },
+        "buzz_odds": {
+          "y": 1.371,
+          "rr": 3.939288014497347,
+          "v": 0.047524,
+          "ci": [
+            2.569542458563541,
+            6.039203598074623
+          ]
+        },
+        "pass_vs_insect": {
+          "y": -2.338,
+          "rr": 0.09652048629073155,
+          "se_min": 1.262,
+          "se_max": 1.584,
+          "outer": [
+            0.0020013999421481066,
+            4.654843880828834
+          ]
+        },
+        "pip_vs_myotis": {
+          "y": 1.214,
+          "rr": 3.3669254548427423,
+          "se_min": 0.06899999999999998,
+          "se_max": 0.405,
+          "outer": [
+            1.2498214489684998,
+            9.070245216085837
+          ]
+        },
+        "synthetic_buzz_vs_insects_point_bounds": [
+          0.09652048629073155,
+          0.3802219947985343
+        ],
+        "p0_grid": [
+          {
+            "p0": 0,
+            "probability_rr": 3.939288014497347,
+            "synthetic_buzz_vs_insects": 0.3802219947985343
+          },
+          {
+            "p0": 0.05,
+            "probability_rr": 3.434533811169523,
+            "synthetic_buzz_vs_insects": 0.331502873636042
+          },
+          {
+            "p0": 0.1,
+            "probability_rr": 3.0444395472793535,
+            "synthetic_buzz_vs_insects": 0.2938507855861378
+          },
+          {
+            "p0": 0.25,
+            "probability_rr": 2.270715961791762,
+            "synthetic_buzz_vs_insects": 0.21917060886026707
+          },
+          {
+            "p0": 0.5,
+            "probability_rr": 1.5950833411354466,
+            "synthetic_buzz_vs_insects": 0.15395821976063814
+          },
+          {
+            "p0": 0.75,
+            "probability_rr": 1.229311842013935,
+            "synthetic_buzz_vs_insects": 0.11865377679413999
+          },
+          {
+            "p0": 1,
+            "probability_rr": 1,
+            "synthetic_buzz_vs_insects": 0.09652048629073155
+          }
+        ],
+        "warning": "all menu uses mean log coefficients, OR formula applied only as synthetic geometric-menu example, not a pooled risk ratio; bat model 21 sites, insect subset 7, different conditional models; no direct feeding count or joint covariance."
+      },
+      "100": {
+        "pass": {
+          "y": 0.29,
+          "rr": 1.336427488025472,
+          "v": 0.0256,
+          "ci": [
+            0.9766819302426983,
+            1.82867971183439
+          ]
+        },
+        "insects": {
+          "y": 2.905,
+          "rr": 18.26524365220918,
+          "v": 2.002225,
+          "ci": [
+            1.1407100984611598,
+            292.46618060506904
+          ]
+        },
+        "buzz_odds": {
+          "y": 1.19,
+          "rr": 3.287081207383118,
+          "v": 0.0484,
+          "ci": [
+            2.1357287501441378,
+            5.059117579047455
+          ]
+        },
+        "pass_vs_insect": {
+          "y": -2.6149999999999998,
+          "rr": 0.07316778869598224,
+          "se_min": 1.2550000000000001,
+          "se_max": 1.575,
+          "outer": [
+            0.0015509522752768356,
+            3.451766626219582
+          ]
+        },
+        "pip_vs_myotis": {
+          "y": 1.083,
+          "rr": 2.9535268540377024,
+          "se_min": 0.07499999999999998,
+          "se_max": 0.40900000000000003,
+          "outer": [
+            1.0856870939547993,
+            8.034838883223406
+          ]
+        },
+        "synthetic_buzz_vs_insects_point_bounds": [
+          0.07316778869598224,
+          0.24050846320834218
+        ],
+        "p0_grid": [
+          {
+            "p0": 0,
+            "probability_rr": 3.287081207383118,
+            "synthetic_buzz_vs_insects": 0.24050846320834218
+          },
+          {
+            "p0": 0.05,
+            "probability_rr": 2.949763745908724,
+            "synthetic_buzz_vs_insects": 0.2158276904637186
+          },
+          {
+            "p0": 0.1,
+            "probability_rr": 2.6752335659733095,
+            "synthetic_buzz_vs_insects": 0.1957409242675342
+          },
+          {
+            "p0": 0.25,
+            "probability_rr": 2.091324160739642,
+            "synthetic_buzz_vs_insects": 0.15301756428780053
+          },
+          {
+            "p0": 0.5,
+            "probability_rr": 1.5334821284570856,
+            "synthetic_buzz_vs_insects": 0.11220149634401316
+          },
+          {
+            "p0": 0.75,
+            "probability_rr": 1.2105726827376442,
+            "synthetic_buzz_vs_insects": 0.08857492625167632
+          },
+          {
+            "p0": 1,
+            "probability_rr": 1,
+            "synthetic_buzz_vs_insects": 0.07316778869598226
+          }
+        ],
+        "warning": "all menu uses mean log coefficients, OR formula applied only as synthetic geometric-menu example, not a pooled risk ratio; bat model 21 sites, insect subset 7, different conditional models; no direct feeding count or joint covariance."
+      },
+      "all": {
+        "pass": {
+          "y": 0.285,
+          "rr": 1.3297620281214737,
+          "v": 0.01771111111111111,
+          "ci": [
+            1.0244561843599838,
+            1.7260543480816977
+          ]
+        },
+        "insects": {
+          "y": 2.7733333333333334,
+          "rr": 16.01191821416341,
+          "v": 1.851760888888889,
+          "ci": [
+            1.112072827877784,
+            230.5438263304407
+          ]
+        },
+        "buzz_odds": {
+          "y": 1.0833333333333333,
+          "rr": 2.9545115270921065,
+          "v": 0.03895866666666667,
+          "ci": [
+            2.006669983989843,
+            4.350061760710682
+          ]
+        },
+        "pass_vs_insect": {
+          "y": -2.4883333333333333,
+          "rr": 0.08304826506952974,
+          "se_min": 1.227711114024552,
+          "se_max": 1.493877311060247,
+          "outer": [
+            0.002146923418224214,
+            3.2125106431432955
+          ]
+        },
+        "pip_vs_myotis": {
+          "y": 0.945,
+          "rr": 2.572813378588326,
+          "se_min": 0.04240229240461543,
+          "se_max": 0.31942455384461843,
+          "outer": [
+            1.1775032107436394,
+            5.621529198941789
+          ]
+        },
+        "synthetic_buzz_vs_insects_point_bounds": [
+          0.08304826506952974,
+          0.24536705645292634
+        ],
+        "p0_grid": [
+          {
+            "p0": 0,
+            "probability_rr": 2.9545115270921065,
+            "synthetic_buzz_vs_insects": 0.24536705645292634
+          },
+          {
+            "p0": 0.05,
+            "probability_rr": 2.6914846394520846,
+            "synthetic_buzz_vs_insects": 0.22352312976778438
+          },
+          {
+            "p0": 0.1,
+            "probability_rr": 2.4714615234561417,
+            "synthetic_buzz_vs_insects": 0.20525059170912943
+          },
+          {
+            "p0": 0.25,
+            "probability_rr": 1.9847213418931415,
+            "synthetic_buzz_vs_insects": 0.16482766409069435
+          },
+          {
+            "p0": 0.5,
+            "probability_rr": 1.494248534541339,
+            "synthetic_buzz_vs_insects": 0.12409474837634547
+          },
+          {
+            "p0": 0.75,
+            "probability_rr": 1.1981552871322927,
+            "synthetic_buzz_vs_insects": 0.09950471788022115
+          },
+          {
+            "p0": 1,
+            "probability_rr": 1,
+            "synthetic_buzz_vs_insects": 0.08304826506952973
+          }
+        ],
+        "warning": "all menu uses mean log coefficients, OR formula applied only as synthetic geometric-menu example, not a pooled risk ratio; bat model 21 sites, insect subset 7, different conditional models; no direct feeding count or joint covariance."
+      }
+    }
+  },
+  "robert_equal_log_menus": {
+    "all_all_passes_vs_insects": {
+      "y": -2.83603013565142,
+      "rr": 0.0586580689317634,
+      "v": 0.7542343415711277,
+      "ci": [
+        0.0036983124692363937,
+        0.9303619094992094
+      ],
+      "scores": [
+        -2.227950775526525,
+        0.21273739698952898,
+        2.0104146868655355,
+        0.004798691671461149
+      ]
+    },
+    "all_buzzes_vs_insects": {
+      "y": -3.113545574609956,
+      "rr": 0.04444309933592939,
+      "v": 0.8222703015432894,
+      "ci": [
+        0.0024803392946095323,
+        0.7963382602033208
+      ],
+      "scores": [
+        -2.2862979040793423,
+        0.17965110878544513,
+        2.146216492000878,
+        -0.03956969670698037
+      ]
+    },
+    "white_all_passes_vs_insects": {
+      "y": -3.3024940323331498,
+      "rr": 0.036791294204176796,
+      "v": 0.8267209613612322,
+      "ci": [
+        0.0020373450135034404,
+        0.6643937674997074
+      ],
+      "scores": [
+        -2.3376892341611746,
+        0.33537930529927457,
+        2.08253343120131,
+        -0.08022350233940956
+      ]
+    },
+    "white_buzzes_vs_insects": {
+      "y": -3.7988337093856224,
+      "rr": 0.02239687789807446,
+      "v": 0.9684701112182954,
+      "ci": [
+        0.0009773095750738056,
+        0.513266371654421
+      ],
+      "scores": [
+        -2.3686625423935226,
+        0.2876839460913329,
+        2.41218188085846,
+        -0.3312032845562689
+      ]
+    }
+  },
+  "two_programme_activity_diagnostic": [
+    {
+      "Robert": "all",
+      "Rowse": "all",
+      "assumed_cross_model_rho": -1,
+      "estimate": {
+        "y": -2.748202499645893,
+        "rr": 0.06404287489747136,
+        "v": 0.5637159969307995,
+        "ci": [
+          0.000004605999054682366,
+          890.4669272486434
+        ],
+        "tau2": 0,
+        "weight_robert": 0.7474016573635935,
+        "k": 2
+      },
+      "status": "not admitted; conditional model versus marginal arm ratio; different site subsets"
+    },
+    {
+      "Robert": "all",
+      "Rowse": "all",
+      "assumed_cross_model_rho": 0,
+      "estimate": {
+        "y": -2.7360780699009015,
+        "rr": 0.06482408452554743,
+        "v": 0.5374153199482344,
+        "ci": [
+          0.000005839759605972831,
+          719.5778967129738
+        ],
+        "tau2": 0,
+        "weight_robert": 0.7125309606411679,
+        "k": 2
+      },
+      "status": "not admitted; conditional model versus marginal arm ratio; different site subsets"
+    },
+    {
+      "Robert": "all",
+      "Rowse": "all",
+      "assumed_cross_model_rho": 1,
+      "estimate": {
+        "y": -2.7200700055279317,
+        "rr": 0.06587014299085685,
+        "v": 0.5026901461425526,
+        "ci": [
+          0.000008057952075250112,
+          538.4588661134786
+        ],
+        "tau2": 0,
+        "weight_robert": 0.6664906626969684,
+        "k": 2
+      },
+      "status": "not admitted; conditional model versus marginal arm ratio; different site subsets"
+    },
+    {
+      "Robert": "all",
+      "Rowse": "100",
+      "assumed_cross_model_rho": -1,
+      "estimate": {
+        "y": -2.7844951224630385,
+        "rr": 0.06176026253012518,
+        "v": 0.5783783361199168,
+        "ci": [
+          0.000003926685343315381,
+          971.3867280665447
+        ],
+        "tau2": 0,
+        "weight_robert": 0.7668416886389854,
+        "k": 2
+      },
+      "status": "not admitted; conditional model versus marginal arm ratio; different site subsets"
+    },
+    {
+      "Robert": "all",
+      "Rowse": "100",
+      "assumed_cross_model_rho": 0,
+      "estimate": {
+        "y": -2.77610743150943,
+        "rr": 0.062280467133322186,
+        "v": 0.5497565169953328,
+        "ci": [
+          0.000005044585679387409,
+          768.9147995234074
+        ],
+        "tau2": 0,
+        "weight_robert": 0.7288935105369878,
+        "k": 2
+      },
+      "status": "not admitted; conditional model versus marginal arm ratio; different site subsets"
+    },
+    {
+      "Robert": "all",
+      "Rowse": "100",
+      "assumed_cross_model_rho": 1,
+      "estimate": {
+        "y": -2.7644586640444935,
+        "rr": 0.06301019980399843,
+        "v": 0.5100067315955379,
+        "ci": [
+          0.000007220663431142699,
+          549.8504835741236
+        ],
+        "tau2": 0,
+        "weight_robert": 0.6761913419815317,
+        "k": 2
+      },
+      "status": "not admitted; conditional model versus marginal arm ratio; different site subsets"
+    },
+    {
+      "Robert": "white",
+      "Rowse": "all",
+      "assumed_cross_model_rho": -1,
+      "estimate": {
+        "y": -3.08241626862729,
+        "rr": 0.045848340794283446,
+        "v": 0.6032480025109064,
+        "ci": [
+          0.0000023733604093919533,
+          885.6936962756957
+        ],
+        "tau2": 0,
+        "weight_robert": 0.7296875617108247,
+        "k": 2
+      },
+      "status": "not admitted; conditional model versus marginal arm ratio; different site subsets"
+    },
+    {
+      "Robert": "white",
+      "Rowse": "all",
+      "assumed_cross_model_rho": 0,
+      "estimate": {
+        "y": -3.0528517680644085,
+        "rr": 0.04722406011521463,
+        "v": 0.5732274029443389,
+        "ci": [
+          0.0000031347978143285013,
+          711.4053236773457
+        ],
+        "tau2": 0,
+        "weight_robert": 0.6933747052941478,
+        "k": 2
+      },
+      "status": "not admitted; conditional model versus marginal arm ratio; different site subsets"
+    },
+    {
+      "Robert": "white",
+      "Rowse": "all",
+      "assumed_cross_model_rho": 1,
+      "estimate": {
+        "y": -3.0141114266271134,
+        "rr": 0.049089435678597367,
+        "v": 0.5338894044928683,
+        "ci": [
+          0.000004559728116791281,
+          528.4904348505154
+        ],
+        "tau2": 0,
+        "weight_robert": 0.6457915420625068,
+        "k": 2
+      },
+      "status": "not admitted; conditional model versus marginal arm ratio; different site subsets"
+    },
+    {
+      "Robert": "white",
+      "Rowse": "100",
+      "assumed_cross_model_rho": -1,
+      "estimate": {
+        "y": -3.130644539119974,
+        "rr": 0.043689628501088824,
+        "v": 0.6200695992301476,
+        "ci": [
+          0.000001972750698476429,
+          967.5746864706844
+        ],
+        "tau2": 0,
+        "weight_robert": 0.7500349310233722,
+        "k": 2
+      },
+      "status": "not admitted; conditional model versus marginal arm ratio; different site subsets"
+    },
+    {
+      "Robert": "white",
+      "Rowse": "100",
+      "assumed_cross_model_rho": 0,
+      "estimate": {
+        "y": -3.1033850549217163,
+        "rr": 0.04489696617861818,
+        "v": 0.5872896972634145,
+        "ci": [
+          0.0000026504972574660536,
+          760.5129816172998
+        ],
+        "tau2": 0,
+        "weight_robert": 0.7103844280135542,
+        "k": 2
+      },
+      "status": "not admitted; conditional model versus marginal arm ratio; different site subsets"
+    },
+    {
+      "Robert": "white",
+      "Rowse": "100",
+      "assumed_cross_model_rho": 1,
+      "estimate": {
+        "y": -3.065847136081708,
+        "rr": 0.046614336447272656,
+        "v": 0.5421498372916937,
+        "ci": [
+          0.000004030861251414223,
+          539.0650352098266
+        ],
+        "tau2": 0,
+        "weight_robert": 0.6557833448410699,
+        "k": 2
+      },
+      "status": "not admitted; conditional model versus marginal arm ratio; different site subsets"
+    }
+  ],
+  "russo": {
+    "total": {
+      "positions": [
+        {
+          "pos": 1,
+          "mean_lit": 6.99,
+          "mean_dark": 2.24,
+          "cov_paired_rounded": -0.5700296430531588,
+          "rho_rounded": -0.32949690349893573,
+          "y": 1.1380046903787704,
+          "rr": 3.1205357142857144,
+          "v": 0.04167060357743458,
+          "ci": [
+            1.925729744227371,
+            5.056650951839333
+          ]
+        },
+        {
+          "pos": 2,
+          "mean_lit": 4.31,
+          "mean_dark": 2.43,
+          "cov_paired_rounded": 0.19237500000000063,
+          "rho_rounded": 0.1419532172373086,
+          "y": 0.5730466467631993,
+          "rr": 1.773662551440329,
+          "v": 0.05082303070486035,
+          "ci": [
+            1.040776022011252,
+            3.0226280965836922
+          ]
+        },
+        {
+          "pos": 3,
+          "mean_lit": 3.81,
+          "mean_dark": 3.65,
+          "cov_paired_rounded": 0.9353999999999993,
+          "rho_rounded": 0.719538461538461,
+          "y": 0.0429020215442095,
+          "rr": 1.0438356164383562,
+          "v": 0.007119552797517654,
+          "ci": [
+            0.8550298271015878,
+            1.2743330812666334
+          ]
+        },
+        {
+          "pos": 4,
+          "mean_lit": 2.7,
+          "mean_dark": 2.16,
+          "cov_paired_rounded": 0.344054786680541,
+          "rho_rounded": 0.20708726777449205,
+          "y": 0.22314355131420976,
+          "rr": 1.25,
+          "v": 0.06274670838989449,
+          "ci": [
+            0.6913022732924606,
+            2.2602269084958917
+          ]
+        }
+      ],
+      "near_vs_far": {
+        "y": 0.7225028821417753,
+        "rr": 2.0595816551254864,
+        "se_upper": 0.3822219002151883,
+        "outer": [
+          0.8341781482879,
+          5.085096754015472
+        ]
+      },
+      "warning": "pairwise covariance reconstructed from rounded means, SD and paired t, conditional on common scale and n=8; cross-position covariance unknown, max SE Cauchy; reported scale is not verified raw counts."
+    },
+    "diptera": {
+      "positions": [
+        {
+          "pos": 1,
+          "mean_lit": 22.44,
+          "mean_dark": 2.04,
+          "cov_paired_rounded": -15.116658073902428,
+          "rho_rounded": -0.5245197111000148,
+          "y": 2.3978952727983707,
+          "rr": 11.000000000000002,
+          "v": 0.2542466625265546,
+          "ci": [
+            3.3387072183228637,
+            36.24157258712314
+          ]
+        },
+        {
+          "pos": 2,
+          "mean_lit": 6.41,
+          "mean_dark": 3.36,
+          "cov_paired_rounded": 1.5123999999999986,
+          "rho_rounded": 0.20630763354613393,
+          "y": 0.6459182969574658,
+          "rr": 1.9077380952380953,
+          "v": 0.07646513840103655,
+          "ci": [
+            0.9920761437406896,
+            3.6685335727354866
+          ]
+        },
+        {
+          "pos": 3,
+          "mean_lit": 5,
+          "mean_dark": 6.86,
+          "cov_paired_rounded": 9.711709357277877,
+          "rho_rounded": 0.6167809420466333,
+          "y": -0.31626952930369356,
+          "rr": 0.7288629737609329,
+          "v": 0.04431931455545071,
+          "ci": [
+            0.4430494702016844,
+            1.1990562459713572
+          ]
+        },
+        {
+          "pos": 4,
+          "mean_lit": 3.72,
+          "mean_dark": 3.23,
+          "cov_paired_rounded": 0.4147561728394997,
+          "rho_rounded": 0.056392583461072995,
+          "y": 0.14124153105049,
+          "rr": 1.151702786377709,
+          "v": 0.1636909582157629,
+          "ci": [
+            0.4424376939672159,
+            2.997979887871997
+          ]
+        }
+      ],
+      "near_vs_far": {
+        "y": 1.60942078400452,
+        "rr": 4.999914358585552,
+        "se_upper": 0.6979305038808441,
+        "outer": [
+          0.9599034130463625,
+          26.043394838916498
+        ]
+      },
+      "warning": "pairwise covariance reconstructed from rounded means, SD and paired t, conditional on common scale and n=8; cross-position covariance unknown, max SE Cauchy; reported scale is not verified raw counts."
+    }
+  },
+  "formal_new_k": 0,
+  "scope": "No new eligible feeding-buzz meta study; new published-coefficient quantitative candidates; conditional diagnostics are not adopted meta estimates.",
+  "robert_blob": "de98a11fd5ab467456d4593d9c07f9994fee1fa7"
+}
