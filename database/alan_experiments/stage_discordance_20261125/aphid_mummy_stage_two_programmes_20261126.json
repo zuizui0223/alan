@@ -8465,7 +8465,7 @@
           },
           "mummy_to_aphid": {
             "status": "nonpositive marginal mean; no pseudocount",
-            "point_ratio": 0
+            "point_ratio": null
           }
         },
         "covariance_order": [
@@ -8880,7 +8880,7 @@
           },
           {
             "omitted": "6",
-            "rr": 0,
+            "rr": null,
             "status": "nonpositive marginal mean; no pseudocount"
           }
         ]
@@ -9726,7 +9726,7 @@
           },
           {
             "omitted": "3",
-            "rr": 0,
+            "rr": null,
             "status": "nonpositive marginal mean; no pseudocount"
           },
           {
@@ -11307,7 +11307,7 @@
           },
           "mummy_to_aphid": {
             "status": "nonpositive marginal mean; no pseudocount",
-            "point_ratio": 0
+            "point_ratio": null
           }
         },
         "covariance_order": [
@@ -11722,7 +11722,7 @@
           },
           {
             "omitted": "6",
-            "rr": 0,
+            "rr": null,
             "status": "nonpositive marginal mean; no pseudocount"
           }
         ]
@@ -12568,7 +12568,7 @@
           },
           {
             "omitted": "3",
-            "rr": 0,
+            "rr": null,
             "status": "nonpositive marginal mean; no pseudocount"
           },
           {
