@@ -1,0 +1,1176 @@
+{
+  "estimand": "standing aphid counts at first-report final census in natural-enemy-present treatments; equal log contrast weights within each of 3 programmes",
+  "programmes": {
+    "Penryn2012_2016": {
+      "ids": [
+        "Bennie2015_aphid_count_3min_T3_Amber",
+        "Bennie2015_aphid_count_3min_T3_White"
+      ],
+      "components": [
+        {
+          "id": "Bennie2015_aphid_count_3min_T3_Amber",
+          "y": 0.6354815387101362,
+          "v": 0.8224531012006115
+        },
+        {
+          "id": "Bennie2015_aphid_count_3min_T3_White",
+          "y": -0.3468709438421116,
+          "v": 0.9931359511530212
+        }
+      ],
+      "C": [
+        [
+          0.8224531012006114,
+          0.6384661117717004
+        ],
+        [
+          0.6384661117717004,
+          0.993135951153021
+        ]
+      ],
+      "y": 0.14430529743401233,
+      "v": 0.7731303189742583,
+      "RR": 1.1552367455066717,
+      "CI": [
+        0.1205185598117313,
+        11.073580204191412
+      ]
+    },
+    "Wisconsin2014_warming_predators": {
+      "ids": [
+        "Miller2017_unheated_C7",
+        "Miller2017_unheated_CM"
+      ],
+      "components": [
+        {
+          "id": "Miller2017_unheated_C7",
+          "y": -0.6058189969780888,
+          "v": 0.04110461195437607
+        },
+        {
+          "id": "Miller2017_unheated_CM",
+          "y": 0.18886465538289057,
+          "v": 0.02827488135247073
+        }
+      ],
+      "C": [
+        [
+          0.04110461195437607,
+          0.030374635492445814
+        ],
+        [
+          0.03037463549244581,
+          0.02827488135247073
+        ]
+      ],
+      "y": -0.20847717079759914,
+      "v": 0.032532191072934605,
+      "RR": 0.81181956768422,
+      "CI": [
+        0.45726833124492694,
+        1.4412784910792038
+      ]
+    },
+    "Sanders2016_field48": {
+      "ids": [
+        "Sanders2018_aphid_abundance_0.1lux",
+        "Sanders2018_aphid_abundance_1lux",
+        "Sanders2018_aphid_abundance_5lux",
+        "Sanders2018_aphid_abundance_10lux",
+        "Sanders2018_aphid_abundance_20lux",
+        "Sanders2018_aphid_abundance_50lux",
+        "Sanders2018_aphid_abundance_100lux"
+      ],
+      "components": [
+        {
+          "id": "Sanders2018_aphid_abundance_0.1lux",
+          "y": -0.3865279070884135,
+          "v": 0.9986895265641504
+        },
+        {
+          "id": "Sanders2018_aphid_abundance_1lux",
+          "y": 0.13720112151348515,
+          "v": 1.1633085727155468
+        },
+        {
+          "id": "Sanders2018_aphid_abundance_5lux",
+          "y": 0.6120009230227137,
+          "v": 1.1976288507428041
+        },
+        {
+          "id": "Sanders2018_aphid_abundance_10lux",
+          "y": 0.35520327332727614,
+          "v": 1.6738075419948732
+        },
+        {
+          "id": "Sanders2018_aphid_abundance_20lux",
+          "y": -0.8522118751896326,
+          "v": 1.1371018930339152
+        },
+        {
+          "id": "Sanders2018_aphid_abundance_50lux",
+          "y": 1.95427839872583,
+          "v": 1.476176407151096
+        },
+        {
+          "id": "Sanders2018_aphid_abundance_100lux",
+          "y": 1.3303462871873577,
+          "v": 1.4779478163442725
+        }
+      ],
+      "C": [
+        [
+          0.9986895265641504,
+          0.7201144184535189,
+          0.752237776660187,
+          1.086440147303202,
+          0.9345312511137593,
+          0.7006771214368102,
+          0.6245003062826416
+        ],
+        [
+          0.7201144184535189,
+          1.1633085727155466,
+          1.1787201264709917,
+          0.7270928493616041,
+          0.8407254504235773,
+          0.6087274554165558,
+          0.5590292790937477
+        ],
+        [
+          0.752237776660187,
+          1.1787201264709917,
+          1.1976288507428041,
+          0.7542943243412541,
+          0.8684463079796008,
+          0.6458358203230632,
+          0.5917399271118121
+        ],
+        [
+          1.086440147303202,
+          0.7270928493616042,
+          0.7542943243412541,
+          1.6738075419948732,
+          1.298526458348966,
+          0.6404015142867336,
+          0.6410226293505784
+        ],
+        [
+          0.9345312511137592,
+          0.8407254504235773,
+          0.8684463079796008,
+          1.2985264583489657,
+          1.1371018930339152,
+          0.7999722049874718,
+          0.7917445955943822
+        ],
+        [
+          0.7006771214368103,
+          0.6087274554165559,
+          0.6458358203230633,
+          0.6404015142867336,
+          0.7999722049874719,
+          1.4761764071510959,
+          1.4645306136890763
+        ],
+        [
+          0.6245003062826416,
+          0.5590292790937478,
+          0.5917399271118121,
+          0.6410226293505783,
+          0.7917445955943822,
+          1.4645306136890766,
+          1.4779478163442725
+        ]
+      ],
+      "y": 0.45004146021408814,
+      "v": 0.8894547298899128,
+      "RR": 1.5683772093970796,
+      "CI": [
+        0.13885881236150394,
+        17.714446992044905
+      ]
+    }
+  },
+  "pooled": {
+    "k": 3,
+    "tau": 0,
+    "y": -0.1723857327196042,
+    "v": 0.03015998834643794,
+    "RR": 0.8416544568830576,
+    "CI": [
+      0.3986738681666515,
+      1.776846393390902
+    ],
+    "weights": [
+      0.03901022583935442,
+      0.9270813723804101,
+      0.03390840178023543
+    ]
+  },
+  "equal_programme_mean": {
+    "y": 0.12862319561683377,
+    "v": 0.036198714361809985,
+    "RR": 1.1372615182956174,
+    "CI": [
+      0.5015771825543458,
+      2.5785936960079265
+    ],
+    "note": "between-programme observed dispersion only, descriptive, not within-study-error meta interval"
+  },
+  "low_dose_20": {
+    "k": 3,
+    "tau": 0,
+    "y": -0.1890636109542583,
+    "v": 0.03025449885667455,
+    "RR": 0.8277338520798435,
+    "CI": [
+      0.3916215654436083,
+      1.7495035777788233
+    ],
+    "weights": [
+      0.03913246979734846,
+      0.9299865105564624,
+      0.030881019646188942
+    ]
+  },
+  "low_dose_10": {
+    "k": 3,
+    "tau": 0,
+    "y": -0.18254421724571215,
+    "v": 0.030242175209922218,
+    "RR": 0.8331478036127009,
+    "CI": [
+      0.39424313444437303,
+      1.7606781247895362
+    ],
+    "weights": [
+      0.03911652986270888,
+      0.9296076966387431,
+      0.031275773498547856
+    ]
+  },
+  "sanders_low_20": {
+    "ids": [
+      "Sanders2018_aphid_abundance_0.1lux",
+      "Sanders2018_aphid_abundance_1lux",
+      "Sanders2018_aphid_abundance_5lux",
+      "Sanders2018_aphid_abundance_10lux",
+      "Sanders2018_aphid_abundance_20lux"
+    ],
+    "components": [
+      {
+        "id": "Sanders2018_aphid_abundance_0.1lux",
+        "y": -0.3865279070884135,
+        "v": 0.9986895265641504
+      },
+      {
+        "id": "Sanders2018_aphid_abundance_1lux",
+        "y": 0.13720112151348515,
+        "v": 1.1633085727155468
+      },
+      {
+        "id": "Sanders2018_aphid_abundance_5lux",
+        "y": 0.6120009230227137,
+        "v": 1.1976288507428041
+      },
+      {
+        "id": "Sanders2018_aphid_abundance_10lux",
+        "y": 0.35520327332727614,
+        "v": 1.6738075419948732
+      },
+      {
+        "id": "Sanders2018_aphid_abundance_20lux",
+        "y": -0.8522118751896326,
+        "v": 1.1371018930339152
+      }
+    ],
+    "C": [
+      [
+        0.9986895265641504,
+        0.7201144184535189,
+        0.752237776660187,
+        1.086440147303202,
+        0.9345312511137593
+      ],
+      [
+        0.7201144184535189,
+        1.1633085727155466,
+        1.1787201264709917,
+        0.7270928493616041,
+        0.8407254504235773
+      ],
+      [
+        0.752237776660187,
+        1.1787201264709917,
+        1.1976288507428041,
+        0.7542943243412541,
+        0.8684463079796008
+      ],
+      [
+        1.086440147303202,
+        0.7270928493616042,
+        0.7542943243412541,
+        1.6738075419948732,
+        1.298526458348966
+      ],
+      [
+        0.9345312511137592,
+        0.8407254504235773,
+        0.8684463079796008,
+        1.2985264583489657,
+        1.1371018930339152
+      ]
+    ],
+    "y": -0.026866892882914238,
+    "v": 0.9797117842385845,
+    "RR": 0.9734908114562278,
+    "CI": [
+      0.0764407880746044,
+      12.39762676262295
+    ]
+  },
+  "sanders_low_10": {
+    "ids": [
+      "Sanders2018_aphid_abundance_0.1lux",
+      "Sanders2018_aphid_abundance_1lux",
+      "Sanders2018_aphid_abundance_5lux",
+      "Sanders2018_aphid_abundance_10lux"
+    ],
+    "components": [
+      {
+        "id": "Sanders2018_aphid_abundance_0.1lux",
+        "y": -0.3865279070884135,
+        "v": 0.9986895265641504
+      },
+      {
+        "id": "Sanders2018_aphid_abundance_1lux",
+        "y": 0.13720112151348515,
+        "v": 1.1633085727155468
+      },
+      {
+        "id": "Sanders2018_aphid_abundance_5lux",
+        "y": 0.6120009230227137,
+        "v": 1.1976288507428041
+      },
+      {
+        "id": "Sanders2018_aphid_abundance_10lux",
+        "y": 0.35520327332727614,
+        "v": 1.6738075419948732
+      }
+    ],
+    "C": [
+      [
+        0.9986895265641504,
+        0.7201144184535189,
+        0.752237776660187,
+        1.086440147303202
+      ],
+      [
+        0.7201144184535189,
+        1.1633085727155466,
+        1.1787201264709917,
+        0.7270928493616041
+      ],
+      [
+        0.752237776660187,
+        1.1787201264709917,
+        1.1976288507428041,
+        0.7542943243412541
+      ],
+      [
+        1.086440147303202,
+        0.7270928493616042,
+        0.7542943243412541,
+        1.6738075419948732
+      ]
+    ],
+    "y": 0.17946935269376535,
+    "v": 0.9669521110749307,
+    "RR": 1.1965822314834424,
+    "CI": [
+      0.09553338865311807,
+      14.987524852706693
+    ]
+  },
+  "leave_one_programme_out": {
+    "Penryn2012_2016": {
+      "k": 2,
+      "tau": 0,
+      "y": -0.1852414247777022,
+      "v": 0.031384296854543005,
+      "RR": 0.8309036589040405,
+      "CI": [
+        0.087490630529201,
+        7.891140870789504
+      ],
+      "weights": [
+        0.9647151273697455,
+        0.03528487263025452
+      ]
+    },
+    "Wisconsin2014_warming_predators": {
+      "k": 2,
+      "tau": 0,
+      "y": 0.2864778119851383,
+      "v": 0.413611574038118,
+      "RR": 1.331728619152003,
+      "CI": [
+        0.00037626458689374824,
+        4713.441489962254
+      ],
+      "weights": [
+        0.5349829956052846,
+        0.46501700439471544
+      ]
+    },
+    "Sanders2016_field48": {
+      "k": 2,
+      "tau": 0,
+      "y": -0.19423201662874004,
+      "v": 0.03121855981566792,
+      "RR": 0.8234668241061381,
+      "CI": [
+        0.08722513885776695,
+        7.774107548389052
+      ],
+      "weights": [
+        0.040379427697372905,
+        0.959620572302627
+      ]
+    }
+  },
+  "no_added_predator": {
+    "Penryn": {
+      "ids": [
+        "Bennie2015_aphid_count_3min_T2_Amber",
+        "Bennie2015_aphid_count_3min_T2_White"
+      ],
+      "components": [
+        {
+          "id": "Bennie2015_aphid_count_3min_T2_Amber",
+          "y": -0.11778303565638351,
+          "v": 0.4933286313657408
+        },
+        {
+          "id": "Bennie2015_aphid_count_3min_T2_White",
+          "y": 0.6136830092056985,
+          "v": 0.47389852947950495
+        }
+      ],
+      "C": [
+        [
+          0.49332863136574073,
+          0.29386574074074073
+        ],
+        [
+          0.29386574074074073,
+          0.47389852947950495
+        ]
+      ],
+      "y": 0.24794998677465752,
+      "v": 0.38873966058168175,
+      "RR": 1.2813958438523108,
+      "CI": [
+        0.25800357552160963,
+        6.364157183955183
+      ]
+    },
+    "Miller": {
+      "ids": [
+        "Miller2017_unheated_N"
+      ],
+      "components": [
+        {
+          "id": "Miller2017_unheated_N",
+          "y": 0.29875147925895085,
+          "v": 0.1449576050988169
+        }
+      ],
+      "C": [
+        [
+          0.1449576050988169
+        ]
+      ],
+      "y": 0.29875147925895085,
+      "v": 0.1449576050988169,
+      "RR": 1.348174532502226,
+      "CI": [
+        0.40135426053787243,
+        4.528604150487364
+      ]
+    },
+    "pooled": {
+      "k": 2,
+      "tau": 0,
+      "y": 0.28495327724534475,
+      "v": 0.10558564532459547,
+      "RR": 1.3296998994279072,
+      "CI": [
+        0.021412211583926113,
+        82.5744606346912
+      ],
+      "weights": [
+        0.27161017007270316,
+        0.7283898299272967
+      ]
+    }
+  },
+  "reported_sanders2015": [
+    {
+      "response": "total_aphids",
+      "window": "2014_period_average",
+      "arm": "light_vs_dark",
+      "value": "-20",
+      "unit": "percent_change",
+      "reported_uncertainty": "",
+      "source_location": "Results_Aphids",
+      "status": "reported_only_no_variance"
+    },
+    {
+      "response": "total_parasitoids",
+      "window": "2014_period_average",
+      "arm": "light_vs_dark",
+      "value": "-40",
+      "unit": "percent_change",
+      "reported_uncertainty": "",
+      "source_location": "Results_Parasitoids",
+      "status": "reported_only_no_variance"
+    },
+    {
+      "response": "Lysiphlebus_fabarum_parasitism",
+      "window": "2014_reported_summary",
+      "arm": "dark",
+      "value": "0.8",
+      "unit": "percent",
+      "reported_uncertainty": "",
+      "source_location": "Results_Parasitoids",
+      "status": "reported_only_denominator_and_covariance_unresolved"
+    },
+    {
+      "response": "Lysiphlebus_fabarum_parasitism",
+      "window": "2014_reported_summary",
+      "arm": "light",
+      "value": "0.4",
+      "unit": "percent",
+      "reported_uncertainty": "",
+      "source_location": "Results_Parasitoids",
+      "status": "reported_only_denominator_and_covariance_unresolved"
+    },
+    {
+      "response": "plant_aboveground_biomass",
+      "window": "2014_second_to_last_week",
+      "arm": "dark",
+      "value": "1.46",
+      "unit": "g_per_pot",
+      "reported_uncertainty": "0.2_SE",
+      "source_location": "Results_Plant_biomass",
+      "status": "reported_only_two_exclusions_pairing_unresolved"
+    },
+    {
+      "response": "plant_aboveground_biomass",
+      "window": "2014_second_to_last_week",
+      "arm": "light",
+      "value": "0.99",
+      "unit": "g_per_pot",
+      "reported_uncertainty": "0.1_plusminus_type_not_repeated",
+      "source_location": "Results_Plant_biomass",
+      "status": "reported_only_two_exclusions_pairing_unresolved"
+    },
+    {
+      "response": "plant_biomass_without_aphids",
+      "window": "2015_May14_to28",
+      "arm": "dark",
+      "value": "13.5",
+      "unit": "g_reported",
+      "reported_uncertainty": "0.4_plusminus_type_not_repeated",
+      "source_location": "Results_Plant_biomass",
+      "status": "reported_only_same_cages_different_year"
+    },
+    {
+      "response": "plant_biomass_without_aphids",
+      "window": "2015_May14_to28",
+      "arm": "light",
+      "value": "11.7",
+      "unit": "g_reported",
+      "reported_uncertainty": "0.5_plusminus_type_not_repeated",
+      "source_location": "Results_Plant_biomass",
+      "status": "reported_only_same_cages_different_year"
+    }
+  ],
+  "terminal_boundary": "Penryn 2014–15 final dark arms zero: strict programme-terminal finite lnRR synthesis excludes Penryn; see corresponding leave-one-out. No new light-by-enemy causal moderator estimated.",
+  "scope": "Enemy-present standing counts, not predation rate, plant damage or fecundity. Sanders has parasitoids; no matched exclusion treatment.",
+  "spectrum2017": {
+    "status": "HOLD cohort discrepancy and unresolved winged inclusion; arithmetic sensitivities only",
+    "dark": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7
+    ],
+    "colors": [
+      "Bl",
+      "G",
+      "O",
+      "P",
+      "R",
+      "Ub",
+      "Uv"
+    ],
+    "complete": [
+      "Bl",
+      "O",
+      "P",
+      "Ub"
+    ],
+    "scenarios": [
+      {
+        "winged": false,
+        "balanced4": {
+          "menu": [
+            "Bl",
+            "O",
+            "P",
+            "Ub"
+          ],
+          "winged": false,
+          "variable": false,
+          "blocks": [
+            {
+              "block": 1,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "Ub"
+              ],
+              "L": 395,
+              "D": 80
+            },
+            {
+              "block": 2,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "Ub"
+              ],
+              "L": 30,
+              "D": 60
+            },
+            {
+              "block": 3,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "Ub"
+              ],
+              "L": 301,
+              "D": 80
+            },
+            {
+              "block": 4,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "Ub"
+              ],
+              "L": 408.5,
+              "D": 0
+            },
+            {
+              "block": 6,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "Ub"
+              ],
+              "L": 277.5,
+              "D": 20
+            },
+            {
+              "block": 7,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "Ub"
+              ],
+              "L": 130,
+              "D": 24
+            }
+          ],
+          "n": 6,
+          "L": 257,
+          "D": 44,
+          "y": 1.7648864509769586,
+          "v": 0.16571315677771073,
+          "RR": 5.840909090909091,
+          "CI": [
+            2.0512657851226965,
+            16.631788652499655
+          ]
+        },
+        "complete7": {
+          "menu": [
+            "Bl",
+            "G",
+            "O",
+            "P",
+            "R",
+            "Ub",
+            "Uv"
+          ],
+          "winged": false,
+          "variable": false,
+          "blocks": [
+            {
+              "block": 2,
+              "colors": [
+                "Bl",
+                "G",
+                "O",
+                "P",
+                "R",
+                "Ub",
+                "Uv"
+              ],
+              "L": 68.57142857142857,
+              "D": 60
+            },
+            {
+              "block": 4,
+              "colors": [
+                "Bl",
+                "G",
+                "O",
+                "P",
+                "R",
+                "Ub",
+                "Uv"
+              ],
+              "L": 273.42857142857144,
+              "D": 0
+            }
+          ],
+          "n": 2,
+          "L": 171,
+          "D": 30,
+          "y": 1.7404661748405046,
+          "v": 2.5567929849686872,
+          "RR": 5.700000000000001,
+          "CI": [
+            8.555227360808021e-9,
+            3797678148.0803924
+          ]
+        },
+        "available7": {
+          "menu": [
+            "Bl",
+            "G",
+            "O",
+            "P",
+            "R",
+            "Ub",
+            "Uv"
+          ],
+          "winged": false,
+          "variable": true,
+          "blocks": [
+            {
+              "block": 1,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "R",
+                "Ub",
+                "Uv"
+              ],
+              "L": 271.6666666666667,
+              "D": 80
+            },
+            {
+              "block": 2,
+              "colors": [
+                "Bl",
+                "G",
+                "O",
+                "P",
+                "R",
+                "Ub",
+                "Uv"
+              ],
+              "L": 68.57142857142857,
+              "D": 60
+            },
+            {
+              "block": 3,
+              "colors": [
+                "Bl",
+                "G",
+                "O",
+                "P",
+                "Ub",
+                "Uv"
+              ],
+              "L": 284,
+              "D": 80
+            },
+            {
+              "block": 4,
+              "colors": [
+                "Bl",
+                "G",
+                "O",
+                "P",
+                "R",
+                "Ub",
+                "Uv"
+              ],
+              "L": 273.42857142857144,
+              "D": 0
+            },
+            {
+              "block": 6,
+              "colors": [
+                "Bl",
+                "G",
+                "O",
+                "P",
+                "R",
+                "Ub"
+              ],
+              "L": 213.33333333333334,
+              "D": 20
+            },
+            {
+              "block": 7,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "R",
+                "Ub"
+              ],
+              "L": 112.4,
+              "D": 24
+            }
+          ],
+          "n": 6,
+          "L": 203.9,
+          "D": 44,
+          "y": 1.5334400436621483,
+          "v": 0.12069320438919633,
+          "RR": 4.634090909090909,
+          "CI": [
+            1.8972321704700306,
+            11.31901455603018
+          ]
+        },
+        "hypothetical_k4_balanced4": {
+          "k": 4,
+          "tau": 0.7881782598843114,
+          "y": 0.558567080002136,
+          "v": 0.2854402485055064,
+          "RR": 1.7481657230952288,
+          "CI": [
+            0.3192738613265373,
+            9.571981191029774
+          ],
+          "weights": [
+            0.18282116192186942,
+            0.3477965318616079,
+            0.17014463249433415,
+            0.29923767372218857
+          ]
+        }
+      },
+      {
+        "winged": true,
+        "balanced4": {
+          "menu": [
+            "Bl",
+            "O",
+            "P",
+            "Ub"
+          ],
+          "winged": true,
+          "variable": false,
+          "blocks": [
+            {
+              "block": 1,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "Ub"
+              ],
+              "L": 415,
+              "D": 80
+            },
+            {
+              "block": 2,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "Ub"
+              ],
+              "L": 30.5,
+              "D": 60
+            },
+            {
+              "block": 3,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "Ub"
+              ],
+              "L": 316,
+              "D": 80
+            },
+            {
+              "block": 4,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "Ub"
+              ],
+              "L": 428.5,
+              "D": 0
+            },
+            {
+              "block": 6,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "Ub"
+              ],
+              "L": 287.5,
+              "D": 20
+            },
+            {
+              "block": 7,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "Ub"
+              ],
+              "L": 130,
+              "D": 24
+            }
+          ],
+          "n": 6,
+          "L": 267.9166666666667,
+          "D": 44,
+          "y": 1.8064863529654585,
+          "v": 0.16622146970908636,
+          "RR": 6.089015151515152,
+          "CI": [
+            2.1349714345240542,
+            17.366089735831256
+          ]
+        },
+        "complete7": {
+          "menu": [
+            "Bl",
+            "G",
+            "O",
+            "P",
+            "R",
+            "Ub",
+            "Uv"
+          ],
+          "winged": true,
+          "variable": false,
+          "blocks": [
+            {
+              "block": 2,
+              "colors": [
+                "Bl",
+                "G",
+                "O",
+                "P",
+                "R",
+                "Ub",
+                "Uv"
+              ],
+              "L": 68.85714285714286,
+              "D": 60
+            },
+            {
+              "block": 4,
+              "colors": [
+                "Bl",
+                "G",
+                "O",
+                "P",
+                "R",
+                "Ub",
+                "Uv"
+              ],
+              "L": 284.85714285714283,
+              "D": 0
+            }
+          ],
+          "n": 2,
+          "L": 176.85714285714283,
+          "D": 30,
+          "y": 1.7741449225270727,
+          "v": 2.594233233549344,
+          "RR": 5.895238095238095,
+          "CI": [
+            7.629368445220138e-9,
+            4555269869.20129
+          ]
+        },
+        "available7": {
+          "menu": [
+            "Bl",
+            "G",
+            "O",
+            "P",
+            "R",
+            "Ub",
+            "Uv"
+          ],
+          "winged": true,
+          "variable": true,
+          "blocks": [
+            {
+              "block": 1,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "R",
+                "Ub",
+                "Uv"
+              ],
+              "L": 285,
+              "D": 80
+            },
+            {
+              "block": 2,
+              "colors": [
+                "Bl",
+                "G",
+                "O",
+                "P",
+                "R",
+                "Ub",
+                "Uv"
+              ],
+              "L": 68.85714285714286,
+              "D": 60
+            },
+            {
+              "block": 3,
+              "colors": [
+                "Bl",
+                "G",
+                "O",
+                "P",
+                "Ub",
+                "Uv"
+              ],
+              "L": 294,
+              "D": 80
+            },
+            {
+              "block": 4,
+              "colors": [
+                "Bl",
+                "G",
+                "O",
+                "P",
+                "R",
+                "Ub",
+                "Uv"
+              ],
+              "L": 284.85714285714283,
+              "D": 0
+            },
+            {
+              "block": 6,
+              "colors": [
+                "Bl",
+                "G",
+                "O",
+                "P",
+                "R",
+                "Ub"
+              ],
+              "L": 220,
+              "D": 20
+            },
+            {
+              "block": 7,
+              "colors": [
+                "Bl",
+                "O",
+                "P",
+                "R",
+                "Ub"
+              ],
+              "L": 112.4,
+              "D": 24
+            }
+          ],
+          "n": 6,
+          "L": 210.85238095238097,
+          "D": 44,
+          "y": 1.5669686383726622,
+          "v": 0.12149438158088417,
+          "RR": 4.792099567099568,
+          "CI": [
+            1.956125044178218,
+            11.739647385703453
+          ]
+        },
+        "hypothetical_k4_balanced4": {
+          "k": 4,
+          "tau": 0.8220092745224532,
+          "y": 0.5709615797434137,
+          "v": 0.2946960216228902,
+          "RR": 1.769968198974769,
+          "CI": [
+            0.31453547423819056,
+            9.96004483427392
+          ],
+          "weights": [
+            0.1847462271166412,
+            0.3448586563526974,
+            0.17218943598178368,
+            0.29820568054887775
+          ]
+        }
+      }
+    ],
+    "estimand": "ratio of mean across blocks of mean observed colour arms; differs from equal lnRR menu; no formal admission",
+    "new_admitted_programme": 0
+  },
+  "source_blobs": {
+    "database/alan_experiments/bennie_sources/final_effects.csv": "5f26436f6fc4e2a8e59fd6b747a381a129dcd899",
+    "database/alan_experiments/bennie_trophic_sources/joint_sampling_covariance.csv": "65268b1b22d7cacbb3d506dfc28047b3c921a7e4",
+    "database/alan_experiments/warming_sources/unheated_light_effects.csv": "f06cc0207c0390c38cb0f7d15ee84580b2dfdf18",
+    "database/alan_experiments/warming_sources/unheated_light_effects_covariance.csv": "17d3ddca28d270ee686badb4bb5bd78910dd569d",
+    "database/alan_experiments/sanders_sources/final_effects.csv": "e8169d2bbe6ae3d5047f252562f2ea1b9a4f299f",
+    "database/alan_experiments/sanders_sources/final_covariance.csv": "3402544a779554e82ed59b75c2e8a6915f836331",
+    "database/alan_experiments/sanders2015_sources/reported_summaries.csv": "7824dff81e9e034ddac4a7f4e75381ac7dffa445",
+    "database/alan_experiments/sanders2022_sources/final_insect_cages.csv": "39c78240d1c0dc7142cc360e4c8645c5a58f86bf"
+  },
+  "source_commit": "437011edd2de22904535d648d47e56d94ff48ad2",
+  "status": "EXPLORATORY_NOT_CANONICAL",
+  "new_admitted_programmes": 0
+}
