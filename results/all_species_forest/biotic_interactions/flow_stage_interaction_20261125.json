@@ -1,0 +1,106 @@
+{
+  "source": "496dcfa07436619084dc677317525dc674775e9965a0fdfb482cfa1cb4d8977f",
+  "source_programme": "EERES2021_Disconnected18flumes_6headers",
+  "source_order": [
+    "drift|abund|L_vs_CT",
+    "drift|abund|LF_vs_F",
+    "drift|rich|L_vs_CT",
+    "drift|rich|LF_vs_F",
+    "benthos|abund|L_vs_CT",
+    "benthos|abund|LF_vs_F",
+    "benthos|rich|L_vs_CT",
+    "benthos|rich|LF_vs_F"
+  ],
+  "cov_max_abs_diff": 6.071532165918825e-18,
+  "result": {
+    "abundance": {
+      "normalStageRatio": 1.6689806061260872,
+      "pondedStageRatio": 0.7004766369745273,
+      "interaction_logRR": -0.8682072902450488,
+      "se": 0.1022527494752738,
+      "ratio": 0.41970328139427643,
+      "ci": [
+        0.32269220018812833,
+        0.5458788415413447
+      ],
+      "p_t5": 0.00037247021709008177,
+      "leaveOneBlockOut": [
+        0.4019255661206106,
+        0.4038030569050735,
+        0.46110828993464653,
+        0.4277088410188299,
+        0.4154508792946889,
+        0.41391112039630507
+      ],
+      "blockLogRatios": [
+        -0.5445162177678025,
+        -0.8502323811946676,
+        -1.3369632025510372,
+        -0.8476386331110323,
+        -0.6785130201027919,
+        -0.255348233635907
+      ],
+      "blockWeighted": {
+        "ratio": 0.4713275704386742,
+        "ci": [
+          0.3222750082530659,
+          0.6893171141622647
+        ],
+        "p_sign_reference": 0.03125
+      },
+      "holm": 0.0007449404341801635
+    },
+    "richness": {
+      "normalStageRatio": 1.3644927536231883,
+      "pondedStageRatio": 1.0454155219780221,
+      "interaction_logRR": -0.2663683154353617,
+      "se": 0.11775388620111893,
+      "ratio": 0.7661568881198463,
+      "ci": [
+        0.5660548392265562,
+        1.0369955992524407
+      ],
+      "p_t5": 0.07316111985415052,
+      "leaveOneBlockOut": [
+        0.7395552466553671,
+        0.7254508453846381,
+        0.7437073330219578,
+        0.8448727593890689,
+        0.7995612735542561,
+        0.7438825003411362
+      ],
+      "blockLogRatios": [
+        -0.08660418101687231,
+        -0.1771177289189277,
+        -0.0985973288250741,
+        -0.7417405911625841,
+        -0.5615575085689215,
+        -0.10649776652491105
+      ],
+      "blockWeighted": {
+        "ratio": 0.744269173305389,
+        "ci": [
+          0.5526990573545696,
+          1.0022390937014458
+        ],
+        "p_sign_reference": 0.03125
+      },
+      "holm": 0.07316111985415052
+    }
+  },
+  "source_git": {
+    "commit": "437011edd2de22904535d648d47e56d94ff48ad2",
+    "path": "database/alan_experiments/arthropod_expansion_20261122/eeres2021_source_reanalysis/original_reanalysis_20261123.json",
+    "blob": "068b7879feaca1d884e50b97bf21aa3b059ebe6f"
+  },
+  "interpretation": {
+    "new_independent_k": 0,
+    "posthoc": true,
+    "source_is_previously_replayed_block_summary": true,
+    "raw_xlsx_retrieved_this_turn": false,
+    "geometry_patch_data_unavailable": true,
+    "sign_flip_is_reference_not_randomization": true,
+    "sign_flip_holm_both": 0.0625,
+    "main_unchanged": true
+  }
+}
