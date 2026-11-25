@@ -1,0 +1,1002 @@
+{
+  "date": "2026-11-26",
+  "scope": "Secondary baseline subgroup audit and separate direct ALAN within-experiment coefficient contrast; no combined meta-effect",
+  "null_replay": {
+    "n": 165,
+    "max_error": 1.6653345369377348e-16
+  },
+  "baseline_subgroups": {
+    "all|0": {
+      "n_rows": 55,
+      "n_studies": 30,
+      "n_low": 17,
+      "n_high": 15,
+      "shared_labels": [
+        "Hove_2007",
+        "Pandit_2001"
+      ],
+      "point_high_minus_low": {
+        "independent_residual": -0.14541728296104411,
+        "observed_night_loss": -0.2247525392575136,
+        "independent_night_loss": -0.07933525629646954,
+        "night_net": -0.009456524341314554
+      },
+      "bootstrap95": {
+        "independent_residual": [
+          -0.22830595346693744,
+          -0.06461697995007973
+        ],
+        "observed_night_loss": [
+          -0.3627296836185733,
+          -0.0912835007085753
+        ],
+        "independent_night_loss": [
+          -0.22127647072803053,
+          0.04758765590167392
+        ],
+        "night_net": [
+          -0.16611240337472177,
+          0.13069343338950337
+        ]
+      },
+      "valid_draws": 9999,
+      "overlap_only": [
+        {
+          "study": "Hove_2007",
+          "delta": 0.035499999999999976
+        },
+        {
+          "study": "Pandit_2001",
+          "delta": -0.2835944757489881
+        }
+      ],
+      "interpretation": "study-level descriptive high-minus-low contrast, not causal selfing moderator; grouping by measured B mathematically changes null, and study composition differs."
+    },
+    "all|0.01": {
+      "n_rows": 55,
+      "n_studies": 30,
+      "n_low": 19,
+      "n_high": 13,
+      "shared_labels": [
+        "Hove_2007",
+        "Pandit_2001"
+      ],
+      "point_high_minus_low": {
+        "independent_residual": -0.12871561216955513,
+        "observed_night_loss": -0.20378619794813685,
+        "independent_night_loss": -0.0750705857785817,
+        "night_net": -0.0015791185482227355
+      },
+      "bootstrap95": {
+        "independent_residual": [
+          -0.21876819363420036,
+          -0.042511997991513284
+        ],
+        "observed_night_loss": [
+          -0.34352112982187943,
+          -0.06817311552819715
+        ],
+        "independent_night_loss": [
+          -0.20590804517803493,
+          0.04536791510594873
+        ],
+        "night_net": [
+          -0.14780960427675863,
+          0.1334419599574065
+        ]
+      },
+      "valid_draws": 9999,
+      "overlap_only": [
+        {
+          "study": "Hove_2007",
+          "delta": 0.035499999999999976
+        },
+        {
+          "study": "Pandit_2001",
+          "delta": -0.2835944757489881
+        }
+      ],
+      "interpretation": "study-level descriptive high-minus-low contrast, not causal selfing moderator; grouping by measured B mathematically changes null, and study composition differs."
+    },
+    "all|0.05": {
+      "n_rows": 55,
+      "n_studies": 30,
+      "n_low": 23,
+      "n_high": 10,
+      "shared_labels": [
+        "Anderson_1976",
+        "Hove_2007",
+        "Pandit_2001"
+      ],
+      "point_high_minus_low": {
+        "independent_residual": -0.13209798685311802,
+        "observed_night_loss": -0.270165033558533,
+        "independent_night_loss": -0.1380670467054149,
+        "night_net": -0.048150415361935595
+      },
+      "bootstrap95": {
+        "independent_residual": [
+          -0.2365428050347938,
+          -0.03226038709369276
+        ],
+        "observed_night_loss": [
+          -0.3906656382551915,
+          -0.14629100902530798
+        ],
+        "independent_night_loss": [
+          -0.24960832377484546,
+          -0.037778610323887726
+        ],
+        "night_net": [
+          -0.18205764307726027,
+          0.07612988291273404
+        ]
+      },
+      "valid_draws": 9999,
+      "overlap_only": [
+        {
+          "study": "Anderson_1976",
+          "delta": -0.2852792551087766
+        },
+        {
+          "study": "Hove_2007",
+          "delta": 0.035499999999999976
+        },
+        {
+          "study": "Pandit_2001",
+          "delta": -0.2835944757489881
+        }
+      ],
+      "interpretation": "study-level descriptive high-minus-low contrast, not causal selfing moderator; grouping by measured B mathematically changes null, and study composition differs."
+    },
+    "all|0.1": {
+      "n_rows": 55,
+      "n_studies": 30,
+      "n_low": 25,
+      "n_high": 9,
+      "shared_labels": [
+        "Anderson_1976",
+        "Hove_2007",
+        "Kuriakose_2018",
+        "Pandit_2001"
+      ],
+      "point_high_minus_low": {
+        "independent_residual": -0.09487900435196436,
+        "observed_night_loss": -0.23507059933458851,
+        "independent_night_loss": -0.1401915949826241,
+        "night_net": -0.06954442005525863
+      },
+      "bootstrap95": {
+        "independent_residual": [
+          -0.2244953742556228,
+          0.027860525905184733
+        ],
+        "observed_night_loss": [
+          -0.37193204160734183,
+          -0.093166299462356
+        ],
+        "independent_night_loss": [
+          -0.2481336460576197,
+          -0.04458294025449236
+        ],
+        "night_net": [
+          -0.1979149774878249,
+          0.05848567480499503
+        ]
+      },
+      "valid_draws": 9999,
+      "overlap_only": [
+        {
+          "study": "Anderson_1976",
+          "delta": -0.2852792551087766
+        },
+        {
+          "study": "Hove_2007",
+          "delta": 0.035499999999999976
+        },
+        {
+          "study": "Kuriakose_2018",
+          "delta": 0.29093716394111313
+        },
+        {
+          "study": "Pandit_2001",
+          "delta": -0.2835944757489881
+        }
+      ],
+      "interpretation": "study-level descriptive high-minus-low contrast, not causal selfing moderator; grouping by measured B mathematically changes null, and study composition differs."
+    },
+    "no_Macgregor|0": {
+      "n_rows": 54,
+      "n_studies": 29,
+      "n_low": 17,
+      "n_high": 14,
+      "shared_labels": [
+        "Hove_2007",
+        "Pandit_2001"
+      ],
+      "point_high_minus_low": {
+        "independent_residual": -0.15570559041507026,
+        "observed_night_loss": -0.2455506363125566,
+        "independent_night_loss": -0.0898450458974864,
+        "night_net": -0.023514030259338542
+      },
+      "bootstrap95": {
+        "independent_residual": [
+          -0.23838414778455694,
+          -0.07562116323226041
+        ],
+        "observed_night_loss": [
+          -0.3817459266829062,
+          -0.11328865463891757
+        ],
+        "independent_night_loss": [
+          -0.2336080196240221,
+          0.03957295882669126
+        ],
+        "night_net": [
+          -0.1806287870564225,
+          0.12086365408608205
+        ]
+      },
+      "valid_draws": 9999,
+      "overlap_only": [
+        {
+          "study": "Hove_2007",
+          "delta": 0.035499999999999976
+        },
+        {
+          "study": "Pandit_2001",
+          "delta": -0.2835944757489881
+        }
+      ],
+      "interpretation": "study-level descriptive high-minus-low contrast, not causal selfing moderator; grouping by measured B mathematically changes null, and study composition differs."
+    },
+    "no_Macgregor|0.01": {
+      "n_rows": 54,
+      "n_studies": 29,
+      "n_low": 19,
+      "n_high": 12,
+      "shared_labels": [
+        "Hove_2007",
+        "Pandit_2001"
+      ],
+      "point_high_minus_low": {
+        "independent_residual": -0.1406496344619705,
+        "observed_night_loss": -0.22818383355828306,
+        "independent_night_loss": -0.08753419909631249,
+        "night_net": -0.01763902737605777
+      },
+      "bootstrap95": {
+        "independent_residual": [
+          -0.23025354798227388,
+          -0.05196364978962764
+        ],
+        "observed_night_loss": [
+          -0.3639363930065698,
+          -0.09718350191994418
+        ],
+        "independent_night_loss": [
+          -0.22165810344125852,
+          0.03703482532882796
+        ],
+        "night_net": [
+          -0.16291280989287665,
+          0.12161257983834425
+        ]
+      },
+      "valid_draws": 9999,
+      "overlap_only": [
+        {
+          "study": "Hove_2007",
+          "delta": 0.035499999999999976
+        },
+        {
+          "study": "Pandit_2001",
+          "delta": -0.2835944757489881
+        }
+      ],
+      "interpretation": "study-level descriptive high-minus-low contrast, not causal selfing moderator; grouping by measured B mathematically changes null, and study composition differs."
+    },
+    "no_Macgregor|0.05": {
+      "n_rows": 54,
+      "n_studies": 29,
+      "n_low": 22,
+      "n_high": 10,
+      "shared_labels": [
+        "Anderson_1976",
+        "Hove_2007",
+        "Pandit_2001"
+      ],
+      "point_high_minus_low": {
+        "independent_residual": -0.1304446483976409,
+        "observed_night_loss": -0.2656661323927117,
+        "independent_night_loss": -0.13522148399507075,
+        "night_net": -0.040039597015608996
+      },
+      "bootstrap95": {
+        "independent_residual": [
+          -0.23237328897133505,
+          -0.027830746061146158
+        ],
+        "observed_night_loss": [
+          -0.38789033345335067,
+          -0.14073550171768934
+        ],
+        "independent_night_loss": [
+          -0.25207905506001366,
+          -0.03516408533685003
+        ],
+        "night_net": [
+          -0.18013198510643239,
+          0.0880456850514729
+        ]
+      },
+      "valid_draws": 9999,
+      "overlap_only": [
+        {
+          "study": "Anderson_1976",
+          "delta": -0.2852792551087766
+        },
+        {
+          "study": "Hove_2007",
+          "delta": 0.035499999999999976
+        },
+        {
+          "study": "Pandit_2001",
+          "delta": -0.2835944757489881
+        }
+      ],
+      "interpretation": "study-level descriptive high-minus-low contrast, not causal selfing moderator; grouping by measured B mathematically changes null, and study composition differs."
+    },
+    "no_Macgregor|0.1": {
+      "n_rows": 54,
+      "n_studies": 29,
+      "n_low": 24,
+      "n_high": 9,
+      "shared_labels": [
+        "Anderson_1976",
+        "Hove_2007",
+        "Kuriakose_2018",
+        "Pandit_2001"
+      ],
+      "point_high_minus_low": {
+        "independent_residual": -0.09264604237483938,
+        "observed_night_loss": -0.2298744321500084,
+        "independent_night_loss": -0.13722838977516902,
+        "night_net": -0.06207466266498746
+      },
+      "bootstrap95": {
+        "independent_residual": [
+          -0.22615350623266722,
+          0.026301084067845308
+        ],
+        "observed_night_loss": [
+          -0.37054586698028424,
+          -0.09061886325466058
+        ],
+        "independent_night_loss": [
+          -0.2505712601282004,
+          -0.041804136783308965
+        ],
+        "night_net": [
+          -0.19790307417313835,
+          0.06134375654490393
+        ]
+      },
+      "valid_draws": 9997,
+      "overlap_only": [
+        {
+          "study": "Anderson_1976",
+          "delta": -0.2852792551087766
+        },
+        {
+          "study": "Hove_2007",
+          "delta": 0.035499999999999976
+        },
+        {
+          "study": "Kuriakose_2018",
+          "delta": 0.29093716394111313
+        },
+        {
+          "study": "Pandit_2001",
+          "delta": -0.2835944757489881
+        }
+      ],
+      "interpretation": "study-level descriptive high-minus-low contrast, not causal selfing moderator; grouping by measured B mathematically changes null, and study composition differs."
+    },
+    "no_Macgregor_Bustamente|0": {
+      "n_rows": 40,
+      "n_studies": 28,
+      "n_low": 16,
+      "n_high": 14,
+      "shared_labels": [
+        "Hove_2007",
+        "Pandit_2001"
+      ],
+      "point_high_minus_low": {
+        "independent_residual": -0.16362902171507804,
+        "observed_night_loss": -0.24005026684919353,
+        "independent_night_loss": -0.0764212451341155,
+        "night_net": -0.004419865541700568
+      },
+      "bootstrap95": {
+        "independent_residual": [
+          -0.24767921968308457,
+          -0.08348971345031692
+        ],
+        "observed_night_loss": [
+          -0.38109759515623975,
+          -0.10566824385677431
+        ],
+        "independent_night_loss": [
+          -0.21826270660688746,
+          0.051012518120883296
+        ],
+        "night_net": [
+          -0.15910457214495533,
+          0.14049714295506
+        ]
+      },
+      "valid_draws": 9999,
+      "overlap_only": [
+        {
+          "study": "Hove_2007",
+          "delta": 0.035499999999999976
+        },
+        {
+          "study": "Pandit_2001",
+          "delta": -0.2835944757489881
+        }
+      ],
+      "interpretation": "study-level descriptive high-minus-low contrast, not causal selfing moderator; grouping by measured B mathematically changes null, and study composition differs."
+    },
+    "no_Macgregor_Bustamente|0.01": {
+      "n_rows": 40,
+      "n_studies": 28,
+      "n_low": 18,
+      "n_high": 12,
+      "shared_labels": [
+        "Hove_2007",
+        "Pandit_2001"
+      ],
+      "point_high_minus_low": {
+        "independent_residual": -0.14681081595397144,
+        "observed_night_loss": -0.2220410268208198,
+        "independent_night_loss": -0.07523021086684831,
+        "night_net": -0.00045581268955866006
+      },
+      "bootstrap95": {
+        "independent_residual": [
+          -0.2412701546592292,
+          -0.05905243602708955
+        ],
+        "observed_night_loss": [
+          -0.36234574259220653,
+          -0.08923189553623749
+        ],
+        "independent_night_loss": [
+          -0.20934589890671532,
+          0.04692001670137165
+        ],
+        "night_net": [
+          -0.1462702751753064,
+          0.13646922744552517
+        ]
+      },
+      "valid_draws": 9999,
+      "overlap_only": [
+        {
+          "study": "Hove_2007",
+          "delta": 0.035499999999999976
+        },
+        {
+          "study": "Pandit_2001",
+          "delta": -0.2835944757489881
+        }
+      ],
+      "interpretation": "study-level descriptive high-minus-low contrast, not causal selfing moderator; grouping by measured B mathematically changes null, and study composition differs."
+    },
+    "no_Macgregor_Bustamente|0.05": {
+      "n_rows": 40,
+      "n_studies": 28,
+      "n_low": 21,
+      "n_high": 10,
+      "shared_labels": [
+        "Anderson_1976",
+        "Hove_2007",
+        "Pandit_2001"
+      ],
+      "point_high_minus_low": {
+        "independent_residual": -0.13460498828904433,
+        "observed_night_loss": -0.2597109029301112,
+        "independent_night_loss": -0.1251059146410668,
+        "night_net": -0.025529744685290068
+      },
+      "bootstrap95": {
+        "independent_residual": [
+          -0.23991547293955062,
+          -0.03547220748416687
+        ],
+        "observed_night_loss": [
+          -0.3869464065138347,
+          -0.13274090420277165
+        ],
+        "independent_night_loss": [
+          -0.24529698632794372,
+          -0.0234452825324325
+        ],
+        "night_net": [
+          -0.16734332399624213,
+          0.10215214612142054
+        ]
+      },
+      "valid_draws": 9999,
+      "overlap_only": [
+        {
+          "study": "Anderson_1976",
+          "delta": -0.2852792551087766
+        },
+        {
+          "study": "Hove_2007",
+          "delta": 0.035499999999999976
+        },
+        {
+          "study": "Pandit_2001",
+          "delta": -0.2835944757489881
+        }
+      ],
+      "interpretation": "study-level descriptive high-minus-low contrast, not causal selfing moderator; grouping by measured B mathematically changes null, and study composition differs."
+    },
+    "no_Macgregor_Bustamente|0.1": {
+      "n_rows": 40,
+      "n_studies": 28,
+      "n_low": 23,
+      "n_high": 9,
+      "shared_labels": [
+        "Anderson_1976",
+        "Hove_2007",
+        "Kuriakose_2018",
+        "Pandit_2001"
+      ],
+      "point_high_minus_low": {
+        "independent_residual": -0.09567081945167948,
+        "observed_night_loss": -0.22328794208412917,
+        "independent_night_loss": -0.12761712263244968,
+        "night_net": -0.04881805345942375
+      },
+      "bootstrap95": {
+        "independent_residual": [
+          -0.22465418410344018,
+          0.023386169946394225
+        ],
+        "observed_night_loss": [
+          -0.3655884931298919,
+          -0.08243123572054563
+        ],
+        "independent_night_loss": [
+          -0.24086001334205737,
+          -0.031188196854840256
+        ],
+        "night_net": [
+          -0.18527416610349573,
+          0.07724495564868927
+        ]
+      },
+      "valid_draws": 9999,
+      "overlap_only": [
+        {
+          "study": "Anderson_1976",
+          "delta": -0.2852792551087766
+        },
+        {
+          "study": "Hove_2007",
+          "delta": 0.035499999999999976
+        },
+        {
+          "study": "Kuriakose_2018",
+          "delta": 0.29093716394111313
+        },
+        {
+          "study": "Pandit_2001",
+          "delta": -0.2835944757489881
+        }
+      ],
+      "interpretation": "study-level descriptive high-minus-low contrast, not causal selfing moderator; grouping by measured B mathematically changes null, and study composition differs."
+    },
+    "frechet_inside|0": {
+      "n_rows": 14,
+      "n_studies": 8,
+      "n_low": 4,
+      "n_high": 4,
+      "shared_labels": [],
+      "point_high_minus_low": {
+        "independent_residual": -0.05870983984311784,
+        "observed_night_loss": -0.04494223964898497,
+        "independent_night_loss": 0.013767600194132867,
+        "night_net": 0.1396926793309753
+      },
+      "bootstrap95": {
+        "independent_residual": [
+          -0.1733607320103654,
+          0.054756366584204054
+        ],
+        "observed_night_loss": [
+          -0.2267223784930779,
+          0.15901366603283812
+        ],
+        "independent_night_loss": [
+          -0.18223872481990971,
+          0.1754441682126151
+        ],
+        "night_net": [
+          -0.11960958890361534,
+          0.3965947999406106
+        ]
+      },
+      "valid_draws": 9928,
+      "overlap_only": [],
+      "interpretation": "study-level descriptive high-minus-low contrast, not causal selfing moderator; grouping by measured B mathematically changes null, and study composition differs."
+    },
+    "frechet_inside|0.01": {
+      "n_rows": 14,
+      "n_studies": 8,
+      "n_low": 5,
+      "n_high": 3,
+      "shared_labels": [],
+      "point_high_minus_low": {
+        "independent_residual": 0.01877848780314647,
+        "observed_night_loss": 0.0014042955228246862,
+        "independent_night_loss": -0.017374192280321804,
+        "night_net": 0.14059242332546812
+      },
+      "bootstrap95": {
+        "independent_residual": [
+          -0.11836810523655578,
+          0.13890177331885922
+        ],
+        "observed_night_loss": [
+          -0.18928604170956528,
+          0.24480688691782287
+        ],
+        "independent_night_loss": [
+          -0.20610762509708477,
+          0.15682663364842792
+        ],
+        "night_net": [
+          -0.06059521819809849,
+          0.3496375286803341
+        ]
+      },
+      "valid_draws": 9774,
+      "overlap_only": [],
+      "interpretation": "study-level descriptive high-minus-low contrast, not causal selfing moderator; grouping by measured B mathematically changes null, and study composition differs."
+    },
+    "frechet_inside|0.05": {
+      "status": "fewer than 3 study labels",
+      "n_low": 6,
+      "n_high": 2
+    },
+    "frechet_inside|0.1": {
+      "status": "fewer than 3 study labels",
+      "n_low": 7,
+      "n_high": 1
+    }
+  },
+  "Lu": {
+    "source": "10.1093/jpe/rtag160, Table S4b",
+    "tab": {
+      "P. kansuensis|Pollen number": {
+        "Open": {
+          "y": 14.59,
+          "se": 4.87
+        },
+        "Diurnal": {
+          "y": -2.79,
+          "se": 3.73
+        },
+        "Nocturnal": {
+          "y": 10.16,
+          "se": 4.48
+        }
+      },
+      "P. kansuensis|Seed set": {
+        "Open": {
+          "y": 0.0445,
+          "se": 0.0319
+        },
+        "Diurnal": {
+          "y": -0.0686,
+          "se": 0.0401
+        },
+        "Nocturnal": {
+          "y": 0.1332,
+          "se": 0.0429
+        }
+      },
+      "E. regelii|Pollen number": {
+        "Open": {
+          "y": 0.303,
+          "se": 3.62
+        },
+        "Diurnal": {
+          "y": -3.738,
+          "se": 3.81
+        },
+        "Nocturnal": {
+          "y": 0.983,
+          "se": 3.57
+        }
+      },
+      "E. regelii|Seed set": {
+        "Open": {
+          "y": -0.0094,
+          "se": 0.0308
+        },
+        "Diurnal": {
+          "y": 0.0062,
+          "se": 0.0333
+        },
+        "Nocturnal": {
+          "y": -0.004,
+          "se": 0.034
+        }
+      }
+    },
+    "contrasts": {
+      "P. kansuensis|Pollen number": {
+        "Nocturnal_minus_Diurnal": {
+          "y": 12.95,
+          "se_bounds": [
+            0.75,
+            8.21
+          ],
+          "normal_outer": [
+            -3.141304313073846,
+            29.041304313073844
+          ],
+          "t4_outer": [
+            -9.84461431367393,
+            35.74461431367393
+          ],
+          "rho_for_nonzero_t4": 0.3658855098690647,
+          "rho_for_nonzero_normal": -0.28941979534535145
+        },
+        "Nocturnal_minus_Open": {
+          "y": -4.43,
+          "se_bounds": [
+            0.3899999999999988,
+            9.350000000000001
+          ],
+          "normal_outer": [
+            -22.75566325544951,
+            13.89566325544951
+          ],
+          "t4_outer": [
+            -30.38976173359942,
+            21.529761733599422
+          ],
+          "rho_for_nonzero_t4": 0.9451422420675833,
+          "rho_for_nonzero_normal": 0.8864079862954032
+        },
+        "Diurnal_minus_Open": {
+          "y": -17.38,
+          "se_bounds": [
+            1.1400000000000006,
+            8.6
+          ],
+          "normal_outer": [
+            -34.23569026704446,
+            -0.5243097329555333
+          ],
+          "t4_outer": [
+            -41.25742790470107,
+            6.49742790470107
+          ],
+          "rho_for_nonzero_t4": -0.04281111333040535,
+          "rho_for_nonzero_normal": -1.128618380736922
+        }
+      },
+      "P. kansuensis|Seed set": {
+        "Nocturnal_minus_Diurnal": {
+          "y": 0.2018,
+          "se_bounds": [
+            0.002800000000000011,
+            0.08299999999999999
+          ],
+          "normal_outer": [
+            0.039122989283175535,
+            0.3644770107168245
+          ],
+          "t4_outer": [
+            -0.028644943731417266,
+            0.4322449437314173
+          ],
+          "rho_for_nonzero_t4": -0.533160008624454,
+          "rho_for_nonzero_normal": -2.0788829471286077
+        },
+        "Nocturnal_minus_Open": {
+          "y": 0.08870000000000001,
+          "se_bounds": [
+            0.010999999999999996,
+            0.0748
+          ],
+          "normal_outer": [
+            -0.05790530604359605,
+            0.23530530604359606
+          ],
+          "t4_outer": [
+            -0.11897809386879533,
+            0.2963780938687954
+          ],
+          "rho_for_nonzero_t4": 0.6713097785316753,
+          "rho_for_nonzero_normal": 0.29591324555462606
+        },
+        "Diurnal_minus_Open": {
+          "y": -0.11309999999999999,
+          "se_bounds": [
+            0.008199999999999999,
+            0.072
+          ],
+          "normal_outer": [
+            -0.2542174068868839,
+            0.02801740688688388
+          ],
+          "t4_outer": [
+            -0.3130040475742415,
+            0.0868040475742415
+          ],
+          "rho_for_nonzero_t4": 0.3776747419339405,
+          "rho_for_nonzero_normal": -0.2752770935989661
+        }
+      },
+      "E. regelii|Pollen number": {
+        "Nocturnal_minus_Diurnal": {
+          "y": 4.721,
+          "se_bounds": [
+            0.2400000000000002,
+            7.38
+          ],
+          "normal_outer": [
+            -9.743534205905599,
+            19.185534205905597
+          ],
+          "t4_outer": [
+            -15.769164876359753,
+            25.211164876359753
+          ],
+          "rho_for_nonzero_t4": 0.8958336906682876,
+          "rho_for_nonzero_normal": 0.7888381193712178
+        },
+        "Nocturnal_minus_Open": {
+          "y": 0.6799999999999999,
+          "se_bounds": [
+            0.05000000000000071,
+            7.1899999999999995
+          ],
+          "normal_outer": [
+            -13.412141048842988,
+            14.772141048842988
+          ],
+          "t4_outer": [
+            -19.282640306372173,
+            20.642640306372172
+          ],
+          "rho_for_nonzero_t4": 0.9977759497169639,
+          "rho_for_nonzero_normal": 0.9954396313044429
+        },
+        "Diurnal_minus_Open": {
+          "y": -4.041,
+          "se_bounds": [
+            0.1900000000000004,
+            7.43
+          ],
+          "normal_outer": [
+            -18.6035324051326,
+            10.5215324051326
+          ],
+          "t4_outer": [
+            -24.669987131619646,
+            16.587987131619645
+          ],
+          "rho_for_nonzero_t4": 0.9245131745966625,
+          "rho_for_nonzero_normal": 0.8472032681769458
+        }
+      },
+      "E. regelii|Seed set": {
+        "Nocturnal_minus_Diurnal": {
+          "y": -0.0102,
+          "se_bounds": [
+            0.0007000000000000062,
+            0.0673
+          ],
+          "normal_outer": [
+            -0.1421055761595456,
+            0.12170557615954562
+          ],
+          "t4_outer": [
+            -0.19705475557981184,
+            0.17665475557981186
+          ],
+          "rho_for_nonzero_t4": 0.9942560805765303,
+          "rho_for_nonzero_normal": 0.9882558465995083
+        },
+        "Nocturnal_minus_Open": {
+          "y": 0.0054,
+          "se_bounds": [
+            0.0032000000000000084,
+            0.0648
+          ],
+          "normal_outer": [
+            -0.1216056661981955,
+            0.1324056661981955
+          ],
+          "t4_outer": [
+            -0.17451364281681736,
+            0.18531364281681734
+          ],
+          "rho_for_nonzero_t4": 1.0030830955004366,
+          "rho_for_nonzero_normal": 1.0012648652498837
+        },
+        "Diurnal_minus_Open": {
+          "y": 0.0156,
+          "se_bounds": [
+            0.0025000000000000022,
+            0.0641
+          ],
+          "normal_outer": [
+            -0.11003369140901748,
+            0.14123369140901748
+          ],
+          "t4_outer": [
+            -0.16237013124317892,
+            0.19357013124317893
+          ],
+          "rho_for_nonzero_t4": 0.9876566140821762,
+          "rho_for_nonzero_normal": 0.9721632673729825
+        }
+      }
+    },
+    "between_species_night_vs_day": {
+      "Pollen number": {
+        "y": 8.229,
+        "se_bounds": [
+          0,
+          15.590000000000002
+        ],
+        "normal_outer": [
+          -22.326838518979446,
+          38.78483851897944
+        ],
+        "t4_outer": [
+          -35.05577919003369,
+          51.51377919003369
+        ]
+      },
+      "Seed set": {
+        "y": 0.21200000000000002,
+        "se_bounds": [
+          0,
+          0.1503
+        ],
+        "normal_outer": [
+          -0.0825825868763701,
+          0.5065825868763701
+        ],
+        "t4_outer": [
+          -0.2052996993112291,
+          0.6292996993112292
+        ]
+      }
+    },
+    "scope": "all coefficients on original model scale, not proportions/lnRR. t4 is a 5-pair reference sensitivity, not verified model df. Covariance not estimated. Species contrast not causal mating-system modifier."
+  },
+  "formal_new_k": 0,
+  "source_paths": [
+    "database/alan_experiments/stage_discordance_20261125/diel_independent_channel_null_20261126.json",
+    "database/alan_experiments/lu_jpe_sources/table_S4b.csv"
+  ],
+  "source_blobs": [
+    "7641d9e33767372e8d1772be41d444a7f36c50b6",
+    "c8dd4ebd618e0fa679a4686acfe4cb6a280c2f47"
+  ]
+}
