@@ -1,0 +1,24 @@
+# Aquatic resource stages: primary-source spatial recovery and new total-emergence synthesis (2026-11-25)
+
+## Spree2010 (Perkin et al. 2014a, DOI 10.1111/fwb.12270)
+Primary thesis Chapter4 Table2, PDF index84 (printed p80), Table4 index87, methods indices78–80, Appendix2 index99. Official journal confirms 6 lights and 22 sampled nights (11 off,11 on). Original thesis methods say dark first then illuminated second within each paired night sequence, not randomized order. One oxbow site, repeated nights, 3 traps per distance, multiple trays; no independent location randomization, raw pair-level variance unavailable. Web PDF text tables retrieved; screenshot requests for pages84,87,79 returned cache miss, so no visual verification or digitization claimed. 
+Czarnecka authenticated workbook 097.1–16 represents 3m and 75m light-distance cells (both aquatic and terrestrial origin caught by identical flight-intercept method), not separate aquatic/terrestrial trap types. Original table confirms all 32 arm means; 097.1 dark SD .03 vs thesis .31, discrepancy retained. The 0m and40m placement means omitted from review panel, now recovered from author Table2. 0m light levels often exceed 180 lx review inclusion range, so not called an omission error; 40m exclusion reason unverified. Both 0m and 40m are 5m from water; 3m is 8m and 75m roughly80m from water. Compare same shore distance without claiming controlled habitat equivalence. All four monthly RRRs at 0m > 40m, equal month GM of RRR(0m)/RRR(40m)=3.816. Month not independent experiment; no p/CI. 
+| Light distance m | Aquatic RR (month equal geometric) | Terrestrial RR | Aquatic/terrestrial RRR | Night-pair-weighted ratio of means RRR |
+|---:|---:|---:|---:|---:|
+| 0 | 18.116 | 2.950 | 6.142 | 9.900 |
+| 3 | 3.692 | 1.128 | 3.274 | 4.319 |
+| 40 | 1.361 | 0.845 | 1.609 | 1.848 |
+| 75 | 0.921 | 0.938 | 0.982 | 1.028 |
+Table4 at traps immediately in front of lamps: June–August emergence RR 2.143, 2.512, 2.542; corresponding aerial aquatic catch/ emergence response ratios 36.634, 11.557, 4.311 (equal month GM 12.221). Different trap effort/area definition, not actual export fraction or mass balance. Original reported emergence test p>.05; don't treat this as zero effect. No evidence for inland depletion at75m from primary study. Separate existing Michigan2016 and SevenPonds2022 origin-capture synthesis remains unchanged. New Spree 3m point can be juxtaposed; no inverse-variance weight without actual night-pair covariance; 0/3/40/75 are not independent k. 
+
+## All-taxa emergence-trap endpoint (new exploratory quantitative synthesis)
+Sullivan2013 (10.1002/eap.1821) authenticated source block logRR; mean equal colours in each of three physical blocks, not pooled 15 stations or taxa. Ogbeide Landau2022 (10.1111/1365-2435.70335) 4 light/4 dark flumes without crayfish; average the same flume across available weeks1 and4, independent-flume delta variance; week4-only sensitivity. Counts/rates and windows differ, but both measure emergence-trap collections, not airborne origin capture or predator abundance. Sullivan's allocation/effort gate and Ogbeide missing week6 remain. Distinct physical programmes already in previous chironomid k2; no new independent k by adding all-taxa endpoint. REML/mKH exploratory:
+Sullivan 2.587 [0.691–9.679], Ogbeide 0.832 [0.579–1.197]. Pooled all-taxa k2 1.416 [0.001–1878.593], week4-only 1.364 [0.000–6214.138]. No general direction established.
+Perkin Canada2011 4 forest-stream pairs separate from Spree2010. Author thesis results p110 (PDF114) emergence mean 1.22±.21 SE lit,1.25±.17 dark. Czarnecka 089.5 rounds/changes dark to1.30, both SD .4 and N4; primary arithmetic means differ. Author appendix model -0.02 SE .233 additive (intercept1.269) not a logRR. Preserve two source versions and vary arm mean-error correlation -1,0,.5,.9,1 ONLY as hypothetical delta inputs; source SE's exact aggregation across weeks and streams not verified, and actual paired raw units not retrieved. Not a covariance estimate. k3 pool across correlation assumptions, author thesis means:
+- rho=-1: 1.238 [0.275–5.581]
+- rho=0: 1.225 [0.278–5.386]
+- rho=0.5: 1.217 [0.281–5.270]
+- rho=0.9: 1.210 [0.283–5.167]
+- rho=1: 1.208 [0.284–5.139]
+All intervals contain1. 3 programmes' numerical sensitivity does not authorize third formal adoption. Spree emergence lacks site replication and cannot be added as another equivalent effect. Separate quantitative and descriptive datasets. 
+Source data and earlier meta analysis pinned in JSON; original code adapted and executed in-session on actual fetched aggregate sources. Standalone Node replay not yet CI-tested. Original Czarnecka candidate CSV retained locally, no raw workbook redistribution; no changes to main, canonical108, five prior meta estimates. 
