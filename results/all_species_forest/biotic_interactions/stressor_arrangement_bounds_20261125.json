@@ -1,0 +1,174 @@
+{
+  "source_sha256": "496dcfa07436619084dc677317525dc674775e9965a0fdfb482cfa1cb4d8977f",
+  "independent_headers": 6,
+  "raw_count_reconstruction": 5564,
+  "SS_raw_total": 1790,
+  "CT_CS_raw_total": 3774,
+  "block_bounds": [
+    {
+      "block": 1,
+      "c": 43,
+      "L": 46.25,
+      "F": 11.25,
+      "LF": 13.25,
+      "SS": 57.5,
+      "otherTotal": 142.25,
+      "thresholdShare": 0.3430232558139535,
+      "thresholdVsPooled": 1.0290697674418605,
+      "CS_lower": 13.25,
+      "CS_upper": 142.25
+    },
+    {
+      "block": 2,
+      "c": 51.583333333333336,
+      "L": 50.25,
+      "F": 22.5,
+      "LF": 21,
+      "SS": 72.75,
+      "otherTotal": 175.75,
+      "thresholdShare": 0.3344103392568659,
+      "thresholdVsPooled": 1.0032310177705976,
+      "CS_lower": 21,
+      "CS_upper": 175.75
+    },
+    {
+      "block": 3,
+      "c": 56.333333333333336,
+      "L": 76.75,
+      "F": 11.75,
+      "LF": 14.5,
+      "SS": 88.5,
+      "otherTotal": 183.5,
+      "thresholdShare": 0.4378698224852071,
+      "thresholdVsPooled": 1.3136094674556213,
+      "CS_lower": 14.5,
+      "CS_upper": 183.5
+    },
+    {
+      "block": 4,
+      "c": 44.416666666666664,
+      "L": 61.75,
+      "F": 17.75,
+      "LF": 11.25,
+      "SS": 79.5,
+      "otherTotal": 144.5,
+      "thresholdShare": 0.5121951219512195,
+      "thresholdVsPooled": 1.5365853658536586,
+      "CS_lower": 11.25,
+      "CS_upper": 144.5
+    },
+    {
+      "block": 5,
+      "c": 40.333333333333336,
+      "L": 53,
+      "F": 13,
+      "LF": 7.25,
+      "SS": 66,
+      "otherTotal": 128.25,
+      "thresholdShare": 0.4855371900826446,
+      "thresholdVsPooled": 1.4566115702479339,
+      "CS_lower": 7.25,
+      "CS_upper": 128.25
+    },
+    {
+      "block": 6,
+      "c": 52.666666666666664,
+      "L": 69.5,
+      "F": 13.75,
+      "LF": 11.25,
+      "SS": 83.25,
+      "otherTotal": 169.25,
+      "thresholdShare": 0.45569620253164556,
+      "thresholdVsPooled": 1.3670886075949367,
+      "CS_lower": 11.25,
+      "CS_upper": 169.25
+    }
+  ],
+  "means": {
+    "C": 48.055555555555564,
+    "L": 59.583333333333336,
+    "F": 15,
+    "LF": 13.083333333333334,
+    "SS": 74.58333333333333,
+    "CT_CS_total": 157.25,
+    "CT_CS_mean": 78.625,
+    "identified_SS_vs_other_mean": {
+      "rr": 0.9485956544780073,
+      "se": 0.04707761211602168,
+      "ci": [
+        0.8404737978454198,
+        1.0706267322090353
+      ]
+    },
+    "difference": -4.041666666666667,
+    "ci_difference": [
+      -13.249554950618812,
+      5.166221617285479
+    ],
+    "CS_over_SS_identification_interval": [
+      0.17541899441340783,
+      2.1083798882681566
+    ],
+    "threshold_share": 0.42658959537572244,
+    "threshold_relative_to_pooled": 1.2797687861271674,
+    "threshold_share_CT_gt_SS": 0.4826589595375723
+  },
+  "conditional_scenarios": [
+    {
+      "q": 0,
+      "CS_mean": 13.083333333333334,
+      "CT_mean": 144.16666666666666,
+      "CS_SS": 0.17541899441340783,
+      "SS_CT": 0.5173410404624278
+    },
+    {
+      "q": 0.25,
+      "CS_mean": 49.125,
+      "CT_mean": 108.125,
+      "CS_SS": 0.658659217877095,
+      "SS_CT": 0.6897880539499036
+    },
+    {
+      "q": 0.3333333333333333,
+      "CS_mean": 61.138888888888886,
+      "CT_mean": 96.11111111111113,
+      "CS_SS": 0.8197392923649907,
+      "SS_CT": 0.7760115606936414
+    },
+    {
+      "q": 0.4,
+      "CS_mean": 70.75000000000001,
+      "CT_mean": 86.49999999999999,
+      "CS_SS": 0.9486033519553075,
+      "SS_CT": 0.8622350674373797
+    },
+    {
+      "q": 0.42658959537572244,
+      "CS_mean": 74.58333333333333,
+      "CT_mean": 82.66666666666669,
+      "CS_SS": 1,
+      "SS_CT": 0.9022177419354837
+    },
+    {
+      "q": 0.5,
+      "CS_mean": 85.16666666666667,
+      "CT_mean": 72.08333333333333,
+      "CS_SS": 1.1418994413407824,
+      "SS_CT": 1.0346820809248556
+    },
+    {
+      "q": 1,
+      "CS_mean": 157.25,
+      "CT_mean": 0,
+      "CS_SS": 2.1083798882681566,
+      "SS_CT": null
+    }
+  ],
+  "source_limit": "CT pooled over two CT-network branches plus one CS-network branch. Unknown allocation cannot be recovered. Bounds are identification bounds, not confidence intervals; q scenarios are not observed outcomes.",
+  "source_git": {
+    "commit": "437011edd2de22904535d648d47e56d94ff48ad2",
+    "path": "database/alan_experiments/arthropod_expansion_20261122/eeres2021_source_reanalysis/original_reanalysis_20261123.json",
+    "blob": "068b7879feaca1d884e50b97bf21aa3b059ebe6f"
+  },
+  "original_workbook_retrieved_this_turn": false
+}
