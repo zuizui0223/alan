@@ -1,0 +1,57 @@
+{
+  "field": {
+    "exact_DOI_candidate_match": {
+      "study_ids": 61,
+      "field_rows": 816
+    },
+    "malformed_DOI_hold": {
+      "study_ids": 1,
+      "field_rows": 3
+    },
+    "multiple_DOIs_hold": {
+      "study_ids": 3,
+      "field_rows": 143
+    },
+    "shared_DOI_across_study_IDs_hold": {
+      "study_ids": 5,
+      "field_rows": 52
+    },
+    "unmatched_DOI_candidate": {
+      "study_ids": 58,
+      "field_rows": 662
+    }
+  },
+  "field_with_any_exact_doi_match": 66,
+  "source_hash": "8fae8a0244047ab057808ea321962bf848cff42b6fd521f34b37a360efa154d6",
+  "source_study_labels": 314,
+  "source_effect_rows": 4905,
+  "field_study_labels": 128,
+  "field_rows": 1676,
+  "old_route_keys": 732,
+  "source_doi_label_conflicts": [
+    [
+      "10.1098/rstb.2014.0131",
+      [
+        "010",
+        "100"
+      ]
+    ],
+    [
+      "10.1002/lno.10607",
+      [
+        "102",
+        "104"
+      ]
+    ],
+    [
+      "10.1111/1365-2664.14336",
+      [
+        "187",
+        "188"
+      ]
+    ]
+  ],
+  "final_eligibility": false,
+  "warning": "DOI overlap candidates only; primary title and physical allocation not adjudicated; unmatched labels are not new independent studies",
+  "routing_blob": "b14f99b75f466c38f3ba46915a742594e1fa4836"
+}
