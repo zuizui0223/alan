@@ -1,0 +1,1224 @@
+{
+  "date": "2026-11-25",
+  "status": "new exploratory two-programme synthesis, not final systematic adoption",
+  "estimand": "ratio of equal-site means of flight-interception capture during illumination versus concurrent dark, standardized within study by observation effort; aggregate before ratio; paired site delta variance",
+  "robert": {
+    "cases": {
+      "A+FW+CW": {
+        "post": {
+          "n_blocks": 4,
+          "blocks": [
+            {
+              "block": "100 Acres",
+              "lit": 8.333333333333334,
+              "dark": 0,
+              "lit_before": 0.4444444444444444,
+              "dark_before": 0.3333333333333333
+            },
+            {
+              "block": "Currawong",
+              "lit": 8.333333333333334,
+              "dark": 0.3333333333333333,
+              "lit_before": 0.6666666666666666,
+              "dark_before": 0
+            },
+            {
+              "block": "Greswell",
+              "lit": 6,
+              "dark": 1,
+              "lit_before": 0.2222222222222222,
+              "dark_before": 0
+            },
+            {
+              "block": "LTWS",
+              "lit": 15.888888888888891,
+              "dark": 1,
+              "lit_before": 0.5555555555555555,
+              "dark_before": 1
+            }
+          ],
+          "lit_mean": 9.63888888888889,
+          "dark_mean": 0.5833333333333333,
+          "y": 2.8048023422234363,
+          "rr": 16.523809523809526,
+          "v": 0.16914639519736677,
+          "ci": [
+            4.46355067176185,
+            61.17019862829641
+          ],
+          "scores": [
+            0.8645533141210375,
+            0.293124742692466,
+            -1.0918073281185676,
+            -0.06587072869493626
+          ],
+          "leave_block_out": [
+            {
+              "block": "100 Acres",
+              "rr": 12.952380952380954
+            },
+            {
+              "block": "Currawong",
+              "rr": 15.111111111111112
+            },
+            {
+              "block": "Greswell",
+              "rr": 24.41666666666667
+            },
+            {
+              "block": "LTWS",
+              "rr": 17.000000000000004
+            }
+          ]
+        },
+        "baci": {
+          "rr": 11.663865546218489,
+          "y": 2.4564956479552205,
+          "v": 0.6362020087633561,
+          "ci": [
+            0.9213679225528851,
+            147.65627948421863
+          ],
+          "baseline_rr": 1.4166666666666667
+        }
+      },
+      "FW+CW": {
+        "post": {
+          "n_blocks": 4,
+          "blocks": [
+            {
+              "block": "100 Acres",
+              "lit": 11,
+              "dark": 0,
+              "lit_before": 0.5,
+              "dark_before": 0.3333333333333333
+            },
+            {
+              "block": "Currawong",
+              "lit": 10.666666666666666,
+              "dark": 0.3333333333333333,
+              "lit_before": 0.5,
+              "dark_before": 0
+            },
+            {
+              "block": "Greswell",
+              "lit": 7.333333333333334,
+              "dark": 1,
+              "lit_before": 0.16666666666666666,
+              "dark_before": 0
+            },
+            {
+              "block": "LTWS",
+              "lit": 20.333333333333332,
+              "dark": 1,
+              "lit_before": 0.8333333333333333,
+              "dark_before": 1
+            }
+          ],
+          "lit_mean": 12.333333333333332,
+          "dark_mean": 0.5833333333333333,
+          "y": 3.0513021247088017,
+          "rr": 21.142857142857142,
+          "v": 0.17829936941906055,
+          "ci": [
+            5.515144987591126,
+            81.05324686278328
+          ],
+          "scores": [
+            0.891891891891892,
+            0.2934362934362934,
+            -1.1196911196911197,
+            -0.06563706563706573
+          ],
+          "leave_block_out": [
+            {
+              "block": "100 Acres",
+              "rr": 16.42857142857143
+            },
+            {
+              "block": "Currawong",
+              "rr": 19.33333333333334
+            },
+            {
+              "block": "Greswell",
+              "rr": 31.5
+            },
+            {
+              "block": "LTWS",
+              "rr": 21.75
+            }
+          ]
+        },
+        "baci": {
+          "rr": 14.095238095238097,
+          "y": 2.6458370166006375,
+          "v": 0.4177531088728,
+          "ci": [
+            1.8020056621701928,
+            110.25255976287112
+          ],
+          "baseline_rr": 1.5
+        }
+      },
+      "A": {
+        "post": {
+          "n_blocks": 4,
+          "blocks": [
+            {
+              "block": "100 Acres",
+              "lit": 3,
+              "dark": 0,
+              "lit_before": 0.3333333333333333,
+              "dark_before": 0.3333333333333333
+            },
+            {
+              "block": "Currawong",
+              "lit": 3.6666666666666665,
+              "dark": 0.3333333333333333,
+              "lit_before": 1,
+              "dark_before": 0
+            },
+            {
+              "block": "Greswell",
+              "lit": 3.3333333333333335,
+              "dark": 1,
+              "lit_before": 0.3333333333333333,
+              "dark_before": 0
+            },
+            {
+              "block": "LTWS",
+              "lit": 7,
+              "dark": 1,
+              "lit_before": 0,
+              "dark_before": 1
+            }
+          ],
+          "lit_mean": 4.25,
+          "dark_mean": 0.5833333333333333,
+          "y": 1.9859154836690125,
+          "rr": 7.285714285714286,
+          "v": 0.12104188080460944,
+          "ci": [
+            2.407787424437926,
+            22.045813560743472
+          ],
+          "scores": [
+            0.7058823529411765,
+            0.2913165266106441,
+            -0.9299719887955183,
+            -0.06722689075630273
+          ],
+          "leave_block_out": [
+            {
+              "block": "100 Acres",
+              "rr": 6.000000000000001
+            },
+            {
+              "block": "Currawong",
+              "rr": 6.666666666666667
+            },
+            {
+              "block": "Greswell",
+              "rr": 10.25
+            },
+            {
+              "block": "LTWS",
+              "rr": 7.500000000000001
+            }
+          ]
+        },
+        "baci": {
+          "rr": 5.828571428571429,
+          "y": 1.7627719323548028,
+          "v": 1.4050941683863087,
+          "ci": [
+            0.13404310093923671,
+            253.4426961172674
+          ],
+          "baseline_rr": 1.25
+        }
+      },
+      "FW": {
+        "post": {
+          "n_blocks": 4,
+          "blocks": [
+            {
+              "block": "100 Acres",
+              "lit": 10.333333333333334,
+              "dark": 0,
+              "lit_before": 0.6666666666666666,
+              "dark_before": 0.3333333333333333
+            },
+            {
+              "block": "Currawong",
+              "lit": 8.666666666666666,
+              "dark": 0.3333333333333333,
+              "lit_before": 0.6666666666666666,
+              "dark_before": 0
+            },
+            {
+              "block": "Greswell",
+              "lit": 9.333333333333334,
+              "dark": 1,
+              "lit_before": 0,
+              "dark_before": 0
+            },
+            {
+              "block": "LTWS",
+              "lit": 11.333333333333334,
+              "dark": 1,
+              "lit_before": 1,
+              "dark_before": 1
+            }
+          ],
+          "lit_mean": 9.916666666666668,
+          "dark_mean": 0.5833333333333333,
+          "y": 2.833213344056216,
+          "rr": 17,
+          "v": 0.17512887507944352,
+          "ci": [
+            4.488014596106484,
+            64.39372996930938
+          ],
+          "scores": [
+            1.042016806722689,
+            0.30252100840336105,
+            -0.7731092436974791,
+            -0.5714285714285716
+          ],
+          "leave_block_out": [
+            {
+              "block": "100 Acres",
+              "rr": 12.571428571428575
+            },
+            {
+              "block": "Currawong",
+              "rr": 15.500000000000002
+            },
+            {
+              "block": "Greswell",
+              "rr": 22.750000000000004
+            },
+            {
+              "block": "LTWS",
+              "rr": 21.25
+            }
+          ]
+        },
+        "baci": {
+          "rr": 9.714285714285715,
+          "y": 2.2735975561207935,
+          "v": 0.21854624202622228,
+          "ci": [
+            2.194244888060398,
+            43.006752551758936
+          ],
+          "baseline_rr": 1.7499999999999998
+        }
+      },
+      "CW": {
+        "post": {
+          "n_blocks": 4,
+          "blocks": [
+            {
+              "block": "100 Acres",
+              "lit": 11.666666666666666,
+              "dark": 0,
+              "lit_before": 0.3333333333333333,
+              "dark_before": 0.3333333333333333
+            },
+            {
+              "block": "Currawong",
+              "lit": 12.666666666666666,
+              "dark": 0.3333333333333333,
+              "lit_before": 0.3333333333333333,
+              "dark_before": 0
+            },
+            {
+              "block": "Greswell",
+              "lit": 5.333333333333333,
+              "dark": 1,
+              "lit_before": 0.3333333333333333,
+              "dark_before": 0
+            },
+            {
+              "block": "LTWS",
+              "lit": 29.333333333333332,
+              "dark": 1,
+              "lit_before": 0.6666666666666666,
+              "dark_before": 1
+            }
+          ],
+          "lit_mean": 14.75,
+          "dark_mean": 0.5833333333333333,
+          "y": 3.230239583518516,
+          "rr": 25.285714285714285,
+          "v": 0.21777393008976706,
+          "ci": [
+            5.726537624922776,
+            111.64989891206687
+          ],
+          "scores": [
+            0.7909604519774011,
+            0.2873284907183211,
+            -1.3527037933817596,
+            0.2744148506860369
+          ],
+          "leave_block_out": [
+            {
+              "block": "100 Acres",
+              "rr": 20.28571428571429
+            },
+            {
+              "block": "Currawong",
+              "rr": 23.166666666666664
+            },
+            {
+              "block": "Greswell",
+              "rr": 40.25
+            },
+            {
+              "block": "LTWS",
+              "rr": 22.249999999999996
+            }
+          ]
+        },
+        "baci": {
+          "rr": 20.228571428571428,
+          "y": 3.007096032204306,
+          "v": 0.7235527840042142,
+          "ci": [
+            1.3499216447039402,
+            303.12507666366054
+          ],
+          "baseline_rr": 1.25
+        }
+      }
+    },
+    "n_reserves": 4,
+    "n_plots": 16,
+    "summary_source": "previously author-workbook verified, not freshly re-read xlsx",
+    "limitations": "3 post nights, 3 baseline nights; baseline-adjusted result separate; shared dark controls, sparse control and site dependence"
+  },
+  "swiss": {
+    "cases": {
+      "all_observed_weeks": {
+        "n_blocks": 3,
+        "blocks": [
+          {
+            "block": "Birmensdorf",
+            "lit": 331.0833333333333,
+            "dark": 6.166666666666666,
+            "n_lit_plots": 12,
+            "n_dark_plots": 2,
+            "complete_all_plots_weeks": [],
+            "weekRows": [
+              {
+                "week": "1",
+                "n_lit": 11,
+                "n_dark": 2,
+                "lit": 580.5454545454545,
+                "dark": 11.5
+              },
+              {
+                "week": "2",
+                "n_lit": 11,
+                "n_dark": 2,
+                "lit": 248.45454545454547,
+                "dark": 4
+              },
+              {
+                "week": "3",
+                "n_lit": 10,
+                "n_dark": 1,
+                "lit": 123.7,
+                "dark": 1
+              },
+              {
+                "week": "4",
+                "n_lit": 0,
+                "n_dark": 0,
+                "lit": null,
+                "dark": null
+              }
+            ]
+          },
+          {
+            "block": "Lageren",
+            "lit": 385.6875,
+            "dark": 8.25,
+            "n_lit_plots": 12,
+            "n_dark_plots": 2,
+            "complete_all_plots_weeks": [
+              "2",
+              "4"
+            ],
+            "weekRows": [
+              {
+                "week": "1",
+                "n_lit": 12,
+                "n_dark": 1,
+                "lit": 714.1666666666666,
+                "dark": 14
+              },
+              {
+                "week": "2",
+                "n_lit": 12,
+                "n_dark": 2,
+                "lit": 344.5,
+                "dark": 6.5
+              },
+              {
+                "week": "3",
+                "n_lit": 12,
+                "n_dark": 1,
+                "lit": 164.25,
+                "dark": 5
+              },
+              {
+                "week": "4",
+                "n_lit": 12,
+                "n_dark": 2,
+                "lit": 319.8333333333333,
+                "dark": 8
+              }
+            ]
+          },
+          {
+            "block": "Alpthal",
+            "lit": 566.6666666666666,
+            "dark": 6.708333333333334,
+            "n_lit_plots": 12,
+            "n_dark_plots": 2,
+            "complete_all_plots_weeks": [],
+            "weekRows": [
+              {
+                "week": "1",
+                "n_lit": 12,
+                "n_dark": 1,
+                "lit": 1207.8333333333333,
+                "dark": 5
+              },
+              {
+                "week": "2",
+                "n_lit": 11,
+                "n_dark": 2,
+                "lit": 492.3636363636364,
+                "dark": 10
+              },
+              {
+                "week": "3",
+                "n_lit": 11,
+                "n_dark": 2,
+                "lit": 337.6363636363636,
+                "dark": 4.5
+              },
+              {
+                "week": "4",
+                "n_lit": 11,
+                "n_dark": 2,
+                "lit": 256.8181818181818,
+                "dark": 6.5
+              }
+            ]
+          }
+        ],
+        "lit_mean": 427.8125,
+        "dark_mean": 7.041666666666667,
+        "y": 4.10684013090764,
+        "rr": 60.754437869822496,
+        "v": 0.03693657579275559,
+        "ci": [
+          26.57359377791587,
+          138.90111182273102
+        ],
+        "scores": [
+          -0.101841422423543,
+          -0.27006366673726345,
+          0.37190508916080633
+        ],
+        "leave_block_out": [
+          {
+            "block": "Birmensdorf",
+            "rr": 63.66713091922005
+          },
+          {
+            "block": "Lageren",
+            "rr": 69.72815533980582
+          },
+          {
+            "block": "Alpthal",
+            "rr": 49.71820809248555
+          }
+        ]
+      },
+      "paired_arm_weeks": {
+        "n_blocks": 3,
+        "blocks": [
+          {
+            "block": "Birmensdorf",
+            "lit": 317.56666666666666,
+            "dark": 5.5,
+            "n_lit_plots": 12,
+            "n_dark_plots": 2,
+            "complete_all_plots_weeks": [],
+            "weekRows": [
+              {
+                "week": "1",
+                "n_lit": 11,
+                "n_dark": 2,
+                "lit": 580.5454545454545,
+                "dark": 11.5
+              },
+              {
+                "week": "2",
+                "n_lit": 11,
+                "n_dark": 2,
+                "lit": 248.45454545454547,
+                "dark": 4
+              },
+              {
+                "week": "3",
+                "n_lit": 10,
+                "n_dark": 1,
+                "lit": 123.7,
+                "dark": 1
+              },
+              {
+                "week": "4",
+                "n_lit": 0,
+                "n_dark": 0,
+                "lit": null,
+                "dark": null
+              }
+            ]
+          },
+          {
+            "block": "Lageren",
+            "lit": 385.68749999999994,
+            "dark": 8.375,
+            "n_lit_plots": 12,
+            "n_dark_plots": 2,
+            "complete_all_plots_weeks": [
+              "2",
+              "4"
+            ],
+            "weekRows": [
+              {
+                "week": "1",
+                "n_lit": 12,
+                "n_dark": 1,
+                "lit": 714.1666666666666,
+                "dark": 14
+              },
+              {
+                "week": "2",
+                "n_lit": 12,
+                "n_dark": 2,
+                "lit": 344.5,
+                "dark": 6.5
+              },
+              {
+                "week": "3",
+                "n_lit": 12,
+                "n_dark": 1,
+                "lit": 164.25,
+                "dark": 5
+              },
+              {
+                "week": "4",
+                "n_lit": 12,
+                "n_dark": 2,
+                "lit": 319.8333333333333,
+                "dark": 8
+              }
+            ]
+          },
+          {
+            "block": "Alpthal",
+            "lit": 573.6628787878788,
+            "dark": 6.5,
+            "n_lit_plots": 12,
+            "n_dark_plots": 2,
+            "complete_all_plots_weeks": [],
+            "weekRows": [
+              {
+                "week": "1",
+                "n_lit": 12,
+                "n_dark": 1,
+                "lit": 1207.8333333333333,
+                "dark": 5
+              },
+              {
+                "week": "2",
+                "n_lit": 11,
+                "n_dark": 2,
+                "lit": 492.3636363636364,
+                "dark": 10
+              },
+              {
+                "week": "3",
+                "n_lit": 11,
+                "n_dark": 2,
+                "lit": 337.6363636363636,
+                "dark": 4.5
+              },
+              {
+                "week": "4",
+                "n_lit": 11,
+                "n_dark": 2,
+                "lit": 256.8181818181818,
+                "dark": 6.5
+              }
+            ]
+          }
+        ],
+        "lit_mean": 425.63901515151514,
+        "dark_mean": 6.791666666666667,
+        "y": 4.137895234305804,
+        "rr": 62.67077523703289,
+        "v": 0.043940117386283166,
+        "ci": [
+          25.43121995993236,
+          154.44111902609419
+        ],
+        "scores": [
+          -0.06372206534534774,
+          -0.3269912711376012,
+          0.3907133364829488
+        ],
+        "leave_block_out": [
+          {
+            "block": "Birmensdorf",
+            "rr": 64.49414311179017
+          },
+          {
+            "block": "Lageren",
+            "rr": 74.26912878787878
+          },
+          {
+            "block": "Alpthal",
+            "rr": 50.68498498498498
+          }
+        ]
+      },
+      "white_3000_4000": {
+        "n_blocks": 3,
+        "blocks": [
+          {
+            "block": "Birmensdorf",
+            "lit": 340.2083333333333,
+            "dark": 6.166666666666666,
+            "n_lit_plots": 8,
+            "n_dark_plots": 2,
+            "complete_all_plots_weeks": [],
+            "weekRows": [
+              {
+                "week": "1",
+                "n_lit": 7,
+                "n_dark": 2,
+                "lit": 573.8571428571429,
+                "dark": 11.5
+              },
+              {
+                "week": "2",
+                "n_lit": 7,
+                "n_dark": 2,
+                "lit": 248.14285714285714,
+                "dark": 4
+              },
+              {
+                "week": "3",
+                "n_lit": 6,
+                "n_dark": 1,
+                "lit": 141.33333333333334,
+                "dark": 1
+              },
+              {
+                "week": "4",
+                "n_lit": 0,
+                "n_dark": 0,
+                "lit": null,
+                "dark": null
+              }
+            ]
+          },
+          {
+            "block": "Lageren",
+            "lit": 387.625,
+            "dark": 8.25,
+            "n_lit_plots": 8,
+            "n_dark_plots": 2,
+            "complete_all_plots_weeks": [
+              "2",
+              "4"
+            ],
+            "weekRows": [
+              {
+                "week": "1",
+                "n_lit": 8,
+                "n_dark": 1,
+                "lit": 695.75,
+                "dark": 14
+              },
+              {
+                "week": "2",
+                "n_lit": 8,
+                "n_dark": 2,
+                "lit": 366.375,
+                "dark": 6.5
+              },
+              {
+                "week": "3",
+                "n_lit": 8,
+                "n_dark": 1,
+                "lit": 158,
+                "dark": 5
+              },
+              {
+                "week": "4",
+                "n_lit": 8,
+                "n_dark": 2,
+                "lit": 330.375,
+                "dark": 8
+              }
+            ]
+          },
+          {
+            "block": "Alpthal",
+            "lit": 499.89583333333337,
+            "dark": 6.708333333333334,
+            "n_lit_plots": 8,
+            "n_dark_plots": 2,
+            "complete_all_plots_weeks": [
+              "2"
+            ],
+            "weekRows": [
+              {
+                "week": "1",
+                "n_lit": 8,
+                "n_dark": 1,
+                "lit": 1007.25,
+                "dark": 5
+              },
+              {
+                "week": "2",
+                "n_lit": 8,
+                "n_dark": 2,
+                "lit": 459.125,
+                "dark": 10
+              },
+              {
+                "week": "3",
+                "n_lit": 7,
+                "n_dark": 2,
+                "lit": 311.85714285714283,
+                "dark": 4.5
+              },
+              {
+                "week": "4",
+                "n_lit": 7,
+                "n_dark": 2,
+                "lit": 233.28571428571428,
+                "dark": 6.5
+              }
+            ]
+          }
+        ],
+        "lit_mean": 409.2430555555555,
+        "dark_mean": 7.041666666666667,
+        "y": 4.062464362822447,
+        "rr": 58.117357001972394,
+        "v": 0.020769967864568393,
+        "ci": [
+          31.26111851645341,
+          108.04562808963438
+        ],
+        "scores": [
+          -0.04442845052267008,
+          -0.2244221227934904,
+          0.26885057331616113
+        ],
+        "leave_block_out": [
+          {
+            "block": "Birmensdorf",
+            "rr": 59.33286908077994
+          },
+          {
+            "block": "Lageren",
+            "rr": 65.25080906148868
+          },
+          {
+            "block": "Alpthal",
+            "rr": 50.48554913294797
+          }
+        ]
+      },
+      "white_paired_weeks": {
+        "n_blocks": 3,
+        "blocks": [
+          {
+            "block": "Birmensdorf",
+            "lit": 321.11111111111114,
+            "dark": 5.5,
+            "n_lit_plots": 8,
+            "n_dark_plots": 2,
+            "complete_all_plots_weeks": [],
+            "weekRows": [
+              {
+                "week": "1",
+                "n_lit": 7,
+                "n_dark": 2,
+                "lit": 573.8571428571429,
+                "dark": 11.5
+              },
+              {
+                "week": "2",
+                "n_lit": 7,
+                "n_dark": 2,
+                "lit": 248.14285714285714,
+                "dark": 4
+              },
+              {
+                "week": "3",
+                "n_lit": 6,
+                "n_dark": 1,
+                "lit": 141.33333333333334,
+                "dark": 1
+              },
+              {
+                "week": "4",
+                "n_lit": 0,
+                "n_dark": 0,
+                "lit": null,
+                "dark": null
+              }
+            ]
+          },
+          {
+            "block": "Lageren",
+            "lit": 387.625,
+            "dark": 8.375,
+            "n_lit_plots": 8,
+            "n_dark_plots": 2,
+            "complete_all_plots_weeks": [
+              "2",
+              "4"
+            ],
+            "weekRows": [
+              {
+                "week": "1",
+                "n_lit": 8,
+                "n_dark": 1,
+                "lit": 695.75,
+                "dark": 14
+              },
+              {
+                "week": "2",
+                "n_lit": 8,
+                "n_dark": 2,
+                "lit": 366.375,
+                "dark": 6.5
+              },
+              {
+                "week": "3",
+                "n_lit": 8,
+                "n_dark": 1,
+                "lit": 158,
+                "dark": 5
+              },
+              {
+                "week": "4",
+                "n_lit": 8,
+                "n_dark": 2,
+                "lit": 330.375,
+                "dark": 8
+              }
+            ]
+          },
+          {
+            "block": "Alpthal",
+            "lit": 502.8794642857143,
+            "dark": 6.5,
+            "n_lit_plots": 8,
+            "n_dark_plots": 2,
+            "complete_all_plots_weeks": [
+              "2"
+            ],
+            "weekRows": [
+              {
+                "week": "1",
+                "n_lit": 8,
+                "n_dark": 1,
+                "lit": 1007.25,
+                "dark": 5
+              },
+              {
+                "week": "2",
+                "n_lit": 8,
+                "n_dark": 2,
+                "lit": 459.125,
+                "dark": 10
+              },
+              {
+                "week": "3",
+                "n_lit": 7,
+                "n_dark": 2,
+                "lit": 311.85714285714283,
+                "dark": 4.5
+              },
+              {
+                "week": "4",
+                "n_lit": 7,
+                "n_dark": 2,
+                "lit": 233.28571428571428,
+                "dark": 6.5
+              }
+            ]
+          }
+        ],
+        "lit_mean": 403.87185846560845,
+        "dark_mean": 6.791666666666667,
+        "y": 4.085401275173658,
+        "rr": 59.46579511150064,
+        "v": 0.026322879200290316,
+        "ci": [
+          29.586696551229785,
+          119.51928401739707
+        ],
+        "scores": [
+          -0.014734282365576279,
+          -0.27335659007848134,
+          0.28809087244405795
+        ],
+        "leave_block_out": [
+          {
+            "block": "Birmensdorf",
+            "rr": 59.86584633853541
+          },
+          {
+            "block": "Lageren",
+            "rr": 68.66588128306879
+          },
+          {
+            "block": "Alpthal",
+            "rr": 51.08008008008008
+          }
+        ]
+      },
+      "all_exclude_Nematocera": {
+        "n_blocks": 3,
+        "blocks": [
+          {
+            "block": "Birmensdorf",
+            "lit": 80.81944444444444,
+            "dark": 4.083333333333334,
+            "n_lit_plots": 12,
+            "n_dark_plots": 2,
+            "complete_all_plots_weeks": [],
+            "weekRows": [
+              {
+                "week": "1",
+                "n_lit": 11,
+                "n_dark": 2,
+                "lit": 135,
+                "dark": 9.5
+              },
+              {
+                "week": "2",
+                "n_lit": 11,
+                "n_dark": 2,
+                "lit": 63.54545454545455,
+                "dark": 1.5
+              },
+              {
+                "week": "3",
+                "n_lit": 10,
+                "n_dark": 1,
+                "lit": 28.8,
+                "dark": 0
+              },
+              {
+                "week": "4",
+                "n_lit": 0,
+                "n_dark": 0,
+                "lit": null,
+                "dark": null
+              }
+            ]
+          },
+          {
+            "block": "Lageren",
+            "lit": 152.16666666666666,
+            "dark": 4.375,
+            "n_lit_plots": 12,
+            "n_dark_plots": 2,
+            "complete_all_plots_weeks": [
+              "2",
+              "4"
+            ],
+            "weekRows": [
+              {
+                "week": "1",
+                "n_lit": 12,
+                "n_dark": 1,
+                "lit": 304.1666666666667,
+                "dark": 6
+              },
+              {
+                "week": "2",
+                "n_lit": 12,
+                "n_dark": 2,
+                "lit": 142.91666666666666,
+                "dark": 4
+              },
+              {
+                "week": "3",
+                "n_lit": 12,
+                "n_dark": 1,
+                "lit": 43.333333333333336,
+                "dark": 3
+              },
+              {
+                "week": "4",
+                "n_lit": 12,
+                "n_dark": 2,
+                "lit": 118.25,
+                "dark": 4
+              }
+            ]
+          },
+          {
+            "block": "Alpthal",
+            "lit": 77.7638888888889,
+            "dark": 1.75,
+            "n_lit_plots": 12,
+            "n_dark_plots": 2,
+            "complete_all_plots_weeks": [],
+            "weekRows": [
+              {
+                "week": "1",
+                "n_lit": 12,
+                "n_dark": 1,
+                "lit": 136.16666666666666,
+                "dark": 1
+              },
+              {
+                "week": "2",
+                "n_lit": 11,
+                "n_dark": 2,
+                "lit": 80.81818181818181,
+                "dark": 1.5
+              },
+              {
+                "week": "3",
+                "n_lit": 11,
+                "n_dark": 2,
+                "lit": 42.18181818181818,
+                "dark": 2
+              },
+              {
+                "week": "4",
+                "n_lit": 11,
+                "n_dark": 2,
+                "lit": 53.54545454545455,
+                "dark": 2
+              }
+            ]
+          }
+        ],
+        "lit_mean": 103.58333333333333,
+        "dark_mean": 3.402777777777778,
+        "y": 3.415784350194039,
+        "rr": 30.44081632653061,
+        "v": 0.044285773480474945,
+        "ci": [
+          12.308943808815956,
+          75.28211299184652
+        ],
+        "scores": [
+          -0.4197640117994099,
+          0.18331226295828085,
+          0.23645174884112952
+        ],
+        "leave_block_out": [
+          {
+            "block": "Birmensdorf",
+            "rr": 37.53968253968254
+          },
+          {
+            "block": "Lageren",
+            "rr": 27.185714285714283
+          },
+          {
+            "block": "Alpthal",
+            "rr": 27.54515599343185
+          }
+        ]
+      }
+    },
+    "n_raw_rows": 517,
+    "n_eligible_2021_rows": 143,
+    "n_plot_rechecks": 42,
+    "n_forests": 3,
+    "n_plots": 42,
+    "limitations": "2021 only due other-year source conflicts; 12 lit/2 dark plots per forest, unequal spectra and intensity, weekly exposure; independent forest block variance; source sums selected taxon fields, not all arthropods; paired week variant changes plot mix"
+  },
+  "pooled": {
+    "all_menu": {
+      "k": 2,
+      "rr": 33.33445621080766,
+      "tau2": 0.7446097160857648,
+      "ci": [
+        0.008736941469365416,
+        127182.48997849383
+      ],
+      "weight_robert": 0.46100700997118665,
+      "method": "REML + modified Knapp-Hartung, df1"
+    },
+    "paired_weeks": {
+      "k": 2,
+      "rr": 33.72736787622292,
+      "tau2": 0.7820250731684412,
+      "ci": [
+        0.007227080453384872,
+        157399.0148850906
+      ],
+      "weight_robert": 0.46477303048626095,
+      "method": "REML + modified Knapp-Hartung, df1"
+    },
+    "white_menu": {
+      "k": 2,
+      "rr": 37.89345703537929,
+      "tau2": 0.41168986725168377,
+      "ci": [
+        0.0663683556661852,
+        21635.52300910383
+      ],
+      "weight_robert": 0.42296467085682404,
+      "method": "REML + modified Knapp-Hartung, df1"
+    },
+    "white_paired": {
+      "k": 2,
+      "rr": 38.16177088857164,
+      "tau2": 0.43236940218639347,
+      "ci": [
+        0.05719905297078903,
+        25460.57463740811
+      ],
+      "weight_robert": 0.4289405155566819,
+      "method": "REML + modified Knapp-Hartung, df1"
+    }
+  },
+  "formal_new_k": 0,
+  "source_blobs": [
+    "7ca95f9b5b765fe36d9a6b47744472918d415450",
+    "613d214414025c5eca39830e7a39fbafd1bfc4a4",
+    "19871cb85156fa91f4fb0fbe205046b89df2b13a"
+  ],
+  "source_paths": [
+    "database/alan_experiments/arthropod_expansion_20261122/data_sources/robert2025/site_capture_summaries.csv",
+    "database/alan_experiments/arthropod_expansion_20261122/data_sources/swiss_envidat/566/alanex_pt_all_clean_control.csv",
+    "database/alan_experiments/arthropod_expansion_20261122/data_sources/swiss_envidat/plot_summaries.csv"
+  ]
+}
