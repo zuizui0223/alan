@@ -1,0 +1,388 @@
+{
+  "archive_sha256": "f6a65bb262d647cc579ae2d09c7ebcd7b796144bfb9713644d8b4c9123da21c8",
+  "workbook_sha256": "8fae8a0244047ab057808ea321962bf848cff42b6fd521f34b37a360efa154d6",
+  "readme_sha256": "f4f4e7005be4bcdb84baae13dc652d9ecd27b8cd5f8556a1251207d9b7d1411b",
+  "rows": 4905,
+  "study_labels": 314,
+  "unique_effect_labels": 4900,
+  "field_rows": 1676,
+  "field_study_labels": 128,
+  "lab_rows": 3229,
+  "lab_study_labels": 191,
+  "field_vascular_rows": 282,
+  "field_vascular_study_labels": 15,
+  "field_interaction_coded_rows": 84,
+  "field_interaction_coded_study_labels": 22,
+  "focus_rows": 365,
+  "focus_study_labels": 34,
+  "field_numeric_gate_rows": 1486,
+  "field_numeric_gate_study_labels": 125,
+  "nonnegative_support_sd_inconsistent_if_raw_rows": 79,
+  "nonnegative_support_sd_inconsistent_if_raw_study_labels": 32,
+  "bounded_proportion_cases": {
+    "Boom2020": {
+      "n": 9,
+      "fail": 9
+    },
+    "Macgregor2019": {
+      "n": 2,
+      "fail": 2
+    },
+    "Giavi2020": {
+      "n": 3,
+      "fail": 3
+    }
+  },
+  "liu": {
+    "source_study": "188",
+    "source_doi": "10.1111/1365-2664.14336",
+    "candidate_primary_doi": "10.1111/gcb.16126",
+    "arms": [
+      {
+        "effect_id": "188.1",
+        "excel_row": 2752,
+        "n_per_arm": 5,
+        "dark_mean": 7.07,
+        "dark_SE": 0.85,
+        "lit_mean": 7.62,
+        "lit_SE": 0.83,
+        "y": 0.07491588979007344,
+        "v": 0.026318777836010047
+      },
+      {
+        "effect_id": "188.2",
+        "excel_row": 2753,
+        "n_per_arm": 5,
+        "dark_mean": 5.25,
+        "dark_SE": 0.44,
+        "lit_mean": 5.5,
+        "lit_SE": 0.4,
+        "y": 0.04652001563489291,
+        "v": 0.012313292479526247
+      },
+      {
+        "effect_id": "188.3",
+        "excel_row": 2754,
+        "n_per_arm": 5,
+        "dark_mean": 8.5,
+        "dark_SE": 1.36,
+        "lit_mean": 9.01,
+        "lit_SE": 1.36,
+        "y": 0.058268908123975824,
+        "v": 0.048383908864364555
+      },
+      {
+        "effect_id": "188.4",
+        "excel_row": 2755,
+        "n_per_arm": 5,
+        "dark_mean": 6.03,
+        "dark_SE": 0.47,
+        "lit_mean": 5.37,
+        "lit_SE": 0.47,
+        "y": -0.11591910221832082,
+        "v": 0.013735531257976247
+      },
+      {
+        "effect_id": "188.5",
+        "excel_row": 2756,
+        "n_per_arm": 5,
+        "dark_mean": 6.88,
+        "dark_SE": 0.89,
+        "lit_mean": 7.5,
+        "lit_SE": 0.91,
+        "y": 0.08628436859701241,
+        "v": 0.03145590771287783
+      },
+      {
+        "effect_id": "188.6",
+        "excel_row": 2757,
+        "n_per_arm": 5,
+        "dark_mean": 5.59,
+        "dark_SE": 0.46,
+        "lit_mean": 5.65,
+        "lit_SE": 0.49,
+        "y": 0.010676257991341854,
+        "v": 0.014292952461114148
+      },
+      {
+        "effect_id": "188.7",
+        "excel_row": 2758,
+        "n_per_arm": 5,
+        "dark_mean": 8.77,
+        "dark_SE": 1.4,
+        "lit_mean": 9.24,
+        "lit_SE": 1.36,
+        "y": 0.052205079269501214,
+        "v": 0.04714713337354502
+      },
+      {
+        "effect_id": "188.8",
+        "excel_row": 2759,
+        "n_per_arm": 5,
+        "dark_mean": 6.05,
+        "dark_SE": 0.49,
+        "lit_mean": 5.8,
+        "lit_SE": 0.49,
+        "y": -0.042200354490376416,
+        "v": 0.013696997729487851
+      }
+    ],
+    "contrasts": [
+      {
+        "group": "common_alien",
+        "y": 0.011368478806938975,
+        "v": 0.05777468554888788,
+        "RR": 1.0114333455411098,
+        "CI": [
+          0.51892910298716,
+          1.9713625745476722
+        ]
+      },
+      {
+        "group": "rare_alien",
+        "y": -0.03584375764355105,
+        "v": 0.026606244940640393,
+        "RR": 0.9647910229305579,
+        "CI": [
+          0.6134101975590083,
+          1.5174539347918974
+        ]
+      },
+      {
+        "group": "common_native",
+        "y": -0.006063828854474609,
+        "v": 0.09553104223790958,
+        "RR": 0.993954519050795,
+        "CI": [
+          0.4213842481352879,
+          2.344524244352654
+        ]
+      },
+      {
+        "group": "rare_native",
+        "y": 0.0737187477279444,
+        "v": 0.027432528987464098,
+        "RR": 1.0765039937208551,
+        "CI": [
+          0.679677118871221,
+          1.7050167150271855
+        ]
+      }
+    ],
+    "mean_log_rrr": 0.01079491000921443,
+    "RR": 1.0108533852725858,
+    "variance_upper_bound": 0.04820072128530638,
+    "conservative_approx_t4_CI": [
+      0.5494902509384104,
+      1.859586343473777
+    ],
+    "status": "summary_derived_candidate_not_final"
+  },
+  "focus": [
+    {
+      "study": "010",
+      "focus": 4,
+      "direct": 0,
+      "plant": 4
+    },
+    {
+      "study": "011",
+      "focus": 117,
+      "direct": 0,
+      "plant": 117
+    },
+    {
+      "study": "021",
+      "focus": 12,
+      "direct": 9,
+      "plant": 0
+    },
+    {
+      "study": "024",
+      "focus": 5,
+      "direct": 5,
+      "plant": 0
+    },
+    {
+      "study": "049",
+      "focus": 3,
+      "direct": 3,
+      "plant": 0
+    },
+    {
+      "study": "063",
+      "focus": 2,
+      "direct": 2,
+      "plant": 0
+    },
+    {
+      "study": "065",
+      "focus": 6,
+      "direct": 2,
+      "plant": 6
+    },
+    {
+      "study": "068",
+      "focus": 1,
+      "direct": 0,
+      "plant": 0
+    },
+    {
+      "study": "081",
+      "focus": 4,
+      "direct": 4,
+      "plant": 0
+    },
+    {
+      "study": "084",
+      "focus": 2,
+      "direct": 2,
+      "plant": 0
+    },
+    {
+      "study": "089",
+      "focus": 1,
+      "direct": 1,
+      "plant": 0
+    },
+    {
+      "study": "092",
+      "focus": 2,
+      "direct": 2,
+      "plant": 0
+    },
+    {
+      "study": "120",
+      "focus": 12,
+      "direct": 12,
+      "plant": 0
+    },
+    {
+      "study": "128",
+      "focus": 6,
+      "direct": 0,
+      "plant": 6
+    },
+    {
+      "study": "130",
+      "focus": 4,
+      "direct": 0,
+      "plant": 4
+    },
+    {
+      "study": "136",
+      "focus": 2,
+      "direct": 2,
+      "plant": 0
+    },
+    {
+      "study": "137",
+      "focus": 5,
+      "direct": 2,
+      "plant": 3
+    },
+    {
+      "study": "138",
+      "focus": 2,
+      "direct": 0,
+      "plant": 0
+    },
+    {
+      "study": "140",
+      "focus": 1,
+      "direct": 1,
+      "plant": 0
+    },
+    {
+      "study": "151",
+      "focus": 12,
+      "direct": 6,
+      "plant": 6
+    },
+    {
+      "study": "175",
+      "focus": 6,
+      "direct": 6,
+      "plant": 0
+    },
+    {
+      "study": "186",
+      "focus": 1,
+      "direct": 0,
+      "plant": 1
+    },
+    {
+      "study": "187",
+      "focus": 12,
+      "direct": 0,
+      "plant": 12
+    },
+    {
+      "study": "188",
+      "focus": 8,
+      "direct": 0,
+      "plant": 8
+    },
+    {
+      "study": "191",
+      "focus": 88,
+      "direct": 0,
+      "plant": 88
+    },
+    {
+      "study": "192",
+      "focus": 14,
+      "direct": 0,
+      "plant": 14
+    },
+    {
+      "study": "228",
+      "focus": 6,
+      "direct": 0,
+      "plant": 6
+    },
+    {
+      "study": "231",
+      "focus": 3,
+      "direct": 1,
+      "plant": 3
+    },
+    {
+      "study": "242",
+      "focus": 1,
+      "direct": 1,
+      "plant": 0
+    },
+    {
+      "study": "253",
+      "focus": 9,
+      "direct": 9,
+      "plant": 0
+    },
+    {
+      "study": "254",
+      "focus": 6,
+      "direct": 6,
+      "plant": 4
+    },
+    {
+      "study": "257",
+      "focus": 2,
+      "direct": 2,
+      "plant": 0
+    },
+    {
+      "study": "280",
+      "focus": 2,
+      "direct": 2,
+      "plant": 0
+    },
+    {
+      "study": "293",
+      "focus": 4,
+      "direct": 4,
+      "plant": 0
+    }
+  ],
+  "admitted_new_independent_programmes": 0
+}
