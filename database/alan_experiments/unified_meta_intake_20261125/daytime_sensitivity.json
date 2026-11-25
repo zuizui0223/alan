@@ -1,0 +1,58 @@
+{
+  "status": "arithmetic_sensitivity_only_Lu_original_no_pool_gate_preserved",
+  "reason": "different plant selections and effort; Lu guild-sum inconsistency remains source hold; no new adopted meta-analysis",
+  "source_blobs": {
+    "giavi_effects": "2089e1a59ef4802b94d10d9fe813e053f221093c",
+    "lu_effects": "747c00e0ce26ddd78350d33c6da83fef25ba70ae",
+    "giavi_cov": "62c02ecf2672a18309336947a641da99904f76db",
+    "lu_cov": "2ee8bfeb0e58fa7b32e2cda1064f0559c4497f33"
+  },
+  "total": {
+    "programmes": [
+      {
+        "programme": "Giavi2016_meadows",
+        "n": 6,
+        "y": 0.0505567876376368,
+        "v": 0.00842785447925411
+      },
+      {
+        "programme": "Lu2024_Gannan",
+        "n": 5,
+        "y": -0.0035174148118784394,
+        "v": 0.005760317793353403
+      }
+    ],
+    "sensitivity": {
+      "k": 2,
+      "tau2": 0,
+      "rr": 1.018607405705042,
+      "ci": [
+        0.48441532215724886,
+        2.14188321363697
+      ]
+    }
+  },
+  "diptera_relative_hymenoptera": {
+    "programmes": [
+      {
+        "programme": "Giavi2016_meadows",
+        "y": -0.06533566301015577,
+        "v": 0.3456447718634381
+      },
+      {
+        "programme": "Lu2024_Gannan",
+        "y": 0.6036313763361769,
+        "v": 0.0015620129315126064
+      }
+    ],
+    "sensitivity": {
+      "k": 2,
+      "tau2": 0.050155057468423574,
+      "rr": 1.6926960090618997,
+      "ci": [
+        0.11178761105097954,
+        25.63092414406665
+      ]
+    }
+  }
+}

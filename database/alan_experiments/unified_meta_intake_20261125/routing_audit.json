@@ -1,0 +1,138 @@
+{
+  "baseline": 553,
+  "expansion_records": 341,
+  "expansion_unmatched": 143,
+  "citation_reports": 49,
+  "union_report_keys": 732,
+  "by_source_pattern": {
+    "B": 357,
+    "BC": 2,
+    "BE": 187,
+    "BEC": 7,
+    "C": 31,
+    "E": 133,
+    "EC": 9,
+    "other_registry": 6
+  },
+  "extra_registry_keys": [
+    {
+      "kind": "physical",
+      "key": "doi:10.1002/eap.1821"
+    },
+    {
+      "kind": "physical",
+      "key": "doi:10.3389/fenvs.2017.00061"
+    },
+    {
+      "kind": "physical",
+      "key": "doi:10.1007/s00027-025-01161-7"
+    },
+    {
+      "kind": "physical",
+      "key": "doi:10.1016/j.gecco.2025.e03577"
+    },
+    {
+      "kind": "repro",
+      "key": "doi:10.13140/rg.2.2.36822.10563"
+    },
+    {
+      "kind": "repro",
+      "key": "doi:10.1111/ele.70036"
+    }
+  ],
+  "priority": {
+    "A_reproductive_source_gate": 12,
+    "B_numeric_harmonization": 8,
+    "C_design_or_extraction_review": 49,
+    "D_other_pending_design": 49,
+    "E_preserve_screening_history": 614
+  },
+  "laneCounts": [
+    {
+      "lane": "pollination",
+      "report_hints": 23,
+      "baseline_read": 8,
+      "prior_pending": 0,
+      "expansion_fulltext": 0,
+      "has_catalogue": 2,
+      "has_reported": 1
+    },
+    {
+      "lane": "predation_parasitism",
+      "report_hints": 71,
+      "baseline_read": 31,
+      "prior_pending": 7,
+      "expansion_fulltext": 4,
+      "has_catalogue": 5,
+      "has_reported": 3
+    },
+    {
+      "lane": "herbivory",
+      "report_hints": 14,
+      "baseline_read": 12,
+      "prior_pending": 0,
+      "expansion_fulltext": 1,
+      "has_catalogue": 2,
+      "has_reported": 1
+    },
+    {
+      "lane": "plant_reproduction",
+      "report_hints": 9,
+      "baseline_read": 8,
+      "prior_pending": 0,
+      "expansion_fulltext": 0,
+      "has_catalogue": 0,
+      "has_reported": 2
+    },
+    {
+      "lane": "aquatic_hydrology",
+      "report_hints": 36,
+      "baseline_read": 7,
+      "prior_pending": 2,
+      "expansion_fulltext": 3,
+      "has_catalogue": 2,
+      "has_reported": 0
+    },
+    {
+      "lane": "plant_performance",
+      "report_hints": 14,
+      "baseline_read": 11,
+      "prior_pending": 0,
+      "expansion_fulltext": 1,
+      "has_catalogue": 2,
+      "has_reported": 2
+    },
+    {
+      "lane": "movement_capture",
+      "report_hints": 53,
+      "baseline_read": 14,
+      "prior_pending": 2,
+      "expansion_fulltext": 9,
+      "has_catalogue": 3,
+      "has_reported": 1
+    }
+  ],
+  "canonical_rows": 108,
+  "canonical_programme_labels": 10,
+  "reported_observations": 114,
+  "registered_studies": 46,
+  "reproduction_gate_reports": 12,
+  "final_prisma": false,
+  "final_meta_adoption": false,
+  "source_blobs": {
+    "database/alan_experiments/search/unified_review_inventory.csv": "389c136e52f2f507679d392353124e0c1fa5aff8",
+    "database/alan_experiments/search/combined_search_records.csv": "d6afaaf3fc9ce043a3cd4566a6a1e2f852ae45cd",
+    "database/alan_experiments/search/fulltext_design_reviews.csv": "cf324611880902677ad003bfee0b602dae15b52d",
+    "database/alan_experiments/search/fulltext_decisions_incremental.csv": "9a98ea512fadaa162ed9a91d7a9877aa0389133d",
+    "database/alan_experiments/arthropod_expansion_20261122/records.csv": "f1703fdbbc8f3c36644a5e343acac212935919f8",
+    "database/alan_experiments/arthropod_expansion_20261122/screened_unmatched_records.csv": "b4e1c3a970c39155bf4b933c851c86729dad4128",
+    "database/alan_experiments/arthropod_expansion_20261122/primary_design_gates_20261122.csv": "3adb50bf506dd5466a6bd49691aed0e1d7a89001",
+    "database/alan_experiments/arthropod_expansion_20261122/citation_ledger.csv": "60636a0b4c16283e0e6e0ae7caf546e15e508f43",
+    "database/alan_experiments/arthropod_expansion_20261122/citation_summary.json": "f30013b73e24ac449731c43908adf3e20040d048",
+    "database/alan_experiments/studies.csv": "3b9c2b2a11d62c661645f07023afb86a1968d76a",
+    "database/alan_experiments/effect_catalogue.csv": "882a1a81187be60d78ecc934572337b1060936db",
+    "database/alan_experiments/reported_observations.csv": "6225cf0800b7cd8ebf6beba254867ca16fcb61cc",
+    "database/alan_experiments/arthropod_expansion_20261122/cross_programme/physical_programme_ledger.csv": "7df98593be35242e3bad87ce11cf653c4eb43f22",
+    "database/alan_experiments/reproductive_meta_admission_candidates_20261124.csv": "c5453c1e4680e45ccce4dff97624bd4972cdfd62"
+  }
+}

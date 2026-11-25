@@ -1,0 +1,11 @@
+programme,rows,study_ids,endpoints,catalogue_status
+"Parkinson2016","6","Parkinson2020","aquatic_origin_capture;spider_abundance;terrestrial_origin_capture;web_prey_count","not_final_adjudicated"
+"Penryn2012_2016","10","Anic2022;Bennie2015","aphid_count_3min;community_total_dry_biomass_g","not_final_adjudicated"
+"KnopGiavi_overlap_unresolved","4","Giavi2021","daytime_selected21_visits_Coleoptera;daytime_selected21_visits_Diptera;daytime_selected21_visits_Hymenoptera;daytime_selected21_visits_all_three_orders","not_final_adjudicated"
+"Hey2017_Blandy","4","hey2020","final_total_dry_biomass_per_plant","not_final_adjudicated"
+"Lu2024_Gannan_companion_overlap_unresolved","7","Lu2026","C_abundance;D_abundance;H_abundance;L_abundance;O_abundance;abundance;three_orders_DHC","not_final_adjudicated"
+"Guo2024_HongKong","3","Guo2025","aporosa_herbivory;psychotria_herbivory;spider_abundance","not_final_adjudicated"
+"Xue2026_monoculture","4","xue2026","total_dry_biomass","not_final_adjudicated"
+"SevenPonds2022","28","Parkinson2023","all_invertebrate_capture;aquatic_origin_capture;cicadellidae_capture;terrestrial_origin_capture","not_final_adjudicated"
+"Sanders2016_field48","14","Sanders2018","aphid_abundance;parasitoid_mummy_abundance","not_final_adjudicated"
+"Lizard2012_2015_30plots","28","Bennie2018","grassland_biomass_Agrostis;grassland_biomass_Anthoxanthum;grassland_biomass_Cirsium;grassland_biomass_Dead;grassland_biomass_Holcus;grassland_biomass_Lotus;grassland_biomass_live_total;grassland_biomass_total","not_final_adjudicated"
