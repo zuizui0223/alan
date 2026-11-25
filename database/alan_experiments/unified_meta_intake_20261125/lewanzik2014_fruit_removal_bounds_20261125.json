@@ -1,0 +1,36 @@
+{
+  "report_key": "doi:10.1111/1365-2664.12206",
+  "routing_source_blob": "b14f99b75f466c38f3ba46915a742594e1fa4836",
+  "prior_priority": "E_preserve_screening_history",
+  "suggested_priority": "C_design_or_extraction_review",
+  "source": "https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2664.12206",
+  "source_fig": "Results; Figure 3; field methods",
+  "programme": "LaSelva2012_Piper_field",
+  "n_plants": 14,
+  "n_marked_per_arm": 63,
+  "harvested_dark": 63,
+  "harvested_lit": 49,
+  "raw_ratio": 0.7777777777777778,
+  "plant_equal_identification_bounds": [
+    0.35,
+    0.9
+  ],
+  "assumptions": "1–10 marked lit fruits per plant, both extrema attained; 14 plants,63 fruits,14 not removed, all dark fruits removed; no actual cluster sizes or variance recovered",
+  "model_reported_lit_probability": 0.895,
+  "pbtest_reported_p_upper": 0.009,
+  "conditional_delay": {
+    "n_pairs": 12,
+    "dark_min": 84,
+    "lit_min": 196,
+    "dark_sd": 42,
+    "lit_sd": 82,
+    "paired_t_abs": 4.1,
+    "mean_diff_min": 112,
+    "approx_se": 27.31707317073171,
+    "approx_t11_ci": [
+      51.875527334319436,
+      172.12447266568057
+    ]
+  },
+  "scope": "field fruit removal and timing conditional on harvest, not successful dispersal or recruitment; one location, shared animals possible; no new adopted meta k"
+}
