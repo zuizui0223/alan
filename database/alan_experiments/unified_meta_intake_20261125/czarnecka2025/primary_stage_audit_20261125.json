@@ -1,0 +1,747 @@
+{
+  "source": {
+    "workbook_sha256": "8fae8a0244047ab057808ea321962bf848cff42b6fd521f34b37a360efa154d6",
+    "field_csv_sha256": "b0856e58503b7f3bdb74d75f93d15c110b8794f780529fa4513b0a7b13ee9b5a",
+    "source_extracted_rows": [
+      [
+        "024.1",
+        30.605,
+        31.601
+      ],
+      [
+        "024.2",
+        11.957,
+        29.324
+      ],
+      [
+        "024.3",
+        3.333,
+        2.266
+      ],
+      [
+        "024.4",
+        0.142,
+        0.074
+      ],
+      [
+        "024.5",
+        0.174,
+        0.264
+      ],
+      [
+        "049.7",
+        0.15,
+        0.82
+      ],
+      [
+        "049.8",
+        0.3,
+        1.29
+      ],
+      [
+        "049.9",
+        0.23,
+        1.58
+      ],
+      [
+        "175.13",
+        77.65,
+        140.96
+      ],
+      [
+        "175.14",
+        85.72,
+        122.34
+      ],
+      [
+        "175.15",
+        5.85,
+        10.06
+      ],
+      [
+        "175.16",
+        0.08,
+        0.81
+      ],
+      [
+        "175.17",
+        52.21,
+        41.65
+      ],
+      [
+        "175.18",
+        5.9,
+        2.82
+      ],
+      [
+        "253.10",
+        0.44,
+        10.3
+      ],
+      [
+        "253.11",
+        0.87,
+        281.69
+      ],
+      [
+        "253.12",
+        0.09,
+        1.24
+      ],
+      [
+        "253.13",
+        0.12,
+        1.73
+      ],
+      [
+        "253.14",
+        0.75,
+        35.26
+      ],
+      [
+        "253.15",
+        0.17,
+        0.73
+      ]
+    ],
+    "liu_arm_rows": [
+      [
+        7.07,
+        0.85,
+        7.62,
+        0.83
+      ],
+      [
+        5.25,
+        0.44,
+        5.5,
+        0.4
+      ],
+      [
+        8.5,
+        1.36,
+        9.01,
+        1.36
+      ],
+      [
+        6.03,
+        0.47,
+        5.37,
+        0.47
+      ],
+      [
+        6.88,
+        0.89,
+        7.5,
+        0.91
+      ],
+      [
+        5.59,
+        0.46,
+        5.65,
+        0.49
+      ],
+      [
+        8.77,
+        1.4,
+        9.24,
+        1.36
+      ],
+      [
+        6.05,
+        0.49,
+        5.8,
+        0.49
+      ]
+    ],
+    "penryn_review_rows": [
+      [
+        341.93,
+        22.59,
+        452.69,
+        64.51
+      ],
+      [
+        326.88,
+        20.97,
+        332.26,
+        26.88
+      ],
+      [
+        315.59,
+        19.36,
+        339.25,
+        38.17
+      ],
+      [
+        341.93,
+        22.59,
+        387.1,
+        32.25
+      ],
+      [
+        326.88,
+        20.97,
+        333.87,
+        47.31
+      ],
+      [
+        315.59,
+        19.36,
+        346.24,
+        38.17
+      ]
+    ],
+    "manfrin_primary_A3_mean_catch_proportions": [
+      [
+        0.72,
+        0.85
+      ],
+      [
+        0.49,
+        0.64
+      ],
+      [
+        0.26,
+        0.6
+      ]
+    ],
+    "manfrin_primary_A2_aquatic_carbon": [
+      [
+        "Pachygnatha clercki",
+        [
+          [
+            0.29,
+            0.26,
+            0.3,
+            0.26
+          ],
+          [
+            0.21,
+            0.35,
+            0.21,
+            0.34
+          ],
+          [
+            0.34,
+            0.33,
+            0.33,
+            0.33
+          ]
+        ]
+      ],
+      [
+        "Pardosa prativaga",
+        [
+          [
+            0.31,
+            0.23,
+            0.32,
+            0.23
+          ],
+          [
+            0.25,
+            0.24,
+            0.24,
+            0.23
+          ],
+          [
+            0.32,
+            0.27,
+            0.33,
+            0.28
+          ]
+        ]
+      ],
+      [
+        "Opiliones",
+        [
+          [
+            0.32,
+            0.28,
+            0.32,
+            0.28
+          ],
+          [
+            0.21,
+            0.2,
+            0.2,
+            0.2
+          ],
+          [
+            0.31,
+            0.26,
+            0.32,
+            0.25
+          ]
+        ]
+      ]
+    ],
+    "primary_sources": {
+      "yuen": "https://doi.org/10.7717/peerj.4070",
+      "willmott": "https://doi.org/10.1111/eth.12852",
+      "talanda": "https://doi.org/10.1093/plankt/fbac046",
+      "manfrin": "https://doi.org/10.1111/oik.04696",
+      "manfrin_accepted_manuscript": "https://qmro.qmul.ac.uk/xmlui/bitstream/handle/123456789/34664/Manfrin%20Dietary%20changes%20in%20predators%20and%20scavengers%20in%20a%20nocturnally%20illuminated%20riparian%20ecosystem%202018%20Accepted.pdf?sequence=1",
+      "manfrin_data": "https://doi.org/10.5061/dryad.3hf58",
+      "liu": "https://doi.org/10.1111/gcb.16126",
+      "anic": "https://doi.org/10.1002/ece3.9157"
+    },
+    "penryn_source_blobs": {
+      "database/alan_experiments/plant_sources/anic2022_effects.csv": "8a5bcd69c10cf682e0a0504251d640747260dad2",
+      "database/alan_experiments/plant_sources/anic2022_covariance.csv": "a81712616d04909ae0b2842e12bff792fdcbd9c2"
+    }
+  },
+  "fish": {
+    "cladocera": {
+      "dark": 169.3,
+      "lit": 274.17,
+      "rr": 1.6194329592439456
+    },
+    "copepoda": {
+      "dark": 58.11,
+      "lit": 44.47,
+      "rr": 0.7652727585613491
+    },
+    "six_taxa": {
+      "dark": 227.41000000000003,
+      "lit": 318.64,
+      "rr": 1.4011696935051228
+    },
+    "ratio_of_response_ratios": 2.1161513213776857,
+    "dark_cladocera_share": 0.7444703399146915,
+    "lit_cladocera_share": 0.8604381119758977,
+    "allocation_hold": "single platform lamp; lit and dark on opposite sides, dark cover; no independently allocated lamp replication"
+  },
+  "manfrin2018": {
+    "catch": [
+      {
+        "season": "spring",
+        "aquatic_rr": 23.40909090909091,
+        "terrestrial_rr": 14.416666666666668,
+        "relative_origin_rr": 1.6237519705727796,
+        "lit_share_ratio_of_means": 0.85619285120532,
+        "dark_share_ratio_of_means": 0.7857142857142857,
+        "reported_mean_share_dark": 0.72,
+        "reported_mean_share_lit": 0.85,
+        "reported_mean_share_OR": 2.2037037037037037
+      },
+      {
+        "season": "summer",
+        "aquatic_rr": 323.7816091954023,
+        "terrestrial_rr": 47.01333333333333,
+        "relative_origin_rr": 6.887016644825632,
+        "lit_share_ratio_of_means": 0.8887521691118473,
+        "dark_share_ratio_of_means": 0.537037037037037,
+        "reported_mean_share_dark": 0.49,
+        "reported_mean_share_lit": 0.64,
+        "reported_mean_share_OR": 1.850340136054422
+      },
+      {
+        "season": "autumn",
+        "aquatic_rr": 13.777777777777779,
+        "terrestrial_rr": 4.294117647058823,
+        "relative_origin_rr": 3.2085235920852364,
+        "lit_share_ratio_of_means": 0.6294416243654822,
+        "dark_share_ratio_of_means": 0.34615384615384615,
+        "reported_mean_share_dark": 0.26,
+        "reported_mean_share_lit": 0.6,
+        "reported_mean_share_OR": 4.269230769230768
+      }
+    ],
+    "diet": [
+      {
+        "taxon": "Pachygnatha clercki",
+        "season": "spring",
+        "diet_dark": 0.29,
+        "diet_lit": 0.26,
+        "diet_mode_dark": 0.3,
+        "diet_mode_lit": 0.26,
+        "diet_mean_OR": 0.8602050326188257,
+        "diet_mode_OR": 0.8198198198198198,
+        "diet_vs_mean_catch_share_OR_ratio": 0.39034514085224026,
+        "diet_vs_CPUE_OR_ratio": 0.5297638113506878
+      },
+      {
+        "taxon": "Pachygnatha clercki",
+        "season": "summer",
+        "diet_dark": 0.21,
+        "diet_lit": 0.35,
+        "diet_mode_dark": 0.21,
+        "diet_mode_lit": 0.34,
+        "diet_mean_OR": 2.0256410256410255,
+        "diet_mode_OR": 1.9379509379509385,
+        "diet_vs_mean_catch_share_OR_ratio": 1.0947398190045248,
+        "diet_vs_CPUE_OR_ratio": 0.294124601421275
+      },
+      {
+        "taxon": "Pachygnatha clercki",
+        "season": "autumn",
+        "diet_dark": 0.34,
+        "diet_lit": 0.33,
+        "diet_mode_dark": 0.33,
+        "diet_mode_lit": 0.33,
+        "diet_mean_OR": 0.9561018437225637,
+        "diet_mode_OR": 1,
+        "diet_vs_mean_catch_share_OR_ratio": 0.22395178321429424,
+        "diet_vs_CPUE_OR_ratio": 0.2979880983518616
+      },
+      {
+        "taxon": "Pardosa prativaga",
+        "season": "spring",
+        "diet_dark": 0.31,
+        "diet_lit": 0.23,
+        "diet_mode_dark": 0.32,
+        "diet_mode_lit": 0.23,
+        "diet_mean_OR": 0.6648512777545035,
+        "diet_mode_OR": 0.6347402597402596,
+        "diet_vs_mean_catch_share_OR_ratio": 0.3016972184768335,
+        "diet_vs_CPUE_OR_ratio": 0.40945371571741757
+      },
+      {
+        "taxon": "Pardosa prativaga",
+        "season": "summer",
+        "diet_dark": 0.25,
+        "diet_lit": 0.24,
+        "diet_mode_dark": 0.24,
+        "diet_mode_lit": 0.23,
+        "diet_mean_OR": 0.9473684210526315,
+        "diet_mode_OR": 0.9458874458874459,
+        "diet_vs_mean_catch_share_OR_ratio": 0.5119969040247677,
+        "diet_vs_CPUE_OR_ratio": 0.13755860772667225
+      },
+      {
+        "taxon": "Pardosa prativaga",
+        "season": "autumn",
+        "diet_dark": 0.32,
+        "diet_lit": 0.27,
+        "diet_mode_dark": 0.33,
+        "diet_mode_lit": 0.28,
+        "diet_mean_OR": 0.785958904109589,
+        "diet_mode_OR": 0.7895622895622896,
+        "diet_vs_mean_catch_share_OR_ratio": 0.18409848204368756,
+        "diet_vs_CPUE_OR_ratio": 0.2449596774193548
+      },
+      {
+        "taxon": "Opiliones",
+        "season": "spring",
+        "diet_dark": 0.32,
+        "diet_lit": 0.28,
+        "diet_mode_dark": 0.32,
+        "diet_mode_lit": 0.28,
+        "diet_mean_OR": 0.826388888888889,
+        "diet_mode_OR": 0.826388888888889,
+        "diet_vs_mean_catch_share_OR_ratio": 0.375,
+        "diet_vs_CPUE_OR_ratio": 0.5089378820568142
+      },
+      {
+        "taxon": "Opiliones",
+        "season": "summer",
+        "diet_dark": 0.21,
+        "diet_lit": 0.2,
+        "diet_mode_dark": 0.2,
+        "diet_mode_lit": 0.2,
+        "diet_mean_OR": 0.9404761904761906,
+        "diet_mode_OR": 1,
+        "diet_vs_mean_catch_share_OR_ratio": 0.5082720588235294,
+        "diet_vs_CPUE_OR_ratio": 0.1365578506598777
+      },
+      {
+        "taxon": "Opiliones",
+        "season": "autumn",
+        "diet_dark": 0.31,
+        "diet_lit": 0.26,
+        "diet_mode_dark": 0.32,
+        "diet_mode_lit": 0.25,
+        "diet_mean_OR": 0.7820401046207497,
+        "diet_mode_OR": 0.7083333333333333,
+        "diet_vs_mean_catch_share_OR_ratio": 0.18318056504630176,
+        "diet_vs_CPUE_OR_ratio": 0.24373830585191295
+      }
+    ],
+    "summary": {
+      "n_cells": 9,
+      "posterior_mean_diet_decline": 8,
+      "posterior_mode_diet_decline": 6,
+      "diet_mean_OR_below_mean_catch_share_OR": 8,
+      "diet_mean_OR_below_CPUE_OR": 9,
+      "independent_sites_per_arm": 1
+    },
+    "scope": "one dark/lit site pair reused across seasons and taxa; isotope mixing-model means vs catch counts; not a measured conversion efficiency, no SE or pooled effect"
+  },
+  "yuen2017": {
+    "summary_point_ratios": [
+      {
+        "id": "024.1",
+        "rr": 1.0325437020094754
+      },
+      {
+        "id": "024.2",
+        "rr": 2.4524546290875637
+      },
+      {
+        "id": "024.3",
+        "rr": 0.6798679867986799
+      },
+      {
+        "id": "024.4",
+        "rr": 0.5211267605633803
+      },
+      {
+        "id": "024.5",
+        "rr": 1.517241379310345
+      }
+    ],
+    "primary_approaches": 5375,
+    "primary_web_interceptions": 300,
+    "primary_consumed": 10,
+    "consumed_per_intercept": 0.03333333333333333,
+    "primary_model_coef": -2.47,
+    "primary_model_se": 0.88,
+    "complete_webs": 21,
+    "sites": 6,
+    "scope": "large/small groups in primary figure refer to spiders, not prey size; separate approaches, interceptions and actual consumption; coefficient kept on source scale; supplement not retrieved"
+  },
+  "willmott2019": {
+    "summary_point_ratios": [
+      {
+        "id": "049.7",
+        "rr": 5.466666666666667
+      },
+      {
+        "id": "049.8",
+        "rr": 4.300000000000001
+      },
+      {
+        "id": "049.9",
+        "rr": 6.869565217391305
+      }
+    ],
+    "primary_weighted_capture_rr": 6.869565217391305,
+    "primary_reported_SE_lit": 0.31,
+    "primary_reported_SE_dark": 0.08,
+    "primary_25web_implied_SD_lit": 1.55,
+    "compiled_SD_lit_049_9": 7.75,
+    "sites": 10,
+    "nights": 3,
+    "webs": 48,
+    "moth_captured": 0,
+    "spiders_removed_before_field": true,
+    "scope": "not actual consumption, size-weighted prey count index not mass; sites switched light condition, unknown site/night covariance"
+  },
+  "penryn_validation": {
+    "rows": [
+      {
+        "id": "191.1",
+        "raw_source_id": "Anic2022_community_T1_L2",
+        "raw_lnRR": 0.2819610043154912,
+        "compiled_lnRR": 0.2806015267632574,
+        "raw_v": 0.024677752564933576,
+        "compiled_v": 0.024672041233249318,
+        "variance_ratio": 0.9997685635404103
+      },
+      {
+        "id": "191.2",
+        "raw_source_id": "Anic2022_community_T2_L2",
+        "raw_lnRR": 0.014588906909200837,
+        "compiled_lnRR": 0.01632466388902067,
+        "raw_v": 0.0103331024792175,
+        "compiled_v": 0.010660367680080638,
+        "variance_ratio": 1.03167153345487
+      },
+      {
+        "id": "191.3",
+        "raw_source_id": "Anic2022_community_T3_L2",
+        "raw_lnRR": 0.07249048361537563,
+        "compiled_lnRR": 0.07229339592333468,
+        "raw_v": 0.01630129502132172,
+        "compiled_v": 0.016422411915721018,
+        "variance_ratio": 1.0074298940201303
+      },
+      {
+        "id": "191.4",
+        "raw_source_id": "Anic2022_community_T1_L3",
+        "raw_lnRR": 0.1230658936644944,
+        "compiled_lnRR": 0.1240770198330451,
+        "raw_v": 0.011304389591886886,
+        "compiled_v": 0.011305593664787172,
+        "variance_ratio": 1.0001065137476464
+      },
+      {
+        "id": "191.5",
+        "raw_source_id": "Anic2022_community_T2_L3",
+        "raw_lnRR": 0.020634880592012236,
+        "compiled_lnRR": 0.021158564584131637,
+        "raw_v": 0.02376077798578441,
+        "compiled_v": 0.02419489397212439,
+        "variance_ratio": 1.0182702766129839
+      },
+      {
+        "id": "191.6",
+        "raw_source_id": "Anic2022_community_T3_L3",
+        "raw_lnRR": 0.09371053741433436,
+        "compiled_lnRR": 0.09268827342641808,
+        "raw_v": 0.015220885880843502,
+        "compiled_v": 0.015916437650441803,
+        "variance_ratio": 1.0456971936484787
+      }
+    ],
+    "max_abs_logRR_diff": 0.0017357569798198327,
+    "variance_ratio_range": [
+      0.9997685635404103,
+      1.0456971936484787
+    ]
+  },
+  "penryn": {
+    "herbivore_vs_plants": {
+      "y": -0.18490155523938626,
+      "v": 0.0215519683771617,
+      "rr": 0.8311861057417966,
+      "ci": [
+        0.569909272987645,
+        1.2122461857068088
+      ]
+    },
+    "herbivore_predator_vs_plants": {
+      "y": -0.1194129384751378,
+      "v": 0.02092489428288007,
+      "rr": 0.8874412664457572,
+      "ci": [
+        0.6118556432813691,
+        1.2871532853194332
+      ]
+    },
+    "predator_vs_herbivore": {
+      "y": 0.06548861676424846,
+      "v": 0.020160777702112154,
+      "rr": 1.0676805835845335,
+      "ci": [
+        0.7411851375831706,
+        1.5379987681357057
+      ]
+    }
+  },
+  "liu": [
+    {
+      "rho": 0,
+      "y": 0.01079491000921443,
+      "v": 0.012959031357181372,
+      "rr": 1.0108533852725858,
+      "ci": [
+        0.7369248718573236,
+        1.3866061596505361
+      ]
+    },
+    {
+      "rho": 0.5,
+      "y": 0.01079491000921443,
+      "v": 0.030579876321243874,
+      "rr": 1.0108533852725858,
+      "ci": [
+        0.6220561613068075,
+        1.6426564514213815
+      ]
+    },
+    {
+      "rho": 1,
+      "y": 0.01079491000921443,
+      "v": 0.04820072128530637,
+      "rr": 1.0108533852725858,
+      "ci": [
+        0.5494902509384105,
+        1.8595863434737767
+      ]
+    }
+  ],
+  "plant_consumer_access_sensitivity": [
+    {
+      "rho": 0,
+      "herbivore_package": {
+        "k": 2,
+        "tau": 0.001893053388226853,
+        "rr": 0.9369751061107369,
+        "ci": [
+          0.2789624732846792,
+          3.1470983861521513
+        ],
+        "weights": [
+          0.3878121899684799,
+          0.6121878100315201
+        ]
+      },
+      "herbivore_plus_predator_package": {
+        "k": 2,
+        "tau": 0,
+        "rr": 0.9617472871172196,
+        "ci": [
+          0.30860902477720487,
+          2.9971833939240415
+        ],
+        "weights": [
+          0.3824536594384367,
+          0.6175463405615632
+        ]
+      }
+    },
+    {
+      "rho": 0.5,
+      "herbivore_package": {
+        "k": 2,
+        "tau": 0,
+        "rr": 0.9012269694098578,
+        "ci": [
+          0.21596315741300445,
+          3.7608731976372227
+        ],
+        "weights": [
+          0.5865872673057193,
+          0.41341273269428075
+        ]
+      },
+      "herbivore_plus_predator_package": {
+        "k": 2,
+        "tau": 0,
+        "rr": 0.9356505028616573,
+        "ci": [
+          0.2270082775391429,
+          3.856431461422459
+        ],
+        "weights": [
+          0.5937290072853051,
+          0.40627099271469486
+        ]
+      }
+    },
+    {
+      "rho": 1,
+      "herbivore_package": {
+        "k": 2,
+        "tau": 0,
+        "rr": 0.8829948841497083,
+        "ci": [
+          0.18729756234466824,
+          4.162787575418499
+        ],
+        "weights": [
+          0.6910231206645757,
+          0.3089768793354244
+        ]
+      },
+      "herbivore_plus_predator_package": {
+        "k": 2,
+        "tau": 0,
+        "rr": 0.9231182404247212,
+        "ci": [
+          0.19892878165082756,
+          4.283680213256304
+        ],
+        "weights": [
+          0.6972917476266165,
+          0.3027082523733835
+        ]
+      }
+    }
+  ],
+  "formal_new_k": 0,
+  "status": "EXPLORATORY_NOT_CANONICAL"
+}
