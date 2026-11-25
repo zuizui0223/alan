@@ -1,0 +1,124 @@
+{
+  "verified_output_blob": "29fea4738461201b78eb74f418765bd1c713bcef",
+  "number_of_variants": 8,
+  "estimable_cases": 12,
+  "checks": [
+    {
+      "variant": "all_observed_deployments",
+      "contrast": "L_C",
+      "identity_error": 0,
+      "variance_identity_error": 1.734723475976807e-18,
+      "covariance_symmetry_error": 0,
+      "zero_field_variance_effects": []
+    },
+    {
+      "variant": "all_observed_deployments",
+      "contrast": "P_C",
+      "identity_error": 0,
+      "variance_identity_error": 1.734723475976807e-17,
+      "covariance_symmetry_error": 0,
+      "zero_field_variance_effects": []
+    },
+    {
+      "variant": "all_observed_deployments",
+      "contrast": "L_P",
+      "identity_error": 0,
+      "variance_identity_error": 4.336808689942018e-18,
+      "covariance_symmetry_error": 0,
+      "zero_field_variance_effects": []
+    },
+    {
+      "variant": "species_ML",
+      "contrast": "L_C",
+      "identity_error": 0,
+      "variance_identity_error": 1.3010426069826053e-17,
+      "covariance_symmetry_error": 0,
+      "zero_field_variance_effects": []
+    },
+    {
+      "variant": "species_ML",
+      "contrast": "P_C",
+      "identity_error": 0,
+      "variance_identity_error": 2.498001805406602e-16,
+      "covariance_symmetry_error": 0,
+      "zero_field_variance_effects": []
+    },
+    {
+      "variant": "species_ML",
+      "contrast": "L_P",
+      "identity_error": 0,
+      "variance_identity_error": 8.326672684688674e-17,
+      "covariance_symmetry_error": 0,
+      "zero_field_variance_effects": []
+    },
+    {
+      "variant": "species_SN",
+      "contrast": "L_C",
+      "identity_error": 0,
+      "variance_identity_error": 2.2898349882893854e-16,
+      "covariance_symmetry_error": 0,
+      "zero_field_variance_effects": []
+    },
+    {
+      "variant": "species_SN",
+      "contrast": "P_C",
+      "identity_error": 0,
+      "variance_identity_error": 1.249000902703301e-16,
+      "covariance_symmetry_error": 0,
+      "zero_field_variance_effects": []
+    },
+    {
+      "variant": "species_SN",
+      "contrast": "L_P",
+      "identity_error": 0,
+      "variance_identity_error": 2.7755575615628914e-17,
+      "covariance_symmetry_error": 0,
+      "zero_field_variance_effects": [
+        "probability_any_seed"
+      ]
+    },
+    {
+      "variant": "equal_species_omit_ZC",
+      "contrast": "L_C",
+      "identity_error": 0,
+      "variance_identity_error": 2.7755575615628914e-17,
+      "covariance_symmetry_error": 0,
+      "zero_field_variance_effects": []
+    },
+    {
+      "variant": "equal_species_omit_ZC",
+      "contrast": "P_C",
+      "identity_error": 0,
+      "variance_identity_error": 0,
+      "covariance_symmetry_error": 0,
+      "zero_field_variance_effects": []
+    },
+    {
+      "variant": "equal_species_omit_ZC",
+      "contrast": "L_P",
+      "identity_error": 0,
+      "variance_identity_error": 5.0306980803327406e-17,
+      "covariance_symmetry_error": 0,
+      "zero_field_variance_effects": []
+    }
+  ],
+  "arithmetic_decomposition_linear": {
+    "fruit_share_log_total": 0.889206430527462,
+    "fruit_share_log_starting_standardized": 0.8607694656361911
+  },
+  "boom_component_identities": {
+    "White": {
+      "product_error": 0,
+      "difference_vs_published": -0.007873785271045541
+    },
+    "Green": {
+      "product_error": 0,
+      "difference_vs_published": -0.006394837088330219
+    },
+    "Red": {
+      "product_error": 0,
+      "difference_vs_published": -0.009626099737401361
+    }
+  },
+  "scope": "Independent readback numeric identity check in connector session; not source acquisition CI or independent human review. Zero delta SE when field scores coincide is not certainty."
+}
