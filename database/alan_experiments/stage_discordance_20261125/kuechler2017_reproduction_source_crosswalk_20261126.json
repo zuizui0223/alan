@@ -1,0 +1,1361 @@
+{
+  "date": "2026-11-26",
+  "source": {
+    "title": "Effects of artificial light at night on plant reproductive success",
+    "author": "Olivia Küchler",
+    "year": 2017,
+    "type": "Master thesis, University of Bern",
+    "url": "https://www.parcs.ch/frg/pdf_public/2022/51204_20220906_150635_2017_MasterThesis_OKuechler_final.pdf",
+    "source_status": "Original PDF indexed full text and appendix tables inspected; screenshots failed cache miss; original raw records not obtained; peer reviewed counterpart not verified",
+    "sites": [
+      [
+        "L1",
+        [
+          46,
+          39,
+          48
+        ],
+        [
+          7,
+          37,
+          9
+        ],
+        741
+      ],
+      [
+        "L2",
+        [
+          46,
+          39,
+          7
+        ],
+        [
+          7,
+          34,
+          28
+        ],
+        718
+      ],
+      [
+        "L3",
+        [
+          46,
+          37,
+          22
+        ],
+        [
+          7,
+          32,
+          52
+        ],
+        915
+      ],
+      [
+        "D1",
+        [
+          46,
+          40,
+          6
+        ],
+        [
+          7,
+          36,
+          50
+        ],
+        639
+      ],
+      [
+        "D2",
+        [
+          46,
+          38,
+          37
+        ],
+        [
+          7,
+          34,
+          4
+        ],
+        750
+      ],
+      [
+        "D3",
+        [
+          46,
+          36,
+          32
+        ],
+        [
+          7,
+          31,
+          17
+        ],
+        1037
+      ]
+    ],
+    "sample": {
+      "Centaurea_jacea": [
+        32,
+        53,
+        651
+      ],
+      "Cirsium_oleraceum": [
+        41,
+        71,
+        3929
+      ],
+      "Daucus_carota": [
+        48,
+        128,
+        4214
+      ],
+      "Silene_vulgaris": [
+        48,
+        330,
+        857
+      ]
+    },
+    "seed_tests": {
+      "Centaurea jacea": {
+        "light": {
+          "stat": "LRT",
+          "x": 3.378,
+          "p": 0.0661,
+          "b": 2.56,
+          "se": 1.463
+        },
+        "access": {
+          "stat": "LRT",
+          "x": 32.835,
+          "p_upper": 0.001
+        },
+        "interaction": {
+          "stat": "LRT",
+          "x": 6.594,
+          "p": 0.086
+        }
+      },
+      "Cirsium oleraceum": {
+        "light": {
+          "stat": "F",
+          "x": 0.486,
+          "df_reported": 3.686,
+          "p": 0.527
+        },
+        "access": {
+          "stat": "F",
+          "x": 9.942,
+          "df_reported": 25.816,
+          "p_upper": 0.001
+        },
+        "interaction": {
+          "stat": "F",
+          "x": 0.395,
+          "df_reported": 25.816,
+          "p": 0.7578
+        }
+      },
+      "Daucus carota": {
+        "light": {
+          "stat": "LRT",
+          "x": 0.02,
+          "p": 0.8873
+        },
+        "access": {
+          "stat": "LRT",
+          "x": 2.126,
+          "p": 0.5467
+        },
+        "interaction": {
+          "stat": "LRT",
+          "x": 1.793,
+          "p": 0.6168
+        }
+      },
+      "Silene vulgaris": {
+        "light": {
+          "stat": "LRT",
+          "x": 0.2142,
+          "p": 0.6435
+        },
+        "access": {
+          "stat": "LRT",
+          "x": 2.781,
+          "p": 0.4266
+        },
+        "interaction": {
+          "stat": "LRT",
+          "x": 0,
+          "p": 1,
+          "delta_AIC": -59.59
+        }
+      }
+    },
+    "cj_appendix3b": {
+      "intercept": [
+        -1.019,
+        0.935,
+        0.2758
+      ],
+      "lit_open": [
+        3.783,
+        1.193,
+        0.0025
+      ],
+      "dark_bag": [
+        -20.225,
+        515.231,
+        0.9687
+      ],
+      "dark_night": [
+        -24.95,
+        460.837,
+        0.9568
+      ],
+      "dark_day": [
+        4.022,
+        1.19,
+        null
+      ],
+      "light_by_bag": [
+        15.958,
+        515.231,
+        0.9753
+      ],
+      "light_by_night": [
+        21.408,
+        460.836,
+        0.9629
+      ],
+      "light_by_day": [
+        -3.468,
+        1.596,
+        0.0297
+      ]
+    },
+    "cj_appendix3a": {
+      "intercept": [
+        -0.3605,
+        0.7648
+      ],
+      "bag": [
+        -4.2686,
+        1.477
+      ],
+      "night": [
+        -3.3991,
+        1.0808
+      ],
+      "day": [
+        2.3313,
+        0.8613
+      ]
+    },
+    "co_appendix4a": {
+      "open": [
+        9.2327,
+        0.7398
+      ],
+      "bag": [
+        -5.3159,
+        1.0338
+      ],
+      "night": [
+        -2.0027,
+        1.0332
+      ],
+      "day": [
+        -1.7417,
+        1.0332
+      ]
+    },
+    "sv_parasitism": {
+      "light": [
+        -0.1516,
+        0.0805
+      ],
+      "p": 0.0884,
+      "df": 10,
+      "open_reported_t": -2.143,
+      "open_reported_p": 0.0386,
+      "interaction_p": 0.4734
+    },
+    "reported_cj_open_z": 3.012,
+    "reported_cj_open_p": 0.0025,
+    "dark_night_seed_zero": true,
+    "seed_mass_light_p": [
+      0.5574,
+      0.2005,
+      0.4835,
+      0.1404
+    ],
+    "seed_mass_interaction_p": [
+      0.1165,
+      0.4764,
+      0.3283,
+      0.4933
+    ]
+  },
+  "site_crosswalk": [
+    {
+      "id": "L1",
+      "lat": 46.663333333333334,
+      "lon": 7.6191666666666675,
+      "altitude": 741,
+      "arm": "illuminated",
+      "knop": {
+        "nearest": {
+          "id": "2",
+          "lat": 46.66331944444444,
+          "lon": 7.619088888888889,
+          "arm": "illuminated",
+          "fruit_experiment": 1,
+          "pair": "1",
+          "distance_m": 6.1329651369647005,
+          "same_arm": true
+        },
+        "next": {
+          "id": "9",
+          "lat": 46.668305555555555,
+          "lon": 7.613944444444444,
+          "arm": "dark",
+          "fruit_experiment": 1,
+          "pair": "1",
+          "distance_m": 681.5301260144817,
+          "same_arm": false
+        }
+      },
+      "giavi": {
+        "nearest": {
+          "id": "Giavi_pair1_illuminated",
+          "lat": 46.66322,
+          "lon": 7.61897,
+          "arm": "illuminated",
+          "pair": "1",
+          "distance_m": 19.597217763760717,
+          "same_arm": true
+        },
+        "next": {
+          "id": "Giavi_pair1_dark",
+          "lat": 46.66831,
+          "lon": 7.61394,
+          "arm": "dark",
+          "pair": "1",
+          "distance_m": 682.1293350253354,
+          "same_arm": false
+        }
+      }
+    },
+    {
+      "id": "L2",
+      "lat": 46.651944444444446,
+      "lon": 7.5744444444444445,
+      "altitude": 718,
+      "arm": "illuminated",
+      "knop": {
+        "nearest": {
+          "id": "4",
+          "lat": 46.65191111111111,
+          "lon": 7.574269444444444,
+          "arm": "illuminated",
+          "fruit_experiment": 0,
+          "pair": "3",
+          "distance_m": 13.862032558871645,
+          "same_arm": true
+        },
+        "next": {
+          "id": "14",
+          "lat": 46.6565,
+          "lon": 7.574833333333333,
+          "arm": "illuminated",
+          "fruit_experiment": 1,
+          "pair": "2",
+          "distance_m": 507.4242200026665,
+          "same_arm": true
+        }
+      },
+      "giavi": {
+        "nearest": {
+          "id": "Giavi_pair2_illuminated",
+          "lat": 46.65197,
+          "lon": 7.57425,
+          "arm": "illuminated",
+          "pair": "2",
+          "distance_m": 15.111042862522737,
+          "same_arm": true
+        },
+        "next": {
+          "id": "Giavi_pair2_dark",
+          "lat": 46.64352,
+          "lon": 7.5676,
+          "arm": "dark",
+          "pair": "2",
+          "distance_m": 1072.6031603609501,
+          "same_arm": false
+        }
+      }
+    },
+    {
+      "id": "L3",
+      "lat": 46.62277777777778,
+      "lon": 7.547777777777777,
+      "altitude": 915,
+      "arm": "illuminated",
+      "knop": {
+        "nearest": {
+          "id": "15",
+          "lat": 46.62272222222222,
+          "lon": 7.548,
+          "arm": "illuminated",
+          "fruit_experiment": 1,
+          "pair": "5",
+          "distance_m": 18.060180195286595,
+          "same_arm": true
+        },
+        "next": {
+          "id": "12",
+          "lat": 46.622277777777775,
+          "lon": 7.560027777777778,
+          "arm": "dark",
+          "fruit_experiment": 1,
+          "pair": "6",
+          "distance_m": 937.1706049915491,
+          "same_arm": false
+        }
+      },
+      "giavi": {
+        "nearest": {
+          "id": "Giavi_pair4_illuminated",
+          "lat": 46.62269,
+          "lon": 7.54794,
+          "arm": "illuminated",
+          "pair": "4",
+          "distance_m": 15.771695150595322,
+          "same_arm": true
+        },
+        "next": {
+          "id": "Giavi_pair3_dark",
+          "lat": 46.62537,
+          "lon": 7.56152,
+          "arm": "dark",
+          "pair": "3",
+          "distance_m": 1088.3142591363385,
+          "same_arm": false
+        }
+      }
+    },
+    {
+      "id": "D1",
+      "lat": 46.66833333333333,
+      "lon": 7.613888888888889,
+      "altitude": 639,
+      "arm": "dark",
+      "knop": {
+        "nearest": {
+          "id": "9",
+          "lat": 46.668305555555555,
+          "lon": 7.613944444444444,
+          "arm": "dark",
+          "fruit_experiment": 1,
+          "pair": "1",
+          "distance_m": 5.2450570350741925,
+          "same_arm": true
+        },
+        "next": {
+          "id": "2",
+          "lat": 46.66331944444444,
+          "lon": 7.619088888888889,
+          "arm": "illuminated",
+          "fruit_experiment": 1,
+          "pair": "1",
+          "distance_m": 684.3093720488722,
+          "same_arm": false
+        }
+      },
+      "giavi": {
+        "nearest": {
+          "id": "Giavi_pair1_dark",
+          "lat": 46.66831,
+          "lon": 7.61394,
+          "arm": "dark",
+          "pair": "1",
+          "distance_m": 4.684197194235597,
+          "same_arm": true
+        },
+        "next": {
+          "id": "Giavi_pair1_illuminated",
+          "lat": 46.66322,
+          "lon": 7.61897,
+          "arm": "illuminated",
+          "pair": "1",
+          "distance_m": 688.1964089204163,
+          "same_arm": false
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "lat": 46.64361111111111,
+      "lon": 7.567777777777778,
+      "altitude": 750,
+      "arm": "dark",
+      "knop": {
+        "nearest": {
+          "id": "1",
+          "lat": 46.643708333333336,
+          "lon": 7.567530555555555,
+          "arm": "dark",
+          "fruit_experiment": 1,
+          "pair": "4",
+          "distance_m": 21.74971316063903,
+          "same_arm": true
+        },
+        "next": {
+          "id": "6",
+          "lat": 46.64668888888889,
+          "lon": 7.572166666666666,
+          "arm": "dark",
+          "fruit_experiment": 0,
+          "pair": "3",
+          "distance_m": 478.92829401180495,
+          "same_arm": true
+        }
+      },
+      "giavi": {
+        "nearest": {
+          "id": "Giavi_pair2_dark",
+          "lat": 46.64352,
+          "lon": 7.5676,
+          "arm": "dark",
+          "pair": "2",
+          "distance_m": 16.935851556630375,
+          "same_arm": true
+        },
+        "next": {
+          "id": "Giavi_pair2_illuminated",
+          "lat": 46.65197,
+          "lon": 7.57425,
+          "arm": "illuminated",
+          "pair": "2",
+          "distance_m": 1052.611636580904,
+          "same_arm": false
+        }
+      }
+    },
+    {
+      "id": "D3",
+      "lat": 46.60888888888889,
+      "lon": 7.521388888888889,
+      "altitude": 1037,
+      "arm": "dark",
+      "knop": {
+        "nearest": {
+          "id": "13",
+          "lat": 46.60897222222222,
+          "lon": 7.52125,
+          "arm": "dark",
+          "fruit_experiment": 0,
+          "pair": "7",
+          "distance_m": 14.08631561512893,
+          "same_arm": true
+        },
+        "next": {
+          "id": "17",
+          "lat": 46.61105555555556,
+          "lon": 7.525444444444444,
+          "arm": "illuminated",
+          "fruit_experiment": 0,
+          "pair": "7",
+          "distance_m": 392.4459990660429,
+          "same_arm": false
+        }
+      },
+      "giavi": {
+        "nearest": {
+          "id": "Giavi_pair4_dark",
+          "lat": 46.60872,
+          "lon": 7.521,
+          "arm": "dark",
+          "pair": "4",
+          "distance_m": 35.14476444141069,
+          "same_arm": true
+        },
+        "next": {
+          "id": "Giavi_pair4_illuminated",
+          "lat": 46.62269,
+          "lon": 7.54794,
+          "arm": "illuminated",
+          "pair": "4",
+          "distance_m": 2543.139752133917,
+          "same_arm": false
+        }
+      }
+    }
+  ],
+  "thresholds": [
+    {
+      "m": 10,
+      "knop": 2,
+      "giavi": 1
+    },
+    {
+      "m": 25,
+      "knop": 6,
+      "giavi": 5
+    },
+    {
+      "m": 50,
+      "knop": 6,
+      "giavi": 6
+    },
+    {
+      "m": 100,
+      "knop": 6,
+      "giavi": 6
+    },
+    {
+      "m": 250,
+      "knop": 6,
+      "giavi": 6
+    }
+  ],
+  "giavi_matched_pair_ids": [
+    "1",
+    "2",
+    "4"
+  ],
+  "giavi_day_visit_subsets": {
+    "all_six": {
+      "all_three_orders": {
+        "rr": 1.0518565941101143,
+        "y": 0.05055678763763595,
+        "v": 0.008427854479254109,
+        "ci": [
+          0.830745965648829,
+          1.33181783640539
+        ],
+        "rows": [
+          {
+            "pair": "1",
+            "lit": 41.5,
+            "dark": 30.5
+          },
+          {
+            "pair": "2",
+            "lit": 34,
+            "dark": 36.3333333333333
+          },
+          {
+            "pair": "3",
+            "lit": 24,
+            "dark": 19.6666666666667
+          },
+          {
+            "pair": "4",
+            "lit": 46.4285714285714,
+            "dark": 48.2857142857143
+          },
+          {
+            "pair": "5",
+            "lit": 15.8333333333333,
+            "dark": 24.5
+          },
+          {
+            "pair": "6",
+            "lit": 33.8333333333333,
+            "dark": 26.6666666666667
+          }
+        ],
+        "scores": [
+          0.28891420787214406,
+          -0.12937297330154585,
+          0.1016431794997279,
+          -0.1337785802960294,
+          -0.30482807206766344,
+          0.17742223829336767
+        ],
+        "loo": [
+          {
+            "omitted": "1",
+            "rr": 0.991269719712053
+          },
+          {
+            "omitted": "2",
+            "rr": 1.0800445576066187
+          },
+          {
+            "omitted": "3",
+            "rr": 1.0319301260022906
+          },
+          {
+            "omitted": "4",
+            "rr": 1.0835351089588372
+          },
+          {
+            "omitted": "5",
+            "rr": 1.1134051024922569
+          },
+          {
+            "omitted": "6",
+            "rr": 1.0155455904334822
+          }
+        ]
+      },
+      "Coleoptera": {
+        "rr": 1.1854379977246865,
+        "y": 0.1701123246281347,
+        "v": 0.10613256103837398,
+        "ci": [
+          0.5130758243767609,
+          2.738899748699918
+        ],
+        "rows": [
+          {
+            "pair": "1",
+            "lit": 2.66666666666667,
+            "dark": 6.83333333333333
+          },
+          {
+            "pair": "2",
+            "lit": 7.33333333333333,
+            "dark": 4.66666666666667
+          },
+          {
+            "pair": "3",
+            "lit": 4.33333333333333,
+            "dark": 3.5
+          },
+          {
+            "pair": "4",
+            "lit": 3.14285714285714,
+            "dark": 3.42857142857143
+          },
+          {
+            "pair": "5",
+            "lit": 1,
+            "dark": 1
+          },
+          {
+            "pair": "6",
+            "lit": 6.33333333333333,
+            "dark": 1.5
+          }
+        ],
+        "scores": [
+          -1.314130740961525,
+          0.4356285169633083,
+          0.044571675630350915,
+          -0.2228583781517567,
+          -0.0448468094305384,
+          1.1016357359501614
+        ],
+        "loo": [
+          {
+            "omitted": "1",
+            "rr": 1.5709459459459445
+          },
+          {
+            "omitted": "2",
+            "rr": 1.0746705710102489
+          },
+          {
+            "omitted": "3",
+            "rr": 1.1748633879781416
+          },
+          {
+            "omitted": "4",
+            "rr": 1.2380952380952377
+          },
+          {
+            "omitted": "5",
+            "rr": 1.1947431302270008
+          },
+          {
+            "omitted": "6",
+            "rr": 0.9509803921568624
+          }
+        ]
+      },
+      "Diptera": {
+        "rr": 1.0042182968626419,
+        "y": 0.004209424789705252,
+        "v": 0.09502415372301815,
+        "ci": [
+          0.4546634410061743,
+          2.2180239201154737
+        ],
+        "rows": [
+          {
+            "pair": "1",
+            "lit": 23.8333333333333,
+            "dark": 10.8333333333333
+          },
+          {
+            "pair": "2",
+            "lit": 20.3333333333333,
+            "dark": 16.5
+          },
+          {
+            "pair": "3",
+            "lit": 11,
+            "dark": 10.6666666666667
+          },
+          {
+            "pair": "4",
+            "lit": 5.85714285714286,
+            "dark": 27.1428571428571
+          },
+          {
+            "pair": "5",
+            "lit": 9.16666666666667,
+            "dark": 7.83333333333333
+          },
+          {
+            "pair": "6",
+            "lit": 20.5,
+            "dark": 17.3333333333333
+          }
+        ],
+        "scores": [
+          0.8570449066854791,
+          0.24900507262933247,
+          0.019076192710215323,
+          -1.4158186270780946,
+          0.08602601259993348,
+          0.20466644245313437
+        ],
+        "loo": [
+          {
+            "omitted": "1",
+            "rr": 0.8412222887956863
+          },
+          {
+            "omitted": "2",
+            "rr": 0.9532258064516136
+          },
+          {
+            "omitted": "3",
+            "rr": 1.0005979073243654
+          },
+          {
+            "omitted": "4",
+            "rr": 1.343007915567282
+          },
+          {
+            "omitted": "5",
+            "rr": 0.9884526558891458
+          },
+          {
+            "omitted": "6",
+            "rr": 0.9618270799347471
+          }
+        ]
+      },
+      "Hymenoptera": {
+        "rr": 1.0720203951561498,
+        "y": 0.06954508779986017,
+        "v": 0.10727727642854941,
+        "ci": [
+          0.46190179351376276,
+          2.4880347809182193
+        ],
+        "rows": [
+          {
+            "pair": "1",
+            "lit": 15,
+            "dark": 12.8333333333333
+          },
+          {
+            "pair": "2",
+            "lit": 6.33333333333333,
+            "dark": 15.1666666666667
+          },
+          {
+            "pair": "3",
+            "lit": 8.66666666666667,
+            "dark": 5.5
+          },
+          {
+            "pair": "4",
+            "lit": 37.4285714285714,
+            "dark": 17.7142857142857
+          },
+          {
+            "pair": "5",
+            "lit": 5.66666666666667,
+            "dark": 15.6666666666667
+          },
+          {
+            "pair": "6",
+            "lit": 7,
+            "dark": 7.83333333333333
+          }
+        ],
+        "scores": [
+          0.09306957255202741,
+          -0.743538035162549,
+          0.207544510200231,
+          1.3812428525633011,
+          -0.8336315458015722,
+          -0.10468735435143839
+        ],
+        "loo": [
+          {
+            "omitted": "1",
+            "rr": 1.0519430550211608
+          },
+          {
+            "omitted": "2",
+            "rr": 1.238704518192723
+          },
+          {
+            "omitted": "3",
+            "rr": 1.0319917440660469
+          },
+          {
+            "omitted": "4",
+            "rr": 0.7485380116959062
+          },
+          {
+            "omitted": "5",
+            "rr": 1.2604838709677417
+          },
+          {
+            "omitted": "6",
+            "rr": 1.092915628337486
+          }
+        ]
+      },
+      "Diptera_vs_Hymenoptera": {
+        "rr": 0.9367529772755565,
+        "y": -0.06533566301015492,
+        "v": 0.34564477186343795,
+        "ci": [
+          0.20667229272864876,
+          4.245881868580925
+        ]
+      }
+    },
+    "thesis_overlap": {
+      "all_three_orders": {
+        "rr": 1.0591520165460184,
+        "y": 0.05746860357515542,
+        "v": 0.012801114242148083,
+        "ci": [
+          0.6509371591939281,
+          1.7233660397305544
+        ],
+        "rows": [
+          {
+            "pair": "1",
+            "lit": 41.5,
+            "dark": 30.5
+          },
+          {
+            "pair": "2",
+            "lit": 34,
+            "dark": 36.3333333333333
+          },
+          {
+            "pair": "4",
+            "lit": 46.4285714285714,
+            "dark": 48.2857142857143
+          }
+        ],
+        "scores": [
+          0.2262602617484185,
+          -0.1102905549204587,
+          -0.1159697068279597
+        ],
+        "loo": [
+          {
+            "omitted": "1",
+            "rr": 0.9504783342712436
+          },
+          {
+            "omitted": "2",
+            "rr": 1.1160471441523112
+          },
+          {
+            "omitted": "4",
+            "rr": 1.129675810473816
+          }
+        ]
+      },
+      "Coleoptera": {
+        "rr": 0.8803827751196169,
+        "y": -0.1273984943558257,
+        "v": 0.1878576393927284,
+        "ci": [
+          0.13638441731124137,
+          5.683008704422079
+        ],
+        "rows": [
+          {
+            "pair": "1",
+            "lit": 2.66666666666667,
+            "dark": 6.83333333333333
+          },
+          {
+            "pair": "2",
+            "lit": 7.33333333333333,
+            "dark": 4.66666666666667
+          },
+          {
+            "pair": "4",
+            "lit": 3.14285714285714,
+            "dark": 3.42857142857143
+          }
+        ],
+        "scores": [
+          -0.7645100894528795,
+          0.7361140004160589,
+          0.02839608903682056
+        ],
+        "loo": [
+          {
+            "omitted": "1",
+            "rr": 1.294117647058822
+          },
+          {
+            "omitted": "2",
+            "rr": 0.566125290023202
+          },
+          {
+            "omitted": "4",
+            "rr": 0.8695652173913043
+          }
+        ]
+      },
+      "Diptera": {
+        "rr": 0.9182692307692308,
+        "y": -0.08526465165468802,
+        "v": 0.3495983778349776,
+        "ci": [
+          0.0721298397385827,
+          11.690284953267021
+        ],
+        "rows": [
+          {
+            "pair": "1",
+            "lit": 23.8333333333333,
+            "dark": 10.8333333333333
+          },
+          {
+            "pair": "2",
+            "lit": 20.3333333333333,
+            "dark": 16.5
+          },
+          {
+            "pair": "4",
+            "lit": 5.85714285714286,
+            "dark": 27.1428571428571
+          }
+        ],
+        "scores": [
+          0.8327284626368405,
+          0.3107654779775181,
+          -1.1434939406143587
+        ],
+        "loo": [
+          {
+            "omitted": "1",
+            "rr": 0.6001091107474086
+          },
+          {
+            "omitted": "2",
+            "rr": 0.7818181818181827
+          },
+          {
+            "omitted": "4",
+            "rr": 1.6158536585365848
+          }
+        ]
+      },
+      "Hymenoptera": {
+        "rr": 1.2854166666666664,
+        "y": 0.251082920003451,
+        "v": 0.16957077147668834,
+        "ci": [
+          0.21855769864541286,
+          7.559999108634113
+        ],
+        "rows": [
+          {
+            "pair": "1",
+            "lit": 15,
+            "dark": 12.8333333333333
+          },
+          {
+            "pair": "2",
+            "lit": 6.33333333333333,
+            "dark": 15.1666666666667
+          },
+          {
+            "pair": "4",
+            "lit": 37.4285714285714,
+            "dark": 17.7142857142857
+          }
+        ],
+        "scores": [
+          -0.07638523095623762,
+          -0.671973764181526,
+          0.7483589951377636
+        ],
+        "loo": [
+          {
+            "omitted": "1",
+            "rr": 1.3309196234612581
+          },
+          {
+            "omitted": "2",
+            "rr": 1.716289945440376
+          },
+          {
+            "omitted": "4",
+            "rr": 0.7619047619047618
+          }
+        ]
+      },
+      "Diptera_vs_Hymenoptera": {
+        "rr": 0.7143747662386238,
+        "y": -0.336347571658139,
+        "v": 0.8952286094119509,
+        "ci": [
+          0.012187214041839919,
+          41.874320487559345
+        ]
+      }
+    }
+  },
+  "thesis_model_contrasts": {
+    "Centaurea_jacea": {
+      "open_light": {
+        "b": 3.783,
+        "se": 1.193,
+        "normal_ref": [
+          1.4447629664437152,
+          6.121237033556285
+        ],
+        "t_reference": [
+          0.4707009894990257,
+          7.095299010500974
+        ]
+      },
+      "day_light": {
+        "b": 0.31499999999999995,
+        "se_bounds": [
+          0.403,
+          2.789
+        ],
+        "normal_outer": [
+          -5.151339552882211,
+          5.78133955288221
+        ],
+        "t4_outer": [
+          -7.428505398396661,
+          8.058505398396662
+        ]
+      },
+      "open_minus_day_light": {
+        "b": 3.468,
+        "se": 1.596,
+        "normal_ref": [
+          0.33989748067407355,
+          6.596102519325926
+        ],
+        "t_reference": [
+          -0.9632063878956867,
+          7.899206387895687
+        ]
+      },
+      "night_light": "STOP: zero seed production in dark night arm and huge coefficient SE; no finite reliable log effect",
+      "bag_light": "STOP: enormous SE in bag interaction; no finite reliable effect",
+      "wald_z_from_rounded_open": 3.170997485331098,
+      "original_text_z": 3.012,
+      "omnibus_interaction_p": 0.086,
+      "warning": "Printed treatment-contrast coding inferred from Appendix 3b: light at open reference plus interaction. No model code/link verified, z differs from prose. Coefficient scale only. Do not convert to rate ratio, pool, or claim specific interaction confirmed; omnibus p=.086."
+    },
+    "Cirsium_oleraceum": {
+      "open_model_intercept": 9.2327,
+      "estimated_means_under_reduced_access_coding": {
+        "open": 9.2327,
+        "bag": 3.9167999999999994,
+        "day": 7.491,
+        "night": 7.2299999999999995
+      },
+      "open_minus_bag": {
+        "b": 5.3159,
+        "se": 1.0338,
+        "normal_ref": [
+          3.289689232782492,
+          7.342110767217508
+        ],
+        "t_reference": [
+          2.4456110502465154,
+          8.186188949753484
+        ]
+      },
+      "open_minus_day": {
+        "b": 1.7417,
+        "se": 1.0332,
+        "normal_ref": [
+          -0.28333478882678365,
+          3.766734788826784
+        ],
+        "t_reference": [
+          -1.1269230826903656,
+          4.610323082690366
+        ]
+      },
+      "open_minus_night": {
+        "b": 2.0027,
+        "se": 1.0332,
+        "normal_ref": [
+          -0.022334788826783747,
+          4.027734788826784
+        ],
+        "t_reference": [
+          -0.8659230826903657,
+          4.871323082690365
+        ]
+      },
+      "day_minus_night": {
+        "b": 0.2609999999999999,
+        "se_bounds": [
+          0,
+          2.0664
+        ],
+        "normal_outer": [
+          -3.7890695776535672,
+          4.3110695776535675
+        ],
+        "t4_outer": [
+          -5.476246165380731,
+          5.998246165380731
+        ]
+      },
+      "warning": "Access contrasts reported without illumination-specific means, reference model coding inferred. Not baseline dark-only dependence, not ALAN effect.",
+      "access_loss_relative_to_intercept": {
+        "bag": 0.5757687350395876,
+        "day": 0.18864470848180923,
+        "night": 0.2169137955311014
+      }
+    },
+    "Silene_vulgaris_parasitism": {
+      "b": -0.1516,
+      "se": 0.0805,
+      "normal_ref": [
+        -0.30937710075547437,
+        0.006177100755474341
+      ],
+      "t_reference": [
+        -0.33096517758317756,
+        0.027765177583177536
+      ]
+    }
+  },
+  "Lu_comparison_model_scales": {
+    "P. kansuensis": {
+      "open_minus_day_light": {
+        "b": -0.11309999999999999,
+        "se_bounds": [
+          0.008199999999999999,
+          0.072
+        ],
+        "normal_outer": [
+          -0.2542174068868839,
+          0.02801740688688388
+        ],
+        "t4_outer": [
+          -0.3130040475742415,
+          0.0868040475742415
+        ]
+      },
+      "open_minus_night_light": {
+        "b": 0.08870000000000001,
+        "se_bounds": [
+          0.010999999999999996,
+          0.0748
+        ],
+        "normal_outer": [
+          -0.05790530604359605,
+          0.23530530604359606
+        ],
+        "t4_outer": [
+          -0.11897809386879533,
+          0.2963780938687954
+        ]
+      }
+    },
+    "E. regelii": {
+      "open_minus_day_light": {
+        "b": 0.0156,
+        "se_bounds": [
+          0.0025000000000000022,
+          0.0641
+        ],
+        "normal_outer": [
+          -0.11003369140901748,
+          0.14123369140901748
+        ],
+        "t4_outer": [
+          -0.16237013124317892,
+          0.19357013124317893
+        ]
+      },
+      "open_minus_night_light": {
+        "b": 0.0054,
+        "se_bounds": [
+          0.0032000000000000084,
+          0.0648
+        ],
+        "normal_outer": [
+          -0.1216056661981955,
+          0.1324056661981955
+        ],
+        "t4_outer": [
+          -0.17451364281681736,
+          0.18531364281681734
+        ]
+      }
+    }
+  },
+  "wet_match": [
+    {
+      "species": "Cirsium oleraceum",
+      "accepted": "Cirsium oleraceum",
+      "candidate": true,
+      "indicator": 7.2,
+      "sp": "VJ8V"
+    }
+  ],
+  "other_same_species_Centaurea_jacea": {
+    "Grognuz_all_menu_seed_rr": 0.8224999999999999,
+    "Grognuz_no_slug_seed_rr": 0.30158730158730157,
+    "Grognuz_slug_seed_rr": 1.2890995260663507,
+    "warning": "Other preprint, different exposure (3 nights then common daytime arena), seed count per deployment; unverified illumination-level replication and missingness. Not directly poolable with per-head count contrast in thesis."
+  },
+  "admission": {
+    "new_report": 1,
+    "new_distinct_lighting_programme": 0,
+    "formal_new_k": 0,
+    "why": "6 reused sites overlap Swiss 2015/2016 meadow programme; outcome data distinct, dependencies not resolved. Grey literature; actual access-specific covariance and links needed."
+  },
+  "source_paths": [
+    "database/alan_experiments/knop_sources/sites_2015_primary.csv",
+    "database/alan_experiments/site_context/primary_coordinates.csv",
+    "database/alan_experiments/giavi_sources/giavi2021_pair_arm_means.csv",
+    "database/alan_experiments/lu_jpe_sources/table_S4b.csv",
+    "results/all_species_forest/wet_reproduction/species.csv",
+    "database/alan_experiments/stage_discordance_20261125/grognuz2026_matched_visit_seed_stage_20261126.json"
+  ],
+  "source_blobs": [
+    "a9a1ed8a53544f46c66a9933851c3084ecd63fb1",
+    "2df674839d2b5bf787bd2876a618f93e5ecee9fa",
+    "920f9e6fd7aaa0178413c7ebdccef1062ac24c7c",
+    "c8dd4ebd618e0fa679a4686acfe4cb6a280c2f47",
+    "c603e16c96f5ee90d06df05205836dba9d206198",
+    "aaaa7b92dc75c71231e0b7d35b1ef472c1282aab"
+  ]
+}
