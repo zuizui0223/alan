@@ -1,0 +1,632 @@
+{
+  "date": "2026-11-28",
+  "scope": "Frozen accumulated stage-contrast inventory, core = co-measured resource/host proxy and consumer interaction-outcome proxy on physical units. Mixed functional endpoints and post-hoc study inventory: common mathematical contrast only, NOT common biological meta effect, not systematic sampling, not mediation.",
+  "full_result_blob": "589a2d1bff8e1d031805bea0c3c9d36392584edc",
+  "core": [
+    {
+      "id": "Parkinson2016",
+      "system": "predator",
+      "upstream_RR": 5.775510204081633,
+      "consumer_RR": 2.0140186915887845,
+      "downstream_RR": 2.3987341772151898,
+      "total": {
+        "y": -0.8786854274771515,
+        "v": 0.044473840193148206,
+        "rr": 0.41532853245068657,
+        "ci": [
+          0.25775449450231613,
+          0.6692329078517425
+        ],
+        "df": 9
+      },
+      "access": {
+        "y": -1.053494524450715,
+        "v": 0.05335762250589242,
+        "rr": 0.3487170172715563,
+        "ci": [
+          0.20679314371147603,
+          0.5880444387674468
+        ],
+        "df": 9
+      },
+      "conditional_function": {
+        "y": 0.1748090969735635,
+        "v": 0.04659745290195795,
+        "rr": 1.1910188258098626,
+        "ci": [
+          0.7308769433505381,
+          1.9408545533405346
+        ],
+        "df": 9
+      },
+      "access_minus_function": {
+        "y": -1.2283036214242786,
+        "v": 0.15543631062255253,
+        "rr": 0.29278883735060823,
+        "ci": [
+          0.12001141670812221,
+          0.7143095684439094
+        ],
+        "df": 9
+      },
+      "means": [
+        {
+          "up": 169.8,
+          "con": 14.366666666666665,
+          "down": 25.26666666666667
+        },
+        {
+          "up": 29.4,
+          "con": 7.133333333333335,
+          "down": 10.533333333333335
+        }
+      ],
+      "scope": "all-origin pan catches from frozen source summary, known family-total discrepancies; catch and web prey windows differ"
+    },
+    {
+      "id": "Robert2025",
+      "system": "predator",
+      "upstream_RR": 16.523809523809526,
+      "consumer_RR": 0.8963570127504554,
+      "downstream_RR": 0.7416666666666667,
+      "total": {
+        "y": -3.1036577152733424,
+        "v": 0.8005036770956483,
+        "rr": 0.04488472622478386,
+        "ci": [
+          0.0026031835358209534,
+          0.7739134104651033
+        ],
+        "df": 3
+      },
+      "access": {
+        "y": -2.914218835861034,
+        "v": 0.8067972697972641,
+        "rr": 0.054246389820632755,
+        "ci": [
+          0.003111182522453271,
+          0.9458367637819121
+        ],
+        "df": 3
+      },
+      "conditional_function": {
+        "y": -0.18943887941230808,
+        "v": 0.0064722051254980555,
+        "rr": 0.8274232879496037,
+        "ci": [
+          0.6405252496757964,
+          1.0688560642814
+        ],
+        "df": 3
+      },
+      "access_minus_function": {
+        "y": -2.7247799564487263,
+        "v": 0.8260352727498762,
+        "rr": 0.06556062732420549,
+        "ci": [
+          0.0036348280781022036,
+          1.182503205870334
+        ],
+        "df": 3
+      },
+      "scope": "capture count, acoustic passes and buzz attempts; not ingestion"
+    },
+    {
+      "id": "Sanders2016",
+      "system": "parasitoid",
+      "upstream_RR": 2.3378151260504194,
+      "downstream_RR": 1.0383275261324043,
+      "total": {
+        "y": -0.8116055156320297,
+        "v": 0.16026636296181332,
+        "rr": 0.4441444126878365,
+        "ci": [
+          0.15870728017087407,
+          1.2429439853637232
+        ],
+        "df": 5
+      },
+      "n": 6
+    },
+    {
+      "id": "Sanders2017",
+      "system": "parasitoid",
+      "upstream_RR": 4.634090909090911,
+      "downstream_RR": 3.203571428571429,
+      "total": {
+        "y": -0.369173784772602,
+        "v": 0.46341613712609847,
+        "rr": 0.6913052616828976,
+        "ci": [
+          0.1201410254630664,
+          3.9778498892318512
+        ],
+        "df": 5
+      },
+      "n": 6
+    }
+  ],
+  "coreStats": {
+    "descriptive": {
+      "n": 4,
+      "rr": 0.27505598759338423,
+      "range": [
+        0.04488472622478386,
+        0.6913052616828976
+      ],
+      "between_programme_reference": [
+        0.03888079573865895,
+        1.9458397101617908
+      ],
+      "negative": 4,
+      "positive": 0,
+      "zero": 0,
+      "sign_p_reference": 0.125
+    },
+    "hypothetical_REML_mKH": {
+      "y": -0.9179438004555016,
+      "v": 0.06974369328424508,
+      "rr": 0.39933931879358375,
+      "ci": [
+        0.17232086592240095,
+        0.9254357600915053
+      ],
+      "df": 3,
+      "k": 4,
+      "tau2": 0,
+      "weights": [
+        0.6997771326726538,
+        0.03887774317566874,
+        0.19418782453257807,
+        0.06715729961909946
+      ],
+      "Q": 6.722979992206037
+    },
+    "leave_one_out": [
+      {
+        "omit": "Parkinson2016",
+        "descriptive": {
+          "n": 3,
+          "rr": 0.2397530911948199,
+          "range": [
+            0.04488472622478386,
+            0.6913052616828976
+          ],
+          "between_programme_reference": [
+            0.006255042756529453,
+            9.189632585239858
+          ],
+          "negative": 3,
+          "positive": 0,
+          "zero": 0,
+          "sign_p_reference": 0.25
+        },
+        "hypothetical_REML_mKH": {
+          "y": -1.296283149945959,
+          "v": 0.6364132774968864,
+          "rr": 0.27354663768804505,
+          "ci": [
+            0.008837541792598663,
+            8.467033565046554
+          ],
+          "df": 2,
+          "k": 3,
+          "tau2": 1.2765225709554353,
+          "weights": [
+            0.2747752328959257,
+            0.3972158732342084,
+            0.3280088938698658
+          ],
+          "Q": 2.23023002285035
+        }
+      },
+      {
+        "omit": "Robert2025",
+        "descriptive": {
+          "n": 3,
+          "rr": 0.503340578976539,
+          "range": [
+            0.41532853245068657,
+            0.6913052616828976
+          ],
+          "between_programme_reference": [
+            0.2530417134870884,
+            1.0012251930840839
+          ],
+          "negative": 3,
+          "positive": 0,
+          "zero": 0,
+          "sign_p_reference": 0.25
+        },
+        "hypothetical_REML_mKH": {
+          "y": -0.829530881461675,
+          "v": 0.03238066348825729,
+          "rr": 0.4362538931140398,
+          "ci": [
+            0.20113534648201517,
+            0.9462158819219454
+          ],
+          "df": 2,
+          "k": 3,
+          "tau2": 0,
+          "weights": [
+            0.728083370980093,
+            0.2020427923230069,
+            0.06987383669690016
+          ],
+          "Q": 0.5136510322731164
+        }
+      },
+      {
+        "omit": "Sanders2016",
+        "descriptive": {
+          "n": 3,
+          "rr": 0.23445170936684323,
+          "range": [
+            0.04488472622478386,
+            0.6913052616828976
+          ],
+          "between_programme_reference": [
+            0.006327551372982158,
+            8.68702611562182
+          ],
+          "negative": 3,
+          "positive": 0,
+          "zero": 0,
+          "sign_p_reference": 0.25
+        },
+        "hypothetical_REML_mKH": {
+          "y": -1.301309098031019,
+          "v": 0.6006635494791093,
+          "rr": 0.27217525562249106,
+          "ci": [
+            0.009696677561672504,
+            7.63966516386784
+          ],
+          "df": 2,
+          "k": 3,
+          "tau2": 1.1939414873404879,
+          "weights": [
+            0.4222696562082595,
+            0.2622008485996722,
+            0.31552949519206835
+          ],
+          "Q": 2.29723318125318
+        }
+      },
+      {
+        "omit": "Sanders2017",
+        "descriptive": {
+          "n": 3,
+          "rr": 0.20230417727127942,
+          "range": [
+            0.04488472622478386,
+            0.4441444126878365
+          ],
+          "between_programme_reference": [
+            0.007920886030299019,
+            5.166969955741711
+          ],
+          "negative": 3,
+          "positive": 0,
+          "zero": 0,
+          "sign_p_reference": 0.25
+        },
+        "hypothetical_REML_mKH": {
+          "y": -1.33701377442867,
+          "v": 0.4329605724200809,
+          "rr": 0.2626287674846259,
+          "ci": [
+            0.015480903233069786,
+            4.455416358598123
+          ],
+          "df": 2,
+          "k": 3,
+          "tau2": 0.774562351639356,
+          "weights": [
+            0.4173385439182376,
+            0.21701653484980604,
+            0.36564492123195647
+          ],
+          "Q": 2.5333007713893556
+        }
+      }
+    ],
+    "lineage_collapsed": {
+      "n": 3,
+      "rr": 0.2177855830244609,
+      "range": [
+        0.04488472622478386,
+        0.5541113330713979
+      ],
+      "between_programme_reference": [
+        0.007148202210246291,
+        6.635313156826623
+      ],
+      "negative": 3,
+      "positive": 0,
+      "zero": 0,
+      "sign_p_reference": 0.25
+    }
+  },
+  "stageProfiles": {
+    "access": {
+      "descriptive": {
+        "n": 2,
+        "rr": 0.13753777392411573,
+        "range": [
+          0.054246389820632755,
+          0.3487170172715563
+        ],
+        "between_programme_reference": [
+          0.0000010103348882201219,
+          18723.13772052957
+        ],
+        "negative": 2,
+        "positive": 0,
+        "zero": 0,
+        "sign_p_reference": 0.5
+      },
+      "hypothetical_REML_mKH": {
+        "y": -1.7813979768753925,
+        "v": 0.8245842142343373,
+        "rr": 0.1684025597497249,
+        "ci": [
+          0.000001642201295309662,
+          17269.150993400006
+        ],
+        "df": 1,
+        "k": 2,
+        "tau2": 1.301070000438118,
+        "weights": [
+          0.6088063943911339,
+          0.39119360560886607
+        ],
+        "Q": 1.0000000201871926
+      }
+    },
+    "conditional_function": {
+      "descriptive": {
+        "n": 2,
+        "rr": 0.9927117974827704,
+        "range": [
+          0.8274232879496037,
+          1.1910188258098626
+        ],
+        "between_programme_reference": [
+          0.09813417808648132,
+          10.042135493232704
+        ],
+        "negative": 1,
+        "positive": 1,
+        "zero": 0,
+        "sign_p_reference": 1
+      },
+      "hypothetical_REML_mKH": {
+        "y": -0.062394467171949825,
+        "v": 0.03013538738818486,
+        "rr": 0.9395122069620909,
+        "ci": [
+          0.10350513468432665,
+          8.52791689729031
+        ],
+        "df": 1,
+        "k": 2,
+        "tau2": 0.039803464499737456,
+        "weights": [
+          0.3487854991012273,
+          0.6512145008987729
+        ],
+        "Q": 1.0000000096043435
+      }
+    },
+    "total": {
+      "descriptive": {
+        "n": 2,
+        "rr": 0.1365353707739878,
+        "range": [
+          0.04488472622478386,
+          0.41532853245068657
+        ],
+        "between_programme_reference": [
+          9.914838384757842e-8,
+          188020.28584801411
+        ],
+        "negative": 2,
+        "positive": 0,
+        "zero": 0,
+        "sign_p_reference": 0.5
+      },
+      "hypothetical_REML_mKH": {
+        "y": -1.8212751060023442,
+        "v": 1.208760611419048,
+        "rr": 0.16181928258881834,
+        "ci": [
+          1.3870168871636507e-7,
+          188789.9164018633
+        ],
+        "df": 1,
+        "k": 2,
+        "tau2": 2.0527620244767,
+        "weights": [
+          0.5763589130097361,
+          0.4236410869902639
+        ],
+        "Q": 1.0000000232741706
+      }
+    },
+    "access_minus_function": {
+      "descriptive": {
+        "n": 2,
+        "rr": 0.13854753642786524,
+        "range": [
+          0.06556062732420549,
+          0.29278883735060823
+        ],
+        "between_programme_reference": [
+          0.000010295443523557682,
+          1864.4577872054103
+        ],
+        "negative": 2,
+        "positive": 0,
+        "zero": 0,
+        "sign_p_reference": 0.5
+      },
+      "hypothetical_REML_mKH": {
+        "y": -1.7524824595278559,
+        "v": 0.5096577722269983,
+        "rr": 0.17334309167614367,
+        "ci": [
+          0.000019926050325738387,
+          1507.9670552187297
+        ],
+        "df": 1,
+        "k": 2,
+        "tau2": 0.6289849088131791,
+        "weights": [
+          0.6497246058388128,
+          0.3502753941611873
+        ],
+        "Q": 1.000000009060034
+      }
+    }
+  },
+  "variantSummary": {
+    "n": 1000,
+    "all_four_negative": 800,
+    "three_or_more_negative": 1000,
+    "equal_weight_below_one": 1000,
+    "equal_weight_range": [
+      0.17528978164533596,
+      0.6320277926573379
+    ],
+    "meta_range": [
+      0.25344527956146595,
+      0.7186236410992103
+    ],
+    "meta_interval_below_one": 140,
+    "meta_interval_above_one": 0
+  },
+  "allmenus": {
+    "n": 31680,
+    "all_negative": 26400,
+    "equal_below": 31320,
+    "min": 0.1295789046855236,
+    "max": 1.575825425239123
+  },
+  "context": [
+    {
+      "id": "Sullivan2013",
+      "lane": "consumer_structure",
+      "rr": 0.13656998180575983,
+      "upstream": 2.5865090801053374,
+      "downstream": 0.35323949801041854,
+      "reason": "web number not prey or consumption"
+    },
+    {
+      "id": "Rowse2015",
+      "lane": "consumer_activity_unmatched",
+      "rr": 0.08304826506952974,
+      "reason": "21 acoustic sites, 7 insect sites; separate conditional models"
+    },
+    {
+      "id": "Grognuz2023_2024",
+      "lane": "plant_function",
+      "rr": 0.7441335636387082,
+      "reason": "same pots but reused illumination sites, source transcription discrepancy; species equally weighted"
+    },
+    {
+      "id": "Boom2020",
+      "lane": "plant_function",
+      "rr": 0.6511622153080967,
+      "reason": "calculated seed output, shared covariance unknown"
+    },
+    {
+      "id": "Li2026",
+      "lane": "plant_function",
+      "rr": 1.1176117928406646,
+      "strict_rr": 0.7340559577831982,
+      "reason": "raw seeds/fruits, preprint, incomplete deployment and different support"
+    },
+    {
+      "id": "Lu2024",
+      "lane": "plant_function",
+      "rr": 0.8644400785854617,
+      "reason": "rounded published ratios, one species, unmatched denominator and no covariance"
+    }
+  ],
+  "transport": [
+    {
+      "id": "EERES2021",
+      "condition": "L_vs_CT",
+      "upstream": 0.742899221544,
+      "mobile": 1.23988439306,
+      "relative": {
+        "y": 0.512213024556,
+        "v": 0.03209280219371913,
+        "rr": 1.6689806061262278,
+        "ci": [
+          1.0530672180531095,
+          2.64512674582658
+        ],
+        "df": 5
+      },
+      "scope": "standing benthos and drift catches; not directly tracked exported individuals"
+    },
+    {
+      "id": "EERES2021",
+      "condition": "LF_vs_F",
+      "upstream": 1.24518388792,
+      "mobile": 0.872222222222,
+      "relative": {
+        "y": -0.355994265689,
+        "v": 0.0205525556703031,
+        "rr": 0.7004766369746204,
+        "ci": [
+          0.4845585270097563,
+          1.0126073355373948
+        ],
+        "df": 5
+      },
+      "scope": "standing benthos and drift catches; not directly tracked exported individuals"
+    },
+    {
+      "id": "Westhavelland2014",
+      "condition": "one lit/one dark",
+      "upstream": 0.4744897959183674,
+      "mobile": 7.983132068238452,
+      "relative": {
+        "rr": 16.82466543413695,
+        "v": null
+      },
+      "scope": "no independent site-level variance; different sampling windows, descriptive only"
+    }
+  ],
+  "source_paths": [
+    "database/alan_experiments/stage_discordance_20261125/stage_profiles_20261125.json",
+    "database/alan_experiments/stage_discordance_20261125/order_and_consumer_stage_20261126.json",
+    "database/alan_experiments/stage_discordance_20261125/aphid_mummy_stage_two_programmes_20261126.json",
+    "database/alan_experiments/stage_discordance_20261125/bat_consumer_independent_source_20261126.json",
+    "database/alan_experiments/stage_discordance_20261125/grognuz2026_matched_visit_seed_stage_20261126.json",
+    "database/alan_experiments/stage_discordance_20261125/joint_geometry_postfruit_two_programmes_20261128.json",
+    "database/alan_experiments/stage_discordance_20261125/nocturnal_visitation_diel_stage_20261126.json",
+    "database/alan_experiments/arthropod_expansion_20261122/eeres2021_source_reanalysis/joint_contrasts_20261123.csv",
+    "database/alan_experiments/arthropod_expansion_20261122/eeres2021_source_reanalysis/eight_original_effect_candidates.csv",
+    "database/alan_experiments/arthropod_expansion_20261122/manfrin_crossendpoint/published_cpue_ratios.json",
+    "database/alan_experiments/parkinson_independent/unit_values.csv"
+  ],
+  "source_blobs": [
+    "c5c5615c661c09391a23799b1e979d79a68ec998",
+    "de98a11fd5ab467456d4593d9c07f9994fee1fa7",
+    "1dbb80748821dd86f69159572444d54ed06ab573",
+    "9cfaebbadfeae371c429bdce70923f097a31e0ea",
+    "aaaa7b92dc75c71231e0b7d35b1ef472c1282aab",
+    "c1577a0e5d0dda7b24b0ea9a8436d6dcd8aaf091",
+    "3a75ef57157d6f16aa4e6885fa4f2ba21c4aea3d",
+    "89465e48ccb4f98db1c7bd626be6e85f7e919672",
+    "4f7debd9e8b43c2f1d9dc5de7e9e53413e877da6",
+    "9b73dbdd737d490ff6a61a6ed21691c89f43cf79",
+    "bcd72974776d1e3f46056bab525aa98eb3813f85"
+  ],
+  "formal_new_k": 0
+}
