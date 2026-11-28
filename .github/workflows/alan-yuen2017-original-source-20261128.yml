@@ -1,0 +1,80 @@
+name: ALAN Yuen 2017 original workbook gate
+on:
+  push:
+    branches:
+      - analysis/alan-stage-discordance-source-20261125
+    paths:
+      - .github/workflows/alan-yuen2017-original-source-20261128.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests openpyxl
+      - name: Retrieve and validate published supplement
+        shell: bash
+        run: |
+          mkdir -p source-audit
+          python - <<'PY'
+          import hashlib, io, json, zipfile
+          from pathlib import Path
+          import requests
+          import openpyxl
+
+          root = Path("source-audit")
+          filename = "peerj-05-4070-s001.xlsx"
+          urls = [
+              ("peerj_doi", "https://doi.org/10.7717/peerj.4070/supp-1"),
+              ("pmc", "https://pmc.ncbi.nlm.nih.gov/articles/instance/5731334/bin/" + filename),
+              ("europepmc", "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5731334/supplementaryFiles"),
+          ]
+          report = {"doi": "10.7717/peerj.4070/supp-1", "attempts": [], "status": "STOP_no_verified_workbook", "formal_meta_admissions": 0, "effect_estimates": 0}
+          for source, url in urls:
+              record = {"source": source, "url": url}
+              report["attempts"].append(record)
+              try:
+                  response = requests.get(url, timeout=30)
+                  record.update(status=response.status_code, final_url=response.url, bytes=len(response.content), content_type=response.headers.get("Content-Type"), sha256=hashlib.sha256(response.content).hexdigest())
+                  response.raise_for_status()
+                  if len(response.content) > 25_000_000:
+                      raise ValueError("Response exceeds source audit limit")
+                  body = response.content
+                  if not zipfile.is_zipfile(io.BytesIO(body)):
+                      raise ValueError("Not an XLSX/ZIP")
+                  with zipfile.ZipFile(io.BytesIO(body)) as z:
+                      members = z.namelist()
+                      if "xl/workbook.xml" not in members:
+                          matched = [m for m in z.infolist() if m.filename.rsplit("/",1)[-1] == filename and m.file_size < 5_000_000]
+                          if len(matched) != 1:
+                              raise ValueError("No unique exact expected supplementary member")
+                          body = z.read(matched[0])
+                  with zipfile.ZipFile(io.BytesIO(body)) as z:
+                      if "xl/workbook.xml" not in z.namelist():
+                          raise ValueError("Invalid XLSX")
+                  workbook = openpyxl.load_workbook(io.BytesIO(body), read_only=True, data_only=True)
+                  sheets = []
+                  for ws in workbook:
+                      sheets.append({"name": ws.title, "max_row": ws.max_row, "max_column": ws.max_column, "first_rows": [[str(c) if c is not None else None for c in row] for row in ws.iter_rows(min_row=1, max_row=min(8, ws.max_row or 1), max_col=min(30, ws.max_column or 1), values_only=True)]})
+                  report.update(status="workbook_retrieved_schema_review_pending", source=source, workbook_sha256=hashlib.sha256(body).hexdigest(), workbook_bytes=len(body), sheets=sheets)
+                  (root / filename).write_bytes(body)
+                  workbook.close()
+                  break
+              except Exception as e:
+                  record["error"] = str(e)
+          (root / "audit.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+          print(json.dumps(report, ensure_ascii=False, indent=2))
+          if report["status"] != "workbook_retrieved_schema_review_pending":
+              raise SystemExit("STOP: original source not recovered; do not estimate effects")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: yuen2017-original-source-audit
+          path: source-audit/
+          retention-days: 14
